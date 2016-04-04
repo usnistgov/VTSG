@@ -1,6 +1,6 @@
-# C# Vulnerability test suite
+# Vulnerability Test Suite generator
 
-Collection of vulnerable and fixed C# synthetic test cases expressing specific flaws.
+Collection of vulnerable and fixed synthetic test cases expressing specific flaws.
 
 Written in Python 3
 
@@ -40,25 +40,13 @@ Docopt installation instructions [here](https://github.com/docopt/docopt#install
 ## Execute it
 
 ```sh
-$ python3 test_cases_generator.py -l cs
+$ python3 test_suite_gen.py -l cs
 ```
-
-## How to indent the generated source code ?
-
-[Artistic](http://astyle.sourceforge.net/astyle.html) can indent C# source code.
-
-Instructions :
-
-```sh
-$ ./astyle -r TestSuiteXXX*.cs --style=java --suffix=none --delete-empty-lines --indent-switches
-```
-
-where TestSuiteXXX*.cs is the path to the file you want to indent (it won't save a copy).
 
 ## Need help ?
 
 ```sh
-$ python3 test_cases_generator.py --help
+$ python3 test_suite_gen.py --help
 ```
 
 ## Discussion

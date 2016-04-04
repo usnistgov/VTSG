@@ -1,12 +1,12 @@
 :tocdepth: 2
 
-C#_vuln_test_suite_gen package
+vuln_test_suite_gen package
 ===================================
 
 complexities_generator module
 ---------------------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.complexities_generator
+.. automodule:: vuln_test_suite_gen.complexities_generator
     :members:
     :undoc-members:
     :show-inheritance:
@@ -14,7 +14,7 @@ complexities_generator module
 complexity module
 ---------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.complexity
+.. automodule:: vuln_test_suite_gen.complexity
     :members:
     :undoc-members:
     :show-inheritance:
@@ -22,7 +22,7 @@ complexity module
 condition module
 --------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.condition
+.. automodule:: vuln_test_suite_gen.condition
     :members:
     :undoc-members:
     :show-inheritance:
@@ -30,7 +30,7 @@ condition module
 exec_query module
 ---------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.exec_query
+.. automodule:: vuln_test_suite_gen.exec_query
     :members:
     :undoc-members:
     :show-inheritance:
@@ -38,7 +38,7 @@ exec_query module
 file_manager module
 -----------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.file_manager
+.. automodule:: vuln_test_suite_gen.file_manager
     :members:
     :undoc-members:
     :show-inheritance:
@@ -46,7 +46,7 @@ file_manager module
 file_template module
 ------------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.file_template
+.. automodule:: vuln_test_suite_gen.file_template
     :members:
     :undoc-members:
     :show-inheritance:
@@ -54,7 +54,7 @@ file_template module
 filtering_sample module
 ---------------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.filtering_sample
+.. automodule:: vuln_test_suite_gen.filtering_sample
     :members:
     :undoc-members:
     :show-inheritance:
@@ -62,7 +62,7 @@ filtering_sample module
 generator module
 --------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.generator
+.. automodule:: vuln_test_suite_gen.generator
     :members:
     :undoc-members:
     :show-inheritance:
@@ -70,7 +70,7 @@ generator module
 input_sample module
 -----------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.input_sample
+.. automodule:: vuln_test_suite_gen.input_sample
     :members:
     :undoc-members:
     :show-inheritance:
@@ -78,7 +78,7 @@ input_sample module
 manifest module
 -------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.manifest
+.. automodule:: vuln_test_suite_gen.manifest
     :members:
     :undoc-members:
     :show-inheritance:
@@ -86,7 +86,7 @@ manifest module
 sample module
 -----------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.sample
+.. automodule:: vuln_test_suite_gen.sample
     :members:
     :undoc-members:
     :show-inheritance:
@@ -94,7 +94,7 @@ sample module
 sink_sample module
 ----------------------------------------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen.sink_sample
+.. automodule:: vuln_test_suite_gen.sink_sample
     :members:
     :undoc-members:
     :show-inheritance:
@@ -103,7 +103,7 @@ sink_sample module
 Module contents
 ---------------
 
-.. automodule:: c_sharp_vuln_test_suite_gen
+.. automodule:: vuln_test_suite_gen
     :members:
     :undoc-members:
     :show-inheritance:

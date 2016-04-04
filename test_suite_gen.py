@@ -72,8 +72,8 @@ import sys
 import time
 import os
 from docopt import docopt
-from c_sharp_vuln_test_suite_gen.generator import Generator
-from c_sharp_vuln_test_suite_gen.file_manager import FileManager
+from vuln_test_suite_gen.generator import Generator
+from vuln_test_suite_gen.file_manager import FileManager
 
 
 def main():

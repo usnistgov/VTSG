@@ -12,9 +12,9 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name="C# test suite generator",
+    name="test suite generator",
     version="0.2",
-    packages=['c_sharp_vuln_test_suite_gen'],
+    packages=['vuln_test_suite_gen'],
     scripts=['test_cases_generator.py'],
 
     # Project uses reStructuredText, so ensure that the docutils get
@@ -23,15 +23,15 @@ setup(
 
     package_data={
         # If any package contains *.txt or *.xml files, include them:
-        'c_sharp_vuln_test_suite_gen': ['*.txt', '*.xml'],
+        'vuln_test_suite_gen': ['*.txt', '*.xml'],
     },
 
     # metadata for upload to PyPI
     author="Bertrand Stivalet",
     author_email="bertrand.stivalet@gmail.com",
-    description="Collection of vulnerable and fixed C# synthetic test cases expressing specific flaws.",
+    description="Collection of vulnerable and fixed synthetic test cases expressing specific flaws.",
     license="MIT",
-    keywords="C# flaws vulnerability generator",
+    keywords="flaws vulnerability generator",
     long_description=read('README.md'),
 
     # could also include long_description, download_url, classifiers, etc.

@@ -1,0 +1,17 @@
+<!ELEMENT sink (sample+)>
+<!ELEMENT sample (path, flaw_type, comment, imports, code, safety, input_type, exec_type, options?)>
+<!ELEMENT path (dir+)>
+<!ELEMENT dir (#PCDATA)>
+<!ELEMENT flaw_type (#PCDATA)>
+<!ATTLIST flaw_type flaw_group CDATA #REQUIRED>
+<!ELEMENT comment (#PCDATA)>
+<!ELEMENT imports (import*)>
+<!ELEMENT import (#PCDATA)>
+<!ELEMENT code (#PCDATA)>
+<!ELEMENT safety EMPTY>
+<!ATTLIST safety safe CDATA #REQUIRED>
+<!ATTLIST safety unsafe CDATA #REQUIRED>
+<!ELEMENT input_type (#PCDATA)>
+<!ELEMENT exec_type (#PCDATA)>
+<!ELEMENT options EMPTY>
+<!ATTLIST options need_complexity CDATA #IMPLIED>

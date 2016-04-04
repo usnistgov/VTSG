@@ -1,0 +1,38 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<template name="PHP">
+    <file_extension>php</file_extension>
+    <comment>
+        <open>/*</open>
+        <close>*/</close>
+        <inline>//</inline>
+    </comment>
+    <variables prefix="$" import_code="include &quot;{{import_file}}&quot;;">
+        <variable type="int" code="" init="0"/>
+        <variable type="string" code="" init="null"/>
+    </variables>
+    <imports>
+    </imports>
+    <code>
+        &lt;?php
+        /*
+        {{comments}}
+        */
+
+        /*
+        {{license}}
+        */
+        {{stdlib_imports}}
+
+        {{local_var}}
+        {{input_content}}
+        {{filtering_content}}
+        {{flaw}}
+        {{sink_content}}
+        {{exec_queries_content}}
+
+        {{static_methods}}
+
+        ?>
+        </code>
+</template>

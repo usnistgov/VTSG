@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>C#_vuln_test_suite_gen package &mdash; C# Vulnerability Test Suite Generator 0.4 documentation</title>
+    <title>vuln_test_suite_gen package &mdash; Vulnerability Test Suite Generator 0.4 documentation</title>
     
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="C# Vulnerability Test Suite Generator 0.4 documentation" href="index.html" />
-    <link rel="prev" title="Welcome to C# Vulnerability Test Suite Generator’s documentation!" href="index.html" /> 
+    <link rel="top" title="Vulnerability Test Suite Generator 0.4 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to Vulnerability Test Suite Generator’s documentation!" href="index.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,9 +37,9 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to C# Vulnerability Test Suite Generator’s documentation!"
+          <a href="index.html" title="Welcome to Vulnerability Test Suite Generator’s documentation!"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">C# Vulnerability Test Suite Generator 0.4 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Vulnerability Test Suite Generator 0.4 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -49,20 +49,20 @@
           <div class="body" role="main">
             
   <div class="section" id="c-vuln-test-suite-gen-package">
-<h1>C#_vuln_test_suite_gen package<a class="headerlink" href="#c-vuln-test-suite-gen-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.complexities_generator">
-<span id="complexities-generator-module"></span><h2>complexities_generator module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.complexities_generator" title="Permalink to this headline">¶</a></h2>
+<h1>vuln_test_suite_gen package<a class="headerlink" href="#c-vuln-test-suite-gen-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-vuln_test_suite_gen.complexities_generator">
+<span id="complexities-generator-module"></span><h2>complexities_generator module<a class="headerlink" href="#module-vuln_test_suite_gen.complexities_generator" title="Permalink to this headline">¶</a></h2>
 <p>Complexities Generator Module.</p>
 <p>This is the module used to compose and generate the needed complexities which will be used by the Generator module.</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator">
-<em class="property">class </em><code class="descname">ComplexitiesGenerator</code><span class="sig-paren">(</span><em>complexities_array</em>, <em>template</em>, <em>input_type</em>, <em>output_type</em>, <em>filtering</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator">
+<em class="property">class </em><code class="descname">ComplexitiesGenerator</code><span class="sig-paren">(</span><em>complexities_array</em>, <em>template</em>, <em>input_type</em>, <em>output_type</em>, <em>filtering</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Complexities Generator class</p>
 <blockquote>
 <div><dl class="docutils">
 <dt>Args :</dt>
-<dd><p class="first"><strong>complexities_array</strong> (List of <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample" title="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample"><code class="xref py py-class docutils literal"><span class="pre">ComplexitySample</span></code></a>): Contains the current stack of complexities.</p>
+<dd><p class="first"><strong>complexities_array</strong> (List of <a class="reference internal" href="#vuln_test_suite_gen.complexity.ComplexitySample" title="vuln_test_suite_gen.complexity.ComplexitySample"><code class="xref py py-class docutils literal"><span class="pre">ComplexitySample</span></code></a>): Contains the current stack of complexities.</p>
 <p><strong>template</strong> (str): Template code.</p>
 <p><strong>input_type</strong> (str): Input type got from the xml file.</p>
 <p><strong>output_type</strong> (str): Output type got from the xml file.</p>
@@ -71,11 +71,11 @@
 </dl>
 <p>Attributes :</p>
 <blockquote>
-<div><p><strong>complexities_array</strong> (List of <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample" title="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample"><code class="xref py py-class docutils literal"><span class="pre">ComplexitySample</span></code></a>): Contains the current stack of complexities.</p>
-<p><strong>template</strong> (<a class="reference internal" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate" title="c_sharp_vuln_test_suite_gen.file_template.FileTemplate"><code class="xref py py-class docutils literal"><span class="pre">FileTemplate</span></code></a>): Template code.</p>
+<div><p><strong>complexities_array</strong> (List of <a class="reference internal" href="#vuln_test_suite_gen.complexity.ComplexitySample" title="vuln_test_suite_gen.complexity.ComplexitySample"><code class="xref py py-class docutils literal"><span class="pre">ComplexitySample</span></code></a>): Contains the current stack of complexities.</p>
+<p><strong>template</strong> (<a class="reference internal" href="#vuln_test_suite_gen.file_template.FileTemplate" title="vuln_test_suite_gen.file_template.FileTemplate"><code class="xref py py-class docutils literal"><span class="pre">FileTemplate</span></code></a>): Template code.</p>
 <p><strong>input_type</strong> (str): Input type got from the xml file.</p>
 <p><strong>output_type</strong> (str): Output type got from the xml file.</p>
-<p><strong>filtering</strong> (<a class="reference internal" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample" title="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample"><code class="xref py py-class docutils literal"><span class="pre">FilteringSample</span></code></a>): Current filtering.</p>
+<p><strong>filtering</strong> (<a class="reference internal" href="#vuln_test_suite_gen.filtering_sample.FilteringSample" title="vuln_test_suite_gen.filtering_sample.FilteringSample"><code class="xref py py-class docutils literal"><span class="pre">FilteringSample</span></code></a>): Current filtering.</p>
 <p><strong>uid</strong> (int): UID for variables/functions/classes name.</p>
 <p><strong>complexities</strong> (list of dict): list of dict with complexities,                                                  type (function or class) and local var for composition.</p>
 <p><strong>_executed</strong> (bool): True if the final placeholder will be executed                                       (private member, please use getter and setter).</p>
@@ -89,20 +89,20 @@
 </div></blockquote>
 </div></blockquote>
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.add_value_dict">
-<code class="descname">add_value_dict</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.add_value_dict" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.add_value_dict">
+<code class="descname">add_value_dict</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.add_value_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a variable name into a dict. This dict is compile after for local var</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.compose">
-<code class="descname">compose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.compose" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.compose">
+<code class="descname">compose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.compose" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method composes all complexities.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.executed">
-<code class="descname">executed</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.executed" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.executed">
+<code class="descname">executed</code><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.executed" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if placeholder code is executed, false otherwise.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -117,26 +117,26 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.fill_template">
-<code class="descname">fill_template</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.fill_template" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.fill_template">
+<code class="descname">fill_template</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.fill_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method fills template with previous composed complexities with local var and instructions.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.generate_local_var_code">
-<code class="descname">generate_local_var_code</code><span class="sig-paren">(</span><em>local_var</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.generate_local_var_code" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.generate_local_var_code">
+<code class="descname">generate_local_var_code</code><span class="sig-paren">(</span><em>local_var</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.generate_local_var_code" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates local var with type, name and initialisation.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.get_in_out_var">
-<code class="descname">get_in_out_var</code><span class="sig-paren">(</span><em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.get_in_out_var" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.get_in_out_var">
+<code class="descname">get_in_out_var</code><span class="sig-paren">(</span><em>c</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.get_in_out_var" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generated name for variable in different cases (in/trasversal/out).</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.get_template">
-<code class="descname">get_template</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.get_template" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.get_template">
+<code class="descname">get_template</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.get_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets modified template.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -151,8 +151,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.in_ext_name">
-<code class="descname">in_ext_name</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.in_ext_name" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.in_ext_name">
+<code class="descname">in_ext_name</code><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.in_ext_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets input external variable name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -167,8 +167,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.in_int_name">
-<code class="descname">in_int_name</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.in_int_name" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.in_int_name">
+<code class="descname">in_int_name</code><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.in_int_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets input internal variable name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -183,8 +183,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.out_ext_name">
-<code class="descname">out_ext_name</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.out_ext_name" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.out_ext_name">
+<code class="descname">out_ext_name</code><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.out_ext_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets output external variable name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -199,8 +199,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.out_int_name">
-<code class="descname">out_int_name</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.out_int_name" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.out_int_name">
+<code class="descname">out_int_name</code><a class="headerlink" href="#vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator.out_int_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets output internal variable name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -217,12 +217,12 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.complexity">
-<span id="complexity-module"></span><h2>complexity module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.complexity" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.complexity">
+<span id="complexity-module"></span><h2>complexity module<a class="headerlink" href="#module-vuln_test_suite_gen.complexity" title="Permalink to this headline">¶</a></h2>
 <p>Complexity module.</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample">
-<em class="property">class </em><code class="descname">ComplexitySample</code><span class="sig-paren">(</span><em>xml_compl</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample">
+<em class="property">class </em><code class="descname">ComplexitySample</code><span class="sig-paren">(</span><em>xml_compl</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>ComplexitySample class</p>
 <dl class="docutils">
@@ -241,8 +241,8 @@
 </dd>
 </dl>
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.body">
-<code class="descname">body</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.body" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.body">
+<code class="descname">body</code><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.body" title="Permalink to this definition">¶</a></dt>
 <dd><p>Second part of complexity.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -259,13 +259,13 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.clone">
-<code class="descname">clone</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.clone" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.clone">
+<code class="descname">clone</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.clone" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.code">
-<code class="descname">code</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.code" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.code">
+<code class="descname">code</code><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.code" title="Permalink to this definition">¶</a></dt>
 <dd><p>Code of complexity.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -282,14 +282,14 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.get_complete_id">
-<code class="descname">get_complete_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.get_complete_id" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.get_complete_id">
+<code class="descname">get_complete_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.get_complete_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the complete id of complexity (in case with conditional).</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.group">
-<code class="descname">group</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.group" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.group">
+<code class="descname">group</code><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Group of complexity (conditionnals, loops, functions, classes, ...).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -304,8 +304,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.id">
-<code class="descname">id</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.id" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.id">
+<code class="descname">id</code><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.id" title="Permalink to this definition">¶</a></dt>
 <dd><p>ID of complexity.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -320,13 +320,13 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.in_out_var">
-<code class="descname">in_out_var</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.in_out_var" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.in_out_var">
+<code class="descname">in_out_var</code><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.in_out_var" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.indirection">
-<code class="descname">indirection</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.indirection" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.indirection">
+<code class="descname">indirection</code><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.indirection" title="Permalink to this definition">¶</a></dt>
 <dd><p>If True, the complexity need to have a body.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -341,14 +341,14 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.is_executed">
-<code class="descname">is_executed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.is_executed" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.is_executed">
+<code class="descname">is_executed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.is_executed" title="Permalink to this definition">¶</a></dt>
 <dd><p>compute if the placeholder is executed</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.need_condition">
-<code class="descname">need_condition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.need_condition" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.need_condition">
+<code class="descname">need_condition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.need_condition" title="Permalink to this definition">¶</a></dt>
 <dd><p>If True the complexity need a condition (set _cond_id).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -363,8 +363,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.need_id">
-<code class="descname">need_id</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.need_id" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.need_id">
+<code class="descname">need_id</code><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.need_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>If True the complexity needs uniq id.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -379,8 +379,8 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.set_cond_id">
-<code class="descname">set_cond_id</code><span class="sig-paren">(</span><em>nb</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.set_cond_id" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.set_cond_id">
+<code class="descname">set_cond_id</code><span class="sig-paren">(</span><em>nb</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.set_cond_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the ID of the condition.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -389,8 +389,8 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.set_condition">
-<code class="descname">set_condition</code><span class="sig-paren">(</span><em>condition</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.set_condition" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.set_condition">
+<code class="descname">set_condition</code><span class="sig-paren">(</span><em>condition</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.set_condition" title="Permalink to this definition">¶</a></dt>
 <dd><p>If True the complexity need a condition (set _cond_id).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -405,8 +405,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.type">
-<code class="descname">type</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample.type" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.complexity.ComplexitySample.type">
+<code class="descname">type</code><a class="headerlink" href="#vuln_test_suite_gen.complexity.ComplexitySample.type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Type of complexity (if, switch, for, function, classe, ...).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -423,12 +423,12 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.condition">
-<span id="condition-module"></span><h2>condition module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.condition" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.condition">
+<span id="condition-module"></span><h2>condition module<a class="headerlink" href="#module-vuln_test_suite_gen.condition" title="Permalink to this headline">¶</a></h2>
 <p>Condition module</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.condition.ConditionSample">
-<em class="property">class </em><code class="descname">ConditionSample</code><span class="sig-paren">(</span><em>xml_cond</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.condition.ConditionSample" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.condition.ConditionSample">
+<em class="property">class </em><code class="descname">ConditionSample</code><span class="sig-paren">(</span><em>xml_cond</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.condition.ConditionSample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>ConditionSample class</p>
 <dl class="docutils">
@@ -441,8 +441,8 @@
 </dd>
 </dl>
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.condition.ConditionSample.code">
-<code class="descname">code</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.condition.ConditionSample.code" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.condition.ConditionSample.code">
+<code class="descname">code</code><a class="headerlink" href="#vuln_test_suite_gen.condition.ConditionSample.code" title="Permalink to this definition">¶</a></dt>
 <dd><p>Code of condition.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -457,8 +457,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.condition.ConditionSample.id">
-<code class="descname">id</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.condition.ConditionSample.id" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.condition.ConditionSample.id">
+<code class="descname">id</code><a class="headerlink" href="#vuln_test_suite_gen.condition.ConditionSample.id" title="Permalink to this definition">¶</a></dt>
 <dd><p>ID of the condition.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -473,8 +473,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.condition.ConditionSample.value">
-<code class="descname">value</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.condition.ConditionSample.value" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.condition.ConditionSample.value">
+<code class="descname">value</code><a class="headerlink" href="#vuln_test_suite_gen.condition.ConditionSample.value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Value of condition.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -491,13 +491,13 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.exec_query">
-<span id="exec-query-module"></span><h2>exec_query module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.exec_query" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.exec_query">
+<span id="exec-query-module"></span><h2>exec_query module<a class="headerlink" href="#module-vuln_test_suite_gen.exec_query" title="Permalink to this headline">¶</a></h2>
 <p>exec_query module</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample">
-<em class="property">class </em><code class="descname">ExecQuerySample</code><span class="sig-paren">(</span><em>sample</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.sample.Sample" title="c_sharp_vuln_test_suite_gen.sample.Sample"><code class="xref py py-class docutils literal"><span class="pre">c_sharp_vuln_test_suite_gen.sample.Sample</span></code></a></p>
+<dt id="vuln_test_suite_gen.exec_query.ExecQuerySample">
+<em class="property">class </em><code class="descname">ExecQuerySample</code><span class="sig-paren">(</span><em>sample</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.exec_query.ExecQuerySample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vuln_test_suite_gen.sample.Sample" title="vuln_test_suite_gen.sample.Sample"><code class="xref py py-class docutils literal"><span class="pre">vuln_test_suite_gen.sample.Sample</span></code></a></p>
 <p>ExecQuerySample class</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -509,8 +509,8 @@
 </dd>
 </dl>
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample.code">
-<code class="descname">code</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample.code" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.exec_query.ExecQuerySample.code">
+<code class="descname">code</code><a class="headerlink" href="#vuln_test_suite_gen.exec_query.ExecQuerySample.code" title="Permalink to this definition">¶</a></dt>
 <dd><p>Code of exec query.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -525,8 +525,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample.safe">
-<code class="descname">safe</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample.safe" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.exec_query.ExecQuerySample.safe">
+<code class="descname">safe</code><a class="headerlink" href="#vuln_test_suite_gen.exec_query.ExecQuerySample.safe" title="Permalink to this definition">¶</a></dt>
 <dd><p>If True the exec query is safe.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -541,8 +541,8 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample.type">
-<code class="descname">type</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample.type" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.exec_query.ExecQuerySample.type">
+<code class="descname">type</code><a class="headerlink" href="#vuln_test_suite_gen.exec_query.ExecQuerySample.type" title="Permalink to this definition">¶</a></dt>
 <dd><p>type of exec query.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -559,12 +559,12 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.file_manager">
-<span id="file-manager-module"></span><h2>file_manager module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.file_manager" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.file_manager">
+<span id="file-manager-module"></span><h2>file_manager module<a class="headerlink" href="#module-vuln_test_suite_gen.file_manager" title="Permalink to this headline">¶</a></h2>
 <p>file_manager module</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.file_manager.FileManager">
-<em class="property">class </em><code class="descname">FileManager</code><span class="sig-paren">(</span><em>filename</em>, <em>dir_name</em>, <em>flaw_group</em>, <em>flaw_type</em>, <em>is_safe</em>, <em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_manager.FileManager" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_manager.FileManager">
+<em class="property">class </em><code class="descname">FileManager</code><span class="sig-paren">(</span><em>filename</em>, <em>dir_name</em>, <em>flaw_group</em>, <em>flaw_type</em>, <em>is_safe</em>, <em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_manager.FileManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>FileManager class</p>
 <dl class="docutils">
@@ -587,8 +587,8 @@
 </dd>
 </dl>
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.file_manager.FileManager.addContent">
-<code class="descname">addContent</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_manager.FileManager.addContent" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_manager.FileManager.addContent">
+<code class="descname">addContent</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_manager.FileManager.addContent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Concatenates the given content to the attribute content.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -597,8 +597,8 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.file_manager.FileManager.addPath">
-<code class="descname">addPath</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_manager.FileManager.addPath" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_manager.FileManager.addPath">
+<code class="descname">addPath</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_manager.FileManager.addPath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the given path to the attribute path.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -607,8 +607,8 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.file_manager.FileManager.createFile">
-<code class="descname">createFile</code><span class="sig-paren">(</span><em>debug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_manager.FileManager.createFile" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_manager.FileManager.createFile">
+<code class="descname">createFile</code><span class="sig-paren">(</span><em>debug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_manager.FileManager.createFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the file with code on them</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -617,8 +617,8 @@
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="c_sharp_vuln_test_suite_gen.file_manager.FileManager.exist_language">
-<em class="property">classmethod </em><code class="descname">exist_language</code><span class="sig-paren">(</span><em>language</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_manager.FileManager.exist_language" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_manager.FileManager.exist_language">
+<em class="property">classmethod </em><code class="descname">exist_language</code><span class="sig-paren">(</span><em>language</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_manager.FileManager.exist_language" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class Method.
 Check if the given language exist in the path.</p>
 <dl class="docutils">
@@ -628,27 +628,27 @@ Check if the given language exist in the path.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.file_manager.FileManager.getName">
-<code class="descname">getName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_manager.FileManager.getName" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_manager.FileManager.getName">
+<code class="descname">getName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_manager.FileManager.getName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the filename.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.file_manager.FileManager.getPath">
-<code class="descname">getPath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_manager.FileManager.getPath" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_manager.FileManager.getPath">
+<code class="descname">getPath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_manager.FileManager.getPath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the path.</p>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="c_sharp_vuln_test_suite_gen.file_manager.FileManager.getXML">
-<em class="property">classmethod </em><code class="descname">getXML</code><span class="sig-paren">(</span><em>xmlfile</em>, <em>language='cs'</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_manager.FileManager.getXML" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_manager.FileManager.getXML">
+<em class="property">classmethod </em><code class="descname">getXML</code><span class="sig-paren">(</span><em>xmlfile</em>, <em>language='cs'</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_manager.FileManager.getXML" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class Method.
 Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.file_manager.FileManager.setName">
-<code class="descname">setName</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_manager.FileManager.setName" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_manager.FileManager.setName">
+<code class="descname">setName</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_manager.FileManager.setName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the filename.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -657,8 +657,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.file_manager.FileManager.setPath">
-<code class="descname">setPath</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_manager.FileManager.setPath" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_manager.FileManager.setPath">
+<code class="descname">setPath</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_manager.FileManager.setPath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the path.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -669,12 +669,12 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.file_template">
-<span id="file-template-module"></span><h2>file_template module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.file_template" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.file_template">
+<span id="file-template-module"></span><h2>file_template module<a class="headerlink" href="#module-vuln_test_suite_gen.file_template" title="Permalink to this headline">¶</a></h2>
 <p>file_template module</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate">
-<em class="property">class </em><code class="descname">FileTemplate</code><span class="sig-paren">(</span><em>file_template</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate">
+<em class="property">class </em><code class="descname">FileTemplate</code><span class="sig-paren">(</span><em>file_template</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>FileTemplate class</p>
 <dl class="docutils">
@@ -691,8 +691,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd>
 </dl>
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate.code">
-<code class="descname">code</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate.code" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate.code">
+<code class="descname">code</code><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate.code" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
 <div>Template code.</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -708,8 +708,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate.comment">
-<code class="descname">comment</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate.comment" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate.comment">
+<code class="descname">comment</code><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate.comment" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
 <div>Structure for comment (inline, multiline).</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -725,8 +725,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate.file_extension">
-<code class="descname">file_extension</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate.file_extension" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate.file_extension">
+<code class="descname">file_extension</code><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate.file_extension" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
 <div>File extension.</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -742,8 +742,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate.generate_imports">
-<code class="descname">generate_imports</code><span class="sig-paren">(</span><em>imports</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate.generate_imports" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate.generate_imports">
+<code class="descname">generate_imports</code><span class="sig-paren">(</span><em>imports</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate.generate_imports" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fills the template by replacing the placeholder for the import  with the given arguments.</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -752,8 +752,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate.get_init_var_code">
-<code class="descname">get_init_var_code</code><span class="sig-paren">(</span><em>type_v</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate.get_init_var_code" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate.get_init_var_code">
+<code class="descname">get_init_var_code</code><span class="sig-paren">(</span><em>type_v</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate.get_init_var_code" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the init code of specified variable</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -762,8 +762,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate.get_type_var_code">
-<code class="descname">get_type_var_code</code><span class="sig-paren">(</span><em>type_v</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate.get_type_var_code" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate.get_type_var_code">
+<code class="descname">get_type_var_code</code><span class="sig-paren">(</span><em>type_v</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate.get_type_var_code" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the statement code of specified variable.</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -772,8 +772,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate.imports">
-<code class="descname">imports</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate.imports" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate.imports">
+<code class="descname">imports</code><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate.imports" title="Permalink to this definition">¶</a></dt>
 <dd><p>Imports for template.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -788,8 +788,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate.language_name">
-<code class="descname">language_name</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate.language_name" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate.language_name">
+<code class="descname">language_name</code><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate.language_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of language.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -804,8 +804,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate.namespace">
-<code class="descname">namespace</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate.namespace" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate.namespace">
+<code class="descname">namespace</code><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate.namespace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Namespace.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -820,8 +820,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.file_template.FileTemplate.prefix">
-<code class="descname">prefix</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate.prefix" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.file_template.FileTemplate.prefix">
+<code class="descname">prefix</code><a class="headerlink" href="#vuln_test_suite_gen.file_template.FileTemplate.prefix" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
 <div>Variables prefix.</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -839,13 +839,13 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.filtering_sample">
-<span id="filtering-sample-module"></span><h2>filtering_sample module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.filtering_sample" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.filtering_sample">
+<span id="filtering-sample-module"></span><h2>filtering_sample module<a class="headerlink" href="#module-vuln_test_suite_gen.filtering_sample" title="Permalink to this headline">¶</a></h2>
 <p>filtering_sample module</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample">
-<em class="property">class </em><code class="descname">FilteringSample</code><span class="sig-paren">(</span><em>sample</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.sample.Sample" title="c_sharp_vuln_test_suite_gen.sample.Sample"><code class="xref py py-class docutils literal"><span class="pre">c_sharp_vuln_test_suite_gen.sample.Sample</span></code></a></p>
+<dt id="vuln_test_suite_gen.filtering_sample.FilteringSample">
+<em class="property">class </em><code class="descname">FilteringSample</code><span class="sig-paren">(</span><em>sample</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.filtering_sample.FilteringSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vuln_test_suite_gen.sample.Sample" title="vuln_test_suite_gen.sample.Sample"><code class="xref py py-class docutils literal"><span class="pre">vuln_test_suite_gen.sample.Sample</span></code></a></p>
 <p>FiletringSample class</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -857,18 +857,18 @@ Returns the path to selected xml file for the specified language.</p>
 </dd>
 </dl>
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.compatible_with_sink">
-<code class="descname">compatible_with_sink</code><span class="sig-paren">(</span><em>sink_sample</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.compatible_with_sink" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.filtering_sample.FilteringSample.compatible_with_sink">
+<code class="descname">compatible_with_sink</code><span class="sig-paren">(</span><em>sink_sample</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.filtering_sample.FilteringSample.compatible_with_sink" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if current filtering is compatible with given sink, False otherwise.</p>
 <dl class="docutils">
 <dt>Args:</dt>
-<dd><strong>sink_sample</strong> (<a class="reference internal" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample" title="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample"><code class="xref py py-class docutils literal"><span class="pre">SinkSample</span></code></a>)</dd>
+<dd><strong>sink_sample</strong> (<a class="reference internal" href="#vuln_test_suite_gen.sink_sample.SinkSample" title="vuln_test_suite_gen.sink_sample.SinkSample"><code class="xref py py-class docutils literal"><span class="pre">SinkSample</span></code></a>)</dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.contains_flaw_type">
-<code class="descname">contains_flaw_type</code><span class="sig-paren">(</span><em>flaw_type</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.contains_flaw_type" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.filtering_sample.FilteringSample.contains_flaw_type">
+<code class="descname">contains_flaw_type</code><span class="sig-paren">(</span><em>flaw_type</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.filtering_sample.FilteringSample.contains_flaw_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if the flaws of the filtering sample is the same as the given one or if it&#8217;s a generic filtering,         False otherwise.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -877,8 +877,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.flaws">
-<code class="descname">flaws</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.flaws" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.filtering_sample.FilteringSample.flaws">
+<code class="descname">flaws</code><a class="headerlink" href="#vuln_test_suite_gen.filtering_sample.FilteringSample.flaws" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collection of flaws for this filtering with safety.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -893,8 +893,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.get_flaws_types">
-<code class="descname">get_flaws_types</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.get_flaws_types" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.filtering_sample.FilteringSample.get_flaws_types">
+<code class="descname">get_flaws_types</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.filtering_sample.FilteringSample.get_flaws_types" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collection of flaws for this filtering with safety.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -909,8 +909,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.input_type">
-<code class="descname">input_type</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.input_type" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.filtering_sample.FilteringSample.input_type">
+<code class="descname">input_type</code><a class="headerlink" href="#vuln_test_suite_gen.filtering_sample.FilteringSample.input_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Type of input variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -925,8 +925,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.is_safe">
-<code class="descname">is_safe</code><span class="sig-paren">(</span><em>flaw_type</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.is_safe" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.filtering_sample.FilteringSample.is_safe">
+<code class="descname">is_safe</code><span class="sig-paren">(</span><em>flaw_type</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.filtering_sample.FilteringSample.is_safe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if current filtering is safe for the given flaw type.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -935,8 +935,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.is_unsafe">
-<code class="descname">is_unsafe</code><span class="sig-paren">(</span><em>flaw_type</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.is_unsafe" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.filtering_sample.FilteringSample.is_unsafe">
+<code class="descname">is_unsafe</code><span class="sig-paren">(</span><em>flaw_type</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.filtering_sample.FilteringSample.is_unsafe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if current filtering is unsafe for the given flaw type.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -945,8 +945,8 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.output_type">
-<code class="descname">output_type</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample.output_type" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.filtering_sample.FilteringSample.output_type">
+<code class="descname">output_type</code><a class="headerlink" href="#vuln_test_suite_gen.filtering_sample.FilteringSample.output_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Type of output variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -963,13 +963,13 @@ Returns the path to selected xml file for the specified language.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.generator">
-<span id="generator-module"></span><h2>generator module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.generator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.generator">
+<span id="generator-module"></span><h2>generator module<a class="headerlink" href="#module-vuln_test_suite_gen.generator" title="Permalink to this headline">¶</a></h2>
 <p>Generator Module.</p>
 <p>This is the main module used to generate the test cases.</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator">
-<em class="property">class </em><code class="descname">Generator</code><span class="sig-paren">(</span><em>date</em>, <em>language='cs'</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator">
+<em class="property">class </em><code class="descname">Generator</code><span class="sig-paren">(</span><em>date</em>, <em>language='cs'</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Generator class</p>
 <dl class="docutils">
@@ -990,31 +990,31 @@ Returns the path to selected xml file for the specified language.</p>
 <p><strong>flaw_group_user</strong> (list): Flaw groups entered by user for the generation.</p>
 <p><strong>start</strong> (float): Starting time of the generation.</p>
 <p><strong>end</strong> (float): Ending generate time.</p>
-<p><strong>tab_input</strong> (list): List (of <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.input_sample.InputSample" title="c_sharp_vuln_test_suite_gen.input_sample.InputSample"><code class="xref py py-class docutils literal"><span class="pre">InputSample</span></code></a> objects) containing all input sample from XML file.</p>
-<p><strong>tab_filtering</strong> (list): List (of <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample" title="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample"><code class="xref py py-class docutils literal"><span class="pre">FilteringSample</span></code></a> objects) containing all filtering sample                                       from XML file.</p>
-<p><strong>tab_sink</strong> (list): List (of <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample" title="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample"><code class="xref py py-class docutils literal"><span class="pre">SinkSample</span></code></a> objects) containing all sink sample from XML file.</p>
-<p><strong>tab_exec_queries</strong> (list): List (of <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample" title="c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample"><code class="xref py py-class docutils literal"><span class="pre">ExecQuerySample</span></code></a> objects) containing all exec query sample                                          from XML file.</p>
-<p><strong>tab_complexity</strong> (list): List (of <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample" title="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample"><code class="xref py py-class docutils literal"><span class="pre">ComplexitySample</span></code></a>) containing all complexity sample                                        from XML file.</p>
-<p><strong>tab_condition</strong> (list): List (of <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.condition.ConditionSample" title="c_sharp_vuln_test_suite_gen.condition.ConditionSample"><code class="xref py py-class docutils literal"><span class="pre">ConditionSample</span></code></a>) containing all condition sample from XML file.</p>
-<p><strong>file_template</strong> (list): List (of <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.file_template.FileTemplate" title="c_sharp_vuln_test_suite_gen.file_template.FileTemplate"><code class="xref py py-class docutils literal"><span class="pre">FileTemplate</span></code></a>) containing the template for current langage                                       from XML file.</p>
-<p><strong>current_input</strong> (<a class="reference internal" href="#c_sharp_vuln_test_suite_gen.input_sample.InputSample" title="c_sharp_vuln_test_suite_gen.input_sample.InputSample"><code class="xref py py-class docutils literal"><span class="pre">InputSample</span></code></a>): Contains the current selected input.</p>
-<p><strong>current_filtering</strong> (<a class="reference internal" href="#c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample" title="c_sharp_vuln_test_suite_gen.filtering_sample.FilteringSample"><code class="xref py py-class docutils literal"><span class="pre">FilteringSample</span></code></a>): Contains the current selected filtering.</p>
-<p><strong>current_sink</strong> (<a class="reference internal" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample" title="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample"><code class="xref py py-class docutils literal"><span class="pre">SinkSample</span></code></a>): Contains the current selected sink.</p>
-<p><strong>current_exec_queries</strong> (<a class="reference internal" href="#c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample" title="c_sharp_vuln_test_suite_gen.exec_query.ExecQuerySample"><code class="xref py py-class docutils literal"><span class="pre">ExecQuerySample</span></code></a>): Contains the current selected exec query.</p>
+<p><strong>tab_input</strong> (list): List (of <a class="reference internal" href="#vuln_test_suite_gen.input_sample.InputSample" title="vuln_test_suite_gen.input_sample.InputSample"><code class="xref py py-class docutils literal"><span class="pre">InputSample</span></code></a> objects) containing all input sample from XML file.</p>
+<p><strong>tab_filtering</strong> (list): List (of <a class="reference internal" href="#vuln_test_suite_gen.filtering_sample.FilteringSample" title="vuln_test_suite_gen.filtering_sample.FilteringSample"><code class="xref py py-class docutils literal"><span class="pre">FilteringSample</span></code></a> objects) containing all filtering sample                                       from XML file.</p>
+<p><strong>tab_sink</strong> (list): List (of <a class="reference internal" href="#vuln_test_suite_gen.sink_sample.SinkSample" title="vuln_test_suite_gen.sink_sample.SinkSample"><code class="xref py py-class docutils literal"><span class="pre">SinkSample</span></code></a> objects) containing all sink sample from XML file.</p>
+<p><strong>tab_exec_queries</strong> (list): List (of <a class="reference internal" href="#vuln_test_suite_gen.exec_query.ExecQuerySample" title="vuln_test_suite_gen.exec_query.ExecQuerySample"><code class="xref py py-class docutils literal"><span class="pre">ExecQuerySample</span></code></a> objects) containing all exec query sample                                          from XML file.</p>
+<p><strong>tab_complexity</strong> (list): List (of <a class="reference internal" href="#vuln_test_suite_gen.complexity.ComplexitySample" title="vuln_test_suite_gen.complexity.ComplexitySample"><code class="xref py py-class docutils literal"><span class="pre">ComplexitySample</span></code></a>) containing all complexity sample                                        from XML file.</p>
+<p><strong>tab_condition</strong> (list): List (of <a class="reference internal" href="#vuln_test_suite_gen.condition.ConditionSample" title="vuln_test_suite_gen.condition.ConditionSample"><code class="xref py py-class docutils literal"><span class="pre">ConditionSample</span></code></a>) containing all condition sample from XML file.</p>
+<p><strong>file_template</strong> (list): List (of <a class="reference internal" href="#vuln_test_suite_gen.file_template.FileTemplate" title="vuln_test_suite_gen.file_template.FileTemplate"><code class="xref py py-class docutils literal"><span class="pre">FileTemplate</span></code></a>) containing the template for current langage                                       from XML file.</p>
+<p><strong>current_input</strong> (<a class="reference internal" href="#vuln_test_suite_gen.input_sample.InputSample" title="vuln_test_suite_gen.input_sample.InputSample"><code class="xref py py-class docutils literal"><span class="pre">InputSample</span></code></a>): Contains the current selected input.</p>
+<p><strong>current_filtering</strong> (<a class="reference internal" href="#vuln_test_suite_gen.filtering_sample.FilteringSample" title="vuln_test_suite_gen.filtering_sample.FilteringSample"><code class="xref py py-class docutils literal"><span class="pre">FilteringSample</span></code></a>): Contains the current selected filtering.</p>
+<p><strong>current_sink</strong> (<a class="reference internal" href="#vuln_test_suite_gen.sink_sample.SinkSample" title="vuln_test_suite_gen.sink_sample.SinkSample"><code class="xref py py-class docutils literal"><span class="pre">SinkSample</span></code></a>): Contains the current selected sink.</p>
+<p><strong>current_exec_queries</strong> (<a class="reference internal" href="#vuln_test_suite_gen.exec_query.ExecQuerySample" title="vuln_test_suite_gen.exec_query.ExecQuerySample"><code class="xref py py-class docutils literal"><span class="pre">ExecQuerySample</span></code></a>): Contains the current selected exec query.</p>
 <p><strong>current_code</strong> (str): Contains the current code.</p>
-<p><strong>complexities_queue</strong> (List of <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.complexity.ComplexitySample" title="c_sharp_vuln_test_suite_gen.complexity.ComplexitySample"><code class="xref py py-class docutils literal"><span class="pre">ComplexitySample</span></code></a>): Contains the current stack of complexities.</p>
+<p><strong>complexities_queue</strong> (List of <a class="reference internal" href="#vuln_test_suite_gen.complexity.ComplexitySample" title="vuln_test_suite_gen.complexity.ComplexitySample"><code class="xref py py-class docutils literal"><span class="pre">ComplexitySample</span></code></a>): Contains the current stack of complexities.</p>
 <p class="last"><strong>map_CWE_group</strong> (dict: flaw_group -&gt; list(CWE)): Contains a dict which associate a list containing the                                                                numbers of CWE (int) to a flaw group (str).</p>
 </dd>
 </dl>
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.UID">
-<code class="descname">UID</code><em class="property"> = 0</em><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.UID" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.UID">
+<code class="descname">UID</code><em class="property"> = 0</em><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.UID" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uniq ID for generated functions/classes/variables name.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.compose">
-<code class="descname">compose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.compose" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.compose">
+<code class="descname">compose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.compose" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method compose previous selected code chunk into a final code.
 Complexities are composed with the class complexities_generator and the filtering is incluse into them.
 After we add input, complexities with filtering, sink, exec query into the template code.
@@ -1023,14 +1023,14 @@ At the end, we have final code who can be save into files.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.create_map_CWE_group">
-<code class="descname">create_map_CWE_group</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.create_map_CWE_group" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.create_map_CWE_group">
+<code class="descname">create_map_CWE_group</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.create_map_CWE_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a dict which associate a list containing the numbers of CWE (int) to a flaw group (str).</p>
 </dd></dl>
 
 <dl class="staticmethod">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.findFlaw">
-<em class="property">static </em><code class="descname">findFlaw</code><span class="sig-paren">(</span><em>fileName</em>, <em>comment_inline_code</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.findFlaw" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.findFlaw">
+<em class="property">static </em><code class="descname">findFlaw</code><span class="sig-paren">(</span><em>fileName</em>, <em>comment_inline_code</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.findFlaw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Seek //flaw flag into the generated file and got line number if it exists.</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -1039,8 +1039,8 @@ At the end, we have final code who can be save into files.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.generate">
-<code class="descname">generate</code><span class="sig-paren">(</span><em>debug=False</em>, <em>generate_safe=True</em>, <em>generate_unsafe=True</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.generate" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.generate">
+<code class="descname">generate</code><span class="sig-paren">(</span><em>debug=False</em>, <em>generate_safe=True</em>, <em>generate_unsafe=True</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.generate" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is the start of generation execution.
 It call other function recursilely to selecc input, filtering, sink, exec queries and complexities.
 At the end of the recursif chain, code chunks are combined into finales source files.</p>
@@ -1054,8 +1054,8 @@ At the end of the recursif chain, code chunks are combined into finales source f
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.generate_file_name">
-<code class="descname">generate_file_name</code><span class="sig-paren">(</span><em>suffix</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.generate_file_name" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.generate_file_name">
+<code class="descname">generate_file_name</code><span class="sig-paren">(</span><em>suffix</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.generate_file_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>Generate file name in format :</dt>
 <dd>flawtype__inputname__filteringname__sinkname__execqueryname__X-Y1-Y2_File*suffix*.ext
@@ -1067,39 +1067,39 @@ with X the number of complexity level, Y1, Y2 id of complexities and <em>suffix<
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.generation_report">
-<code class="descname">generation_report</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.generation_report" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.generation_report">
+<code class="descname">generation_report</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.generation_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints final report for the generation.
 Prints number of safe/unsafe by CWE/group and generate time.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.getUID">
-<code class="descname">getUID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.getUID" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.getUID">
+<code class="descname">getUID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.getUID" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a uniq ID for classes/functions/variables name.
 At each call, the UID is incremented.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.get_cwe_list">
-<code class="descname">get_cwe_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.get_cwe_list" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.get_cwe_list">
+<code class="descname">get_cwe_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.get_cwe_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all flaw types got from the XML files.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.get_group_list">
-<code class="descname">get_group_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.get_group_list" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.get_group_list">
+<code class="descname">get_group_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.get_group_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns all flaw groups got from the XML files.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.get_groups_to_generate">
-<code class="descname">get_groups_to_generate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.get_groups_to_generate" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.get_groups_to_generate">
+<code class="descname">get_groups_to_generate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.get_groups_to_generate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.is_safe_selection">
-<code class="descname">is_safe_selection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.is_safe_selection" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.is_safe_selection">
+<code class="descname">is_safe_selection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.is_safe_selection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns true if the final source code is safe, false otherwise.
 The computation is :
 * True if on of input, filtering, sink or exec query is safe and no unsafe on input, filtering, sink             and exec query
@@ -1107,8 +1107,8 @@ The computation is :
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.max_recursion">
-<code class="descname">max_recursion</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.max_recursion" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.max_recursion">
+<code class="descname">max_recursion</code><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.max_recursion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Max level of recursion with complexities, 0 for flat code, 1 for one complexity, 2 for two, ...</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1125,8 +1125,8 @@ The computation is :
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.need_condition">
-<code class="descname">need_condition</code><span class="sig-paren">(</span><em>curr_complexity</em>, <em>level</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.need_condition" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.need_condition">
+<code class="descname">need_condition</code><span class="sig-paren">(</span><em>curr_complexity</em>, <em>level</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.need_condition" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function check if the current complexity needs a condition.
 If its needed, we browse all conditions and compose them into the complexity code.
 The state of the complexity is updated with the result of the conditional.</p>
@@ -1139,8 +1139,8 @@ The state of the complexity is updated with the result of the conditional.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.number_generated">
-<code class="descname">number_generated</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.number_generated" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.number_generated">
+<code class="descname">number_generated</code><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.number_generated" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of triplets (input,filtering,sink) generated.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1157,8 +1157,8 @@ The state of the complexity is updated with the result of the conditional.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.recursion_level">
-<code class="descname">recursion_level</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.recursion_level" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.recursion_level">
+<code class="descname">recursion_level</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.recursion_level" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>This method compute the number of imbrication with complexities :</dt>
 <dd><ul class="first last simple">
@@ -1172,13 +1172,13 @@ The state of the complexity is updated with the result of the conditional.</p>
 </dd></dl>
 
 <dl class="staticmethod">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.remove_indent">
-<em class="property">static </em><code class="descname">remove_indent</code><span class="sig-paren">(</span><em>code</em>, <em>all=False</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.remove_indent" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.remove_indent">
+<em class="property">static </em><code class="descname">remove_indent</code><span class="sig-paren">(</span><em>code</em>, <em>all=False</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.remove_indent" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.select_complexities">
-<code class="descname">select_complexities</code><span class="sig-paren">(</span><em>level</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.select_complexities" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.select_complexities">
+<code class="descname">select_complexities</code><span class="sig-paren">(</span><em>level</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.select_complexities" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function browse all complexities.
 Each type of complexity can be use with special processing and call the need_condition method
 to check if the complexity need a condition.
@@ -1190,32 +1190,32 @@ At the end we call the next function for compose then into one code chunk.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.select_exec_queries">
-<code class="descname">select_exec_queries</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.select_exec_queries" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.select_exec_queries">
+<code class="descname">select_exec_queries</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.select_exec_queries" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method browse all exec query if the current sink need exec query and the exec query is compatible         with the current sink, then call the next recursion level.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.select_filtering">
-<code class="descname">select_filtering</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.select_filtering" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.select_filtering">
+<code class="descname">select_filtering</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.select_filtering" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method browse all filtering one by one if the filtering is compatible with the current sink, then call         the next recursion level.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.select_input">
-<code class="descname">select_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.select_input" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.select_input">
+<code class="descname">select_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.select_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method browse all input one by one if the input is compatible with the current sink and current         filtering, then call the next recursion level.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.select_sink">
-<code class="descname">select_sink</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.select_sink" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.select_sink">
+<code class="descname">select_sink</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.select_sink" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method browse all sink one by one if the group or type is selected by the user or if its a complete         generation, then call the next recursion level.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.set_flaw_group_user">
-<code class="descname">set_flaw_group_user</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.set_flaw_group_user" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.set_flaw_group_user">
+<code class="descname">set_flaw_group_user</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.set_flaw_group_user" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the flaw groups got from the user input (-f and &#8211;flaw-group options).</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -1224,8 +1224,8 @@ At the end we call the next function for compose then into one code chunk.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.set_flaw_type_user">
-<code class="descname">set_flaw_type_user</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.set_flaw_type_user" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.set_flaw_type_user">
+<code class="descname">set_flaw_type_user</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.set_flaw_type_user" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the flaw types got from the user input (-c and &#8211;cwe options).</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -1234,8 +1234,8 @@ At the end we call the next function for compose then into one code chunk.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.generator.Generator.write_files">
-<code class="descname">write_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.generator.Generator.write_files" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.generator.Generator.write_files">
+<code class="descname">write_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.generator.Generator.write_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method writes code for then current selection into files
 It adds an entry into the manifest with specified informations</p>
 </dd></dl>
@@ -1243,13 +1243,13 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.input_sample">
-<span id="input-sample-module"></span><h2>input_sample module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.input_sample" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.input_sample">
+<span id="input-sample-module"></span><h2>input_sample module<a class="headerlink" href="#module-vuln_test_suite_gen.input_sample" title="Permalink to this headline">¶</a></h2>
 <p>Input Class (TODO DOC)</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.input_sample.InputSample">
-<em class="property">class </em><code class="descname">InputSample</code><span class="sig-paren">(</span><em>sample</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.input_sample.InputSample" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.sample.Sample" title="c_sharp_vuln_test_suite_gen.sample.Sample"><code class="xref py py-class docutils literal"><span class="pre">c_sharp_vuln_test_suite_gen.sample.Sample</span></code></a></p>
+<dt id="vuln_test_suite_gen.input_sample.InputSample">
+<em class="property">class </em><code class="descname">InputSample</code><span class="sig-paren">(</span><em>sample</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.input_sample.InputSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vuln_test_suite_gen.sample.Sample" title="vuln_test_suite_gen.sample.Sample"><code class="xref py py-class docutils literal"><span class="pre">vuln_test_suite_gen.sample.Sample</span></code></a></p>
 <p>FiletringSample class</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -1261,8 +1261,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd>
 </dl>
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.input_sample.InputSample.compatible_with_filtering_sink">
-<code class="descname">compatible_with_filtering_sink</code><span class="sig-paren">(</span><em>filtering</em>, <em>sink</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.input_sample.InputSample.compatible_with_filtering_sink" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.input_sample.InputSample.compatible_with_filtering_sink">
+<code class="descname">compatible_with_filtering_sink</code><span class="sig-paren">(</span><em>filtering</em>, <em>sink</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.input_sample.InputSample.compatible_with_filtering_sink" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if current input is compatible with filtering and sink, False otherwise.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -1273,8 +1273,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.input_sample.InputSample.flaws">
-<code class="descname">flaws</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.input_sample.InputSample.flaws" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.input_sample.InputSample.flaws">
+<code class="descname">flaws</code><a class="headerlink" href="#vuln_test_suite_gen.input_sample.InputSample.flaws" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collection of flaws for this input with safety.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1289,8 +1289,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.input_sample.InputSample.get_flaws_types">
-<code class="descname">get_flaws_types</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.input_sample.InputSample.get_flaws_types" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.input_sample.InputSample.get_flaws_types">
+<code class="descname">get_flaws_types</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.input_sample.InputSample.get_flaws_types" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collection of flaws for this input with safety.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1305,8 +1305,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.input_sample.InputSample.input_type">
-<code class="descname">input_type</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.input_sample.InputSample.input_type" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.input_sample.InputSample.input_type">
+<code class="descname">input_type</code><a class="headerlink" href="#vuln_test_suite_gen.input_sample.InputSample.input_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Type of input variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1321,20 +1321,20 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.input_sample.InputSample.is_safe">
-<code class="descname">is_safe</code><span class="sig-paren">(</span><em>flaw_type</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.input_sample.InputSample.is_safe" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.input_sample.InputSample.is_safe">
+<code class="descname">is_safe</code><span class="sig-paren">(</span><em>flaw_type</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.input_sample.InputSample.is_safe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if current input is safe for a flaw type</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.input_sample.InputSample.is_unsafe">
-<code class="descname">is_unsafe</code><span class="sig-paren">(</span><em>flaw_type</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.input_sample.InputSample.is_unsafe" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.input_sample.InputSample.is_unsafe">
+<code class="descname">is_unsafe</code><span class="sig-paren">(</span><em>flaw_type</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.input_sample.InputSample.is_unsafe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if current input is unsafe for a flaw type</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.input_sample.InputSample.output_type">
-<code class="descname">output_type</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.input_sample.InputSample.output_type" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.input_sample.InputSample.output_type">
+<code class="descname">output_type</code><a class="headerlink" href="#vuln_test_suite_gen.input_sample.InputSample.output_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Type of output variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1351,12 +1351,12 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.manifest">
-<span id="manifest-module"></span><h2>manifest module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.manifest" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.manifest">
+<span id="manifest-module"></span><h2>manifest module<a class="headerlink" href="#module-vuln_test_suite_gen.manifest" title="Permalink to this headline">¶</a></h2>
 <p>manifest module</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.manifest.Manifest">
-<em class="property">class </em><code class="descname">Manifest</code><span class="sig-paren">(</span><em>dir_name</em>, <em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.manifest.Manifest" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.manifest.Manifest">
+<em class="property">class </em><code class="descname">Manifest</code><span class="sig-paren">(</span><em>dir_name</em>, <em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.manifest.Manifest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Manifest class</p>
 <dl class="docutils">
@@ -1367,8 +1367,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd>
 </dl>
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.manifest.Manifest.addTestCase">
-<code class="descname">addTestCase</code><span class="sig-paren">(</span><em>input_sample</em>, <em>flaw_group</em>, <em>flaw</em>, <em>files_path</em>, <em>language</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.manifest.Manifest.addTestCase" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.manifest.Manifest.addTestCase">
+<code class="descname">addTestCase</code><span class="sig-paren">(</span><em>input_sample</em>, <em>flaw_group</em>, <em>flaw</em>, <em>files_path</em>, <em>language</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.manifest.Manifest.addTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add test case into manifest</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -1382,14 +1382,14 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.manifest.Manifest.closeManifests">
-<code class="descname">closeManifests</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.manifest.Manifest.closeManifests" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.manifest.Manifest.closeManifests">
+<code class="descname">closeManifests</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.manifest.Manifest.closeManifests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Close the manifest</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.manifest.Manifest.createManifests">
-<code class="descname">createManifests</code><span class="sig-paren">(</span><em>flaw_groups</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.manifest.Manifest.createManifests" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.manifest.Manifest.createManifests">
+<code class="descname">createManifests</code><span class="sig-paren">(</span><em>flaw_groups</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.manifest.Manifest.createManifests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a manifest for selected group.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -1400,12 +1400,12 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.sample">
-<span id="sample-module"></span><h2>sample module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.sample" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.sample">
+<span id="sample-module"></span><h2>sample module<a class="headerlink" href="#module-vuln_test_suite_gen.sample" title="Permalink to this headline">¶</a></h2>
 <p>sample module</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.sample.Sample">
-<em class="property">class </em><code class="descname">Sample</code><span class="sig-paren">(</span><em>sample</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sample.Sample" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sample.Sample">
+<em class="property">class </em><code class="descname">Sample</code><span class="sig-paren">(</span><em>sample</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.sample.Sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Sample class</p>
 <dl class="docutils">
@@ -1422,8 +1422,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd>
 </dl>
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sample.Sample.code">
-<code class="descname">code</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sample.Sample.code" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sample.Sample.code">
+<code class="descname">code</code><a class="headerlink" href="#vuln_test_suite_gen.sample.Sample.code" title="Permalink to this definition">¶</a></dt>
 <dd><p>Code Tag.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1438,8 +1438,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sample.Sample.comment">
-<code class="descname">comment</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sample.Sample.comment" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sample.Sample.comment">
+<code class="descname">comment</code><a class="headerlink" href="#vuln_test_suite_gen.sample.Sample.comment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Comment Tag.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1454,14 +1454,14 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.sample.Sample.generate_file_name">
-<code class="descname">generate_file_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sample.Sample.generate_file_name" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sample.Sample.generate_file_name">
+<code class="descname">generate_file_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.sample.Sample.generate_file_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate the filename with the path of the Manifest.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sample.Sample.imports">
-<code class="descname">imports</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sample.Sample.imports" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sample.Sample.imports">
+<code class="descname">imports</code><a class="headerlink" href="#vuln_test_suite_gen.sample.Sample.imports" title="Permalink to this definition">¶</a></dt>
 <dd><p>Imports Tag.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1478,8 +1478,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sample.Sample.need_id">
-<code class="descname">need_id</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sample.Sample.need_id" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sample.Sample.need_id">
+<code class="descname">need_id</code><a class="headerlink" href="#vuln_test_suite_gen.sample.Sample.need_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Need_ID Tag.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1494,8 +1494,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sample.Sample.path">
-<code class="descname">path</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sample.Sample.path" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sample.Sample.path">
+<code class="descname">path</code><a class="headerlink" href="#vuln_test_suite_gen.sample.Sample.path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Path Tag.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1510,8 +1510,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sample.Sample.safe">
-<code class="descname">safe</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sample.Sample.safe" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sample.Sample.safe">
+<code class="descname">safe</code><a class="headerlink" href="#vuln_test_suite_gen.sample.Sample.safe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Safe Tag.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1526,8 +1526,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sample.Sample.unsafe">
-<code class="descname">unsafe</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sample.Sample.unsafe" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sample.Sample.unsafe">
+<code class="descname">unsafe</code><a class="headerlink" href="#vuln_test_suite_gen.sample.Sample.unsafe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unsafe Tag.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1544,13 +1544,13 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen.sink_sample">
-<span id="sink-sample-module"></span><h2>sink_sample module<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen.sink_sample" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen.sink_sample">
+<span id="sink-sample-module"></span><h2>sink_sample module<a class="headerlink" href="#module-vuln_test_suite_gen.sink_sample" title="Permalink to this headline">¶</a></h2>
 <p>sink_sample module</p>
 <dl class="class">
-<dt id="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample">
-<em class="property">class </em><code class="descname">SinkSample</code><span class="sig-paren">(</span><em>sample</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#c_sharp_vuln_test_suite_gen.sample.Sample" title="c_sharp_vuln_test_suite_gen.sample.Sample"><code class="xref py py-class docutils literal"><span class="pre">c_sharp_vuln_test_suite_gen.sample.Sample</span></code></a></p>
+<dt id="vuln_test_suite_gen.sink_sample.SinkSample">
+<em class="property">class </em><code class="descname">SinkSample</code><span class="sig-paren">(</span><em>sample</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.sink_sample.SinkSample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vuln_test_suite_gen.sample.Sample" title="vuln_test_suite_gen.sample.Sample"><code class="xref py py-class docutils literal"><span class="pre">vuln_test_suite_gen.sample.Sample</span></code></a></p>
 <p>FiletringSample class</p>
 <dl class="docutils">
 <dt>Args :</dt>
@@ -1564,8 +1564,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd>
 </dl>
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.compatible_with_exec_queries">
-<code class="descname">compatible_with_exec_queries</code><span class="sig-paren">(</span><em>exec_queries</em><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.compatible_with_exec_queries" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sink_sample.SinkSample.compatible_with_exec_queries">
+<code class="descname">compatible_with_exec_queries</code><span class="sig-paren">(</span><em>exec_queries</em><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.sink_sample.SinkSample.compatible_with_exec_queries" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if current sink is compatible with given exec query, False otherwise.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -1574,8 +1574,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.exec_type">
-<code class="descname">exec_type</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.exec_type" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sink_sample.SinkSample.exec_type">
+<code class="descname">exec_type</code><a class="headerlink" href="#vuln_test_suite_gen.sink_sample.SinkSample.exec_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Type of exec query if needed.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1590,8 +1590,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.flaw_group">
-<code class="descname">flaw_group</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.flaw_group" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sink_sample.SinkSample.flaw_group">
+<code class="descname">flaw_group</code><a class="headerlink" href="#vuln_test_suite_gen.sink_sample.SinkSample.flaw_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Flaw group.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1606,8 +1606,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.flaw_type">
-<code class="descname">flaw_type</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.flaw_type" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sink_sample.SinkSample.flaw_type">
+<code class="descname">flaw_type</code><a class="headerlink" href="#vuln_test_suite_gen.sink_sample.SinkSample.flaw_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Flaw type.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1622,14 +1622,14 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.flaw_type_number">
-<code class="descname">flaw_type_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.flaw_type_number" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sink_sample.SinkSample.flaw_type_number">
+<code class="descname">flaw_type_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.sink_sample.SinkSample.flaw_type_number" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the flaw type number.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.input_type">
-<code class="descname">input_type</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.input_type" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sink_sample.SinkSample.input_type">
+<code class="descname">input_type</code><a class="headerlink" href="#vuln_test_suite_gen.sink_sample.SinkSample.input_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Type of input variable.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1644,8 +1644,8 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.need_complexity">
-<code class="descname">need_complexity</code><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.need_complexity" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sink_sample.SinkSample.need_complexity">
+<code class="descname">need_complexity</code><a class="headerlink" href="#vuln_test_suite_gen.sink_sample.SinkSample.need_complexity" title="Permalink to this definition">¶</a></dt>
 <dd><p>If false the sink doesn&#8217;t need complexities.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1660,16 +1660,16 @@ It adds an entry into the manifest with specified informations</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.need_exec">
-<code class="descname">need_exec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c_sharp_vuln_test_suite_gen.sink_sample.SinkSample.need_exec" title="Permalink to this definition">¶</a></dt>
+<dt id="vuln_test_suite_gen.sink_sample.SinkSample.need_exec">
+<code class="descname">need_exec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vuln_test_suite_gen.sink_sample.SinkSample.need_exec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if exec_type is not None, False otherwise.</p>
 </dd></dl>
 
 </dd></dl>
 
 </div>
-<div class="section" id="module-c_sharp_vuln_test_suite_gen">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-c_sharp_vuln_test_suite_gen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-vuln_test_suite_gen">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-vuln_test_suite_gen" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -1681,31 +1681,31 @@ It adds an entry into the manifest with specified informations</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">C#_vuln_test_suite_gen package</a><ul>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.complexities_generator">complexities_generator module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.complexity">complexity module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.condition">condition module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.exec_query">exec_query module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.file_manager">file_manager module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.file_template">file_template module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.filtering_sample">filtering_sample module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.generator">generator module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.input_sample">input_sample module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.manifest">manifest module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.sample">sample module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen.sink_sample">sink_sample module</a></li>
-<li><a class="reference internal" href="#module-c_sharp_vuln_test_suite_gen">Module contents</a></li>
+<li><a class="reference internal" href="#">vuln_test_suite_gen package</a><ul>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.complexities_generator">complexities_generator module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.complexity">complexity module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.condition">condition module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.exec_query">exec_query module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.file_manager">file_manager module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.file_template">file_template module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.filtering_sample">filtering_sample module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.generator">generator module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.input_sample">input_sample module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.manifest">manifest module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.sample">sample module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen.sink_sample">sink_sample module</a></li>
+<li><a class="reference internal" href="#module-vuln_test_suite_gen">Module contents</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to C# Vulnerability Test Suite Generator&#8217;s documentation!</a></p>
+                        title="previous chapter">Welcome to Vulnerability Test Suite Generator&#8217;s documentation!</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/c_sharp_vuln_test_suite_gen.txt"
+      <li><a href="_sources/vuln_test_suite_gen.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -1736,9 +1736,9 @@ It adds an entry into the manifest with specified informations</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to C# Vulnerability Test Suite Generator’s documentation!"
+          <a href="index.html" title="Welcome to Vulnerability Test Suite Generator’s documentation!"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">C# Vulnerability Test Suite Generator 0.4 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Vulnerability Test Suite Generator 0.4 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
