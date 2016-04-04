@@ -1,0 +1,17 @@
+<!ELEMENT root (conditions+, complexities+)>
+<!ELEMENT conditions (condition+)>
+<!ELEMENT condition (code, value)>
+<!ATTLIST condition id CDATA #REQUIRED>
+<!ELEMENT value (#PCDATA)>
+<!ELEMENT code (#PCDATA)>
+<!ELEMENT complexities (complexity+)>
+<!ELEMENT complexity (code, body*)>
+<!ELEMENT body (#PCDATA)>
+<!ATTLIST complexity id CDATA #REQUIRED>
+<!ATTLIST complexity type CDATA #REQUIRED>
+<!ATTLIST complexity group CDATA #REQUIRED>
+<!ATTLIST complexity executed CDATA #REQUIRED>
+<!ATTLIST complexity need_condition CDATA #IMPLIED>
+<!ATTLIST complexity need_id CDATA #IMPLIED>
+<!ATTLIST complexity in_out_var CDATA #IMPLIED>
+<!ATTLIST complexity indirection CDATA #IMPLIED>

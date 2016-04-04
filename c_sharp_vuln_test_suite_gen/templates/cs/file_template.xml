@@ -1,0 +1,41 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+
+<template name="Csharp">
+    <file_extension>cs</file_extension>
+    <comment>
+        <open>/*</open>
+        <close>*/</close>
+        <inline>//</inline>
+    </comment>
+    <namespace>default_namespace</namespace>
+    <variables prefix="" import_code="using {{import_file}};">
+        <variable type="int" code="int" init="0"/>
+        <variable type="string" code="string" init="null"/>
+    </variables>
+    <imports>
+        <import>System</import>
+    </imports>
+    <code>
+/*
+{{comments}}
+*/
+
+/*
+{{license}}
+*/
+{{stdlib_imports}}
+namespace {{namespace_name}}{
+    class {{main_name}}{
+        public static void Main(string[] args){
+            {{local_var}}
+            {{input_content}}
+            {{filtering_content}}
+            {{sink_content}}
+            {{exec_queries_content}}
+        }
+        {{static_methods}}
+    }
+}
+        </code>
+</template>

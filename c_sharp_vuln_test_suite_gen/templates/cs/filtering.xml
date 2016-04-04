@@ -1,0 +1,290 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
+    <filtering>
+        <!--
+        <sample>
+            <path>
+                <dir></dir>
+            </path>
+            <comment>no </comment>
+            <flaws>
+                <flaw flaw_type="" safe="" unsafe=""/>
+            </flaws>
+            <imports></imports>
+            <code></code>
+            <input_type></input_type>
+            <output_type></output_type>
+        </sample>
+        -->
+        <sample>
+            <path>
+                <dir>no_filtering</dir>
+            </path>
+            <comment>no filtering</comment>
+            <flaws>
+                <flaw flaw_type="ALL" safe="0" unsafe="0"/>
+            </flaws>
+            <imports></imports>
+            <code>
+                //No filtering (sanitization)
+                {{out_var_name}} = {{in_var_name}};
+            </code>
+            <input_type>nofilter</input_type>
+            <output_type>nofilter</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>func_preg_match</dir>
+                <dir>only_numbers</dir>
+            </path>
+            <comment>filtering : check if there is only numbers</comment>
+            <flaws>
+                <flaw flaw_type="CWE_89" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE_78" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_91" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_90" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System.Text.RegularExpressions</import>
+            </imports>
+            <code>
+                string pattern = @"/^[0-9]*$/";
+                Regex r = new Regex(pattern);
+                Match m = r.Match({{in_var_name}});
+                if(!m.Success){
+                    {{out_var_name}} = "";
+                }else{
+                    {{out_var_name}} = {{in_var_name}};
+                }
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>cast</dir>
+                <dir>string to integer</dir>
+            </path>
+            <comment>filtering : cast tainted into integer</comment>
+            <flaws>
+                <flaw flaw_type="CWE_89" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE_78" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_91" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_90" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System</import>
+            </imports>
+            <code>
+                {{out_var_name}} = Convert.ToInt32({{in_var_name}});
+            </code>
+            <input_type>string</input_type>
+            <output_type>int</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>invalid_filenames_chars_path</dir>
+            </path>
+            <comment>filtering : remove all invalid filenames and chars in paths</comment>
+            <flaws>
+                <flaw flaw_type="CWE_22" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System.IO</import>
+                <import>System.Text.RegularExpressions</import>
+            </imports>
+            <code>
+                string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+                Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+                {{out_var_name}} = r.Replace({{in_var_name}}, "");
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>invalid_filenames_chars_semi-colon_path</dir>
+            </path>
+            <comment>filtering : remove semi-colon and all invalid filenames and chars in paths</comment>
+            <flaws>
+                <flaw flaw_type="CWE_78" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE_89" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_91" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_90" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System.IO</import>
+                <import>System.Text.RegularExpressions</import>
+            </imports>
+            <code>
+                string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + ";";
+                Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+                {{out_var_name}} = r.Replace({{in_var_name}}, "");
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>invalids_ldap_char</dir>
+            </path>
+            <comment>filtering : remove all '\', '*', '(', ')', 'u0000', '/' in parameter</comment>
+            <flaws>
+                <flaw flaw_type="CWE_90" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE_78" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_89" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_91" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System.Text</import>
+            </imports>
+            <code>
+                StringBuilder escape = new StringBuilder();
+                for (int i = 0; i &lt; {{in_var_name}}.Length; ++i){
+                    char current = {{in_var_name}}[i];
+                    switch (current){
+                        case '\\':
+                            escape.Append(@"\5c");
+                            break;
+                        case '*':
+                            escape.Append(@"\2a");
+                            break;
+                        case '(':
+                            escape.Append(@"\28");
+                            break;
+                        case ')':
+                            escape.Append(@"\29");
+                            break;
+                        case '\u0000':
+                            escape.Append(@"\00");
+                            break;
+                        case '/':
+                            escape.Append(@"\2f");
+                            break;
+                        default:
+                            escape.Append(current);
+                            break;
+                    }
+                }
+                {{out_var_name}} = escape.ToString();
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>xml_encode</dir>
+            </path>
+            <comment>Xpath replace char</comment>
+            <flaws>
+                <flaw flaw_type="CWE_91" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE_90" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_78" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_89" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System.Text</import>
+            </imports>
+            <code>
+                StringBuilder text = new StringBuilder({{in_var_name}});
+                text.Replace("&amp;", "&amp;amp;");
+                text.Replace("'", "&amp;apos;");
+                text.Replace(@"""", "&amp;quot;");
+                text.Replace("&lt;", "&amp;lt;");
+                text.Replace("&gt;", "&amp;gt;");
+                {{out_var_name}} = text.ToString();
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+
+        <sample>
+            <path>
+                <dir>invalid_filenames_path</dir>
+            </path>
+            <comment>filtering : remove all invalid filenames in a path</comment>
+            <flaws>
+                <flaw flaw_type="CWE_22" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System.IO</import>
+                <import>System.Text.RegularExpressions</import>
+            </imports>
+            <code>
+                string regexSearch = new string(Path.GetInvalidFileNameChars());
+                Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+                {{out_var_name}} = r.Replace({{in_var_name}}, "");
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>invalid_chars_path</dir>
+            </path>
+            <comment>filtering : remove all invalid chars in a path</comment>
+            <flaws>
+                <flaw flaw_type="CWE_22" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System.IO</import>
+                <import>System.Text.RegularExpressions</import>
+            </imports>
+            <code>
+                string regexSearch = new string(Path.GetInvalidPathChars());
+                Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+                {{out_var_name}} = r.Replace({{in_var_name}}, "");
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>regex_parent_dir_path</dir>
+            </path>
+            <comment>filtering : remove first "../" in path</comment>
+            <flaws>
+                <flaw flaw_type="CWE_22" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System.Text.RegularExpressions</import>
+            </imports>
+            <code>
+                string pattern = "^\\.\\.\\/";
+                Regex r = new Regex(pattern);
+                {{out_var_name}} = r.Replace({{in_var_name}}, "");
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>good_regex_parent_dir_path</dir>
+            </path>
+            <comment>filtering : remove all "../" in path</comment>
+            <flaws>
+                <flaw flaw_type="CWE_22" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System.Text.RegularExpressions</import>
+            </imports>
+            <code>
+                string pattern = "^[\\.\\.\\/]+";
+                Regex r = new Regex(pattern);
+                {{out_var_name}} = r.Replace({{in_var_name}}, "");
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+    </filtering>

@@ -1,0 +1,360 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE sink SYSTEM "../dtd/sink.dtd">
+    <sink>
+        <!--
+        <sample>
+            <path>
+                <dir></dir>
+            </path>
+            <flaw_type flaw_group=""></flaw_type>
+            <comment></comment>
+            <imports>
+                <import></import>
+            </imports>
+            <code></code>
+            <safety safe="" unsafe=""/>
+            <input_type></input_type>
+            <exec_type></exec_type>
+        </sample>
+        -->
+
+        <sample>
+            <path>
+                <dir>file_exists</dir>
+            </path>
+            <flaw_type flaw_group="A4">CWE_22</flaw_type>
+            <comment>sink : check if a file exists</comment>
+            <imports>
+                <import>System.IO</import>
+            </imports>
+            <code>
+                {{flaw}}
+                File.Exists({{in_var_name}});
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>select_from</dir>
+                <dir>concatenation_simple_quote</dir>
+            </path>
+            <flaw_type flaw_group="A1">CWE_89</flaw_type>
+            <comment>construction : concatenation with simple quote</comment>
+            <imports></imports>
+            <code>
+                {{flaw}}
+                string query = "SELECT * FROM '" + {{in_var_name}} + "'";
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>SQL</exec_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>ls</dir>
+            </path>
+            <flaw_type flaw_group="A1">CWE_78</flaw_type>
+            <comment>sink : run ls in a dir</comment>
+            <imports>
+                <import>System.IO</import>
+            </imports>
+            <code>
+                {{flaw}}
+                System.Diagnostics.Process.Start("/bin/bash", "-c 'ls " + {{in_var_name}} + "'");
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>md5</dir>
+            </path>
+            <flaw_type flaw_group="A6">CWE_327</flaw_type>
+            <comment>sink : md5 function</comment>
+            <imports>
+                <import>System</import>
+                <import>System.Security.Cryptography</import>
+                <import>System.Text</import>
+            </imports>
+            <code>
+                {{flaw}}
+                using (MD5 md5Hash = MD5.Create())
+                {
+                    byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes({{in_var_name}}));
+
+                    // Create a new Stringbuilder to collect the bytes
+                    // and create a string.
+                    StringBuilder sBuilder = new StringBuilder();
+
+                    // Loop through each byte of the hashed data
+                    // and format each one as a hexadecimal string.
+                    for (int i = 0; i &lt; data.Length; i++)
+                    {
+                        sBuilder.Append(data[i].ToString("x2"));
+                    }
+
+                    string hash = sBuilder.ToString();
+                }
+            </code>
+            <safety safe="0" unsafe="1"/>
+            <input_type>string</input_type>
+            <exec_type>none</exec_type>
+            <options need_complexity="0"/>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>sha512</dir>
+            </path>
+            <flaw_type flaw_group="A6">CWE_327</flaw_type>
+            <comment>sink : SHA512 function. Always Safe, unless SHA512 gets broken in the future.</comment>
+            <imports>
+                <import>System</import>
+                <import>System.Security.Cryptography</import>
+                <import>System.Text</import>
+            </imports>
+            <code>
+                SHA512 sha512Hash = new SHA512Managed();
+
+                byte[] data = sha512Hash.ComputeHash(Encoding.UTF8.GetBytes({{in_var_name}}));
+
+                // Create a new Stringbuilder to collect the bytes
+                // and create a string.
+                StringBuilder sBuilder = new StringBuilder();
+
+                // Loop through each byte of the hashed data
+                // and format each one as a hexadecimal string.
+                for (int i = 0; i &lt; data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+
+                string hash = sBuilder.ToString();
+            </code>
+            <safety safe="1" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>none</exec_type>
+            <options need_complexity="0"/>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>SQL</dir>
+                <dir>Injection</dir>
+            </path>
+            <flaw_type flaw_group="A1">CWE_89</flaw_type>
+            <comment>sink : SQL query</comment>
+            <imports></imports>
+            <code>
+                {{flaw}}
+                string query = "SELECT * FROM Articles WHERE id="+{{in_var_name}};
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>SQL</exec_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>SQL_prepared</dir>
+            </path>
+            <flaw_type flaw_group="A1">CWE_89</flaw_type>
+            <comment>sink : SQL query</comment>
+            <imports></imports>
+            <code>
+                string query = "SELECT * FROM Articles WHERE id=@placeholder";
+                string checked_data = {{in_var_name}};
+            </code>
+            <safety safe="1" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>SQL_prepared</exec_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>ldap</dir>
+            </path>
+            <flaw_type flaw_group="A1">CWE_90</flaw_type>
+            <comment>sink : LDAP Query</comment>
+            <imports></imports>
+            <code>
+                {{flaw}}
+                string query = "(&amp;(objectClass=person)(sn=" + {{ in_var_name }} + "))";
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>LDAP</exec_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>XPATH</dir>
+            </path>
+            <flaw_type flaw_group="A1">CWE_91</flaw_type>
+            <comment>sink : XPATH Query</comment>
+            <imports></imports>
+            <code>
+                {{flaw}}
+                string query = "//user[@name='" + {{ in_var_name }} + "']";
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>XPATH</exec_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>XPATH_string_format</dir>
+            </path>
+            <flaw_type flaw_group="A1">CWE_91</flaw_type>
+            <comment>sink : XPATH Query</comment>
+            <imports></imports>
+            <code>
+                {{flaw}}
+                string query = string.Format("//user[@name='{0}']",{{in_var_name}});
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>XPATH</exec_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>XPATH_prepared</dir>
+            </path>
+            <flaw_type flaw_group="A1">CWE_91</flaw_type>
+            <comment>sink : XPATH prepared</comment>
+            <imports></imports>
+            <code>
+                {{flaw}}
+                string query = {{in_var_name}};
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>XPATH_prepared</exec_type>
+        </sample>
+
+        <sample>
+           <path>
+               <dir>null_pointer</dir>
+           </path>
+           <flaw_type flaw_group="A9">CWE_476</flaw_type>
+           <comment>sink : NULL Pointer Dereference</comment>
+           <imports></imports>
+           <code>
+               int num, sum = 0, r;
+               System.Console.WriteLine("Hello, World!");
+               int[] intArray = new int[7] { 2,37,849,24,42,-10,93 };
+               Array.Sort(intArray);
+               foreach (int nb in intArray){
+                   r = nb + 3;
+                   num = r / 10;
+                   sum = num + nb;
+                   Console.WriteLine("Current sum : "+sum);
+               }
+               string cmd = null;
+               cmd = Environment.GetEnvironmentVariable("cmd");
+               {{flaw}}
+               cmd = cmd.Trim();
+               int a = 0;
+               int b = 1;
+               for (int i = 0; i &lt; sum; i++){
+                   int temp = a;
+                   a = b;
+                   b = temp + b;
+               }
+               Console.WriteLine("Fib : "+a);
+           </code>
+           <safety safe="0" unsafe="1"/>
+           <input_type>none</input_type>
+           <exec_type>none</exec_type>
+       </sample>
+
+        <sample>
+            <path>
+                <dir>password_from_file</dir>
+            </path>
+            <flaw_type flaw_group="A2">CWE_256</flaw_type>
+            <comment>sink : connection to a database using hardcoded password in a file</comment>
+            <imports>
+                <import>System</import>
+                <import>System.Reflection</import>
+                <import>System.Collections.Generic</import>
+                <import>System.IO</import>
+                <import>System.Linq</import>
+                <import>MySql.Data.MySqlClient</import>
+            </imports>
+            <code>
+                var data = new Dictionary&lt;string, string&gt;();
+                foreach (var row in File.ReadAllLines("./config.properties"))
+                    data.Add(row.Split('=')[0], string.Join("=",row.Split('=').Skip(1).ToArray()));
+
+                Console.WriteLine(data["username"]);
+                {{flaw}}
+                Console.WriteLine(data["password"]);
+                string connectionString = @"server=localhost;uid=" + data["username"] + ";password=" + data["password"] + ";database=dbname";
+                MySqlConnection dbConnection = null;
+
+                try {
+                    dbConnection = new MySqlConnection(connectionString);
+                    dbConnection.Open();
+
+                    dbConnection.Close();
+
+                } catch (Exception e) {
+                    Console.WriteLine(e.ToString());
+                }
+            </code>
+            <safety safe="0" unsafe="1"/>
+            <input_type>none</input_type>
+            <exec_type>none</exec_type>
+            <options need_complexity="0"/>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>print_exception</dir>
+            </path>
+            <flaw_type flaw_group="A5">CWE_209</flaw_type>
+            <comment>sink : print exception</comment>
+            <imports>
+            </imports>
+            <code>
+                int num, sum = 0, r;
+                System.Console.WriteLine("Hello, World!");
+                int[] intArray = new int[7] { 2,37,849,24,42,-10,93 };
+                Array.Sort(intArray);
+                foreach (int nb in intArray){
+                    r = nb + 3;
+                    num = r / 10;
+                    sum = num + nb;
+                    Console.WriteLine("Current sum : "+sum);
+                }
+                try{
+                    int a = 0;
+                	int b = 1;
+                    throw new System.DivideByZeroException();
+                	for (int i = 0; i &lt; sum; i++){
+                	    int temp = a;
+                	    a = b;
+                	    b = temp + b;
+                	}
+                    Console.WriteLine("Fib : "+a);
+                }catch (DivideByZeroException e){
+                    {{flaw}}
+                    Console.WriteLine(e.Message);
+                }
+            </code>
+            <safety safe="0" unsafe="1"/>
+            <input_type>none</input_type>
+            <exec_type>none</exec_type>
+            <options need_complexity="0"/>
+        </sample>
+
+    </sink>

@@ -1,0 +1,15 @@
+<!ELEMENT input (sample+)>
+<!ELEMENT sample (path, comment, flaws, imports, code, input_type, output_type)>
+<!ELEMENT path (dir+)>
+<!ELEMENT dir (#PCDATA)>
+<!ELEMENT comment (#PCDATA)>
+<!ELEMENT flaws (flaw+)>
+<!ELEMENT flaw EMPTY>
+<!ATTLIST flaw flaw_type CDATA #REQUIRED>
+<!ATTLIST flaw safe CDATA #REQUIRED>
+<!ATTLIST flaw unsafe CDATA #REQUIRED>
+<!ELEMENT imports (import*)>
+<!ELEMENT import (#PCDATA)>
+<!ELEMENT code (#PCDATA)>
+<!ELEMENT input_type (#PCDATA)>
+<!ELEMENT output_type (#PCDATA)>

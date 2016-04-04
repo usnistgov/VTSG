@@ -1,0 +1,137 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE input SYSTEM "../dtd/input.dtd">
+    <input>
+        <!--
+        <sample>
+            <path>
+                <dir></dir>
+            </path>
+            <comment></comment>
+            <flaws>
+                <flaw flaw_type="" safe=""/>
+            </flaws>
+            <imports>
+                <import></import>
+            </imports>
+            <code></code>
+            <input_type></input_type>
+            <output_type></output_type>
+        </sample>
+        -->
+        <sample>
+            <path>
+                <dir>shell_commands</dir>
+            </path>
+            <comment>input : shell commands</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System</import>
+                <import>System.IO</import>
+                <import>System.Diagnostics</import>
+            </imports>
+            <code>
+                Process process = new Process();
+                process.StartInfo.FileName = "/bin/bash";
+                process.StartInfo.Arguments = "-c 'cat /tmp/tainted.txt'";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.Start();
+
+                using(StreamReader reader = process.StandardOutput) {
+                    {{out_var_name}} = reader.ReadToEnd();
+                    process.WaitForExit();
+                    process.Close();
+                }
+            </code>
+            <input_type>file : /tmp/tainted.txt</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>readline</dir>
+            </path>
+            <comment>input : direct user input in string</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System</import>
+            </imports>
+            <code>
+                {{out_var_name}} = Console.ReadLine();
+            </code>
+            <input_type>input : get user input in tainted</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>none</dir>
+            </path>
+            <comment>No Input</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+                //no input
+            </code>
+            <input_type>input : no input</input_type>
+            <output_type>none</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>hardcoded_string_input</dir>
+            </path>
+            <comment>Hardcoded string input</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+                {{out_var_name}} = "hardcoded";
+            </code>
+            <input_type>input : no input</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>hardcoded_integer_input</dir>
+            </path>
+            <comment>Hardcoded integer input</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+                {{out_var_name}} = 0;
+            </code>
+            <input_type>input : no input</input_type>
+            <output_type>int</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>args</dir>
+            </path>
+            <comment>Command line args</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+                {{out_var_name}} = args[1];
+            </code>
+            <input_type>input : Command line args</input_type>
+            <output_type>string</output_type>
+        </sample>
+    </input>

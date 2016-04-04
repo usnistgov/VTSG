@@ -1,0 +1,10 @@
+<!ELEMENT exec_queries (exec_query*)>
+<!ELEMENT exec_query (path, comment, imports, code)>
+<!ATTLIST exec_query type CDATA #REQUIRED>
+<!ATTLIST exec_query safe CDATA #REQUIRED>
+<!ELEMENT path (dir+)>
+<!ELEMENT dir (#PCDATA)>
+<!ELEMENT comment (#PCDATA)>
+<!ELEMENT imports (import*)>
+<!ELEMENT import (#PCDATA)>
+<!ELEMENT code (#PCDATA)>

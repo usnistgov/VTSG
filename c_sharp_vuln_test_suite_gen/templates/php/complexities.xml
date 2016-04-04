@@ -1,0 +1,328 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
+<root>
+    <conditions>
+        <condition id="1">
+            <code>(1==1)</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="2">
+            <code>(1==0)</code>
+            <value>False</value>
+        </condition>
+        <!-- TODO add other conditions-->
+    </conditions>
+
+    <complexities>
+        <!-- Conditional branching -->
+        <!-- if statements-->
+        <complexity id="1" type="if" group="conditionals" executed="condition">
+            <code>
+                if({{ condition }}){
+                    {{ placeholder }}
+                }
+            </code>
+        </complexity>
+
+        <complexity id="2" type="if" group="conditionals" executed="condition">
+            <code>
+                if({{ condition }}){
+                    {{ placeholder }}
+                }else{
+                    {}
+                }
+            </code>
+        </complexity>
+
+        <complexity id="3" type="if" group="conditionals" executed="not_condition">
+            <code>
+                if({{ condition }}){
+                    {}
+                }else{
+                    {{ placeholder }}
+                }
+            </code>
+        </complexity>
+
+        <complexity id="4" type="if" group="conditionals" executed="condition">
+            <code>
+                if({{ condition }}){
+                    {{ placeholder }}
+                }else if(!{{ condition }}){
+                    {}
+                }
+            </code>
+        </complexity>
+
+        <complexity id="5" type="if" group="conditionals" executed="not_condition">
+            <code>
+                if({{ condition }}){
+                    {}
+                }else if(!{{ condition }}){
+                    {{ placeholder }}
+                }
+            </code>
+        </complexity>
+
+        <complexity id="6" type="if" group="conditionals" executed="condition">
+            <code>
+                if({{ condition }}){
+                    {{ placeholder }}
+                }else if(!{{ condition }}){
+                    {}
+                }else{
+                    {}
+                }
+            </code>
+        </complexity>
+
+        <complexity id="7" type="if" group="conditionals" executed="not_condition">
+            <code>
+                if({{ condition }}){
+                    {}
+                }else if(!{{ condition }}){
+                    {{ placeholder }}
+                }else{
+                    {}
+                }
+            </code>
+        </complexity>
+
+        <complexity id="8" type="if" group="conditionals" executed="0">
+            <code>
+                if({{ condition }}){
+                    {}
+                }else if(!{{ condition }}){
+                    {}
+                }else{
+                    {{ placeholder }}
+                }
+            </code>
+        </complexity>
+
+        <!-- Switch cases  -->
+        <complexity id="9" type="switch" group="conditionals" executed="1">
+            <code>
+                switch(6){
+                    case(6):
+                        {{ placeholder }}
+                        break;
+                    default:
+                        break;
+                }
+            </code>
+        </complexity>
+
+        <complexity id="10" type="switch" group="conditionals" executed="0">
+            <code>
+                switch(6){
+                    case(6):
+                        break;
+                    default:
+                        {{ placeholder }}
+                        break;
+                }
+            </code>
+        </complexity>
+
+
+        <!--Conditional and unconditional loops -->
+        <complexity id="11" type="while" group="loops" executed="condition">
+            <code>
+                while({{ condition }}){
+                    {{ placeholder }}
+                    break;
+                }
+            </code>
+        </complexity>
+
+        <complexity id="12" type="while" group="loops" executed="1" need_condition="1">
+            <code>
+                do{
+                    {{ placeholder }}
+                    break;
+                }while({{ condition }});
+            </code>
+        </complexity>
+
+        <complexity id="13" type="for" group="loops" executed="1" need_id="1">
+            <code>
+                for($i_{{id}} = 0; $i_{{id}} &lt;= 1; $i_{{id}}++){
+                    {{ placeholder }}
+                }
+            </code>
+        </complexity>
+
+        <complexity id="14" type="foreach" group="loops" executed="1" need_id="1" in_out_var="in">
+            <code>
+                $arr_{{ id }} = array(); // declaring array
+
+                //Storing value in array element
+                $arr_{{ id }}[] = null;
+                $arr_{{ id }}[] = null;
+                $arr_{{ id }}[] = null;
+                $arr_{{ id }}[] = {{ in_var_name }};
+
+                foreach($val_{{ id }} as $arr_{{ id }}){
+                    if($val_{{ id }}!=null){
+                        {{ out_var_name }} = $val_{{ id }};
+                        {{ placeholder }}
+                    }
+                }
+            </code>
+        </complexity>
+
+        <!-- Unconditional jumps -->
+        <complexity id="15" type="goto" group="jumps" executed="0" need_id="1">
+            <code>
+                goto Skip_{{id}};
+                {{ placeholder }}
+                Skip_{{id}}:
+                {}
+            </code>
+        </complexity>
+
+        <complexity id="16" type="goto" group="jumps" executed="1" need_id="1">
+            <code>
+                goto Skip_{{id}};
+                Skip_{{id}}:
+                {{ placeholder }}
+            </code>
+        </complexity>
+
+        <!-- Functions -->
+        <complexity id="17" type="function" group="functions" executed="1" in_out_var="traversal" indirection="1" need_id="1">
+            <code>{{out_var_name}} = {{call_name}}({{in_var_name}});</code>
+            <body>
+                function {{call_name}}({{in_var_type}} $param_{{id}} ){
+                    {{local_var}}
+                    {{in_var_name}} = $param_{{id}};
+                    {{ placeholder }}
+                    return {{out_var_name}};
+                }
+            </body>
+        </complexity>
+
+        <complexity id="18" type="function" group="functions" executed="1" in_out_var="in" indirection="1" need_id="1">
+            <code>
+                {{out_var_name}} = {{call_name}}({{in_var_name}});
+                {{ placeholder}}
+            </code>
+            <body>
+                function {{call_name}}({{in_var_type}} $param_{{id}} ){
+                    return $param_{{id}} ;
+                }
+            </body>
+        </complexity>
+
+        <complexity id="19" type="function" group="functions" executed="1" in_out_var="out" indirection="1" need_id="1">
+            <code>
+                {{ placeholder}}
+                {{out_var_name}} = {{call_name}}({{in_var_name}});
+            </code>
+            <body>
+                function {{call_name}}({{in_var_type}} $param_{{id}} ){
+                    return $param_{{id}} ;
+                }
+            </body>
+        </complexity>
+
+        <!-- Classes -->
+        <complexity id="20" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
+            <code>
+                $var_{{id}} = new {{call_name}}({{in_var_name}});
+                {{out_var_name}} = $var_{{id}}->get_var_{{id}}();
+            </code>
+            <body>
+                &lt;?php
+                /*
+                {{comments}}
+                */
+                /*
+                {{license}}
+                */
+                {{ imports }}
+                class {{call_name}}{
+
+                    var $var_{{id}};
+
+                    function __construct({{in_var_name}}_{{id}}){
+                        $var_{{id}} = {{in_var_name}}_{{id}};
+                    }
+
+                    function get_var_{{id}}(){
+                        {{local_var}}
+                        {{in_var_name}} = $var_{{id}};
+                        {{ placeholder}}
+                        return {{out_var_name}};
+                    }
+
+                    {{static_methods}}
+                }
+                ?>
+            </body>
+        </complexity>
+
+
+        <complexity id="21" type="class" group="classes" executed="1" in_out_var="in" need_id="1" indirection="1">
+            <code>
+                $var_{{id}} = new {{call_name}}({{in_var_name}});
+                {{out_var_name}} = $var_{{id}}->get_var_{{id}}();
+                {{placeholder}}
+            </code>
+            <body>
+                &lt;?php
+                /*
+                {{comments}}
+                */
+                /*
+                {{license}}
+                */
+                class {{call_name}}{
+
+                    var $var_{{id}};
+
+                    function __construct($param){
+                        $var_{{id}} = $param;
+                    }
+
+                    function get_var_{{id}}(){
+                        return $var_{{id}};
+                    }
+                }
+                ?>
+            </body>
+        </complexity>
+
+        <complexity id="22" type="class" group="classes" executed="1" in_out_var="out" need_id="1" indirection="1">
+            <code>
+                {{placeholder}}
+                $var_{{id}} = new {{call_name}}({{in_var_name}});
+                {{out_var_name}} = $var_{{id}}->get_var_{{id}}();
+            </code>
+            <body>
+                &lt;?php
+                /*
+                {{comments}}
+                */
+                /*
+                {{license}}
+                */
+                class {{call_name}}{
+
+                    var $var_{{id}};
+
+                    function __construct($param){
+                        $var_{{id}} = $param;
+                    }
+
+                    function get_var_{{id}}(){
+                        return $var_{{id}};
+                    }
+                }
+                ?>
+            </body>
+        </complexity>
+    </complexities>
+</root>
