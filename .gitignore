@@ -1,12 +1,13 @@
 # *created  "Mon Jan 31 17:18:46 2022" *by "Paul E. Black"
-# *modified "Mon Jan 31 17:19:10 2022" *by "Paul E. Black"
+# *modified "Wed Feb  2 14:37:13 2022" *by "Paul E. Black"
 
-# .gitignore for VTSG
+# .gitignore for Vulnerability Test Suite Generator (VTSG)
 
 # emacs backup files
 *~
 
 # Python compiled code
 __pycache__
+*.pyc
 
 # end of .gitignore
