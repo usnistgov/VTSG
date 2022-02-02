@@ -1,19 +1,11 @@
-Copyright 2016 Bertrand STIVALET
+Created by Paul E. Black and William Mentzer 2020
 
-Permission is hereby granted, without written agreement or royalty fee, to
-use, copy, modify, and distribute this software and its documentation for
-any purpose, provided that the above copyright notice and the following
-three paragraphs appear in all copies of this software.
+This software was developed at the National Institute of Standards and Technology
+by employees of the Federal Government in the course of their official duties.
+Pursuant to title 17 Section 105 of the United States Code the software is not
+subject to copyright protection and are in the public domain.
 
-IN NO EVENT SHALL AUTHORS BE LIABLE TO ANY PARTY FOR DIRECT,
-INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
-USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF AUTHORS HAVE
-BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+We would appreciate acknowledgment if the software is used.
 
-AUTHORS SPECIFICALLY DISCLAIM ANY WARRANTIES INCLUDING, BUT NOT
-LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
-
-THE SOFTWARE IS PROVIDED ON AN "AS-IS" BASIS AND AUTHORS HAVE NO
-OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
-MODIFICATIONS.
+Paul E. Black  paul.black@nist.gov
+William Mentzer willmentzer20@gmail.com
