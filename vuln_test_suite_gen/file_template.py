@@ -1,7 +1,7 @@
 """
 file_template module
 
- *modified "Wed Feb  2 14:03:59 2022" *by "Paul E. Black"
+ *modified "Wed Feb  2 15:20:39 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -109,7 +109,7 @@ class FileTemplate(object):
 
     def get_type_var_code(self, type_v):
         """
-        Return the statement code of specified variable.
+        Return code to declare a variable of type type_v.
 
         Args :
             **type_v** (str)
