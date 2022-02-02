@@ -2,6 +2,8 @@
 Generator Module.
 
 This is the main module used to generate the test cases.
+
+ *modified "Wed Feb  2 14:41:40 2022" *by "Paul E. Black"
 """
 
 import time
@@ -435,7 +437,8 @@ class Generator(object):
             imports_content = imports_content.union(set(self.current_exec_queries.imports))
         # create source code with imports
         imports_content = self.file_template.generate_imports(imports_content)
-        # comments code
+
+        # comments at the beginning of the code that documents modules used
         if self.current_input and self.current_filtering:
             comments_code = "\n".join([self.current_input.comment, self.current_filtering.comment,
                                       self.current_sink.comment])
@@ -466,10 +469,11 @@ class Generator(object):
                                                                        filtering_content=filtering_code)
 
         self.current_code = file_content
-        # recursive call
+
+        # write test case to file, update summary counts, and add to manifest
         self.write_files()
 
-    # eighth step : write on disk and update manifest
+    # eighth step: write on disk, update counts, and add to manifest
     def write_files(self):
         """
         This method writes code for then current selection into files
@@ -518,7 +522,6 @@ class Generator(object):
             self.report[current_flaw_group][current_flaw]["unsafe_sample"] += 1
 
         # update manifest
-
         input_type = "None : None"
         if self.current_input:
             input_type = self.current_input.input_type
@@ -658,22 +661,22 @@ class Generator(object):
         """
         self.manifest.closeManifests()
         total = 0
-        print("Generation report:\n")
+        print("Generation report:")
         for flaw_group in self.report:
             group_total = 0
-            print("\t" + flaw_group.upper() + " group generation report:\n")
+            print("\t" + flaw_group.upper() + " group generation report:")
             for flaw in self.report[flaw_group]:
-                print("\t\t" + flaw.upper() + " generation report:\n")
+                print("\t\t" + flaw.upper() + " generation report:")
                 print("\t\t\t" + str(self.report[flaw_group][flaw]["safe_sample"]) + " safe samples")
                 print("\t\t\t" + str(self.report[flaw_group][flaw]["unsafe_sample"]) + " unsafe samples")
                 flaw_total = self.report[flaw_group][flaw]["safe_sample"] + self.report[flaw_group][flaw]["unsafe_sample"]
                 group_total += flaw_total
-                print("\n\t\t" + str(flaw_total) + " total\n")
+                print("\n\t\t" + str(flaw_total) + " total")
 
-            print("\t" + str(group_total) + " total\n")
+            print("\t" + str(group_total) + " total")
             total += group_total
 
-        print(str(total) + " total\n")
+        print(str(total) + " total")
         self.end = time.time()
         print("Generation time " + time.strftime("%H:%M:%S", time.gmtime(self.end - self.start)))
 
