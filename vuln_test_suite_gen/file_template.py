@@ -1,5 +1,7 @@
 """
 file_template module
+
+ *modified "Wed Feb  2 14:03:59 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -90,7 +92,7 @@ class FileTemplate(object):
             **imports** (str): The value to write.
         """
         res = ""
-        for i in imports:
+        for i in sorted(imports):
             imp = Template(self._import_code).render(import_file=i)
             res += imp + "\n"
         return res

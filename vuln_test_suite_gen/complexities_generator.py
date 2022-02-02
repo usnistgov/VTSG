@@ -1,7 +1,9 @@
 """
 Complexities Generator Module.
 
-This is the module used to compose and generate the needed complexities which will be used by the Generator module.
+Compose and generate the complexities that will be used by the Generator module.
+
+ *modified "Wed Feb  2 14:08:47 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -248,15 +250,17 @@ class ComplexitiesGenerator(object):
         return classes_code
 
     def generate_local_var_code(self, local_var):
-        """ Generates local var with type, name and initialisation. """
+        """Generate code to declare and initialize local variables."""
         # TODO hardcoded string/int/null ...
         local_var_code = ""
+        # loop through every type
         for t in local_var:
             init = ""
             type_var = self.template.get_type_var_code(t)
             if type_var is not None:
                 init = self.template.get_init_var_code(t)
-                for i, n in enumerate(list(local_var[t])):
+                # generate code to declare and initialize each variable of this type
+                for n in sorted(list(local_var[t])):
                     local_var_code += type_var + " " + n + " = " + init + ";\n"
             else:
                 local_var_code += "//ERROR type '" + t + "' "
