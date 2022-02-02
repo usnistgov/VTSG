@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Wed Feb  2 14:08:47 2022" *by "Paul E. Black"
+ *modified "Wed Feb  2 15:29:53 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -174,7 +174,7 @@ class ComplexitiesGenerator(object):
             # render on code
             self.complexities[0]['code'] = t.render(placeholder=self.complexities[0]['code'], id=self.uid, in_var_name=in_var, out_var_name=out_var, call_name=call_name, in_var_type=self.input_type, out_var_type=self.output_type)
 
-            # trasversol for class/function where the placeholder is in the body of function/class
+            # traversal for class/function where the placeholder is in the body of function/class
             if c.indirection and c.in_out_var == "traversal":
                 # LOCAL VARS
                 local_var_code = self.generate_local_var_code(self.complexities[0]['local_var'])
@@ -191,12 +191,12 @@ class ComplexitiesGenerator(object):
                 # change type of current complexities
                 self.complexities[0]['type'] = c.type
                 if c.type == "class":
-                    self.complexities[0]['type'] = "class_trasversal"
+                    self.complexities[0]['type'] = "class_traversal"
                 elif c.type == "function":
-                    self.complexities[0]['type'] = "function_trasversal"
+                    self.complexities[0]['type'] = "function_traversal"
                 self.complexities[0]['name'] = call_name
                 # ###################################
-                # start a nex stack of complexities #
+                # start a new stack of complexities #
                 #####################################
                 # insert new dict for the next complexity
                 self.complexities.insert(0, {'type': None, 'code': c.code, 'local_var': {}, 'name': ""})
@@ -228,14 +228,14 @@ class ComplexitiesGenerator(object):
         classes_code = []
         # compose complexity i inti i-1
         for c in reversed(self.complexities[1:]):
-            if c['type'] == "class_trasversal":
-                # add a new class code when we have a trasversal class
+            if c['type'] == "class_traversal":
+                # add a new class code when we have a traversal class
                 imports_content = "\n".join(["using {};".format(import_content) for import_content in set(self.filtering.imports)])
                 classes_code.append({'code': Template(c['code'], undefined=DebugUndefined).render(static_methods=functions_code, imports=imports_content), 'name': c['name']})
                 functions_code = ""
             elif c['type'] == "class":
                 classes_code.append({'code': c['code'], 'name': c['name']})
-            elif c['type'] == "function_trasversal":
+            elif c['type'] == "function_traversal":
                 functions_code += Template(c['code'], undefined=DebugUndefined).render(static_methods=functions_code)
             elif c['type'] == "function":
                 functions_code += c['code'] + "\n\n"
@@ -256,14 +256,17 @@ class ComplexitiesGenerator(object):
         # loop through every type
         for t in local_var:
             init = ""
-            type_var = self.template.get_type_var_code(t)
-            if type_var is not None:
+            declare_type = self.template.get_type_var_code(t)
+            if declare_type is not None:
                 init = self.template.get_init_var_code(t)
                 # generate code to declare and initialize each variable of this type
                 for n in sorted(list(local_var[t])):
-                    local_var_code += type_var + " " + n + " = " + init + ";\n"
+                    # add a space if there is a string to declare the variable
+                    if declare_type != "":
+                        local_var_code += declare_type + " "
+                    local_var_code += n + " = " + init + ";\n"
             else:
-                local_var_code += "//ERROR type '" + t + "' "
+                local_var_code += "//ERROR UNKNOWN type '" + t + "' "
         return local_var_code
 
     def add_value_dict(self, key, value):
@@ -274,7 +277,7 @@ class ComplexitiesGenerator(object):
         dico[key].add(value)
 
     def get_in_out_var(self, c):
-        """ Generated name for variable in different cases (in/trasversal/out)."""
+        """Generated name for variable in different cases (in/traversal/out)."""
         in_var = None
         out_var = None
         if c.in_out_var == "in":
