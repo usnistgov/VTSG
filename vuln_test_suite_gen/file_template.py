@@ -1,7 +1,7 @@
 """
 file_template module
 
- *modified "Wed Feb  2 15:20:39 2022" *by "Paul E. Black"
+ *modified "Wed Feb  2 16:19:56 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -47,6 +47,10 @@ class FileTemplate(object):
         self._comment['open'] = file_template.find("comment").find("open").text
         self._comment['close'] = file_template.find("comment").find("close").text
         self._comment['inline'] = file_template.find("comment").find("inline").text
+        self._syntax = {}
+        if file_template.find("syntax") is not None:
+            if file_template.find("syntax").find("statement_terminator") is not None:
+                self._syntax['statement_terminator'] = file_template.find("syntax").find("statement_terminator").text
         self._prefix = file_template.find("variables").get("prefix")
         self._import_code = file_template.find("variables").get("import_code")
         """ Import code with placeholder"""
@@ -160,3 +164,20 @@ class FileTemplate(object):
         :type: str
         """
         return self._comment
+
+    @property
+    def statement_terminator(self):
+        """
+         String to finish statements
+
+        :getter: Return the string
+        :type: str
+        """
+        # Note: to require <syntax><statement_terminator>, remove this outer conditional
+        if 'statement_terminator' in self._syntax:
+            if self._syntax['statement_terminator'] is None:
+                return "" # interpret None as empty string
+            else:
+                return self._syntax['statement_terminator']
+        else:
+            return ""

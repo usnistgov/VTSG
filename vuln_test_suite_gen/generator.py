@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module used to generate the test cases.
 
- *modified "Wed Feb  2 14:41:40 2022" *by "Paul E. Black"
+ *modified "Wed Feb  2 16:22:19 2022" *by "Paul E. Black"
 """
 
 import time
@@ -380,7 +380,8 @@ class Generator(object):
                 var_id += 1
 
             # init filtering var with input var
-            init_var = compl_gen.out_ext_name+" = "+compl_gen.in_ext_name+";"
+            sterm = self.file_template.statement_terminator
+            init_var = compl_gen.out_ext_name+" = "+compl_gen.in_ext_name+sterm
             input_code += "\n"+init_var
 
             # FILTERING

@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Wed Feb  2 15:29:53 2022" *by "Paul E. Black"
+ *modified "Wed Feb  2 16:15:39 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -253,6 +253,7 @@ class ComplexitiesGenerator(object):
         """Generate code to declare and initialize local variables."""
         # TODO hardcoded string/int/null ...
         local_var_code = ""
+        sterm = self.template.statement_terminator
         # loop through every type
         for t in local_var:
             init = ""
@@ -264,7 +265,7 @@ class ComplexitiesGenerator(object):
                     # add a space if there is a string to declare the variable
                     if declare_type != "":
                         local_var_code += declare_type + " "
-                    local_var_code += n + " = " + init + ";\n"
+                    local_var_code += n + " = " + init + sterm + "\n"
             else:
                 local_var_code += "//ERROR UNKNOWN type '" + t + "' "
         return local_var_code

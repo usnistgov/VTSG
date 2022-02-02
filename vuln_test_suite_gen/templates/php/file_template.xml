@@ -7,6 +7,9 @@
         <close>*/</close>
         <inline>//</inline>
     </comment>
+    <syntax>
+      <statement_terminator>;</statement_terminator>
+    </syntax>
     <variables prefix="$" import_code="include &quot;{{import_file}}&quot;;">
         <variable type="int" code="" init="0"/>
         <variable type="string" code="" init="null"/>

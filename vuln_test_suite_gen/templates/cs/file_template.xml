@@ -8,6 +8,9 @@
         <close>*/</close>
         <inline>//</inline>
     </comment>
+    <syntax>
+      <statement_terminator>;</statement_terminator>
+    </syntax>
     <namespace>default_namespace</namespace>
     <variables prefix="" import_code="using {{import_file}};">
         <variable type="int" code="int" init="0"/>

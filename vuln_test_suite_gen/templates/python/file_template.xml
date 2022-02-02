@@ -1,7 +1,7 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
 
-<template name="python">
+<template name="Python">
     <file_extension>py</file_extension>
     <comment>
         <open>'''</open>
