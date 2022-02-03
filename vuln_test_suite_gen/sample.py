@@ -1,5 +1,7 @@
 """
 sample module
+
+ *modified "Thu Feb  3 10:07:14 2022" *by "Paul E. Black"
 """
 
 import vuln_test_suite_gen.generator
@@ -42,6 +44,10 @@ class Sample(object):
         self._imports = []
         if sample.find("imports") is not None:
             self._imports = [imp.text for imp in sample.find("imports").findall("import")]
+            if None in self._imports:
+                # SKIMP print file name, too
+                print('Invalid empty <import></import>')
+                exit(1)
 
         self._need_id = False
         if sample.get("need_id") == "1":
