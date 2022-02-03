@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Wed Feb  2 16:15:39 2022" *by "Paul E. Black"
+ *modified "Thu Feb  3 09:18:02 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -64,12 +64,14 @@ class ComplexitiesGenerator(object):
                 **template_code** (str): Modified template.
     """
 
-    def __init__(self, complexities_array, template, input_type, output_type, filtering):
+    def __init__(self, complexities_array, template, input_type, output_type,
+                 filtering, language):
         self.complexities_array = complexities_array
         self.template = template
         self.input_type = input_type
         self.output_type = output_type
         self.filtering = filtering
+        self.language = language
         self.uid = 0
 
         self.complexities = []

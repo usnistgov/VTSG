@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module used to generate the test cases.
 
- *modified "Wed Feb  2 16:22:19 2022" *by "Paul E. Black"
+ *modified "Thu Feb  3 09:30:40 2022" *by "Paul E. Black"
 """
 
 import time
@@ -94,7 +94,7 @@ class Generator(object):
     UID = 0
     """Uniq ID for generated functions/classes/variables name."""
 
-    def __init__(self, date, language="cs"):
+    def __init__(self, date, language):
         self._max_recursion = 1
         self._number_generated = -1
         self.date = date
@@ -104,6 +104,7 @@ class Generator(object):
         self.flaw_type_user = None
         self.flaw_group_user = None
         self.start = time.time()
+        self.language = language
         self.end = 0
 
         # parse XML files
@@ -349,8 +350,15 @@ class Generator(object):
         if self.current_sink.input_type != "none":
             # COMPLEXITIES
             # A ComplexitiesGenerator is created to compose complexities.
-            # The return code is a sum complexities with input and output var whick will be merge with input and sink variables
-            compl_gen = vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator(complexities_array=self.complexities_queue, template=self.file_template, input_type=self.current_input.output_type, output_type=self.current_sink.input_type, filtering=self.current_filtering)
+            # The return code is a sum complexities with input and output var which will be merged with input and sink variables
+            compl_gen = vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator(
+			complexities_array=self.complexities_queue,
+			template=self.file_template,
+			input_type=self.current_input.output_type,
+			output_type=self.current_sink.input_type,
+			filtering=self.current_filtering,
+			language=self.language
+            )
             # execute the compose method
             self.classes_code = compl_gen.compose()
             classes_imports = []
