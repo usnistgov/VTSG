@@ -3,11 +3,12 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Thu Feb  3 10:58:18 2022" *by "Paul E. Black"
+ *modified "Thu Feb  3 12:48:28 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
 import vuln_test_suite_gen.generator
+from vuln_test_suite_gen.synthesize_code import make_assign
 
 
 class ComplexitiesGenerator(object):
@@ -252,13 +253,14 @@ class ComplexitiesGenerator(object):
         return classes_code
 
     def generate_local_var_code(self, local_var):
-        """Generate code to declare and initialize local variables."""
-        # TODO hardcoded string/int/null ...
+        '''Generate statement(s) to declare and initialize local variables. For example,
+                      "string localvar_1 = None;\nint localvar_2 = 0;"
+           There is no indentation (that's done in context) and does not end with a
+           new line (so a single statement just drops into a macro place).
+        '''
         local_var_code = ""
-        sterm = self.template.statement_terminator
         # loop through every type
         for t in local_var:
-            init = ""
             declare_type = self.template.get_type_var_code(t)
             if declare_type is not None:
                 init = self.template.get_init_var_code(t)
@@ -267,7 +269,7 @@ class ComplexitiesGenerator(object):
                     # add a space if there is a string to declare the variable
                     if declare_type != "":
                         local_var_code += declare_type + " "
-                    local_var_code += n + " = " + init + sterm + "\n"
+                    local_var_code += make_assign(n, init, self.template) + "\n"
             else:
                 local_var_code += "//ERROR UNKNOWN type '" + t + "' "
         return local_var_code

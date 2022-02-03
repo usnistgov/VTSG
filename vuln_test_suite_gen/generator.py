@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module used to generate the test cases.
 
- *modified "Thu Feb  3 10:40:52 2022" *by "Paul E. Black"
+ *modified "Thu Feb  3 11:33:46 2022" *by "Paul E. Black"
 """
 
 import time
@@ -17,6 +17,7 @@ from vuln_test_suite_gen.exec_query import ExecQuerySample
 from vuln_test_suite_gen.complexity import ComplexitySample
 from vuln_test_suite_gen.condition import ConditionSample
 from vuln_test_suite_gen.file_template import FileTemplate
+from vuln_test_suite_gen.synthesize_code import make_assign
 import vuln_test_suite_gen.complexities_generator
 
 import xml.etree.ElementTree as ET
@@ -390,11 +391,11 @@ class Generator(object):
                 input_code = Template(input_code).render(out_var_name=compl_gen.in_ext_name, id=var_id)
             if self.current_input.need_id:
                 var_id += 1
+            input_code += '\n'
 
             # init filtering var with input var
-            sterm = self.file_template.statement_terminator
-            init_var = compl_gen.out_ext_name+" = "+compl_gen.in_ext_name+sterm
-            input_code += "\n"+init_var
+            input_code += make_assign(compl_gen.out_ext_name, compl_gen.in_ext_name,
+								self.file_template)
 
             # FILTERING
             # set input var name
