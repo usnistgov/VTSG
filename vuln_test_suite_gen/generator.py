@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module used to generate the test cases.
 
- *modified "Thu Feb  3 11:33:46 2022" *by "Paul E. Black"
+ *modified "Thu Feb  3 13:04:48 2022" *by "Paul E. Black"
 """
 
 import time
@@ -211,27 +211,30 @@ class Generator(object):
     def select_exec_queries(self):
         """
         If this case needs an exec query, use all exec queries.  If the exec query is
-        compatible with the current sink, proceed to the next step.  If no exec query
-        is needed, proceed to the next step.
+        compatible with the current sink, note it and proceed to the next step.  If
+        no exec query is needed, note "none" and proceed to the next step.
         """
         if self.current_sink.need_exec():
             # select exec_queries
             for exec_query in self.tab_exec_queries:
                 if self.current_sink.compatible_with_exec_queries(exec_query):
                     self.current_exec_queries = exec_query
-                    # WE SHOULD FACTOR OUT THE NEXT FOUR LINES AND THOSE BELOW
-                    if self.current_sink.input_type != "none":
-                        self.recursion_level()
-                    else:
-                        self.compose()
+                    self.recursion_or_compose()
         else:
             # sink doesn't need exec query
             self.current_exec_queries = None
-            # WE SHOULD FACTOR OUT THE NEXT FOUR LINES AND THOSE ABOVE
-            if self.current_sink.input_type != "none":
-                self.recursion_level()
-            else:
-                self.compose()
+            self.recursion_or_compose()
+
+    # fourth-and-a-half step: generate complexity depths if needed or go right to compose
+    def recursion_or_compose(self):
+        '''
+        If this case has sinks, wrap them in appropriate depths of complexities.
+        Otherwise, proceed directly to compose.
+        '''
+        if self.current_sink.input_type != "none":
+            self.recursion_level()
+        else:
+            self.compose()
 
     # fifth step: generate all depths of complexities up to maximum
     def recursion_level(self):
