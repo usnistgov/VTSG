@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module used to generate the test cases.
 
- *modified "Thu Feb  3 09:30:40 2022" *by "Paul E. Black"
+ *modified "Thu Feb  3 10:40:52 2022" *by "Paul E. Black"
 """
 
 import time
@@ -166,11 +166,12 @@ class Generator(object):
         # generate the repport with number of safe/unsafe, time, ...
         self.generation_report()
 
-    # fist step : browse sink
+    # first step: select sink
     def select_sink(self):
         """
-        This method browse all sink one by one if the group or type is selected by the user or if its a complete \
-        generation, then call the next recursion level.
+        Use all sinks one by one.  If this is the right group or type (that is, one
+        chosen is selected by the user or "all"), proceed to the next step: select
+        filter or select exec query.
         """
         for sink in self.tab_sink:
             if ((not self.flaw_type_user or sink.flaw_type_number() in self.flaw_type_user)
@@ -182,42 +183,42 @@ class Generator(object):
                     self.current_max_rec = 0
                     self.select_exec_queries()
 
-    # second step : browse filtering
+    # second step: select filter
     def select_filtering(self):
         """
-        This method browse all filtering one by one if the filtering is compatible with the current sink, then call \
-        the next recursion level.
+        Use all filters one by one.  If the filtering is compatible with the current
+        sink, proceed to the next step: selecting the input.
         """
-        # select filtering
         for filtering in self.tab_filtering:
             self.current_filtering = filtering
             # check if sink and filtering are compatibles
             if filtering.compatible_with_sink(self.current_sink):
                 self.select_input()
 
-    # third step : browse input
+    # third step: select input
     def select_input(self):
         """
-        This method browse all input one by one if the input is compatible with the current sink and current \
-        filtering, then call the next recursion level.
+        Use all inputs one by one.  If the input is compatible with the current sink
+        and current filter, proceed to the next step: selecting exec query.
         """
-        # select input
         for inp in self.tab_input:
             if inp.compatible_with_filtering_sink(self.current_filtering, self.current_sink):
                 self.current_input = inp
                 self.select_exec_queries()
 
-    # fourth step : browse exec_queries
+    # fourth step: select exec_query if needed
     def select_exec_queries(self):
         """
-        This method browse all exec query if the current sink need exec query and the exec query is compatible \
-        with the current sink, then call the next recursion level.
+        If this case needs an exec query, use all exec queries.  If the exec query is
+        compatible with the current sink, proceed to the next step.  If no exec query
+        is needed, proceed to the next step.
         """
         if self.current_sink.need_exec():
             # select exec_queries
             for exec_query in self.tab_exec_queries:
                 if self.current_sink.compatible_with_exec_queries(exec_query):
                     self.current_exec_queries = exec_query
+                    # WE SHOULD FACTOR OUT THE NEXT FOUR LINES AND THOSE BELOW
                     if self.current_sink.input_type != "none":
                         self.recursion_level()
                     else:
@@ -225,21 +226,24 @@ class Generator(object):
         else:
             # sink doesn't need exec query
             self.current_exec_queries = None
+            # WE SHOULD FACTOR OUT THE NEXT FOUR LINES AND THOSE ABOVE
             if self.current_sink.input_type != "none":
                 self.recursion_level()
             else:
                 self.compose()
 
-    # fouth step : compute recursion level
+    # fifth step: generate all depths of complexities up to maximum
     def recursion_level(self):
         """
-        This method compute the number of imbrication with complexities :
-            * if the max recursion is 0 its produce a flat code
-            * if the max recursion is 1 its produce code with on complexity around the filtering code
-            * if the max recursion is 2 its produce code with two complexities aoround the filtering code
+        Generate all depths of complexities up to the maximum:
+            * if the max depth is 0, produce a test case with flat code
+            * if the max depth is 1, produce a test case with flat code and test
+		cases with one complexity around the filter code
+            * if the max depth is 2, produce flat code case, test cases with one
+		complexity, and cases with two complexities around the filtering code.
             * and so on ...
         """
-        # HACK limit the number of generated (input,filtering,sink)
+        # HACK limit the number of generated combinations of (input, filter, sink)
         if self.number_generated == 0:
             return
         self.number_generated -= 1
@@ -248,10 +252,10 @@ class Generator(object):
         max_rec = self.max_recursion if self.current_sink.need_complexity else 0
         for i in range(0, max_rec+1):
             self.current_max_rec = i
-            # Call next function with the number of complexity
+            # generate the case wrapped in i complexities
             self.select_complexities(i)
 
-    # fifth step bis : browse complexities
+    # sixth step: wrap code in "level" depth of complexities
     def select_complexities(self, level):
         """
         This function browse all complexities.
@@ -436,16 +440,16 @@ class Generator(object):
             license_content = open("vuln_test_suite_gen/templates/file_rights.txt", "r").read()
 
         # IMPORTS
-        # compose imports use on input, filtering and sink
+        # compose imports used on input, filtering, and sink
         imports_content = set(self.current_sink.imports).union(set(self.file_template.imports))
         if self.current_sink.input_type != "none":
             imports_content = imports_content.union(set(self.current_input.imports)
                                                     .union(set(self.current_filtering.imports)))
-        # add imports from exec query if it's use
+        # add imports from exec query if it's used
         if self.current_exec_queries:
             imports_content = imports_content.union(set(self.current_exec_queries.imports))
         # create source code with imports
-        imports_content = self.file_template.generate_imports(imports_content)
+        imports_code = self.file_template.generate_imports(imports_content)
 
         # comments at the beginning of the code that documents modules used
         if self.current_input and self.current_filtering:
@@ -462,7 +466,7 @@ class Generator(object):
         template = Template(self.template_code)
         file_content = template.render(license=license_content,
                                        comments=comments_code,
-                                       stdlib_imports=imports_content,
+                                       stdlib_imports=imports_code,
                                        namespace_name=self.file_template.namespace,
                                        main_name=main_class_name,
                                        input_content=input_code,
