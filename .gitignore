@@ -1,10 +1,11 @@
 # *created  "Mon Jan 31 17:18:46 2022" *by "Paul E. Black"
-# *modified "Tue Feb  8 10:12:38 2022" *by "Paul E. Black"
+# *modified "Tue Feb  8 11:18:11 2022" *by "Paul E. Black"
 
 # .gitignore for Vulnerability Test Suite Generator (VTSG)
 
-# emacs backup files
+# emacs backup and checkpoint files
 *~
+\#*\#
 
 # Python compiled code
 __pycache__
@@ -12,5 +13,21 @@ __pycache__
 
 # Mac OS cache file
 .DS_Store
+
+# files created by LaTeX
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+# don't store the final pdf
+vulTestSuiteGenV3.pdf
+
+# recreated from .eps as needed
+*-eps-converted-to.pdf
+
+# created from the original .tif files
+fig_example_code*.png
 
 # end of .gitignore
