@@ -1,7 +1,7 @@
 """
 file_manager module
 
- *modified "Tue Feb  8 15:01:51 2022" *by "Paul E. Black"
+ *modified "Tue Feb  8 16:49:02 2022" *by "Paul E. Black"
 """
 
 import os
@@ -64,9 +64,6 @@ class FileManager(object):
         # write code
         createdFile.write(self.content)
         createdFile.close()
-
-        if debug:
-            print("file : "+self.filename+" created")
 
     _xml = {
         "input": "input.xml",

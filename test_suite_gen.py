@@ -1,11 +1,10 @@
-# *modified "Tue Feb  8 14:53:31 2022" *by "Paul E. Black"
+# *modified "Tue Feb  8 16:47:43 2022" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
     test_cases_generator.py
     test_cases_generator.py -l LANGUAGE [-f FLAW_GROUP ...] [-c CWE ...] [-r DEPTH] [-g NUMBER_GENERATED] [-s | -u] [-d]
     test_cases_generator.py (-h | --help)
-    test_cases_generator.py (-d | --debug)
     test_cases_generator.py --version
 
 
@@ -15,23 +14,23 @@ Options:
     -l LANGUAGE --language=LANGUAGE                                 Select language for generation
     -f FLAW_GROUP --flaw-group=FLAW_GROUP                           Generate files with vulnerabilities concerning the specified  flaw group, from the OWASP Top Ten (can be repeated)
     -c CWE --cwe=CWE                                                Generate files with vulnerabilities concerning the specified CWE (can be repeated)
-    -s --safe                                                       Generate the safe samples
-    -u --unsafe                                                     Generate the unsafe samples
-    -d --debug                                                      Debug Mode
+    -s --safe                                                       Only generate safe cases
+    -u --unsafe                                                     Only generate unsafe cases
     -r DEPTH --depth=DEPTH                                          Depth of the Complexities (Default: 1)
     -g NUMBER_GENERATED --number-generated=NUMBER_GENERATED         (DEPRECATED - DON'T USE, SHOULD BE REMOVED SOON) Number of combination of input, filtering and sink used to generate (Default: -1, it means all)
+    -d --debug                                                      Debug (programmer hook)
 
 List of flaw groups:
-    \n\tA1        \tInjection (SQL,LDAP,XPATH)\
-    \n\tA2        \tBASM (Broken Authentication and Session Management)
-    \n\tA3        \tXSS (Cross-site Scripting)\
-    \n\tA4        \tIDOR (Insecure Direct Object Reference)\
-    \n\tA5        \tSM (Security Misconfiguration)\
-    \n\tA6        \tSDE (Sensitive Data Exposure)\
-    \n\tA7        \tMFLAC (Missing Function Level Access Control)\
-    \n\tA8        \tCSRF (Cross-Site Request Forgery)\
-    \n\tA9        \tUCWKV (Using Components With Known Vulnerabilities)\
-    \n\tA10       \tURF (URL Redirects and Forwards)
+    \n\tOWASP_a1        \tInjection (SQL,LDAP,XPATH)\
+    \n\tOWASP_a2        \tBASM (Broken Authentication and Session Management)
+    \n\tOWASP_a3        \tXSS (Cross-site Scripting)\
+    \n\tOWASP_a4        \tIDOR (Insecure Direct Object Reference)\
+    \n\tOWASP_a5        \tSM (Security Misconfiguration)\
+    \n\tOWASP_a6        \tSDE (Sensitive Data Exposure)\
+    \n\tOWASP_a7        \tMFLAC (Missing Function Level Access Control)\
+    \n\tOWASP_a8        \tCSRF (Cross-Site Request Forgery)\
+    \n\tOWASP_a9        \tUCWKV (Using Components With Known Vulnerabilities)\
+    \n\tOWASP_a10       \tURF (URL Redirects and Forwards)
 
 List of CWEs:
     \n\t22        \tPath Traversal\
@@ -106,11 +105,11 @@ def main():
     flaw_list = g.get_group_list()
     cwe_list = g.get_cwe_list()
 
-    flaw_group_user = [x.lower() for x in args["--flaw-group"]]
+    flaw_group_user = [x for x in args["--flaw-group"]]
     for flaw in flaw_group_user:
-        if flaw.lower() not in flaw_list:
+        if flaw not in flaw_list:
             print("There is no flaws associated with the given flaw group (-f {} option).\
-                  See --help.".format(flaw.lower()))
+                  See --help.".format(flaw))
             sys.exit(1)
     try:
         flaw_type_user = [int(x) for x in args["--cwe"]]

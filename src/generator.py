@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module used to generate the test cases.
 
- *modified "Tue Feb  8 14:46:26 2022" *by "Paul E. Black"
+ *modified "Tue Feb  8 16:39:58 2022" *by "Paul E. Black"
 """
 
 import time
@@ -151,11 +151,11 @@ class Generator(object):
         At the end of the recursif chain, code chunks are combined into finales source files.
 
         Args :
-            **debug** (bool): If its True, the debug mode remove the license on the top of generated files.
+            **debug** (bool): no effect
 
-            **generate_safe** (bool): If its True, only safe test cases are generated.
+            **generate_safe** (bool): If True, safe test cases are generated.
 
-            **generate_unsafe** (bool): If its True, only unsafe test cases are generated.
+            **generate_unsafe** (bool): If True, unsafe test cases are generated.
         """
         self.create_map_CWE_group()
         self.manifest.createManifests(self.get_groups_to_generate())
@@ -210,9 +210,9 @@ class Generator(object):
     # fourth step: select exec_query if needed
     def select_exec_queries(self):
         """
-        If this case needs an exec query, use all exec queries.  If the exec query is
-        compatible with the current sink, note it and proceed to the next step.  If
-        no exec query is needed, note "none" and proceed to the next step.
+        If this case needs an exec query, use all compatible exec queries.  In
+        any case, proceed to complexity recursion step if needed or directly
+        to compose step if no complexities needed.
         """
         if self.current_sink.need_exec():
             # select exec_queries
@@ -439,9 +439,7 @@ class Generator(object):
 
 
         # LICENCE
-        license_content = ""
-        if not self.debug:
-            license_content = open("src/templates/file_rights.txt", "r").read()
+        license_content = open("src/templates/file_rights.txt", "r").read()
 
         # IMPORTS
         # compose imports used on input, filtering, and sink
