@@ -3,22 +3,22 @@ Generator Module.
 
 This is the main module used to generate the test cases.
 
- *modified "Thu Feb  3 13:04:48 2022" *by "Paul E. Black"
+ *modified "Tue Feb  8 14:46:26 2022" *by "Paul E. Black"
 """
 
 import time
 from jinja2 import Template, DebugUndefined, Environment
-from vuln_test_suite_gen.manifest import Manifest
-from vuln_test_suite_gen.file_manager import FileManager
-from vuln_test_suite_gen.input_sample import InputSample
-from vuln_test_suite_gen.filtering_sample import FilteringSample
-from vuln_test_suite_gen.sink_sample import SinkSample
-from vuln_test_suite_gen.exec_query import ExecQuerySample
-from vuln_test_suite_gen.complexity import ComplexitySample
-from vuln_test_suite_gen.condition import ConditionSample
-from vuln_test_suite_gen.file_template import FileTemplate
-from vuln_test_suite_gen.synthesize_code import make_assign
-import vuln_test_suite_gen.complexities_generator
+from src.manifest import Manifest
+from src.file_manager import FileManager
+from src.input_sample import InputSample
+from src.filtering_sample import FilteringSample
+from src.sink_sample import SinkSample
+from src.exec_query import ExecQuerySample
+from src.complexity import ComplexitySample
+from src.condition import ConditionSample
+from src.file_template import FileTemplate
+from src.synthesize_code import make_assign
+import src.complexities_generator
 
 import xml.etree.ElementTree as ET
 
@@ -359,7 +359,7 @@ class Generator(object):
             # COMPLEXITIES
             # A ComplexitiesGenerator is created to compose complexities.
             # The return code is a sum complexities with input and output var which will be merged with input and sink variables
-            compl_gen = vuln_test_suite_gen.complexities_generator.ComplexitiesGenerator(
+            compl_gen = src.complexities_generator.ComplexitiesGenerator(
 			complexities_array=self.complexities_queue,
 			template=self.file_template,
 			input_type=self.current_input.output_type,
@@ -441,7 +441,7 @@ class Generator(object):
         # LICENCE
         license_content = ""
         if not self.debug:
-            license_content = open("vuln_test_suite_gen/templates/file_rights.txt", "r").read()
+            license_content = open("src/templates/file_rights.txt", "r").read()
 
         # IMPORTS
         # compose imports used on input, filtering, and sink
@@ -464,7 +464,7 @@ class Generator(object):
         if self.current_exec_queries and self.current_exec_queries.comment:
             comments_code += "\n"+self.current_exec_queries.comment
 
-        main_class_name = "MainClass"+str(vuln_test_suite_gen.generator.Generator.getUID())
+        main_class_name = "MainClass"+str(src.generator.Generator.getUID())
 
         # COMPOSE TEMPLATE
         template = Template(self.template_code)
@@ -496,13 +496,13 @@ class Generator(object):
         This method writes code for then current selection into files
         It adds an entry into the manifest with specified informations
         """
-        current_flaw_group = self.current_sink.flaw_group.lower()
+        current_flaw_group = self.current_sink.flaw_group
         current_flaw = self.current_sink.flaw_type
         files_path = []
         # Create main file
         main_filename = self.generate_file_name("File1")
         filemanager = FileManager(main_filename, self.dir_name,
-                                  "OWASP_"+current_flaw_group,
+                                  current_flaw_group,
                                   current_flaw,
                                   self.is_safe_selection(),
                                   self.current_code)
@@ -510,14 +510,14 @@ class Generator(object):
         full_path = filemanager.getPath() + main_filename
         line = 0
         if not self.is_safe_selection():
-            line = Generator.findFlaw(full_path, self.file_template.comment['inline'])
+            line = Generator.find_flaw(full_path, self.file_template.comment['inline'])
         files_path.append({'path': full_path, 'line': line})
 
         # Create other classes
         for i, cl in enumerate(self.classes_code):
             filename = self.generate_file_name("File"+str(i+2))
             filemanager = FileManager(filename, self.dir_name,
-                                      "OWASP_"+current_flaw_group,
+                                      current_flaw_group,
                                       current_flaw,
                                       self.is_safe_selection(),
                                       cl['code'])
@@ -552,7 +552,7 @@ class Generator(object):
         """
         Returns all flaw groups got from the XML files.
         """
-        return {sink.flaw_group.lower() for sink in self.tab_sink}
+        return {sink.flaw_group for sink in self.tab_sink}
 
     def get_cwe_list(self):
         """
@@ -610,10 +610,10 @@ class Generator(object):
         Create a dict which associate a list containing the numbers of CWE (int) to a flaw group (str).
         """
         for group in self.get_group_list():
-            self.map_CWE_group[group.lower()] = []
+            self.map_CWE_group[group] = []
 
         for cwe in self.tab_sink:
-            self.map_CWE_group[cwe.flaw_group.lower()].append(cwe.flaw_type_number())
+            self.map_CWE_group[cwe.flaw_group].append(cwe.flaw_type_number())
 
     def get_groups_to_generate(self):
         """
@@ -681,9 +681,9 @@ class Generator(object):
         print("Generation report:")
         for flaw_group in self.report:
             group_total = 0
-            print("\t" + flaw_group.upper() + " group generation report:")
+            print("\t" + flaw_group + " group generation report:")
             for flaw in self.report[flaw_group]:
-                print("\t\t" + flaw.upper() + " generation report:")
+                print("\t\t" + flaw + " generation report:")
                 print("\t\t\t" + str(self.report[flaw_group][flaw]["safe_sample"]) + " safe samples")
                 print("\t\t\t" + str(self.report[flaw_group][flaw]["unsafe_sample"]) + " unsafe samples")
                 flaw_total = self.report[flaw_group][flaw]["safe_sample"] + self.report[flaw_group][flaw]["unsafe_sample"]
@@ -698,7 +698,7 @@ class Generator(object):
         print("Generation time " + time.strftime("%H:%M:%S", time.gmtime(self.end - self.start)))
 
     @staticmethod
-    def findFlaw(fileName, comment_inline_code):
+    def find_flaw(fileName, comment_inline_code):
         """
         Seek //flaw flag into the generated file and got line number if it exists.
 

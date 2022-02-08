@@ -1,11 +1,11 @@
 """
 file_template module
 
- *modified "Wed Feb  2 16:19:56 2022" *by "Paul E. Black"
+ *modified "Tue Feb  8 14:51:29 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
-import vuln_test_suite_gen.generator
+import src.generator
 
 
 class FileTemplate(object):
@@ -41,7 +41,7 @@ class FileTemplate(object):
         if file_template.find("namespace") is not None:
             self._namespace = file_template.find("namespace").text
         self._code = file_template.find("code").text
-        self._code = vuln_test_suite_gen.generator.Generator.remove_indent(self._code)
+        self._code = src.generator.Generator.remove_indent(self._code)
         self._imports = [imp.text for imp in file_template.find("imports").findall("import")]
         self._comment = {}
         self._comment['open'] = file_template.find("comment").find("open").text

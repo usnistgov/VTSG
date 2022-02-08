@@ -3,12 +3,12 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Thu Feb  3 12:48:28 2022" *by "Paul E. Black"
+ *modified "Tue Feb  8 14:52:01 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
-import vuln_test_suite_gen.generator
-from vuln_test_suite_gen.synthesize_code import make_assign
+import src.generator
+from src.synthesize_code import make_assign
 
 
 class ComplexitiesGenerator(object):
@@ -165,7 +165,7 @@ class ComplexitiesGenerator(object):
 
             # if function/class generate a name
             call_name = None
-            self.uid = vuln_test_suite_gen.generator.Generator.getUID()
+            self.uid = src.generator.Generator.getUID()
             if c.type == "function":
                 call_name = "function_"+str(self.uid)
             elif c.type == "class":

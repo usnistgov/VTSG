@@ -1,10 +1,11 @@
 """
 Complexity module.
 
+ *modified "Tue Feb  8 14:50:57 2022" *by "Paul E. Black"
 """
 
 import copy
-import vuln_test_suite_gen.generator
+import src.generator
 
 
 class ComplexitySample(object):
@@ -44,7 +45,7 @@ class ComplexitySample(object):
         self._id = xml_compl.get("id")
         self._cond_id = None
         self._code = xml_compl.find("code").text
-        self._code = vuln_test_suite_gen.generator.Generator.remove_indent(self._code)
+        self._code = src.generator.Generator.remove_indent(self._code)
         self._type = xml_compl.get("type").lower()
         self._group = xml_compl.get("group").lower()
         self._executed = xml_compl.get("executed").lower()
@@ -64,7 +65,7 @@ class ComplexitySample(object):
         self._body = ""
         if xml_compl.find("body") is not None:
             self._body = xml_compl.find("body").text
-            self._body = vuln_test_suite_gen.generator.Generator.remove_indent(self._body)
+            self._body = src.generator.Generator.remove_indent(self._body)
 
 
     def __str__(self):

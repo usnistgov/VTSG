@@ -1,8 +1,10 @@
 """
 sink_sample module
+
+ *modified "Tue Feb  8 14:49:23 2022" *by "Paul E. Black"
 """
 
-from vuln_test_suite_gen.sample import Sample
+from src.sample import Sample
 
 
 class SinkSample(Sample):  # Load parameters and code beginning and end
@@ -31,7 +33,7 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
         self._input_type = sample.find("input_type").text.lower()
         self._exec_type = sample.find("exec_type").text.lower()
         self._flaw_type = sample.find("flaw_type").text.lower()
-        self._flaw_group = sample.find("flaw_type").get("flaw_group").lower()
+        self._flaw_group = sample.find("flaw_type").get("flaw_group")
         self._need_complexity = True
         # TODO check why [0]
         if sample.findall("options") and sample.findall("options")[0].get("need_complexity"):

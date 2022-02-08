@@ -22,7 +22,7 @@
             <path>
                 <dir>file_exists</dir>
             </path>
-            <flaw_type flaw_group="A4">CWE_22</flaw_type>
+            <flaw_type flaw_group="OWASP_a4">CWE_22</flaw_type>
             <comment>sink : check if a file exists</comment>
             <imports>
                 <import>System.IO</import>
@@ -41,7 +41,7 @@
                 <dir>select_from</dir>
                 <dir>concatenation_simple_quote</dir>
             </path>
-            <flaw_type flaw_group="A1">CWE_89</flaw_type>
+            <flaw_type flaw_group="OWASP_a1">CWE_89</flaw_type>
             <comment>construction : concatenation with simple quote</comment>
             <imports></imports>
             <code>
@@ -57,7 +57,7 @@
             <path>
                 <dir>ls</dir>
             </path>
-            <flaw_type flaw_group="A1">CWE_78</flaw_type>
+            <flaw_type flaw_group="OWASP_a1">CWE_78</flaw_type>
             <comment>sink : run ls in a dir</comment>
             <imports>
                 <import>System.IO</import>
@@ -75,7 +75,7 @@
             <path>
                 <dir>md5</dir>
             </path>
-            <flaw_type flaw_group="A6">CWE_327</flaw_type>
+            <flaw_type flaw_group="OWASP_a6">CWE_327</flaw_type>
             <comment>sink : md5 function</comment>
             <imports>
                 <import>System</import>
@@ -112,7 +112,7 @@
             <path>
                 <dir>sha512</dir>
             </path>
-            <flaw_type flaw_group="A6">CWE_327</flaw_type>
+            <flaw_type flaw_group="OWASP_a6">CWE_327</flaw_type>
             <comment>sink : SHA512 function. Always Safe, unless SHA512 gets broken in the future.</comment>
             <imports>
                 <import>System</import>
@@ -148,7 +148,7 @@
                 <dir>SQL</dir>
                 <dir>Injection</dir>
             </path>
-            <flaw_type flaw_group="A1">CWE_89</flaw_type>
+            <flaw_type flaw_group="OWASP_a1">CWE_89</flaw_type>
             <comment>sink : SQL query</comment>
             <imports></imports>
             <code>
@@ -164,7 +164,7 @@
             <path>
                 <dir>SQL_prepared</dir>
             </path>
-            <flaw_type flaw_group="A1">CWE_89</flaw_type>
+            <flaw_type flaw_group="OWASP_a1">CWE_89</flaw_type>
             <comment>sink : SQL query</comment>
             <imports></imports>
             <code>
@@ -180,7 +180,7 @@
             <path>
                 <dir>ldap</dir>
             </path>
-            <flaw_type flaw_group="A1">CWE_90</flaw_type>
+            <flaw_type flaw_group="OWASP_a1">CWE_90</flaw_type>
             <comment>sink : LDAP Query</comment>
             <imports></imports>
             <code>
@@ -196,7 +196,7 @@
             <path>
                 <dir>XPATH</dir>
             </path>
-            <flaw_type flaw_group="A1">CWE_91</flaw_type>
+            <flaw_type flaw_group="OWASP_a1">CWE_91</flaw_type>
             <comment>sink : XPATH Query</comment>
             <imports></imports>
             <code>
@@ -212,7 +212,7 @@
             <path>
                 <dir>XPATH_string_format</dir>
             </path>
-            <flaw_type flaw_group="A1">CWE_91</flaw_type>
+            <flaw_type flaw_group="OWASP_a1">CWE_91</flaw_type>
             <comment>sink : XPATH Query</comment>
             <imports></imports>
             <code>
@@ -228,7 +228,7 @@
             <path>
                 <dir>XPATH_prepared</dir>
             </path>
-            <flaw_type flaw_group="A1">CWE_91</flaw_type>
+            <flaw_type flaw_group="OWASP_a1">CWE_91</flaw_type>
             <comment>sink : XPATH prepared</comment>
             <imports></imports>
             <code>
@@ -244,7 +244,7 @@
            <path>
                <dir>null_pointer</dir>
            </path>
-           <flaw_type flaw_group="A9">CWE_476</flaw_type>
+           <flaw_type flaw_group="OWASP_a9">CWE_476</flaw_type>
            <comment>sink : NULL Pointer Dereference</comment>
            <imports></imports>
            <code>
@@ -280,7 +280,7 @@
             <path>
                 <dir>password_from_file</dir>
             </path>
-            <flaw_type flaw_group="A2">CWE_256</flaw_type>
+            <flaw_type flaw_group="OWASP_a2">CWE_256</flaw_type>
             <comment>sink : connection to a database using hardcoded password in a file</comment>
             <imports>
                 <import>System</import>
@@ -321,7 +321,7 @@
             <path>
                 <dir>print_exception</dir>
             </path>
-            <flaw_type flaw_group="A5">CWE_209</flaw_type>
+            <flaw_type flaw_group="OWASP_a5">CWE_209</flaw_type>
             <comment>sink : print exception</comment>
             <imports>
             </imports>

@@ -1,8 +1,10 @@
 """
 filtering_sample module
+
+ *modified "Tue Feb  8 14:48:45 2022" *by "Paul E. Black"
 """
 
-from vuln_test_suite_gen.sample import Sample
+from src.sample import Sample
 
 
 class FilteringSample(Sample):  # Initialize rules, safety, code and escape

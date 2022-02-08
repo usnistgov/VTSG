@@ -1,8 +1,10 @@
 """
 exec_query module
+
+ *modified "Tue Feb  8 14:49:58 2022" *by "Paul E. Black"
 """
 
-from vuln_test_suite_gen.sample import Sample
+from src.sample import Sample
 
 
 class ExecQuerySample(Sample):

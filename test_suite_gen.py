@@ -1,4 +1,5 @@
-""" Test Cases Generator
+# *modified "Tue Feb  8 14:53:31 2022" *by "Paul E. Black"
+""" Vulnerability Test Suite Generator (VTSG)
 
 Usage:
     test_cases_generator.py
@@ -72,8 +73,8 @@ import sys
 import time
 import os
 from docopt import docopt
-from vuln_test_suite_gen.generator import Generator
-from vuln_test_suite_gen.file_manager import FileManager
+from src.generator import Generator
+from src.file_manager import FileManager
 
 
 def main():
@@ -90,7 +91,7 @@ def main():
     if args["--language"]:
         language = args["--language"]
     else:
-        print("Specify a language with -l/--language option (cs, php)")
+        print("Specify a language with -l/--language (cs, php, python)")
         sys.exit(1)
 
     # check if language exists

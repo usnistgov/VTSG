@@ -1,10 +1,10 @@
 """
 sample module
 
- *modified "Thu Feb  3 10:07:14 2022" *by "Paul E. Black"
+ *modified "Tue Feb  8 14:48:04 2022" *by "Paul E. Black"
 """
 
-import vuln_test_suite_gen.generator
+import src.generator
 
 
 class Sample(object):

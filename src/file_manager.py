@@ -1,5 +1,7 @@
 """
 file_manager module
+
+ *modified "Tue Feb  8 15:01:51 2022" *by "Paul E. Black"
 """
 
 import os
@@ -79,45 +81,25 @@ class FileManager(object):
     def exist_language(cls, language):
         """
         Class Method.
-        Check if the given language exist in the path.
+        Does a directory for given language exists in the expected place?
 
         Args :
             **language** (str): The language to check.
         """
-        res = True
-        path = os.path.abspath(os.path.join("./vuln_test_suite_gen", "templates", language))
+        path = os.path.abspath(os.path.join("./src", "templates", language))
         if not os.path.isdir(path):
-            print("[ERROR] Language don't exists")
-            res = False
-        else:
-            if not os.path.isfile(os.path.join(path, FileManager._xml["file_template"])):
-                print("[ERROR] Template file don't exists")
-                res = False
+            print(f'[ERROR] no directory found for {language}')
+            return False
 
-            if not os.path.isfile(os.path.join(path, FileManager._xml["input"])):
-                print("[ERROR] Input file don't exists")
-                res = False
-            if not os.path.isfile(os.path.join(path, FileManager._xml["filtering"])):
-                print("[ERROR] Filtering file don't exists")
-                res = False
-            if not os.path.isfile(os.path.join(path, FileManager._xml["sink"])):
-                print("[ERROR] Sink file don't exists")
-                res = False
-            if not os.path.isfile(os.path.join(path, FileManager._xml["exec_queries"])):
-                print("[ERROR] Exec Querie file don't exists")
-                res = False
-            if not os.path.isfile(os.path.join(path, FileManager._xml["complexities"])):
-                print("[ERROR] Complexities file don't exists")
-                res = False
-        return res
+        return True
 
     @classmethod
-    def getXML(cls, xmlfile, language="cs"):
+    def getXML(cls, xmlfile, language):
         """
         Class Method.
         Returns the path to selected xml file for the specified language.
         """
-        return os.path.join("vuln_test_suite_gen", "templates", language, cls._xml[xmlfile])
+        return os.path.join("src", "templates", language, cls._xml[xmlfile])
 
     # Getters and setters
     def setPath(self, path):

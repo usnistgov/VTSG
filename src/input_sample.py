@@ -1,8 +1,10 @@
 """
 Input Class (TODO DOC)
+
+ *modified "Tue Feb  8 14:47:32 2022" *by "Paul E. Black"
 """
 
-from vuln_test_suite_gen.sample import Sample
+from src.sample import Sample
 
 
 class InputSample(Sample):  # Initialize the type of input and the code parameters of the class
