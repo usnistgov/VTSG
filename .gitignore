@@ -1,5 +1,5 @@
 # *created  "Mon Jan 31 17:18:46 2022" *by "Paul E. Black"
-# *modified "Wed Feb  2 14:37:13 2022" *by "Paul E. Black"
+# *modified "Tue Feb  8 10:10:11 2022" *by "Paul E. Black"
 
 # .gitignore for Vulnerability Test Suite Generator (VTSG)
 
@@ -9,5 +9,8 @@
 # Python compiled code
 __pycache__
 *.pyc
+
+# Mac OS cache directory
+.DS_Store
 
 # end of .gitignore
