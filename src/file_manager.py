@@ -1,11 +1,16 @@
 """
 file_manager module
 
- *modified "Tue Feb  8 16:49:02 2022" *by "Paul E. Black"
+ *modified "Wed Feb  9 10:45:49 2022" *by "Paul E. Black"
 """
 
 import os
 
+def flaw_group_dir_path(dir_name, flaw_group):
+    '''
+    Return the path to the directory for the flaw group passed
+    '''
+    return os.path.join(dir_name, flaw_group)
 
 class FileManager(object):
     """FileManager class
@@ -50,12 +55,12 @@ class FileManager(object):
 
     def createFile(self, debug=False):
         """
-        Create the file with code on them
+        Create the test case file with code in it
 
         Args :
             **debug** (bool) : Debug flag (default : False)
         """
-        # check if the directory exists
+        # create the directory if it doesn't exist
         if not os.path.exists(self.path):
             os.makedirs(self.path)
         # create the file

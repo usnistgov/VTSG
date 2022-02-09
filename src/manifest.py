@@ -1,10 +1,14 @@
 """
-manifest module
+manifest
+
+Write the manifest of test cases.
+
+ *modified "Wed Feb  9 10:44:09 2022" *by "Paul E. Black"
 """
 
 import os
 import time
-
+from src.file_manager import flaw_group_dir_path
 
 class Manifest(object):
     """Manifest class
@@ -31,7 +35,7 @@ class Manifest(object):
             **flaw_groups** (list of str): List of flaw group
         """
         for flaw_group in flaw_groups:
-            path = os.path.join(self.dir_name, "OWASP_" + flaw_group)
+            path = flaw_group_dir_path(self.dir_name, flaw_group)
             if not os.path.exists(path):
                 os.makedirs(path)
             self.manifest[flaw_group] = open(os.path.join(path, "manifest.xml"), "w+")
