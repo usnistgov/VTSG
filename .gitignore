@@ -1,5 +1,5 @@
 # *created  "Mon Jan 31 17:18:46 2022" *by "Paul E. Black"
-# *modified "Tue Feb  8 11:18:11 2022" *by "Paul E. Black"
+# *modified "Wed Feb  9 16:43:10 2022" *by "Paul E. Black"
 
 # .gitignore for Vulnerability Test Suite Generator (VTSG)
 
@@ -29,5 +29,8 @@ vulTestSuiteGenV3.pdf
 
 # created from the original .tif files
 fig_example_code*.png
+
+# old documentation
+ZOld
 
 # end of .gitignore
