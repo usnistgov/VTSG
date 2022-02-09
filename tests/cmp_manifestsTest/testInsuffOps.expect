@@ -1,0 +1,2 @@
+usage: cmp_manifests.py [-h] [-v] manifest1.xml manifest2.xml
+cmp_manifests.py: error: the following arguments are required: manifest2.xml

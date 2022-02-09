@@ -1,0 +1,159 @@
+# *created  "Wed Feb  9 11:39:10 2022" *by "Paul E. Black"
+# *modified "Wed Feb  9 14:25:46 2022" *by "Paul E. Black"
+
+# automated test for cmp_manifests.py
+
+# run as
+# $ ./cmp_manifests_test
+# There's a problem if it exits with anything other than
+# automatic test passed
+
+# ---------------------------------------------------------------------------------------
+# This software was developed at the National Institute of Standards and Technology
+# by employees of the Federal Government in the course of their official duties.
+# Pursuant to title 17 Section 105 of the United States Code those parts of the
+# software are not subject to copyright protection and are in the public domain.
+#
+# We would appreciate acknowledgment if the software is used.
+#
+# Paul E. Black  paul.black@nist.gov
+#	http://hissa.nist.gov/~black/
+# ---------------------------------------------------------------------------------------
+
+program=../cmp_manifests.py
+
+photofile=ERRORS_FOUND_DURING_AUTO_TEST
+rm -f $photofile
+
+echo automatic test of $program run at $(date) >> $photofile
+
+number_of_errors=0
+
+# user interface tests that should succeed
+for t in help version;
+do
+    case $t in
+      help)
+        operands="-h";;
+      version)
+        operands="--ver";;
+      *)
+        echo test script error: Unmatched test case name: $t
+        exit;;
+    esac
+
+    # log the test and run it, capturing the exit status
+    echo TEST $t >> $photofile
+    echo $program $operands >> $photofile
+    # remove date from --version output
+    $program $operands 2>&1 | perl -pwe 's/\"[^\"]+\"/\"DATE\"/' >| test$t.out
+    exitStatus=${PIPESTATUS[0]} # get exit status of first process in pipe
+    if [[ $exitStatus != 0 ]];
+    then
+        echo $program $operands should exit with status 0. exited with status $exitStatus | tee -a $photofile
+	((number_of_errors++))
+    fi
+
+    # check that output is as expected
+    if cmp --quiet test$t.out test$t.expect;
+    then
+	echo pass >> $photofile
+    else
+	echo unexpected output | tee -a $photofile
+	# print the diff command so I can cut-and-paste to update expected output
+	echo diff test$t.out test$t.expect | tee -a $photofile
+	diff test$t.out test$t.expect | tee -a $photofile | head -20
+	((number_of_errors++))
+    fi
+done
+
+# failing tests
+for t in InsuffOps ExtraOps NoFile Unreadable IsADir Mani1Long Mani2Long Differ RE1fail RE2fail;
+do
+    case $t in
+      InsuffOps)
+        operands="manifest1.xml";;
+      ExtraOps)
+        operands="file1.xml manifest2.xml superfluousOperand.xml";;
+      RE2fail)
+	operands="otherManifest.xml test$t.xml";;
+      Unreadable)
+        # the XML should not be readable
+        chmod -r testUnreadable.xml;
+	operands="test$t.xml otherManifest.xml";;
+      *)
+	operands="test$t.xml otherManifest.xml";;
+    esac
+
+    # log the test and run it, capturing the exit status
+    echo TEST $t >> $photofile
+    echo $program $operands >> $photofile
+    # remove path prefix
+    $program $operands >| test$t.out 2>&1
+    exitStatus=${PIPESTATUS[0]} # get exit status of first process in pipe
+    if [[ $exitStatus == 0 ]];
+    then
+        echo $program $operands did not exit with nonzero status | tee -a $photofile
+	((number_of_errors++))
+    fi
+
+    # check that output is as expected
+    if cmp --quiet test$t.out test$t.expect;
+    then
+	echo pass >> $photofile
+    else
+	echo unexpected output | tee -a $photofile
+	# print the diff command so I can cut-and-paste to update expected output
+	echo diff test$t.out test$t.expect | tee -a $photofile
+	diff test$t.out test$t.expect | tee -a $photofile | head -20
+	((number_of_errors++))
+    fi
+done
+
+# make readable for code (file) control
+chmod +r testUnreadable.xml
+
+# these tests should succeed
+for t in Match
+do
+    case $t in
+      *)
+        operands="testMatch.xml otherManifest.xml";;
+    esac
+
+    # log the test and run it, capturing the exit status
+    echo TEST $t >> $photofile
+    echo $program $operands >> $photofile
+    $program $operands >| test$t.out 2>&1
+    exitStatus=$?
+    if [[ $exitStatus != 0 ]];
+    then
+        echo $program $operands test$t should exit with status 0. exited with status $exitStatus | tee -a $photofile
+	((number_of_errors++))
+    fi
+
+    # check that output is as expected
+    if cmp --quiet test$t.out test$t.expect
+    then
+	echo pass >> $photofile
+    else
+	echo unexpected output | tee -a $photofile
+	# print the diff command so I can cut-and-paste to update expected output
+	echo diff test$t.out test$t.expect | tee -a $photofile
+	diff test$t.out test$t.expect | tee -a $photofile | head -20
+	((number_of_errors++))
+    fi
+done
+
+# if no errors found, clean up and signal success
+if [[ $number_of_errors == 0 ]];
+then
+    rm $photofile
+    rm test*.out
+    echo automatic test passed
+    exit
+fi
+
+echo One or more errors detected in self test | tee -a $photofile
+
+# end of testStacMetaToSARIF

@@ -1,0 +1,3 @@
+testDiffer.xml otherManifest.xml differ: line 6
+			<input>nose : /tmp/tainted.txt</input>
+			<input>file : /tmp/tainted.txt</input>

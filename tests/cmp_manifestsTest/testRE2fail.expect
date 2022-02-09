@@ -1,0 +1,3 @@
+otherManifest.xml testRE2fail.xml differ: line 9
+		<file path="TestSuite_02-03-2022_10h42m20/Csharp/OWASP_a6/cwe_327/unsafe/cwe_327__I_shell_commands__F_no_filtering__S_md5__0_File1.cs" language="Csharp"> 
+		<file past="TestSuite_02-03-2022_10h42m20/Csharp/OWASP_a6/cwe_327/unsafe/cwe_327__I_shell_commands__F_no_filtering__S_md5__0_File1.cs" language="Csharp"> 

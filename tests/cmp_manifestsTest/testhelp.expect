@@ -1,0 +1,11 @@
+usage: cmp_manifests.py [-h] [-v] manifest1.xml manifest2.xml
+
+Compare two manifest.xml files, ignoring unimportant differences like dates.
+
+positional arguments:
+  manifest1.xml  SARD manifest file
+  manifest2.xml  SARD manifest file
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -v, --version  show program's version number and exit

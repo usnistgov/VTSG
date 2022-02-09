@@ -1,0 +1,42 @@
+<container>
+	<testcase> 
+		<meta-data> 
+			<author>Bertrand STIVALET, Aurelien DELAITRE</author> 
+			<date>03/02/22</date> 
+			<input>file : /tmp/tainted.txt</input>
+		</meta-data> 
+ 
+		<file path="TestSuite_02-03-2022_10h42m20/Csharp/OWASP_a6/cwe_327/unsafe/cwe_327__I_shell_commands__F_no_filtering__S_md5__0_File1.cs" language="Csharp"> 
+			<flaw line="55" name ="CWE_327"/> 
+		</file> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>Bertrand STIVALET, Aurelien DELAITRE</author> 
+			<date>03/02/22</date> 
+			<input>input : get user input in tainted</input>
+		</meta-data> 
+ 
+		<file path="TestSuite_02-03-2022_10h42m20/Csharp/OWASP_a6/cwe_327/unsafe/cwe_327__I_readline__F_no_filtering__S_md5__0_File1.cs" language="Csharp"> 
+			<flaw line="42" name ="CWE_327"/> 
+		</file> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>Bertrand STIVALET, Aurelien DELAITRE</author> 
+			<date>03/02/22</date> 
+			<input>input : no input</input>
+		</meta-data> 
+ 
+		<file path="TestSuite_02-03-2022_10h42m20/Csharp/OWASP_a6/cwe_327/unsafe/cwe_327__I_hardcoded_string_input__F_no_filtering__S_md5__0_File1.cs" language="Csharp"> 
+			<flaw line="42" name ="CWE_327"/> 
+		</file> 
+
+	</testcase> 
+</container>

@@ -1,0 +1,106 @@
+#!/usr/bin/python3
+#            *modified "Wed Feb  9 13:50:11 2022" *by "Paul E. Black"'
+versionMod=' *modified "Wed Feb  9 10:56:53 2022" *by "Paul E. Black"'
+#
+
+# Compare two manifest.xml files, ignoring unimportant differences like dates
+# SKIMP this checks line by line.  XML files may differ in format, while the content
+# matches.  This does not do XML matching.
+
+# usage:
+# $ ./cmp_manifests.py TestSuite_02-09-2022_10h52m26/PHP/OWASP_a1/manifest.xml tests/SuitePHP/PHP/OWASP_a1/manifest.xml
+
+# This software was developed at the National Institute of Standards and
+# Technology by employees of the Federal Government in the course of their
+# official duties.  Pursuant to title 17 Section 105 of the United States Code
+# this software is not subject to copyright protection and is in the public domain.
+#
+# We would appreciate acknowledgment if the software is used.
+#
+# Paul E. Black  paul.black@nist.gov or p.black@acm.org
+#	https://hissa.nist.gov/~black/
+
+import argparse
+import sys # for exit()
+import re
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='Compare two manifest.xml files, ignoring unimportant differences like dates.')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s'+versionMod)
+    parser.add_argument('manifest1',
+                    metavar='manifest1.xml',
+                    help='SARD manifest file')
+    parser.add_argument('manifest2',
+                    metavar='manifest2.xml',
+                    help='SARD manifest file')
+    return parser.parse_args()
+
+def date_match(line1, line2):
+    '''
+    Return true if lines match except for content of date field, e.g.
+			<date>2022 January 12</date> 
+			<date>03/02/22</date> 
+    '''
+    date_pattern = '^\s*<date>[^<]*</date>\s*$'
+    return re.match(date_pattern, line1.strip()) and re.match(date_pattern, line2.strip())
+
+def testsuite_match(line1, line2):
+    '''
+    Return true if lines match except for name of TestSuite directory, e.g.
+	<file path="TestSuite_02-03-2022_10h42m19/Csharp/OWASP_a6/cwe_327/unsafe/cwe_327__I_readline__F_no_filtering__S_md5__0_File1.cs" language="Csharp"> 
+	<file path="TestSuite_02-03-2022_10h42m20/Csharp/OWASP_a6/cwe_327/unsafe/cwe_327__I_readline__F_no_filtering__S_md5__0_File1.cs" language="Csharp"> 
+    '''
+    testsuite_pattern = '^\s*<file path="TestSuite_[^/]*/(.*)'
+    line1MO = re.match(testsuite_pattern, line1)
+    line2MO = re.match(testsuite_pattern, line2)
+    return line1MO and line2MO and line1MO.group(1) == line2MO.group(1)
+
+if __name__ == '__main__':
+    args = parse_arguments()
+    manifest1 = args.manifest1
+    manifest2 = args.manifest2
+
+    # (try to) open both manifest files
+    try:
+        file1 = open(manifest1)
+    except (FileNotFoundError, PermissionError):
+        print(f'Cannot open {manifest1} to read')
+        sys.exit(-1)
+    except IsADirectoryError:
+        print(f'{manifest1} is a directory, not a file')
+        sys.exit(-1)
+    try:
+        file2 = open(manifest2)
+    except (FileNotFoundError, PermissionError):
+        print(f'Cannot open {manifest2} to read')
+        sys.exit(-1)
+    except IsADirectoryError:
+        print(f'{manifest2} is a directory, not a file')
+        sys.exit(-1)
+
+    line = 0
+
+    for line1 in file1:
+        line += 1
+
+        line2 = file2.readline()
+
+        if (line1 == line2 or
+            date_match(line1, line2) or
+            testsuite_match(line1, line2)):
+            next
+        else:
+            print(f'{manifest1} {manifest2} differ: line {line}')
+            print(f'{line1}', end='')
+            print(f'{line2}', end='')
+            sys.exit(-2)
+
+    # manifest 1 is done.  Check that nothing remains in manifest 2
+    line2 = file2.readline()
+    if line2 != '':
+        print(f'EOF on {manifest1}')
+        sys.exit(-3)
+
+    # otherwise, they match
+
+# end of cmp_manifests.py
