@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module used to generate the test cases.
 
- *modified "Tue Feb  8 16:39:58 2022" *by "Paul E. Black"
+ *modified "Thu Feb 10 16:50:16 2022" *by "Paul E. Black"
 """
 
 import time
@@ -48,7 +48,7 @@ class Generator(object):
 
             **unsafe_sample** (int): Counter for unsafe sample.
 
-            **report** (dict): Dict which contains repports for each group of flaws.
+            **report** (dict): Dict which contains reports for each group of flaws.
 
             **flaw_type_user** (list): Flaw types entered by user for the generation.
 
@@ -370,7 +370,7 @@ class Generator(object):
             # execute the compose method
             self.classes_code = compl_gen.compose()
             classes_imports = []
-            # for each classes, we collect imports to use other generated classes
+            # for each class, collect imports to use other generated classes
             for c in self.classes_code:
                 classes_imports.append(c['name'])
             # We check if the filtering code into complexities is executed or not
