@@ -1,0 +1,49 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+
+<template name="test011">
+    <file_extension>py</file_extension>
+    <comment>
+        <open>'''</open>
+        <close>'''</close>
+        <inline>#</inline>
+    </comment>
+    <namespace></namespace>
+    <variables prefix="" import_code="import {{import_file}}">
+        <variable type="int" code="" init="0"/>
+        <variable type="string" code="" init="None"/>
+	<variable type="bool" code="" init="False"/>
+	<variable type="float" code="" init="0.0"/>
+    </variables>
+    <imports>
+        <import>sys</import>
+    </imports>
+    <code>
+'''
+  Test 1 of 4 for statement_terminator
+  No ang-syntax-ang at all.
+'''
+'''
+{{ comments }}
+'''
+
+'''
+{{ license }}
+'''
+{{ stdlib_imports }}
+
+def main():
+        {{ local_var }}
+    
+        {{ input_content }}
+
+        {{ filtering_content }}
+
+        {{ sink_content }}
+    
+        <!--{{ exec_queries_content }}-->
+
+main()
+{{ static_methods }}
+    </code>
+</template>

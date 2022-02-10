@@ -1,0 +1,35 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
+<root>
+    <conditions>
+        <condition id="1">
+            <code>1==1</code>
+            <value>True</value>
+        </condition>
+    </conditions>
+
+    <complexities>
+        <complexity id="8" type="if" group="conditionals" executed="0">
+            <code>
+if({{ condition }}):
+    {}
+elif(not {{ condition }}):
+    {}
+else:
+    {{ placeholder }}
+            </code>
+        </complexity>
+
+        <!--Conditional and unconditional loops -->
+
+        <complexity id="12" type="while" group="loops" executed="1" need_condition="1">
+            <code>
+while True:
+    {{ placeholder }}
+    if({{ condition }}):
+        break
+            </code>
+        </complexity>
+
+    </complexities>
+</root>

@@ -1,0 +1,20 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE input SYSTEM "../dtd/input.dtd">
+    <input>
+        <sample>
+            <path>
+                <dir>hardcoded_string_input</dir>
+            </path>
+            <comment>Hardcoded string input</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+        {{out_var_name}} = "hardcoded"
+            </code>
+            <input_type>input : no input</input_type>
+            <output_type>string</output_type>
+        </sample>
+    </input>
