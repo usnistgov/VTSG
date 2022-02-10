@@ -3,7 +3,7 @@ manifest
 
 Write the manifest of test cases.
 
- *modified "Wed Feb  9 10:44:09 2022" *by "Paul E. Black"
+ *modified "Thu Feb 10 12:41:14 2022" *by "Paul E. Black"
 """
 
 import os
@@ -20,12 +20,15 @@ class Manifest(object):
 
             **manifest** (str): List of open manifest for each group generated.
 
+            **author** (str): Author(s) of cases.  From file_author.txt
+
     """
 
     def __init__(self, dir_name, date):
         self.dir_name = dir_name
         self.date = date
         self.manifest = {}
+        self.author = open("src/templates/file_author.txt").read().strip()
 
     def createManifests(self, flaw_groups):
         """
@@ -57,33 +60,37 @@ class Manifest(object):
 
             **language** (str)
         """
-        reformated_date = time.strftime("%d/%m/%y", time.strptime(self.date, "%m-%d-%Y_%Hh%Mm%S"))
+        reformated_date = time.strftime("%Y-%m-%d", time.strptime(self.date, "%m-%d-%Y_%Hh%Mm%S"))
         # meta data for current test case
-        meta_data = ("\t<testcase> \n" +
-                     "\t\t<meta-data> \n" +
-                     "\t\t\t<author>Bertrand STIVALET, Aurelien DELAITRE</author> \n" +
-                     "\t\t\t<date>" + reformated_date + "</date> \n" +
-                     "\t\t\t<input>" + input_sample + "</input>\n"
-                     "\t\t</meta-data> \n \n")
+        meta_data = ('\t<testcase>\n' +
+                     '\t\t<meta-data>\n' +
+                     f'\t\t\t<author>{self.author}</author>\n' +
+                     f'\t\t\t<date>{reformated_date}</date>\n' +
+                     f'\t\t\t<input>{input_sample}</input>\n'
+                     '\t\t</meta-data>\n\n')
         # write meta data
         self.manifest[flaw_group].write(meta_data)
         file_block = ""
         for f in files_path:
             file_path = f['path']
+            file_block += f'\t\t<file path="{file_path}" language="{language}"' # no >
             flaw_line = f['line']
-            # check flaw line if it exist
-            if (flaw_line == 0):
-                file_block += "\t\t<file path=\"" + file_path + "\" language=\""+language+"\"/> \n\n"
+            if flaw_line == 0:
+                # no flaw line
+                file_block += '/>'
             else:
-                file_block += "\t\t<file path=\"" + file_path + "\" language=\""+language+"\"> \n"
-                file_block += "\t\t\t<flaw line=\"" + str(flaw_line) + "\" name =\"" + flaw.upper() + "\"/> \n"
-                file_block += "\t\t</file> \n\n"
+                file_block += '>\n'
+                file_block += f'\t\t\t<flaw line="{flaw_line}" name ="{flaw}"/>\n'
+                file_block += '\t\t</file>'
+            file_block += '\n\n'
 
         self.manifest[flaw_group].write(file_block)
-        self.manifest[flaw_group].write("\t</testcase> \n\n\n")
+        self.manifest[flaw_group].write('\t</testcase>\n\n')
 
     def closeManifests(self):
         """ Close the manifest """
         for man in self.manifest:
-            self.manifest[man].write("</container>")
+            self.manifest[man].write('</container>\n')
             self.manifest[man].close()
+
+# end of manifest.py
