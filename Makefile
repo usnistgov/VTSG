@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Fri Feb 11 11:53:22 2022" *by "Paul E. Black"
+# *modified "Fri Feb 11 13:35:40 2022" *by "Paul E. Black"
 
 default: test020
 
@@ -16,20 +16,20 @@ TS=$$(date +"%m-%d-%Y_%Hh%Mm%S")
 # this takes four minutes and produces 33k cases
 testCSharp: src/complexities_generator.py src/file_template.py
 	python3 test_suite_gen.py -l cs | tee TestPhoto_$(TS)_CSharp_photo 2>&1
-	diff `ls -dt TestPhoto_*_CSharp_photo` tests/CSharp_photo
+	diff `ls -dt TestPhoto_*_CSharp_photo|head -1` tests/CSharp_photo
 	(cd `ls -dt TestSuite_*/CSharp | head -1`;pwd;for f in `find . -name "*.cs"`; do cmp $$f $(TDIR)/CSharp/$$f;done;for m in `find . -name "manifest.xml"`; do echo $$m;$(TDIR)/cmp_manifests.py $$m $(TDIR)/CSharp/$$m;done)
 
 # generation takes about 25 minutes and produces almost 300k cases
 # checking takes about six minutes
 testPHP: src/complexities_generator.py src/file_template.py
 	python3 test_suite_gen.py -l php | tee TestPhoto_$(TS)_PHP_photo 2>&1
-	diff `ls -dt TestPhoto_*_PHP_photo` tests/PHP_photo
+	diff `ls -dt TestPhoto_*_PHP_photo|head -1` tests/PHP_photo
 	(cd `ls -dt TestSuite_*/PHP | head -1`;pwd;for f in `find . -name "*.php"`; do cmp $$f $(TDIR)/PHP/$$f;done;for m in `find . -name "manifest.xml"`; do echo $$m;$(TDIR)/cmp_manifests.py $$m $(TDIR)/PHP/$$m;done)
 
 # this produces 185 cases
 testPython: src/complexities_generator.py src/file_template.py
 	python3 test_suite_gen.py -l python | tee TestPhoto_$(TS)_Python_photo 2>&1
-	diff `ls -dt TestPhoto_*_Python_photo` tests/Python_photo
+	diff `ls -dt TestPhoto_*_Python_photo|head -1` tests/Python_photo
 	(cd `ls -dt TestSuite_*/Python | head -1`;pwd;for f in `find . -name "*.py"`; do cmp $$f $(TDIR)/Python/$$f;done;for m in `find . -name "manifest.xml"`; do echo $$m;$(TDIR)/cmp_manifests.py $$m $(TDIR)/Python/$$m;done)
 # execute each file.  timeout for infinite loops
 #	(cd `ls -dt TestSuite_* | head -1`;pwd;for f in `find . -name "*.py"`; do echo $f; timeout 3 python3 $f;done) | more
