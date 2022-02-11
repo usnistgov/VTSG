@@ -1,7 +1,7 @@
 """
 sink_sample module
 
- *modified "Tue Feb  8 14:49:23 2022" *by "Paul E. Black"
+ *modified "Fri Feb 11 13:49:27 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -40,13 +40,12 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
             self._need_complexity = (sample.findall("options")[0].get("need_complexity") == "1")
 
     def __str__(self):
-        return "*** Sink ***\n{}\n\tinput type : {}\n\texec type : {}\n\tflaw type : {}\n\t" \
-               "flaw group : {}\n\tsafe : {}\n\tcode : {}\n\n".format(super(SinkSample, self).__str__(),
-                                                                      self.input_type,
-                                                                      self.exec_type,
-                                                                      self.flaw_type,
-                                                                      self.flaw_group,
-                                                                      self.safe)
+        return (f'*** Sink ***\n{super(SinkSample, self)}\n' +
+                f'\tinput type: {self.input_type}\n' +
+                f'\t exec type: {self.exec_type}\n' +
+                f'\t flaw type: {self.flaw_type}\n' +
+                f'\tflaw group: {self.flaw_group}\n' +
+                f'\tsafe: {self.safe == "1"}\n\n')
 
     @property
     def need_complexity(self):

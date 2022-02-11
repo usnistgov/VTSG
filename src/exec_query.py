@@ -1,7 +1,7 @@
 """
 exec_query module
 
- *modified "Tue Feb  8 14:49:58 2022" *by "Paul E. Black"
+ *modified "Fri Feb 11 13:48:59 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -30,9 +30,9 @@ class ExecQuerySample(Sample):
         self._safe = sample.get("safe") == "1"
 
     def __str__(self):
-        return "*** ExecQuery ***\n\ttype : {}\n\tcode : {}\n\
-            \n".format(self.type,
-                       self.code)
+        return (f'*** ExecQuery ***\n' +
+                f'\ttype: {self.type}\n' +
+                f'\tcode: {self.code}\n\n')
 
     @property
     def type(self):

@@ -1,7 +1,7 @@
 """
 filtering_sample module
 
- *modified "Tue Feb  8 14:48:45 2022" *by "Paul E. Black"
+ *modified "Fri Feb 11 13:21:58 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -37,11 +37,10 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
             # optional attr: self.flaws[flaw_type]["attr"] = option["attr"] if "attr" in option["attr"] else None
 
     def __str__(self):
-        return "*** Filtering ***\n{}\n\tinput type : {}\n\toutput type : {}\n\tflaws : {}\n\tcode : {}\n\
-            \n".format(super(FilteringSample, self).__str__(),
-                       self.input_type,
-                       self.output_type,
-                       self.flaws)
+        return (f'*** Filtering ***\n{super(FilteringSample, self)}\n' +
+                f'\t input type: {self.input_type}\n' +
+                f'\toutput type: {self.output_type}\n' +
+                f'\tflaws: {self.flaws}\n\n')
 
     @property
     def input_type(self):

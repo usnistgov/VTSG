@@ -1,7 +1,7 @@
 """
 sample module
 
- *modified "Tue Feb  8 14:48:04 2022" *by "Paul E. Black"
+ *modified "Fri Feb 11 13:45:04 2022" *by "Paul E. Black"
 """
 
 import src.generator
@@ -60,11 +60,10 @@ class Sample(object):
             self._unsafe = sample.find("safety").get("unsafe") == "1"
 
     def __str__(self):
-        return "\tpath : {}\n\tcomment : {}\n\timports : {}\
-                ".format(self.path,
-                         self.comment,
-                         self.code,
-                         self.imports)
+        return (f'\tpath: {self.path}\n' +
+                f'\tcomment: {self.comment}\n' +
+                f'\tcode: {self.code}\n' +
+                f'\timports: {self.imports}')
 
     @property
     def safe(self):

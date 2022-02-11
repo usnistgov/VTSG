@@ -1,7 +1,7 @@
 """
 Complexity module.
 
- *modified "Tue Feb  8 14:50:57 2022" *by "Paul E. Black"
+ *modified "Fri Feb 11 14:14:45 2022" *by "Paul E. Black"
 """
 
 import copy
@@ -69,11 +69,11 @@ class ComplexitySample(object):
 
 
     def __str__(self):
-        return "*** Complexity ***\n\ttype : {}\n\tgroup : {}\n\texecuted : {}\n\tcode : {}\n\
-            \n".format(self.type,
-                       self.group,
-                       self.is_executed(),
-                       self.code)
+        return (f'*** Complexity ***\n' +
+                f'\ttype: {self.type}\n' +
+                f'\tgroup: {self.group}\n' +
+                f'\texecuted: {self.is_executed}\n' +
+                f'\tcode: {self.code}\n')
 
     @property
     def id(self):
