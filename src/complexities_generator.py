@@ -3,13 +3,12 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Tue Feb  8 14:52:01 2022" *by "Paul E. Black"
+ *modified "Fri Feb 11 09:18:22 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
 import src.generator
 from src.synthesize_code import make_assign
-
 
 class ComplexitiesGenerator(object):
     """
@@ -84,9 +83,9 @@ class ComplexitiesGenerator(object):
         self.id_var_out = self.id_var_in+1
 
         self._in_ext_name = None
-        self._in_int_name = self.template.prefix + "tainted_"+str(self.id_var_in)
+        self._in_int_name = self.var_name(self.id_var_in)
         self._out_ext_name = None
-        self._out_int_name = self.template.prefix + "tainted_"+str(self.id_var_out)
+        self._out_int_name = self.var_name(self.id_var_out)
 
         self.add_value_dict(self.input_type, self._in_int_name)
         self.add_value_dict(self.output_type, self._out_int_name)
@@ -150,6 +149,12 @@ class ComplexitiesGenerator(object):
         """
         return self.template_code
 
+    def var_name(self, id):
+        '''
+        Generate variable name from ID, including any prefix needed for the language
+        '''
+        return f'{self.template.prefix}tainted_{id}'
+
     def compose(self):
         """
         This method composes all complexities.
@@ -167,9 +172,9 @@ class ComplexitiesGenerator(object):
             call_name = None
             self.uid = src.generator.Generator.getUID()
             if c.type == "function":
-                call_name = "function_"+str(self.uid)
+                call_name = f'function_{self.uid}'
             elif c.type == "class":
-                call_name = "Class_"+str(self.uid)
+                call_name = f'Class_{self.uid}'
 
             # create in/out vars
             in_var, out_var = self.get_in_out_var(c)
@@ -185,11 +190,11 @@ class ComplexitiesGenerator(object):
                 self.complexities[0]['code'] = Template(self.complexities[0]['code'], undefined=DebugUndefined).render(local_var=local_var_code)
                 # add in_var
                 self.id_var_in -= 1
-                in_var = self.template.prefix + "tainted_"+str(self.id_var_in)
+                in_var = self.var_name(self.id_var_in)
                 self.add_value_dict(self.input_type, in_var)
                 # add out_var
                 self.id_var_out += 1
-                out_var = self.template.prefix + "tainted_"+str(self.id_var_out)
+                out_var = self.var_name(self.id_var_out)
                 self.add_value_dict(self.output_type, out_var)
                 # change type of current complexities
                 self.complexities[0]['type'] = c.type
@@ -221,8 +226,8 @@ class ComplexitiesGenerator(object):
         This method fills template with previous composed complexities with local var and instructions.
         """
         # name of external variable to join with input and sink
-        self._in_ext_name = self.template.prefix + "tainted_" + str(self.id_var_in)
-        self._out_ext_name = self.template.prefix + "tainted_" + str(self.id_var_out)
+        self._in_ext_name = self.var_name(self.id_var_in)
+        self._out_ext_name = self.var_name(self.id_var_out)
         # add to list with local var
         self.add_value_dict(self.input_type, self._in_ext_name)
         self.add_value_dict(self.output_type, self._out_ext_name)
@@ -288,22 +293,22 @@ class ComplexitiesGenerator(object):
         if c.in_out_var == "in":
             # just change input var name
             self.id_var_in -= 1
-            in_var = self.template.prefix + "tainted_"+str(self.id_var_in)
-            out_var = self.template.prefix + "tainted_"+str(self.id_var_in+1)
+            in_var = self.var_name(self.id_var_in)
+            out_var = self.var_name(self.id_var_in+1)
             self.add_value_dict(self.input_type, in_var)
             self.add_value_dict(self.input_type, out_var)
         elif c.in_out_var == "out":
             # just change output var name
-            in_var = self.template.prefix + "tainted_"+str(self.id_var_out)
+            in_var = self.var_name(self.id_var_out)
             self.id_var_out += 1
-            out_var = self.template.prefix + "tainted_"+str(self.id_var_out)
+            out_var = self.var_name(self.id_var_out)
             self.add_value_dict(self.output_type, in_var)
             self.add_value_dict(self.output_type, out_var)
         elif c.in_out_var == "traversal":
             # change input/output var name
-            in_var = self.template.prefix + "tainted_"+str(self.id_var_in)
+            in_var = self.var_name(self.id_var_in)
             self.id_var_in -= 1
-            out_var = self.template.prefix + "tainted_"+str(self.id_var_out)
+            out_var = self.var_name(self.id_var_out)
             self.id_var_out += 1
             self.add_value_dict(self.input_type, in_var)
             self.add_value_dict(self.output_type, out_var)
