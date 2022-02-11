@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module used to generate the test cases.
 
- *modified "Thu Feb 10 16:50:16 2022" *by "Paul E. Black"
+ *modified "Fri Feb 11 08:55:25 2022" *by "Paul E. Black"
 """
 
 import time
@@ -462,7 +462,7 @@ class Generator(object):
         if self.current_exec_queries and self.current_exec_queries.comment:
             comments_code += "\n"+self.current_exec_queries.comment
 
-        main_class_name = "MainClass"+str(src.generator.Generator.getUID())
+        main_class_name = f'MainClass{src.generator.Generator.getUID()}'
 
         # COMPOSE TEMPLATE
         template = Template(self.template_code)
@@ -513,7 +513,7 @@ class Generator(object):
 
         # Create other classes
         for i, cl in enumerate(self.classes_code):
-            filename = self.generate_file_name("File"+str(i+2))
+            filename = self.generate_file_name(f'File{i+2}')
             filemanager = FileManager(filename, self.dir_name,
                                       current_flaw_group,
                                       current_flaw,
@@ -661,39 +661,38 @@ class Generator(object):
         for c in self.complexities_queue:
             cplx_name += "-" + c.get_complete_id()
 
-        name += str(self.current_max_rec) + str(cplx_name)
+        name += f'{self.current_max_rec}{cplx_name}'
         # suffix
         name += "_"+suffix
         # extension
         name += "."+self.file_template.file_extension
         return name
 
-    # TODO:20 move this elsewhere either in the generator either in a new class
+    # TODO:20 move this elsewhere either in the generator or in a new class
     def generation_report(self):
         """
-        Prints final report for the generation.
-        Prints number of safe/unsafe by CWE/group and generate time.
+        Print final report for this run: number of safe/unsafe by CWE/group and time.
         """
         self.manifest.closeManifests()
         total = 0
-        print("Generation report:")
+        print('Generation report:')
         for flaw_group in self.report:
             group_total = 0
-            print("\t" + flaw_group + " group generation report:")
+            print(f'\t{flaw_group} group generation report:')
             for flaw in self.report[flaw_group]:
-                print("\t\t" + flaw + " generation report:")
-                print("\t\t\t" + str(self.report[flaw_group][flaw]["safe_sample"]) + " safe samples")
-                print("\t\t\t" + str(self.report[flaw_group][flaw]["unsafe_sample"]) + " unsafe samples")
+                print(f'\t\t{flaw} generation report:')
+                print(f'\t\t\t{self.report[flaw_group][flaw]["safe_sample"]} safe samples')
+                print(f'\t\t\t{self.report[flaw_group][flaw]["unsafe_sample"]} unsafe samples')
                 flaw_total = self.report[flaw_group][flaw]["safe_sample"] + self.report[flaw_group][flaw]["unsafe_sample"]
                 group_total += flaw_total
-                print("\n\t\t" + str(flaw_total) + " total")
+                print(f'\n\t\t{flaw_total} total')
 
-            print("\t" + str(group_total) + " total")
+            print(f'\t{group_total} total')
             total += group_total
 
-        print(str(total) + " total")
+        print(f'{total} total')
         self.end = time.time()
-        print("Generation time " + time.strftime("%H:%M:%S", time.gmtime(self.end - self.start)))
+        print(f'Generation time {time.strftime("%H:%M:%S", time.gmtime(self.end - self.start))}')
 
     @staticmethod
     def find_flaw(fileName, comment_inline_code):
