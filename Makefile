@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Mon Feb 14 11:09:56 2022" *by "Paul E. Black"
+# *modified "Mon Feb 14 12:54:27 2022" *by "Paul E. Black"
 
 default: test020
 
@@ -26,6 +26,8 @@ testPython: $(VTSG)
 	tests/gen_and_check py
 # execute each file.  timeout for infinite loops
 #	(cd `ls -dt TestSuite_* | head -1`;pwd;for f in `find . -name "*.py"`; do echo $f; timeout 3 python3 $f;done) | more
+
+TDIR = ../../tests
 
 test010: $(VTSG)
 	python3 test_suite_gen.py -l $@
