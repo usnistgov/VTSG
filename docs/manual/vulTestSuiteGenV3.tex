@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Feb  8 11:01:25 2022" *by "Paul E. Black"
+% *modified "Mon Feb 14 11:38:50 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -327,7 +327,7 @@ The generator is written in Python 3.
 
 \subsection{History} 
 
-VTS version 1 generates \CSharp\ programs. VTS version 2 generates PHP
+VTS version 1 only generated \CSharp\ programs. VTS version 2 generated PHP
 programs~\cite{StivaletFongVTSPHP2016} in addition.  Version 2 is more
 customizable to generate other programming languages.
 VTSG version 3 (V3) systematically maintains indentation, so also
@@ -340,7 +340,7 @@ by earlier versions from NIST’s Software Assurance Reference
 Dataset (SARD):
 \href{http://samate.nist.gov/SARD}{http://samate.nist.gov/SARD}
 
-The global project can be found at: \href{https://github.com/stivalet/Vulnerability-Test-Suite-generator}{https://github.com/stivalet/Vulnerability-Test-Suite-generator}\\
+The global project can be found at: \href{https://github.com/usnistgov/VTSG}{https://github.com/usnistgov/VTSG}\\
 
 
 \subsection{Install Supporting Packages}
@@ -388,32 +388,23 @@ Use the following command to install Python 3:
 
 \subsection{Install VTSG}
 
-\noindent To copy the generic VTSG from GitHub to a local Linux machine, create a directory, called \textbf{src}, using the following command:
-
-\begin{verbatim}
-    mkdir src
-\end{verbatim}
-
-\noindent Go to the newly created \textbf{src} directory, by using the following command:
-
-\begin{verbatim}
-    cd src
-\end{verbatim}
+\noindent To copy the generic VTSG from GitHub to a local Linux machine, change to a
+directory under which you want VTSG installed.
 
 \noindent Returning to the GitHub website, one will see a green box, labelled ``Clone or download''. Click on it and use the clipboard tab to copy the web URL.
 
-\noindent Then, from the \textbf{src} directory, type the following command to copy the GitHub source code to the \textbf{src} directory:
+\noindent Type the following command to copy the source code and other material to the local directory:
 
 \begin{verbatim}
-    git clone https://github.com/stivalet/Vulnerability-Test-Suite-generator.git
+    git clone https://github.com/usnistgov/VTSG.git
 \end{verbatim}
 
-\noindent If one types the \verb|ls -a| command, one will see that the \textbf{Vulnerability-Test-Suite-generator} directory was created.
+\noindent If one types the \verb|ls -a| command, one will see that the \textbf{VTSG} directory was created.
 
 \noindent Go to that directory, using the following command:
 
 \begin{verbatim}
-    cd Vulnerability-Test-Suite-generator
+    cd VTSG
 \end{verbatim}
 
 \noindent To install the dependencies, use the following command:
@@ -425,11 +416,18 @@ Use the following command to install Python 3:
 
 \subsection{Users}
 
-There are two groups who will typically use VTS. The first group comprises people requiring test cases written in PHP, \CSharp, or Python to evaluate a static analyzer. These users must know how to invoke VTS with command line interface and retrieve the appropriate sample from the generated and categorized folders. 
+There are two groups who will typically use VTSG. The first group comprises people
+requiring test cases written in PHP, \CSharp, or Python to evaluate a static
+analyzer. These users must know how to invoke VTSG with command line interface and
+retrieve the appropriate sample from the generated and categorized folders.
 
-The second targeted audience of the VTS is comprised of people wishing to generate test cases using a programming language other than the languages currently supported. The second group of users must use the template to construct the program using the XML tags, execute VTS with command line interface or another input method, and retrieve the samples from the generated and categorized file folders.
+The second targeted audience of the VTSG is comprised of people wishing to generate
+test cases using a programming language other than the languages currently
+supported. The second group of users must use the template to construct the program
+using the XML tags, execute VTSG with command line interface or another input method,
+and retrieve the samples from the generated and categorized file folders.
 
-\subsection{Vulnerabilities Supported by VTS}
+\subsection{Vulnerabilities Supported by VTSG}
 
 Vulnerabilities are encoded in the language files, see Sec.~\ref{sec:source files}.
 Some of the OWASP Top 10~\cite{OWASPTop10-2017} and
@@ -452,7 +450,7 @@ options.  For example, the user can generate vulnerable or non-vulnerable test c
 based on selected OWASP categories or CWE weaknesses.  The user must specify the
 programming language.  The invocation command looks like this:
 \begin{verbatim}
-$ python3 test_suite_gen.py -l {php,cs,python} <options>
+$ python3 test_suite_gen.py -l {php,cs,py} <options>
 \end{verbatim}
 
 % Overleaf complains that textcomp doesn't provide \textlangle
@@ -474,7 +472,7 @@ Table~\ref{tab:command line options}.
 --language=LANGUAGE &
 \makecell[l]{Language of generated cases. \\
 Currently one of php, for PHP \\
-cases, cs, for \CSharp\ cases, or python, \\
+cases, cs, for \CSharp\ cases, or py, \\
 for Python cases. 
 See Sec.~\ref{sec: directory structure}.} \\
 \hline
@@ -531,15 +529,15 @@ mutually exclusive.
 
 The -g (number-generated) option has limited utility.  When the
 specified number of sink, filter, input (and exec query, if needed)
-combinations are generated, VTS terminates.  The default, -1,
+combinations are generated, VTSG terminates.  The default, -1,
 means generate all combinations.
 
 Each combination of sink, filter, input, and exec query is elaborated
 with DEPTH nested complexities.  Suppose there are 5 complexities
-and VTS is invoked with \verb|-r 2|.  Each combination will have 
+and VTSG is invoked with \verb|-r 2|.  Each combination will have
 1 (no complexities) + 5 (each complexity, not nested) + 
 25 (each complexities nested within every complexity) = 31 test cases.  
-Hence VTS may generate \emph{far} more test cases than the number 
+Hence VTSG may generate \emph{far} more test cases than the number
 given with the -g option.
 
 \subsection{Example Invocations}
@@ -581,7 +579,7 @@ $ python3 test_suite_gen.py -l cs -r 3 --cwe=89 -u
 
 \subsection{Overview of Test Case Generation}
 
-VTS V3 generates test cases from information in Template, Input, 
+VTSG V3 generates test cases from information in Template, Input,
 Filter, Sink, Complexity and ExecQuery files 
 (see Fig.~\ref{fig:VTS operation overview}):
 \begin{itemize}
@@ -603,16 +601,16 @@ Sec.~\ref{sec:source files}.
 Details of the generation process are explained in
 Sec.~\ref{sec: generation detail}.
 
-\subsection{VTS Directory Structure}
+\subsection{VTSG Directory Structure}
 \label{sec: directory structure}
 
 All these types of files are kept in a \verb|templates| subdirectory.
-Under this is one subdirectory for each language.  VTS chooses the 
+Under this is one subdirectory for each language.  VTSG chooses the
 directory based on the language selected in the \verb|-l| command line
 option.  Each language subdirectory has six files for that language.
 The files are \verb|file_template.xml|, \verb|input.xml|, 
 \verb|complexities.xml|, \verb|filtering.xml|, \verb|sink.xml|,
-and \verb|exec_queries.xml|.  To add another language to VTS, 
+and \verb|exec_queries.xml|.  To add another language,
 simply create a subdirectory for that language with the six description
 files.
 
@@ -636,10 +634,10 @@ an Input, a Filter, and a Sink.
 The Filtering code may be embedded in data and control flow
 Complexity code.
 
-VTS generates test cases with two broad steps.  First, VTS selects
+VTSG generates test cases with two broad steps.  First, VTSG selects
 Input, Filter, Complexities, Sink, and ExecQuery modules that are
 compatible with each other and consistent with any flaw group or
-CWE constraints the user gives on the command line.  Second, VTS
+CWE constraints the user gives on the command line.  Second, VTSG
 composes test case source code from the selected modules, 
 synthesizing variable and functions names, and writes the file(s).
 
@@ -704,7 +702,7 @@ or all of them if the user does not specify. It subsequently
 selects filters then inputs then exec queries and complexities
 that are compatible with the currently selected sink module.
 
-When VTS has selected a set of modules, it begins composing
+When VTSG has selected a set of modules, it begins composing
 the code in them to generate the source code for a test case.
 The process of composing modules to generate source code is
 based on XML metadata tags.
@@ -726,17 +724,17 @@ to the
 test case.  The test case is written to a file.  
 The location of the file is
 described in Sec.~\ref{sec: test suite directory structure}.
-Section~\ref{sec:case file name} describes how VTS names the file.
+Section~\ref{sec:case file name} describes how VTSG names the file.
 
-VTS generates many different test cases, both with and without 
-flaws, with various control flow complexities.  After VTS finishes
+VTSG generates many different test cases, both with and without
+flaws, with various control flow complexities.  After VTSG finishes
 generating each vulnerability category, it displays how many safe (non-vulnerable)
 and unsafe (vulnerable) test cases it produced.
-VTS generates hundreds of test cases in minutes.
+VTSG generates hundreds of test cases in minutes.
 
-VTS is built to generate test cases with all consistent combinations
+VTSG is built to generate test cases with all consistent combinations
 of modules for the flaw groups and CWEs specified in the invocation.
-If VTS is invoked with flaw groups (\verb|-f|) or CWEs (\verb|-c|),
+If VTSG is invoked with flaw groups (\verb|-f|) or CWEs (\verb|-c|),
 only sinks satisfying those specified are used.
 If no flaw groups are specified, all flaw groups are used.  
 If no CWEs are specified, all CWEs are used.
@@ -745,11 +743,11 @@ If no CWEs are specified, all CWEs are used.
 The depth command line option, \verb|-r| or \verb|--depth|, 
 specifies the
 most nested flow control complexities produced.
-VTS generates test cases with all complexities up to the depth
+VTSG generates test cases with all complexities up to the depth
 indicated.
-For example, the default depth, 1, leads VTS to generate all 
+For example, the default depth, 1, leads VTSG to generate all
 test cases with no flow complexities and all test cases with 
-one complexity.  The option \verb|-r 2| leads VTS to generate 
+one complexity.  The option \verb|-r 2| leads VTSG to generate
 all cases with no complexities, all cases with one complexity, 
 and all cases with two nested complexities.
 See Sec.~\ref{sec:code complexities} for an example of three 
@@ -813,7 +811,7 @@ name. They correspond to:\\
 \section{Template, Input, Filter, Sink, Exec\_Query, and Complexity Files}
 \label{sec:source files}
 
-These XML files are required when adding new functionality to VTS. 
+These XML files are required when adding new functionality to VTSG.
 There 
 are a few XML-specific caveats that must be paid attention to when 
 creating these files. 
@@ -891,7 +889,7 @@ input from a different source.
 
 \begin{itemize}
     \item name: Programming language name, e.g., PHP, CSharp, 
-    or python. This appears in the manifest that is produced.  
+    or Python. This appears in the manifest that is produced.
     It is also the subdirectory under the TestSuite directory 
     where all the generated test cases are placed.
 
@@ -932,7 +930,7 @@ input from a different source.
         be used.
         \begin{itemize}
         \item type: Names the type. This string 
-        does not appear in the test case code.  It tells VTS
+        does not appear in the test case code.  It tells VTSG
         the type of variable that is being used.  The input\_type
         and output\_type in Input, Filter, and Sink modules use
         this string.
@@ -1189,7 +1187,7 @@ file.
     \verb|exec_type| tag of the Sink in order to link them together during
     generation process.  The type should only contain letters, numerals, and
     underscore (``\_'').\\
-    VTS V3 supports many database management systems, including ORACLE, \\
+    VTSG V3 supports many database management systems, including ORACLE, \\
     MySQL,
     MSSQL, Postgre, SQLite, and XPATH.  The syntax of each ExexQuery must be
     compatible with its associated database system language.
@@ -1354,7 +1352,7 @@ complexity modules are inside \\ \verb|<complexities>|.
   \label{fig:example complexity-method file}
 \end{figure}
 
-When adding Complexity, VTS can use several complexity in one 
+When adding Complexity, VTSG can use several complexity in one
 test case.
 The example in Sec.~\ref{sec:generated files} has two types of
 Complexity: a control flow complexity and a data flow complexity. 
@@ -1377,7 +1375,7 @@ Fig.~\ref{fig:example aux file}.
 
 \section{Generated Test Cases}
 
-This section describes where VTS places test cases and what the
+This section describes where VTSG places test cases and what the
 names of test case files mean.
 
 \subsection{Directory Structure of Generated Test Cases}
@@ -1388,7 +1386,7 @@ names of test case files mean.
 \subsection{Test Case File Names}
 \label{sec:case file name}
 
-VTS names test case files as 
+VTSG names test case files as
 \verb|cwe_NB__I_INPUT__F_FILTER__S_SINK__EQ_EXEC_| \\
 \verb|QUERY__NBCPLX-CPLX1-CPLX2.COND_FileX.EXT|
 \begin{itemize}
@@ -1494,7 +1492,11 @@ with condition 7 = \verb|Math.| \verb|Sqrt(42)<=42|: True, Fig.~\ref{fig:example
 
 \section{Acknowledgements}
 
-Bertrand Stivalet and Aurelien Delaitre, from the NIST SAMATE team, designed the architecture of the VTS project and managed its implementation.  The project was implemented by students from TELECOM Nancy: Jean-Philippe Eisenbarth, Valentin Giannini, and Vincent Noyalet.  We thank Terry Cohen for her comments and suggestions, which improved this report.  We also thank Elizabeth Fong and 
+Bertrand Stivalet and Aurelien Delaitre, from the NIST SAMATE team, designed the
+architecture of the VTSG project and managed its implementation.  The project was
+implemented by students from TELECOM Nancy: Jean-Philippe Eisenbarth, Valentin
+Giannini, and Vincent Noyalet.  We thank Terry Cohen for her comments and
+suggestions, which improved this report.  We also thank Elizabeth Fong and
 Charles de Oliveira for their contributions to this report.
 % On 12 June 202, Terry Cohen wrote [[much editing by PEB]]
 % Bertrand and Liz wrote the original document. I did some quick grammatical editing. Liz submitted it, but Barbara wanted it to cover both C# and PHP. The original did not have both. Because of the SATE V and CSIAC projects, this was put on hold.
