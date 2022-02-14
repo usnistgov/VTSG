@@ -1,0 +1,60 @@
+# *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
+# *modified "Mon Feb 14 10:59:51 2022" *by "Paul E. Black"
+
+# Generate the requested vulnerability test suite and check the result
+
+# Usage:
+help_message="$ tests/gen_and_check {py,cs,php}"
+
+if [ $# != 1 ]
+then
+    echo expecting one command line argument
+    echo $help_message
+    exit -1
+fi
+
+lang=$1
+# determine the name of the language directory (LD)
+if [ $lang == py ]
+then
+    LD=Python
+elif [ $lang == cs ]
+then
+    LD=CSharp
+elif [ $lang == php ]
+then
+    LD=PHP
+else
+    echo unknown language: $lang
+    exit -1
+fi
+
+# Time Stamp matches name that VTGS will choose for the TestSuite
+#    note: since time may differ by a second, names may differ
+TimeStamp=$(date +"%m-%d-%Y_%Hh%Mm%S")
+# choose a name for Photo File, which captures the output
+PF="TestPhoto_${TimeStamp}_${LD}_photo"
+
+# run VTSG and capture its output (generation report)
+echo running test_suite_gen.py -l $lang ...
+python3 test_suite_gen.py -l $lang | tee ${PF} 2>&1
+
+# guess what the TestSuite directory was named
+TSD=$(ls -dt TestSuite_*/${LD} | head -1)
+echo ${TSD}
+
+# check that the output matches
+diff ${PF} tests/${LD}_photo
+
+# test directory, relative to the new TestSuite... directory
+TDIR="../../tests"
+
+# check that generated files match
+echo checking that generated files match ...
+(cd ${TSD};for f in $(find . -name "*.${lang}"); do cmp $f ${TDIR}/${LD}/$f;done)
+
+# check that the manifests match
+echo checking manifests
+(cd ${TSD};for m in $(find . -name "manifest.xml"); do echo $m;${TDIR}/cmp_manifests.py $m ${TDIR}/${LD}/$m;done)
+
+# end of gen_and_check

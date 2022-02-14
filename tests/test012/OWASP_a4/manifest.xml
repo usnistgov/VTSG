@@ -1,0 +1,38 @@
+<container>
+	<testcase> 
+		<meta-data> 
+			<author>Bertrand STIVALET, Aurelien DELAITRE</author> 
+			<date>06/08/20</date> 
+			<input>input : no input</input>
+		</meta-data> 
+ 
+		<file path="TestSuite_08-06-2020_09h12m29/python012/OWASP_a4/cwe_22/safe/cwe_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__0_File1.py" language="python012"/> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>Bertrand STIVALET, Aurelien DELAITRE</author> 
+			<date>06/08/20</date> 
+			<input>input : no input</input>
+		</meta-data> 
+ 
+		<file path="TestSuite_08-06-2020_09h12m29/python012/OWASP_a4/cwe_22/safe/cwe_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__1-8.1_File1.py" language="python012"/> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>Bertrand STIVALET, Aurelien DELAITRE</author> 
+			<date>06/08/20</date> 
+			<input>input : no input</input>
+		</meta-data> 
+ 
+		<file path="TestSuite_08-06-2020_09h12m29/python012/OWASP_a4/cwe_22/safe/cwe_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__1-12.1_File1.py" language="python012"/> 
+
+	</testcase> 
+
+
+</container>
