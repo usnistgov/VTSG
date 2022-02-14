@@ -1,7 +1,7 @@
 """
 exec_query module
 
- *modified "Fri Feb 11 13:48:59 2022" *by "Paul E. Black"
+ *modified "Mon Feb 14 13:00:19 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -25,14 +25,15 @@ class ExecQuerySample(Sample):
     # new version for new XML
     def __init__(self, sample):  # XML tree in parameter
         Sample.__init__(self, sample)
-        self._type = sample.get("type").lower()
+        self._type = sample.get("type")
         self._code = sample.find("code").text
         self._safe = sample.get("safe") == "1"
 
     def __str__(self):
         return (f'*** ExecQuery ***\n' +
-                f'\ttype: {self.type}\n' +
-                f'\tcode: {self.code}\n\n')
+                f'\ttype: {self._type}\n' +
+                f'\tsafe: {self._safe}\n' +
+                f'\tcode: {self._code}\n\n')
 
     @property
     def type(self):

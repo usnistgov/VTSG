@@ -1,7 +1,7 @@
 """
 Input Class (TODO DOC)
 
- *modified "Fri Feb 11 13:38:51 2022" *by "Paul E. Black"
+ *modified "Mon Feb 14 13:07:41 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -26,20 +26,20 @@ class InputSample(Sample):  # Initialize the type of input and the code paramete
     # compatible with new structure
     def __init__(self, sample):  # XML tree in parameter
         Sample.__init__(self, sample)
-        self._input_type = sample.find("input_type").text.lower()
-        self._output_type = sample.find("output_type").text.lower()
+        self._input_type = sample.find("input_type").text
+        self._output_type = sample.find("output_type").text
         self._flaws = {}
         for flaw in sample.find("flaws").findall("flaw"):
-            flaw_type = flaw.get("flaw_type").lower()
+            flaw_type = flaw.get("flaw_type")
             self._flaws[flaw_type] = {}
             self._flaws[flaw_type]["safe"] = (flaw.get("safe") == "1")
             self._flaws[flaw_type]["unsafe"] = (flaw.get("unsafe") == "1")
 
     def __str__(self):
         return (f'*** Input ***\n{super(InputSample, self)}\n' +
-                f'\t input type: {self.input_type}\n' +
-                f'\toutput type: {self.output_type}\n' +
-                f'\tflaws: {self.flaws}\n\n')
+                f'\t input type: {self._input_type}\n' +
+                f'\toutput type: {self._output_type}\n' +
+                f'\tflaws: {self._flaws}\n\n')
 
     def is_safe(self, flaw_type):
         """ Check if current input is safe for a flaw type """

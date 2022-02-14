@@ -1,7 +1,7 @@
 """
 filtering_sample module
 
- *modified "Fri Feb 11 13:21:58 2022" *by "Paul E. Black"
+ *modified "Mon Feb 14 13:35:05 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -26,11 +26,11 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
     # new version for new XML
     def __init__(self, sample):  # XML tree in parameter
         Sample.__init__(self, sample)
-        self._input_type = sample.find("input_type").text.lower()
-        self._output_type = sample.find("output_type").text.lower()
+        self._input_type = sample.find("input_type").text
+        self._output_type = sample.find("output_type").text
         self._flaws = {}
         for flaw in sample.find("flaws").findall("flaw"):
-            flaw_type = flaw.get("flaw_type").lower()
+            flaw_type = flaw.get("flaw_type")
             self._flaws[flaw_type] = {}
             self._flaws[flaw_type]["safe"] = (flaw.get("safe") == "1")
             self._flaws[flaw_type]["unsafe"] = (flaw.get("unsafe") == "1")
@@ -38,9 +38,9 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
 
     def __str__(self):
         return (f'*** Filtering ***\n{super(FilteringSample, self)}\n' +
-                f'\t input type: {self.input_type}\n' +
-                f'\toutput type: {self.output_type}\n' +
-                f'\tflaws: {self.flaws}\n\n')
+                f'\t input type: {self._input_type}\n' +
+                f'\toutput type: {self._output_type}\n' +
+                f'\tflaws: {self._flaws}\n\n')
 
     @property
     def input_type(self):
@@ -89,7 +89,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
         Args:
             **flaw_type** (str)
         """
-        return "all" in self.flaws.keys() or flaw_type in self.flaws
+        return "ALL" in self.flaws.keys() or flaw_type in self.flaws
 
     def is_safe(self, flaw_type):
         """
@@ -100,8 +100,8 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
         """
         if flaw_type in self.get_flaws_types():
             return self.flaws[flaw_type]["safe"]
-        if "all" in self.get_flaws_types():
-            return self.flaws["all"]["safe"]
+        if "ALL" in self.get_flaws_types():
+            return self.flaws["ALL"]["safe"]
         return None
 
     def is_unsafe(self, flaw_type):
@@ -113,8 +113,8 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
         """
         if flaw_type in self.get_flaws_types():
             return self.flaws[flaw_type]["unsafe"]
-        if "all" in self.get_flaws_types():
-            return self.flaws["all"]["unsafe"]
+        if "ALL" in self.get_flaws_types():
+            return self.flaws["ALL"]["unsafe"]
         return None
 
     def compatible_with_sink(self, sink_sample):

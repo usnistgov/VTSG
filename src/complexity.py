@@ -1,7 +1,7 @@
 """
 Complexity module.
 
- *modified "Fri Feb 11 14:14:45 2022" *by "Paul E. Black"
+ *modified "Mon Feb 14 13:02:30 2022" *by "Paul E. Black"
 """
 
 import copy
@@ -46,9 +46,9 @@ class ComplexitySample(object):
         self._cond_id = None
         self._code = xml_compl.find("code").text
         self._code = src.generator.Generator.remove_indent(self._code)
-        self._type = xml_compl.get("type").lower()
-        self._group = xml_compl.get("group").lower()
-        self._executed = xml_compl.get("executed").lower()
+        self._type = xml_compl.get("type")
+        self._group = xml_compl.get("group")
+        self._executed = xml_compl.get("executed")
         self._need_condition = False
         if "condition" in self._executed or self._type == "if" or xml_compl.get("need_condition") == "1":
             self._need_condition = True
@@ -70,10 +70,10 @@ class ComplexitySample(object):
 
     def __str__(self):
         return (f'*** Complexity ***\n' +
-                f'\ttype: {self.type}\n' +
-                f'\tgroup: {self.group}\n' +
-                f'\texecuted: {self.is_executed}\n' +
-                f'\tcode: {self.code}\n')
+                f'\ttype: {self._type}\n' +
+                f'\tgroup: {self._group}\n' +
+                f'\texecuted: {self._executed}\n' +
+                f'\tcode: {self._code}\n')
 
     @property
     def id(self):

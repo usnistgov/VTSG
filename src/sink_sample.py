@@ -1,7 +1,7 @@
 """
 sink_sample module
 
- *modified "Fri Feb 11 13:49:27 2022" *by "Paul E. Black"
+ *modified "Mon Feb 14 13:07:13 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -30,9 +30,9 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
     # new version for new XML
     def __init__(self, sample):  # Add parameters showing the beginning and the end of the sample
         Sample.__init__(self, sample)
-        self._input_type = sample.find("input_type").text.lower()
-        self._exec_type = sample.find("exec_type").text.lower()
-        self._flaw_type = sample.find("flaw_type").text.lower()
+        self._input_type = sample.find("input_type").text
+        self._exec_type = sample.find("exec_type").text
+        self._flaw_type = sample.find("flaw_type").text
         self._flaw_group = sample.find("flaw_type").get("flaw_group")
         self._need_complexity = True
         # TODO check why [0]
@@ -41,11 +41,10 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
 
     def __str__(self):
         return (f'*** Sink ***\n{super(SinkSample, self)}\n' +
-                f'\tinput type: {self.input_type}\n' +
-                f'\t exec type: {self.exec_type}\n' +
-                f'\t flaw type: {self.flaw_type}\n' +
-                f'\tflaw group: {self.flaw_group}\n' +
-                f'\tsafe: {self.safe == "1"}\n\n')
+                f'\tinput type: {self._input_type}\n' +
+                f'\t exec type: {self._exec_type}\n' +
+                f'\t flaw type: {self._flaw_type}\n' +
+                f'\tflaw group: {self._flaw_group}\n\n')
 
     @property
     def need_complexity(self):
@@ -117,4 +116,4 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
             **exec_queries** (:class:`.ExecQuery`)
         """
         """ Check if current sink is compatible with exec query """
-        return self.exec_type.lower() == exec_queries.type.lower()
+        return self.exec_type == exec_queries.type
