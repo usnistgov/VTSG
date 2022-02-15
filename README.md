@@ -1,6 +1,6 @@
-# Vulnerability Test Suite generator
+# Vulnerability Test Suite Generator
 
-Collection of vulnerable and fixed synthetic test cases expressing specific flaws.
+Program to generate vulnerable and fixed synthetic test cases expressing specific flaws.
 
 Written in Python 3
 
@@ -40,13 +40,13 @@ Docopt installation instructions [here](https://github.com/docopt/docopt#install
 ## Execute it
 
 ```sh
-$ python3 test_suite_gen.py -l cs
+$ python3 vtsg.py -l cs
 ```
 
 ## Need help ?
 
 ```sh
-$ python3 test_suite_gen.py --help
+$ python3 vtsg.py --help
 ```
 
 ## Discussion

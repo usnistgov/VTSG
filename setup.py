@@ -1,3 +1,5 @@
+# *modified "Tue Feb 15 09:02:23 2022" *by "Paul E. Black"
+
 import os
 from setuptools import setup
 
@@ -12,10 +14,10 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name="test suite generator",
-    version="0.2",
+    name="vulnerability test suite generator",
+    version="3",
     packages=['vuln_test_suite_gen'],
-    scripts=['test_cases_generator.py'],
+    scripts=['vtsg.py'],
 
     # Project uses reStructuredText, so ensure that the docutils get
     # installed or upgraded on the target machine
@@ -36,3 +38,5 @@ setup(
 
     # could also include long_description, download_url, classifiers, etc.
 )
+
+# end of setup.py

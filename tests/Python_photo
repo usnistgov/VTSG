@@ -1,0 +1,19 @@
+Generation report:
+	OWASP_a4 group generation report:
+		CWE_22 generation report:
+			89 safe samples
+			178 unsafe samples
+
+		267 total
+	267 total
+	OWASP_a1 group generation report:
+		CWE_78 generation report:
+			89 safe samples
+			178 unsafe samples
+
+		267 total
+	267 total
+534 total
+Generation time 00:00:03
+No indentation
+Finish

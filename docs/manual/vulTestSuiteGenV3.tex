@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Mon Feb 14 11:38:50 2022" *by "Paul E. Black"
+% *modified "Tue Feb 15 08:56:18 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -450,7 +450,7 @@ options.  For example, the user can generate vulnerable or non-vulnerable test c
 based on selected OWASP categories or CWE weaknesses.  The user must specify the
 programming language.  The invocation command looks like this:
 \begin{verbatim}
-$ python3 test_suite_gen.py -l {php,cs,py} <options>
+$ python3 vtsg.py -l {php,cs,py} <options>
 \end{verbatim}
 
 % Overleaf complains that textcomp doesn't provide \textlangle
@@ -544,19 +544,19 @@ given with the -g option.
 
 Show the help message:
 \begin{verbatim}
-$ python3 test_suite_gen.py --help
+$ python3 vtsg.py --help
 \end{verbatim}
 
 Generate all PHP test cases:
 \begin{verbatim}
-$ python3 test_suite_gen.py -l php
+$ python3 vtsg.py -l php
 \end{verbatim}
 
 Generate a \CSharp\ (\verb|-l cs|) test suite made of non-vulerable (unsafe) test
 cases (\verb|-u|) with SQL injection vulnerabilities (\verb|--cwe=89|) 
 with up to 3 nested levels of complexity (\verb|-r 3|).
 \begin{verbatim}
-$ python3 test_suite_gen.py -l cs -r 3 --cwe=89 -u
+$ python3 vtsg.py -l cs -r 3 --cwe=89 -u
 \end{verbatim}
  
 \section{Overview of VTSG}
