@@ -1,0 +1,24 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2022-02-15</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_02-15-2022_16h56m33/test010/OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_no_filtering__S_file_exists__0_File1.py" language="test010"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2022-02-15</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_02-15-2022_16h56m33/test010/OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_no_filtering__S_file_exists__1-1.1_File1.py" language="test010"/>
+
+	</testcase>
+
+</container>

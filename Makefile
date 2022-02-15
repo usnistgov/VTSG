@@ -1,11 +1,11 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Tue Feb 15 08:49:53 2022" *by "Paul E. Black"
+# *modified "Tue Feb 15 16:20:08 2022" *by "Paul E. Black"
 
 default: test020
 
 all: test
 
-test: testSTerm testPython testCSharp testPHP
+test: test010 testSTerm testPython testCSharp testPHP
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
 	src/exec_query.py src/file_manager.py src/file_template.py \
@@ -29,9 +29,10 @@ testPython: $(VTSG_FILES)
 
 TDIR = ../../tests
 
+# test for unsafe file WITHOUT {{flaw}}
 test010: $(VTSG_FILES)
 	python3 vtsg.py -l $@
-	(cd `ls -dt TestSuite_* | head -1`;pwd;for f in `find . -name "*.py"`; do echo $$f; diff $$f $(TDIR)/SuiteTest010/$$f;done)
+	(cd `ls -dt TestSuite_*/test010 | head -1`;pwd;for f in `find . -name "*.py"`; do echo $$f; diff $$f $(TDIR)/test010/$$f;done)
 
 # tests for statement_terminator
 testSTerm: test011 test012 test013 test014

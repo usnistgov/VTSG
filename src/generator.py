@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module used to generate the test cases.
 
- *modified "Fri Feb 11 08:55:25 2022" *by "Paul E. Black"
+ *modified "Tue Feb 15 16:47:45 2022" *by "Paul E. Black"
 """
 
 import time
@@ -697,22 +697,24 @@ class Generator(object):
     @staticmethod
     def find_flaw(fileName, comment_inline_code):
         """
-        Seek //flaw flag into the generated file and got line number if it exists.
+        Return the number of the line following //flaw (that is, in-line comment
+        string and "flaw") in the generated file.  Return 0 if not found.
 
         Args :
-            **fileName** (str): The filename of the file in which the flag *//flaw* will be searched.
+            **fileName** (str): The name of the file in which //flaw will be sought.
         """
         sample = open(fileName, 'r')
+        flaw_code = comment_inline_code + "flaw"
         i = 1
-        for line in sample.readlines():
+        for line in sample:
             i += 1
-            flaw_code = comment_inline_code + "flaw"
             if (line.lstrip())[:len(flaw_code)] == flaw_code:
                 break
-        if i == len(sample.readlines()):
-            return 0
         else:
-            return i + 1
+            # //flaw not found
+            return 0
+
+        return i + 1
 
     @property
     def max_recursion(self):
