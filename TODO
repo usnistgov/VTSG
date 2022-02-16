@@ -1,0 +1,12 @@
+  *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
+ *modified "Wed Feb 16 08:55:40 2022" *by "Paul E. Black"
+ 
+Things To Do for VTSG
+
+16 Feb 2022
+Correct Fig. 9 (final code example) in manual.  It does not have a //flaw line.
+Since the example sink.xml has //flaw, it should.
+  Related: create a langauge especially for the example in the manual so we can rerun
+when VTSG changes.
+
+end of TODO
