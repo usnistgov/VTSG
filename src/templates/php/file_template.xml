@@ -30,7 +30,6 @@
         {{local_var}}
         {{input_content}}
         {{filtering_content}}
-        {{flaw}}
         {{sink_content}}
         {{exec_queries_content}}
 

@@ -2,7 +2,6 @@
 <!DOCTYPE sink SYSTEM "../dtd/sink.dtd">
 <sink>
 
-
   <sample>
     <path>
       <dir>select_from</dir>
@@ -11,7 +10,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : concatenation with simple quote</comment>
   <imports></imports>
-          <code>$query = "SELECT * FROM '". {{in_var_name}} . "'";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT * FROM '". {{in_var_name}} . "'";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -25,7 +27,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : interpretation with simple quote</comment>
   <imports></imports>
-          <code>$query = "SELECT * FROM ' {{in_var_name}} '";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT * FROM ' {{in_var_name}} '";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -39,7 +44,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM '%s'", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM '%s'", {{in_var_name}});
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -53,7 +61,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : concatenation</comment>
   <imports></imports>
-          <code>$query = "SELECT * FROM student where id=". {{in_var_name}} . "";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT * FROM student where id=". {{in_var_name}} . "";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -67,7 +78,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : concatenation with simple quote</comment>
   <imports></imports>
-          <code>$query = "SELECT * FROM student where id='". {{in_var_name}} . "'";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT * FROM student where id='". {{in_var_name}} . "'";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -81,7 +95,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : interpretation</comment>
   <imports></imports>
-          <code>$query = "SELECT * FROM student where id= {{in_var_name}} ";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT * FROM student where id= {{in_var_name}} ";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -95,7 +112,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : interpretation with simple quote</comment>
   <imports></imports>
-          <code>$query = "SELECT * FROM student where id=' {{in_var_name}} '";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT * FROM student where id=' {{in_var_name}} '";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -109,7 +129,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %d</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM student where id=%d", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM student where id=%d", {{in_var_name}});
+    </code>
         <safety safe="1" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -123,7 +146,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM student where id='%d'", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM student where id='%d'", {{in_var_name}});
+    </code>
         <safety safe="1" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -137,7 +163,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM student where id='%s'", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM student where id='%s'", {{in_var_name}});
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -151,7 +180,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %u</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM student where id=%u", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM student where id=%u", {{in_var_name}});
+    </code>
         <safety safe="1" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -165,7 +197,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %u with simple quote</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM student where id='%u'", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM student where id='%u'", {{in_var_name}});
+    </code>
         <safety safe="1" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -179,7 +214,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : concatenation</comment>
   <imports></imports>
-          <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=". {{in_var_name}} . ")";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=". {{in_var_name}} . ")";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -193,7 +231,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : concatenation with simple quote</comment>
   <imports></imports>
-          <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='". {{in_var_name}} . "')";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='". {{in_var_name}} . "')";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -207,7 +248,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : interpretation</comment>
   <imports></imports>
-          <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent= {{in_var_name}} )";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent= {{in_var_name}} )";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -221,7 +265,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : interpretation with simple quote</comment>
   <imports></imports>
-          <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=' {{in_var_name}} ')";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=' {{in_var_name}} ')";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -235,7 +282,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %d</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%d)", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%d)", {{in_var_name}});
+    </code>
         <safety safe="1" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -249,7 +299,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%d')", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%d')", {{in_var_name}});
+    </code>
         <safety safe="1" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -263,7 +316,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%s')", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%s')", {{in_var_name}});
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -277,7 +333,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %u</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%u)", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%u)", {{in_var_name}});
+    </code>
         <safety safe="1" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -291,7 +350,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %u with simple quote</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%u')", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%u')", {{in_var_name}});
+    </code>
         <safety safe="1" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -306,7 +368,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : concatenation with simple quote</comment>
   <imports></imports>
-          <code>$query = "SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='". {{in_var_name}} . "'";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='". {{in_var_name}} . "'";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -320,7 +385,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : interpretation with simple quote</comment>
   <imports></imports>
-          <code>$query = "SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag=' {{in_var_name}} '";</code>
+    <code>
+        {{flaw}}
+        $query = "SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag=' {{in_var_name}} '";
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
@@ -334,7 +402,10 @@
     <flaw_type flaw_group="OWASP_injection">CWE_89</flaw_type>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
   <imports></imports>
-          <code>$query = sprintf("SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='%s'", {{in_var_name}});</code>
+    <code>
+        {{flaw}}
+        $query = sprintf("SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='%s'", {{in_var_name}});
+    </code>
         <safety safe="0" unsafe="0"/>
     <input_type>string</input_type>
     <exec_type>SQL</exec_type>
