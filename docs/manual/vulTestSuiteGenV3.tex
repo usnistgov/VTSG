@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Feb 15 08:56:18 2022" *by "Paul E. Black"
+% *modified "Wed Feb 16 08:43:59 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -889,7 +889,7 @@ input from a different source.
 
 \begin{itemize}
     \item name: Programming language name, e.g., PHP, CSharp, 
-    or Python. This appears in the manifest that is produced.
+    or Python. This appears in the manifest.
     It is also the subdirectory under the TestSuite directory 
     where all the generated test cases are placed.
 
@@ -1148,8 +1148,15 @@ All sink modules are in the language's \verb|sink.xml| file.
     
     \item code: The source code of a sink. It should contain the placeholder
     \verb|{{in_var_name}}|.  The placeholder will be replaced by the variable
-    name used in the Filter.  Do not declare this variable.  The placeholder
-    \verb|{{flaw}}| sets the line number of the flaw. {\Large what does this mean?}
+    name used in the Filter.  Do not declare this variable.
+
+    The placeholder \verb|{{flaw}}| indicates that the next line is the location
+    of the flaw.  In other words, if this case is unsafe, the manifest reports a
+    flaw at the number of the line following this.  In generated cases,
+    \verb|{{flaw}}| is replaced with the string to begin a one-line comment,
+    see Sec.~\ref{sec: file template}, and ``flaw''.
+    Note: the generated code shown in Fig.~\ref{fig:example main file} is incorrect:
+    it does not show the \verb|//flaw| line that would be generated.
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -1440,7 +1447,9 @@ identical names, except for the final FileX part.
     Fig.~\ref{fig:example complexity-test file}.  Lines 18 and 19 instantiate code from the
     \texlangle code\texrangle\ part of Fig.~\ref{fig:example complexity-method file}.
     Line 23 instantiates critical preparation code from Fig.~\ref{fig:example sink file}.
-    Lines 25--39 instantiate query execution code from Fig.~\ref{fig:example exec-query file}.}
+    Lines 25--39 instantiate query execution code from Fig.~\ref{fig:example exec-query file}.
+    Note: a //flaw line would be generated before line 23.
+  }
   \label{fig:example main file}
 \end{figure}
 
