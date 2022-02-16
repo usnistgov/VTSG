@@ -1,5 +1,5 @@
 # *created  "Mon Jan 31 17:18:46 2022" *by "Paul E. Black"
-# *modified "Wed Feb  9 16:43:10 2022" *by "Paul E. Black"
+# *modified "Wed Feb 16 14:38:26 2022" *by "Paul E. Black"
 
 # .gitignore for Vulnerability Test Suite Generator (VTSG)
 
@@ -21,8 +21,6 @@ __pycache__
 *.log
 *.out
 *.toc
-# don't store the final pdf
-vulTestSuiteGenV3.pdf
 
 # recreated from .eps as needed
 *-eps-converted-to.pdf
