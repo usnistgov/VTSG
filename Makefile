@@ -1,11 +1,11 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Tue Feb 15 16:20:08 2022" *by "Paul E. Black"
+# *modified "Wed Feb 16 11:15:06 2022" *by "Paul E. Black"
 
 default: test020
 
 all: test
 
-test: test010 testSTerm testPython testCSharp testPHP
+test: test010 testSTerm testPython testCsharp testPHP
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
 	src/exec_query.py src/file_manager.py src/file_template.py \
@@ -13,7 +13,7 @@ VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
 	src/manifest.py src/sample.py src/sink_sample.py src/synthesize_code.py
 
 # this takes four minutes and produces 33k cases
-testCSharp: $(VTSG_FILES)
+testCsharp: $(VTSG_FILES)
 	tests/gen_and_check cs
 
 # generation takes about 25 minutes and produces almost 300k cases

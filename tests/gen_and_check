@@ -1,5 +1,5 @@
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Tue Feb 15 08:51:39 2022" *by "Paul E. Black"
+# *modified "Wed Feb 16 11:14:23 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -20,7 +20,7 @@ then
     LD=Python
 elif [ $lang == cs ]
 then
-    LD=CSharp
+    LD=Csharp
 elif [ $lang == php ]
 then
     LD=PHP
