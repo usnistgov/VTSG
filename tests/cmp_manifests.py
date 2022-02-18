@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#            *modified "Wed Feb  9 13:50:11 2022" *by "Paul E. Black"'
+#            *modified "Fri Feb 18 15:05:29 2022" *by "Paul E. Black"'
 versionMod=' *modified "Wed Feb  9 10:56:53 2022" *by "Paul E. Black"'
 #
 
@@ -55,28 +55,25 @@ def testsuite_match(line1, line2):
     line2MO = re.match(testsuite_pattern, line2)
     return line1MO and line2MO and line1MO.group(1) == line2MO.group(1)
 
+def try_openin(manifest_file):
+    try:
+        file = open(manifest_file)
+    except (FileNotFoundError, PermissionError):
+        print(f'Cannot open {manifest_file} to read')
+        sys.exit(-1)
+    except IsADirectoryError:
+        print(f'{manifest_file} is a directory, not a file')
+        sys.exit(-1)
+    return file
+
 if __name__ == '__main__':
     args = parse_arguments()
     manifest1 = args.manifest1
     manifest2 = args.manifest2
 
     # (try to) open both manifest files
-    try:
-        file1 = open(manifest1)
-    except (FileNotFoundError, PermissionError):
-        print(f'Cannot open {manifest1} to read')
-        sys.exit(-1)
-    except IsADirectoryError:
-        print(f'{manifest1} is a directory, not a file')
-        sys.exit(-1)
-    try:
-        file2 = open(manifest2)
-    except (FileNotFoundError, PermissionError):
-        print(f'Cannot open {manifest2} to read')
-        sys.exit(-1)
-    except IsADirectoryError:
-        print(f'{manifest2} is a directory, not a file')
-        sys.exit(-1)
+    file1 = try_openin(manifest1)
+    file2 = try_openin(manifest2)
 
     line = 0
 
@@ -84,6 +81,9 @@ if __name__ == '__main__':
         line += 1
 
         line2 = file2.readline()
+        if line2 == '':
+            print(f'EOF on {manifest2}')
+            sys.exit(-3)
 
         if (line1 == line2 or
             date_match(line1, line2) or
@@ -96,8 +96,7 @@ if __name__ == '__main__':
             sys.exit(-2)
 
     # manifest 1 is done.  Check that nothing remains in manifest 2
-    line2 = file2.readline()
-    if line2 != '':
+    if file2.readline():
         print(f'EOF on {manifest1}')
         sys.exit(-3)
 
