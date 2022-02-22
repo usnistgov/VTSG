@@ -24,11 +24,11 @@ import sys
 
 
 def main():
-tainted_0 = None
-tainted_5 = None
+    tainted_0 = None
+    tainted_5 = None
 
-tainted_0 = "hardcoded"
-tainted_5 = tainted_0
+    tainted_0 = "hardcoded"
+    tainted_5 = tainted_0
 
         var_880 = Class_880(tainted_0);
         tainted_5 = var_880.get_var_880();

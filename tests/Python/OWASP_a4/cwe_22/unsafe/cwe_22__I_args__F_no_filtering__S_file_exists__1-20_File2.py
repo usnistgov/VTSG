@@ -11,7 +11,7 @@ class Class_526:
                 self.var_526 = tainted_2_526
         def  get_var_526(self):
                 tainted_2 = None
-tainted_3 = None
+    tainted_3 = None
 
                 tainted_2 = var_526
                 

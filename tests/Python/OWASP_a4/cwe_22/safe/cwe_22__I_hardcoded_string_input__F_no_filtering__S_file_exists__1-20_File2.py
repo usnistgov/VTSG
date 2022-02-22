@@ -11,7 +11,7 @@ class Class_349:
                 self.var_349 = tainted_2_349
         def  get_var_349(self):
                 tainted_2 = None
-tainted_3 = None
+    tainted_3 = None
 
                 tainted_2 = var_349
                 

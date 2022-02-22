@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Wed Feb 16 09:23:55 2022" *by "Paul E. Black"
+ *modified "Tue Feb 22 17:26:17 2022" *by "Paul E. Black"
 """
 
 import time
@@ -17,7 +17,7 @@ from src.exec_query import ExecQuerySample
 from src.complexity import ComplexitySample
 from src.condition import ConditionSample
 from src.file_template import FileTemplate
-from src.synthesize_code import make_assign
+from src.synthesize_code import make_assign, get_indent
 import src.complexities_generator
 
 import xml.etree.ElementTree as ET
@@ -379,6 +379,7 @@ class Generator(object):
             self.template_code = compl_gen.get_template()
         else:
             self.template_code = self.file_template.code
+
         # check if we need to generate (if it's only safe/unsafe generation)
         if (self.is_safe_selection() and not self.generate_safe) or (not self.is_safe_selection() and not self.generate_unsafe):
             return
@@ -397,8 +398,9 @@ class Generator(object):
             input_code += '\n'
 
             # init filtering var with input var
-            input_code += make_assign(compl_gen.out_ext_name, compl_gen.in_ext_name,
-								self.file_template)
+            input_code += (get_indent('input_content', self.template_code)
+                           + make_assign(compl_gen.out_ext_name, compl_gen.in_ext_name,
+								self.file_template))
 
             # FILTERING
             # set input var name

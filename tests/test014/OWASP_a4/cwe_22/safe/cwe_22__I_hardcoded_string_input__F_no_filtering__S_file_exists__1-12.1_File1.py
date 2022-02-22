@@ -27,12 +27,12 @@ import sys
 
 def main():
         tainted_2 = None;;
-tainted_3 = None;;
+        tainted_3 = None;;
 
         
         tainted_2 = "hardcoded"
             
-tainted_3 = tainted_2;;
+        tainted_3 = tainted_2;;
         
 while True:
     

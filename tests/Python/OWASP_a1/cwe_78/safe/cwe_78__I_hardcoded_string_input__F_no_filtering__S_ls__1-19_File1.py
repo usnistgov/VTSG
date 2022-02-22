@@ -28,12 +28,12 @@ def function_878( param_878 ):
 
 
 def main():
-tainted_2 = None
-tainted_3 = None
-tainted_4 = None
+    tainted_2 = None
+    tainted_3 = None
+    tainted_4 = None
 
-tainted_2 = "hardcoded"
-tainted_4 = tainted_2
+    tainted_2 = "hardcoded"
+    tainted_4 = tainted_2
 
         
         # No filtering (sanitization)

@@ -25,7 +25,7 @@ import sys
 
 def function_166( param_166 ):
 tainted_2 = None
-tainted_3 = None
+    tainted_3 = None
 
         tainted_2 = param_166
         
@@ -34,11 +34,11 @@ tainted_3 = None
             
         return tainted_3
 def main():
-tainted_0 = None
-tainted_5 = None
+    tainted_0 = None
+    tainted_5 = None
 
-tainted_0 = input()
-tainted_5 = tainted_0
+    tainted_0 = input()
+    tainted_5 = tainted_0
 tainted_5 = function_166(tainted_0)
 
         #flaw

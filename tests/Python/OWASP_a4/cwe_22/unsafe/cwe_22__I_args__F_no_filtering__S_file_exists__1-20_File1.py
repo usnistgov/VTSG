@@ -24,11 +24,11 @@ import sys
 
 
 def main():
-tainted_0 = None
-tainted_5 = None
+    tainted_0 = None
+    tainted_5 = None
 
-tainted_0 = sys.argv[1]
-tainted_5 = tainted_0
+    tainted_0 = sys.argv[1]
+    tainted_5 = tainted_0
 
         var_526 = Class_526(tainted_0);
         tainted_5 = var_526.get_var_526();

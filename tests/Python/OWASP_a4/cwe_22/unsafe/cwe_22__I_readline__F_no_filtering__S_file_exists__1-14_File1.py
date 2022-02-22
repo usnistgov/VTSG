@@ -24,12 +24,12 @@ import sys
 
 
 def main():
-tainted_1 = None
-tainted_2 = None
-tainted_3 = None
+    tainted_1 = None
+    tainted_2 = None
+    tainted_3 = None
 
-tainted_1 = input()
-tainted_3 = tainted_1
+    tainted_1 = input()
+    tainted_3 = tainted_1
 
         # Declaring an array
         arr_1 = []

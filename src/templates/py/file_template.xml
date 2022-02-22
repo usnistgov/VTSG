@@ -39,8 +39,8 @@
 
 
 def main():
-{{local_var}}
-{{input_content}}
+    {{local_var}}
+    {{input_content}}
 {{filtering_content}}
 {{sink_content}}
 {{exec_queries_content}}

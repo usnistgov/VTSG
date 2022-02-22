@@ -3,12 +3,12 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Fri Feb 11 14:29:27 2022" *by "Paul E. Black"
+ *modified "Tue Feb 22 17:10:07 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
 import src.generator
-from src.synthesize_code import make_assign
+from src.synthesize_code import make_assign, get_indent
 
 class ComplexitiesGenerator(object):
     """
@@ -260,11 +260,13 @@ class ComplexitiesGenerator(object):
 
     def generate_local_var_code(self, local_var):
         '''Generate statement(s) to declare and initialize local variables. For example,
-                      "string localvar_1 = None;\nint localvar_2 = 0;"
-           There is no indentation (that's done in context) and does not end with a
+                      "string localvar_1 = None;\n    int localvar_2 = 0;"
+           Indentation precedes second and following vars, since macro replacement
+           only adds it to the first one.  String does not end with a
            new line (so a single statement just drops into a macro place).
         '''
         local_var_code = ""
+        local_var_indent = get_indent('local_var', self.template.code)
         # loop through every type
         for t in local_var:
             declare_type = self.template.get_type_var_code(t)
@@ -272,7 +274,10 @@ class ComplexitiesGenerator(object):
                 init = self.template.get_init_var_code(t)
                 # generate code to declare and initialize each variable of this type
                 for n in sorted(list(local_var[t])):
-                    # add a space if there is a string to declare the variable
+                    # for second and following vars, add indicated indent
+                    if local_var_code != "":
+                        local_var_code += local_var_indent
+                    # if there is a string to declare the variable, add it and a space
                     if declare_type != "":
                         local_var_code += declare_type + " "
                     local_var_code += make_assign(n, init, self.template) + "\n"

@@ -28,12 +28,12 @@ def function_876( param_876 ):
 
 
 def main():
-tainted_1 = None
-tainted_2 = None
-tainted_3 = None
+    tainted_1 = None
+    tainted_2 = None
+    tainted_3 = None
 
-tainted_1 = "hardcoded"
-tainted_3 = tainted_1
+    tainted_1 = "hardcoded"
+    tainted_3 = tainted_1
 
         tainted_2 = function_876(tainted_1)
         
