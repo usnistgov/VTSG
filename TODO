@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Feb 22 11:01:49 2022" *by "Paul E. Black"
+ *modified "Tue Feb 22 11:29:39 2022" *by "Paul E. Black"
  
 Things To Do for VTSG
 
@@ -11,7 +11,7 @@ Since the example sink.xml has //flaw, it should.
   Related: create a language especially for the example in the manual so we can rerun
 when VTSG changes.
 
-Get indentation working ("deteriministically"), for Python
+Get indentation working ("deterministically"), for Python
 
 Make sure the PHP and C# code runs, that is, that the generated programs are valid.
 Fix any problems . . .
@@ -65,5 +65,14 @@ Incorporate combinatorial test generation
     Now VTSG generates all combinations, like Juliet. It may be useful to generate
     all n-way combinations.  This allows *far* more situations to be generated
     without making millions of cases.
+
+
+OTHER? GENERAL?
+
+Add a --programming-language-directory command line option.  (Choose a more succinct
+name.)  When given, VTSG looks in that directory for the "language" instead of in
+src/templates.  We (will) have LOTS of test "languages". It would be less confusing if
+they could be somewhere else and only have "production" languages under
+src/templates.
 
 end of TODO
