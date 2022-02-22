@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Feb 16 11:15:06 2022" *by "Paul E. Black"
+# *modified "Tue Feb 22 17:17:00 2022" *by "Paul E. Black"
 
 default: test020
 
@@ -40,14 +40,17 @@ testSTerm: test011 test012 test013 test014
 test011: $(VTSG_FILES)
 	python3 vtsg.py -l $@
 	(cd `ls -dt TestSuite_*/test011 | head -1`;pwd;for f in `find . -name "*.py"`; do echo $$f; diff $$f $(TDIR)/test011/$$f;done)
+	sleep 1
 
 test012: $(VTSG_FILES)
 	python3 vtsg.py -l $@
 	(cd `ls -dt TestSuite_*/test012 | head -1`;pwd;for f in `find . -name "*.py"`; do echo $$f; diff $$f $(TDIR)/test012/$$f;done)
+	sleep 1
 
 test013: $(VTSG_FILES)
 	python3 vtsg.py -l $@
 	(cd `ls -dt TestSuite_*/test013 | head -1`;pwd;for f in `find . -name "*.py"`; do echo $$f; diff $$f $(TDIR)/test013/$$f;done)
+	sleep 1
 
 test014: $(VTSG_FILES)
 	python3 vtsg.py -l $@
