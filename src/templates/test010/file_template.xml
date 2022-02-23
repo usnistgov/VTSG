@@ -1,5 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!-- *modified "Wed Feb 23 12:48:24 2022" *by "Paul E. Black" -->
 
 <template name="test010">
     <file_extension>py</file_extension>
@@ -28,6 +29,7 @@
     <code>
 '''
   Test an unsafe case with NO curly-curly-flaw-curly-curly line.
+  Test unusual indentation: tab space tab
 '''
 '''
 {{ comments }}
@@ -42,8 +44,8 @@
 
 
 def main():
-    {{local_var}}
-    {{input_content}}
+	 	{{local_var}}
+	 	{{input_content}}
 {{filtering_content}}
 {{sink_content}}
 {{exec_queries_content}}

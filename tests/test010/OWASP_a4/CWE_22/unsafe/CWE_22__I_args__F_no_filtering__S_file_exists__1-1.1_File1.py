@@ -1,6 +1,7 @@
 
 '''
   Test an unsafe case with NO curly-curly-flaw-curly-curly line.
+  Test unusual indentation: tab space tab
 '''
 '''
 Command line args
@@ -27,11 +28,11 @@ import sys
 
 
 def main():
-    tainted_2 = None
-    tainted_3 = None
+	 	tainted_2 = None
+	 	tainted_3 = None
 
-    tainted_2 = sys.argv[1]
-    tainted_3 = tainted_2
+	 	tainted_2 = sys.argv[1]
+	 	tainted_3 = tainted_2
 
         if(1==1):
                 
