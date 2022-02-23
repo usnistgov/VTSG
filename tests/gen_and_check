@@ -1,7 +1,13 @@
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Wed Feb 23 10:30:13 2022" *by "Paul E. Black"
+# *modified "Wed Feb 23 11:50:55 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
+
+# VTSG produces three kinds of outputs:
+#  1. the generated test cases
+#  2. manifest files (lists of those cases)
+#  3. a generation report: how many of what were generated
+# This script runs VTSG then checks each against the expected files.
 
 # Usage:
 help_message="$ tests/gen_and_check {py,cs,php}"
@@ -34,7 +40,7 @@ fi
 TimeStamp=$(date +"%m-%d-%Y_%Hh%Mm%S")
 # choose a name for Photo file, which captures the output
 PF="TestPhoto_${TimeStamp}_${LD}_photo"
-# choose a name for Check file, which captures diff outputs
+# choose a name for Check file, which saves diff outputs
 CF="TestPhoto_${TimeStamp}_${LD}_check"
 
 # run VTSG and capture its output (generation report)
