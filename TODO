@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Wed Feb 23 11:14:12 2022" *by "Paul E. Black"
+ *modified "Wed Feb 23 13:31:20 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -88,5 +88,8 @@ name.)  When given, VTSG looks in that directory for the "language" instead of i
 src/templates.  We (will) have LOTS of test "languages". It would be less confusing if
 they could be somewhere else and only have "production" languages under
 src/templates.
+
+Write manifest in our current SARIF-style.  There is sarif_writer.py, which is a
+start from August 2020.  A newer implemention (Dec 2021) is in Paul's Work/Ockham.
 
 end of TODO
