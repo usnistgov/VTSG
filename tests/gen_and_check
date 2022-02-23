@@ -1,5 +1,5 @@
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Wed Feb 16 11:14:23 2022" *by "Paul E. Black"
+# *modified "Wed Feb 23 10:30:13 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -32,8 +32,10 @@ fi
 # Time Stamp matches name that VTGS will choose for the TestSuite
 #    note: since time may differ by a second, names may differ
 TimeStamp=$(date +"%m-%d-%Y_%Hh%Mm%S")
-# choose a name for Photo File, which captures the output
+# choose a name for Photo file, which captures the output
 PF="TestPhoto_${TimeStamp}_${LD}_photo"
+# choose a name for Check file, which captures diff outputs
+CF="TestPhoto_${TimeStamp}_${LD}_check"
 
 # run VTSG and capture its output (generation report)
 echo running vtsg.py -l $lang ...
@@ -43,18 +45,19 @@ python3 vtsg.py -l $lang | tee ${PF} 2>&1
 TSD=$(ls -dt TestSuite_*/${LD} | head -1)
 echo ${TSD}
 
-# check that the output matches
-diff ${PF} tests/${LD}_photo
+# check that the outputs match
+echo checking that outputs match | tee -a ${CF} > /dev/null # don't bother user
+diff ${PF} tests/${LD}_photo | tee -a ${CF} 2>&1
 
 # test directory, relative to the new TestSuite... directory
 TDIR="../../tests"
 
 # check that generated files match
-echo checking that generated files match ...
-(cd ${TSD};for f in $(find . -name "*.${lang}"); do cmp $f ${TDIR}/${LD}/$f;done)
+echo checking that generated files match ... | tee -a ${CF}
+(cd ${TSD};for f in $(find . -name "*.${lang}"); do cmp $f ${TDIR}/${LD}/$f;done) | tee -a ${CF} 2>&1
 
 # check that the manifests match
-echo checking manifests
-(cd ${TSD};for m in $(find . -name "manifest.xml"); do echo $m;${TDIR}/cmp_manifests.py $m ${TDIR}/${LD}/$m;done)
+echo checking manifests | tee -a ${CF}
+(cd ${TSD};for m in $(find . -name "manifest.xml"); do echo $m;${TDIR}/cmp_manifests.py $m ${TDIR}/${LD}/$m;done) | tee -a ${CF} 2>&1
 
 # end of gen_and_check
