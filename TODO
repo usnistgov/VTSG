@@ -1,7 +1,7 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Feb 22 11:29:39 2022" *by "Paul E. Black"
+ *modified "Wed Feb 23 11:14:12 2022" *by "Paul E. Black"
  
-Things To Do for VTSG
+Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
 
@@ -46,6 +46,13 @@ Add swapped argument errors, see Vineeth Kashyap https://arxiv.org/abs/2009.0911
 
 Add complexities from Kratkiewcz test cases
 
+Generalize the structure of VTSG.  Now it looks for inputs, filters, and queries in
+rigid combinations.  Maybe VTSG should read the template, then go hunting for each
+kind of module mentioned.  Connections between them, via variables or call/return,
+could be generalized.
+    I don't know if this is even needed.  We first must work on handling Juliet and
+other cases to discover any limitations VTSG has.
+
 
 GENERATE CASES SMARTER
 
@@ -54,12 +61,19 @@ Don't "declare" local variables if not necessary, e.g., in Python.
 Shorten the generated file name.  For instance, Juliet uses suffixes a, b, c,
 etc. when a test case includes multiple files.  VTSG adds _File1 to all files.
 
+Create s01, s02, s03, etc. subdirectories so there aren't hundreds of thousands of
+cases in one directory.
+
 Enhance VTSG to count and report (not print) cases.
     This is a prelude to combinatorial test generation, below
 
 Enhance VTSG to produce p% of cases.  That is, it would write 1 of every N
 combinations that it comes up with.  This is an easy way to approximate
 combinatorial tests.
+    An alternative is to (pseudo)randomly decide which case to write.  That is, write
+any case with probability p%.  This should write about p% of cases.  It must be
+PSEDUOrandom so we can provide a seed and generate exaclty the same cases in each
+test run.
 
 Incorporate combinatorial test generation
     Now VTSG generates all combinations, like Juliet. It may be useful to generate
