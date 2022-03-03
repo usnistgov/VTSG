@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Wed Feb 23 13:31:20 2022" *by "Paul E. Black"
+ *modified "Thu Mar  3 01:36:10 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -32,7 +32,7 @@ of code that the generator runs specifically running only the functions it needs
 each language.
 
 
-GENERATE MORE TYPES OF CASES
+GENERATE MORE KINDS OF CASES
 
 Extend VTSG & Python to handle (all?) Juliet-type cases
     (1) Now VTSG is structured to create injection cases. I don't know how well it
@@ -58,22 +58,22 @@ GENERATE CASES SMARTER
 
 Don't "declare" local variables if not necessary, e.g., in Python.
 
-Shorten the generated file name.  For instance, Juliet uses suffixes a, b, c,
-etc. when a test case includes multiple files.  VTSG adds _File1 to all files.
-
 Create s01, s02, s03, etc. subdirectories so there aren't hundreds of thousands of
 cases in one directory.
 
-Enhance VTSG to count and report (not print) cases.
-    This is a prelude to combinatorial test generation, below
-
 Enhance VTSG to produce p% of cases.  That is, it would write 1 of every N
-combinations that it comes up with.  This is an easy way to approximate
-combinatorial tests.
+combinations, including complexities, that it comes up with.  This is an easy way to
+approximate combinatorial tests.
     An alternative is to (pseudo)randomly decide which case to write.  That is, write
 any case with probability p%.  This should write about p% of cases.  It must be
 PSEDUOrandom so we can provide a seed and generate exaclty the same cases in each
 test run.
+    The -g (number generated) option does something vaguely like this.  However, it
+stops generation after N sink/filter/input/exec query combinations are generated.
+Search for number_generated in generator.py.
+
+Enhance VTSG to count and report (not print) cases.
+    This is a prelude to combinatorial test generation, see next.
 
 Incorporate combinatorial test generation
     Now VTSG generates all combinations, like Juliet. It may be useful to generate
@@ -83,6 +83,21 @@ Incorporate combinatorial test generation
 
 OTHER? GENERAL?
 
+Shorten the generated file name.  For instance, Juliet uses suffixes a, b, c,
+etc. when a test case includes multiple files.  VTSG adds _File1 to all files.
+    Or, add a --short-case-name option, to produce Juliet-like names.
+    A better alternative is to allow the user to specific generated file name in a
+general format, like strftime or ISO/IEC 9899 (C90).  Here is a sample:
+  %A is the full weekday name.
+  %a is the abbreviated weekday name.
+  %B is the full month name.
+  %b is the abbreviated month name.
+  %d is the day of the month as a decimal number (01-31).
+  %H is the hour (24-hour clock) as a decimal number (00-23).
+  %I is the hour (12-hour clock) as a decimal number (01-12).
+  %M is the minute as a decimal number (00-59).
+  %m is the month as a decimal number (01-12).
+
 Add a --programming-language-directory command line option.  (Choose a more succinct
 name.)  When given, VTSG looks in that directory for the "language" instead of in
 src/templates.  We (will) have LOTS of test "languages". It would be less confusing if
@@ -90,6 +105,7 @@ they could be somewhere else and only have "production" languages under
 src/templates.
 
 Write manifest in our current SARIF-style.  There is sarif_writer.py, which is a
-start from August 2020.  A newer implemention (Dec 2021) is in Paul's Work/Ockham.
+start from August 2020.  A newer implemention (Dec 2021) of sarif writer is in Paul's
+Work/Ockham.
 
 end of TODO
