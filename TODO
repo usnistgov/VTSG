@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu Mar  3 01:36:10 2022" *by "Paul E. Black"
+ *modified "Tue Mar  8 17:27:42 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -12,6 +12,13 @@ Since the example sink.xml has //flaw, it should.
 when VTSG changes.
 
 Get indentation working ("deterministically"), for Python
+
+Allow flaw_types other than CWE_*.  This requires using flaw_type, the whole string,
+instead of flaw_type_number, which skips the first four characters and returns the
+number.  The user interface accepts flaw numbers, which are matched with
+flaw_type_number.  Also subdirectories are created with cwe_89, for instance, when
+the string is CWE_89.  Somewhere those subdirectory names are created from the
+flaw_type_number.
 
 Make sure the PHP and C# code runs, that is, that the generated programs are valid.
 Fix any problems . . .
