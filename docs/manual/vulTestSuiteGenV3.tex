@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Feb 16 09:36:57 2022" *by "Paul E. Black"
+% *modified "Tue Mar  8 17:45:21 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -38,6 +38,8 @@
 \renewcommand{\bibsection}{}
 \setlength{\bibsep}{0.0pt}
 
+% hyphenate URLs in more places (must precede hyperref)
+\usepackage[hyphens,obeyspaces]{url}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
 	colorlinks = true,
@@ -296,7 +298,7 @@ We would appreciate acknowledgment if this document is used.
 \begin{center}
 \tableofcontents
 %\listoftables
-%\listoffigures
+\listoffigures
 \end{center}
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -316,14 +318,24 @@ synthetic programs expressing specific flaws.
 The programs can be used as 
 test cases to evaluate static analyzers. 
 Each test case targets one flaw. There are two types of test cases:
-cases with flawed code, leading to a vulnerability, and cases that
-have similar behavior, but have the flaw corrected. That is, no
-vulnerability.  Exactly corresponding vulnerable and non-vulnerable
-cases could, in theory, be generated. However, since each test case
+cases with flawed code (unsafe), leading to a vulnerability, and cases that
+have similar behavior, but have the flaw corrected, that is, no
+vulnerability (safe).  Exactly corresponding vulnerable and non-vulnerable
+cases could, in theory, be generated in pairs. However, since each test case
 is generated separately, there is no exact correspondence between 
 cases.
 
+NIST's Software Assurance Reference Dataset (SARD) has suites of paired test cases in
+the Juliet test suites for C/C++ and Java, which are available as SARD test suites
+108 and 109.  These and many other test suites are available at
+\href{https://samate.nist.gov/SARD/testsuite.php}
+     {https://samate.nist.gov/ SARD/testsuite.php}.
+
 The generator is written in Python 3.
+The VTSG git repository is at
+\href{https://github.com/usnistgov/VTSG}{https://github.com/ usnistgov/VTSG}.
+The list of files and the README.md file are given in App.~\ref{gitContent}.
+
 
 \subsection{History} 
 
@@ -336,51 +348,58 @@ Static Analysis Results Interchange Format (SARIF)
 Version 2.1.0~\cite{SARIF2.1.0} format.
 
 Readers can download the PHP and \CSharp\ test cases generated 
-by earlier versions from NIST’s Software Assurance Reference 
-Dataset (SARD):
-\href{http://samate.nist.gov/SARD}{http://samate.nist.gov/SARD}
-
-The global project can be found at: \href{https://github.com/usnistgov/VTSG}{https://github.com/usnistgov/VTSG}\\
+by earlier versions as SARD test suites 103 and 105 from
+\href{https://samate.nist.gov/SARD/testsuite.php}{https://samate.nist.gov/SARD/testsuite.php}.
 
 
 \subsection{Install Supporting Packages}
 
-\noindent The following instructions are provided for users, who may not have these packages already installed on their Linux machines. Users who already have these packages may skip this section.
+\noindent The following instructions are provided for users who may not have these
+packages already installed on their Linux machines. Users who already have these
+packages may skip this section.
 
-\noindent To download files from Github, one must install the \emph{Git} package. Use the following command to install git:
+\noindent To download files from Github, one must install the \emph{Git} package.
+Here is the command to install it:
 
 \begin{verbatim}
     sudo apt-get install git    
 \end{verbatim}
 
-\noindent To execute Python source code, one must install the \emph{pip Python} package manager. Use the following command to install it:
-
-\begin{verbatim}
-    sudo apt-get install python-pip
-\end{verbatim}
-
 \noindent VTSG is written in Python 3, so Python 3 must be installed, too.
-Use the following command to install Python 3:
+Here is the command to install it:
 
 \begin{verbatim}
     sudo apt-get install python3
 \end{verbatim}
 
-\noindent In addition, the \emph{pip Python 3} package manager must be installed, using the following command:
+\noindent To download Python source code packages, one must install the \emph{pip
+Python} package manager.
+Here is the command to install it:
+
+\begin{verbatim}
+    sudo apt-get install python-pip
+\end{verbatim}
+
+\noindent One may also have to install the \emph{pip Python 3} package manager.
+Here is the command to install it:
 
 \begin{verbatim}
     sudo apt-get install python3-pip
 \end{verbatim}
 
-\noindent To validate \CSharp\ test cases, \emph{mono} and \emph{mcs} must be installed. The Mono project created \emph{mono} as an open source platform, which implements the .NET Framework. Class libraries and \CSharp\ compilation are enabled by \emph{mcs} (\href{http://github.com/mono/mono}{http://github.com/mono/mono}).
+\noindent To validate \CSharp\ test cases, \emph{mono} and \emph{mcs} must be
+installed to run them. The Mono project created \emph{mono} as an open source
+platform, which
+implements the .NET Framework. Class libraries and \CSharp\ compilation are enabled
+by \emph{mcs} (\href{http://github.com/mono/mono}{http://github.com/mono/mono}).
 
-\noindent Use the following command to obtain mono-complete:
+\noindent Here is the command to install it:
 
 \begin{verbatim}
     sudo apt-get install mono-complete
 \end{verbatim}
 
-\noindent Type the following command to obtain \emph{mcs}:
+\noindent Here is the command to install it:
 
 \begin{verbatim}
     sudo apt-get install mcs
@@ -389,25 +408,35 @@ Use the following command to install Python 3:
 \subsection{Install VTSG}
 
 \noindent To copy the generic VTSG from GitHub to a local Linux machine, change to a
-directory under which you want VTSG installed.
+directory under which you want to install VTSG.
 
-\noindent Returning to the GitHub website, one will see a green box, labelled ``Clone or download''. Click on it and use the clipboard tab to copy the web URL.
+\noindent Looking at the GitHub website, one will see a green box labeled ``Code''.
+See Fig.~\ref{fig:clone button}.
+Click on it, then click on the ``copy'' icon to copy the web URL.
 
-\noindent Type the following command to copy the source code and other material to the local directory:
+\begin{figure}[htbp]
+  \includegraphics[width=1\linewidth]{fig_clone_tab.png}
+  \caption{usnistgov/VTSG: button to clone repository.}
+  \label{fig:clone button}
+\end{figure}
+
+\noindent Here is the command to copy the source code and other material to the local
+directory:
 
 \begin{verbatim}
     git clone https://github.com/usnistgov/VTSG.git
 \end{verbatim}
 
-\noindent If one types the \verb|ls -a| command, one will see that the \textbf{VTSG} directory was created.
+\noindent If one types the \verb|ls| command, one will see that the \textbf{VTSG}
+directory was created.
 
-\noindent Go to that directory, using the following command:
+\noindent Go into that directory, using this command:
 
 \begin{verbatim}
     cd VTSG
 \end{verbatim}
 
-\noindent To install the dependencies, use the following command:
+\noindent To install the dependencies, use this command:
 
 \begin{verbatim}
     pip3 install --user -r requirements.txt
@@ -418,13 +447,13 @@ directory under which you want VTSG installed.
 
 There are two groups who will typically use VTSG. The first group comprises people
 requiring test cases written in PHP, \CSharp, or Python to evaluate a static
-analyzer. These users must know how to invoke VTSG with command line interface and
-retrieve the appropriate sample from the generated and categorized folders.
+analyzer. These users must know how to invoke VTSG with the command line interface
+and retrieve the appropriate sample from the generated and categorized folders.
 
 The second targeted audience of the VTSG is comprised of people wishing to generate
 test cases using a programming language other than the languages currently
 supported. The second group of users must use the template to construct the program
-using the XML tags, execute VTSG with command line interface or another input method,
+using the XML tags, execute VTSG with the command line interface,
 and retrieve the samples from the generated and categorized file folders.
 
 \subsection{Vulnerabilities Supported by VTSG}
@@ -534,10 +563,10 @@ means generate all combinations.
 
 Each combination of sink, filter, input, and exec query is elaborated
 with DEPTH nested complexities.  Suppose there are 5 complexities
-and VTSG is invoked with \verb|-r 2|.  Each combination will have
+and VTSG is invoked with \verb|-r 2|.  Each combination will yield
 1 (no complexities) + 5 (each complexity, not nested) + 
 25 (each complexities nested within every complexity) = 31 test cases.  
-Hence VTSG may generate \emph{far} more test cases than the number
+Hence VTSG will generate \emph{far} more test cases than the number
 given with the -g option.
 
 \subsection{Example Invocations}
@@ -552,7 +581,10 @@ Generate all PHP test cases:
 $ python3 vtsg.py -l php
 \end{verbatim}
 
-Generate a \CSharp\ (\verb|-l cs|) test suite made of non-vulerable (unsafe) test
+This takes about 25 minutes.  (Generating all the \CSharp\ cases takes about four
+minutes.)
+
+Generate a \CSharp\ (\verb|-l cs|) test suite made of vulerable (unsafe) test
 cases (\verb|-u|) with SQL injection vulnerabilities (\verb|--cwe=89|) 
 with up to 3 nested levels of complexity (\verb|-r 3|).
 \begin{verbatim}
@@ -573,7 +605,7 @@ $ python3 vtsg.py -l cs -r 3 --cwe=89 -u
   \label{fig:VTS operation overview}
 \end{figure}
 
-{\large Explain that there are TWO structures. The structure of test
+{\large Explain that this docment describes TWO structures. The structure of test
   cases generated and the structure of VTSG.  Make it clear when each
   is being explained.}
 
@@ -601,10 +633,27 @@ Sec.~\ref{sec:source files}.
 Details of the generation process are explained in
 Sec.~\ref{sec: generation detail}.
 
+When invoked to generate test cases, VTSG creates a directory with all the results.
+The directory is named for the date and time created, for example,
+\verb|TestSuite_03-08-2022_16h46m35|.  The language directory, \verb|PHP|
+\verb|Csharp|, is created in this directory.  This name comes from the \verb|name|
+in the \verb|file_template.xml| file.  See Sec.~\ref{sec: file template}.
+
+Under the language directory, VTSG creates one directory for each flaw group, for
+instance, \verb|OWASP_a1| or \verb|OWASP_a4|.  These come from the \verb|flaw_group|
+in the \verb|sink.xml| file; see Sec.~\ref{sec:sink modules}.
+Under each flaw group directory is a subdirectory for each specific flaw type, for
+instance, \verb|CWE_78| or \verb|CWE_89|.  These come from the \verb|flaw_type|
+entries, which are also in the \verb|sink.xml| file.
+VTSG also creates a manifest file of all the test cases generated, named
+\verb|manifest.xml|.
+Under the CWE directory are directories for safe or unsafe test cases, depending on
+which are generated.
+
 \subsection{VTSG Directory Structure}
 \label{sec: directory structure}
 
-All these types of files are kept in a \verb|templates| subdirectory.
+All the XML files are kept in a \verb|templates| subdirectory.
 Under this is one subdirectory for each language.  VTSG chooses the
 directory based on the language selected in the \verb|-l| command line
 option.  Each language subdirectory has six files for that language.
@@ -621,10 +670,10 @@ authorship, see Sec.~\ref{sec: file template}, and a
 for Template, Input, Filter, and all other XML files.
 
 
-\subsection{Generation Process}
+\subsection{Details of Test Case Generation}
 \label{sec: generation detail}
 
-Each test case is constructed based on the file Template, as shown
+Each test case is constructed based on the file template, as shown
 in Fig.~\ref{fig:VTS operation overview}. Test cases are 
 programs in a specific program language.  
 Each test case is generated by
@@ -779,7 +828,7 @@ layers or depths of such nesting structures.
 
 The Complexity identifications currently available for PHP 
 and \CSharp\ are listed in 
-Table~\ref{tab:complexity IDs} in the Appendix.
+Table~\ref{tab:complexity IDs} in App.~\ref{sec: complexity and condition IDs}.
 
 Here is an example code complexity from \verb|cwe_89__I_shell_commands__F_no_|\\ 
 \verb|filtering__S_select_from-concatenation_simple_quote__EQ_mysql__3-2.5-| \\ 
@@ -1409,8 +1458,9 @@ VTSG names test case files as
         \item CPLX1, CPLX2, \ldots: ID given in 
             code complexity modules, 
             see Sec.~\ref{sec: complexity modules}. 
-            Table~\ref{tab:complexity IDs} in the appendix 
-            lists complexitie IDs currently used with 
+            Table~\ref{tab:complexity IDs} in
+            App.~\ref{sec: complexity and condition IDs}
+             lists complexity IDs currently used with
             PHP or \CSharp.
             (optional)
         \item COND: ID given in test condition modules,
@@ -1646,5 +1696,35 @@ Conditions are defined in Test Condition Modules,
 see Sec.~\ref{sec: condition modules}.
 
 {\Large Can any condition go with any complexity?}
+
+
+% make this begin on a new page (not a new column) even in
+% two-column mode
+\clearpage
+
+\section{Contents of git Repository}
+\label{gitContent}
+
+\begin{figure}[htbp]
+  \includegraphics[width=1\linewidth]{fig_git_files.png}
+  \caption{Snapshot of files in the VTSG git repository, which is at
+    \href{https://github.com/usnistgov/VTSG}{https://github.com/ usnistgov/VTSG},
+    as of 8 March 2022.}
+  \label{fig:git files}
+\end{figure}
+
+\begin{figure}[htbp]
+  \includegraphics[width=0.8\linewidth]{fig_README.md.png}
+  \caption{README.md file, which is at
+    \href{https://github.com/usnistgov/VTSG/blob/master/README.md}
+         {https://github.com/usnistgov/VTSG/blob/master/ README.md},
+    as of 8 March 2022.}
+  \label{fig:README.md file}
+\end{figure}
+
+
+%\section*{Appendix B: Change Log}
+%\addcontentsline{toc}{section}{Appendix B: Change Log}
+%If updating document with errata, detail changes made to document – delete if not applicable. \\
 
 \end{document}
