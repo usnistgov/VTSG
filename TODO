@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Mar  8 17:27:42 2022" *by "Paul E. Black"
+ *modified "Wed Mar  9 17:48:05 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -22,6 +22,27 @@ flaw_type_number.
 
 Make sure the PHP and C# code runs, that is, that the generated programs are valid.
 Fix any problems . . .
+
+C#
+  - check all str functions
+  - Complexities :
+      - if        : Testing
+      - ternary   : None (possible?)
+      - switch    : Testing
+      - goto      : Testing
+      - loop      : Testing
+          - for       : Testing
+          - while     : Testing
+          - foreach   : Testing
+      - function  : Testing (only trasversal/in/out)
+      - classes   : Testing (only trasversal/in/out)
+  # Not important
+  - benchmark functions
+  - use cython or JVM for optimization ?
+  # Hard to do
+  - add C# print debug to test if safe/unsafe or if it's executed
+  - create bash script to compile and run all C# code
+      -> compilation script done
 
 Isolate code related to complexities.  Complexities relating to classes are
 functional, however, the code needs to be isolated so it does not interfere with

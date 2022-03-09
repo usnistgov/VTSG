@@ -1,4 +1,4 @@
-# Vulnerability Test Suite Generator
+# Vulnerability Test Suite Generator (VTSG)
 
 Program to generate vulnerable and fixed synthetic test cases expressing specific flaws.
 
@@ -29,7 +29,7 @@ You can also install this dependency with your package manager (if such a packag
     - [sudo] aptitude install python3-setuptools
     - [sudo] aptitude install python3-sphinx
 
-#### Manually Installation
+#### Manual Installation
 
 Jinja2 installation instructions [here](http://jinja.pocoo.org/docs/dev/intro/#installation)
 
@@ -43,7 +43,7 @@ Docopt installation instructions [here](https://github.com/docopt/docopt#install
 $ python3 vtsg.py -l cs
 ```
 
-## Need help ?
+## Need help?
 
 ```sh
 $ python3 vtsg.py --help
