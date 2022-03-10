@@ -1,7 +1,7 @@
 """
 sink_sample module
 
- *modified "Mon Feb 14 13:07:13 2022" *by "Paul E. Black"
+ *modified "Thu Mar 10 08:29:47 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -87,16 +87,10 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
         """
         Flaw type.
 
-        :getter: Returns this type.
+        :getter: Returns this type, e.g., CWE_89, BOF, or STR30-PL
         :type: str
         """
         return self._flaw_type
-
-    def flaw_type_number(self):
-        """
-        Returns the flaw type number.
-        """
-        return int(self._flaw_type[4:])
 
     @property
     def flaw_group(self):

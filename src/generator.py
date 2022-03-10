@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Feb 22 17:26:17 2022" *by "Paul E. Black"
+ *modified "Thu Mar 10 09:54:36 2022" *by "Paul E. Black"
 """
 
 import time
@@ -175,7 +175,7 @@ class Generator(object):
         filter or select exec query.
         """
         for sink in self.tab_sink:
-            if ((not self.flaw_type_user or sink.flaw_type_number() in self.flaw_type_user)
+            if ((not self.flaw_type_user or sink.flaw_type in self.flaw_type_user)
                and (not self.flaw_group_user or sink.flaw_group in self.flaw_group_user)):
                 self.current_sink = sink
                 if sink.input_type != "none":
@@ -554,11 +554,11 @@ class Generator(object):
         """
         return {sink.flaw_group for sink in self.tab_sink}
 
-    def get_cwe_list(self):
+    def get_flaw_list(self):
         """
         Return all flaw types got from the XML files.
         """
-        return {sink.flaw_type_number() for sink in self.tab_sink}
+        return {sink.flaw_type for sink in self.tab_sink}
 
     def is_safe_selection(self):
         """
@@ -607,13 +607,13 @@ class Generator(object):
 
     def create_map_CWE_group(self):
         """
-        Create a dict which associate a list containing the numbers of CWE (int) to a flaw group (str).
+        Create a dict with a list of flaw types (str) associated to each flaw group (str).
         """
         for group in self.get_group_list():
             self.map_CWE_group[group] = []
 
         for cwe in self.tab_sink:
-            self.map_CWE_group[cwe.flaw_group].append(cwe.flaw_type_number())
+            self.map_CWE_group[cwe.flaw_group].append(cwe.flaw_type)
 
     def get_groups_to_generate(self):
         """

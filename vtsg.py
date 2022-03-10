@@ -1,4 +1,4 @@
-# *modified "Tue Feb  8 16:47:43 2022" *by "Paul E. Black"
+# *modified "Thu Mar 10 11:13:33 2022" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
@@ -32,31 +32,31 @@ List of flaw groups:
     \n\tOWASP_a9        \tUCWKV (Using Components With Known Vulnerabilities)\
     \n\tOWASP_a10       \tURF (URL Redirects and Forwards)
 
-List of CWEs:
-    \n\t22        \tPath Traversal\
-    \n\t78        \tCommand OS Injection\
-    \n\t79        \tXSS\
-    \n\t89        \tSQL Injection\
-    \n\t90        \tLDAP Injection\
-    \n\t91        \tXPath Injection\
-    \n\t95        \tCode Injection\
-    \n\t98        \tFile Injection\
-    \n\t209       \tInformation Exposure Through an Error Message\
-    \n\t311       \tMissing Encryption of Sensitive Data\
-    \n\t327       \tUse of a Broken or Risky Cryptographic Algorithm\
-    \n\t476       \tNULL Pointer Dereference
-    \n\t601       \tURL Redirection to Untrusted Site\
-    \n\t862       \tInsecure Direct Object References"
+List of flaw types:
+    \n\tCWE_22        \tPath Traversal\
+    \n\tCWE_78        \tCommand OS Injection\
+    \n\tCWE_79        \tXSS\
+    \n\tCWE_89        \tSQL Injection\
+    \n\tCWE_90        \tLDAP Injection\
+    \n\tCWE_91        \tXPath Injection\
+    \n\tCWE_95        \tCode Injection\
+    \n\tCWE_98        \tFile Injection\
+    \n\tCWE_209       \tInformation Exposure Through an Error Message\
+    \n\tCWE_311       \tMissing Encryption of Sensitive Data\
+    \n\tCWE_327       \tUse of a Broken or Risky Cryptographic Algorithm\
+    \n\tCWE_476       \tNULL Pointer Dereference
+    \n\tCWE_601       \tURL Redirection to Untrusted Site\
+    \n\tCWE_862       \tInsecure Direct Object References"
 
 Examples:
 
     test_cases_generator.py -l cs                         (generate files with all CWE registered, safe and unsafe, complexity depth = 1)
     test_cases_generator.py -l cs -f IDOR                 (generate files with all CWE belonging to IDOR group, and other options to default)
     test_cases_generator.py -l cs -f IDOR -f Injection    (generate files with all CWE belonging to IDOR group and Injection)
-    test_cases_generator.py -l cs -c 89                   (generate files with the CWE 354)
-    test_cases_generator.py -l cs -c 89 -c 78             (generate files with the CWE 89 and CWE 78)
+    test_cases_generator.py -l cs -c CWE_354              (generate files with the CWE 354)
+    test_cases_generator.py -l cs -c CWE_89 -c CWE_78     (generate files with the CWE 89 and CWE 78)
     test_cases_generator.py -l cs -r 2                    (generate all files with the complexity depth equals to 2, two level of imbrication)
-    test_cases_generator.py -l cs -g 1                    (generate all files with only one combination of input, filtering and sink for all CWE)
+    test_cases_generator.py -l cs -g 1                    (generate all files with only one combination of input, filtering and sink for all flaws)
     test_cases_generator.py -l cs -s                      (generate all files where the vulnerabilities have been fixed)
     test_cases_generator.py -l cs -u                      (generate all files where there is still vulnerabilities)
 
@@ -64,7 +64,7 @@ Examples:
 
     For example:
 
-        test_cases_generator.py -l cs -c 78 -f IDOR -r 1 -g 1 -s
+        test_cases_generator.py -l cs -c CWE_78 -f IDOR -r 1 -g 1 -s
 """
 
 
@@ -95,30 +95,29 @@ def main():
 
     # check if language exists
     if not FileManager.exist_language(language):
-        print("Patch your language folder '{}'".format(language))
+        print(f"Add '{language}' to src/templates folder")
         sys.exit(1)
 
     # create generator for specified language
     g = Generator(date, language=language)
 
     # List of flaws
-    flaw_list = g.get_group_list()
-    cwe_list = g.get_cwe_list()
+    group_list = g.get_group_list()
+    flaw_list = g.get_flaw_list()
 
     flaw_group_user = [x for x in args["--flaw-group"]]
-    for flaw in flaw_group_user:
-        if flaw not in flaw_list:
-            print("There is no flaws associated with the given flaw group (-f {} option).\
-                  See --help.".format(flaw))
+    for group in flaw_group_user:
+        if group not in group_list:
+            print(f'Language {language} does not have flaw group {group}. See --help.')
             sys.exit(1)
     try:
-        flaw_type_user = [int(x) for x in args["--cwe"]]
+        flaw_type_user = [x for x in args["--cwe"]]
     except ValueError:
         print("Invalid format. Value of the -c option must be an integer. See --help")
         sys.exit(1)
-    for cwe in flaw_type_user:
-        if cwe not in cwe_list:
-            print("There is no flaws associated with the given CWE (-c {} option). See --help.".format(cwe))
+    for flaw in flaw_type_user:
+        if flaw not in flaw_list:
+            print(f'Language {language} does not have flaw type {flaw}. See --help.')
             sys.exit(1)
     if args["--safe"]:
         safe = True

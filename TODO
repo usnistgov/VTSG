@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Wed Mar  9 17:48:05 2022" *by "Paul E. Black"
+ *modified "Thu Mar 10 11:42:28 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -12,13 +12,6 @@ Since the example sink.xml has //flaw, it should.
 when VTSG changes.
 
 Get indentation working ("deterministically"), for Python
-
-Allow flaw_types other than CWE_*.  This requires using flaw_type, the whole string,
-instead of flaw_type_number, which skips the first four characters and returns the
-number.  The user interface accepts flaw numbers, which are matched with
-flaw_type_number.  Also subdirectories are created with cwe_89, for instance, when
-the string is CWE_89.  Somewhere those subdirectory names are created from the
-flaw_type_number.
 
 Make sure the PHP and C# code runs, that is, that the generated programs are valid.
 Fix any problems . . .
@@ -132,8 +125,17 @@ src/templates.  We (will) have LOTS of test "languages". It would be less confus
 they could be somewhere else and only have "production" languages under
 src/templates.
 
+The built-in tests rule in the Makefile leave a lot of "junk" files and directories
+in the current directory.  Put all the self-test stuff in another directory so the
+top-level directory doesn't get cluttered.
+
 Write manifest in our current SARIF-style.  There is sarif_writer.py, which is a
 start from August 2020.  A newer implemention (Dec 2021) of sarif writer is in Paul's
 Work/Ockham.
+
+Change --cwe option to be something like --flaw_type.  Now that these can be, say,
+BF or SEI CERT Secure Coding Standards
+https://wiki.sei.cmu.edu/confluence/display/seccode/
+the option should be more generic.
 
 end of TODO
