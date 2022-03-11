@@ -1,0 +1,28 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2022-03-11</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_03-11-2022_08h21m53/test010/Zarahemla/CWE_22/unsafe/CWE_22__I_args__F_no_filtering__S_ls__0_File1.py" language="test010">
+			<flaw line="43" name ="CWE_22"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2022-03-11</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_03-11-2022_08h21m53/test010/Zarahemla/CWE_22/unsafe/CWE_22__I_args__F_no_filtering__S_ls__1-1.1_File1.py" language="test010">
+			<flaw line="45" name ="CWE_22"/>
+		</file>
+
+	</testcase>
+
+</container>

@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu Mar 10 11:42:28 2022" *by "Paul E. Black"
+ *modified "Fri Mar 11 08:43:49 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -125,7 +125,7 @@ src/templates.  We (will) have LOTS of test "languages". It would be less confus
 they could be somewhere else and only have "production" languages under
 src/templates.
 
-The built-in tests rule in the Makefile leave a lot of "junk" files and directories
+The built-in-test rules in the Makefile leave a lot of "junk" files and directories
 in the current directory.  Put all the self-test stuff in another directory so the
 top-level directory doesn't get cluttered.
 

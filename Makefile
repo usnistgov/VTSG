@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Thu Mar 10 11:30:17 2022" *by "Paul E. Black"
+# *modified "Fri Mar 11 08:40:10 2022" *by "Paul E. Black"
 
 default: test020
 
@@ -31,17 +31,18 @@ TDIR = ../../tests
 
 # test for unsafe file WITHOUT {{flaw}}
 # test flaw types other than CWE_*
+# test flaw groups other than OWASP_*
 test010: $(VTSG_FILES)
 	python3 vtsg.py -l $@
 	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/test010/$$f;done)
 	sleep 1
 
 # tests for command line interface
-testCLI: TestCLI1 TestCLI2 TestCLI3
+testCLI: TestCLI1 TestCLI2 TestCLI3 TestCLI4 TestCLI5
 
 # unknown language
 TestCLI1:
-	python3 vtsg.py -l unknownLang | tee $(@)_photo
+	python3 vtsg.py --language=unknownLang | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 	sleep 1
 
@@ -53,7 +54,20 @@ TestCLI2:
 
 # generate one of the flaw types in the language
 TestCLI3:
-	python3 vtsg.py -l test010 -c IDS00-PL | tee $(@)_photo
+	python3 vtsg.py -l test010 --cwe=IDS00-PL | tee $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/Test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+	sleep 1
+
+# flaw group not in the language
+TestCLI4:
+	python3 vtsg.py -l test010 --flaw-group=Santa\ Monica | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+	sleep 1
+
+# generate one of the flaw groups in the language
+TestCLI5:
+	python3 vtsg.py -l test010 -f Zarahemla | tee $(@)_photo
 	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/Test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 	sleep 1
