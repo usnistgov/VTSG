@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Fri Mar 11 08:43:49 2022" *by "Paul E. Black"
+ *modified "Mon Mar 14 16:37:09 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -137,5 +137,8 @@ Change --cwe option to be something like --flaw_type.  Now that these can be, sa
 BF or SEI CERT Secure Coding Standards
 https://wiki.sei.cmu.edu/confluence/display/seccode/
 the option should be more generic.
+
+Update contact and lincense information in setup.py.  (Re)register in PyPI. Let
+Bertrand know about this new GitHub reqpository, so he can "point" his to this one.
 
 end of TODO
