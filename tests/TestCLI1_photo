@@ -1,2 +1,2 @@
 [ERROR] no directory found for unknownLang
-Add 'unknownLang' to src/templates folder
+Create 'unknownLang' directory in src/templates folder

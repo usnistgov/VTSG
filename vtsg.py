@@ -1,4 +1,4 @@
-# *modified "Thu Mar 10 11:13:33 2022" *by "Paul E. Black"
+# *modified "Wed Aug 17 08:42:10 2022" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
@@ -50,15 +50,15 @@ List of flaw types:
 
 Examples:
 
-    test_cases_generator.py -l cs                         (generate files with all CWE registered, safe and unsafe, complexity depth = 1)
-    test_cases_generator.py -l cs -f IDOR                 (generate files with all CWE belonging to IDOR group, and other options to default)
-    test_cases_generator.py -l cs -f IDOR -f Injection    (generate files with all CWE belonging to IDOR group and Injection)
-    test_cases_generator.py -l cs -c CWE_354              (generate files with the CWE 354)
-    test_cases_generator.py -l cs -c CWE_89 -c CWE_78     (generate files with the CWE 89 and CWE 78)
-    test_cases_generator.py -l cs -r 2                    (generate all files with the complexity depth equals to 2, two level of imbrication)
-    test_cases_generator.py -l cs -g 1                    (generate all files with only one combination of input, filtering and sink for all flaws)
-    test_cases_generator.py -l cs -s                      (generate all files where the vulnerabilities have been fixed)
-    test_cases_generator.py -l cs -u                      (generate all files where there is still vulnerabilities)
+    test_cases_generator.py -l cs                         (generate C# cases with all CWEs coded, safe and unsafe, complexity depth = 1)
+    test_cases_generator.py -l php -f IDOR                (generate PHP cases with all CWEs belonging to IDOR group, and other options to default)
+    test_cases_generator.py -l cs -f IDOR -f Injection    (generate cases with all CWEs belonging to IDOR or Injection groups)
+    test_cases_generator.py -l cs -c CWE_354              (generate cases with CWE 354)
+    test_cases_generator.py -l cs -c CWE_89 -c CWE_78     (generate cases with CWE 89 or CWE 78)
+    test_cases_generator.py -l cs -r 2                    (generate cases with the complexity depth equals to 2, two level of imbrication)
+    test_cases_generator.py -l cs -g 1                    (generate cases with only one combination of input, filtering and sink for all flaws)
+    test_cases_generator.py -l cs -s                      (generate cases where the vulnerabilities have been fixed)
+    test_cases_generator.py -l cs -u                      (generate cases where there are vulnerabilities)
 
     All these options can be combinated (except for -s and -u).
 
@@ -90,12 +90,12 @@ def main():
     if args["--language"]:
         language = args["--language"]
     else:
-        print("Specify a language with -l/--language (cs, php, python)")
+        print("Specify a language with -l/--language (cs, php, py)")
         sys.exit(1)
 
     # check if language exists
     if not FileManager.exist_language(language):
-        print(f"Add '{language}' to src/templates folder")
+        print(f"Create '{language}' directory in src/templates folder")
         sys.exit(1)
 
     # create generator for specified language
@@ -113,12 +113,15 @@ def main():
     try:
         flaw_type_user = [x for x in args["--cwe"]]
     except ValueError:
-        print("Invalid format. Value of the -c option must be an integer. See --help")
+        print("Invalid option. Value of the -c option must be an integer. See --help")
         sys.exit(1)
     for flaw in flaw_type_user:
         if flaw not in flaw_list:
             print(f'Language {language} does not have flaw type {flaw}. See --help.')
             sys.exit(1)
+    if args["--safe"] and args["--unsafe"]:
+        print("Invalid option. Cannot specify both -s and -u. See --help")
+        sys.exit(1)
     if args["--safe"]:
         safe = True
         unsafe = False
@@ -130,23 +133,23 @@ def main():
         arg = args["--depth"]
         g.max_recursion = int(arg) if arg is not None else 1
     except ValueError:
-        print("Invalid format. Value of the -r option must be an integer. See --help")
+        print("Invalid option. Value of the -r option must be an integer. See --help")
         sys.exit(1)
     try:
         arg = args["--number-generated"]
         g.number_generated = int(arg) if arg is not None else -1
     except ValueError:
-        print("Invalid format. Value of the -g option must be an integer. See --help")
+        print("Invalid option. Value of the -g option must be an integer. See --help")
         sys.exit(1)
 
     # set user list
     g.set_flaw_type_user(flaw_type_user)
     g.set_flaw_group_user(flaw_group_user)
 
-    # run generation
+    # run generator
     g.generate(debug=debug, generate_safe=safe, generate_unsafe=unsafe)
 
-    # check if astyle is here
+    # run astyle if it is here
     if os.path.isfile(ASTYLE_PATH):
         print("Indentation ...")
         cmd = ASTYLE_PATH+" -r TestSuite_"+date+"/*."+g.get_extension()+" --style=java --suffix=none --indent-switches -q"
