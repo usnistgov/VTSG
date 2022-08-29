@@ -39,7 +39,6 @@ def main():
             
 
 	#flaw
-
         os.path.exists(tainted_1)
 
 if __name__ == '__main__':

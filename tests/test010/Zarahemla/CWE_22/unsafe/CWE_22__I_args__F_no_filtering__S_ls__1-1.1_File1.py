@@ -41,7 +41,6 @@ def main():
             
 
         #flaw
-
         os.system('ls ' + tainted_3);
             
 

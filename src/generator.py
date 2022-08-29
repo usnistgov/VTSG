@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Thu Mar 10 09:54:36 2022" *by "Paul E. Black"
+ *modified "Mon Aug 29 15:49:45 2022" *by "Paul E. Black"
 """
 
 import time
@@ -344,7 +344,7 @@ class Generator(object):
     # seventh step : compose previous code chunks
     def compose(self):
         """
-        This method compose previous selected code chunk into a final code.
+        This method composes previously selected code chunks into a final program.
         Complexities are composed with the class complexities_generator and the filtering is incluse into them.
         After we add input, complexities with filtering, sink, exec query into the template code.
         Also, we add include, license, comments, into the template.
@@ -375,7 +375,7 @@ class Generator(object):
                 classes_imports.append(c['name'])
             # We check if the filtering code into complexities is executed or not
             self.executed = compl_gen.executed
-            # We imorts the new template who contain complexities
+            # import the new template that contains complexities
             self.template_code = compl_gen.get_template()
         else:
             self.template_code = self.file_template.code
@@ -421,7 +421,7 @@ class Generator(object):
         flaw_str = ""
         if not self.is_safe_selection():
             # this flag is use to compute the line of the flaw in final file
-            flaw_str = self.file_template.comment['inline']+"flaw\n"
+            flaw_str = self.file_template.comment['inline']+"flaw"
 
         # SINK
         sink_code = self.current_sink.code
