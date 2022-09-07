@@ -27,20 +27,19 @@ def main():
     tainted_1 = None
     tainted_2 = None
     tainted_3 = None
-
+    
     tainted_1 = input()
     tainted_3 = tainted_1
-
-        var_174 = Class_174(tainted_1)
-        tainted_2 = var_174.get_var_174()
-        
-        # No filtering (sanitization)
-        tainted_3 = tainted_2
-            
-
-        #flaw
-
-        os.path.exists(tainted_3)
-
+    
+    var_174 = Class_174(tainted_1)
+    tainted_2 = var_174.get_var_174()
+    
+    # No filtering (sanitization)
+    tainted_3 = tainted_2
+    
+    
+    #flaw
+    os.path.exists(tainted_3)
+    
 if __name__ == '__main__':
         main()

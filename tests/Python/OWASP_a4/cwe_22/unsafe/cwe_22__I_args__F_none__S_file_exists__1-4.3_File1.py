@@ -26,21 +26,20 @@ import sys
 def main():
     tainted_2 = None
     tainted_3 = None
-
+    
     tainted_2 = sys.argv[1]
     tainted_3 = tainted_2
-
-        if((4+2<=42)):
-                
+    
+    if((4+2<=42)):
+        
         # No filtering (sanitization)
         tainted_3 = tainted_2
-            
-        elif(not (4+2<=42)):
-                {}
-
-        #flaw
-
-        os.path.exists(tainted_3)
-
+        
+    elif(not (4+2<=42)):
+        {}
+    
+    #flaw
+    os.path.exists(tainted_3)
+    
 if __name__ == '__main__':
         main()

@@ -24,26 +24,25 @@ import sys
 
 
 def function_524( param_524 ):
-        return param_524
+    return param_524
 
 
 def main():
     tainted_2 = None
     tainted_3 = None
     tainted_4 = None
-
+    
     tainted_2 = sys.argv[1]
     tainted_4 = tainted_2
-
-        
-        # No filtering (sanitization)
-        tainted_3 = tainted_2
-            
-        tainted_4 = function_524(tainted_3)
-
-        #flaw
-
-        os.path.exists(tainted_4)
-
+    
+    
+    # No filtering (sanitization)
+    tainted_3 = tainted_2
+    
+    tainted_4 = function_524(tainted_3)
+    
+    #flaw
+    os.path.exists(tainted_4)
+    
 if __name__ == '__main__':
         main()

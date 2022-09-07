@@ -26,15 +26,15 @@ import sys
 def main():
     tainted_0 = None
     tainted_5 = None
-
-    tainted_0 = "hardcoded"
+    
+    tainted_0 = "-d /;echo Vulnerability: user command executed"
     tainted_5 = tainted_0
-
-        var_349 = Class_349(tainted_0);
-        tainted_5 = var_349.get_var_349();
-
-        
-        os.path.exists(tainted_5)
-
+    
+    var_349 = Class_349(tainted_0);
+    tainted_5 = var_349.get_var_349();
+    
+    
+    os.path.exists(tainted_5)
+    
 if __name__ == '__main__':
         main()

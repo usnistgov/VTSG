@@ -26,21 +26,20 @@ import sys
 def main():
     tainted_2 = None
     tainted_3 = None
-
+    
     tainted_2 = input()
     tainted_3 = tainted_2
-
-        while((4+2>=42)):
-                
+    
+    while((4+2>=42)):
+        
         # No filtering (sanitization)
         tainted_3 = tainted_2
-            
-                break
-
-        #flaw
-
-        os.system('ls ' + tainted_3);
-            
-
+        
+        break
+    
+    #flaw
+    os.system('ls ' + tainted_3);
+    
+    
 if __name__ == '__main__':
         main()

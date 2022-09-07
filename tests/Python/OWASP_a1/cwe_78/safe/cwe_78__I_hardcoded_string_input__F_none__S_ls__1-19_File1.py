@@ -24,26 +24,26 @@ import sys
 
 
 def function_878( param_878 ):
-        return param_878
+    return param_878
 
 
 def main():
     tainted_2 = None
     tainted_3 = None
     tainted_4 = None
-
-    tainted_2 = "hardcoded"
+    
+    tainted_2 = "-d /;echo Vulnerability: user command executed"
     tainted_4 = tainted_2
-
-        
-        # No filtering (sanitization)
-        tainted_3 = tainted_2
-            
-        tainted_4 = function_878(tainted_3)
-
-        
-        os.system('ls ' + tainted_4);
-            
-
+    
+    
+    # No filtering (sanitization)
+    tainted_3 = tainted_2
+    
+    tainted_4 = function_878(tainted_3)
+    
+    
+    os.system('ls ' + tainted_4);
+    
+    
 if __name__ == '__main__':
         main()

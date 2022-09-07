@@ -26,20 +26,19 @@ import sys
 def main():
     tainted_2 = None
     tainted_3 = None
-
+    
     tainted_2 = sys.argv[1]
     tainted_3 = tainted_2
-
-        i_516 = 1
-        for x in range(0, i_516):
-                
+    
+    i_516 = 1
+    for x in range(0, i_516):
+        
         # No filtering (sanitization)
         tainted_3 = tainted_2
-            
-
-        #flaw
-
-        os.path.exists(tainted_3)
-
+        
+    
+    #flaw
+    os.path.exists(tainted_3)
+    
 if __name__ == '__main__':
         main()

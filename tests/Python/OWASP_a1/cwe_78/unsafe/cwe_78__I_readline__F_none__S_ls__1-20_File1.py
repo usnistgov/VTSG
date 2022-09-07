@@ -26,17 +26,16 @@ import sys
 def main():
     tainted_0 = None
     tainted_5 = None
-
+    
     tainted_0 = input()
     tainted_5 = tainted_0
-
-        var_703 = Class_703(tainted_0);
-        tainted_5 = var_703.get_var_703();
-
-        #flaw
-
-        os.system('ls ' + tainted_5);
-            
-
+    
+    var_703 = Class_703(tainted_0);
+    tainted_5 = var_703.get_var_703();
+    
+    #flaw
+    os.system('ls ' + tainted_5);
+    
+    
 if __name__ == '__main__':
         main()

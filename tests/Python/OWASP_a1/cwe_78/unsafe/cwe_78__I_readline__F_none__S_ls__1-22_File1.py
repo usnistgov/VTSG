@@ -27,21 +27,20 @@ def main():
     tainted_2 = None
     tainted_3 = None
     tainted_4 = None
-
+    
     tainted_2 = input()
     tainted_4 = tainted_2
-
-        
-        # No filtering (sanitization)
-        tainted_3 = tainted_2
-            
-        var_707 = Class_707(tainted_3)
-        tainted_4 = var_707.get_var_707()
-
-        #flaw
-
-        os.system('ls ' + tainted_4);
-            
-
+    
+    
+    # No filtering (sanitization)
+    tainted_3 = tainted_2
+    
+    var_707 = Class_707(tainted_3)
+    tainted_4 = var_707.get_var_707()
+    
+    #flaw
+    os.system('ls ' + tainted_4);
+    
+    
 if __name__ == '__main__':
         main()

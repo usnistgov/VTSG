@@ -27,28 +27,27 @@ def main():
     tainted_1 = None
     tainted_2 = None
     tainted_3 = None
-
+    
     tainted_1 = sys.argv[1]
     tainted_3 = tainted_1
-
-        # Declaring an array
-        arr_1 = []
-        # Storing value in array element
-        arr_1.append(None)
-        arr_1.append(None)
-        arr_1.append(None)
-        arr_1.append(tainted_1)
-        for val_1 in arr_1:
-            if(val_1!=None):
-                tainted_2 = val_1
-                
-        # No filtering (sanitization)
-        tainted_3 = tainted_2
+    
+    # Declaring an array
+    arr_1 = []
+    # Storing value in array element
+    arr_1.append(None)
+    arr_1.append(None)
+    arr_1.append(None)
+    arr_1.append(tainted_1)
+    for val_1 in arr_1:
+        if(val_1!=None):
+            tainted_2 = val_1
             
-
-        #flaw
-
-        os.path.exists(tainted_3)
-
+            # No filtering (sanitization)
+            tainted_3 = tainted_2
+            
+    
+    #flaw
+    os.path.exists(tainted_3)
+    
 if __name__ == '__main__':
         main()

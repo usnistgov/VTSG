@@ -24,26 +24,25 @@ import sys
 
 
 def function_168( param_168 ):
-        return param_168
+    return param_168
 
 
 def main():
     tainted_1 = None
     tainted_2 = None
     tainted_3 = None
-
+    
     tainted_1 = input()
     tainted_3 = tainted_1
-
-        tainted_2 = function_168(tainted_1)
-        
-        # No filtering (sanitization)
-        tainted_3 = tainted_2
-            
-
-        #flaw
-
-        os.path.exists(tainted_3)
-
+    
+    tainted_2 = function_168(tainted_1)
+    
+    # No filtering (sanitization)
+    tainted_3 = tainted_2
+    
+    
+    #flaw
+    os.path.exists(tainted_3)
+    
 if __name__ == '__main__':
         main()

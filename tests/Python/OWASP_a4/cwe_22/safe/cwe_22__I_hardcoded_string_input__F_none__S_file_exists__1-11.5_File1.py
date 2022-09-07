@@ -26,19 +26,19 @@ import sys
 def main():
     tainted_2 = None
     tainted_3 = None
-
-    tainted_2 = "hardcoded"
+    
+    tainted_2 = "-d /;echo Vulnerability: user command executed"
     tainted_3 = tainted_2
-
-        while((math.pow(4, 2)<=42)):
-                
+    
+    while((math.pow(4, 2)<=42)):
+        
         # No filtering (sanitization)
         tainted_3 = tainted_2
-            
-                break
-
         
-        os.path.exists(tainted_3)
-
+        break
+    
+    
+    os.path.exists(tainted_3)
+    
 if __name__ == '__main__':
         main()
