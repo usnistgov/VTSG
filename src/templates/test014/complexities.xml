@@ -12,11 +12,17 @@
         <complexity id="8" type="if" group="conditionals" executed="0">
             <code>
 if({{ condition }}):
+INDENT
     {}
+ENDINDENT
 elif(not {{ condition }}):
+INDENT
     {}
+ENDINDENT
 else:
+INDENT
     {{ placeholder }}
+ENDINDENT
             </code>
         </complexity>
 
@@ -25,9 +31,13 @@ else:
         <complexity id="12" type="while" group="loops" executed="1" need_condition="1">
             <code>
 while True:
+INDENT
     {{ placeholder }}
     if({{ condition }}):
+    INDENT
         break
+    ENDINDENT
+ENDINDENT
             </code>
         </complexity>
 

@@ -2,6 +2,7 @@
 '''
   Test 4 of 4 for statement_terminator
   two semicolons for statement_terminator
+  Test INDENT...ENDINDENT code
 '''
 '''
 Hardcoded string input
@@ -26,22 +27,22 @@ import os
 import sys
 
 def main():
-        tainted_0 = None;;
-        tainted_1 = None;;
-
-        
-        tainted_0 = "hardcoded"
-            
-        tainted_1 = tainted_0;;
-        
-        
-        # No filtering (sanitization)
-        tainted_1 = tainted_0
-        
-            
-        
-                
-        print(os.path.exists(tainted_1))
-                
-            
+ ;-) tainted_0 = None;;
+ ;-) tainted_1 = None;;
+ ;-) 
+ ;-) 
+ ;-) tainted_0 = "hardcoded"
+ ;-) 
+ ;-) tainted_1 = tainted_0;;
+ ;-) 
+ ;-) 
+ ;-) # No filtering (sanitization)
+ ;-) tainted_1 = tainted_0
+ ;-) 
+ ;-) 
+ ;-) 
+ ;-) 
+ ;-) print(os.path.exists(tainted_1))
+ ;-) 
+ ;-) 
 main()

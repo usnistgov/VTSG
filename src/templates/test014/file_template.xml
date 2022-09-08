@@ -10,6 +10,7 @@
     </comment>
     <syntax>
         <statement_terminator>;;</statement_terminator>
+	<indent> ;-) </indent>
     </syntax>
     <namespace></namespace>
     <variables prefix="" import_code="import {{import_file}}">
@@ -25,6 +26,7 @@
 '''
   Test 4 of 4 for statement_terminator
   two semicolons for statement_terminator
+  Test INDENT...ENDINDENT code
 '''
 '''
 {{ comments }}
@@ -36,7 +38,8 @@
 {{ stdlib_imports }}
 
 def main():
-        {{ local_var }}
+   INDENTanything after INDENT is ignored
+   {{ local_var }}
     
         {{ input_content }}
 
@@ -44,7 +47,8 @@ def main():
 
         {{ sink_content }}
     
-        <!--{{ exec_queries_content }}-->
+        <!--{{ exec_queries_content }} INDENT not at the start is ignored-->
+ENDINDENT The indentation of INDENT and ENDINDENT do not matter
 
 main()
 {{ static_methods }}
