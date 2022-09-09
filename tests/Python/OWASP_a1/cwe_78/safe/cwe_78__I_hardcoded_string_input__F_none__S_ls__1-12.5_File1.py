@@ -27,7 +27,7 @@ def main():
     tainted_2 = None
     tainted_3 = None
     
-    tainted_2 = "-d /;echo Vulnerability: user command executed"
+    tainted_2 = "-d /;echo Vulnerability: user command run"
     tainted_3 = tainted_2
     
     while True:

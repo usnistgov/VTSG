@@ -27,7 +27,7 @@ def main():
     tainted_0 = None
     tainted_5 = None
     
-    tainted_0 = "-d /;echo Vulnerability: user command executed"
+    tainted_0 = "-d /;echo Vulnerability: user command run"
     tainted_5 = tainted_0
     
     var_880 = Class_880(tainted_0);

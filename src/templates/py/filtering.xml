@@ -19,7 +19,7 @@
 
         <sample>
             <path>
-                <dir>no_filtering</dir>
+                <dir>none</dir>
             </path>
             <comment>no filtering</comment>
             <flaws>
