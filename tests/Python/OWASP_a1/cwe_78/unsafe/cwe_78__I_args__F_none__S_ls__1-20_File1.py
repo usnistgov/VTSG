@@ -34,7 +34,7 @@ def main():
     tainted_5 = var_1057.get_var_1057();
     
     #flaw
-    os.system('ls ' + tainted_5);
+    os.system('ls ' + tainted_5)
     
     
 if __name__ == '__main__':

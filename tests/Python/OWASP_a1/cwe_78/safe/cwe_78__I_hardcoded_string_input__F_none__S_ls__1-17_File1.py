@@ -42,7 +42,7 @@ def main():
     tainted_5 = function_874(tainted_0)
     
     
-    os.system('ls ' + tainted_5);
+    os.system('ls ' + tainted_5)
     
     
 if __name__ == '__main__':

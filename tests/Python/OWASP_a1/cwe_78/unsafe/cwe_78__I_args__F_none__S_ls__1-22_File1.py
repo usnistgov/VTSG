@@ -39,7 +39,7 @@ def main():
     tainted_4 = var_1061.get_var_1061()
     
     #flaw
-    os.system('ls ' + tainted_4);
+    os.system('ls ' + tainted_4)
     
     
 if __name__ == '__main__':

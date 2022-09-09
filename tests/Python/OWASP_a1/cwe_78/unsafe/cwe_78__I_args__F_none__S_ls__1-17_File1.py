@@ -42,7 +42,7 @@ def main():
     tainted_5 = function_1051(tainted_0)
     
     #flaw
-    os.system('ls ' + tainted_5);
+    os.system('ls ' + tainted_5)
     
     
 if __name__ == '__main__':

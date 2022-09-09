@@ -63,7 +63,7 @@
             </imports>
             <code>
         {{flaw}}
-        os.system('ls ' + {{in_var_name}});
+        os.system('ls ' + {{in_var_name}})
             </code>
             <safety safe="0" unsafe="0"/>
             <input_type>string</input_type>

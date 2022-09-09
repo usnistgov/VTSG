@@ -35,7 +35,7 @@ def main():
     
     
     #flaw
-    os.system('ls ' + tainted_1);
+    os.system('ls ' + tainted_1)
     
     
 if __name__ == '__main__':
