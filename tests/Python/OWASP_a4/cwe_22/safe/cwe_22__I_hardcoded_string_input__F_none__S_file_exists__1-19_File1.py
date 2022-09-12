@@ -41,8 +41,13 @@ def main():
     
     tainted_4 = function_347(tainted_3)
     
+    print('file "' + tainted_4 + '" ', end='')
     
-    os.path.exists(tainted_4)
+    if os.path.exists(tainted_4):
+        print('exists')
+    else:
+        print('does not exist')
+    
     
 if __name__ == '__main__':
         main()

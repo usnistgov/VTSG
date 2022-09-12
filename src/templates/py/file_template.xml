@@ -1,5 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!-- *modified "Wed Sep  7 16:25:54 2022" *by "Paul E. Black" -->
 
 <template name="Python">
     <file_extension>py</file_extension>
@@ -12,7 +13,7 @@
       <!-- If language doesn't have a terminator, leave empty-->
       <statement_terminator></statement_terminator>
       <!-- Insert desired indentation level using spaces-->
-      <indent>        </indent>
+      <indent>    </indent>
     </syntax>
     <namespace></namespace>
     <variables prefix="" import_code="import {{import_file}}">
@@ -39,13 +40,17 @@
 
 
 def main():
+INDENT
     {{local_var}}
     {{input_content}}
-{{filtering_content}}
-{{sink_content}}
-{{exec_queries_content}}
+    {{filtering_content}}
+    {{sink_content}}
+    {{exec_queries_content}}
+ENDINDENT
 
 if __name__ == '__main__':
         main()
     </code>
 </template>
+
+<!-- end of file_template.xml -->

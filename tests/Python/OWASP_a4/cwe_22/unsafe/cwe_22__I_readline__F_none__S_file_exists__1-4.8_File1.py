@@ -38,8 +38,13 @@ def main():
     elif(not (math.sqrt(42)>=42)):
         {}
     
+    print('file "' + tainted_3 + '" ', end='')
     #flaw
-    os.path.exists(tainted_3)
+    if os.path.exists(tainted_3):
+        print('exists')
+    else:
+        print('does not exist')
+    
     
 if __name__ == '__main__':
         main()

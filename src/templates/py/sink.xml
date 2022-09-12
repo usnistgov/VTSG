@@ -28,8 +28,17 @@
                 <import>os</import>
             </imports>
             <code>
+        print('file "' + {{in_var_name}} + '" ', end='')
         {{flaw}}
-        os.path.exists({{in_var_name}})</code>
+        if os.path.exists({{in_var_name}}):
+	INDENT
+            print('exists')
+	ENDINDENT
+	else:
+	INDENT
+            print('does not exist')
+	ENDINDENT
+	    </code>
             <safety safe="0" unsafe="0"/>
             <input_type>string</input_type>
             <exec_type>none</exec_type>
@@ -45,7 +54,8 @@
             <imports></imports>
             <code>
         {{flaw}}
-        query = "SELECT * FROM '" + {{in_var_name}} + "'"</code>
+        query = "SELECT * FROM '" + {{in_var_name}} + "'"
+	    </code>
             <safety safe="0" unsafe="0"/>
             <input_type>string</input_type>
             <exec_type>SQL</exec_type>
@@ -247,28 +257,12 @@
            <comment>sink : NULL Pointer Dereference</comment>
            <imports></imports>
            <code>
-               int num, sum = 0, r;
-               System.Console.WriteLine("Hello, World!");
-               int[] intArray = new int[7] { 2,37,849,24,42,-10,93 };
-               Array.Sort(intArray);
-               foreach (int nb in intArray){
-                   r = nb + 3;
-                   num = r / 10;
-                   sum = num + nb;
-                   Console.WriteLine("Current sum : "+sum);
-               }
                string cmd = null;
                cmd = Environment.GetEnvironmentVariable("cmd");
+	       # SKIMP - filter is to check for not None *here*
                {{flaw}}
                cmd = cmd.Trim();
-               int a = 0;
-               int b = 1;
-               for (int i = 0; i &lt; sum; i++){
-                   int temp = a;
-                   a = b;
-                   b = temp + b;
-               }
-               Console.WriteLine("Fib : "+a);
+	       # SKIMP - use cmd
            </code>
            <safety safe="0" unsafe="1"/>
            <input_type>none</input_type>

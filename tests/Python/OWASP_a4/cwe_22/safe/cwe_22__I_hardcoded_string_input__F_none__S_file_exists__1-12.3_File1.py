@@ -39,8 +39,13 @@ def main():
             break
         break
     
+    print('file "' + tainted_3 + '" ', end='')
     
-    os.path.exists(tainted_3)
+    if os.path.exists(tainted_3):
+        print('exists')
+    else:
+        print('does not exist')
+    
     
 if __name__ == '__main__':
         main()

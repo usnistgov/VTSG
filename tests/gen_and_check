@@ -1,5 +1,5 @@
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Wed Feb 23 11:50:55 2022" *by "Paul E. Black"
+# *modified "Mon Sep 12 16:28:44 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -8,6 +8,7 @@
 #  2. manifest files (lists of those cases)
 #  3. a generation report: how many of what were generated
 # This script runs VTSG then checks each against the expected files.
+# For Python, it also executes the generated programs to make sure they are valid.
 
 # Usage:
 help_message="$ tests/gen_and_check {py,cs,php}"
@@ -35,7 +36,7 @@ else
     exit -1
 fi
 
-# Time Stamp matches name that VTGS will choose for the TestSuite
+# Time Stamp (nearly) matches name that VTGS will choose for the TestSuite
 #    note: since time may differ by a second, names may differ
 TimeStamp=$(date +"%m-%d-%Y_%Hh%Mm%S")
 # choose a name for Photo file, which captures the output
@@ -47,7 +48,7 @@ CF="TestPhoto_${TimeStamp}_${LD}_check"
 echo running vtsg.py -l $lang ...
 python3 vtsg.py -l $lang | tee ${PF} 2>&1
 
-# guess what the TestSuite directory was named
+# determine what the TestSuite directory was named
 TSD=$(ls -dt TestSuite_*/${LD} | head -1)
 echo ${TSD}
 
@@ -65,5 +66,29 @@ echo checking that generated files match ... | tee -a ${CF}
 # check that the manifests match
 echo checking manifests | tee -a ${CF}
 (cd ${TSD};for m in $(find . -name "manifest.xml"); do echo $m;${TDIR}/cmp_manifests.py $m ${TDIR}/${LD}/$m;done) | tee -a ${CF} 2>&1
+
+if [ $LD != Python ]
+then
+    exit
+fi
+
+# only run Python files, for now at least
+
+(cd ${TSD}
+# execute each file
+for f in $(find . -name "*.py"|grep -v File2); do
+    echo $f
+    # determine the attack based on the sink
+    if [[ $f =~ __S_file_exists__ ]]; then
+        # file existence can leak information about system type. /Users is a Mac
+        a=/Users
+    elif [[ $f =~ __S_ls__ ]]; then
+        a="-d /;echo Vulnerability: user command run"
+    else
+        exit
+    fi
+    # timeout in order to limit infinite loops
+    echo "$a" | gtimeout 3 python $f "$a"
+done) | tee -a ${CF} 2>&1
 
 # end of gen_and_check

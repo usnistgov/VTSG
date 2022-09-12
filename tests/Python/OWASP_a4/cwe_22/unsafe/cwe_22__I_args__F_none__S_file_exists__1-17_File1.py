@@ -41,8 +41,13 @@ def main():
     tainted_5 = tainted_0
     tainted_5 = function_520(tainted_0)
     
+    print('file "' + tainted_5 + '" ', end='')
     #flaw
-    os.path.exists(tainted_5)
+    if os.path.exists(tainted_5):
+        print('exists')
+    else:
+        print('does not exist')
+    
     
 if __name__ == '__main__':
         main()
