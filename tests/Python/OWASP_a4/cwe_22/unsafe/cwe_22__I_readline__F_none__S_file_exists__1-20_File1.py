@@ -26,20 +26,20 @@ import sys
 def main():
     tainted_0 = None
     tainted_5 = None
-    
+
     tainted_0 = input()
     tainted_5 = tainted_0
-    
+
     var_172 = Class_172(tainted_0);
     tainted_5 = var_172.get_var_172();
-    
+
     print('file "' + tainted_5 + '" ', end='')
     #flaw
     if os.path.exists(tainted_5):
         print('exists')
     else:
         print('does not exist')
-    
-    
+
+
 if __name__ == '__main__':
         main()

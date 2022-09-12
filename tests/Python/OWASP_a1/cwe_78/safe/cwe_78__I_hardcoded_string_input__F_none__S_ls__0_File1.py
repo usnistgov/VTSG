@@ -26,17 +26,17 @@ import sys
 def main():
     tainted_0 = None
     tainted_1 = None
-    
+
     tainted_0 = "-d /;echo Vulnerability: user command run"
     tainted_1 = tainted_0
-    
+
     # No filtering (sanitization)
     tainted_1 = tainted_0
-    
-    
-    
+
+
+
     os.system('ls ' + tainted_1)
-    
-    
+
+
 if __name__ == '__main__':
         main()

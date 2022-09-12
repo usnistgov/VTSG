@@ -26,20 +26,20 @@ import sys
 def main():
     tainted_0 = None
     tainted_5 = None
-    
+
     tainted_0 = "-d /;echo Vulnerability: user command run"
     tainted_5 = tainted_0
-    
+
     var_349 = Class_349(tainted_0);
     tainted_5 = var_349.get_var_349();
-    
+
     print('file "' + tainted_5 + '" ', end='')
-    
+
     if os.path.exists(tainted_5):
         print('exists')
     else:
         print('does not exist')
-    
-    
+
+
 if __name__ == '__main__':
         main()

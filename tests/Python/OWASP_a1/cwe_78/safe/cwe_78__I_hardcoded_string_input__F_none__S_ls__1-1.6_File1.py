@@ -26,19 +26,19 @@ import sys
 def main():
     tainted_2 = None
     tainted_3 = None
-    
+
     tainted_2 = "-d /;echo Vulnerability: user command run"
     tainted_3 = tainted_2
-    
+
     if((math.pow(4, 2)>=42)):
-        
+
         # No filtering (sanitization)
         tainted_3 = tainted_2
-        
-    
-    
+
+
+
     os.system('ls ' + tainted_3)
-    
-    
+
+
 if __name__ == '__main__':
         main()

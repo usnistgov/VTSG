@@ -26,28 +26,28 @@ import sys
 def function_343( param_343 ):
     tainted_2 = None
     tainted_3 = None
-    
+
     tainted_2 = param_343
-    
+
     # No filtering (sanitization)
     tainted_3 = tainted_2
-    
+
     return tainted_3
 def main():
     tainted_0 = None
     tainted_5 = None
-    
+
     tainted_0 = "-d /;echo Vulnerability: user command run"
     tainted_5 = tainted_0
     tainted_5 = function_343(tainted_0)
-    
+
     print('file "' + tainted_5 + '" ', end='')
-    
+
     if os.path.exists(tainted_5):
         print('exists')
     else:
         print('does not exist')
-    
-    
+
+
 if __name__ == '__main__':
         main()

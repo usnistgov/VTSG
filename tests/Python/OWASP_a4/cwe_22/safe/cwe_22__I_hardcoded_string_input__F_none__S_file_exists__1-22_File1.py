@@ -27,24 +27,24 @@ def main():
     tainted_2 = None
     tainted_3 = None
     tainted_4 = None
-    
+
     tainted_2 = "-d /;echo Vulnerability: user command run"
     tainted_4 = tainted_2
-    
-    
+
+
     # No filtering (sanitization)
     tainted_3 = tainted_2
-    
+
     var_353 = Class_353(tainted_3)
     tainted_4 = var_353.get_var_353()
-    
+
     print('file "' + tainted_4 + '" ', end='')
-    
+
     if os.path.exists(tainted_4):
         print('exists')
     else:
         print('does not exist')
-    
-    
+
+
 if __name__ == '__main__':
         main()

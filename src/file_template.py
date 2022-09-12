@@ -1,7 +1,7 @@
 """
 file_template module
 
- *modified "Tue Feb  8 14:51:29 2022" *by "Paul E. Black"
+ *modified "Wed Sep  7 16:32:39 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -48,9 +48,11 @@ class FileTemplate(object):
         self._comment['close'] = file_template.find("comment").find("close").text
         self._comment['inline'] = file_template.find("comment").find("inline").text
         self._syntax = {}
-        if file_template.find("syntax") is not None:
-            if file_template.find("syntax").find("statement_terminator") is not None:
-                self._syntax['statement_terminator'] = file_template.find("syntax").find("statement_terminator").text
+        if (s := file_template.find('syntax')) is not None:
+            if s.find('statement_terminator') is not None:
+                self._syntax['statement_terminator'] = s.find('statement_terminator').text
+            if s.find('indent') is not None:
+                self._syntax['indent'] = s.find('indent').text
         self._prefix = file_template.find("variables").get("prefix")
         self._import_code = file_template.find("variables").get("import_code")
         """ Import code with placeholder"""
@@ -181,3 +183,19 @@ class FileTemplate(object):
                 return self._syntax['statement_terminator']
         else:
             return ""
+
+    @property
+    def indent(self):
+        """
+         Prefix string to indent statements one level
+
+        :getter: Return the string
+        :type: str
+        """
+        # Note: to require <syntax><indent>, remove this outer conditional
+        if 'indent' in self._syntax:
+            return self._syntax['indent']
+        else:
+            return ''
+
+# end of file_template.py

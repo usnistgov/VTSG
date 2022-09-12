@@ -29,26 +29,26 @@ import sys
 def main():
  ;-) tainted_2 = None;;
  ;-) tainted_3 = None;;
- ;-) 
- ;-) 
+
+
  ;-) tainted_2 = "hardcoded"
- ;-) 
+
  ;-) tainted_3 = tainted_2;;
- ;-) 
+
  ;-) if(1==1):
  ;-)  ;-) {}
  ;-) elif(not 1==1):
  ;-)  ;-) {}
  ;-) else:
- ;-)  ;-) 
- ;-)  ;-) 
+
+
  ;-)  ;-) # No filtering (sanitization)
  ;-)  ;-) tainted_3 = tainted_2
- ;-)  ;-) 
- ;-)  ;-) 
- ;-) 
- ;-) 
+
+
+
+
  ;-) print(os.path.exists(tainted_3))
- ;-) 
- ;-) 
+
+
 main()

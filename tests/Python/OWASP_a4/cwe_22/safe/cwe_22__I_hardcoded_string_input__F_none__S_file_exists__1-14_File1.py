@@ -27,10 +27,10 @@ def main():
     tainted_1 = None
     tainted_2 = None
     tainted_3 = None
-    
+
     tainted_1 = "-d /;echo Vulnerability: user command run"
     tainted_3 = tainted_1
-    
+
     # Declaring an array
     arr_1 = []
     # Storing value in array element
@@ -41,18 +41,18 @@ def main():
     for val_1 in arr_1:
         if(val_1!=None):
             tainted_2 = val_1
-            
+
             # No filtering (sanitization)
             tainted_3 = tainted_2
-            
-    
+
+
     print('file "' + tainted_3 + '" ', end='')
-    
+
     if os.path.exists(tainted_3):
         print('exists')
     else:
         print('does not exist')
-    
-    
+
+
 if __name__ == '__main__':
         main()

@@ -3,11 +3,11 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Mon Aug 29 15:49:45 2022" *by "Paul E. Black"
+ *modified "Mon Sep 12 11:18:58 2022" *by "Paul E. Black"
 """
 
 import time
-from jinja2 import Template, DebugUndefined, Environment
+from jinja2 import Template, DebugUndefined, Environment, exceptions
 from src.manifest import Manifest
 from src.file_manager import FileManager
 from src.input_sample import InputSample
@@ -17,7 +17,7 @@ from src.exec_query import ExecQuerySample
 from src.complexity import ComplexitySample
 from src.condition import ConditionSample
 from src.file_template import FileTemplate
-from src.synthesize_code import make_assign, get_indent
+from src.synthesize_code import make_assign, get_indent, fix_indents
 import src.complexities_generator
 
 import xml.etree.ElementTree as ET
@@ -425,10 +425,22 @@ class Generator(object):
 
         # SINK
         sink_code = self.current_sink.code
-        sink_code = Template(sink_code, undefined=DebugUndefined).render(flaw=flaw_str)
+        try:
+            sink_code = Template(sink_code, undefined=DebugUndefined).render(flaw=flaw_str)
+        except exceptions.TemplateSyntaxError:
+            # error in Jinja rendering
+            print('Error while rendering sink code. sink_code is', end='')
+            print(sink_code)
+            raise # reraise the exception
         if self.current_sink.input_type != "none":
             # We set the name of input tainted variable and get the result into sink_code
-            sink_code = Template(sink_code, undefined=DebugUndefined).render(in_var_name=compl_gen.out_ext_name, id=var_id)
+            try:
+                sink_code = Template(sink_code, undefined=DebugUndefined).render(in_var_name=compl_gen.out_ext_name, id=var_id)
+            except exceptions.TemplateSyntaxError:
+                # error in Jinja rendering
+                print('Error while rendering sink code. sink_code is', end='')
+                print(sink_code)
+                raise # reraise the exception
 
         if self.current_sink.need_id:
             var_id += 1
@@ -477,15 +489,16 @@ class Generator(object):
                                        filtering_content=filtering_code,
                                        sink_content=sink_code,
                                        exec_queries_content=exec_queries_code)
+        self.current_code = fix_indents(file_content, self.file_template.indent)
 
+        # generate code for any additional files
         # include filtering into good code chunk on complexities
         # TODO improve this with preselected class
         for i, cl in enumerate(self.classes_code):
-            self.classes_code[i]['code'] = Template(cl['code']).render(license=license_content,
-                                                                       comments=comments_code,
-                                                                       filtering_content=filtering_code)
-
-        self.current_code = file_content
+            aux_file_content = Template(cl['code']).render(license=license_content,
+                                                           comments=comments_code,
+                                                           filtering_content=filtering_code)
+            self.classes_code[i]['code'] = fix_indents(aux_file_content, self.file_template.indent)
 
         # write test case to file, update summary counts, and add to manifest
         self.write_files()
@@ -513,7 +526,7 @@ class Generator(object):
             line = Generator.find_flaw(full_path, self.file_template.comment['inline'])
         files_path.append({'path': full_path, 'line': line})
 
-        # Create other classes
+        # Create any additional class files
         for i, cl in enumerate(self.classes_code):
             filename = self.generate_file_name(f'File{i+2}')
             filemanager = FileManager(filename, self.dir_name,

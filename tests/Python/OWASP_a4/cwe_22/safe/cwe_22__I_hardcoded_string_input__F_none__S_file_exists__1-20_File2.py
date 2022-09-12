@@ -12,10 +12,10 @@ class Class_349:
     def  get_var_349(self):
         tainted_2 = None
         tainted_3 = None
-        
+
         tainted_2 = var_349
-        
+
         # No filtering (sanitization)
         tainted_3 = tainted_2
-        
+
         return tainted_3

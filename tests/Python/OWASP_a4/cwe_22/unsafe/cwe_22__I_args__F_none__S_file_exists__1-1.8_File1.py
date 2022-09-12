@@ -26,23 +26,23 @@ import sys
 def main():
     tainted_2 = None
     tainted_3 = None
-    
+
     tainted_2 = sys.argv[1]
     tainted_3 = tainted_2
-    
+
     if((math.sqrt(42)>=42)):
-        
+
         # No filtering (sanitization)
         tainted_3 = tainted_2
-        
-    
+
+
     print('file "' + tainted_3 + '" ', end='')
     #flaw
     if os.path.exists(tainted_3):
         print('exists')
     else:
         print('does not exist')
-    
-    
+
+
 if __name__ == '__main__':
         main()

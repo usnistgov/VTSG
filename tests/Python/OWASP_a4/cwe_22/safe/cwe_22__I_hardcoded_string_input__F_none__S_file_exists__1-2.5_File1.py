@@ -26,25 +26,25 @@ import sys
 def main():
     tainted_2 = None
     tainted_3 = None
-    
+
     tainted_2 = "-d /;echo Vulnerability: user command run"
     tainted_3 = tainted_2
-    
+
     if((math.pow(4, 2)<=42)):
-        
+
         # No filtering (sanitization)
         tainted_3 = tainted_2
-        
+
     else:
         {}
-    
+
     print('file "' + tainted_3 + '" ', end='')
-    
+
     if os.path.exists(tainted_3):
         print('exists')
     else:
         print('does not exist')
-    
-    
+
+
 if __name__ == '__main__':
         main()

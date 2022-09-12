@@ -26,24 +26,24 @@ import sys
 def function_1051( param_1051 ):
     tainted_2 = None
     tainted_3 = None
-    
+
     tainted_2 = param_1051
-    
+
     # No filtering (sanitization)
     tainted_3 = tainted_2
-    
+
     return tainted_3
 def main():
     tainted_0 = None
     tainted_5 = None
-    
+
     tainted_0 = sys.argv[1]
     tainted_5 = tainted_0
     tainted_5 = function_1051(tainted_0)
-    
+
     #flaw
     os.system('ls ' + tainted_5)
-    
-    
+
+
 if __name__ == '__main__':
         main()

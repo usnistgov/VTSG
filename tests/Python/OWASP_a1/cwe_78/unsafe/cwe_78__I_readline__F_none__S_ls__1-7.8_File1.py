@@ -26,23 +26,23 @@ import sys
 def main():
     tainted_2 = None
     tainted_3 = None
-    
+
     tainted_2 = input()
     tainted_3 = tainted_2
-    
+
     if((math.sqrt(42)>=42)):
         {}
     elif(not (math.sqrt(42)>=42)):
-        
+
         # No filtering (sanitization)
         tainted_3 = tainted_2
-        
+
     else:
         {}
-    
+
     #flaw
     os.system('ls ' + tainted_3)
-    
-    
+
+
 if __name__ == '__main__':
         main()

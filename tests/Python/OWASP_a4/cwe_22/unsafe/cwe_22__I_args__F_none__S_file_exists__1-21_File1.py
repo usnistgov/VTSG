@@ -27,24 +27,24 @@ def main():
     tainted_1 = None
     tainted_2 = None
     tainted_3 = None
-    
+
     tainted_1 = sys.argv[1]
     tainted_3 = tainted_1
-    
+
     var_528 = Class_528(tainted_1)
     tainted_2 = var_528.get_var_528()
-    
+
     # No filtering (sanitization)
     tainted_3 = tainted_2
-    
-    
+
+
     print('file "' + tainted_3 + '" ', end='')
     #flaw
     if os.path.exists(tainted_3):
         print('exists')
     else:
         print('does not exist')
-    
-    
+
+
 if __name__ == '__main__':
         main()
