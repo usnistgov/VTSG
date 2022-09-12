@@ -1,11 +1,11 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Fri Mar 11 08:40:10 2022" *by "Paul E. Black"
+# *modified "Mon Sep 12 09:25:38 2022" *by "Paul E. Black"
 
-default: test020
+default: testPython
 
 all: test
 
-test: test010 testSTerm testCLI testPython testCsharp testPHP
+test: test010 testCLI testSTerm testIndent testPython testCsharp testPHP
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
 	src/exec_query.py src/file_manager.py src/file_template.py \
@@ -21,11 +21,9 @@ testCsharp: $(VTSG_FILES)
 testPHP: $(VTSG_FILES)
 	tests/gen_and_check php
 
-# this produces 185 cases
+# this produces 311 cases
 testPython: $(VTSG_FILES)
 	tests/gen_and_check py
-# execute each file.  timeout for infinite loops
-#	(cd $$(ls -dt TestSuite_* | head -1);pwd;for f in $$(find . -name "*.py"); do echo $f; timeout 3 python3 $f;done) | more
 
 TDIR = ../../tests
 
@@ -94,8 +92,22 @@ test014: $(VTSG_FILES)
 	python3 vtsg.py -l $@
 	(cd $$(ls -dt TestSuite_*/test014 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/test014/$$f;done)
 
+# tests for fatal misuses of INDENT ... ENDINDENT
+testIndent: test016 test017
+
+test016: $(VTSG_FILES)
+	echo This should fail with INDENT line without a matching ENDINDENT
+	-python3 vtsg.py -l $@
+	(cd $$(ls -dt TestSuite_*/test016 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/test016/$$f;done)
+	sleep 1
+
+test017: $(VTSG_FILES)
+	echo This should fail with ENDINDENT without a matching INDENT before generating any files
+	-python3 vtsg.py -l $@
+	sleep 1
+
 test020: $(VTSG_FILES) src/sarif_writer.py
 	python3 vtsg.py -l $@
-	-(cd $$(ls -dt TestSuite_* | head -1);pwd;for f in $$(find . -name "*.sarif"); do echo $$f; cat $$f;done)|more
+	-(cd $$(ls -dt TestSuite_*/test020 | head -1);pwd;for f in $$(find . -name "*.sarif"); do echo $$f; cat $$f;done)|more
 
 # end of Makefile

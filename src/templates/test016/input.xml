@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="no"?>
+<!-- *created  "Fri Sep  9 16:00:36 2022" *by "Paul E. Black" -->
+<!-- *modified "Fri Sep  9 16:05:00 2022" *by "Paul E. Black" -->
+<!DOCTYPE input SYSTEM "../dtd/input.dtd">
+    <input>
+        <sample>
+            <path>
+                <dir>hardcoded_string</dir>
+            </path>
+            <comment>Hardcoded string input</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>{{out_var_name}} = "-d /;echo Vulnerability: user command run"</code>
+            <input_type>input : no input</input_type>
+            <output_type>string</output_type>
+        </sample>
+    </input>
+
+<!-- end of input.xml -->

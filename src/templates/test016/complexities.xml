@@ -1,0 +1,30 @@
+<?xml version = "1.0" standalone="no"?>
+<!-- *created  "Fri Sep  9 16:00:36 2022" *by "Paul E. Black" -->
+<!-- *modified "Mon Sep 12 09:13:10 2022" *by "Paul E. Black" -->
+<!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
+<root>
+    <conditions>
+        <condition id="1">
+            <code>1==1</code>
+            <value>True</value>
+        </condition>
+    </conditions>
+
+    <complexities>
+        <complexity id="12" type="while" group="loops" executed="1" need_condition="1">
+            <code>
+        while True:
+	INDENT
+                {{ placeholder }}
+                if({{ condition }}):
+		INDENT
+                        break
+		NOTENDINDENT
+                break
+	ENDINDENT
+            </code>
+        </complexity>
+    </complexities>
+</root>
+
+<!-- end of complexities.xml -->

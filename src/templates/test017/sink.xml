@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="no"?>
+<!-- *created  "Fri Sep  9 16:00:36 2022" *by "Paul E. Black" -->
+<!-- *modified "Fri Sep  9 16:04:37 2022" *by "Paul E. Black" -->
+<!DOCTYPE sink SYSTEM "../dtd/sink.dtd">
+    <sink>
+        <sample>
+            <path>
+                <dir>ls</dir>
+            </path>
+            <flaw_type flaw_group="OWASP_a1">CWE_78</flaw_type>
+            <comment>sink: run ls in a dir</comment>
+            <imports>
+                <import>os</import>
+            </imports>
+            <code>
+        {{flaw}}
+        os.system('ls ' + {{in_var_name}})
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+    </sink>
+
+<!-- end of sink.xml -->
