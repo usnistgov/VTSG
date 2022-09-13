@@ -28,7 +28,7 @@
                 <import>os</import>
             </imports>
             <code>
-        print('file "' + {{in_var_name}} + '" ', end='')
+        print(f'file "{ {{in_var_name}} }" ', end='')
         {{flaw}}
         if os.path.exists({{in_var_name}}):
 	INDENT

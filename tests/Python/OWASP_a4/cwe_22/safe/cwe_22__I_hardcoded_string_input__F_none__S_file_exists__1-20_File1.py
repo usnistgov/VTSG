@@ -33,7 +33,7 @@ def main():
     var_349 = Class_349(tainted_0);
     tainted_5 = var_349.get_var_349();
 
-    print('file "' + tainted_5 + '" ', end='')
+    print(f'file "{ tainted_5 }" ', end='')
 
     if os.path.exists(tainted_5):
         print('exists')

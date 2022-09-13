@@ -40,7 +40,7 @@ def main():
     else:
         {}
 
-    print('file "' + tainted_3 + '" ', end='')
+    print(f'file "{ tainted_3 }" ', end='')
     #flaw
     if os.path.exists(tainted_3):
         print('exists')

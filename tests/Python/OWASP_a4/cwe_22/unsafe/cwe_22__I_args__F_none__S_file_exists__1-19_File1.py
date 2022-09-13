@@ -41,7 +41,7 @@ def main():
 
     tainted_4 = function_524(tainted_3)
 
-    print('file "' + tainted_4 + '" ', end='')
+    print(f'file "{ tainted_4 }" ', end='')
     #flaw
     if os.path.exists(tainted_4):
         print('exists')

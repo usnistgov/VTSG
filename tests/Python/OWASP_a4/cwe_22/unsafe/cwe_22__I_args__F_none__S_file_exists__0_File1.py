@@ -34,7 +34,7 @@ def main():
     tainted_1 = tainted_0
 
 
-    print('file "' + tainted_1 + '" ', end='')
+    print(f'file "{ tainted_1 }" ', end='')
     #flaw
     if os.path.exists(tainted_1):
         print('exists')

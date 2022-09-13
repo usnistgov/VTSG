@@ -38,7 +38,7 @@ def main():
     elif(not (math.sqrt(42)<=42)):
         {}
 
-    print('file "' + tainted_3 + '" ', end='')
+    print(f'file "{ tainted_3 }" ', end='')
 
     if os.path.exists(tainted_3):
         print('exists')

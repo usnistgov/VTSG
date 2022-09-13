@@ -38,7 +38,7 @@ def main():
     var_530 = Class_530(tainted_3)
     tainted_4 = var_530.get_var_530()
 
-    print('file "' + tainted_4 + '" ', end='')
+    print(f'file "{ tainted_4 }" ', end='')
     #flaw
     if os.path.exists(tainted_4):
         print('exists')
