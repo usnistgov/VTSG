@@ -1,17 +1,22 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Mon Mar 14 16:37:09 2022" *by "Paul E. Black"
+ *modified "Tue Sep 13 11:01:12 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
 
 16 Feb 2022
-Correct Fig. 9 (final code example) in manual.  It does not have a //flaw line.
+Correct Fig. 9 (final code example) in the manual.  It does not have a //flaw line.
 Since the example sink.xml has //flaw, it should.
-  Related: create a language especially for the example in the manual so we can rerun
+  Related: create a "language" especially for the example in the manual so we can rerun 
 when VTSG changes.
 
-Get indentation working ("deterministically"), for Python
+Eliminate initial superfluous newline at the beginning of file.
+
+6 Sep 2022
+Fix Python "Classes" complexity:
+The main file must import the class-defining file, e.g.
+from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22_File2 import Class_884
 
 Make sure the PHP and C# code runs, that is, that the generated programs are valid.
 Fix any problems . . .
@@ -52,6 +57,8 @@ are far more similar in syntax than C# and Python.  This will help lessen the am
 of code that the generator runs specifically running only the functions it needs for
 each language.
 
+Document ability in vtsg.py to run astyle (indentation tool) if it exists.
+
 
 GENERATE MORE KINDS OF CASES
 
@@ -87,7 +94,7 @@ combinations, including complexities, that it comes up with.  This is an easy wa
 approximate combinatorial tests.
     An alternative is to (pseudo)randomly decide which case to write.  That is, write
 any case with probability p%.  This should write about p% of cases.  It must be
-PSEDUOrandom so we can provide a seed and generate exaclty the same cases in each
+PSEDUOrandom so we can provide a seed and generate exactly the same cases in each
 test run.
     The -g (number generated) option does something vaguely like this.  However, it
 stops generation after N sink/filter/input/exec query combinations are generated.
@@ -107,7 +114,7 @@ OTHER? GENERAL?
 Shorten the generated file name.  For instance, Juliet uses suffixes a, b, c,
 etc. when a test case includes multiple files.  VTSG adds _File1 to all files.
     Or, add a --short-case-name option, to produce Juliet-like names.
-    A better alternative is to allow the user to specific generated file name in a
+    A better alternative is to allow the user to specify generated file name in a
 general format, like strftime or ISO/IEC 9899 (C90).  Here is a sample:
   %A is the full weekday name.
   %a is the abbreviated weekday name.
@@ -130,7 +137,7 @@ in the current directory.  Put all the self-test stuff in another directory so t
 top-level directory doesn't get cluttered.
 
 Write manifest in our current SARIF-style.  There is sarif_writer.py, which is a
-start from August 2020.  A newer implemention (Dec 2021) of sarif writer is in Paul's
+start from August 2020.  A newer implementation (Dec 2021) of sarif writer is in Paul's
 Work/Ockham.
 
 Change --cwe option to be something like --flaw_type.  Now that these can be, say,
@@ -138,7 +145,7 @@ BF or SEI CERT Secure Coding Standards
 https://wiki.sei.cmu.edu/confluence/display/seccode/
 the option should be more generic.
 
-Update contact and lincense information in setup.py.  (Re)register in PyPI. Let
-Bertrand know about this new GitHub reqpository, so he can "point" his to this one.
+Update contact and license information in setup.py.  (Re)register in PyPI. Let
+Bertrand know about this new GitHub repository, so he can "point" his to this one.
 
 end of TODO
