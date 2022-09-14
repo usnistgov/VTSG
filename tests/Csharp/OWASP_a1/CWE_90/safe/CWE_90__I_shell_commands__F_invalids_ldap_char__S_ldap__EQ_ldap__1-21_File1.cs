@@ -1,0 +1,108 @@
+
+/*
+input : shell commands
+filtering : remove all '\', '*', '(', ')', 'u0000', '/' in parameter
+sink : LDAP Query
+LDAP Query
+*/
+/*
+Created by Paul E. Black and William Mentzer 2020
+
+This software was developed at the National Institute of Standards and Technology
+by employees of the Federal Government in the course of their official duties.
+Pursuant to title 17 Section 105 of the United States Code the software is not
+subject to copyright protection and are in the public domain.
+
+We would appreciate acknowledgment if the software is used.
+
+Paul E. Black  paul.black@nist.gov
+William Mentzer willmentzer20@gmail.com
+
+*/
+using System;
+using System.Diagnostics;
+using System.DirectoryServices;
+using System.IO;
+using System.Text;
+
+namespace default_namespace{
+    class MainClass51251{
+        public static void Main(string[] args){
+            string tainted_1 = null;
+            string tainted_2 = null;
+            string tainted_3 = null;
+
+            
+                Process process = new Process();
+                process.StartInfo.FileName = "/bin/bash";
+                process.StartInfo.Arguments = "-c 'cat /tmp/tainted.txt'";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.Start();
+
+                using(StreamReader reader = process.StandardOutput) {
+                    tainted_1 = reader.ReadToEnd();
+                    process.WaitForExit();
+                    process.Close();
+                }
+            
+            tainted_3 = tainted_1;
+            
+                Class_51250 var_51250 = new Class_51250(tainted_1);
+                tainted_2 = var_51250.get_var_51250();
+                
+                StringBuilder escape = new StringBuilder();
+                for (int i = 0; i < tainted_2.Length; ++i){
+                    char current = tainted_2[i];
+                    switch (current){
+                        case '\\':
+                            escape.Append(@"\5c");
+                            break;
+                        case '*':
+                            escape.Append(@"\2a");
+                            break;
+                        case '(':
+                            escape.Append(@"\28");
+                            break;
+                        case ')':
+                            escape.Append(@"\29");
+                            break;
+                        case '\u0000':
+                            escape.Append(@"\00");
+                            break;
+                        case '/':
+                            escape.Append(@"\2f");
+                            break;
+                        default:
+                            escape.Append(current);
+                            break;
+                    }
+                }
+                tainted_3 = escape.ToString();
+            
+            
+                
+                string query = "(&(objectClass=person)(sn=" + tainted_3 + "))";
+            
+            
+            string strConnect = "LDAP://my.site.com/o=site,c=com";
+            using (System.DirectoryServices.DirectoryEntry CN_Main = new System.DirectoryServices.DirectoryEntry(strConnect)){
+                string strResult = "";
+                System.DirectoryServices.DirectorySearcher DirSearcher = new System.DirectoryServices.DirectorySearcher(CN_Main, query);
+                System.DirectoryServices.DirectoryEntry CN_Result;
+                CN_Main.AuthenticationType = AuthenticationTypes.None;
+                foreach (System.DirectoryServices.SearchResult ResultSearch in DirSearcher.FindAll()){
+                    if (ResultSearch != null){
+                        CN_Result = ResultSearch.GetDirectoryEntry();
+                        if ((string)CN_Result.Properties["userclass"][0] == "noname"){
+                            strResult = strResult + "Name : " + CN_Result.InvokeGet("sn");
+                        }
+                    }
+                }
+                Console.WriteLine(strResult);
+            }
+        
+        }
+        
+    }
+}

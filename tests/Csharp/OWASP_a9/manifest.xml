@@ -1,0 +1,15 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2022-02-16</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_02-16-2022_11h07m47/Csharp/OWASP_a9/CWE_476/unsafe/CWE_476__I_args__F_good_regex_parent_dir_path__S_null_pointer__0_File1.cs" language="Csharp">
+			<flaw line="44" name ="CWE_476"/>
+		</file>
+
+	</testcase>
+
+</container>

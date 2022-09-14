@@ -1,0 +1,63 @@
+
+/*
+input : direct user input in string
+no filtering
+sink : XPATH Query
+exec_query : xpath
+*/
+/*
+Created by Paul E. Black and William Mentzer 2020
+
+This software was developed at the National Institute of Standards and Technology
+by employees of the Federal Government in the course of their official duties.
+Pursuant to title 17 Section 105 of the United States Code the software is not
+subject to copyright protection and are in the public domain.
+
+We would appreciate acknowledgment if the software is used.
+
+Paul E. Black  paul.black@nist.gov
+William Mentzer willmentzer20@gmail.com
+
+*/
+using System;
+using System.Xml;
+using System.Xml.XPath;
+
+namespace default_namespace{
+    class MainClass52918{
+        public static void Main(string[] args){
+            string tainted_2 = null;
+            string tainted_3 = null;
+            string tainted_4 = null;
+
+            
+                tainted_2 = Console.ReadLine();
+            
+            tainted_4 = tainted_2;
+            
+                
+                //No filtering (sanitization)
+                tainted_3 = tainted_2;
+            
+                Class_52917 var_52917 = new Class_52917(tainted_3);
+                tainted_4 = var_52917.get_var_52917();
+            
+                //flaw
+                string query = "//user[@name='" + tainted_4 + "']";
+            
+            
+            string filename = "file.xml";
+            XmlDocument document = new XmlDocument( );
+            document.Load(filename);
+            XmlTextWriter writer = new XmlTextWriter(Console.Out);
+            writer.Formatting = Formatting.Indented;
+
+            XmlNode node = document.SelectSingleNode(query);
+            node.WriteTo(writer);
+
+            writer.Close( );
+        
+        }
+        
+    }
+}
