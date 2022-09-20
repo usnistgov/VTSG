@@ -1,5 +1,5 @@
 # *created  "Mon Aug  3 16:47:40 2020" *by "Paul E. Black"
-# *modified "Mon Sep 12 16:53:00 2022" *by "Paul E. Black"
+# *modified "Tue Sep 20 15:23:33 2022" *by "Paul E. Black"
 """
 Functions to synthesize pieces of code.
 """
@@ -92,7 +92,7 @@ INDENT            text after INDENT is ignored
             if indent_depth > 0:
                 # properly indent this line
                 # step 1: remove all leading whitespace
-                line = re.sub(r'^\s*', '', line)
+                line = line.lstrip()
                 if line != '':
                     # step 2: add indent_depth indents
                     line = (indent * indent_depth) + line
