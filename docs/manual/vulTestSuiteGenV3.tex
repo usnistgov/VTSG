@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Mar 15 09:56:00 2022" *by "Paul E. Black"
+% *modified "Tue Sep 20 16:59:44 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -116,7 +116,8 @@ pdfkeywords={}
 \newcommand{\CSharp}{C{\fontseries{b}\selectfont\#}}
 % another possibility is C\nolinebreak\#\
 
-
+% zero-width space, so that -- does not become en dash
+\newcommand{\zws}{\hspace{0pt}}
 
 \begin{document}
 	\urlstyle{rm} % Format style of \url   
@@ -271,7 +272,8 @@ The latest version is structured to be able to generate vulnerable and nonvulner
 synthetic programs expressing specific flaws in \emph{any} programming language.
 It has libraries to generate PHP, \CSharp, and Python programs.
 This document may help if you are trying to generate test cases written in 
-PHP, \CSharp, or Python or if you are modifying VTSG Version 3 to generate test 
+PHP, \CSharp, or Python, adding new complexities or types of vulnerability, or
+modifying VTSG Version 3 to generate test
 cases in other programming languages.
 
 \section*{Key words}
@@ -309,8 +311,6 @@ We would appreciate acknowledgment if this document is used.
 
 \section{Introduction}
 \pagenumbering{arabic}
-
-{\Large We will use vulnerability, instead of flaw or weakness. other SAMATE documents use ``weakness''.}
 
 The Vulnerability Test Suite Generator (VTSG) generates collections 
 of vulnerable and non-vulnerable
@@ -358,7 +358,7 @@ by earlier versions as SARD test suites 103 and 105 from
 packages already installed on their Linux machines. Users who already have these
 packages may skip this section.
 
-\noindent To download files from Github, one must install the \emph{Git} package.
+\noindent To download files from Github, first install the \emph{Git} package.
 Here is the command to install it:
 
 \begin{verbatim}
@@ -372,7 +372,7 @@ Here is the command to install it:
     sudo apt-get install python3
 \end{verbatim}
 
-\noindent To download Python source code packages, one must install the \emph{pip
+\noindent To download Python source code packages, install the \emph{pip
 Python} package manager.
 Here is the command to install it:
 
@@ -393,8 +393,8 @@ Here is the command to install it:
     sudo python3 -m pip install --upgrade pip
 \end{verbatim}
 
-\noindent To validate \CSharp\ test cases, \emph{mono} and \emph{mcs} must be
-installed to run them. The Mono project created \emph{mono} as an open source
+\noindent To validate \CSharp\ test cases, install \emph{mono} and \emph{mcs}
+to run them. The Mono project created \emph{mono} as an open source
 platform, which
 implements the .NET Framework. Class libraries and \CSharp\ compilation are enabled
 by \emph{mcs} (\href{http://github.com/mono/mono}{http://github.com/mono/mono}).
@@ -458,11 +458,11 @@ and retrieve the appropriate sample from the generated and categorized folders.
 
 The second targeted audience of the VTSG is comprised of people wishing to generate
 test cases using a programming language other than the languages currently
-supported. The second group of users must use the template to construct the program
+supported.  The second group of users must create new templates for the program
 using the XML tags, execute VTSG with the command line interface,
 and retrieve the samples from the generated and categorized file folders.
 
-\subsection{Vulnerabilities Supported by VTSG}
+\subsection{Vulnerabilities Currently Provided by VTSG}
 
 Vulnerabilities are encoded in the language files, see Sec.~\ref{sec:source files}.
 Some of the OWASP Top 10~\cite{OWASPTop10-2017} and
@@ -479,7 +479,8 @@ the vulnerabilities currently in each language:
 \section{Command Line Interface}
 \label{sec:command line interface}
 
-For users who wish to generate PHP or \CSharp\ test suites, a command line interface
+For users who wish to generate PHP, \CSharp, or Python test suites, a command line
+interface
 can generate all test cases or a specific group of test cases based on several
 options.  For example, the user can generate vulnerable or non-vulnerable test cases
 based on selected OWASP categories or weakness types.  The user must specify the
@@ -492,19 +493,19 @@ $ python3 vtsg.py -l {php,cs,py} <options>
 % and \textrangle in the font family.  So we define our own.
 \newcommand{\texlangle}{$\langle$}
 \newcommand{\texrangle}{$\rangle$}
-Where \texlangle options\texrangle\ can be selected from 
+Where \verb|<options>| can be selected from
 Table~\ref{tab:command line options}.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|}
 \hline
--h --help & Show help and quit \\
+-h -\zws-help & Show help and quit \\
 \hline
---version & Show version number and quit \\
+-\zws-version & Show version number and quit \\
 \hline
 -l LANGUAGE 
---language=LANGUAGE &
+-\zws-language=LANGUAGE &
 \makecell[l]{Language of generated cases. \\
 Currently one of php, for PHP \\
 cases, cs, for \CSharp\ cases, or py, \\
@@ -512,33 +513,33 @@ for Python cases.
 See Sec.~\ref{sec: directory structure}.} \\
 \hline
 \makecell[l]{-f FLAW\_GROUP[,FLAW\_GROUP]* \\
---flaw-group=FLAW\_GROUP[,FLAW\_GROUP]*} &
+-\zws-flaw-group=FLAW\_GROUP[,FLAW\_GROUP]*} &
 \makecell[l]{Only generate cases with \\
 vulnerabilities from the specified \\
 group(s). See Sec.~\ref{sec:sink modules}} \\
 \hline
 -c Flaw[,Flaw]*
---cwe=Flaw[,Flaw]* &
+-\zws-cwe=Flaw[,Flaw]* &
 \makecell[l]{Only generate cases with vulner- \\
 abilities from the specified flaw(s). \\
 See Sec.~\ref{sec:sink modules}} \\
 \hline
 -s
---safe & 
+-\zws-safe &
 Only generate non-vulnerable cases \\
 \hline
 -u
---unsafe & 
+-\zws-unsafe &
 Only generate vulnerable cases \\
 \hline
 -r DEPTH
---depth=DEPTH &
+-\zws-depth=DEPTH &
 \makecell[l]{Maximum nested depth of \\
 complexities (Default: 1) See \\ 
 Sec.~\ref{sec:depth of complexities}} \\
 \hline
 -g NUMBER
---number-generated=NUMBER &
+-\zws-number-generated=NUMBER &
 \makecell[l]{Maximum number of sink, filter, \\
 input (and exec query) combina- \\
 tions to generate. (Default: -1, \\
@@ -546,9 +547,8 @@ meaning all) See below for \\
 explanation.} \\
 \hline
 -d
---debug &
-\makecell[l]{{\Large Not Used --} \\
-{\Large Remove from code}} \\
+-\zws-debug &
+\makecell[l]{for programmer use} \\
 \hline
 \end{tabular}
 \caption{Options for Command Line Invocation}
@@ -590,7 +590,7 @@ $ python3 vtsg.py -l php
 This takes about 25 minutes.  (Generating all the \CSharp\ cases takes about four
 minutes.)
 
-Generate a \CSharp\ (\verb|-l cs|) test suite made of vulerable (unsafe) test
+Generate a \CSharp\ (\verb|-l cs|) test suite made of vulnerable (unsafe) test
 cases (\verb|-u|) with SQL injection vulnerabilities (\verb|--cwe=CWE_89|)
 with up to 3 nested levels of complexity (\verb|-r 3|).
 \begin{verbatim}
@@ -611,9 +611,8 @@ $ python3 vtsg.py -l cs -r 3 --cwe=CWE_89 -u
   \label{fig:VTS operation overview}
 \end{figure}
 
-{\large Explain that this docment describes TWO structures. The structure of test
-  cases generated and the structure of VTSG.  Make it clear when each
-  is being explained.}
+Please note that this document describes two different program structures: the
+structure of VTSG itself and the structure of test cases that it generates.
 
 \subsection{Overview of Test Case Generation}
 
@@ -623,16 +622,16 @@ Filter, Sink, Complexity and ExecQuery files
 \begin{itemize}
  \item Template is the overall structure of each program.
  \item Input is the source of untrusted data in the program, e.g., 
- command line, variable, files, and form methods.
- \item Filtering filters the input with sanitization functions, 
- casting, deprecated functions, or simply no filtering.
+ command line, variable, files, or form methods.
+ \item Filtering filters the input with functions or methods such as sanitization
+   functions, casting, or deprecated functions.
  \item Sink is where a sensitive operation, such as a database query, 
  is executed with potentially untrusted input and where the 
  vulnerability is triggered.
  \item ExecQuery is an additional piece of code that is mandatory to 
  trigger the vulnerability.
- \item Complexity is how the data flow and control flow are 
- implemented in the structure of the program.
+ \item Complexity are additional data flow or control flow complications that are
+   worked into the structure of the program to exercise tools' abilities.
 \end{itemize}
 The content of these files is detailed in
 Sec.~\ref{sec:source files}.
@@ -641,8 +640,9 @@ Sec.~\ref{sec: generation detail}.
 
 When invoked to generate test cases, VTSG creates a directory with all the results.
 The directory is named for the date and time created, for example,
-\verb|TestSuite_03-08-2022_16h46m35|.  The language directory, \verb|PHP|
-\verb|Csharp|, is created in this directory.  This name comes from the \verb|name|
+\verb|TestSuite_03-08-2022_16h46m35|.  The language directory, \verb|PHP|,
+\verb|Csharp|, or \verb|Python| is created in this directory.
+This language name comes from the \verb|name|
 in the \verb|file_template.xml| file.  See Sec.~\ref{sec: file template}.
 
 Under the language directory, VTSG creates one directory for each flaw group, for
@@ -651,15 +651,18 @@ in the \verb|sink.xml| file; see Sec.~\ref{sec:sink modules}.
 Under each flaw group directory is a subdirectory for each specific flaw type, for
 instance, \verb|CWE_78| or \verb|CWE_89|.  These come from the \verb|flaw_type|
 entries, which are also in the \verb|sink.xml| file.
-VTSG also creates a manifest file of all the test cases generated, named
+VTSG also creates a manifest file of all the test cases generated for each flaw
+group, named
 \verb|manifest.xml|.
-Under the flaw type directory are directories for safe or unsafe test cases, depending on
+
+Under the flaw type directory are directories for safe or unsafe (vulnerable) test
+cases, depending on
 which are generated.
 
 \subsection{VTSG Directory Structure}
 \label{sec: directory structure}
 
-All the XML files are kept in a \verb|templates| subdirectory.
+All the XML information files are in a \verb|templates| subdirectory.
 Under this is one subdirectory for each language.  VTSG chooses the
 directory based on the language selected in the \verb|-l| command line
 option.  Each language subdirectory has six files for that language.
@@ -669,7 +672,7 @@ and \verb|exec_queries.xml|.  To add another language,
 simply create a subdirectory for that language with the six description
 files.
 
-The \verb|templates| directory has \verb|file_rights.txt|, which is
+The \verb|templates| directory also has \verb|file_rights.txt|, which is
 copied into each generated test case to declare license rights and
 authorship, see Sec.~\ref{sec: file template}, and a 
 \verb|dtd| subdirectory, which has a document type definition (DTD) 
@@ -685,7 +688,7 @@ programs in a specific program language.
 Each test case is generated by
 assembling the modules according to the Template.  The
 template may direct construction of a simple test case with just
-an Input, a Filter, and a Sink.  
+an Input and a Sink.
 The Filtering code may be embedded in data and control flow
 Complexity code.
 
@@ -719,7 +722,7 @@ overview of those steps:
             if input is needed:
                 select_filtering()
             else:
-                select_exec_query()
+                select_exec_queries()
     
     def select_filtering():
         for each filter:
@@ -728,10 +731,10 @@ overview of those steps:
     
     def select_input()
         for each input:
-            if input is compatible with filter:
-                select_exec_query()
+            if input is compatible with filter and sink:
+                select_exec_queries()
 
-    def select_query()
+    def select_exec_queries()
         if sink needs exec_query:
             for each exec_query:
                 if exec_query is compatible with sink:
@@ -748,13 +751,16 @@ overview of those steps:
     ... and so forth
 \end{verbatim}
 
-The \emph{test\_suite\_gen.py} script creates a new object of the
+The \emph{vtsg.py} script creates a new object of the
 \emph{Generator} class. 
 The program iterates through all sink modules, selecting those
 specified by the user, see
 Sec.~\ref{sec:command line interface}, 
 or all of them if the user does not specify. It subsequently
-selects filters then inputs then exec queries and complexities
+selects a compatible filter.  It then goes through all inputs.
+The \verb|<input_type>| and \verb|<output_type>|
+must be consistent with the ``Filtering'' and ``Sink'' XML tags.
+Then an exec query and complexities are selected
 that are compatible with the currently selected sink module.
 
 When VTSG has selected a set of modules, it begins composing
@@ -763,18 +769,15 @@ The process of composing modules to generate source code is
 based on XML metadata tags.
 After the imports and class definition declaration for the 
 specific program
-language, the ``Input'' metadata \texlangle code\texrangle\  portion 
+language, the ``Input'' metadata \verb|<code>| portion
 is added to the test case.  
-The \texlangle input\_type\texrangle\ and 
-\texlangle output\_type\texrangle\ 
-must be consistent with the ``Filtering'' and ``Sink'' XML tags.  The 
-``Filtering'' metadata \texlangle code\texrangle\ portion, plus its 
-\texlangle flaw type\texrangle\ and safety indicator, are added to 
+The ``Filtering'' metadata \verb|<code>| portion, plus its
+\verb|<flaw type>| and safety indicator, are added to
 the test case.  Next, the ``Sink'' metadata 
-\texlangle code\texrangle\ portion 
+\verb|<code>| portion
 is added to the test case.  Finally, the ``ExecQuery'' type is 
 noted and the 
-\texlangle code\texrangle\ portion of the ``ExecQuery'' is added 
+\verb|<code>| portion of the ``ExecQuery'' is added
 to the 
 test case.  The test case is written to a file.  
 The location of the file is
@@ -822,7 +825,7 @@ Code complexities are constructs that may confuse static
 analysis tools.  
 Each code complexity element can have many different attributes
 associated with it.
-They are combined and nested to create real source code.  
+They are combined and nested to create more realistic source code.
 For example, the value 
 of an expression may come from a constant, a single variable, 
 some arithmetic 
@@ -866,7 +869,7 @@ name. They correspond to:\\
 \section{Template, Input, Filter, Sink, Exec\_Query, and Complexity Files}
 \label{sec:source files}
 
-These XML files are required when adding new functionality to VTSG.
+These XML files are required when adding new a language to VTSG.
 There 
 are a few XML-specific caveats that must be paid attention to when 
 creating these files. 
@@ -897,25 +900,164 @@ in a special way in XML files.}
 \label{tab:XML escapes}
 \end{table}
 
+VTSG uses Jinja to compose code. In addition to the above, Jinja recognizes
+double-curly-brackets (\{\{ and \}\}) as introducing Jinja-specific variables and
+controls.  Do not use pairs of curly brackets in your files, except for VTSG-related
+variables.
+
 Characteristics of modules and their information are stored in 
 XML files.  
-This section describes the structure of each type of module and 
+This section of the document describes the structure of each type of module and
 the meaning
 of each element and its tags.
 
 Most of the file types have an example followed by
-an explanation of what it does and what it generates at the end.
+an explanation of what it does and what it generates.
 
-Each language directory has one file for each type. That is, 
+Each language directory has one file of each name. That is,
 one \verb|file_template.xml| file, one \verb|input.xml| file, 
 one \verb|filtering.xml| file, one \verb|complexities.xml| file,
 one \verb|sink.xml| file, and one \verb|exec_queries.xml| file.
 
-The \verb|input.xml|, \verb|filtering.xml|, \verb|complexities.xml|,
-\verb|exec_queries.xml|, and \verb|sink.xml| files may have many
-modules in them.  For example, \verb|input.xml| typically has
-many input modules, Sec.~\ref{sec: input module}, each getting 
-input from a different source.
+All the files, except \verb|file_template.xml|, may have many
+modules, that is alternate chucks of code, in them.
+For example, \verb|input.xml|, Sec.~\ref{sec: input module}, typically has many input
+modules.  Each module in \verb|input.xml| provides a method to get input from a
+different source, such as command line options or hard-coded values.
+
+\subsection{Using INDENT...ENDINDENT to Maintain Indentation}
+\label{sec:indent}
+
+INDENT...ENDINDENT sections may appear in any of the above files.  However, they
+most often occur in \verb|file_template.xml| and \verb|complexities.xml| files.
+
+VTSG using Jinja does a haphazard job of producing proper indentation.  Indentation
+is not critical for many languages.  It is critical for Python, however.  To maintain
+correct indentation, use INDENT and ENDINDENT lines in code chunks to indicate that
+any code between those lines should be indented consistently.  For example,
+\begin{verbatim}
+def main():
+INDENT
+    {{local_var}}
+    {{input_content}}
+    {{filtering_content}}
+    {{sink_content}}
+    {{exec_queries_content}}
+ENDINDENT
+\end{verbatim}
+All code produced from the statements between the INDENT/ENDINDENT lines will be
+consistently indented with the string defined in \verb|<indent>| \verb|</indent>|,
+which appears in \verb|file_template.xml|, see Sec.~\ref{sec: file template}.
+That string is typically four spaces.
+
+INDENT sections may be nested.  For example, here is a sink module with code that
+needs additional indentation.
+\begin{verbatim}
+        print(f'file "{ {{in_var_name}} }" ', end='')
+        {{flaw}}
+        if os.path.exists({{in_var_name}}):
+	INDENT
+            print('exists')
+	ENDINDENT
+	else:
+	INDENT
+            print('does not exist')
+	ENDINDENT
+\end{verbatim}
+If the INDENT lines were not included, VTSG produces the following code.
+\begin{verbatim}
+def main():
+    tainted_0 = None
+    tainted_1 = None
+
+    tainted_0 = input()
+    tainted_1 = tainted_0
+    
+        # No filtering (sanitization)
+        tainted_1 = tainted_0
+            
+    
+        print(f'file "{ tainted_1 }" ', end='')
+        #flaw
+        if os.path.exists(tainted_1):
+            print('exists')
+	else:
+            print('does not exist')
+\end{verbatim}
+Notice that the indentation is not consistent. This is not valid Python code.
+With INDENT lines, VTSG produces the following, which is valid Python.
+\begin{verbatim}
+def main():
+    tainted_0 = None
+    tainted_1 = None
+
+    tainted_0 = input()
+    tainted_1 = tainted_0
+
+    # No filtering (sanitization)
+    tainted_1 = tainted_0
+
+
+    print(f'file "{ tainted_1 }" ', end='')
+    #flaw
+    if os.path.exists(tainted_1):
+        print('exists')
+    else:
+        print('does not exist')
+\end{verbatim}
+
+Here are details of using INDENT and ENDINDENT.
+
+VTSG processes code within INDENT sections line by line. No semantic parsing or
+analysis is done.
+
+A section to be fixed is indicated by a line beginning with \verb|INDENT|, possibly
+with leading whitespace. The end of the section is indicated by a line beginning with
+\verb|ENDINDENT|, again possibly with leading whitespace. Any text after INDENT or
+ENDINDENT to the end of the line is ignored.
+
+Indent sections may be nested.
+
+INDENT and ENDINDENT lines are removed.
+For lines within an INDENT...ENDINDENT section,
+\begin{itemize}
+\item first, any leading whitespace is removed, and
+\item second, indent is added for each nested INDENT...ENDINDENT section this
+  is in if the line is not empty.
+\end{itemize}
+
+Here is a convoluted example to illustrate the fine points.  Suppose this is the
+code generated by the modules.
+\begin{verbatim}
+      if Condition:
+INDENT            text after INDENT is ignored
+           line 1
+               while not True:
+          INDENT
+           line 3 - INDENT not at the beginning is ignored
+     ENDINDENT
+
+                  line above is empty
+        ENDINDENT
+        line 5
+\end{verbatim}
+If the indent string is specified as \verb|<indent>..,</indent>|, the following is
+the result. (Note: typically, the indent is four spaces. The preceding string with
+periods and a comma is only for example clarity.)
+\begin{verbatim}
+      if Condition:
+..,line 1
+..,while not True:
+..,..,line 3 - INDENT not at the beginning is ignored
+
+..,line above is empty
+        line 5
+\end{verbatim}
+
+Note: because \emph{all} leading whitespace is removed from lines in indent sections,
+using INDENT...ENDINDENT anywhere means that every indentation must be indicated with
+INDENT...ENDINDENT lines.
+
 
 \subsection{File Template}
 \label{sec: file template}
@@ -930,6 +1072,7 @@ input from a different source.
     </comment>
     <syntax>
         <statement_terminator></statement_terminator>
+        <indent></indent>
     </syntax>
     <namespace></namespace>
     <variables prefix="" import_code="using {{import_file}};">
@@ -943,9 +1086,9 @@ input from a different source.
 \end{verbatim}
 
 \begin{itemize}
-    \item name: Programming language name, e.g., PHP, CSharp, 
+    \item name: Programming language name, e.g., PHP, Csharp,
     or Python. This appears in the manifest.
-    It is also the subdirectory under the TestSuite directory 
+    It is also the name of the subdirectory under the TestSuite directory
     where all the generated test cases are placed.
 
     \item file\_extension: Extension of the generated files.
@@ -966,11 +1109,15 @@ input from a different source.
         in PHP, C, Java, \\ and \CSharp. Python does not have 
         a terminator, so this is the empty string: \\
         \verb|<statement_terminator></statement_terminator>|.
+
+        \item indent: string used to indent code, see Sec.~\ref{sec:indent}.
+          This is typically four spaces, but
+          can be any string.
     \end{itemize}
     
     \item namespace: Namespace name, if applicable
 
-    \item variables: Information variable names and types and how
+    \item variables: Information about variable names and types and how
     to include libraries.
     \begin{itemize}
         \item prefix: Any prefix required for variable name, 
@@ -997,7 +1144,7 @@ input from a different source.
         value stored in this attribute.
 
         \item init: Value assigned at the initialization of the variable. 
-        This value is used when declaring all global variables in the code.
+        This value is used when declaring all variables.
         \end{itemize}
     \end{itemize}
     
@@ -1010,7 +1157,7 @@ input from a different source.
         
         \item license: This is replaced by the contents of the
         \verb|file_rights.txt| file.  This is intended to hold
-        authors' names, usage and copy rights, contact information, 
+        authors' names, usage and copyrights, contact information, 
         etc.
         
         \item stdlib\_imports:  This tag is a placeholder for 
@@ -1020,11 +1167,11 @@ input from a different source.
 
         \item main\_name:  Name of the main class
 
-        \item local\_var:  Location for local variables
+        \item local\_var:  Location for local variables (required)
 
-        \item input\_content:  Location for the Input
+        \item input\_content:  Location for the Input (required)
 
-        \item filtering\_content:  Location for the Complexity, along 
+        \item filtering\_content:  Location for complexities, if any, along
         with the Filter
 
         \item sink\_content:  Location for the Sink
@@ -1068,20 +1215,28 @@ file.
 \end{figure}
 
 \begin{itemize}
-    \item path: used in the file name. Each \texlangle dir\texrangle\ tag contains key words of the input method used. It is included in the file name. For example, when the key word in the \texlangle dir\texrangle\ tag is "none", the file name will contain ...I\_none\_..., where "I" is used to state the input selected
+    \item path: used in the file name. Each \verb|<dir>| tag contains key words of
+      the input method used. It is included in the file name. For example, when the
+      key word in the \verb|<dir>| tag is "none", the file name will contain
+      ...I\_none\_..., where "I" is used to state the input selected
     
     \item flaw: the vulnerability categories where the sample can be used, e.g., if
       the input is compatible with a flaw type and if it is safe for this type. For
       example, \\
-    \verb|<flaw flaw_type="CWE_89" safe="0"/>| means that the input is for the CWE 89 and that it is not safe.  If an input is generic and compatible with all CWEs, put ``default'' in the ``flaw\_type'' attribute.
+    \verb|<flaw flaw_type="CWE_89" safe="0"/>| means that the input is for the CWE 89
+    and that it is not safe.  If an input is generic and compatible with all CWEs,
+    put ``default'' in the \verb|flaw_type| attribute.
 
     \item input\_type: the type of input and its source.
     Declarations of \verb|variable| in the File Template give
     available types, see Sec.~\ref{sec: file template}.
 
-    \item output\_type: the type of output.  The variable generated with the placeholder \\ \verb|{{out_var_name}}| in the code will be that type.
+    \item output\_type: the type of output.  The variable generated with the
+      placeholder \\ \verb|{{out_var_name}}| in the code will be that type.
 
-    \item code: The source code of an input. It should contain the placeholder \\ \verb|{{out_var_name}}|.  That placeholder will be replaced by the variable name used in the Filtering and Sink.  Do not declare this variable.
+    \item code: The source code of an input. It should contain the placeholder \\
+      \verb|{{out_var_name}}|.  That placeholder will be replaced by the variable
+      name used in the Filtering and Sink.  Do not declare this variable.
 \end{itemize}
 
 The case generated from the example Input in 
@@ -1116,7 +1271,7 @@ All filter modules are in the \verb|filtering.xml| file.
 \end{figure}
 
 \begin{itemize}
-    \item path: used in the file name.  Each \texlangle dir\texrangle\ 
+    \item path: used in the file name.  Each \verb|<dir>|
     tag has
     key words of the filtering method used. It is used in the filename.
     
@@ -1137,7 +1292,7 @@ All filter modules are in the \verb|filtering.xml| file.
     \verb|<flaw flaw_type="CWE_89" safe="0"/>| means that the Filter is for 
     CWE 89 and that it is not safe.  Whereas \verb|safe=”1”| means that it is
     safe.  It could be safe for another flaw type.  If a filter is compatible with
-    all types of flaws, put \verb|ALL| in the ``flaw\_type'' attribute.
+    all types of flaws, put \verb|ALL| in the \verb|flaw_type| attribute.
 
     \item code: The source code of an filter. It should contain the placeholders
     \\
@@ -1410,14 +1565,14 @@ complexity modules are inside \\ \verb|<complexities>|.
 \begin{figure}[htbp]
   \includegraphics[width=\linewidth]{fig_Complexity_file_method.png}
   \caption{Example Complexity module with a method invocation.  
-  The \texlangle code\texrangle\ part is instantiated in
+  The \texlangle code \texrangle\  part is instantiated in
   Fig.~\ref{fig:example main file}, lines 18 and 19. 
-  The \texlangle body\texrangle\ part is instantiated in
+  The \texlangle body \texrangle\  part is instantiated in
   Fig.~\ref{fig:example aux file}.}
   \label{fig:example complexity-method file}
 \end{figure}
 
-When adding Complexity, VTSG can use several complexity in one
+When adding complexity, VTSG can use several complexities in one
 test case.
 The example in Sec.~\ref{sec:generated files} has two types of
 Complexity: a control flow complexity and a data flow complexity. 
@@ -1431,10 +1586,10 @@ specified in Fig.~\ref{fig:example complexity-test file}.
 The data flow complexity is a method call within the \verb|while| loop.  
 The specification
 is in Fig.~\ref{fig:example complexity-method file}.  
-The \texlangle code\texrangle\ 
+The \verb|<code>|
 part is instantiated in lines 18 and 19 of 
 Fig.~\ref{fig:example main file}. 
-The \texlangle body\texrangle\ part is instantiated in 
+The \verb|<body>| part is instantiated in
 Fig.~\ref{fig:example aux file}.
 
 
@@ -1478,7 +1633,7 @@ VTSG names test case files as
     \end{itemize}
     \item X: Number of the file within the test. 
     1 is the main file. 2, 3, 
-    \ldots are other files, such as classes. {\Large Juliet uses a, b, c, d}
+    \ldots are any other files, such as classes. {\Large Juliet uses a, b, c, d}
     \item EXT: file extension
 \end{itemize}
 
@@ -1504,7 +1659,7 @@ identical names, except for the final FileX part.
     Fig.~\ref{fig:example input file}. Lines 16--19 instantiates complexity code from 
     Fig.~\ref{fig:example complexity-while file}. Line 16 instantiates condition code from
     Fig.~\ref{fig:example complexity-test file}.  Lines 18 and 19 instantiate code from the
-    \texlangle code\texrangle\ part of Fig.~\ref{fig:example complexity-method file}.
+    \texlangle code \texrangle\  part of Fig.~\ref{fig:example complexity-method file}.
     Line 23 instantiates critical preparation code from Fig.~\ref{fig:example sink file}.
     Lines 25--39 instantiate query execution code from Fig.~\ref{fig:example exec-query file}.
     Note: a //flaw line would be generated before line 23.
@@ -1514,8 +1669,9 @@ identical names, except for the final FileX part.
 
 \begin{figure}[htbp]
   \includegraphics[width=0.85\linewidth]{fig_example_code2.png}
-  \caption{Auxiliary file of example.  It instantiates code from the \texlangle body\texrangle\ 
-    part of Fig.~\ref{fig:example complexity-method file}.  Lines 19--27 instantiate filter code
+  \caption{Auxiliary file of example.  It instantiates code from the
+    \texlangle body \texrangle\ part of Fig.~\ref{fig:example complexity-method file}.
+    Lines 19--27 instantiate filter code
     from Fig.~\ref{fig:example filter file}.}
   \label{fig:example aux file}
 \end{figure}
@@ -1558,7 +1714,7 @@ with condition 7 = \verb|Math.| \verb|Sqrt(42)<=42|: True, Fig.~\ref{fig:example
 
 
 
-\section{Acknowledgements}
+\section{Acknowledgments}
 
 Bertrand Stivalet and Aurelien Delaitre, from the NIST SAMATE team, designed the
 architecture of the VTSG project and managed its implementation.  The project was
