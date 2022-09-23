@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Sep 20 16:59:44 2022" *by "Paul E. Black"
+% *modified "Fri Sep 23 17:20:44 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -466,15 +466,9 @@ and retrieve the samples from the generated and categorized file folders.
 
 Vulnerabilities are encoded in the language files, see Sec.~\ref{sec:source files}.
 Some of the OWASP Top 10~\cite{OWASPTop10-2017} and
-Common Weakness Enumerations (CWEs)~\cite{CWE} are encoded.  The following list shows
-the vulnerabilities currently in each language:
-\begin{itemize}
-    \item SQL Injection (\CSharp, PHP)
-    \item XPath Injection (\CSharp)
-    \item LDAP Injection (\CSharp)
-    \item OS Command Injection (\CSharp)
-    \item Path traversal (\CSharp)
-\end{itemize}
+Common Weakness Enumerations (CWEs)~\cite{CWE} are encoded.
+See App.~\ref{sec:CSharp language} and \ref{sec:PHP language} for details.
+
 
 \section{Command Line Interface}
 \label{sec:command line interface}
@@ -592,7 +586,7 @@ minutes.)
 
 Generate a \CSharp\ (\verb|-l cs|) test suite made of vulnerable (unsafe) test
 cases (\verb|-u|) with SQL injection vulnerabilities (\verb|--cwe=CWE_89|)
-with up to 3 nested levels of complexity (\verb|-r 3|).
+and up to 3 nested levels of complexity (\verb|-r 3|).
 \begin{verbatim}
 $ python3 vtsg.py -l cs -r 3 --cwe=CWE_89 -u
 \end{verbatim}
@@ -835,9 +829,8 @@ influenced by loops, conditionals, and functions calls.
 Also, there could be many 
 layers or depths of such nesting structures.  
 
-The Complexity identifications currently available for PHP 
-and \CSharp\ are listed in 
-Table~\ref{tab:complexity IDs} in App.~\ref{sec: complexity and condition IDs}.
+The complexities currently defined for PHP
+and \CSharp\ are listed in the appendixes for their languages.
 
 Here is an example code complexity from \verb|cwe_89__I_shell_commands__F_no_|\\ 
 \verb|filtering__S_select_from-concatenation_simple_quote__EQ_mysql__3-2.5-| \\ 
@@ -1183,11 +1176,33 @@ INDENT...ENDINDENT lines.
 \end{itemize}
 
 
+\subsection{Attributes Shared By Modules}
+\label{sec:shared attributes}
+
+Many kinds of modules use the same attributes.  Instead of repeating documentation of
+these attributes, they are here.
+
+\subsubsection{Module Description in Path and Dir Tags}
+\label{sec:module description}
+
+description of this input method. For example, when the
+key word in the \verb|<dir>| tag is "none", the file name will contain
+...I\_none\_..., where "I" is used to state the input selected
+
+
+\subsubsection{Marking Modules as Safe and Unsafe}
+\label{sec:safe or unsafe}
+
+For example,
+    \verb|<flaw flaw_type="CWE_89" safe="0"/>| means that the input is for the CWE 89
+    and that it is never safe.  If an input
+
+
 \subsection{Input Modules}
 \label{sec: input module}
 
-All input modules for a language are in that language's \verb|input.xml|
-file.
+The \verb|input.xml| file has one or more ``sample'' input modules.  Each module
+provides one way for the generated program to get input.
 
 \begin{verbatim}
 <sample>
@@ -1196,7 +1211,7 @@ file.
     </path>
     <comment></comment>
     <flaws>
-        <flaw flaw_type="" safe=""/>
+        <flaw flaw_type="" [safe=""] [unsafe=""]/>
     </flaws>
     <imports>
         <import></import>
@@ -1215,21 +1230,18 @@ file.
 \end{figure}
 
 \begin{itemize}
-    \item path: used in the file name. Each \verb|<dir>| tag contains key words of
-      the input method used. It is included in the file name. For example, when the
-      key word in the \verb|<dir>| tag is "none", the file name will contain
-      ...I\_none\_..., where "I" is used to state the input selected
+    \item path: used as the description of the input module in the file name.
+      See Sec.~\ref{sec:module description} for details.
     
-    \item flaw: the vulnerability categories where the sample can be used, e.g., if
-      the input is compatible with a flaw type and if it is safe for this type. For
-      example, \\
-    \verb|<flaw flaw_type="CWE_89" safe="0"/>| means that the input is for the CWE 89
-    and that it is not safe.  If an input is generic and compatible with all CWEs,
-    put ``default'' in the \verb|flaw_type| attribute.
+    \item flaw: vulnerability categories where the sample can be used, that is, the
+      flaws that the input is compatible with.  Also whether it is safe or unsafe
+      for that vulnerability type.  If this input is generic and compatible with all
+      types of vulnerabilities, put ``default'' as the \verb|flaw_type|.
 
     \item input\_type: the type of input and its source.
     Declarations of \verb|variable| in the File Template give
     available types, see Sec.~\ref{sec: file template}.
+{\Large Does this really matter? ``input: Command line args'' seems to work just fine.}
 
     \item output\_type: the type of output.  The variable generated with the
       placeholder \\ \verb|{{out_var_name}}| in the code will be that type.
@@ -1271,9 +1283,8 @@ All filter modules are in the \verb|filtering.xml| file.
 \end{figure}
 
 \begin{itemize}
-    \item path: used in the file name.  Each \verb|<dir>|
-    tag has
-    key words of the filtering method used. It is used in the filename.
+    \item path: the description of the filter module in the file name.
+      See Sec.~\ref{sec:module description} for details.
     
     \item input\_type: the input type of the filter. The variable 
     generated with
@@ -1289,9 +1300,10 @@ All filter modules are in the \verb|filtering.xml| file.
 
     \item flaw: whether the Filter is compatible with a flaw type and if it is
     safe for this type.  For example, \\
-    \verb|<flaw flaw_type="CWE_89" safe="0"/>| means that the Filter is for 
-    CWE 89 and that it is not safe.  Whereas \verb|safe=”1”| means that it is
-    safe.  It could be safe for another flaw type.  If a filter is compatible with
+    \verb|<flaw flaw_type="CWE_89" safe="1"/>| means that the filter is for
+    CWE 89 and that it is always safe.  Giving \verb|safe=”0”| means that it is never
+    safe.  It could be always safe or never safe for another flaw type.
+    If a filter is compatible with
     all types of flaws, put \verb|ALL| in the \verb|flaw_type| attribute.
 
     \item code: The source code of an filter. It should contain the placeholders
@@ -1330,6 +1342,9 @@ All sink modules are in the language's \verb|sink.xml| file.
 \end{verbatim}
 
 \begin{itemize}
+    \item path: the description of the sink module in the file name.
+      See Sec.~\ref{sec:module description} for details.
+
     \item flaw\_type: the flaw\_group is a general category of vulnerability.
     Generated test cases are placed under the flaw group subdirectory, then
     in the flaw type subdirectory under that. The user can limit
@@ -1403,6 +1418,9 @@ file.
 \end{verbatim}
 
 \begin{itemize}
+    \item path: the description of the exec query module in the file name.
+      See Sec.~\ref{sec:module description} for details.
+
     \item type: the type of the ExecQuery. This type is used in the 
     \verb|exec_type| tag of the Sink in order to link them together during
     generation process.  The type should only contain letters, numerals, and
@@ -1470,8 +1488,8 @@ complexity modules are inside \\ \verb|<complexities>|.
 \end{verbatim}
 
 \begin{itemize}
-    \item id: Unique string(?) for the Condition.  Appears in
-    the test case file name.
+    \item id: string indicating this condition.  Appears in the test case
+      file name.  Typically this is a number.
     
     \item code: the source code of the conditional test.
 
@@ -1501,9 +1519,11 @@ complexity modules are inside \\ \verb|<complexities>|.
 \end{verbatim}
 
 \begin{itemize}
-    \item id: Unique string(?) for the Complexity.  This is at the 
-    end of the
-    name of the generated file.
+    \item id: string indicating this complexity.  Appears in the test case
+      file name.  Typically this is a number.
+
+    \item path: the description of the exec query module in the file name.
+      See Sec.~\ref{sec:module description} for details.
 
     \item type: Supported types are: \verb|if|, \verb|switch|, \verb|goto|, 
     \verb|for|, \verb|foreach|, \verb|while|, \\
@@ -1565,9 +1585,9 @@ complexity modules are inside \\ \verb|<complexities>|.
 \begin{figure}[htbp]
   \includegraphics[width=\linewidth]{fig_Complexity_file_method.png}
   \caption{Example Complexity module with a method invocation.  
-  The \texlangle code \texrangle\  part is instantiated in
+  The \texlangle code\texrangle\  part is instantiated in
   Fig.~\ref{fig:example main file}, lines 18 and 19. 
-  The \texlangle body \texrangle\  part is instantiated in
+  The \texlangle body\texrangle\  part is instantiated in
   Fig.~\ref{fig:example aux file}.}
   \label{fig:example complexity-method file}
 \end{figure}
@@ -1622,9 +1642,7 @@ VTSG names test case files as
             code complexity modules, 
             see Sec.~\ref{sec: complexity modules}. 
             Table~\ref{tab:complexity IDs} in
-            App.~\ref{sec: complexity and condition IDs}
-             lists complexity IDs currently used with
-            PHP or \CSharp.
+            language appendixes.
             (optional)
         \item COND: ID given in test condition modules,
             see Sec.~\ref{sec: condition modules}.
@@ -1659,7 +1677,7 @@ identical names, except for the final FileX part.
     Fig.~\ref{fig:example input file}. Lines 16--19 instantiates complexity code from 
     Fig.~\ref{fig:example complexity-while file}. Line 16 instantiates condition code from
     Fig.~\ref{fig:example complexity-test file}.  Lines 18 and 19 instantiate code from the
-    \texlangle code \texrangle\  part of Fig.~\ref{fig:example complexity-method file}.
+    \texlangle code\texrangle\  part of Fig.~\ref{fig:example complexity-method file}.
     Line 23 instantiates critical preparation code from Fig.~\ref{fig:example sink file}.
     Lines 25--39 instantiate query execution code from Fig.~\ref{fig:example exec-query file}.
     Note: a //flaw line would be generated before line 23.
@@ -1670,7 +1688,7 @@ identical names, except for the final FileX part.
 \begin{figure}[htbp]
   \includegraphics[width=0.85\linewidth]{fig_example_code2.png}
   \caption{Auxiliary file of example.  It instantiates code from the
-    \texlangle body \texrangle\ part of Fig.~\ref{fig:example complexity-method file}.
+    \texlangle body\texrangle\ part of Fig.~\ref{fig:example complexity-method file}.
     Lines 19--27 instantiate filter code
     from Fig.~\ref{fig:example filter file}.}
   \label{fig:example aux file}
@@ -1753,14 +1771,31 @@ Charles de Oliveira for their contributions to this report.
 
 \appendix
 
-\section{Complexity and Condition IDs}
-\label{sec: complexity and condition IDs}
+\section{\CSharp\ language}
+\label{sec:CSharp language}
 
-This section lists complexities and conditions currently
-available for \CSharp\ and PHP.
-We explain code complexities in Sec.~\ref{sec:code complexities}.
+This documents the flaws, flaw groups, conditions, and complexities currently in the
+\CSharp\ language files.
 
-%\subsection{This is a Subsection in the Appendix}
+The following vulnerabilities are currently in this language:
+\begin{itemize}
+    \item SQL Injection (CWE-89)
+    \item XPath Injection (CWE-91)
+    \item LDAP Injection (CWE-90)
+    \item OS Command Injection (CWE-78)
+    \item Path traversal (CWE-22)
+    \item Information Leak Through Error Message (CWE-209)
+    \item Storing Password in Plain Text (CWE-256)
+    \item Use of Insecure Cryptographic Algorithm (CWE-327)
+    \item NULL Pointer Dereference (CWE-476)
+\end{itemize}
+
+
+This lists the complexities currently available.
+We explain code complexities in Sec.~\ref{sec:code complexities} and
+complexity modules in Sec.~\ref{sec: complexity modules}.
+The very brief description is to remind the reader of the complexity.
+See the \verb|complexity.xml| file for the specific code.
 
 \begin{table}[H]
 \centering
@@ -1768,64 +1803,60 @@ We explain code complexities in Sec.~\ref{sec:code complexities}.
 \hline
 \textbf{ID} & \textbf{Complexity} \\
 \hline
- 1 & if condition \\
+ 1 & if condition code \\
 \hline
- 2 & if condition \\
+ 2 & if condition code else \\
 \hline
- 3 & if not condition \\
+ 3 & if condition else code \\
 \hline
- 4 & if condition \\
+ 4 & if condition code else if not condition \\
 \hline
- 5 & if not condition \\
+ 5 & if condition else if not condition code \\
 \hline
- 6 & if condition \\
+ 6 & if condition code else if not condition else \\
 \hline
- 7 & if not condition \\
+ 7 & if condition else if not condition code else \\
  \hline
- 8 & if not executed \\
+ 8 & if condition else if not condition else code \\
 \hline
- 9 & switch executed \\
+ 9 & switch code executed \\
 \hline
-10 & switch not executed \\
+10 & switch code not executed \\
 \hline
-11 & while condition \\
+11 & while code \\
 \hline
 
-12 & do while executed \\
+12 & do code while \\
 \hline
-13 & for executed \\
+13 & for code \\
 \hline
-14 & foreach executed \\
+14 & foreach code \\
 \hline
-15 & goto not executed \\
+15 & goto code not executed \\
 \hline
-16 & goto executed \\
+16 & goto code executed \\
 \hline
-17 & function traversal executed \\
+17 & function body executes code \\
 \hline
-18 & function in executed \\
+18 & input passed via function then code \\
 \hline
-19 & function out executed \\
+19 & code then output passed via function \\
 \hline
-20 & class traversal executed \\
+20 & class body executes code \\
 \hline
-21 & class in executed \\
+21 & input passed via class then code \\
 \hline
-22 & class out executed \\
+22 & code then output passed via class \\
 \hline
 \end{tabular}
-\caption{Complexity IDs Defined for \CSharp\ and PHP}
-\label{tab:complexity IDs}
+\caption{IDs and Code Description of Complexities Defined for \CSharp}
+\label{tab:complexities for CSharp}
 \end{table}
 
-{\Large Why are they four ``if condition''s? (and three ``if not condition''s)}
-
-{\Large What does ``condition'' mean vs. ``executed''?}
-
-{\Large Explain connection between table and code and body.}
-
-Complexities are defined in Code Complexity Modules, see
-Sec.~\ref{sec: complexity modules}.
+This lists the conditions currently available to be used in code complexities.
+We explain condition modules in Sec.~\ref{sec: condition modules}.
+Tab.~\ref{tab:condition IDs for CSharp} shows the ID, the code, and whether it
+always evaluates to true or false.
 
 \begin{table}[H]
 \centering
@@ -1850,16 +1881,114 @@ Sec.~\ref{sec: complexity modules}.
 8 & \verb|Math.Sqrt(42)>=42| & False \\
 \hline
 \end{tabular}
-\caption{Condition IDs Associated with Complexities in Table~\ref{tab:complexity IDs}}
-\label{tab:condition IDs}
+\caption{IDs, Code, and Value to Which it Evaluates of Conditions Defined for
+  \CSharp}
+\label{tab:condition IDs for CSharp}
 \end{table}
 
-The value indicates that the code always evaluates to true or false,
-respectively.
-Conditions are defined in Test Condition Modules,
-see Sec.~\ref{sec: condition modules}.
 
-{\Large Can any condition go with any complexity?}
+\section{PHP language}
+\label{sec:PHP language}
+
+This documents the flaw, flaw group, conditions, and complexities currently in the
+PHP language files.
+
+The following vulnerability is currently in this language:
+\begin{itemize}
+    \item SQL Injection (CWE-89)
+\end{itemize}
+
+
+This lists the complexities currently available.
+We explain code complexities in Sec.~\ref{sec:code complexities} and
+complexity modules in Sec.~\ref{sec: complexity modules}.
+The very brief description is to remind the reader of the complexity.
+See the \verb|complexity.xml| file for the specific code.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|l|}
+\hline
+\textbf{ID} & \textbf{Complexity} \\
+\hline
+ 1 & if condition code \\
+\hline
+ 2 & if condition code else \\
+\hline
+ 3 & if condition else code \\
+\hline
+ 4 & if condition code else if not condition \\
+\hline
+ 5 & if condition else if not condition code \\
+\hline
+ 6 & if condition code else if not condition else \\
+\hline
+ 7 & if condition else if not condition code else \\
+ \hline
+ 8 & if condition else if not condition else code \\
+\hline
+ 9 & switch code executed \\
+\hline
+10 & switch code not executed \\
+\hline
+11 & while code \\
+\hline
+
+12 & do code while \\
+\hline
+13 & for code \\
+\hline
+14 & foreach code \\
+\hline
+15 & goto code not executed \\
+\hline
+16 & goto code executed \\
+\hline
+17 & function body executes code \\
+\hline
+18 & input passed via function then code \\
+\hline
+19 & code then output passed via function \\
+\hline
+20 & class body executes code \\
+\hline
+21 & input passed via class then code \\
+\hline
+22 & code then output passed via class \\
+\hline
+\end{tabular}
+\caption{IDs and Code Description of Complexities Defined for PHP}
+\label{tab:complexities for PHP}
+\end{table}
+
+
+This lists the conditions currently available to be used in code complexities.
+We explain condition modules in Sec.~\ref{sec: condition modules}.
+Tab.~\ref{tab:condition IDs for PHP} shows the ID, the code, and whether it
+always evaluates to true or false.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|l|l|}
+\hline
+\textbf{ID} & \textbf{Code} & \textbf{Value} \\
+\hline
+1 & \verb|1==1| & True \\
+\hline
+2 & \verb|1==0| & False \\
+\hline
+\end{tabular}
+\caption{IDs, Code, and Value to Which it Evaluates of Conditions Defined for
+  PHP}
+\label{tab:condition IDs for PHP}
+\end{table}
+
+
+\section{Python language}
+\label{sec:Python language}
+
+This documents the flaws, flaw groups, conditions, and complexities currently in the
+Python language files.
 
 
 % make this begin on a new page (not a new column) even in
