@@ -1,26 +1,28 @@
 """
 Input Class (TODO DOC)
 
- *modified "Mon Feb 14 13:07:41 2022" *by "Paul E. Black"
+ *modified "Fri Sep 23 10:33:25 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
 
 
 class InputSample(Sample):  # Initialize the type of input and the code parameters of the class
-    """FiletringSample class
+    """InputSample class
 
         Args :
             **sample** (xml.etree.ElementTree.Element): The XML element containing the input tag in the \
                                                           file "input.xml".
 
         Attributes :
-            **_input_type** (str): Type of input variable (private member, please use getter and setter).
+            **_input_type** (str): Type of input variable (private member, please use
+            getter.  Read only).
 
-            **_output_type** (str): Type of output variable (private member, please use getter and setter).
+            **_output_type** (str): Type of output variable (private member, please
+              use getter.  Read only).
 
             **_flaws** (dict str->(dict str->bool): Collection of flaws for this filtering with safety \
-                                                    (private member, please use getter and setter).
+                                          (private member, please use getter.  Read only).
     """
 
     # compatible with new structure

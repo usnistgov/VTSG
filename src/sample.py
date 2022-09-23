@@ -1,7 +1,7 @@
 """
 sample module
 
- *modified "Fri Feb 11 13:45:04 2022" *by "Paul E. Black"
+ *modified "Fri Sep 23 11:26:28 2022" *by "Paul E. Black"
 """
 
 import src.generator
@@ -105,9 +105,9 @@ class Sample(object):
         """
         return self._need_id
 
-    def generate_file_name(self):
+    def module_description(self):
         """
-        Generate the filename with the path of the Manifest.
+        Return the description of this module.
         """
         name = ""
         for directory in self.path:

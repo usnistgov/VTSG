@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Mon Sep 12 11:18:58 2022" *by "Paul E. Black"
+ *modified "Fri Sep 23 11:27:34 2022" *by "Paul E. Black"
 """
 
 import time
@@ -147,8 +147,9 @@ class Generator(object):
     def generate(self, debug=False, generate_safe=True, generate_unsafe=True):
         """
         This function is the start of generation execution.
-        It call other function recursilely to selecc input, filtering, sink, exec queries and complexities.
-        At the end of the recursif chain, code chunks are combined into finales source files.
+        It calls other functions to select inputs, filters, sinks, exec queries and
+        complexities.  At the end of the calls, code chunks are combined into final
+        source files.
 
         Args :
             **debug** (bool): no effect
@@ -162,7 +163,7 @@ class Generator(object):
         self.debug = debug
         self.generate_safe = generate_safe
         self.generate_unsafe = generate_unsafe
-        # start of recursives call
+        # start of chain of calls to generate test cases
         self.select_sink()
         # generate the repport with number of safe/unsafe, time, ...
         self.generation_report()
@@ -225,10 +226,10 @@ class Generator(object):
             self.current_exec_queries = None
             self.recursion_or_compose()
 
-    # fourth-and-a-half step: generate complexity depths if needed or go right to compose
+    # fifth step: generate complexity depths if needed or go right to compose
     def recursion_or_compose(self):
         '''
-        If this case has sinks, wrap them in appropriate depths of complexities.
+        If this uses an input, wrap the filter in appropriate depths of complexities.
         Otherwise, proceed directly to compose.
         '''
         if self.current_sink.input_type != "none":
@@ -236,7 +237,7 @@ class Generator(object):
         else:
             self.compose()
 
-    # fifth step: generate all depths of complexities up to maximum
+    # fifth-and-a-half step: generate all depths of complexities up to maximum
     def recursion_level(self):
         """
         Generate all depths of complexities up to the maximum:
@@ -280,7 +281,7 @@ class Generator(object):
                 # add current complexity to array
                 self.complexities_queue.append(curr_complexity)
                 # pretraitment per type before recursive call
-                # Conditionnals
+                # Conditionals
                 if curr_complexity.group == "conditionals":
                     if curr_complexity.type == "if":
                         self.need_condition(curr_complexity, level)
@@ -317,7 +318,7 @@ class Generator(object):
     def need_condition(self, curr_complexity, level):
         """
         This function check if the current complexity needs a condition.
-        If its needed, we browse all conditions and compose them into the complexity code.
+        If it's needed, browse all conditions and compose them into the complexity code.
         The state of the complexity is updated with the result of the conditional.
 
         Args :
@@ -660,16 +661,16 @@ class Generator(object):
         name = self.current_sink.flaw_type
         if self.current_input:
             name += "__I_"
-            name += self.current_input.generate_file_name()
+            name += self.current_input.module_description()
         if self.current_filtering:
             name += "__F_"
-            name += self.current_filtering.generate_file_name()
+            name += self.current_filtering.module_description()
         name += "__S_"
-        name += self.current_sink.generate_file_name()
+        name += self.current_sink.module_description()
 
         if self.current_exec_queries:
             name += "__EQ_"
-            name += self.current_exec_queries.generate_file_name()
+            name += self.current_exec_queries.module_description()
 
         name += "__"
         cplx_name = ""
