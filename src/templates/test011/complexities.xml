@@ -1,15 +1,16 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
+<!-- *modified "Fri Sep 23 12:20:31 2022" *by "Paul E. Black" -->
 <root>
     <conditions>
-        <condition id="1">
+        <condition id="one">
             <code>1==1</code>
             <value>True</value>
         </condition>
     </conditions>
 
     <complexities>
-        <complexity id="8" type="if" group="conditionals" executed="0">
+        <complexity id="eight" type="if" group="conditionals" executed="0">
             <code>
 if({{ condition }}):
     {}

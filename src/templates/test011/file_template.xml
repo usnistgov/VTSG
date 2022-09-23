@@ -1,5 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!-- *modified "Fri Sep 23 12:20:22 2022" *by "Paul E. Black" -->
 
 <template name="test011">
     <file_extension>py</file_extension>
@@ -22,6 +23,7 @@
 '''
   Test 1 of 4 for statement_terminator
   No ang-syntax-ang at all.
+  Test using arbitrary strings for id in conditions and complexities
 '''
 '''
 {{ comments }}
