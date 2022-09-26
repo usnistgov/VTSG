@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Fri Sep 23 11:27:34 2022" *by "Paul E. Black"
+ *modified "Mon Sep 26 11:50:57 2022" *by "Paul E. Black"
 """
 
 import time
@@ -514,7 +514,7 @@ class Generator(object):
         current_flaw = self.current_sink.flaw_type
         files_path = []
         # Create main file
-        main_filename = self.generate_file_name("File1")
+        main_filename = self.generate_file_name("_File1")
         filemanager = FileManager(main_filename, self.dir_name,
                                   current_flaw_group,
                                   current_flaw,
@@ -529,7 +529,7 @@ class Generator(object):
 
         # Create any additional class files
         for i, cl in enumerate(self.classes_code):
-            filename = self.generate_file_name(f'File{i+2}')
+            filename = self.generate_file_name(f'_File{i+2}')
             filemanager = FileManager(filename, self.dir_name,
                                       current_flaw_group,
                                       current_flaw,
@@ -578,8 +578,8 @@ class Generator(object):
         """
         Returns true if the final source code is safe, false otherwise.
         The computation is :
-        * True if on of input, filtering, sink or exec query is safe and no unsafe on input, filtering, sink \
-            and exec query
+        * True if one of input, filtering (and it is executed), sink, or exec query is
+            safe and there is no unsafe input, executed filtering, sink, or exec query
         * False else
         """
         safe_input = False
@@ -678,8 +678,8 @@ class Generator(object):
             cplx_name += "-" + c.get_complete_id()
 
         name += f'{self.current_max_rec}{cplx_name}'
-        # suffix
-        name += "_"+suffix
+        # suffix - for cases consisting of multiple files
+        name += suffix
         # extension
         name += "."+self.file_template.file_extension
         return name
