@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Fri Sep 23 17:20:44 2022" *by "Paul E. Black"
+% *modified "Mon Sep 26 16:10:35 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -116,7 +116,7 @@ pdfkeywords={}
 \newcommand{\CSharp}{C{\fontseries{b}\selectfont\#}}
 % another possibility is C\nolinebreak\#\
 
-% zero-width space, so that -- does not become en dash
+% zero-width space, so "--" does not become en dash
 \newcommand{\zws}{\hspace{0pt}}
 
 \begin{document}
@@ -649,8 +649,8 @@ VTSG also creates a manifest file of all the test cases generated for each flaw
 group, named
 \verb|manifest.xml|.
 
-Under the flaw type directory are directories for safe or unsafe (vulnerable) test
-cases, depending on
+Under the flaw type directory there may be directories for safe or unsafe
+(vulnerable) test cases, depending on
 which are generated.
 
 \subsection{VTSG Directory Structure}
@@ -1179,7 +1179,7 @@ INDENT...ENDINDENT lines.
 \subsection{Attributes Shared By Modules}
 \label{sec:shared attributes}
 
-Many kinds of modules use the same attributes.  Instead of repeating documentation of
+Many kinds of modules use the same attributes.  Instead of repeating explanation of
 these attributes, they are here.
 
 \subsubsection{Module Description in Path and Dir Tags}
@@ -1193,9 +1193,42 @@ key word in the \verb|<dir>| tag is "none", the file name will contain
 \subsubsection{Marking Modules as Safe and Unsafe}
 \label{sec:safe or unsafe}
 
-For example,
-    \verb|<flaw flaw_type="CWE_89" safe="0"/>| means that the input is for the CWE 89
-    and that it is never safe.  If an input
+Using some modules in a program for certain flaws may make them safe or may make them
+unsafe.  For instance, prepared SQL statements are always safe from SQL injection
+vulnerabilities.  In contrast using a broken cryptographic algorithm is always
+unsafe, regardless of how much any user input is filtered.  Similarly certain
+hard-coded inputs may always make a program safe from certain flaws, and some filters
+may make a program safe from certain flaws for any user input.
+
+Input, filter, and sink modules can be marked as always safe or always unsafe using
+\verb|safe="1"| or \verb|unsafe="1"|.  Modules may be always safe or always unsafe
+(or neither) for some types of flaws and have different safety attributes for other
+flaw types.
+
+Exec query modules may be marked as always safe.  (No exec query module can make the
+program unsafe.)
+
+A generated program is not safe if any of the selected input, filter, or sink modules
+are always unsafe, that is \verb|unsafe="1"|.  A program is safe if the selected
+input, filter, sink, or exec query is always safe, \verb|safe="1"|, \emph{and} none
+are unsafe.  The filter module must be executed to be considered.  In other words, if
+a complexity never executes the filter, then the filter's safe or unsafe marking is
+ignored.  Tab.~\ref{tab:selection safe algorithm} expresses this as a table.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c|c|}
+  & \makecell{Any module \\ has safe="1"}
+  & \makecell{No module is \\ always safe} \\
+\hline
+\makecell{Any module \\ has unsafe="1"}  & not safe & not safe \\
+\hline
+\makecell{No module is \\ always unsafe} &   safe   & not safe \\
+\hline
+\end{tabular}
+\caption{Decision table for whether a selection of modules is considered safe or unsafe.}
+\label{tab:selection safe algorithm}
+\end{table}
 
 
 \subsection{Input Modules}
@@ -1234,8 +1267,9 @@ provides one way for the generated program to get input.
       See Sec.~\ref{sec:module description} for details.
     
     \item flaw: vulnerability categories where the sample can be used, that is, the
-      flaws that the input is compatible with.  Also whether it is safe or unsafe
-      for that vulnerability type.  If this input is generic and compatible with all
+      flaws that the input is compatible with.  Also whether it is always safe or
+      always unsafe for that vulnerability type.  See Sec.~\ref{sec:safe or unsafe}
+      for more details.  If this input is generic and compatible with all
       types of vulnerabilities, put ``default'' as the \verb|flaw_type|.
 
     \item input\_type: the type of input and its source.
@@ -1263,11 +1297,11 @@ All filter modules are in the \verb|filtering.xml| file.
 \begin{verbatim}
 <sample>
     <path>
-	    <dir></dir>
+        <dir></dir>
     </path>
     <comment></comment>
     <flaws>
-	    <flaw flaw_type="" safe=""/>
+        <flaw flaw_type="" [safe=""] [unsafe=""]/>
     </flaws>
     <imports></imports>
     <code></code>
@@ -1298,13 +1332,11 @@ All filter modules are in the \verb|filtering.xml| file.
     \verb|out_var_name| and make the input\_type and output\_type \verb|nofilter|.
     This passes the variable from the Input directly to the Sink.
 
-    \item flaw: whether the Filter is compatible with a flaw type and if it is
-    safe for this type.  For example, \\
-    \verb|<flaw flaw_type="CWE_89" safe="1"/>| means that the filter is for
-    CWE 89 and that it is always safe.  Giving \verb|safe=”0”| means that it is never
-    safe.  It could be always safe or never safe for another flaw type.
-    If a filter is compatible with
-    all types of flaws, put \verb|ALL| in the \verb|flaw_type| attribute.
+    \item flaw: vulnerability categories where the filter can be used, that is, the
+      flaws that the filter is compatible with.  Also whether it is always safe or
+      always unsafe for that vulnerability type.  See Sec.~\ref{sec:safe or unsafe}
+      for more details.  If this filter is generic and compatible with all
+      types of vulnerabilities, put ``default'' as the \verb|flaw_type|.
 
     \item code: The source code of an filter. It should contain the placeholders
     \\
@@ -1365,13 +1397,9 @@ All sink modules are in the language's \verb|sink.xml| file.
     an ExecQuery. If it does not require an ExecQuery, 
     exec\_type should be \verb|none|.
 
-    \item safety: whether the sink is safe or not. If this sink is always
-    ``safe'', assign a value of 1.  If always ``unsafe'', assign a value 
-    of 1, so the file will be considered unsafe.  
-    This is useful for a deprecated function.  If the Sink may be safe or 
-    unsafe depending on the input and filtering, assign a value of 0 to 
-    both attributes.  The safety of the generated case will depend on
-    the Input and Filtering.
+    \item safety: whether the sink is always safe or always unsafe.  For instance, a
+      deprecated function may be marked unsafe.  See Sec.~\ref{sec:safe or unsafe}
+      for more details.
     
     \item code: The source code of a sink. It should contain the placeholder
     \verb|{{in_var_name}}|.  The placeholder will be replaced by the variable
@@ -1407,7 +1435,7 @@ file.
 \begin{verbatim}
 <exec_query type="" safe="">
     <path>
-	    <dir></dir>
+        <dir></dir>
     </path>
     <comment></comment>
     <imports>
@@ -1425,12 +1453,13 @@ file.
     \verb|exec_type| tag of the Sink in order to link them together during
     generation process.  The type should only contain letters, numerals, and
     underscore (``\_'').\\
-    VTSG V3 supports many database management systems, including ORACLE, \\
-    MySQL,
-    MSSQL, Postgre, SQLite, and XPATH.  The syntax of each ExexQuery must be
+    Languages currently available for VTSG V3 support many database management
+    systems, including ORACLE, MySQL, MSSQL, PostgreSQL, SQLite, and XPATH.
+    The syntax of each ExecQuery must be
     compatible with its associated database system language.
     
-    \item safe: whether the ExecQuery makes the case safe or not.
+    \item safe: whether the ExecQuery makes the case always safe.
+    See Sec.~\ref{sec:safe or unsafe} for more details.
 
     \item code: The source code of a query. It does not contain placeholders.
     It should be linked to the corresponding variable from the Sink. The linking is done through the "exec\_type" attributes within the XML files.
@@ -1447,7 +1476,7 @@ file.
 The block of code in the Exec\_Query example, 
 Fig.~\ref{fig:example exec-query file}, executes the SQL query, used 
 for database management
-systems, including MySQL, Oracle, Postgre, and SQLite.  This example is 
+systems, including MySQL, Oracle, PostgreSQL, and SQLite.  This example is
 vulnerable.  If a non-vulnerable execution of a SQL query is required, 
 use a SQL prepared statement.
 
@@ -1514,7 +1543,7 @@ complexity modules are inside \\ \verb|<complexities>|.
 <complexity id="" type="" group="" executed="" in_out_var="i" 
                                          indirection="" need_id="">
     <code></code>
-	<body></body>
+    <body></body>
 </complexity>
 \end{verbatim}
 
@@ -1535,8 +1564,8 @@ complexity modules are inside \\ \verb|<complexities>|.
     \item executed: whether the placeholder will be executed or not. Four 
     values are allowed:
     \begin{itemize}
-        \item 0: Not executed
-        \item 1: Executed
+        \item 0: Never executed
+        \item 1: Always executed
         \item condition:  Executed if the condition is true
         \item not condition:  Executed if the condition is false
     \end{itemize}
@@ -1564,9 +1593,9 @@ complexity modules are inside \\ \verb|<complexities>|.
     context.
 
     \item code: the source code of the Complexity.  Code or 
-    body should contain the placeholder, \verb|{{placeholder}}|, 
-    where the Filter is inserted.  It may contain the
-    placeholder, \verb|{{condition}}|, where the Condition 
+    body should contain \verb|{{placeholder}}|
+    where the Filter is inserted.  It may also contain
+    \verb|{{condition}}| where the Condition
     is inserted.
 
     \item body:  Contains the source code not in the main execution 
@@ -1592,8 +1621,7 @@ complexity modules are inside \\ \verb|<complexities>|.
   \label{fig:example complexity-method file}
 \end{figure}
 
-When adding complexity, VTSG can use several complexities in one
-test case.
+VTSG can use several complexities in one test case.
 The example in Sec.~\ref{sec:generated files} has two types of
 Complexity: a control flow complexity and a data flow complexity. 
 The control flow complexity specification is in 
