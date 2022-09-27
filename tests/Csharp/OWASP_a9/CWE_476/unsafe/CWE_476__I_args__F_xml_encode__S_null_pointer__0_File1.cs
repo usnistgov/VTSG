@@ -1,7 +1,7 @@
 
 /*
 Command line args
-filtering : remove all "../" in path
+Xpath replace char
 sink : NULL Pointer Dereference
 */
 /*

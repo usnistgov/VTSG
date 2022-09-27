@@ -1,5 +1,5 @@
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Tue Sep 27 14:00:18 2022" *by "Paul E. Black"
+# *modified "Tue Sep 27 14:35:27 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -48,7 +48,7 @@ EF="TestPhoto_${TimeStamp}_${LD}_exec"
 
 # run VTSG and capture its output (generation report)
 echo running vtsg.py -l $lang ...
-python3 vtsg.py -l $lang | tee ${PF} 2>&1
+python3 vtsg.py -l $lang 2>&1 | tee ${PF}
 
 # determine what the TestSuite directory was named
 TSD=$(ls -dt TestSuite_*/${LD} | head -1)
@@ -56,18 +56,18 @@ echo ${TSD}
 
 # check that the outputs match
 echo checking that VTSG outputs match | tee -a ${CF}
-diff ${PF} tests/${LD}_photo | tee -a ${CF} 2>&1
+diff ${PF} tests/${LD}_photo 2>&1 | tee -a ${CF}
 
 # test directory, relative to the new TestSuite... directory
 TDIR="../../tests"
 
 # check that generated files match
 echo checking that generated files match ... | tee -a ${CF}
-(cd ${TSD};for f in $(find . -name "*.${lang}"); do cmp $f ${TDIR}/${LD}/$f;done) | tee -a ${CF} 2>&1
+(cd ${TSD};for f in $(find . -name "*.${lang}"); do cmp $f ${TDIR}/${LD}/$f;done) 2>&1 | tee -a ${CF}
 
 # check that the manifests match
 echo checking manifests | tee -a ${CF}
-(cd ${TSD};for m in $(find . -name "manifest.xml"); do echo $m;${TDIR}/cmp_manifests.py $m ${TDIR}/${LD}/$m;done) | tee -a ${CF} 2>&1
+(cd ${TSD};for m in $(find . -name "manifest.xml"); do echo $m;${TDIR}/cmp_manifests.py $m ${TDIR}/${LD}/$m;done) 2>&1 | tee -a ${CF}
 
 if [ $LD != Python ]
 then
@@ -93,8 +93,8 @@ for f in $(find . -name "*.py"|grep -v File2); do
     fi
     # timeout in order to limit infinite loops
     echo "$a" | gtimeout 3 python $f "$a"
-done) | tee ${EF} 2>&1
+done) 2>&1 | tee ${EF}
 echo checking that execution is as expected | tee -a ${CF}
-diff ${EF} tests/${LD}_exec | tee -a ${CF} 2>&1
+diff ${EF} tests/${LD}_exec 2>&1 | tee -a ${CF}
 
 # end of gen_and_check

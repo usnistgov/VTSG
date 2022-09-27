@@ -1,7 +1,7 @@
 
 /*
 Command line args
-filtering : remove all "../" in path
+Xpath replace char
 sink : connection to a database using hardcoded password in a file
 */
 /*
