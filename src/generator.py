@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Sep 27 08:33:41 2022" *by "Paul E. Black"
+ *modified "Tue Sep 27 12:10:55 2022" *by "Paul E. Black"
 """
 
 import time
@@ -192,9 +192,9 @@ class Generator(object):
         sink, proceed to the next step: selecting the input.
         """
         for filtering in self.tab_filtering:
-            self.current_filtering = filtering
             # check if sink and filtering are compatibles
             if filtering.compatible_with_sink(self.current_sink):
+                self.current_filtering = filtering
                 self.select_input()
 
     # third step: select input
