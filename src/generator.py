@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Mon Sep 26 11:50:57 2022" *by "Paul E. Black"
+ *modified "Tue Sep 27 08:33:41 2022" *by "Paul E. Black"
 """
 
 import time
@@ -578,8 +578,8 @@ class Generator(object):
         """
         Returns true if the final source code is safe, false otherwise.
         The computation is :
-        * True if one of input, filtering (and it is executed), sink, or exec query is
-            safe and there is no unsafe input, executed filtering, sink, or exec query
+        * True if any input, filtering (and it is executed), sink, or exec query
+            is safe and no input, executed filtering, or sink is unsafe.
         * False else
         """
         safe_input = False
