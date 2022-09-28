@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Sep 27 12:10:55 2022" *by "Paul E. Black"
+ *modified "Wed Sep 28 14:44:42 2022" *by "Paul E. Black"
 """
 
 import time
@@ -418,7 +418,7 @@ class Generator(object):
             # We set the name of input/output tainted variable and get the result into filtering_code
             filtering_code = Template(filtering_code, undefined=DebugUndefined).render(in_var_name=in_name, out_var_name=out_name, id=var_id)
 
-        # add comment into code at the position of the flaw if it exist
+        # add comment into code at the position of the flaw if unsafe
         flaw_str = ""
         if not self.is_safe_selection():
             # this flag is use to compute the line of the flaw in final file

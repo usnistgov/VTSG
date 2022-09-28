@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Sep 28 12:13:53 2022" *by "Paul E. Black"
+% *modified "Wed Sep 28 14:47:14 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1127,7 +1127,7 @@ with INDENT ... ENDINDENT lines.
 
         \item import\_code: Code to include a library. The code
         should have the placeholder \verb|{{import_file}}|.
-        For example, \verb|#include <{{import_name}}>|).
+        For example, \verb|#include <{{import_name}}>|.
         
         \item variable: Defines each variable type and how it will 
         be used.
@@ -1435,8 +1435,6 @@ All sink modules are in the language's \verb|sink.xml| file.
     \verb|{{flaw}}| is replaced with the one-line comment string,
     see Sec.~\ref{sec: file template}, and ``flaw''.
     It does not appear in generated safe cases.
-    Note: the generated code shown in Fig.~\ref{fig:example main file} is incorrect:
-    it does not show the \verb|//flaw| line that would be generated.
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -1726,7 +1724,6 @@ identical names, except for the final FileX part.
     \texlangle code\texrangle\  part of Fig.~\ref{fig:example complexity-method file}.
     Line 23 instantiates critical preparation code from Fig.~\ref{fig:example sink file}.
     Lines 25--39 instantiate query execution code from Fig.~\ref{fig:example exec-query file}.
-    Note: a //flaw line would be generated before line 23.
   }
   \label{fig:example main file}
 \end{figure}
