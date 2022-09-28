@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Sep 28 10:59:29 2022" *by "Paul E. Black"
+% *modified "Wed Sep 28 12:13:53 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -462,7 +462,7 @@ supported.  The second group of users must create new templates for the program
 using the XML tags, execute VTSG with the command line interface,
 and retrieve the samples from the generated and categorized file folders.
 
-\subsection{Vulnerabilities Currently Provided by VTSG}
+\subsection{Vulnerabilities Currently Encoded in VTSG Files}
 
 Vulnerabilities are encoded in the language files, see Sec.~\ref{sec:source files}.
 Some of the OWASP Top 10~\cite{OWASPTop10-2017} and
@@ -632,9 +632,11 @@ Sec.~\ref{sec:source files}.
 Details of the generation process are explained in
 Sec.~\ref{sec: generation detail}.
 
+\label{sec:case directory structure}
 When invoked to generate test cases, VTSG creates a directory with all the results.
 The directory is named for the date and time created, for example,
-\verb|TestSuite_03-08-2022_16h46m35|.  The language directory, \verb|PHP|,
+\verb|TestSuite_03-08-2022_| \verb|16h46m35|.
+The language directory, \verb|PHP|,
 \verb|Csharp|, or \verb|Python| is created in this directory.
 This language name comes from the \verb|name|
 in the \verb|file_template.xml| file.  See Sec.~\ref{sec: file template}.
@@ -649,28 +651,30 @@ VTSG also creates a manifest file of all the test cases generated for each flaw
 group, named
 \verb|manifest.xml|.
 
-Under the flaw type directory there are directories for safe or unsafe
+Under the flaw type directory are directories for safe or unsafe
 (vulnerable) test cases, depending on
 which are generated.
 
 \subsection{VTSG Directory Structure}
 \label{sec: directory structure}
 
-All the XML information files are in a \verb|templates| subdirectory.
+All the information files are in a \verb|templates| subdirectory.
 Under this is one subdirectory for each language.  VTSG chooses the
-directory based on the language selected in the \verb|-l| command line
+directory based on the language indicated in the \verb|-l| command line
 option.  Each language subdirectory has six files for that language.
 The files are \verb|file_template.xml|, \verb|input.xml|, 
 \verb|complexities.xml|, \verb|filtering.xml|, \verb|sink.xml|,
-and \verb|exec_queries.xml|.  To add another language,
+and \verb|exec_queries.xml|.
+The files are described in Sec.~\ref{sec:source files}.
+To add another language,
 simply create a subdirectory for that language with the six description
 files.
 
 The \verb|templates| directory also has \verb|file_rights.txt|, which is
 copied into each generated test case to declare license rights and
 authorship, see Sec.~\ref{sec: file template}, and a 
-\verb|dtd| subdirectory, which has a document type definition (DTD) 
-for Template, Input, Filter, and all other XML files.
+\verb|dtd| subdirectory, which has document type definitions (DTDs)
+for all of the XML files.
 
 
 \subsection{Details of Test Case Generation}
@@ -779,7 +783,7 @@ noted and the
 to the 
 test case.  The test case is written to a file.  
 The location of the file is
-described in Sec.~\ref{sec: test suite directory structure}.
+described in Sec.~\ref{sec:case directory structure}.
 Section~\ref{sec:case file name} describes how VTSG names the file.
 
 VTSG generates many different test cases, both with and without
@@ -837,8 +841,8 @@ The complexities currently defined for PHP
 and \CSharp\ are listed in the appendixes for their languages.
 
 Here is an example code complexity from \verb|cwe_89__I_shell_commands__F_no_|\\ 
-\verb|filtering__S_select_from-concatenation_simple_quote__EQ_mysql__3-2.5-| \\ 
-\verb|9-21_File1.cs|: \\
+\verb|filtering__S_select_from-concatenation_simple_quote__EQ_mysql| \\
+\verb|__3-2.5-9-21_File1.cs|: \\
 {\texttt
 {\colorbox{yellow}{if((Math.Pow(4, 2)<=42))\{}}\\
 \hspace*{2em}{\colorbox{green}{switch(6)\{}}\\
@@ -859,14 +863,14 @@ Here is an example code complexity from \verb|cwe_89__I_shell_commands__F_no_|\\
 The above has complexity depth 3, note \verb|__3| near the end of 
 the file
 name. They correspond to:\\
-{\colorbox{yellow}{Level 1 is the conditional}} id = 2.5\\
+{\colorbox{yellow}{Level 1 is the conditional}} id = 2 with condition 5\\
 \hspace*{2em}{\colorbox{green}{Level 2 is the switch statement}} id = 9\\
 \hspace*{4em}{\colorbox{cyan}{Level 3 is the call of a method from a Class defined in a different file}}, id = 21.
 
 \section{Template, Input, Filter, Sink, Exec\_Query, and Complexity Files}
 \label{sec:source files}
 
-These XML files are required when adding new a language to VTSG.
+These XML files are required for each language.
 There 
 are a few XML-specific caveats that must be paid attention to when 
 creating these files. 
@@ -914,7 +918,7 @@ an explanation of what it does and what it generates.
 Each language directory has one file of each name. That is,
 one \verb|file_template.xml| file, one \verb|input.xml| file, 
 one \verb|filtering.xml| file, one \verb|complexities.xml| file,
-one \verb|sink.xml| file, and one \verb|exec_queries.xml| file.
+one \\ \verb|sink.xml| file, and one \verb|exec_queries.xml| file.
 
 All the files, except \verb|file_template.xml|, may have many
 modules, that is alternate chucks of code, in them.
@@ -922,10 +926,10 @@ For example, \verb|input.xml|, Sec.~\ref{sec: input module}, typically has many 
 modules.  Each module in \verb|input.xml| provides a method to get input from a
 different source, such as command line options or hard-coded values.
 
-\subsection{Using INDENT...ENDINDENT to Maintain Indentation}
+\subsection{Using INDENT ... ENDINDENT to Maintain Indentation}
 \label{sec:indent}
 
-INDENT...ENDINDENT sections may appear in any of the above files.  However, they
+INDENT ... ENDINDENT sections may appear in any of the above files.  However, they
 most often occur in \verb|file_template.xml| and \verb|complexities.xml| files.
 
 VTSG using Jinja does a haphazard job of producing proper indentation.  Indentation
@@ -1016,10 +1020,10 @@ ENDINDENT to the end of the line is ignored.
 Indent sections may be nested.
 
 INDENT and ENDINDENT lines are removed.
-For lines within an INDENT...ENDINDENT section,
+For lines within an INDENT ... ENDINDENT section,
 \begin{itemize}
 \item first, any leading whitespace is removed, and
-\item second, indent is added for each nested INDENT...ENDINDENT section this
+\item second, indent is added for each nested INDENT ... ENDINDENT section this
   is in if the line is not empty.
 \end{itemize}
 
@@ -1052,8 +1056,8 @@ periods and a comma is only for example clarity.)
 \end{verbatim}
 
 Note: because \emph{all} leading whitespace is removed from lines in indent sections,
-using INDENT...ENDINDENT anywhere means that every indentation must be indicated with
-INDENT...ENDINDENT lines.
+using INDENT ... ENDINDENT anywhere means that every indentation must be indicated
+with INDENT ... ENDINDENT lines.
 
 
 \subsection{File Template}
@@ -1417,7 +1421,8 @@ All sink modules are in the language's \verb|sink.xml| file.
     exec\_type should be \verb|none|.
 
     \item safety: whether the sink is always safe or always unsafe.  For instance, a
-      deprecated function may be marked unsafe.  See Sec.~\ref{sec:safe or unsafe}
+      deprecated function may be marked (always) unsafe.
+      See Sec.~\ref{sec:safe or unsafe}
       for more details.
     
     \item code: The source code of a sink. It should contain the placeholder
@@ -1609,7 +1614,7 @@ complexity modules are inside \\ \verb|<complexities>|.
     context.
 
     \item code: the source code of the Complexity.  Code or 
-    body should contain \verb|{{placeholder}}|
+    body should contain \\ \verb|{{placeholder}}|
     where the Filter is inserted.  It may also contain
     \verb|{{condition}}| where the Condition
     is inserted.
@@ -1657,17 +1662,16 @@ The \verb|<body>| part is instantiated in
 Fig.~\ref{fig:example aux file}.
 
 
-\section{Generated Test Cases}
+\section{Generated Test Case File Names}
 
-This section describes where VTSG places test cases and what the
+This section describes what the
 names of test case files mean.
 
-\subsection{Directory Structure of Generated Test Cases}
-\label{sec: test suite directory structure}
+VTSG creates directories and subdirectories for the test cases that it generates.
+The structure is described in
+Sec.~\ref{sec:case directory structure}.
 
- a description of the directory structure where test cases are placed.
-
-\subsection{Test Case File Names}
+%\subsection{Test Case File Names}
 \label{sec:case file name}
 
 VTSG names test case files as
@@ -1684,10 +1688,10 @@ VTSG names test case files as
     \begin{itemize}
         \item CPLX1, CPLX2, \ldots: ID given in 
             code complexity modules, 
-            see Sec.~\ref{sec: complexity modules} and
-            tables \ref{tab:complexity IDs for CSharp} or
-            \ref{tab:complexity IDs for PHP} in
-            language appendixes.
+            see Sec.~\ref{sec: complexity modules}.
+            Tables \ref{tab:complexity IDs for CSharp} and
+            \ref{tab:complexity IDs for PHP} in the language appendixes list
+            complexity IDs used in \CSharp\ and PHP.
             (optional)
         \item COND: ID given in test condition modules,
             see Sec.~\ref{sec: condition modules}.
@@ -1698,20 +1702,16 @@ VTSG names test case files as
     \item X: Number of the file within the test. 
     1 is the main file. 2, 3, 
     \ldots are any other files, such as classes. {\Large Juliet uses a, b, c, d}
-    \item EXT: file extension
+    \item EXT: file extension, given in the \verb|file_template.xml| file, see
+    Sec.~\ref{sec: file template}.
 \end{itemize}
 
-Example
-\verb|CWE_89__I_args__F_func_preg_match-only_numbers__S_select_| \\
-\verb|from-concatenation_simple_quote__EQ_mysql__1-2.4_File1.cs|
-
-The Complexity part near the end, 1-2.4, means there is one Complexity. 
-It is complexity 2 with condition 4.
+See the next section, \ref{sec:generated files}, for an example of the file name of a
+generated test case and the various pieces.
 
 File names reflect the entire case, not just the code in a 
-particular file.  The
-example in Sec.~\ref{sec:generated files} shows that both 
-files of the case have
+particular file.  If a case consists of more than one file, as in the
+example in Sec.~\ref{sec:generated files}, all files have
 identical names, except for the final FileX part.
 
 \section{Example Test Case}
@@ -1755,7 +1755,7 @@ The name of the class file, Fig.~\ref{fig:example aux file}, is
 identical, except for the
 file number, ``2''.
 
-Using Sec.~\ref{sec:case file name}, and the extension, cs, which shows that it is a
+Using Sec.~\ref{sec:case file name} and the extension, cs, which shows that it is a
 \CSharp\ file, the file name is read as follows:
 
 \noindent CWE 89: Improper Neutralization of Special Elements used in an SQL Command
@@ -1773,11 +1773,11 @@ Fig.~\ref{fig:example sink file}.
 \noindent The next part, 2-11.7-20, means this has two complexities.
 Tables~\ref{tab:complexity IDs for CSharp} and
 \ref{tab:condition IDs for CSharp} help us decode them.
-11 is \verb|while|,
+The first, outer complexity is 11 with condition 7. 11 is \verb|while|,
 Fig.~\ref{fig:example complexity-while file}, 
-with condition 7 meaning \verb|Math.Sqrt(42)<=42|, which always evaluates to true,
+with condition 7 means \verb|Math.Sqrt(42)<=42|, which always evaluates to true,
 Fig.~\ref{fig:example complexity-test file}.
-20 means the sink code is executed in the class body,
+The second, inner complexity is 20 means the sink code is executed in the class body,
 Fig.~\ref{fig:example complexity-method file}.
 
 \noindent File1 means this is the main file.
