@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Sep 28 14:47:14 2022" *by "Paul E. Black"
+% *modified "Wed Sep 28 16:46:22 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -842,7 +842,7 @@ and \CSharp\ are listed in the appendixes for their languages.
 
 Here is an example code complexity from \verb|cwe_89__I_shell_commands__F_no_|\\ 
 \verb|filtering__S_select_from-concatenation_simple_quote__EQ_mysql| \\
-\verb|__3-2.5-9-21_File1.cs|: \\
+\verb|__3-2.5-9-21a.cs|: \\
 {\texttt
 {\colorbox{yellow}{if((Math.Pow(4, 2)<=42))\{}}\\
 \hspace*{2em}{\colorbox{green}{switch(6)\{}}\\
@@ -1674,7 +1674,7 @@ Sec.~\ref{sec:case directory structure}.
 
 VTSG names test case files as
 \verb|FLAW__I_INPUT__F_FILTER__S_SINK__EQ_EXEC_| \\
-\verb|QUERY__NBCPLX-CPLX1-CPLX2.COND_FileX.EXT|
+\verb|QUERY__NBCPLX-CPLX1-CPLX2.CONDx.EXT|
 \begin{itemize}
     \item FLAW: Flaw type, e.g. CWE\_89, BF, or STR30-PL
     \item INPUT:  Input description (optional)
@@ -1697,9 +1697,10 @@ VTSG names test case files as
             \ref{tab:condition IDs for PHP} list condition
             IDs used in \CSharp\ and PHP. (optional)
     \end{itemize}
-    \item X: Number of the file within the test. 
-    1 is the main file. 2, 3, 
-    \ldots are any other files, such as classes. {\Large Juliet uses a, b, c, d}
+    \item x: Sequence of the file within the test.  If the test consists of just one
+      file, there is no sequence letter.  If the test consists of more than one file,
+      the main file is ``a'', and other files, such as classes, are ``b'', ``c'',
+      ``d'', etc.
     \item EXT: file extension, given in the \verb|file_template.xml| file, see
     Sec.~\ref{sec: file template}.
 \end{itemize}
@@ -1710,7 +1711,7 @@ generated test case and the various pieces.
 File names reflect the entire case, not just the code in a 
 particular file.  If a case consists of more than one file, as in the
 example in Sec.~\ref{sec:generated files}, all files have
-identical names, except for the final FileX part.
+identical names, except for the final sequence letter.
 
 \section{Example Test Case}
 \label{sec:generated files}
@@ -1747,10 +1748,10 @@ the main file invokes the class at line 18.
 The name of the main file is
 \verb|CWE_89__I_shell_commands__F_func_preg_| \\
 \verb|match-only_numbers__S_select_from-concatenation_simple_quote__| \\
-\verb|sql_server__2-11.7-20_File1.cs|.
+\verb|sql_server__2-11.7-20a.cs|.
 The name of the class file, Fig.~\ref{fig:example aux file}, is
 identical, except for the
-file number, ``2''.
+file letter, ``b''.
 
 Using Sec.~\ref{sec:case file name} and the extension, cs, which shows that it is a
 \CSharp\ file, the file name is read as follows:
@@ -1777,7 +1778,7 @@ Fig.~\ref{fig:example complexity-test file}.
 The second, inner complexity is 20 means the sink code is executed in the class body,
 Fig.~\ref{fig:example complexity-method file}.
 
-\noindent File1 means this is the main file.
+\noindent ``a'' means this is the main file.
 
 
 

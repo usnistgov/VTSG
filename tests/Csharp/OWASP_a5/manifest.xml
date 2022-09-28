@@ -2,11 +2,11 @@
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2022-09-27</date>
+			<date>2022-09-28</date>
 			<input>input : Command line args</input>
 		</meta-data>
 
-		<file path="TestSuite_09-27-2022_14h28m02/Csharp/OWASP_a5/CWE_209/unsafe/CWE_209__I_args__F_xml_encode__S_print_exception__0_File1.cs" language="Csharp">
+		<file path="TestSuite_09-28-2022_16h26m24/Csharp/OWASP_a5/CWE_209/unsafe/CWE_209__I_args__F_xml_encode__S_print_exception__0.cs" language="Csharp">
 			<flaw line="53" name ="CWE_209"/>
 		</file>
 

@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Wed Sep 28 14:44:42 2022" *by "Paul E. Black"
+ *modified "Wed Sep 28 15:18:49 2022" *by "Paul E. Black"
 """
 
 import time
@@ -514,7 +514,10 @@ class Generator(object):
         current_flaw = self.current_sink.flaw_type
         files_path = []
         # Create main file
-        main_filename = self.generate_file_name("_File1")
+        file_name_suffix = ""
+        if len(self.classes_code) > 0:
+            file_name_suffix = "a"
+        main_filename = self.generate_file_name(file_name_suffix)
         filemanager = FileManager(main_filename, self.dir_name,
                                   current_flaw_group,
                                   current_flaw,
@@ -529,7 +532,8 @@ class Generator(object):
 
         # Create any additional class files
         for i, cl in enumerate(self.classes_code):
-            filename = self.generate_file_name(f'_File{i+2}')
+            file_name_suffix = chr(ord("a") + 1 + i)
+            filename = self.generate_file_name(file_name_suffix)
             filemanager = FileManager(filename, self.dir_name,
                                       current_flaw_group,
                                       current_flaw,
