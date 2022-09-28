@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Mon Sep 26 16:10:35 2022" *by "Paul E. Black"
+% *modified "Wed Sep 28 10:59:29 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -649,7 +649,7 @@ VTSG also creates a manifest file of all the test cases generated for each flaw
 group, named
 \verb|manifest.xml|.
 
-Under the flaw type directory there may be directories for safe or unsafe
+Under the flaw type directory there are directories for safe or unsafe
 (vulnerable) test cases, depending on
 which are generated.
 
@@ -709,10 +709,11 @@ see Sec.~\ref{sec:sink modules}.
 The
 code is structured as a series of function calls to allow types
 of modules to be skipped.  Here is a slightly more detailed
-overview of those steps:
+overview of those steps, which are in \verb|generator.py|:
 \begin{verbatim}
     for each sink:
-        if sink is specified:
+        if this sink is the type specified:
+            use this sink
             if input is needed:
                 select_filtering()
             else:
@@ -721,22 +722,25 @@ overview of those steps:
     def select_filtering():
         for each filter:
             if filter is compatible with sink:
+                use this filter
                 select_input()
     
     def select_input()
         for each input:
             if input is compatible with filter and sink:
+                use this input
                 select_exec_queries()
 
     def select_exec_queries()
         if sink needs exec_query:
             for each exec_query:
                 if exec_query is compatible with sink:
-                    select_complexity_or_compose()
+                    use this exec_query
+                    recursion_or_compose()
         else:
-            select_complexity_or_compose()
+            recursion_or_compose()
 
-    def select_complexity_or_compose():
+    def recursion_or_compose():
         if input_type is not none:
             recursive_select_complexity()
         else:
@@ -758,7 +762,7 @@ Then an exec query and complexities are selected
 that are compatible with the currently selected sink module.
 
 When VTSG has selected a set of modules, it begins composing
-the code in them to generate the source code for a test case.
+their code to generate the source code for a test case.
 The process of composing modules to generate source code is
 based on XML metadata tags.
 After the imports and class definition declaration for the 
@@ -1113,9 +1117,9 @@ INDENT...ENDINDENT lines.
     \item variables: Information about variable names and types and how
     to include libraries.
     \begin{itemize}
-        \item prefix: Any prefix required for variable name, 
+        \item prefix: Any prefix required for variable names.
         \$ for PHP.
-        Leave it blank if not required.
+        Leave it empty if not required.
 
         \item import\_code: Code to include a library. The code
         should have the placeholder \verb|{{import_file}}|.
@@ -1133,11 +1137,11 @@ INDENT...ENDINDENT lines.
         \item code: A piece of code declaring the type of the variable. For 
         some languages, such as PHP and Python, this field can be blank. 
         This value takes the variable type when being declared 
-        (Ex: \verb|string myString;|). In this case, "string" is the 
-        value stored in this attribute.
+        (for example, \verb|string myString;|).  In this case, ``string''
+        is the value put in this attribute.
 
-        \item init: Value assigned at the initialization of the variable. 
-        This value is used when declaring all variables.
+        \item init: Value assigned when this type of variable is initialized.
+        VTSG uses this value when declaring all variables.
         \end{itemize}
     \end{itemize}
     
@@ -1185,9 +1189,26 @@ these attributes, they are here.
 \subsubsection{Module Description in Path and Dir Tags}
 \label{sec:module description}
 
-description of this input method. For example, when the
-key word in the \verb|<dir>| tag is "none", the file name will contain
-...I\_none\_..., where "I" is used to state the input selected
+Within the \verb|<path>| keywords, modules may have one or more \verb|<dir>| tags.
+These tags provide the descriptions of the module that is used in the file name, see
+Sec.~\ref{sec:case file name}.  For example, when the key word in a selected input
+module is ``none'', the file name will contain \verb|..._I_none_...|, where ``I''
+indicates the input module selected.
+
+If a module has more than one \verb|<dir>| tag, the strings are joined with dashes.
+For example, if a sink have
+\begin{verbatim}
+            <path>
+                <dir>select_from</dir>
+                <dir>concatenation_simple_quote</dir>
+            </path>
+\end{verbatim}
+then cases using that module will have file names containing \\
+\verb|_S_select_from-concatenation_simple_quote_|.
+
+Note: we cannot think of any reason why it is better to give multiple description
+strings instead of just one string.  But the functionality is provided in VTSG, and
+some modules use it.
 
 
 \subsubsection{Marking Modules as Safe and Unsafe}
@@ -1213,7 +1234,7 @@ are always unsafe, that is \verb|unsafe="1"|.  A program is safe if the selected
 input, filter, sink, or exec query is always safe, \verb|safe="1"|, \emph{and} none
 are unsafe.  The filter module must be executed to be considered.  In other words, if
 a complexity never executes the filter, then the filter's safe or unsafe marking is
-ignored.  Tab.~\ref{tab:selection safe algorithm} expresses this as a table.
+ignored.  Table~\ref{tab:selection safe algorithm} expresses this as a table.
 
 \begin{table}[H]
 \centering
@@ -1272,10 +1293,8 @@ provides one way for the generated program to get input.
       for more details.  If this input is generic and compatible with all
       types of vulnerabilities, put ``default'' as the \verb|flaw_type|.
 
-    \item input\_type: the type of input and its source.
-    Declarations of \verb|variable| in the File Template give
-    available types, see Sec.~\ref{sec: file template}.
-{\Large Does this really matter? ``input: Command line args'' seems to work just fine.}
+    \item input\_type: this string is placed in the manifest.  It has no other
+      function in VTSG.
 
     \item output\_type: the type of output.  The variable generated with the
       placeholder \\ \verb|{{out_var_name}}| in the code will be that type.
@@ -1359,7 +1378,7 @@ All sink modules are in the language's \verb|sink.xml| file.
 \begin{verbatim}
 <sample>
     <path>
-	    <dir></dir>
+        <dir></dir>
     </path>
     <flaw_type flaw_group=""></flaw_type>
     <safety safe="" unsafe=""/>
@@ -1422,14 +1441,14 @@ All sink modules are in the language's \verb|sink.xml| file.
 \end{figure}
 
 The Sink example in Fig.~\ref{fig:example sink file} 
-concatenates the filtered string with a SQL query.  This block 
+concatenates the filtered string with an SQL query.  This block
 of code can only be used for SQL Injection.  Whether or not it is
 vulnerable depends on the input string.
 
 
 \subsection{Exec\_Query Modules}
 
-All query execution(??) modules are in the language's \verb|exec_query.xml|
+All query execution modules are in the language's \verb|exec_query.xml|
 file.
 
 \begin{verbatim}
@@ -1449,8 +1468,8 @@ file.
     \item path: the description of the exec query module in the file name.
       See Sec.~\ref{sec:module description} for details.
 
-    \item type: the type of the ExecQuery. This type is used in the 
-    \verb|exec_type| tag of the Sink in order to link them together during
+    \item type: the type of the ExecQuery. This is used in the
+    \verb|exec_type| tag of the Sink to link them together during
     generation process.  The type should only contain letters, numerals, and
     underscore (``\_'').\\
     Languages currently available for VTSG V3 support many database management
@@ -1458,7 +1477,7 @@ file.
     The syntax of each ExecQuery must be
     compatible with its associated database system language.
     
-    \item safe: whether the ExecQuery makes the case always safe.
+    \item safe: whether the ExecQuery always makes the case safe.
     See Sec.~\ref{sec:safe or unsafe} for more details.
 
     \item code: The source code of a query. It does not contain placeholders.
@@ -1477,8 +1496,8 @@ The block of code in the Exec\_Query example,
 Fig.~\ref{fig:example exec-query file}, executes the SQL query, used 
 for database management
 systems, including MySQL, Oracle, PostgreSQL, and SQLite.  This example is
-vulnerable.  If a non-vulnerable execution of a SQL query is required, 
-use a SQL prepared statement.
+vulnerable.  If a non-vulnerable execution of an SQL query is required,
+use an SQL prepared statement.
 
 
 \subsection{Test Condition and Code Complexity Modules}
@@ -1550,9 +1569,6 @@ complexity modules are inside \\ \verb|<complexities>|.
 \begin{itemize}
     \item id: string indicating this complexity.  Appears in the test case
       file name.  Typically this is a number.
-
-    \item path: the description of the exec query module in the file name.
-      See Sec.~\ref{sec:module description} for details.
 
     \item type: Supported types are: \verb|if|, \verb|switch|, \verb|goto|, 
     \verb|for|, \verb|foreach|, \verb|while|, \\
@@ -1659,23 +1675,25 @@ VTSG names test case files as
 \verb|QUERY__NBCPLX-CPLX1-CPLX2.COND_FileX.EXT|
 \begin{itemize}
     \item FLAW: Flaw type, e.g. CWE\_89, BF, or STR30-PL
-    \item INPUT:  Input name (optional)
-    \item FILTER:  Filter name (optional)
-    \item SINK:  Name of the critical function
-    \item EXEC\_QUERY:  ExecQuery name (optional)
+    \item INPUT:  Input description (optional)
+    \item FILTER:  Filter description (optional)
+    \item SINK:  Description of the critical function
+    \item EXEC\_QUERY:  ExecQuery description (optional)
     
     \item NBCPLX:  The number of complexities. Each complexity has the tags 
     \begin{itemize}
         \item CPLX1, CPLX2, \ldots: ID given in 
             code complexity modules, 
-            see Sec.~\ref{sec: complexity modules}. 
-            Table~\ref{tab:complexity IDs} in
+            see Sec.~\ref{sec: complexity modules} and
+            tables \ref{tab:complexity IDs for CSharp} or
+            \ref{tab:complexity IDs for PHP} in
             language appendixes.
             (optional)
         \item COND: ID given in test condition modules,
             see Sec.~\ref{sec: condition modules}.
-            Table~\ref{tab:condition IDs} lists condition 
-            IDs currently used. (optional)
+            Tables \ref{tab:condition IDs for CSharp} and
+            \ref{tab:condition IDs for PHP} list condition
+            IDs used in \CSharp\ and PHP. (optional)
     \end{itemize}
     \item X: Number of the file within the test. 
     1 is the main file. 2, 3, 
@@ -1737,26 +1755,32 @@ The name of the class file, Fig.~\ref{fig:example aux file}, is
 identical, except for the
 file number, ``2''.
 
-Using Sec.~\ref{sec:case file name}, Table~\ref{tab:complexity IDs}, and
-Table~\ref{tab:condition IDs}, the file name can be understood as follows:
+Using Sec.~\ref{sec:case file name}, and the extension, cs, which shows that it is a
+\CSharp\ file, the file name is read as follows:
 
-\noindent CWE 89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\cite{CWE89}
+\noindent CWE 89: Improper Neutralization of Special Elements used in an SQL Command
+('SQL Injection') \cite{CWE89}
 
-\noindent Input	shell\_commands, see specification in Fig.~\ref{fig:example input file}
+\noindent The input comes from shell\_commands, see specification in
+Fig.~\ref{fig:example input file}.
 
-\noindent Filter  func\_preg\_match-only\_numbers, Fig.~\ref{fig:example filter file}
+\noindent The filter is func\_preg\_match-only\_numbers,
+Fig.~\ref{fig:example filter file}.
 
-\noindent Sink	select\_from-concatenation\_simple\_quote\_\_sql\_server, 
+\noindent The sink is select\_from-concatenation\_simple\_quote\_\_sql\_server,
 Fig.~\ref{fig:example sink file}.
 
-\noindent Complexities 2-11.7-20  two complexities; 11 = \verb|while|,
+\noindent The next part, 2-11.7-20, means this has two complexities.
+Tables~\ref{tab:complexity IDs for CSharp} and
+\ref{tab:condition IDs for CSharp} help us decode them.
+11 is \verb|while|,
 Fig.~\ref{fig:example complexity-while file}, 
-with condition 7 = \verb|Math.| \verb|Sqrt(42)<=42|: True, Fig.~\ref{fig:example complexity-test file}; and
-20 = class traversal executed, Fig.~\ref{fig:example complexity-method file}.
+with condition 7 meaning \verb|Math.Sqrt(42)<=42|, which always evaluates to true,
+Fig.~\ref{fig:example complexity-test file}.
+20 means the sink code is executed in the class body,
+Fig.~\ref{fig:example complexity-method file}.
 
-\noindent File1 main file
-
-\noindent The extension, cs, shows that it is a \CSharp\ file.
+\noindent File1 means this is the main file.
 
 
 
@@ -1768,12 +1792,13 @@ implemented by students from TELECOM Nancy: Jean-Philippe Eisenbarth, Valentin
 Giannini, and Vincent Noyalet.  We thank Terry Cohen for her comments and
 suggestions, which improved this report.  We also thank Elizabeth Fong and
 Charles de Oliveira for their contributions to this report.
-% On 12 June 202, Terry Cohen wrote [[much editing by PEB]]
+% On 12 June 2020, Terry Cohen wrote the following [[much editing by PEB]]
 % Bertrand and Liz wrote the original document. I did some quick grammatical editing. Liz submitted it, but Barbara wanted it to cover both C# and PHP. The original did not have both. Because of the SATE V and CSIAC projects, this was put on hold.
 %
 % As I revised the NIST IR, I went through all of the instructions to verify the PHP statistics in the paper that Bertrand and Liz published and to generate C# statistics. I discovered errors and/or missing commands in the instructions. Charles pointed out the missing instructions.
 %
-% I recommend crediting Bertrand and Liz, because they started documentation. Although I wrote the new documents covering both C# and PHP, I know that Will and Carin will add Python.  I do not need to have my name on the new project.
+% I recommend crediting Bertrand and Liz, because they started documentation.  I
+% wrote the new document covering both C# and PHP.
 %
 % I added Charles because he helped me find the missing commands.  At the time, he was indifferent to being listed as a co-author.  We were using it as a learning exercise.
 %
@@ -1802,10 +1827,11 @@ Charles de Oliveira for their contributions to this report.
 \section{\CSharp\ language}
 \label{sec:CSharp language}
 
-This documents the flaws, flaw groups, conditions, and complexities currently in the
+This appendix documents the flaws, flaw groups, conditions, and complexities
+currently in the
 \CSharp\ language files.
 
-The following vulnerabilities are currently in this language:
+The following flaws are currently defined for this language:
 \begin{itemize}
     \item SQL Injection (CWE-89)
     \item XPath Injection (CWE-91)
@@ -1818,11 +1844,21 @@ The following vulnerabilities are currently in this language:
     \item NULL Pointer Dereference (CWE-476)
 \end{itemize}
 
+The flaws are in the following groups:
+\begin{itemize}
+    \item OWASP\_a1 has CWE\_78, CWE\_89, CWE\_89, CWE\_89, CWE\_90, CWE\_91,
+      CWE\_91, and CWE\_91.
+    \item OWASP\_a2 has CWE\_256.
+    \item OWASP\_a4 has CWE\_22.
+    \item OWASP\_a5 has CWE\_209.
+    \item OWASP\_a6 has CWE\_327
+    \item OWASP\_a9 has CWE\_476.
+\end{itemize}
 
-This lists the complexities currently available.
-We explain code complexities in Sec.~\ref{sec:code complexities} and
-complexity modules in Sec.~\ref{sec: complexity modules}.
-The very brief description is to remind the reader of the complexity.
+Here are the complexities currently available in \CSharp.
+We explain the concept of code complexities in Sec.~\ref{sec:code complexities} and
+the format of complexity modules in Sec.~\ref{sec: complexity modules}.
+This very brief description is to remind the reader of the complexity.
 See the \verb|complexity.xml| file for the specific code.
 
 \begin{table}[H]
@@ -1878,12 +1914,12 @@ See the \verb|complexity.xml| file for the specific code.
 \hline
 \end{tabular}
 \caption{IDs and Code Description of Complexities Defined for \CSharp}
-\label{tab:complexities for CSharp}
+\label{tab:complexity IDs for CSharp}
 \end{table}
 
-This lists the conditions currently available to be used in code complexities.
+Here are the conditions currently available to be used in code complexities.
 We explain condition modules in Sec.~\ref{sec: condition modules}.
-Tab.~\ref{tab:condition IDs for CSharp} shows the ID, the code, and whether it
+Table~\ref{tab:condition IDs for CSharp} shows the ID, the code, and whether it
 always evaluates to true or false.
 
 \begin{table}[H]
@@ -1921,16 +1957,20 @@ always evaluates to true or false.
 This documents the flaw, flaw group, conditions, and complexities currently in the
 PHP language files.
 
-The following vulnerability is currently in this language:
+The following flaw is currently defined for this language:
 \begin{itemize}
     \item SQL Injection (CWE-89)
 \end{itemize}
 
+The flaw is in the following group:
+\begin{itemize}
+    \item OWASP\_injection has CWE\_89.
+\end{itemize}
 
-This lists the complexities currently available.
-We explain code complexities in Sec.~\ref{sec:code complexities} and
-complexity modules in Sec.~\ref{sec: complexity modules}.
-The very brief description is to remind the reader of the complexity.
+Here are the complexities currently available in PHP.
+We explain the concept of code complexities in Sec.~\ref{sec:code complexities} and
+the format of complexity modules in Sec.~\ref{sec: complexity modules}.
+This very brief description is to remind the reader of the complexity.
 See the \verb|complexity.xml| file for the specific code.
 
 \begin{table}[H]
@@ -1986,13 +2026,13 @@ See the \verb|complexity.xml| file for the specific code.
 \hline
 \end{tabular}
 \caption{IDs and Code Description of Complexities Defined for PHP}
-\label{tab:complexities for PHP}
+\label{tab:complexity IDs for PHP}
 \end{table}
 
 
-This lists the conditions currently available to be used in code complexities.
+Here are the conditions currently available to be used in code complexities.
 We explain condition modules in Sec.~\ref{sec: condition modules}.
-Tab.~\ref{tab:condition IDs for PHP} shows the ID, the code, and whether it
+Table~\ref{tab:condition IDs for PHP} shows the ID, the code, and whether it
 always evaluates to true or false.
 
 \begin{table}[H]
@@ -2018,6 +2058,7 @@ always evaluates to true or false.
 This documents the flaws, flaw groups, conditions, and complexities currently in the
 Python language files.
 
+{\Large FILL IN}
 
 % make this begin on a new page (not a new column) even in
 % two-column mode
