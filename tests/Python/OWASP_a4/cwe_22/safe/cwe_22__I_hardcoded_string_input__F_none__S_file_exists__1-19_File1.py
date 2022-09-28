@@ -32,7 +32,7 @@ def main():
     tainted_3 = None
     tainted_4 = None
 
-    tainted_2 = "-d /;echo Vulnerability: user command run"
+    tainted_2 = "-d /;echo Vulnerable: user command run"
     tainted_4 = tainted_2
 
 

@@ -75,7 +75,7 @@
             </flaws>
             <imports>
             </imports>
-            <code>{{out_var_name}} = "-d /;echo Vulnerability: user command run"</code>
+            <code>{{out_var_name}} = "-d /;echo Vulnerable: user command run"</code>
             <input_type>input : no input</input_type>
             <output_type>string</output_type>
         </sample>

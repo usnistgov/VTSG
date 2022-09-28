@@ -1,5 +1,5 @@
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Tue Sep 27 14:35:27 2022" *by "Paul E. Black"
+# *modified "Wed Sep 28 10:48:13 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -87,9 +87,14 @@ for f in $(find . -name "*.py"|grep -v File2); do
         a=/Users
     elif [[ $f =~ __S_ls__ ]]; then
     	# semicolon allows user to run arbitrary command, in this case echo
-        a="-d /;echo Vulnerability: user command run"
+        a="-d /;echo Vulnerable: user command run"
     else
         exit
+    fi
+    # class cases are not valid code currently; don't execute them
+    if [[ $f =~ -2[012] ]]; then
+        echo Class case - do not execute
+        continue
     fi
     # timeout in order to limit infinite loops
     echo "$a" | gtimeout 3 python $f "$a"
