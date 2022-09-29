@@ -1,22 +1,16 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Sep 13 11:01:12 2022" *by "Paul E. Black"
+ *modified "Thu Sep 29 08:24:35 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
-
-16 Feb 2022
-Correct Fig. 9 (final code example) in the manual.  It does not have a //flaw line.
-Since the example sink.xml has //flaw, it should.
-  Related: create a "language" especially for the example in the manual so we can rerun 
-when VTSG changes.
 
 Eliminate initial superfluous newline at the beginning of file.
 
 6 Sep 2022
 Fix Python "Classes" complexity:
 The main file must import the class-defining file, e.g.
-from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22_File2 import Class_884
+from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22b import Class_884
 
 Make sure the PHP and C# code runs, that is, that the generated programs are valid.
 Fix any problems . . .
@@ -47,7 +41,7 @@ functional, however, the code needs to be isolated so it does not interfere with
 other languages.  Python includes classes from other files using the “from {file}
 import {class}” syntax, whereas other languages might not. This poses an issue when
 generating other languages.  Example:
-    cwe_78__I_hardcoded_string_input__F_no_filtering__S_ls__1x20_File2 import Class_880
+    cwe_78__I_hardcoded_string_input__F_no_filtering__S_ls__1x20b import Class_880
     This import for the file containing the class may not look anything like this in
     another language
 
@@ -111,9 +105,8 @@ Incorporate combinatorial test generation
 
 OTHER? GENERAL?
 
-Shorten the generated file name.  For instance, Juliet uses suffixes a, b, c,
-etc. when a test case includes multiple files.  VTSG adds _File1 to all files.
-    Or, add a --short-case-name option, to produce Juliet-like names.
+Shorten the generated file name.  Or, add a --short-case-name option, to produce
+Juliet-like names.
     A better alternative is to allow the user to specify generated file name in a
 general format, like strftime or ISO/IEC 9899 (C90).  Here is a sample:
   %A is the full weekday name.
