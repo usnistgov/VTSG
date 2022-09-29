@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Wed Sep 28 15:18:49 2022" *by "Paul E. Black"
+ *modified "Thu Sep 29 10:32:35 2022" *by "Paul E. Black"
 """
 
 import time
@@ -93,7 +93,7 @@ class Generator(object):
        """
 
     UID = 0
-    """Uniq ID for generated functions/classes/variables name."""
+    """Unique ID for generated functions/classes/variables name."""
 
     def __init__(self, date, language):
         self._max_recursion = 1
@@ -119,15 +119,14 @@ class Generator(object):
         self.tab_exec_queries = [ExecQuerySample(exec_query) for exec_query in tree_exec_query]
         tree_complexities = ET.parse(FileManager.getXML("complexities", language)).getroot()
         self.tab_complexity = [ComplexitySample(complexity) for complexity in tree_complexities.find("complexities")]
-        tree_condition = ET.parse(FileManager.getXML("complexities", language)).getroot()
-        self.tab_condition = [ConditionSample(condition) for condition in tree_condition.find("conditions")]
+        self.tab_condition = [ConditionSample(condition) for condition in tree_complexities.find("conditions")]
 
         self.file_template = FileTemplate(ET.parse(FileManager.getXML("file_template", language)).getroot())
 
         self.dir_name = "TestSuite_"+date+"/"+self.file_template.language_name
         self.manifest = Manifest(self.dir_name, self.date)
 
-        # set current samples
+        # set current sample
         self.current_input = None
         self.current_filtering = None
         self.current_sink = None
@@ -138,7 +137,7 @@ class Generator(object):
 
     def getUID():
         """
-        Generate a uniq ID for classes/functions/variables name.
+        Generate a unique ID for classes/functions/variables name.
         At each call, the UID is incremented.
         """
         Generator.UID += 1
