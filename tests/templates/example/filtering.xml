@@ -1,0 +1,37 @@
+<?xml version = "1.0" standalone="no"?>
+<!-- *created  "Wed Sep 21 16:03:47 2022" *by "Paul E. Black" -->
+<!-- *modified "Wed Sep 21 16:20:16 2022" *by "Paul E. Black" -->
+<!DOCTYPE filtering SYSTEM "../dtd/input.dtd">
+<!-- "language" for example used in the manual -->
+    <filtering>
+        <sample>
+            <path>
+                <dir>func_preg_match</dir>
+                <dir>only_numbers</dir>
+            </path>
+            <comment>filtering : check if there is only numbers</comment>
+            <flaws>
+                <flaw flaw_type="CWE_89" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE_78" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_91" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE_90" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>System.Text.RegularExpressions</import>
+            </imports>
+            <code>
+                string pattern = @"/^[0-9]*$/";
+                Regex r = new Regex(pattern);
+                Match m = r.Match({{in_var_name}});
+		if(!m.Success){
+                    {{out_var_name}} = "";
+		}else{
+                    {{out_var_name}} = {{in_var_name}};
+		}
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+    </filtering>
+<!-- end of filtering.xml -->

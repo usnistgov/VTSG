@@ -1,0 +1,34 @@
+<?xml version = "1.0" standalone="no"?>
+<!-- *created  "Wed Sep 21 16:03:47 2022" *by "Paul E. Black" -->
+<!-- *modified "Wed Sep 21 16:53:37 2022" *by "Paul E. Black" -->
+<!DOCTYPE exec_queries SYSTEM "../dtd/exec_queries.dtd">
+<!-- "language" for example used in the manual -->
+<exec_queries>
+    <exec_query type="SQL"  safe="0">
+        <path>
+            <dir>sql_server</dir>
+        </path>
+        <comment></comment>
+        <imports>
+            <import>System.Data.SqlClient</import>
+        </imports>
+        <code>
+            string connectionString =  @"server=localhost;uid=sql_user;password=sql_password;database=dbname";
+            SqlConnection dbConnection = null;
+            try {
+                dbConnection = new SqlConnection(connectionString);
+                dbConnection.Open();
+                SqlCommand cmd = dbConnection.CreateCommand();
+                cmd.CommandText = query;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read()){
+                    Console.WriteLine(reader.ToString());
+                }
+                dbConnection.Close();
+            } catch (Exception e) {
+                Console.WriteLine(e.ToString());
+            }
+        </code>
+    </exec_query>
+</exec_queries>
+<!-- end of exec_queries.xml -->

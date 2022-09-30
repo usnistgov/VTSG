@@ -1,0 +1,60 @@
+<?xml version = "1.0" standalone="no"?>
+<!-- *created  "Wed Sep 21 16:03:47 2022" *by "Paul E. Black" -->
+<!-- *modified "Wed Sep 21 17:00:12 2022" *by "Paul E. Black" -->
+<!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
+<!-- "language" for example used in the manual -->
+<root>
+    <conditions>
+        <condition id="7">
+            <code>(Math.Sqrt(42)&lt;=42)</code>
+            <value>True</value>
+        </condition>
+    </conditions>
+
+    <complexities>
+        <complexity id="11" type="while" group="loops" executed="condition">
+            <code>
+                while({{ condition }}){
+                    {{ placeholder }}
+                    break;
+                }
+            </code>
+        </complexity>
+
+        <complexity id="20" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
+            <code>
+                {{call_name}} var_{{id}} = new {{call_name}}({{in_var_name}});
+                {{out_var_name}} = var_{{id}}.get_var_{{id}}();
+            </code>
+            <body>
+                /*
+                {{comments}}
+                */
+                /*
+                {{license}}
+                */
+                {{ imports }}
+                namespace default_namespace{
+                    class {{call_name}}{
+
+                        {{in_var_type}} var_{{id}};
+
+                        public {{call_name}}({{in_var_type}} {{in_var_name}}_{{id}}){
+                            var_{{id}} = {{in_var_name}}_{{id}};
+                        }
+
+                        public {{out_var_type}} get_var_{{id}}(){
+                            {{local_var}}
+                            {{in_var_name}} = var_{{id}};
+                            {{ placeholder}}
+                            return {{out_var_name}};
+                        }
+
+                        {{static_methods}}
+                    }
+                }
+            </body>
+        </complexity>
+    </complexities>
+</root>
+<!-- end of complexities.xml -->

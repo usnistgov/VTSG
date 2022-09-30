@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?>
+<!-- *created  "Wed Sep 21 16:03:47 2022" *by "Paul E. Black" -->
+<!-- *modified "Wed Sep 21 16:50:31 2022" *by "Paul E. Black" -->
+<!DOCTYPE sink SYSTEM "../dtd/sink.dtd">
+<!-- "language" for example used in the manual -->
+    <sink>
+        <sample>
+            <path>
+                <dir>select_from</dir>
+                <dir>concatenation_simple_quote</dir>
+            </path>
+            <flaw_type flaw_group="OWASP_a1">CWE_89</flaw_type>
+            <comment>construction : concatenation with simple quote</comment>
+            <imports></imports>
+            <code>
+                {{flaw}}
+                string query = "SELECT * FROM '" + {{in_var_name}} + "'";
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>SQL</exec_type>
+        </sample>
+    </sink>
+<!-- end of sink.xml -->

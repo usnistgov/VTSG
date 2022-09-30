@@ -1,0 +1,37 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2022-09-27</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_09-27-2022_16h22m49/example/OWASP_a1/CWE_89/safe/CWE_89__I_args__F_func_preg_match-only_numbers__S_select_from-concatenation_simple_quote__EQ_sql_server__0_File1.cs" language="example"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2022-09-27</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_09-27-2022_16h22m49/example/OWASP_a1/CWE_89/safe/CWE_89__I_args__F_func_preg_match-only_numbers__S_select_from-concatenation_simple_quote__EQ_sql_server__1-11.7_File1.cs" language="example"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2022-09-27</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_09-27-2022_16h22m49/example/OWASP_a1/CWE_89/safe/CWE_89__I_args__F_func_preg_match-only_numbers__S_select_from-concatenation_simple_quote__EQ_sql_server__1-20_File1.cs" language="example"/>
+
+		<file path="TestSuite_09-27-2022_16h22m49/example/OWASP_a1/CWE_89/safe/CWE_89__I_args__F_func_preg_match-only_numbers__S_select_from-concatenation_simple_quote__EQ_sql_server__1-20_File2.cs" language="example"/>
+
+	</testcase>
+
+</container>
