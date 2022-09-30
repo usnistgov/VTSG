@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Thu Sep 29 10:32:35 2022" *by "Paul E. Black"
+ *modified "Fri Sep 30 08:57:30 2022" *by "Paul E. Black"
 """
 
 import time
@@ -48,7 +48,7 @@ class Generator(object):
 
             **unsafe_sample** (int): Counter for unsafe sample.
 
-            **report** (dict): Dict which contains reports for each group of flaws.
+            **report** (dict): The report for each group of flaws.
 
             **flaw_type_user** (list): Flaw types entered by user for the generation.
 
@@ -58,38 +58,40 @@ class Generator(object):
 
             **end** (float): Ending generate time.
 
-            **tab_input** (list): List (of :class:`.InputSample` objects) containing all input sample from XML file.
+            **tab_input** (list): List (of :class:`.InputSample` objects) all input
+                modules.
 
-            **tab_filtering** (list): List (of :class:`.FilteringSample` objects) containing all filtering sample \
-                                      from XML file.
+            **tab_filtering** (list): List (of :class:`.FilteringSample` objects) all
+                filter modules.
 
-            **tab_sink** (list): List (of :class:`.SinkSample` objects) containing all sink sample from XML file.
+            **tab_sink** (list): List (of :class:`.SinkSample` objects) all sink modules.
 
-            **tab_exec_queries** (list): List (of :class:`.ExecQuerySample` objects) containing all exec query sample \
-                                         from XML file.
+            **tab_exec_queries** (list): List (of :class:`.ExecQuerySample` objects)
+                all exec query modules.
 
-            **tab_complexity** (list): List (of :class:`.ComplexitySample`) containing all complexity sample \
-                                       from XML file.
+            **tab_complexity** (list): List (of :class:`.ComplexitySample`) all
+                complexity possibilities.
 
-            **tab_condition** (list): List (of :class:`.ConditionSample`) containing all condition sample from XML file.
+            **tab_condition** (list): List (of :class:`.ConditionSample`) all
+                condition possibilities.
 
-            **file_template** (list): List (of :class:`.FileTemplate`) containing the template for current langage \
-                                      from XML file.
+            **file_template** (list): List (of :class:`.FileTemplate`) the template
+                for current langage.
 
-            **current_input** (:class:`.InputSample`): Contains the current selected input.
+            **current_input** (:class:`.InputSample`): The current selected input.
 
-            **current_filtering** (:class:`.FilteringSample`): Contains the current selected filtering.
+            **current_filtering** (:class:`.FilteringSample`): The current selected filter.
 
-            **current_sink** (:class:`.SinkSample`): Contains the current selected sink.
+            **current_sink** (:class:`.SinkSample`): The current selected sink.
 
-            **current_exec_queries** (:class:`.ExecQuerySample`): Contains the current selected exec query.
+            **current_exec_queries** (:class:`.ExecQuerySample`): The current selected exec query.
 
-            **current_code** (str): Contains the current code.
+            **current_code** (str): The current code.
 
-            **complexities_queue** (List of :class:`.ComplexitySample`): Contains the current stack of complexities.
+            **complexities_queue** (List of :class:`.ComplexitySample`): The current stack of complexities.
 
-            **map_CWE_group** (dict: flaw_group -> list(CWE)): Contains a dict which associate a list containing the \
-                                                               numbers of CWE (int) to a flaw group (str).
+            **map_flaw_group** (dict: flaw_group -> list(flaw)): a dict associating a
+                list containing the numbers of flaws (str) to a flaw group (str).
        """
 
     UID = 0
@@ -133,7 +135,7 @@ class Generator(object):
         self.current_exec_queries = None
         self.current_code = None
         self.complexities_queue = []
-        self.map_CWE_group = {}
+        self.map_flaw_group = {}
 
     def getUID():
         """
@@ -157,7 +159,7 @@ class Generator(object):
 
             **generate_unsafe** (bool): If True, unsafe test cases are generated.
         """
-        self.create_map_CWE_group()
+        self.create_map_flaw_group()
         self.manifest.createManifests(self.get_groups_to_generate())
         self.debug = debug
         self.generate_safe = generate_safe
@@ -259,7 +261,7 @@ class Generator(object):
             # generate the case wrapped in i complexities
             self.select_complexities(i)
 
-    # sixth step: wrap code in "level" depth of complexities
+    # sixth step: wrap filter in "level" depth of complexities
     def select_complexities(self, level):
         """
         This function browse all complexities.
@@ -268,7 +270,7 @@ class Generator(object):
         At the end we call the next function for compose then into one code chunk.
 
         Args :
-            **level** (int): Imbrication level of the complexity being generated.
+            **level** (int): Nesting level of the complexity being generated.
         """
         if level == 0:
             # at the end of recursive call, we compose selected into one
@@ -316,14 +318,14 @@ class Generator(object):
 
     def need_condition(self, curr_complexity, level):
         """
-        This function check if the current complexity needs a condition.
+        This function checkd if the current complexity needs a condition.
         If it's needed, browse all conditions and compose them into the complexity code.
         The state of the complexity is updated with the result of the conditional.
 
         Args :
-            **curr_complexity** (:class:`.ConplexitySample`) : The current conmplexity being generated.
+            **curr_complexity** (:class:`.ComplexitySample`) : The current complexity being generated.
 
-            **level** (int): Imbrication level of the complexity being generated.
+            **level** (int): Nesting level of the complexity being generated.
         """
         if curr_complexity.need_condition():
             svg_cmpl = curr_complexity.code
@@ -606,31 +608,31 @@ class Generator(object):
 
     def set_flaw_type_user(self, value):
         """
-        Sets the flaw types got from the user input (-c and --cwe options).
+        Set the flaws got from the user input (-f and --flaw options).
 
         Args :
-            **value** (list(int)): The list containing the CWE numbers.
+            **value** (list(str)): The list containing the flaws.
         """
         self.flaw_type_user = value
 
     def set_flaw_group_user(self, value):
         """
-        Sets the flaw groups got from the user input (-f and --flaw-group options).
+        Sets the flaw groups got from the user input (-g and --group options).
 
         Args :
             **value** (list(int)): The list containing the flaw groups.
         """
         self.flaw_group_user = value
 
-    def create_map_CWE_group(self):
+    def create_map_flaw_group(self):
         """
         Create a dict with a list of flaw types (str) associated to each flaw group (str).
         """
         for group in self.get_group_list():
-            self.map_CWE_group[group] = []
+            self.map_flaw_group[group] = []
 
         for cwe in self.tab_sink:
-            self.map_CWE_group[cwe.flaw_group].append(cwe.flaw_type)
+            self.map_flaw_group[cwe.flaw_group].append(cwe.flaw_type)
 
     def get_groups_to_generate(self):
         """
@@ -641,8 +643,8 @@ class Generator(object):
             tmp = self.flaw_group_user
 
         for flaw in self.flaw_type_user:
-                for group in self.map_CWE_group:
-                    if flaw in self.map_CWE_group[group]:
+                for group in self.map_flaw_group:
+                    if flaw in self.map_flaw_group[group]:
                         tmp.append(group)
 
         if tmp:
@@ -660,7 +662,7 @@ class Generator(object):
         Args :
             **suffix** (str): the file number (for the filename).
         """
-        # CWE input filtering sink [exec] complexity
+        # flaw [input] [filter] sink [exec] complexity
         name = self.current_sink.flaw_type
         if self.current_input:
             name += "__I_"
@@ -690,7 +692,7 @@ class Generator(object):
     # TODO:20 move this elsewhere either in the generator or in a new class
     def generation_report(self):
         """
-        Print final report for this run: number of safe/unsafe by CWE/group and time.
+        Print final report for this run: number of safe/unsafe by flaw, group, and time.
         """
         self.manifest.closeManifests()
         total = 0
