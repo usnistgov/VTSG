@@ -1,7 +1,7 @@
 """
 file_manager module
 
- *modified "Wed Feb  9 10:45:49 2022" *by "Paul E. Black"
+ *modified "Fri Sep 30 10:02:52 2022" *by "Paul E. Black"
 """
 
 import os
@@ -80,28 +80,12 @@ class FileManager(object):
     }
 
     @classmethod
-    def exist_language(cls, language):
-        """
-        Class Method.
-        Does a directory for given language exists in the expected place?
-
-        Args :
-            **language** (str): The language to check.
-        """
-        path = os.path.abspath(os.path.join("./src", "templates", language))
-        if not os.path.isdir(path):
-            print(f'[ERROR] no directory found for {language}')
-            return False
-
-        return True
-
-    @classmethod
-    def getXML(cls, xmlfile, language):
+    def getXML(cls, xmlfile, template_directory, language):
         """
         Class Method.
         Returns the path to selected xml file for the specified language.
         """
-        return os.path.join("src", "templates", language, cls._xml[xmlfile])
+        return os.path.join(template_directory, language, cls._xml[xmlfile])
 
     # Getters and setters
     def setPath(self, path):

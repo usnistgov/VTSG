@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Fri Sep 30 08:57:30 2022" *by "Paul E. Black"
+ *modified "Fri Sep 30 10:27:52 2022" *by "Paul E. Black"
 """
 
 import time
@@ -30,17 +30,18 @@ class Generator(object):
             **date** (str): Human readable date of the generation used for the folder containing generated codes (for \
                         the manifest). Generated using strftime().
 
-            **language** (str): Targeted language of the generator ('cs', 'php' values accepted).
+            **language** (str): Targeted language of the generator ('cs', 'php', and 'py' are currently coded).
+            **template_directory** (str): The directory where the language files are found.
 
         Attributes :
             **date** (str): Human readable date of the generation.
             **_max_recursion** (int): Max level of recursion with complexities, 0 for flat code, 1 for one complexity, \
                                       2 for two, ... (private member, please use getter and setter).
 
-            **_number_generated** (int): Number of triplets (input,filtering,sink) generated (private member, \
+            **_number_generated** (int): Number of triplets (input,filter,sink) generated (private member, \
                                          please use getter and setter).
 
-            **dir_name** (str): Directory name of the folder containing generated codes.
+            **dir_name** (str): Directory name of the folder containing generated cases.
 
             **manifest** (Manifest): Manifest object to complete the manifest file with references to generated files.
 
@@ -80,7 +81,7 @@ class Generator(object):
 
             **current_input** (:class:`.InputSample`): The current selected input.
 
-            **current_filtering** (:class:`.FilteringSample`): The current selected filter.
+            **current_filter** (:class:`.FilteringSample`): The current selected filter.
 
             **current_sink** (:class:`.SinkSample`): The current selected sink.
 
@@ -97,7 +98,7 @@ class Generator(object):
     UID = 0
     """Unique ID for generated functions/classes/variables name."""
 
-    def __init__(self, date, language):
+    def __init__(self, date, language, template_directory):
         self._max_recursion = 1
         self._number_generated = -1
         self.date = date
@@ -111,26 +112,26 @@ class Generator(object):
         self.end = 0
 
         # parse XML files
-        tree_input = ET.parse(FileManager.getXML("input", language)).getroot()
+        tree_input = ET.parse(FileManager.getXML("input", template_directory, language)).getroot()
         self.tab_input = [InputSample(inp) for inp in tree_input]
-        tree_filtering = ET.parse(FileManager.getXML("filtering", language)).getroot()
-        self.tab_filtering = [FilteringSample(filtering) for filtering in tree_filtering]
-        tree_sink = ET.parse(FileManager.getXML("sink", language)).getroot()
+        tree_filter = ET.parse(FileManager.getXML("filtering", template_directory, language)).getroot()
+        self.tab_filter = [FilteringSample(filter) for filter in tree_filter]
+        tree_sink = ET.parse(FileManager.getXML("sink", template_directory, language)).getroot()
         self.tab_sink = [SinkSample(sink) for sink in tree_sink]
-        tree_exec_query = ET.parse(FileManager.getXML("exec_queries", language)).getroot()
+        tree_exec_query = ET.parse(FileManager.getXML("exec_queries", template_directory, language)).getroot()
         self.tab_exec_queries = [ExecQuerySample(exec_query) for exec_query in tree_exec_query]
-        tree_complexities = ET.parse(FileManager.getXML("complexities", language)).getroot()
+        tree_complexities = ET.parse(FileManager.getXML("complexities", template_directory, language)).getroot()
         self.tab_complexity = [ComplexitySample(complexity) for complexity in tree_complexities.find("complexities")]
         self.tab_condition = [ConditionSample(condition) for condition in tree_complexities.find("conditions")]
 
-        self.file_template = FileTemplate(ET.parse(FileManager.getXML("file_template", language)).getroot())
+        self.file_template = FileTemplate(ET.parse(FileManager.getXML("file_template", template_directory, language)).getroot())
 
         self.dir_name = "TestSuite_"+date+"/"+self.file_template.language_name
         self.manifest = Manifest(self.dir_name, self.date)
 
         # set current sample
         self.current_input = None
-        self.current_filtering = None
+        self.current_filter = None
         self.current_sink = None
         self.current_exec_queries = None
         self.current_code = None
@@ -181,21 +182,21 @@ class Generator(object):
                and (not self.flaw_group_user or sink.flaw_group in self.flaw_group_user)):
                 self.current_sink = sink
                 if sink.input_type != "none":
-                    self.select_filtering()
+                    self.select_filter()
                 else:
                     self.current_max_rec = 0
                     self.select_exec_queries()
 
     # second step: select filter
-    def select_filtering(self):
+    def select_filter(self):
         """
-        Use all filters one by one.  If the filtering is compatible with the current
+        Use all filters one by one.  If the filter is compatible with the current
         sink, proceed to the next step: selecting the input.
         """
-        for filtering in self.tab_filtering:
-            # check if sink and filtering are compatibles
-            if filtering.compatible_with_sink(self.current_sink):
-                self.current_filtering = filtering
+        for filter in self.tab_filter:
+            # check if sink and filter are compatibles
+            if filter.compatible_with_sink(self.current_sink):
+                self.current_filter = filter
                 self.select_input()
 
     # third step: select input
@@ -205,7 +206,7 @@ class Generator(object):
         and current filter, proceed to the next step: selecting exec query.
         """
         for inp in self.tab_input:
-            if inp.compatible_with_filtering_sink(self.current_filtering, self.current_sink):
+            if inp.compatible_with_filtering_sink(self.current_filter, self.current_sink):
                 self.current_input = inp
                 self.select_exec_queries()
 
@@ -246,7 +247,7 @@ class Generator(object):
             * if the max depth is 1, produce a test case with flat code and test
 		cases with one complexity around the filter code
             * if the max depth is 2, produce flat code case, test cases with one
-		complexity, and cases with two complexities around the filtering code.
+		complexity, and cases with two complexities around the filter code.
             * and so on ...
         """
         # HACK limit the number of generated combinations of (input, filter, sink)
@@ -347,10 +348,10 @@ class Generator(object):
     def compose(self):
         """
         This method composes previously selected code chunks into a final program.
-        Complexities are composed with the class complexities_generator and the filtering is incluse into them.
-        After we add input, complexities with filtering, sink, exec query into the template code.
+        Complexities are composed with the class complexities_generator and the filter is included into them.
+        After we add input, complexities with filter, sink, exec query into the template code.
         Also, we add include, license, comments, into the template.
-        At the end, we have final code who can be save into files.
+        At the end, we have final code which can be save into files.
         """
 
         var_id = 0
@@ -366,7 +367,7 @@ class Generator(object):
 			template=self.file_template,
 			input_type=self.current_input.output_type,
 			output_type=self.current_sink.input_type,
-			filtering=self.current_filtering,
+			filtering=self.current_filter,
 			language=self.language
             )
             # execute the compose method
@@ -375,7 +376,7 @@ class Generator(object):
             # for each class, collect imports to use other generated classes
             for c in self.classes_code:
                 classes_imports.append(c['name'])
-            # We check if the filtering code into complexities is executed or not
+            # We check if the filter code into complexities is executed or not
             self.executed = compl_gen.executed
             # import the new template that contains complexities
             self.template_code = compl_gen.get_template()
@@ -387,7 +388,7 @@ class Generator(object):
             return
 
         input_code = ""
-        filtering_code = ""
+        filter_code = ""
         if self.current_sink.input_type != "none":
             # INPUT
             input_code = self.current_input.code
@@ -399,25 +400,25 @@ class Generator(object):
                 var_id += 1
             input_code += '\n'
 
-            # init filtering var with input var
+            # init filter var with input var
             input_code += (get_indent('input_content', self.template_code)
                            + make_assign(compl_gen.out_ext_name, compl_gen.in_ext_name,
 								self.file_template))
 
-            # FILTERING
+            # FILTER
             # set input var name
-            filtering_code = self.current_filtering.code
+            filter_code = self.current_filter.code
             in_name = ""
             out_name = ""
-            if self.current_filtering.input_type != "none":
+            if self.current_filter.input_type != "none":
                 in_name = compl_gen.in_int_name
             # set output var name
-            if self.current_filtering.output_type != "none":
+            if self.current_filter.output_type != "none":
                 out_name = compl_gen.out_int_name
-            if self.current_filtering.need_id:
+            if self.current_filter.need_id:
                 var_id += 1
-            # We set the name of input/output tainted variable and get the result into filtering_code
-            filtering_code = Template(filtering_code, undefined=DebugUndefined).render(in_var_name=in_name, out_var_name=out_name, id=var_id)
+            # We set the name of input/output tainted variable and get the result into filter_code
+            filter_code = Template(filter_code, undefined=DebugUndefined).render(in_var_name=in_name, out_var_name=out_name, id=var_id)
 
         # add comment into code at the position of the flaw if unsafe
         flaw_str = ""
@@ -458,11 +459,11 @@ class Generator(object):
         license_content = open("src/templates/file_rights.txt", "r").read()
 
         # IMPORTS
-        # compose imports used on input, filtering, and sink
+        # compose imports used on input, filter, and sink
         imports_content = set(self.current_sink.imports).union(set(self.file_template.imports))
         if self.current_sink.input_type != "none":
             imports_content = imports_content.union(set(self.current_input.imports)
-                                                    .union(set(self.current_filtering.imports)))
+                                                    .union(set(self.current_filter.imports)))
         # add imports from exec query if it's used
         if self.current_exec_queries:
             imports_content = imports_content.union(set(self.current_exec_queries.imports))
@@ -470,8 +471,8 @@ class Generator(object):
         imports_code = self.file_template.generate_imports(imports_content)
 
         # comments at the beginning of the code that documents modules used
-        if self.current_input and self.current_filtering:
-            comments_code = "\n".join([self.current_input.comment, self.current_filtering.comment,
+        if self.current_input and self.current_filter:
+            comments_code = "\n".join([self.current_input.comment, self.current_filter.comment,
                                       self.current_sink.comment])
         else:
             comments_code = "\n".join([self.current_sink.comment])
@@ -488,18 +489,18 @@ class Generator(object):
                                        namespace_name=self.file_template.namespace,
                                        main_name=main_class_name,
                                        input_content=input_code,
-                                       filtering_content=filtering_code,
+                                       filtering_content=filter_code,
                                        sink_content=sink_code,
                                        exec_queries_content=exec_queries_code)
         self.current_code = fix_indents(file_content, self.file_template.indent)
 
         # generate code for any additional files
-        # include filtering into good code chunk on complexities
+        # include filter into good code chunk on complexities
         # TODO improve this with preselected class
         for i, cl in enumerate(self.classes_code):
             aux_file_content = Template(cl['code']).render(license=license_content,
                                                            comments=comments_code,
-                                                           filtering_content=filtering_code)
+                                                           filtering_content=filter_code)
             self.classes_code[i]['code'] = fix_indents(aux_file_content, self.file_template.indent)
 
         # write test case to file, update summary counts, and add to manifest
@@ -583,16 +584,16 @@ class Generator(object):
         """
         Returns true if the final source code is safe, false otherwise.
         The computation is :
-        * True if any input, filtering (and it is executed), sink, or exec query
-            is safe and no input, executed filtering, or sink is unsafe.
+        * True if any input, filter (and it is executed), sink, or exec query
+            is safe and no input, executed filter, or sink is unsafe.
         * False else
         """
         safe_input = False
         if self.current_input:
             safe_input = self.current_input.is_safe(self.current_sink.flaw_type)  # input is safe
-        safe_filtering = False
-        if self.current_filtering:
-            safe_filtering = self.current_filtering.is_safe(self.current_sink.flaw_type) and self.executed  # filtering is safe and executed
+        safe_filter = False
+        if self.current_filter:
+            safe_filter = self.current_filter.is_safe(self.current_sink.flaw_type) and self.executed  # filter is safe and executed
         safe_sink = self.current_sink.safe  # sink is safe
         safe_eq = False
         if self.current_exec_queries:
@@ -600,11 +601,11 @@ class Generator(object):
         unsafe_input = False
         if self.current_input:
             unsafe_input = self.current_input.is_unsafe(self.current_sink.flaw_type)  # input is unsafe
-        unsafe_filtering = False
-        if self.current_filtering:
-            unsafe_filtering = self.current_filtering.is_unsafe(self.current_sink.flaw_type) and self.executed
+        unsafe_filter = False
+        if self.current_filter:
+            unsafe_filter = self.current_filter.is_unsafe(self.current_sink.flaw_type) and self.executed
         unsafe_sink = self.current_sink.unsafe
-        return ((safe_input or safe_filtering or safe_sink or safe_eq) and not (unsafe_input or unsafe_filtering or unsafe_sink))
+        return ((safe_input or safe_filter or safe_sink or safe_eq) and not (unsafe_input or unsafe_filter or unsafe_sink))
 
     def set_flaw_type_user(self, value):
         """
@@ -655,7 +656,7 @@ class Generator(object):
     def generate_file_name(self, suffix):
         """
         Generate file name in format :
-            flawtype__inputname__filteringname__sinkname__execqueryname__X-Y1-Y2_File*suffix*.ext
+            flawtype__inputname__filtername__sinkname__execqueryname__X-Y1-Y2_File*suffix*.ext
             with X the number of complexity level, Y1, Y2 id of complexities and *suffix* the file number
             (0 for main file).
 
@@ -667,9 +668,9 @@ class Generator(object):
         if self.current_input:
             name += "__I_"
             name += self.current_input.module_description()
-        if self.current_filtering:
+        if self.current_filter:
             name += "__F_"
-            name += self.current_filtering.module_description()
+            name += self.current_filter.module_description()
         name += "__S_"
         name += self.current_sink.module_description()
 
@@ -767,7 +768,7 @@ class Generator(object):
     @property
     def number_generated(self):
         """
-        Number of triplets (input,filtering,sink) generated.
+        Number of triplets (input,filter,sink) generated.
 
         :getter: Returns this number.
         :setter: Sets this number.

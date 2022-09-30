@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu Sep 29 08:24:35 2022" *by "Paul E. Black"
+ *modified "Fri Sep 30 10:30:37 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -51,8 +51,6 @@ are far more similar in syntax than C# and Python.  This will help lessen the am
 of code that the generator runs specifically running only the functions it needs for
 each language.
 
-Document ability in vtsg.py to run astyle (indentation tool) if it exists.
-
 
 GENERATE MORE KINDS OF CASES
 
@@ -90,7 +88,7 @@ approximate combinatorial tests.
 any case with probability p%.  This should write about p% of cases.  It must be
 PSEDUOrandom so we can provide a seed and generate exactly the same cases in each
 test run.
-    The -g (number generated) option does something vaguely like this.  However, it
+    The -n (number generated) option does something vaguely like this.  However, it
 stops generation after N sink/filter/input/exec query combinations are generated.
 Search for number_generated in generator.py.
 
@@ -119,12 +117,6 @@ general format, like strftime or ISO/IEC 9899 (C90).  Here is a sample:
   %M is the minute as a decimal number (00-59).
   %m is the month as a decimal number (01-12).
 
-Add a --programming-language-directory command line option.  (Choose a more succinct
-name.)  When given, VTSG looks in that directory for the "language" instead of in
-src/templates.  We (will) have LOTS of test "languages". It would be less confusing if
-they could be somewhere else and only have "production" languages under
-src/templates.
-
 The built-in-test rules in the Makefile leave a lot of "junk" files and directories
 in the current directory.  Put all the self-test stuff in another directory so the
 top-level directory doesn't get cluttered.
@@ -132,11 +124,6 @@ top-level directory doesn't get cluttered.
 Write manifest in our current SARIF-style.  There is sarif_writer.py, which is a
 start from August 2020.  A newer implementation (Dec 2021) of sarif writer is in Paul's
 Work/Ockham.
-
-Change --cwe option to be something like --flaw_type.  Now that these can be, say,
-BF or SEI CERT Secure Coding Standards
-https://wiki.sei.cmu.edu/confluence/display/seccode/
-the option should be more generic.
 
 Update contact and license information in setup.py.  (Re)register in PyPI. Let
 Bertrand know about this new GitHub repository, so he can "point" his to this one.

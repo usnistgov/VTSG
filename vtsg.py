@@ -1,8 +1,7 @@
-# *modified "Fri Sep 30 08:50:34 2022" *by "Paul E. Black"
+# *modified "Fri Sep 30 09:56:33 2022" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
-    vtsg.py
     vtsg.py -l LANGUAGE [-g GROUP ...] [-f FLAW ...] [-r DEPTH] [-s | -u] [-t TEMPLATE_DIRECTORY] [-n NUMBER_GENERATED] [-d]
     vtsg.py (-h | --help)
     vtsg.py --version
@@ -18,20 +17,20 @@ Options:
     -u --unsafe                                                     Only generate unsafe cases
     -r DEPTH --depth=DEPTH                                          Depth of the Complexities (Default: 1)
     -t TEMPLATE_DIRECTORY --template-directory TEMPLATE_DIRECTORY   Directory with language template files
-    -n NUMBER_GENERATED --number-generated=NUMBER_GENERATED         (DEPRECATED - DON'T USE, SHOULD BE REMOVED SOON) Number of combination of input, filtering and sink used to generate (Default: -1, it means all)
+    -n NUMBER_GENERATED --number-generated=NUMBER_GENERATED         (DEPRECATED - DON'T USE, SHOULD BE REMOVED SOON) Number of combinations of input, filter, and sink to generate (Default: -1, it means all)
     -d --debug                                                      Debug (programmer hook)
 
 Examples:
-
     vtsg.py -l cs                         (generate C# cases with all flaws coded, safe and unsafe, complexity depth = 1)
     vtsg.py -l php -g IDOR                (generate PHP cases with all flaws in the IDOR group, and other options to default)
     vtsg.py -l cs -g IDOR -g Injection    (generate cases with all flaws in the IDOR or Injection groups)
     vtsg.py -l cs -f CWE_354              (generate cases with CWE 354)
     vtsg.py -l cs -f CWE_89 -f CWE_78     (generate cases with CWE 89 or CWE 78)
     vtsg.py -l cs -r 2                    (generate cases with the complexity depth equals to 2, two level of nesting)
-    vtsg.py -l cs -n 1                    (generate cases with only one combination of input, filtering and sink for all flaws)
+    vtsg.py -l cs -n 1                    (generate cases with only one combination of input, filter, and sink for all flaws)
     vtsg.py -l cs -s                      (generate cases where the vulnerabilities have been fixed)
     vtsg.py -l cs -u                      (generate cases where there are vulnerabilities)
+    vtsg.py -l example -t tests/templates (generate the manual example, where the files for the "example" language are in tests/templates)
 
     All these options can be combined (except for -s and -u).
 
@@ -64,13 +63,20 @@ def main():
         print("Specify a language with -l/--language (cs, php, py)")
         sys.exit(1)
 
+    # get template directory, if any
+    template_dir = 'src/templates'
+    if args["--template-directory"]:
+        template_dir = args["--template-directory"]
+
     # check if language exists
-    if not FileManager.exist_language(language):
-        print(f"Create '{language}' directory in src/templates folder")
+    path = os.path.abspath(os.path.join(template_dir, language))
+    if not os.path.isdir(path):
+        print(f'[ERROR] no directory found for {language}')
+        print(f"Create '{language}' directory in {template_dir} folder")
         sys.exit(1)
 
     # create generator for specified language
-    g = Generator(date, language=language)
+    g = Generator(date, language=language, template_directory=template_dir)
 
     # List of flaws
     group_list = g.get_group_list()
