@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Thu Oct  6 10:42:32 2022" *by "Paul E. Black"
+# *modified "Thu Oct  6 16:48:20 2022" *by "Paul E. Black"
 
 default: testPython
 
@@ -66,7 +66,7 @@ TestCLI2:
 # generate one of the flaw types in the language
 TestCLI3:
 	python3 vtsg.py -l test010 --flaw=IDS00-PL -t tests/templates | tee $(@)_photo
-	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/Test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 	sleep 1
 
@@ -79,7 +79,7 @@ TestCLI4:
 # generate one of the flaw groups in the language
 TestCLI5:
 	python3 vtsg.py -l test010 -g Zarahemla -t tests/templates | tee $(@)_photo
-	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/Test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 	sleep 1
 
@@ -111,16 +111,18 @@ testIndent: test016 test017
 
 test016: $(VTSG_FILES)
 	@echo =====================================================================================
-	@echo This should fail with INDENT line without a matching ENDINDENT
+	@echo The next test should fail with INDENT line without a matching ENDINDENT
 	@echo =====================================================================================
+	sleep 2
 	-python3 vtsg.py -l $@ -t tests/templates
 	(cd $$(ls -dt TestSuite_*/test016 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test016/$$f;done)
 	sleep 1
 
 test017: $(VTSG_FILES)
 	@echo =====================================================================================
-	@echo This should fail with ENDINDENT without a matching INDENT before generating any files
+	@echo The next test should fail with ENDINDENT without a matching INDENT before generating any files
 	@echo =====================================================================================
+	sleep 2
 	-python3 vtsg.py -l $@ -t tests/templates
 	sleep 1
 
