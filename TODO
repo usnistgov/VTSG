@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Fri Sep 30 10:30:37 2022" *by "Paul E. Black"
+ *modified "Thu Oct  6 10:33:06 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -106,7 +106,7 @@ OTHER? GENERAL?
 Shorten the generated file name.  Or, add a --short-case-name option, to produce
 Juliet-like names.
     A better alternative is to allow the user to specify generated file name in a
-general format, like strftime or ISO/IEC 9899 (C90).  Here is a sample:
+general format, like strftime, ISO/IEC 9899 (C90), or find -printf.  Here is a sample:
   %A is the full weekday name.
   %a is the abbreviated weekday name.
   %B is the full month name.
