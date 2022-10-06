@@ -6,6 +6,6 @@ positional arguments:
   manifest1.xml  SARD manifest file
   manifest2.xml  SARD manifest file
 
-optional arguments:
+options:
   -h, --help     show this help message and exit
   -v, --version  show program's version number and exit

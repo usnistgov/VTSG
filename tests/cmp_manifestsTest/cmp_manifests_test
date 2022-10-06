@@ -1,5 +1,5 @@
 # *created  "Wed Feb  9 11:39:10 2022" *by "Paul E. Black"
-# *modified "Wed Feb  9 14:25:46 2022" *by "Paul E. Black"
+# *modified "Thu Oct  6 15:23:23 2022" *by "Paul E. Black"
 
 # automated test for cmp_manifests.py
 
@@ -20,7 +20,7 @@
 #	http://hissa.nist.gov/~black/
 # ---------------------------------------------------------------------------------------
 
-program=../cmp_manifests.py
+program="python3 ../cmp_manifests.py"
 
 photofile=ERRORS_FOUND_DURING_AUTO_TEST
 rm -f $photofile

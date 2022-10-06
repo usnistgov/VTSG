@@ -1,6 +1,5 @@
-#!/opt/local/bin/python
 #            *created  "Wed Feb  9 10:56:53 2022" *by "Paul E. Black"'
-versionMod=' *modified "Fri Apr 29 15:26:16 2022" *by "Paul E. Black"'
+versionMod=' *modified "Thu Oct  6 11:44:54 2022" *by "Paul E. Black"'
 #
 
 # Compare two manifest.xml files, ignoring unimportant differences like dates

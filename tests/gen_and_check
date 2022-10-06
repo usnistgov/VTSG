@@ -1,5 +1,6 @@
+#!/usr/bin/bash
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Wed Sep 28 15:56:35 2022" *by "Paul E. Black"
+# *modified "Thu Oct  6 15:44:20 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -67,7 +68,7 @@ echo checking that generated files match ... | tee -a ${CF}
 
 # check that the manifests match
 echo checking manifests | tee -a ${CF}
-(cd ${TSD};for m in $(find . -name "manifest.xml"); do echo $m;${TDIR}/cmp_manifests.py $m ${TDIR}/${LD}/$m;done) 2>&1 | tee -a ${CF}
+(cd ${TSD};for m in $(find . -name "manifest.xml"); do echo $m;python3 ${TDIR}/cmp_manifests.py $m ${TDIR}/${LD}/$m;done) 2>&1 | tee -a ${CF}
 
 if [ $LD != Python ]
 then
@@ -75,6 +76,18 @@ then
 fi
 
 # only run Python files, for now at least
+
+# figure out which timeout command to use
+if [ ! -z $(which timeout) ]
+then
+    TIMEOUT="$(which timeout) 3"
+elif [ ! -z $(which gtimeout) ]
+then
+    TIMEOUT="$(which gtimeout) 3"
+else
+    TIMEOUT=""
+fi
+
 
 echo executing generated files ... | tee -a ${CF}
 (cd ${TSD}
@@ -97,7 +110,8 @@ for f in $(find . -name "*.py"|grep -v b[.]|sort); do
         continue
     fi
     # timeout in order to limit infinite loops
-    echo "$a" | gtimeout 3 python $f "$a"
+    #    ignore the result of /Users check so MacOS and non-MacOS systems match
+    echo "$a" | $TIMEOUT python3 $f "$a" | perl -pwe 's/Users".*/Users" .../'
 done) 2>&1 | tee ${EF}
 echo checking that execution is as expected | tee -a ${CF}
 diff ${EF} tests/${LD}_exec 2>&1 | tee -a ${CF}

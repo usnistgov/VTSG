@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Fri Sep 30 10:24:27 2022" *by "Paul E. Black"
+# *modified "Thu Oct  6 10:42:32 2022" *by "Paul E. Black"
 
 default: testPython
 
@@ -29,7 +29,7 @@ TDIR = ../../tests
 
 example: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/example | head -1);pwd;for f in $$(find . -name "*.cs"); do echo $$f; diff $$f $(TDIR)/example/$$f;done)
+	(cd $$(ls -dt TestSuite_*/example | head -1);pwd;for f in $$(find . -name "*.cs"|sort); do echo $$f; diff $$f $(TDIR)/example/$$f;done)
 	sleep 1
 
 # test for unsafe file WITHOUT {{flaw}}
@@ -37,7 +37,7 @@ example: $(VTSG_FILES)
 # test flaw groups other than OWASP_*
 test010: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/test010/$$f;done)
+	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test010/$$f;done)
 	@echo $@ succeeded
 	sleep 1
 
@@ -66,7 +66,7 @@ TestCLI2:
 # generate one of the flaw types in the language
 TestCLI3:
 	python3 vtsg.py -l test010 --flaw=IDS00-PL -t tests/templates | tee $(@)_photo
-	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/Test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/Test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 	sleep 1
 
@@ -79,7 +79,7 @@ TestCLI4:
 # generate one of the flaw groups in the language
 TestCLI5:
 	python3 vtsg.py -l test010 -g Zarahemla -t tests/templates | tee $(@)_photo
-	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/Test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/Test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 	sleep 1
 
@@ -89,22 +89,22 @@ testSTerm: test011 test012 test013 test014
 
 test011: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test011 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/test011/$$f;done)
+	(cd $$(ls -dt TestSuite_*/test011 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test011/$$f;done)
 	sleep 1
 
 test012: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test012 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/test012/$$f;done)
+	(cd $$(ls -dt TestSuite_*/test012 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test012/$$f;done)
 	sleep 1
 
 test013: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test013 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/test013/$$f;done)
+	(cd $$(ls -dt TestSuite_*/test013 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test013/$$f;done)
 	sleep 1
 
 test014: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test014 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/test014/$$f;done)
+	(cd $$(ls -dt TestSuite_*/test014 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test014/$$f;done)
 
 # tests for fatal misuses of INDENT ... ENDINDENT
 testIndent: test016 test017
@@ -114,7 +114,7 @@ test016: $(VTSG_FILES)
 	@echo This should fail with INDENT line without a matching ENDINDENT
 	@echo =====================================================================================
 	-python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test016 | head -1);pwd;for f in $$(find . -name "*.py"); do echo $$f; diff $$f $(TDIR)/test016/$$f;done)
+	(cd $$(ls -dt TestSuite_*/test016 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test016/$$f;done)
 	sleep 1
 
 test017: $(VTSG_FILES)
@@ -126,6 +126,6 @@ test017: $(VTSG_FILES)
 
 test020: $(VTSG_FILES) src/sarif_writer.py
 	python3 vtsg.py -l $@ -t tests/templates
-	-(cd $$(ls -dt TestSuite_*/test020 | head -1);pwd;for f in $$(find . -name "*.sarif"); do echo $$f; cat $$f;done)|more
+	-(cd $$(ls -dt TestSuite_*/test020 | head -1);pwd;for f in $$(find . -name "*.sarif"|sort); do echo $$f; cat $$f;done)|more
 
 # end of Makefile
