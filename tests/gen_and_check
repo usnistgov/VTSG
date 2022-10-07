@@ -1,6 +1,13 @@
-#!/usr/bin/bash
+#!/bin/sh
+if [ -z $RESHELLING ]
+then
+    # find bash on this machine and run with it instead
+    export RESHELLING=1 # remember that we're running in the right shell
+    $(which bash) "$0" "$@"
+    exit
+fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Thu Oct  6 15:44:20 2022" *by "Paul E. Black"
+# *modified "Fri Oct  7 10:16:58 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 

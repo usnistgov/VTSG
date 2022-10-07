@@ -1,11 +1,13 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Thu Oct  6 16:48:20 2022" *by "Paul E. Black"
+# *modified "Fri Oct  7 10:19:15 2022" *by "Paul E. Black"
 
-default: testPython
+default: genPython
 
-all: test
+all: test generate
 
-test: test010 testCLI testSTerm testIndent testPython testCsharp testPHP
+generate: genPython genCsharp genPHP
+
+test: test010 testCLI testSTerm testIndent
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
 	src/exec_query.py src/file_manager.py src/file_template.py \
@@ -13,16 +15,16 @@ VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
 	src/manifest.py src/sample.py src/sink_sample.py src/synthesize_code.py
 
 # this takes four minutes and produces 33k cases
-testCsharp: $(VTSG_FILES)
+genCsharp: $(VTSG_FILES)
 	tests/gen_and_check cs
 
 # generation takes about 25 minutes and produces almost 300k cases
 # checking takes about six minutes
-testPHP: $(VTSG_FILES)
+genPHP: $(VTSG_FILES)
 	tests/gen_and_check php
 
 # this produces 311 cases
-testPython: $(VTSG_FILES)
+genPython: $(VTSG_FILES)
 	tests/gen_and_check py
 
 TDIR = ../../tests
@@ -129,5 +131,8 @@ test017: $(VTSG_FILES)
 test020: $(VTSG_FILES) src/sarif_writer.py
 	python3 vtsg.py -l $@ -t tests/templates
 	-(cd $$(ls -dt TestSuite_*/test020 | head -1);pwd;for f in $$(find . -name "*.sarif"|sort); do echo $$f; cat $$f;done)|more
+
+cleanup:
+	rm -rf TestSuite_* TestPhoto_* TestCLI*_photo
 
 # end of Makefile
