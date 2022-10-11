@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Fri Sep 30 08:52:42 2022" *by "Paul E. Black"
+% *modified "Tue Oct 11 16:54:54 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -299,7 +299,7 @@ We would appreciate acknowledgment if this document is used.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 \tableofcontents
-%\listoftables
+\listoftables
 \listoffigures
 \end{center}
 \pagebreak
@@ -1208,7 +1208,7 @@ module is ``none'', the file name will contain \verb|..._I_none_...|, where ``I'
 indicates the input module selected.
 
 If a module has more than one \verb|<dir>| tag, the strings are joined with dashes.
-For example, if a sink have
+For example, if a sink has
 \begin{verbatim}
             <path>
                 <dir>select_from</dir>
@@ -1221,6 +1221,25 @@ then cases using that module will have file names containing \\
 Note: we cannot think of any reason why it is better to give multiple description
 strings instead of just one string.  But the functionality is provided in VTSG, and
 some modules use it.
+
+
+\subsubsection{Module Comment}
+\label{sec:module comment}
+
+Each sample module must have a comment string.  This string is added to the
+\verb|{{comments}}| area given in the file template, Sec.~\ref{sec: file template}.
+This informs the user about the purpose or structure of the input, filter, sink, and
+exec query modules included.  Below is an example comment string.
+
+\begin{verbatim}
+            <comment>sink: check if a file exists</comment>
+\end{verbatim}
+
+Any case using that module will have
+\begin{verbatim}
+sink: check if a file exists
+\end{verbatim}
+in the comments area.
 
 
 \subsubsection{Marking Modules as Safe and Unsafe}
@@ -1242,8 +1261,9 @@ Exec query modules may be marked as always safe.  (No exec query module can make
 program unsafe.)
 
 A generated program is not safe if any of the selected input, filter, or sink modules
-are always unsafe, that is \verb|unsafe="1"|.  A program is safe if the selected
-input, filter, sink, or exec query is always safe, \verb|safe="1"|, \emph{and} none
+are always unsafe, that is \verb|unsafe="1"|.  A program is safe if any of the
+selected input, filter, sink, or exec query modules is always safe, that is
+\verb|safe="1"|, \emph{and} none
 are unsafe.  The filter module must be executed to be considered.  In other words, if
 a complexity never executes the filter, then the filter's safe or unsafe marking is
 ignored.  Table~\ref{tab:selection safe algorithm} expresses this as a table.
@@ -1262,6 +1282,9 @@ ignored.  Table~\ref{tab:selection safe algorithm} expresses this as a table.
 \caption{Decision table for whether a selection of modules is considered safe or unsafe.}
 \label{tab:selection safe algorithm}
 \end{table}
+
+The Code Complexity Modules, Sec.~\ref{sec: complexity modules}, explains when a
+filter may never be executed.
 
 
 \subsection{Input Modules}
@@ -1515,10 +1538,10 @@ use an SQL prepared statement.
 
 All test condition and code complexity modules are in the 
 language's \verb|complexities.xml| file.  This file has
-a \verb|<root>| with one \verb|<conditions>| and one
-\verb|<complexities>|.
+a \verb|<root>| with one \verb|<conditions>| part and one
+\verb|<complexities>| part.
 All condition modules are inside \verb|<conditions>|.  All
-complexity modules are inside \\ \verb|<complexities>|.
+complexity modules are inside \verb|<complexities>|.
 
 \begin{verbatim}
 <root>
@@ -1549,7 +1572,7 @@ complexity modules are inside \\ \verb|<complexities>|.
 \begin{itemize}
     \item id: string indicating this condition.  Appears in the test case
       file name.  Typically this is a number.
-    
+
     \item code: the source code of the conditional test.
 
     \item value: either \verb|<value>True</value>| or
@@ -1594,8 +1617,73 @@ complexity modules are inside \\ \verb|<complexities>|.
         \item 0: Never executed
         \item 1: Always executed
         \item condition:  Executed if the condition is true
-        \item not condition:  Executed if the condition is false
+        \item not\_condition:  Executed if the condition is false
     \end{itemize}
+    Table~\ref{tab:execution examples} gives example code for each value.
+
+    \begin{table}[H]
+    \centering
+    \begin{tabular}{|r|l|}
+    \hline
+      \makecell{Value of \\ executed}
+      & example code \\
+    \hline
+    0 &
+    \begin{minipage}{3in}
+    \begin{verbatim}
+        switch(6) {
+          case(6):
+            break;
+          default:
+            {{ placeholder }}
+            break;
+        }
+    \end{verbatim}
+    \end{minipage}
+    \\
+    \hline
+    1 &
+    \begin{minipage}{3in}
+    \begin{verbatim}
+        switch(6) {
+          case(6):
+            {{ placeholder }}
+            break;
+          default:
+            break;
+        }
+    \end{verbatim}
+    \end{minipage}
+    \\
+    \hline
+    condition &
+    \begin{minipage}{3in}
+    \begin{verbatim}
+        if ({{ condition }}) {
+            {{ placeholder }}
+        } else {
+            {}
+        }
+    \end{verbatim}
+    \end{minipage}
+    \\
+    \hline
+    not\_condition &
+    \begin{minipage}{3in}
+    \begin{verbatim}
+        if ({{ condition }}) {
+            {}
+        } else {
+            {{ placeholder }}
+        }
+    \end{verbatim}
+    \end{minipage}
+    \\
+    \hline
+    \end{tabular}
+    \caption{An example of code for each value of executed.}
+    \label{tab:execution examples}
+    \end{table}
 
     \item in\_out\_var: whether the variable (from the Input) will be used or
     transformed in the Complexity before being used in the Filter.  If the
@@ -1674,7 +1762,7 @@ This section describes what the
 names of test case files mean.
 
 VTSG creates directories and subdirectories for the test cases that it generates.
-The structure is described in
+The directory structure is described in
 Sec.~\ref{sec:case directory structure}.
 
 %\subsection{Test Case File Names}
@@ -1759,7 +1847,7 @@ The name of the main file is
 \verb|sql_server__2-11.7-20a.cs|.
 The name of the class file, Fig.~\ref{fig:example aux file}, is
 identical, except for the
-file letter, ``b''.
+file letter ``b'' instead of ``a'' at the end.
 
 Using Sec.~\ref{sec:case file name} and the extension, cs, which shows that it is a
 \CSharp\ file, the file name is read as follows:
