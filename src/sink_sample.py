@@ -1,7 +1,7 @@
 """
 sink_sample module
 
- *modified "Wed Oct 12 08:29:24 2022" *by "Paul E. Black"
+ *modified "Wed Oct 12 13:59:25 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -33,6 +33,10 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
         self._input_type = sample.find("input_type").text
         self._exec_type = sample.find("exec_type").text
         self._flaw_type = sample.find("flaw_type").text
+        if self.flaw_type is None:
+            print(f'[ERROR] Invalid empty <flaw_type></flaw_type> in the sink file.')
+            print('A flaw_type string is required; it will be used in the name of the generated file.')
+            exit(1)
         self._flaw_group = sample.find("flaw_type").get("flaw_group")
         self._need_complexity = True
         # TODO check why [0]
