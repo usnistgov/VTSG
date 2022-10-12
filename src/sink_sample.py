@@ -1,7 +1,7 @@
 """
 sink_sample module
 
- *modified "Thu Mar 10 08:29:47 2022" *by "Paul E. Black"
+ *modified "Wed Oct 12 08:29:24 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -27,9 +27,9 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
                                         (private member, please use getter and setter).
 
     """
-    # new version for new XML
+    # new sink object for a new sink.xml file
     def __init__(self, sample):  # Add parameters showing the beginning and the end of the sample
-        Sample.__init__(self, sample)
+        Sample.__init__(self, sample, 'sink')
         self._input_type = sample.find("input_type").text
         self._exec_type = sample.find("exec_type").text
         self._flaw_type = sample.find("flaw_type").text

@@ -1,0 +1,2 @@
+[ERROR] Invalid empty <comment></comment> in the sink file.
+A comment string is required; it will be added to the file template {{comment}} section.

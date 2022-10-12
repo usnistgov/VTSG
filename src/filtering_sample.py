@@ -1,7 +1,7 @@
 """
 filtering_sample module
 
- *modified "Mon Feb 14 13:35:05 2022" *by "Paul E. Black"
+ *modified "Wed Oct 12 08:36:51 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -25,7 +25,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
 
     # new version for new XML
     def __init__(self, sample):  # XML tree in parameter
-        Sample.__init__(self, sample)
+        Sample.__init__(self, sample, 'filtering')
         self._input_type = sample.find("input_type").text
         self._output_type = sample.find("output_type").text
         self._flaws = {}

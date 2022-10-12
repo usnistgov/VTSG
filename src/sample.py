@@ -1,7 +1,7 @@
 """
 sample module
 
- *modified "Fri Sep 23 11:26:28 2022" *by "Paul E. Black"
+ *modified "Wed Oct 12 09:10:17 2022" *by "Paul E. Black"
 """
 
 import src.generator
@@ -32,7 +32,9 @@ class Sample(object):
 
     """
 
-    def __init__(self, sample):
+    def __init__(self, sample, file_name):
+        self._file_name = file_name # for error reporting
+
         self._path = []
         tree_path = sample.find("path").findall("dir")
         for dir in tree_path:
@@ -41,12 +43,17 @@ class Sample(object):
         self._code = sample.find("code").text
 
         self._comment = sample.find("comment").text
+        if self.comment is None:
+            print(f'[ERROR] Invalid empty <comment></comment> in the {self._file_name} file.')
+            print('A comment string is required; it will be added to the file template {{comment}} section.')
+            exit(1)
+
         self._imports = []
         if sample.find("imports") is not None:
             self._imports = [imp.text for imp in sample.find("imports").findall("import")]
             if None in self._imports:
-                # SKIMP print file name, too
-                print('Invalid empty <import></import>')
+                print(f'[ERROR] Invalid empty <import></import> in the {self._file_name} file.')
+                print('An import string is required; it will be used in the file template {{stdlib_imports}} section.')
                 exit(1)
 
         self._need_id = False

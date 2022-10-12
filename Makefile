@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Fri Oct  7 10:19:15 2022" *by "Paul E. Black"
+# *modified "Wed Oct 12 09:29:00 2022" *by "Paul E. Black"
 
 default: genPython
 
@@ -7,7 +7,8 @@ all: test generate
 
 generate: genPython genCsharp genPHP
 
-test: test010 testCLI testSTerm testIndent
+test: testVarious testCLI testSTerm testIndent
+	@echo All built-in self-tests succeeded
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
 	src/exec_query.py src/file_manager.py src/file_template.py \
@@ -34,6 +35,19 @@ example: $(VTSG_FILES)
 	(cd $$(ls -dt TestSuite_*/example | head -1);pwd;for f in $$(find . -name "*.cs"|sort); do echo $$f; diff $$f $(TDIR)/example/$$f;done)
 	sleep 1
 
+testVarious: test001 test002 test010
+	@echo various tests succeeded
+
+# test empty <import></import> string
+test001:
+	python3 vtsg.py -l $@ -t tests/templates | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+# test empty <comment></comment> string
+test002:
+	python3 vtsg.py -l $@ -t tests/templates | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
 # test for unsafe file WITHOUT {{flaw}}
 # test flaw types other than CWE_*
 # test flaw groups other than OWASP_*
@@ -51,19 +65,16 @@ testCLI: TestCLI1 TestCLI1a TestCLI2 TestCLI3 TestCLI4 TestCLI5
 TestCLI1:
 	python3 vtsg.py --language=unknownLang | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
-	sleep 1
 
 # unknown language in given directory; test --template-directory option
 TestCLI1a:
 	python3 vtsg.py -l cs --template-directory=/tmp | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
-	sleep 1
 
 # flaw type not in the language
 TestCLI2:
 	python3 vtsg.py -l test010 -f CWE_99 -t tests/templates | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
-	sleep 1
 
 # generate one of the flaw types in the language
 TestCLI3:
@@ -76,7 +87,6 @@ TestCLI3:
 TestCLI4:
 	python3 vtsg.py -l test010 --group=Santa\ Monica -t tests/templates | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
-	sleep 1
 
 # generate one of the flaw groups in the language
 TestCLI5:
@@ -110,6 +120,7 @@ test014: $(VTSG_FILES)
 
 # tests for fatal misuses of INDENT ... ENDINDENT
 testIndent: test016 test017
+	@echo test INDENT...ENDINDENT succeeded
 
 test016: $(VTSG_FILES)
 	@echo =====================================================================================
@@ -132,7 +143,8 @@ test020: $(VTSG_FILES) src/sarif_writer.py
 	python3 vtsg.py -l $@ -t tests/templates
 	-(cd $$(ls -dt TestSuite_*/test020 | head -1);pwd;for f in $$(find . -name "*.sarif"|sort); do echo $$f; cat $$f;done)|more
 
+# remove stuff left from running built-in tests
 cleanup:
-	rm -rf TestSuite_* TestPhoto_* TestCLI*_photo
+	rm -rf TestSuite_* TestPhoto_* TestCLI*_photo test00*_photo
 
 # end of Makefile
