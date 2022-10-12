@@ -1,0 +1,58 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!--  *created "Wed Oct 12 15:46:11 2022" *by "Paul E. Black" -->
+<!-- *modified "Wed Oct 12 15:46:34 2022" *by "Paul E. Black" -->
+
+<template name="test003">
+    <file_extension>py</file_extension>
+    <comment>
+        <open>'''</open>
+        <close>'''</close>
+        <inline>#</inline>
+    </comment>
+    <syntax>
+      <!-- If language doesn't have a terminator, leave empty-->
+      <statement_terminator></statement_terminator>
+      <!-- Insert desired indentation level using spaces-->
+      <indent>        </indent>
+    </syntax>
+    <namespace></namespace>
+    <variables prefix="" import_code="import {{import_file}}">
+        <variable type="int" code="" init="0"/>
+        <variable type="string" code="" init="None"/>
+	<variable type="bool" code="" init="False"/>
+	<variable type="float" code="" init="0.0"/>
+    </variables>
+    <imports>
+        <import>sys</import>
+        <import>math</import>
+    </imports>
+    <code>
+'''
+  Test no string in angle-dir-angle angle-/dir-angle
+'''
+'''
+{{ comments }}
+'''
+
+'''
+{{ license }}
+'''
+{{ stdlib_imports }}
+
+{{ static_methods }}
+
+
+def main():
+INDENT
+    {{local_var}}
+    {{input_content}}
+    {{filtering_content}}
+    {{sink_content}}
+    {{exec_queries_content}}
+ENDINDENT
+
+if __name__ == '__main__':
+        main()
+    </code>
+</template>

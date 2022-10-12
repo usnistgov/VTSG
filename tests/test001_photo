@@ -1,2 +1,2 @@
 [ERROR] Invalid empty <import></import> in the sink file.
-An import string is required; it will be used in the file template {{stdlib_imports}} section.
+An import string is required; it is used in the file template {{stdlib_imports}} section.

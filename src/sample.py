@@ -1,7 +1,7 @@
 """
 sample module
 
- *modified "Wed Oct 12 09:10:17 2022" *by "Paul E. Black"
+ *modified "Wed Oct 12 15:30:34 2022" *by "Paul E. Black"
 """
 
 import src.generator
@@ -33,27 +33,29 @@ class Sample(object):
     """
 
     def __init__(self, sample, file_name):
-        self._file_name = file_name # for error reporting
-
         self._path = []
         tree_path = sample.find("path").findall("dir")
         for dir in tree_path:
+            if dir.text is None:
+                print(f'[ERROR] Invalid empty <dir></dir> in the {file_name} file.')
+                print('A dir string is required; it is used in the name of the generated file.')
+                exit(1)
             self.path.append(dir.text)
 
         self._code = sample.find("code").text
 
         self._comment = sample.find("comment").text
         if self.comment is None:
-            print(f'[ERROR] Invalid empty <comment></comment> in the {self._file_name} file.')
-            print('A comment string is required; it will be added to the file template {{comment}} section.')
+            print(f'[ERROR] Invalid empty <comment></comment> in the {file_name} file.')
+            print('A comment string is required; it is added to the file template {{comment}} section.')
             exit(1)
 
         self._imports = []
         if sample.find("imports") is not None:
             self._imports = [imp.text for imp in sample.find("imports").findall("import")]
             if None in self._imports:
-                print(f'[ERROR] Invalid empty <import></import> in the {self._file_name} file.')
-                print('An import string is required; it will be used in the file template {{stdlib_imports}} section.')
+                print(f'[ERROR] Invalid empty <import></import> in the {file_name} file.')
+                print('An import string is required; it is used in the file template {{stdlib_imports}} section.')
                 exit(1)
 
         self._need_id = False
