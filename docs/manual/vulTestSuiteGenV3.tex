@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Oct 11 16:54:54 2022" *by "Paul E. Black"
+% *modified "Wed Oct 12 13:44:21 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1204,7 +1204,7 @@ these attributes, they are here.
 Within the \verb|<path>| keywords, modules may have one or more \verb|<dir>| tags.
 These tags provide the descriptions of the module that is used in the file name, see
 Sec.~\ref{sec:case file name}.  For example, when the key word in a selected input
-module is ``none'', the file name will contain \verb|..._I_none_...|, where ``I''
+module is ``file'', the file name will contain \verb|..._I_file_...|, where ``I''
 indicates the input module selected.
 
 If a module has more than one \verb|<dir>| tag, the strings are joined with dashes.
@@ -1240,6 +1240,17 @@ Any case using that module will have
 sink: check if a file exists
 \end{verbatim}
 in the comments area.
+
+
+\subsubsection{Needed Imports}
+\label{sec:module import}
+
+Sometimes the use of code requires some library to be imported or used.  This is
+indicated with names given in \verb|<import></import>| directives within
+\verb|<imports></imports>| sections.
+
+Code statements are synthesized from the \verb|import_code| in the file template and
+the name or names given here.
 
 
 \subsubsection{Marking Modules as Safe and Unsafe}
@@ -1319,9 +1330,6 @@ provides one way for the generated program to get input.
 \end{figure}
 
 \begin{itemize}
-    \item path: used as the description of the input module in the file name.
-      See Sec.~\ref{sec:module description} for details.
-    
     \item flaw: vulnerability categories where the sample can be used, that is, the
       flaws that the input is compatible with.  Also whether it is always safe or
       always unsafe for that flaw.  See Sec.~\ref{sec:safe or unsafe}
@@ -1371,9 +1379,6 @@ All filter modules are in the \verb|filtering.xml| file.
 \end{figure}
 
 \begin{itemize}
-    \item path: the description of the filter module in the file name.
-      See Sec.~\ref{sec:module description} for details.
-    
     \item input\_type: the input type of the filter. The variable 
     generated with
     the placeholder \verb|{{in_var_name}}| will be that type.
@@ -1428,9 +1433,6 @@ All sink modules are in the language's \verb|sink.xml| file.
 \end{verbatim}
 
 \begin{itemize}
-    \item path: the description of the sink module in the file name.
-      See Sec.~\ref{sec:module description} for details.
-
     \item flaw\_type: the flaw\_group is a general category of vulnerability.
     Generated test cases are placed under the flaw group subdirectory, then
     in the flaw type subdirectory under that. The user can limit
@@ -1499,9 +1501,6 @@ file.
 \end{verbatim}
 
 \begin{itemize}
-    \item path: the description of the exec query module in the file name.
-      See Sec.~\ref{sec:module description} for details.
-
     \item type: the type of the ExecQuery. This is used in the
     \verb|exec_type| tag of the Sink to link them together during
     generation process.  The type should only contain letters, numerals, and
