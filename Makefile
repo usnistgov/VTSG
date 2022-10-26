@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Oct 12 15:47:21 2022" *by "Paul E. Black"
+# *modified "Wed Oct 12 16:00:18 2022" *by "Paul E. Black"
 
 default: genPython
 
@@ -149,7 +149,7 @@ test020: $(VTSG_FILES) src/sarif_writer.py
 	-(cd $$(ls -dt TestSuite_*/test020 | head -1);pwd;for f in $$(find . -name "*.sarif"|sort); do echo $$f; cat $$f;done)|more
 
 # remove stuff left from running built-in tests
-cleanup:
+clean:
 	rm -rf TestSuite_* TestPhoto_* TestCLI*_photo test00*_photo
 
 # end of Makefile
