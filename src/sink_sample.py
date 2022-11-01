@@ -1,7 +1,7 @@
 """
 sink_sample module
 
- *modified "Wed Oct 12 15:27:46 2022" *by "Paul E. Black"
+ *modified "Tue Nov  1 11:11:43 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -15,16 +15,17 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
                                                           file "sink.xml".
 
         Attributes :
-            **_input_type** (str): Type of input variable (private member, please use getter and setter).
+            **_input_type** (str): Type of input variable (private member, please use getter).
 
-            **_exec_type** (str): Type of exec query if needed (private member, please use getter and setter).
+            **_exec_type** (str): Type of exec query if needed (private member, please use getter).
 
-            **_flaw_type** (str): Flaw type (private member, please use getter and setter).
+            **_flaw_type** (str): Flaw type (private member, please use getter).
 
-            **_flaw_group** (str): Flaw group (private member, please use getter and setter).
+            **_flaw_group** (str): Flaw group.  Empty string means no group \
+                                        (private member, please use getter).
 
             **_need_complexity** (bool): If false the sink doesn't need complexities \
-                                        (private member, please use getter and setter).
+                                        (private member, please use getter).
 
     """
     # new sink object for a new sink.xml file
@@ -38,6 +39,8 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
             print('A flaw_type string is required; it is used in the name of the generated file.')
             exit(1)
         self._flaw_group = sample.find("flaw_type").get("flaw_group")
+        if self._flaw_group is None:
+            self._flaw_group = '' # missing flaw_group means no flaw group
         self._need_complexity = True
         # TODO check why [0]
         if sample.findall("options") and sample.findall("options")[0].get("need_complexity"):
@@ -115,3 +118,5 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
         """
         """ Check if current sink is compatible with exec query """
         return self.exec_type == exec_queries.type
+
+# end of sink_sample.py

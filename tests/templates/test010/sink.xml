@@ -58,4 +58,31 @@
             <exec_type>none</exec_type>
         </sample>
 
+        <sample>
+            <path>
+                <dir>file_exists</dir>
+            </path>
+	    <!-- missing flaw_group -->
+            <flaw_type>OWASP_A01</flaw_type>
+            <comment>sink: check if a file exists</comment>
+            <imports>
+                <import>os</import>
+            </imports>
+            <code>
+        print(f'file "{ {{in_var_name}} }" ', end='')
+        {{flaw}}
+        if os.path.exists({{in_var_name}}):
+	INDENT
+            print('exists')
+	ENDINDENT
+	else:
+	INDENT
+            print('does not exist')
+	ENDINDENT
+	    </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+
     </sink>

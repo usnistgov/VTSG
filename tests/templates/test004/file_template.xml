@@ -1,0 +1,58 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!--  *created "Tue Nov  1 08:49:53 2022" *by "Paul E. Black" -->
+<!-- *modified "Tue Nov  1 10:53:45 2022" *by "Paul E. Black" -->
+
+<template name="test004">
+    <file_extension>py</file_extension>
+    <comment>
+        <open>'''</open>
+        <close>'''</close>
+        <inline>#</inline>
+    </comment>
+    <syntax>
+      <!-- If language doesn't have a terminator, leave empty-->
+      <statement_terminator></statement_terminator>
+      <!-- Insert desired indentation level using spaces-->
+      <indent>        </indent>
+    </syntax>
+    <namespace></namespace>
+    <variables prefix="" import_code="import {{import_file}}">
+        <variable type="int" code="" init="0"/>
+        <variable type="string" code="" init="None"/>
+	<variable type="bool" code="" init="False"/>
+	<variable type="float" code="" init="0.0"/>
+    </variables>
+    <imports>
+        <import>sys</import>
+        <import>math</import>
+    </imports>
+    <code>
+'''
+  Test empty flaw_type in sink
+'''
+'''
+{{ comments }}
+'''
+
+'''
+{{ license }}
+'''
+{{ stdlib_imports }}
+
+{{ static_methods }}
+
+
+def main():
+INDENT
+    {{local_var}}
+    {{input_content}}
+    {{filtering_content}}
+    {{sink_content}}
+    {{exec_queries_content}}
+ENDINDENT
+
+if __name__ == '__main__':
+        main()
+    </code>
+</template>

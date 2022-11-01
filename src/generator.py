@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Fri Sep 30 10:27:52 2022" *by "Paul E. Black"
+ *modified "Tue Nov  1 11:05:10 2022" *by "Paul E. Black"
 """
 
 import time
@@ -700,7 +700,11 @@ class Generator(object):
         print('Generation report:')
         for flaw_group in self.report:
             group_total = 0
-            print(f'\t{flaw_group} group generation report:')
+            flaw_group_label = flaw_group
+            # in case the flaw_group is missing or the empty string
+            if flaw_group_label == '':
+                flaw_group_label = 'Empty'
+            print(f'\t{flaw_group_label} group generation report:')
             for flaw in self.report[flaw_group]:
                 print(f'\t\t{flaw} generation report:')
                 print(f'\t\t\t{self.report[flaw_group][flaw]["safe_sample"]} safe samples')

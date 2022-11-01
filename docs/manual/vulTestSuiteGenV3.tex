@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Oct 12 13:44:21 2022" *by "Paul E. Black"
+% *modified "Tue Nov  1 11:01:27 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -511,13 +511,13 @@ See Sec.~\ref{sec: directory structure}.} \\
 -\zws-group=GROUP[,GROUP]*} &
 \makecell[l]{Only generate cases with \\
 vulnerabilities in the specified \\
-group(s). See Sec.~\ref{sec:sink modules}} \\
+group(s). See Sec.~\ref{sec:sink modules}.} \\
 \hline
 -f Flaw[,Flaw]*
 -\zws-flaw=Flaw[,Flaw]* &
 \makecell[l]{Only generate cases with \\
 the specified flaw(s). \\
-See Sec.~\ref{sec:sink modules}} \\
+See Sec.~\ref{sec:sink modules}.} \\
 \hline
 -s
 -\zws-safe &
@@ -531,7 +531,7 @@ Only generate vulnerable cases \\
 -\zws-depth=DEPTH &
 \makecell[l]{Maximum nested depth of \\
 complexities (Default: 1) See \\ 
-Sec.~\ref{sec:depth of complexities}} \\
+Sec.~\ref{sec:depth of complexities}.} \\
 \hline
 -n NUMBER
 -\zws-number-generated=NUMBER &
@@ -658,6 +658,9 @@ entries, which are also in the \verb|sink.xml| file.
 VTSG also creates a manifest file of all the test cases generated for each flaw
 group, named
 \verb|manifest.xml|.
+
+If the \verb|flaw_group| is missing or empty, subdirectories for flaw types are
+created immediately under the language directory.
 
 Under the flaw directory are directories for safe or unsafe
 (vulnerable) test cases, depending on
@@ -1435,7 +1438,10 @@ All sink modules are in the language's \verb|sink.xml| file.
 \begin{itemize}
     \item flaw\_type: the flaw\_group is a general category of vulnerability.
     Generated test cases are placed under the flaw group subdirectory, then
-    in the flaw type subdirectory under that. The user can limit
+    in the flaw type subdirectory under that.  If the flaw\_group is missing or
+    empty, flaw type subdirectories are created immediately under the language
+    directory.
+    The user can limit
     cases generated to certain flaw groups with the \verb|-g| command
     line option or certain flaws with the \verb|-f| option.
     
