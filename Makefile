@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Tue Nov  1 10:55:38 2022" *by "Paul E. Black"
+# *modified "Tue Nov  1 16:07:15 2022" *by "Paul E. Black"
 
 default: genPython
 
@@ -35,7 +35,7 @@ example: $(VTSG_FILES)
 	(cd $$(ls -dt TestSuite_*/example | head -1);pwd;for f in $$(find . -name "*.cs"|sort); do echo $$f; diff $$f $(TDIR)/example/$$f;done)
 	sleep 1
 
-testVarious: test001 test002 test003 test004 test010
+testVarious: test001 test002 test003 test004 test005 test006 test010
 	@echo various tests succeeded
 
 # test empty <import></import> string
@@ -55,6 +55,16 @@ test003:
 
 # test empty <flaw_type></flaw_type> string
 test004:
+	python3 vtsg.py -l $@ -t tests/templates | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+# test empty <input_type></input_type> string
+test005:
+	python3 vtsg.py -l $@ -t tests/templates | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+# test empty <exec_type></exec_type> string
+test006:
 	python3 vtsg.py -l $@ -t tests/templates | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 

@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Nov  1 11:05:10 2022" *by "Paul E. Black"
+ *modified "Tue Nov  1 15:53:01 2022" *by "Paul E. Black"
 """
 
 import time
@@ -217,7 +217,7 @@ class Generator(object):
         any case, proceed to complexity recursion step if needed or directly
         to compose step if no complexities needed.
         """
-        if self.current_sink.need_exec():
+        if self.current_sink.needs_exec():
             # select exec_queries
             for exec_query in self.tab_exec_queries:
                 if self.current_sink.compatible_with_exec_queries(exec_query):

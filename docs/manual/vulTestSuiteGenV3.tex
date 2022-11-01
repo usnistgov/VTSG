@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Nov  1 11:01:27 2022" *by "Paul E. Black"
+% *modified "Tue Nov  1 16:35:14 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1453,6 +1453,11 @@ All sink modules are in the language's \verb|sink.xml| file.
     the placeholder \verb|{{in_var_name}}|.
     Declarations of \verb|variable| in the File Template give
     available types, see Sec.~\ref{sec: file template}.
+
+    The input type specifies the kind of data this sink needs from the filter (or
+    from the input).  VTSG only selects filters whose output types are the same as
+    this input type.  If the filter is ``nofilter'', then VTSG selects inputs whose
+    output types are the same as this input type.
 
     \item exec\_type: link a sink to the exec queries.  It must have 
     the type of

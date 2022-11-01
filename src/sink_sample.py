@@ -1,7 +1,7 @@
 """
 sink_sample module
 
- *modified "Tue Nov  1 11:11:43 2022" *by "Paul E. Black"
+ *modified "Tue Nov  1 16:32:56 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -28,11 +28,19 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
                                         (private member, please use getter).
 
     """
-    # new sink object for a new sink.xml file
+    # new sink module in the sink.xml file
     def __init__(self, sample):  # Add parameters showing the beginning and the end of the sample
         Sample.__init__(self, sample, 'sink')
         self._input_type = sample.find("input_type").text
+        if self.input_type is None:
+            print(f'[ERROR] Invalid empty <input_type></input_type> in the sink file.')
+            print('An input_type is required: it selects filters with matching output_types (or inputs if the filter is "nofilter"). If no filter or input is needed, put "none".')
+            exit(1)
         self._exec_type = sample.find("exec_type").text
+        if self.exec_type is None:
+            print(f'[ERROR] Invalid empty <exec_type></exec_type> in the sink file.')
+            print('An exec_type is required: it selects exec queries with matching types. If no exec query is needed, put "none".')
+            exit(1)
         self._flaw_type = sample.find("flaw_type").text
         if self.flaw_type is None:
             print(f'[ERROR] Invalid empty <flaw_type></flaw_type> in the sink file.')
@@ -51,7 +59,7 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
                 f'\tinput type: {self._input_type}\n' +
                 f'\t exec type: {self._exec_type}\n' +
                 f'\t flaw type: {self._flaw_type}\n' +
-                f'\tflaw group: {self._flaw_group}\n\n')
+                f'\tflaw group: {self._flaw_group}\n')
 
     @property
     def need_complexity(self):
@@ -63,9 +71,9 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
         """
         return self._need_complexity
 
-    def need_exec(self):
+    def needs_exec(self):
         """
-        Return True if exec_type is not None, False otherwise.
+        If False, the sink doesn't need an exec query.  Otherwise, it does.
         """
         return self.exec_type != "none"
 
