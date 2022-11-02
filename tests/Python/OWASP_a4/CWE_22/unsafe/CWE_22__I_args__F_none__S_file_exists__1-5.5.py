@@ -30,9 +30,9 @@ def main():
     tainted_2 = sys.argv[1]
     tainted_3 = tainted_2
 
-    if((math.pow(4, 2)<=42)):
+    if (math.pow(4, 2)<=42):
         {}
-    elif(not (math.pow(4, 2)<=42)):
+    elif not (math.pow(4, 2)<=42):
 
         # No filtering (sanitization)
         tainted_3 = tainted_2

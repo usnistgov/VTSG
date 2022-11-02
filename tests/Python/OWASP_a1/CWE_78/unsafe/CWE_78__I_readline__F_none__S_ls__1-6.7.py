@@ -30,12 +30,12 @@ def main():
     tainted_2 = input()
     tainted_3 = tainted_2
 
-    if((math.sqrt(42)<=42)):
+    if (math.sqrt(42)<=42):
 
         # No filtering (sanitization)
         tainted_3 = tainted_2
 
-    elif(not (math.sqrt(42)<=42)):
+    elif not (math.sqrt(42)<=42):
         {}
     else:
         {}

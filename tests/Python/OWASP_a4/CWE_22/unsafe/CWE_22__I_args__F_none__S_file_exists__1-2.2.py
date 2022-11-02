@@ -30,7 +30,7 @@ def main():
     tainted_2 = sys.argv[1]
     tainted_3 = tainted_2
 
-    if(1==0):
+    if 1==0:
 
         # No filtering (sanitization)
         tainted_3 = tainted_2

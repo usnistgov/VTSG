@@ -30,7 +30,7 @@ def main():
     tainted_2 = input()
     tainted_3 = tainted_2
 
-    if((math.pow(4, 2)>=42)):
+    if (math.pow(4, 2)>=42):
 
         # No filtering (sanitization)
         tainted_3 = tainted_2

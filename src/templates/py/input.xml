@@ -67,9 +67,9 @@
 
         <sample>
             <path>
-                <dir>hardcoded_string_input</dir>
+                <dir>hardcoded_string</dir>
             </path>
-            <comment>Hardcoded string input</comment>
+            <comment>Hardcoded string as input</comment>
             <flaws>
                 <flaw flaw_type="default" safe="1" unsafe="0"/>
             </flaws>
@@ -82,9 +82,9 @@
 
         <sample>
             <path>
-                <dir>hardcoded_integer_input</dir>
+                <dir>hardcoded_integer</dir>
             </path>
-            <comment>Hardcoded integer input</comment>
+            <comment>Hardcoded integer as input</comment>
             <flaws>
                 <flaw flaw_type="default" safe="1" unsafe="0"/>
             </flaws>

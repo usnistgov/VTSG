@@ -30,9 +30,9 @@ def main():
     tainted_2 = input()
     tainted_3 = tainted_2
 
-    if(1==0):
+    if 1==0:
         {}
-    elif(not 1==0):
+    elif not 1==0:
         {}
     else:
 

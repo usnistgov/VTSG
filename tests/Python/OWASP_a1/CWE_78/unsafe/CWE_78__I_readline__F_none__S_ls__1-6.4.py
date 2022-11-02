@@ -30,12 +30,12 @@ def main():
     tainted_2 = input()
     tainted_3 = tainted_2
 
-    if((4+2>=42)):
+    if (4+2>=42):
 
         # No filtering (sanitization)
         tainted_3 = tainted_2
 
-    elif(not (4+2>=42)):
+    elif not (4+2>=42):
         {}
     else:
         {}

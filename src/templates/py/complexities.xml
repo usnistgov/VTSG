@@ -63,7 +63,7 @@
 
         <complexity id="1" type="if" group="conditionals" executed="condition">
             <code>
-        if({{ condition }}):
+        if {{ condition }}:
 	INDENT
                 {{ placeholder }}
 	ENDINDENT
@@ -72,7 +72,7 @@
 
         <complexity id="2" type="if" group="conditionals" executed="condition">
             <code>
-        if({{ condition }}):
+        if {{ condition }}:
 	INDENT
                 {{ placeholder }}
 	ENDINDENT
@@ -85,7 +85,7 @@
 
         <complexity id="3" type="if" group="conditionals" executed="not_condition">
             <code>
-        if({{ condition }}):
+        if {{ condition }}:
 	INDENT
                 {}
 	ENDINDENT
@@ -98,11 +98,11 @@
 
         <complexity id="4" type="if" group="conditionals" executed="condition">
             <code>
-        if({{ condition }}):
+        if {{ condition }}:
 	INDENT
                 {{ placeholder }}
 	ENDINDENT
-        elif(not {{ condition }}):
+        elif not {{ condition }}:
 	INDENT
                 {}
 	ENDINDENT
@@ -111,11 +111,11 @@
 
         <complexity id="5" type="if" group="conditionals" executed="not_condition">
             <code>
-        if({{ condition }}):
+        if {{ condition }}:
 	INDENT
                 {}
 	ENDINDENT
-        elif(not {{ condition }}):
+        elif not {{ condition }}:
 	INDENT
                 {{ placeholder }}
 	ENDINDENT
@@ -124,11 +124,11 @@
 
         <complexity id="6" type="if" group="conditionals" executed="condition">
             <code>
-        if({{ condition }}):
+        if {{ condition }}:
 	INDENT
                 {{ placeholder }}
 	ENDINDENT
-        elif(not {{ condition }}):
+        elif not {{ condition }}:
 	INDENT
                 {}
 	ENDINDENT
@@ -141,11 +141,11 @@
 
         <complexity id="7" type="if" group="conditionals" executed="not_condition">
             <code>
-        if({{ condition }}):
+        if {{ condition }}:
 	INDENT
                 {}
 	ENDINDENT
-        elif(not {{ condition }}):
+        elif not {{ condition }}:
 	INDENT
                 {{ placeholder }}
 	ENDINDENT
@@ -158,11 +158,11 @@
 
         <complexity id="8" type="if" group="conditionals" executed="0">
             <code>
-	if({{condition}}):
+	if {{condition}}:
 	INDENT
                 {}
 	ENDINDENT
-        elif(not {{condition}}):
+        elif not {{condition}}:
 	INDENT
                 {}
 	ENDINDENT
@@ -174,35 +174,43 @@
         </complexity>
 
         <!-- Switch cases  -->
-<!--
-        <complexity id="9" type="switch" group="conditionals" executed="1">
+        <complexity id="11" type="switch" group="conditionals" executed="0">
             <code>
-switcher = {
-    1: {{ placeholder }},
-    2: {{ placeholder }},
-}
-print(switcher.get({{ in_var_name }}, "Invalid"))
+	match 6:
+	INDENT
+            case 6:
+	    INDENT
+                pass
+	    ENDINDENT
+            case _:
+	    INDENT
+                {{ placeholder }}
+	    ENDINDENT
+	ENDINDENT
             </code>
         </complexity>
--->
-<!--
-        <complexity id="10" type="switch" group="conditionals" executed="0">
+
+        <complexity id="12" type="switch" group="conditionals" executed="1">
             <code>
-                switch(6){
-                    case(6):
-                        break;
-                    default:
-                        {{ placeholder }}
-                        break;
-                }
+	match 6:
+	INDENT
+            case 6:
+	    INDENT
+                {{ placeholder }}
+	    ENDINDENT
+            case _:
+	    INDENT
+                pass
+	    ENDINDENT
+	ENDINDENT
             </code>
         </complexity>
--->
+
         <!--Conditional and unconditional loops -->
 
-        <complexity id="11" type="while" group="loops" executed="condition">
+        <complexity id="20" type="while" group="loops" executed="condition">
             <code>
-        while({{ condition }}):
+        while {{ condition }}:
 	INDENT
                 {{ placeholder }}
                 break
@@ -210,12 +218,12 @@ print(switcher.get({{ in_var_name }}, "Invalid"))
             </code>
         </complexity>
 
-        <complexity id="12" type="while" group="loops" executed="1" need_condition="1">
+        <complexity id="21" type="while" group="loops" executed="1" need_condition="1">
             <code>
         while True:
 	INDENT
                 {{ placeholder }}
-                if({{ condition }}):
+                if {{ condition }}:
 		INDENT
                         break
 		ENDINDENT
@@ -224,7 +232,7 @@ print(switcher.get({{ in_var_name }}, "Invalid"))
             </code>
         </complexity>
 
-        <complexity id="13" type="for" group="loops" executed="1" need_id="1">
+        <complexity id="22" type="for" group="loops" executed="1" need_id="1">
             <code>
         i_{{id}} = 1
         for x in range(0, i_{{id}}):
@@ -234,7 +242,7 @@ print(switcher.get({{ in_var_name }}, "Invalid"))
             </code>
         </complexity>
 
-        <complexity id="14" type="foreach" group="loops" executed="1" need_id="1" in_out_var="in">
+        <complexity id="23" type="foreach" group="loops" executed="1" need_id="1" in_out_var="in">
             <code>
         # Declaring an array
         arr_{{ id }} = []
@@ -247,7 +255,7 @@ print(switcher.get({{ in_var_name }}, "Invalid"))
 
         for val_{{id}} in arr_{{ id }}:
 	INDENT
-            if(val_{{ id }}!=None):
+            if val_{{ id }}!=None:
 	    INDENT
                 {{ out_var_name }} = val_{{ id }}
                 {{ placeholder }}
@@ -257,26 +265,10 @@ print(switcher.get({{ in_var_name }}, "Invalid"))
         </complexity>
 
         <!-- Unconditional jumps -->
-<!--
-        <complexity id="15" type="goto" group="jumps" executed="0" need_id="1">
-            <code>
-                goto Skip_{{id}};
-                {{ placeholder }}
-                Skip_{{id}}:
-                {}
-            </code>
-        </complexity>
+	<!-- not supported in Python -->
 
-        <complexity id="16" type="goto" group="jumps" executed="1" need_id="1">
-            <code>
-                goto Skip_{{id}};
-                Skip_{{id}}:
-                {{ placeholder }}
-            </code>
-        </complexity>
--->
         <!-- Functions -->
-        <complexity id="17" type="function" group="functions" executed="1" in_out_var="traversal" indirection="1" need_id="1">
+        <complexity id="50" type="function" group="functions" executed="1" in_out_var="traversal" indirection="1" need_id="1">
             <code>{{out_var_name}} = {{call_name}}({{in_var_name}})</code>
             <body>
 def {{call_name}}( param_{{id}} ):
@@ -290,7 +282,7 @@ ENDINDENT
             </body>
         </complexity>
 
-        <complexity id="18" type="function" group="functions" executed="1" in_out_var="in" indirection="1" need_id="1">
+        <complexity id="51" type="function" group="functions" executed="1" in_out_var="in" indirection="1" need_id="1">
             <code>
         {{out_var_name}} = {{call_name}}({{in_var_name}})
         {{ placeholder}}
@@ -304,7 +296,7 @@ ENDINDENT
             </body>
         </complexity>
 
-        <complexity id="19" type="function" group="functions" executed="1" in_out_var="out" indirection="1" need_id="1">
+        <complexity id="52" type="function" group="functions" executed="1" in_out_var="out" indirection="1" need_id="1">
             <code>
         {{ placeholder}}
         {{out_var_name}} = {{call_name}}({{in_var_name}})
@@ -319,7 +311,7 @@ ENDINDENT
         </complexity>
 
         <!-- Classes -->
-        <complexity id="20" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
+        <complexity id="70" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
             <code>
         var_{{id}} = {{call_name}}({{in_var_name}});
         {{out_var_name}} = var_{{id}}.get_var_{{id}}();
@@ -351,7 +343,7 @@ ENDINDENT
             </body>
         </complexity>
 
-        <complexity id="21" type="class" group="classes" executed="1" in_out_var="in" need_id="1" indirection="1">
+        <complexity id="71" type="class" group="classes" executed="1" in_out_var="in" need_id="1" indirection="1">
             <code>
         var_{{id}} = {{call_name}}({{in_var_name}})
         {{out_var_name}} = var_{{id}}.get_var_{{id}}()
@@ -378,7 +370,7 @@ ENDINDENT
             </body>
         </complexity>
 
-        <complexity id="22" type="class" group="classes" executed="1" in_out_var="out" need_id="1" indirection="1">
+        <complexity id="72" type="class" group="classes" executed="1" in_out_var="out" need_id="1" indirection="1">
             <code>
         {{placeholder}}
         var_{{id}} = {{call_name}}({{in_var_name}})

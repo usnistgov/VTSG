@@ -30,9 +30,9 @@ def main():
     tainted_2 = sys.argv[1]
     tainted_3 = tainted_2
 
-    if((math.sqrt(42)>=42)):
+    if (math.sqrt(42)>=42):
         {}
-    elif(not (math.sqrt(42)>=42)):
+    elif not (math.sqrt(42)>=42):
         {}
     else:
 

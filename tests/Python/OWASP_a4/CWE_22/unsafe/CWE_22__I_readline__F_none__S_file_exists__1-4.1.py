@@ -30,12 +30,12 @@ def main():
     tainted_2 = input()
     tainted_3 = tainted_2
 
-    if(1==1):
+    if 1==1:
 
         # No filtering (sanitization)
         tainted_3 = tainted_2
 
-    elif(not 1==1):
+    elif not 1==1:
         {}
 
     print(f'file "{ tainted_3 }" ', end='')

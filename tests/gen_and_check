@@ -7,7 +7,7 @@ then
     exit
 fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Fri Oct  7 10:16:58 2022" *by "Paul E. Black"
+# *modified "Wed Nov  2 12:33:06 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -112,7 +112,7 @@ for f in $(find . -name "*.py"|grep -v b[.]|sort); do
         exit
     fi
     # class cases are not valid code currently; don't execute them
-    if [[ $f =~ -2[012] ]]; then
+    if [[ $f =~ -7[012] ]]; then
         echo Class case - do not execute
         continue
     fi
