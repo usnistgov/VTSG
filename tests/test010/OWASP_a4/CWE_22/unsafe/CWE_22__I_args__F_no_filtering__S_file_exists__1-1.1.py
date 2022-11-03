@@ -6,7 +6,7 @@
 '''
 Command line args
 no filtering
-sink: check if a file exists
+sink: check if a file exists - no flaw line
 '''
 '''
 Created by Paul E. Black and William Mentzer 2020

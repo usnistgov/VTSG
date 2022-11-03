@@ -1,7 +1,7 @@
 """
 sample module
 
- *modified "Wed Oct 12 15:30:34 2022" *by "Paul E. Black"
+ *modified "Thu Nov  3 11:22:00 2022" *by "Paul E. Black"
 """
 
 import src.generator
@@ -44,18 +44,17 @@ class Sample(object):
 
         self._code = sample.find("code").text
 
-        self._comment = sample.find("comment").text
-        if self.comment is None:
-            print(f'[ERROR] Invalid empty <comment></comment> in the {file_name} file.')
-            print('A comment string is required; it is added to the file template {{comment}} section.')
-            exit(1)
+        if sample.find("comment") is not None:
+            self._comment = sample.find("comment").text
+        else:
+            self._comment = ''
 
         self._imports = []
         if sample.find("imports") is not None:
             self._imports = [imp.text for imp in sample.find("imports").findall("import")]
             if None in self._imports:
                 print(f'[ERROR] Invalid empty <import></import> in the {file_name} file.')
-                print('An import string is required; it is used in the file template {{stdlib_imports}} section.')
+                print('An import is required; it is used in the file template {{stdlib_imports}} section. If this needs no imports, remove <imports></imports>.')
                 exit(1)
 
         self._need_id = False

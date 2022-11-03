@@ -5,7 +5,7 @@
 '''
 '''
 Command line args
-no filtering
+sink: check if a file exists
 '''
 '''
 Created by Paul E. Black and William Mentzer 2020
@@ -39,13 +39,8 @@ def main():
         tainted_3 = tainted_2
             
 
-        print(f'file "{ tainted_3 }" ', end='')
-        #flaw
-        if os.path.exists(tainted_3):
-        print('exists')
-	else:
-        print('does not exist')
-	    
+	#flaw
+        os.path.exists(tainted_3)
 
 if __name__ == '__main__':
         main()

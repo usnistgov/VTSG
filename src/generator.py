@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Nov  1 15:53:01 2022" *by "Paul E. Black"
+ *modified "Thu Nov  3 12:52:33 2022" *by "Paul E. Black"
 """
 
 import time
@@ -470,14 +470,16 @@ class Generator(object):
         # create source code with imports
         imports_code = self.file_template.generate_imports(imports_content)
 
-        # comments at the beginning of the code that documents modules used
-        if self.current_input and self.current_filter:
-            comments_code = "\n".join([self.current_input.comment, self.current_filter.comment,
-                                      self.current_sink.comment])
-        else:
-            comments_code = "\n".join([self.current_sink.comment])
+        # comments at the beginning of the code that document modules used
+        comments_code = ''
+        if self.current_input and self.current_input.comment:
+            comments_code += self.current_input.comment + '\n'
+        if self.current_filter and self.current_filter.comment:
+            comments_code += self.current_filter.comment + '\n'
+        comments_code += self.current_sink.comment + '\n'
         if self.current_exec_queries and self.current_exec_queries.comment:
-            comments_code += "\n"+self.current_exec_queries.comment
+            comments_code += self.current_exec_queries.comment + '\n'
+        comments_code = comments_code.rstrip('\n') # since composition adds a newline
 
         main_class_name = f'MainClass{src.generator.Generator.getUID()}'
 

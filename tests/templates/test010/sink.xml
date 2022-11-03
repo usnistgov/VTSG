@@ -7,7 +7,7 @@
                 <dir>file_exists</dir>
             </path>
             <flaw_type flaw_group="OWASP_a4">CWE_22</flaw_type>
-            <comment>sink: check if a file exists</comment>
+            <comment>sink: check if a file exists - no flaw line</comment>
             <imports>
                 <import>os</import>
             </imports>
@@ -64,7 +64,7 @@
             </path>
 	    <!-- missing flaw_group -->
             <flaw_type>OWASP_A01</flaw_type>
-            <comment>sink: check if a file exists</comment>
+	    <!-- no <comment></comment> -->
             <imports>
                 <import>os</import>
             </imports>

@@ -4,7 +4,6 @@
   Test unusual indentation: tab space tab
 '''
 '''
-Command line args
 no filtering
 '''
 '''
@@ -30,7 +29,7 @@ def main():
 	 	tainted_2 = None
 	 	tainted_3 = None
 
-	 	tainted_2 = sys.argv[1]
+	 	tainted_2 = 'hardcoded string'
 	 	tainted_3 = tainted_2
 
         if(1==1):
@@ -40,7 +39,7 @@ def main():
             
 
         print(f'file "{ tainted_3 }" ', end='')
-        #flaw
+        
         if os.path.exists(tainted_3):
         print('exists')
 	else:

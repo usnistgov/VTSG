@@ -4,8 +4,8 @@
   Test unusual indentation: tab space tab
 '''
 '''
-Command line args
 no filtering
+sink: run ls in a dir
 '''
 '''
 Created by Paul E. Black and William Mentzer 2020
@@ -30,7 +30,7 @@ def main():
 	 	tainted_2 = None
 	 	tainted_3 = None
 
-	 	tainted_2 = sys.argv[1]
+	 	tainted_2 = 'hardcoded string'
 	 	tainted_3 = tainted_2
 
         if(1==1):
@@ -39,13 +39,9 @@ def main():
         tainted_3 = tainted_2
             
 
-        print(f'file "{ tainted_3 }" ', end='')
         #flaw
-        if os.path.exists(tainted_3):
-        print('exists')
-	else:
-        print('does not exist')
-	    
+        os.system('ls ' + tainted_3);
+            
 
 if __name__ == '__main__':
         main()
