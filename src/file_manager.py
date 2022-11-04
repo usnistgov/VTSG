@@ -1,7 +1,7 @@
 """
 file_manager module
 
- *modified "Fri Sep 30 10:02:52 2022" *by "Paul E. Black"
+ *modified "Fri Nov  4 13:33:12 2022" *by "Paul E. Black"
 """
 
 import os
@@ -63,17 +63,22 @@ class FileManager(object):
         # create the directory if it doesn't exist
         if not os.path.exists(self.path):
             os.makedirs(self.path)
-        # create the file
         file_path = os.path.join(self.path, self.filename)
+        # make sure we don't overwrite an existing file (or directory)
+        if os.path.exists(file_path):
+            print(f'[ERROR] trying to overwrite existing file: {file_path}')
+            print('Probably duplicate <dir></dir> strings')
+            exit(1)
+        # create the file
         createdFile = open(file_path, "w")
         # write code
         createdFile.write(self.content)
         createdFile.close()
 
     _xml = {
-        "input": "input.xml",
-        "filtering": "filtering.xml",
-        "sink": "sink.xml",
+        "inputs": "input.xml",
+        "filters": "filtering.xml",
+        "sinks": "sink.xml",
         "exec_queries": "exec_queries.xml",
         "file_template": "file_template.xml",
         "complexities": "complexities.xml",

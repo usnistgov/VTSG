@@ -3,59 +3,50 @@ Generation report:
 		CWE_22 generation report:
 			864 safe samples
 			1368 unsafe samples
-
 		2232 total
 	2232 total
 	OWASP_a1 group generation report:
 		CWE_89 generation report:
 			8040 safe samples
 			12420 unsafe samples
-
 		20460 total
 		CWE_78 generation report:
 			618 safe samples
 			1242 unsafe samples
-
 		1860 total
 		CWE_90 generation report:
 			618 safe samples
 			1242 unsafe samples
-
 		1860 total
 		CWE_91 generation report:
 			3096 safe samples
 			2484 unsafe samples
-
 		5580 total
 	29760 total
 	OWASP_a6 group generation report:
 		CWE_327 generation report:
 			4 safe samples
 			4 unsafe samples
-
 		8 total
 	8 total
 	OWASP_a9 group generation report:
 		CWE_476 generation report:
 			0 safe samples
 			1 unsafe samples
-
 		1 total
 	1 total
 	OWASP_a2 group generation report:
 		CWE_256 generation report:
 			0 safe samples
 			1 unsafe samples
-
 		1 total
 	1 total
 	OWASP_a5 group generation report:
 		CWE_209 generation report:
 			0 safe samples
 			1 unsafe samples
-
 		1 total
 	1 total
 32003 total
-Generation time 00:04:01
+Generation time 00:03:59
 Finish

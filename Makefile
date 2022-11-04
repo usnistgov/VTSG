@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Fri Nov  4 09:16:15 2022" *by "Paul E. Black"
+# *modified "Fri Nov  4 10:41:21 2022" *by "Paul E. Black"
 
 default: genPython
 
@@ -35,12 +35,18 @@ example: $(VTSG_FILES)
 	(cd $$(ls -dt TestSuite_*/example | head -1);pwd;for f in $$(find . -name "*.cs"|sort); do echo $$f; diff $$f $(TDIR)/example/$$f;done)
 	sleep 1
 
-testVarious: test001 test003 test004 test005 test006 test010
+testVarious: test001 test002 test003 test004 test005 test006 test010
 	@echo various tests succeeded
 
 # test empty <import></import> string
 test001:
 	python3 vtsg.py -l $@ -t tests/templates | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+# test that files are not overwritten (in case of duplicate <dir></dir>)
+#   remove specific test suite directory from output
+test002:
+	python3 vtsg.py -l $@ -t tests/templates | perl -pwe 's|TestSuite_[^/]+|TestSuite_...|' | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
 # test empty <dir></dir> string

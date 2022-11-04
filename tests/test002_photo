@@ -1,0 +1,2 @@
+[ERROR] trying to overwrite existing file: TestSuite_.../test002/OWASP_a4/IDS00-PL/unsafe/IDS00-PL__I_hardcoded__F_no_filter__S_file_exists__0.py
+Probably duplicate <dir></dir> strings

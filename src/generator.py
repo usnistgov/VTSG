@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Thu Nov  3 12:52:33 2022" *by "Paul E. Black"
+ *modified "Fri Nov  4 10:35:22 2022" *by "Paul E. Black"
 """
 
 import time
@@ -112,11 +112,11 @@ class Generator(object):
         self.end = 0
 
         # parse XML files
-        tree_input = ET.parse(FileManager.getXML("input", template_directory, language)).getroot()
+        tree_input = ET.parse(FileManager.getXML("inputs", template_directory, language)).getroot()
         self.tab_input = [InputSample(inp) for inp in tree_input]
-        tree_filter = ET.parse(FileManager.getXML("filtering", template_directory, language)).getroot()
+        tree_filter = ET.parse(FileManager.getXML("filters", template_directory, language)).getroot()
         self.tab_filter = [FilteringSample(filter) for filter in tree_filter]
-        tree_sink = ET.parse(FileManager.getXML("sink", template_directory, language)).getroot()
+        tree_sink = ET.parse(FileManager.getXML("sinks", template_directory, language)).getroot()
         self.tab_sink = [SinkSample(sink) for sink in tree_sink]
         tree_exec_query = ET.parse(FileManager.getXML("exec_queries", template_directory, language)).getroot()
         self.tab_exec_queries = [ExecQuerySample(exec_query) for exec_query in tree_exec_query]
@@ -713,7 +713,7 @@ class Generator(object):
                 print(f'\t\t\t{self.report[flaw_group][flaw]["unsafe_sample"]} unsafe samples')
                 flaw_total = self.report[flaw_group][flaw]["safe_sample"] + self.report[flaw_group][flaw]["unsafe_sample"]
                 group_total += flaw_total
-                print(f'\n\t\t{flaw_total} total')
+                print(f'\t\t{flaw_total} total')
 
             print(f'\t{group_total} total')
             total += group_total
