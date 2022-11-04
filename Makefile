@@ -1,13 +1,13 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Thu Nov  3 10:53:39 2022" *by "Paul E. Black"
+# *modified "Fri Nov  4 09:16:15 2022" *by "Paul E. Black"
 
 default: genPython
 
-all: test generate
+all: testAll generate
 
 generate: genPython genCsharp genPHP
 
-test: testVarious testCLI testSTerm testIndent
+testAll: testVarious testCLI testSTerm testIndent
 	@echo All built-in self-tests succeeded
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
@@ -24,7 +24,7 @@ genCsharp: $(VTSG_FILES)
 genPHP: $(VTSG_FILES)
 	tests/gen_and_check php
 
-# this produces 311 cases
+# this produces 546 cases
 genPython: $(VTSG_FILES)
 	tests/gen_and_check py
 
