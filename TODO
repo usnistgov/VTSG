@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu Oct  6 10:33:06 2022" *by "Paul E. Black"
+ *modified "Fri Nov  4 13:36:09 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -11,6 +11,23 @@ Eliminate initial superfluous newline at the beginning of file.
 Fix Python "Classes" complexity:
 The main file must import the class-defining file, e.g.
 from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22b import Class_884
+
+2 Nov 2022
+Reset the "variable name" counter for each test case.  That is, generate the same
+variable, function, etc. names for each case regardless of what was (or was not)
+generated before it.  For instance,
+    i_890 = 1
+    for x in range(0, i_890):
+If more or fewer cases were generated before this one, the name i_890 will differ.
+
+4 Nov 2022
+Make the names of language files consistent.  The files with input and sink modules
+are input.xml and sink.xml.  The file with filter modules is filtering.xml (a
+gerund).  The file with complexity and condition modules is complexities.xml
+(plural).  The file with execution query modules is exec_queries.xml (short name and
+plural).
+    File names are in file_manager.py.  The file names are in the template directories.
+
 
 Make sure the PHP and C# code runs, that is, that the generated programs are valid.
 Fix any problems . . .
