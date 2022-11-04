@@ -1,0 +1,59 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!--  *created "Fri Nov  4 09:59:09 2022" *by "Paul E. Black" -->
+<!-- *modified "Fri Nov  4 10:03:26 2022" *by "Paul E. Black" -->
+
+<template name="test002">
+    <file_extension>py</file_extension>
+    <comment>
+        <open>'''</open>
+        <close>'''</close>
+        <inline>#</inline>
+    </comment>
+    <syntax>
+      <!-- If language doesn't have a terminator, leave empty-->
+      <statement_terminator></statement_terminator>
+      <!-- Insert desired indentation level using spaces-->
+      <indent>    </indent>
+    </syntax>
+    <namespace></namespace>
+    <variables prefix="" import_code="import {{import_file}}">
+        <variable type="int" code="" init="0"/>
+        <variable type="string" code="" init="None"/>
+	<variable type="bool" code="" init="False"/>
+	<variable type="float" code="" init="0.0"/>
+    </variables>
+    <imports>
+        <import>sys</import>
+        <import>math</import>
+    </imports>
+    <code>
+'''
+  Test producing the same file name through different sets of modules.  The first
+  generated case will be overwritten.
+'''
+'''
+{{ comments }}
+'''
+
+'''
+{{ license }}
+'''
+{{ stdlib_imports }}
+
+{{ static_methods }}
+
+
+def main():
+    INDENT
+    {{local_var}}
+    {{input_content}}
+    {{filtering_content}}
+    {{sink_content}}
+    {{exec_queries_content}}
+    ENDINDENT
+
+if __name__ == '__main__':
+        main()
+    </code>
+</template>

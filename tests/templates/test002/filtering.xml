@@ -1,0 +1,22 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
+    <filtering>
+
+        <sample>
+            <path>
+                <dir>no_filter</dir>
+            </path>
+            <comment>no filtering</comment>
+            <flaws>
+                <flaw flaw_type="ALL" safe="0" unsafe="0"/>
+            </flaws>
+            <imports></imports>
+            <code>
+        # No filtering (sanitization)
+        {{out_var_name}} = {{in_var_name}}
+            </code>
+            <input_type>nofilter</input_type>
+            <output_type>nofilter</output_type>
+        </sample>
+
+    </filtering>
