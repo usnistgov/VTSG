@@ -14,15 +14,15 @@
 if({{ condition }}):
 INDENT
     {}
-ENDINDENT
+DEDENT
 elif(not {{ condition }}):
 INDENT
     {}
-ENDINDENT
+DEDENT
 else:
 INDENT
     {{ placeholder }}
-ENDINDENT
+DEDENT
             </code>
         </complexity>
 
@@ -36,8 +36,8 @@ INDENT
     if({{ condition }}):
     INDENT
         break
-    ENDINDENT
-ENDINDENT
+    DEDENT
+DEDENT
             </code>
         </complexity>
 

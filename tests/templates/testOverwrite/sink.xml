@@ -20,6 +20,53 @@
 
         <sample>
             <path>
+                <dir>OBO</dir>
+            </path>
+            <flaw_type>Juliet CWE-193</flaw_type>
+            <comment>while loop exceeds array length</comment>
+            <code>
+    intArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    i = 0
+
+    # FLAW: Use &lt;= rather than &lt;
+    while i &lt;= len(intArray):
+    INDENT
+        intArray[i] = i
+        print(f'intArray[{i}] = {intArray[i]}')
+        i += 1
+    DEDENT
+	    </code>
+            <safety safe="" unsafe="1"/>
+            <input_type>none</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>OBO</dir>
+            </path>
+            <flaw_type>Juliet CWE-193</flaw_type>
+            <comment>while loop exceeds array length</comment>
+            <code>
+    # THIS IS THE SECOND VERSION OF THE SINK
+    intArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    i = 0
+
+    # FLAW: Use &lt;= rather than &lt;
+    while i &lt;= len(intArray):
+    INDENT
+        intArray[i] = i
+        print(f'intArray[{i}] = {intArray[i]}')
+        i += 1
+    DEDENT
+	    </code>
+            <safety safe="" unsafe="1"/>
+            <input_type>none</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+
+        <sample>
+            <path>
                 <dir>file_exists</dir>
             </path>
             <flaw_type flaw_group="OWASP_a4">CWE_22</flaw_type>

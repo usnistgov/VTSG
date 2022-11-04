@@ -1,5 +1,5 @@
 # *created  "Mon Aug  3 16:47:40 2020" *by "Paul E. Black"
-# *modified "Tue Sep 20 15:23:33 2022" *by "Paul E. Black"
+# *modified "Fri Nov  4 14:01:54 2022" *by "Paul E. Black"
 """
 Functions to synthesize pieces of code.
 """
@@ -41,16 +41,16 @@ def make_assign(left_hand_side, right_hand_side, language_template_class):
 
 
 def fix_indents(code, indent):
-    ''' Fix up all the indentation within INDENT ... ENDINDENT sections in the code.
+    ''' Fix up all the indentation within INDENT ... DEDENT sections in the code.
 
         This processes the code line by line. Sections to be fixed are indicated by
         a line beginning with INDENT, possibly with leading whitespace, and continue
-        to a line with ENDINDENT, again possibly with leading whitespace. Lines
-        beginning with INDENT or ENDINDENT are removed. INDENT...ENDINDENT sections
+        to a line with DEDENT, again possibly with leading whitespace. Lines
+        beginning with INDENT or DEDENT are removed. INDENT...DEDENT sections
         may be nested.
-        For lines in an INDENT...ENDINDENT section,
+        For lines in an INDENT...DEDENT section,
             Step 1. Remove all leading whitespace.
-            Step 2. Add indent (string) for each nested INDENT...ENDINDENT section
+            Step 2. Add indent (string) for each nested INDENT...DEDENT section
                 this is in if the line has non-whitespace.
         For instance, consider the following code.
 
@@ -60,10 +60,10 @@ INDENT            text after INDENT is ignored
                while not True:
           INDENT
            line 3 - INDENT not at the beginning is ignored
-     ENDINDENT
+     DEDENT
 
                   line above is empty
-        ENDINDENT
+        DEDENT
         line 5
 
         If file_template.xml specifies <indent>..,</indent>, this is the result.
@@ -85,8 +85,8 @@ INDENT            text after INDENT is ignored
     for line in code.splitlines():
         if re.match('^\s*INDENT', line):
             indent_depth += 1
-        elif re.match('^\s*ENDINDENT', line):
-            assert indent_depth > 0 # ENDINDENT without a matching INDENT
+        elif re.match('^\s*DEDENT', line):
+            assert indent_depth > 0 # DEDENT without a matching INDENT
             indent_depth -= 1
         else:
             if indent_depth > 0:
@@ -97,7 +97,7 @@ INDENT            text after INDENT is ignored
                     # step 2: add indent_depth indents
                     line = (indent * indent_depth) + line
             final_content += line + '\n'
-    assert indent_depth == 0 # INDENT line without a matching ENDINDENT
+    assert indent_depth == 0 # INDENT line without a matching DEDENT
 
     return final_content
 

@@ -19,9 +19,9 @@
                 if({{ condition }}):
 		INDENT
                         break
-		NOTENDINDENT
+		NOTDEDENT
                 break
-	ENDINDENT
+	DEDENT
             </code>
         </complexity>
     </complexities>

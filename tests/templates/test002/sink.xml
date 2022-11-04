@@ -35,11 +35,11 @@
         if os.path.exists({{in_var_name}}):
 	INDENT
             print('exists')
-	ENDINDENT
+	DEDENT
 	else:
 	INDENT
             print('does not exist')
-	ENDINDENT
+	DEDENT
 	    </code>
             <safety safe="0" unsafe="0"/>
             <input_type>string</input_type>

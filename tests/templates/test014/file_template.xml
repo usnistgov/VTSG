@@ -26,7 +26,7 @@
 '''
   Test 4 of 4 for statement_terminator
   two semicolons for statement_terminator
-  Test INDENT...ENDINDENT code
+  Test INDENT...DEDENT code
 '''
 '''
 {{ comments }}
@@ -48,7 +48,7 @@ def main():
         {{ sink_content }}
     
         <!--{{ exec_queries_content }} INDENT not at the start is ignored-->
-ENDINDENT The indentation of INDENT and ENDINDENT do not matter
+DEDENT The indentation of INDENT and DEDENT do not matter
 
 main()
 {{ static_methods }}

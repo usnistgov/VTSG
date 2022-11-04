@@ -3,8 +3,8 @@
 <!-- *created  "Fri Sep  9 16:05:23 2022" *by "Paul E. Black" -->
 <!-- *modified "Mon Sep 12 09:15:43 2022" *by "Paul E. Black" -->
 
-<!-- test fatal misuse of INDENT ... ENDINDENT in code -->
-<!-- extra ENDINDENT -->
+<!-- test fatal misuse of INDENT ... DEDENT in code -->
+<!-- extra DEDENT -->
 <template name="test017">
     <file_extension>py</file_extension>
     <comment>
@@ -46,9 +46,9 @@ def main():
     {{input_content}}
     {{filtering_content}}
     {{sink_content}}
-    ENDINDENT
+    DEDENT
 
-ENDINDENT --- This one is unbalanced
+DEDENT --- This one is unbalanced
 
 if __name__ == '__main__':
         main()

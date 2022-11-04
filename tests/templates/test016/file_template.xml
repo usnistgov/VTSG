@@ -3,8 +3,8 @@
 <!-- *created  "Fri Sep  9 16:05:23 2022" *by "Paul E. Black" -->
 <!-- *modified "Fri Sep  9 16:14:59 2022" *by "Paul E. Black" -->
 
-<!-- test fatal misuse of INDENT ... ENDINDENT in code -->
-<!-- missing ENDINDENT -->
+<!-- test fatal misuse of INDENT ... DEDENT in code -->
+<!-- missing DEDENT -->
 <template name="test016">
     <file_extension>py</file_extension>
     <comment>
@@ -46,7 +46,7 @@ INDENT
     {{input_content}}
     {{filtering_content}}
     {{sink_content}}
-ENDINDENT
+DEDENT
 
 if __name__ == '__main__':
         main()

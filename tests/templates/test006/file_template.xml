@@ -50,7 +50,7 @@ INDENT
     {{filtering_content}}
     {{sink_content}}
     {{exec_queries_content}}
-ENDINDENT
+DEDENT
 
 if __name__ == '__main__':
         main()
