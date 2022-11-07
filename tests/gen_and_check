@@ -7,7 +7,7 @@ then
     exit
 fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Wed Nov  2 12:33:06 2022" *by "Paul E. Black"
+# *modified "Mon Nov  7 11:10:26 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -25,41 +25,32 @@ if [ $# != 1 ]
 then
     echo expecting one command line argument
     echo $help_message
+    echo The first argument is the -l option passed to vtsg, i.e. the name of the language subdirectory under the template directory.
     exit -1
 fi
 
 lang=$1
-# determine the name of the language directory (LD)
-if [ $lang == py ]
-then
-    LD=Python
-elif [ $lang == cs ]
-then
-    LD=Csharp
-elif [ $lang == php ]
-then
-    LD=PHP
-else
-    echo unknown language: $lang
-    exit -1
-fi
 
 # Time Stamp (nearly) matches name that VTGS will choose for the TestSuite
 #    note: since time may differ by a second, names may differ
 TimeStamp=$(date +"%m-%d-%Y_%Hh%Mm%S")
 # choose a name for Photo file, which captures the output
-PF="TestPhoto_${TimeStamp}_${LD}_photo"
+PF="TestPhoto_${TimeStamp}_photo"
 # choose a name for Check file, which saves diff outputs
-CF="TestPhoto_${TimeStamp}_${LD}_check"
+CF="TestPhoto_${TimeStamp}_check"
 # choose a name for Execute file, which saves execution results
-EF="TestPhoto_${TimeStamp}_${LD}_exec"
+EF="TestPhoto_${TimeStamp}_exec"
 
 # run VTSG and capture its output (generation report)
 echo running vtsg.py -l $lang ...
 python3 vtsg.py -l $lang 2>&1 | tee ${PF}
 
-# determine what the TestSuite directory was named
-TSD=$(ls -dt TestSuite_*/${LD} | head -1)
+# guess what VTSG named the TestSuite directory, e.g., the latest TestSuite directory
+LTSD=$(ls -dt TestSuite_* | head -1)
+# determine the language directory from the TestSuite
+LD=$(ls $LTSD)
+
+TSD=$LTSD/$LD
 echo ${TSD}
 
 # check that the outputs match
