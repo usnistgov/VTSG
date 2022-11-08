@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Fri Nov  4 14:46:46 2022" *by "Paul E. Black"
+% *modified "Tue Nov  8 10:39:32 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -604,7 +604,7 @@ $ python3 vtsg.py -l cs -r 3 --flaw=CWE_89 -u
 \begin{figure}[htbp]
   \includegraphics[width=1\linewidth]{fig_VTSG_overview.png}
   \caption{Overview of VTSG test case generation process. The Template
-  specifies how pieces are assembled. The Input, Filter, Complexities,
+  specifies how pieces are assembled. Input, Filter, Complexities,
   Sink, and ExecQuery modules provide alternative code.  
   An example of
   a generated test case is in 
@@ -669,9 +669,12 @@ which are generated.
 \subsection{VTSG Directory Structure}
 \label{sec: directory structure}
 
-All the information files are in a \verb|templates| subdirectory.
+All the language information files are accessed from a single subdirectory.  The
+default is \verb|src/templates|.  Another directory may be given with the -t command
+line option, see Table~\ref{tab:command line options}.
+
 Under this is one subdirectory for each language.  VTSG chooses the
-directory based on the language indicated in the \verb|-l| command line
+subdirectory based on the language given in the \verb|-l| command line
 option.  Each language subdirectory has six files for that language.
 The files are \verb|file_template.xml|, \verb|input.xml|, 
 \verb|complexities.xml|, \verb|filtering.xml|, \verb|sink.xml|,
@@ -681,7 +684,7 @@ To add another language,
 simply create a subdirectory for that language with the six description
 files.
 
-The \verb|templates| directory also has \verb|file_rights.txt|, which is
+The \verb|src/templates| directory has \verb|file_rights.txt|, which is
 copied into each generated test case to declare license rights and
 authorship, see Sec.~\ref{sec: file template}, and a 
 \verb|dtd| subdirectory, which has document type definitions (DTDs)
@@ -702,7 +705,7 @@ The Filtering code may be embedded in data and control flow
 Complexity code.
 
 VTSG generates test cases with two broad steps.  First, VTSG selects
-Input, Filter, Complexities, Sink, and ExecQuery modules that are
+sink, filter, input, exec query, and complexities that are
 compatible with each other and consistent with any flaw group or
 flaw constraints the user gives on the command line.  Second, VTSG
 composes test case source code from the selected modules, 
@@ -793,7 +796,7 @@ noted and the
 \verb|<code>| portion of the ``ExecQuery'' is added
 to the 
 test case.  The test case is written to a file.  
-The location of the file is
+The location chosen for the file is
 described in Sec.~\ref{sec:case directory structure}.
 Section~\ref{sec:case file name} describes how VTSG names the file.
 
