@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Fri Nov  4 10:35:22 2022" *by "Paul E. Black"
+ *modified "Mon Nov  7 17:34:10 2022" *by "Paul E. Black"
 """
 
 import time
@@ -282,37 +282,16 @@ class Generator(object):
                 curr_complexity = complexity.clone()
                 # add current complexity to array
                 self.complexities_queue.append(curr_complexity)
-                # pretraitment per type before recursive call
-                # Conditionals
-                if curr_complexity.group == "conditionals":
-                    if curr_complexity.type == "if":
-                        self.need_condition(curr_complexity, level)
-                    if curr_complexity.type == "switch":
-                        self.need_condition(curr_complexity, level)
 
-                # Jumps
-                if curr_complexity.group == "jumps":
-                    if curr_complexity.type == "goto":
-                        self.need_condition(curr_complexity, level)
-
-                # Loops
-                if curr_complexity.group == "loops":
-                    if curr_complexity.type == "for":
-                        self.need_condition(curr_complexity, level)
-                    if curr_complexity.type == "while":
-                        self.need_condition(curr_complexity, level)
-                    if curr_complexity.type == "foreach":
-                        var_type = self.current_input.output_type
-                        # replace id and var type name for foreach
-                        curr_complexity.code = Template(curr_complexity.code, undefined=DebugUndefined).render(id=level, var_type=var_type)
-                        self.need_condition(curr_complexity, level)
-
-                if curr_complexity.group == "functions":
-                    if curr_complexity.type == "function":
-                        self.need_condition(curr_complexity, level)
-                if curr_complexity.group == "classes":
-                    if curr_complexity.type == "class":
-                        self.need_condition(curr_complexity, level)
+                # foreach loops need an extra variable
+                if curr_complexity.group == "loops" and curr_complexity.type == "foreach":
+                    var_type = self.current_input.output_type
+                    # replace id and var type name for foreach
+                    curr_complexity.code = Template(curr_complexity.code, undefined=DebugUndefined).render(id=level, var_type=var_type)
+                    self.need_condition(curr_complexity, level)
+                else:
+                    # everything else is handled the same
+                    self.need_condition(curr_complexity, level)
 
                 # remove current complexity
                 self.complexities_queue.pop()
@@ -376,7 +355,7 @@ class Generator(object):
             # for each class, collect imports to use other generated classes
             for c in self.classes_code:
                 classes_imports.append(c['name'])
-            # We check if the filter code into complexities is executed or not
+            # remember if the filter code in these complexities is executed or not
             self.executed = compl_gen.executed
             # import the new template that contains complexities
             self.template_code = compl_gen.get_template()
