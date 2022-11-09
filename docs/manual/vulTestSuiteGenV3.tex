@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Nov  9 11:28:57 2022" *by "Paul E. Black"
+% *modified "Wed Nov  9 15:18:06 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1609,7 +1609,7 @@ complexity modules are inside \verb|<complexities>|.
 
 \begin{verbatim}
 <complexity id="" type="" group="" executed="" in_out_var="i" 
-                                         indirection="" need_id="">
+                       need_condition="" indirection="" need_id="">
     <code></code>
     <body></body>
 </complexity>
@@ -1646,6 +1646,8 @@ complexity modules are inside \verb|<complexities>|.
     0 &
     \begin{minipage}{3in}
     \begin{verbatim}
+
+
         switch(6) {
           case(6):
             break;
@@ -1660,6 +1662,8 @@ complexity modules are inside \verb|<complexities>|.
     1 &
     \begin{minipage}{3in}
     \begin{verbatim}
+
+
         switch(6) {
           case(6):
             {{ placeholder }}
@@ -1674,7 +1678,9 @@ complexity modules are inside \verb|<complexities>|.
     condition &
     \begin{minipage}{3in}
     \begin{verbatim}
-        if ({{ condition }}) {
+
+
+      if ({{ condition }}) {
             {{ placeholder }}
         } else {
             {}
@@ -1686,6 +1692,8 @@ complexity modules are inside \verb|<complexities>|.
     not\_condition &
     \begin{minipage}{3in}
     \begin{verbatim}
+
+
         if ({{ condition }}) {
             {}
         } else {
@@ -1712,6 +1720,11 @@ complexity modules are inside \verb|<complexities>|.
     If this attribute is used, the code should contain the following 
     placeholders: \\
     \verb|{{in_var_name}}|, \verb|{{out_var_name}}|, and \verb|{{var_type}}|.
+
+    \item need\_condition: ``1'' if this complexity needs a condition.  By default
+      this complexity is combined with conditions,
+      see Sec.~\ref{sec: condition modules}, if \verb|executed| is \verb|condition|
+      or \verb|not_condition|. (optional)
 
     \item indirection: ``1'' if the code is split into two chunks (call and
     declaration) or calls a function.  The body tag should be present when 

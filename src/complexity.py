@@ -1,7 +1,7 @@
 """
 Complexity module.
 
- *modified "Wed Nov  9 10:54:14 2022" *by "Paul E. Black"
+ *modified "Wed Nov  9 13:00:12 2022" *by "Paul E. Black"
 """
 
 import copy
@@ -50,7 +50,7 @@ class ComplexitySample(object):
         self._group = xml_compl.get("group")
         self._executed = xml_compl.get("executed")
         self._need_condition = False
-        if "condition" in self._executed or self._type == "if" or xml_compl.get("need_condition") == "1":
+        if "condition" in self._executed or xml_compl.get("need_condition") == "1":
             self._need_condition = True
         self._need_id = False
         if xml_compl.get("need_id") == "1":
