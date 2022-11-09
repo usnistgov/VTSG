@@ -1,7 +1,7 @@
 """
 Complexity module.
 
- *modified "Mon Feb 14 13:02:30 2022" *by "Paul E. Black"
+ *modified "Wed Nov  9 10:54:14 2022" *by "Paul E. Black"
 """
 
 import copy
@@ -65,6 +65,10 @@ class ComplexitySample(object):
         self._body = ""
         if xml_compl.find("body") is not None:
             self._body = xml_compl.find("body").text
+            if self._body is None:
+                print(f'[ERROR] Invalid empty <body></body> in the complexity file.')
+                print('If no additional body of code is needed, remove <body></body>.')
+                exit(1)
             self._body = src.generator.Generator.remove_indent(self._body)
 
 
