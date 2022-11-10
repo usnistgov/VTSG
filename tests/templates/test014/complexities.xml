@@ -9,7 +9,7 @@
     </conditions>
 
     <complexities>
-        <complexity id="8" type="if" group="conditionals" executed="0">
+        <complexity id="8" type="if" group="conditionals" executed="0" need_condition="1">
             <code>
 if({{ condition }}):
 INDENT
