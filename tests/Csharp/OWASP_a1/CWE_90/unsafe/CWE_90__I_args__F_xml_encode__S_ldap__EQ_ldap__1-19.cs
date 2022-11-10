@@ -24,7 +24,7 @@ using System.DirectoryServices;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass52542{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -44,7 +44,7 @@ namespace default_namespace{
                 text.Replace(">", "&gt;");
                 tainted_3 = text.ToString();
             
-                tainted_4 = function_52541(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 string query = "(&(objectClass=person)(sn=" + tainted_4 + "))";
@@ -69,8 +69,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_52541(string param_52541 ){
-                    return param_52541 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

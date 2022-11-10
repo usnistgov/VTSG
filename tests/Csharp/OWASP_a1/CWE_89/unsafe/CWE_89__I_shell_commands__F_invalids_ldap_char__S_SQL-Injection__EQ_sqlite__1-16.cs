@@ -26,7 +26,7 @@ using System.IO;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass38476{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -47,8 +47,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_38475;
-                Skip_38475:
+                goto Skip_1;
+                Skip_1:
                 
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){

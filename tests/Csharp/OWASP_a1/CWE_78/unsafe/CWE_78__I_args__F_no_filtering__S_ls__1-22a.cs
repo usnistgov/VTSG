@@ -22,7 +22,7 @@ using System;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass23680{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -37,8 +37,8 @@ namespace default_namespace{
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                Class_23679 var_23679 = new Class_23679(tainted_3);
-                tainted_4 = var_23679.get_var_23679();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 //flaw
                 System.Diagnostics.Process.Start("/bin/bash", "-c 'ls " + tainted_4 + "'");

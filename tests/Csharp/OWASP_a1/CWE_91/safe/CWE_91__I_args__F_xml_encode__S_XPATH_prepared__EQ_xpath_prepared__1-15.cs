@@ -26,7 +26,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace default_namespace{
-    class MainClass63634{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -36,7 +36,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_63633;
+                goto Skip_1;
                 
                 StringBuilder text = new StringBuilder(tainted_2);
                 text.Replace("&", "&amp;");
@@ -46,7 +46,7 @@ namespace default_namespace{
                 text.Replace(">", "&gt;");
                 tainted_3 = text.ToString();
             
-                Skip_63633:
+                Skip_1:
                 {}
             
                 

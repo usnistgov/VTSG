@@ -23,11 +23,11 @@ import os
 import sys
 
 
-def function_1075( param_1075 ):
+def function_1( param_1 ):
     tainted_2 = None
     tainted_3 = None
 
-    tainted_2 = param_1075
+    tainted_2 = param_1
 
     # No filtering (sanitization)
     tainted_3 = tainted_2
@@ -39,7 +39,7 @@ def main():
 
     tainted_0 = sys.argv[1]
     tainted_5 = tainted_0
-    tainted_5 = function_1075(tainted_0)
+    tainted_5 = function_1(tainted_0)
 
     #flaw
     os.system('ls ' + tainted_5)

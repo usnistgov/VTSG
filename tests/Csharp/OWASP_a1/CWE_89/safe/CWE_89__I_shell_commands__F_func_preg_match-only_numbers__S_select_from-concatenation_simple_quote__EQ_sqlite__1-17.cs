@@ -26,7 +26,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass8870{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -46,7 +46,7 @@ namespace default_namespace{
                 }
             
             tainted_5 = tainted_0;
-            tainted_5 = function_8869(tainted_0);
+            tainted_5 = function_1(tainted_0);
             
                 
                 string query = "SELECT * FROM '" + tainted_5 + "'";
@@ -67,11 +67,11 @@ namespace default_namespace{
         
         }
         
-                public static string function_8869(string param_8869 ){
+                public static string function_1(string param_1 ){
                     string tainted_2 = null;
             string tainted_3 = null;
 
-                    tainted_2 = param_8869;
+                    tainted_2 = param_1;
                     
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);

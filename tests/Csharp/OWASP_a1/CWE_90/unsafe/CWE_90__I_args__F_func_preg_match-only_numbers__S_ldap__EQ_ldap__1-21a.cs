@@ -24,7 +24,7 @@ using System.DirectoryServices;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass50326{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -35,8 +35,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_50325 var_50325 = new Class_50325(tainted_1);
-                tainted_2 = var_50325.get_var_50325();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);

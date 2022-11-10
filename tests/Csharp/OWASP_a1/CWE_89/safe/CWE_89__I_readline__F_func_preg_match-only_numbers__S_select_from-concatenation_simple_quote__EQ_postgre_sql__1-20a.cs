@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass9616{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -35,8 +35,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_9615 var_9615 = new Class_9615(tainted_0);
-                tainted_5 = var_9615.get_var_9615();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 
                 string query = "SELECT * FROM '" + tainted_5 + "'";

@@ -23,7 +23,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass4440{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -39,8 +39,8 @@ namespace default_namespace{
                 Regex r = new Regex(pattern);
                 tainted_3 = r.Replace(tainted_2, "");
             
-                Class_4439 var_4439 = new Class_4439(tainted_3);
-                tainted_4 = var_4439.get_var_4439();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 
                 File.Exists(tainted_4);

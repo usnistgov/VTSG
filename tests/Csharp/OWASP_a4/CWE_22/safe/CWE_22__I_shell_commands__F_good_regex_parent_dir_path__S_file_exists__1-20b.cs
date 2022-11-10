@@ -20,16 +20,16 @@ William Mentzer willmentzer20@gmail.com
                 */
                 using System.Text.RegularExpressions;
                 namespace default_namespace{
-                    class Class_3880{
-                        string var_3880;
-                        public Class_3880(string tainted_2_3880){
-                            var_3880 = tainted_2_3880;
+                    class Class_1{
+                        string var_1;
+                        public Class_1(string tainted_2_1){
+                            var_1 = tainted_2_1;
                         }
-                        public string get_var_3880(){
+                        public string get_var_1(){
                             string tainted_2 = null;
             string tainted_3 = null;
 
-                            tainted_2 = var_3880;
+                            tainted_2 = var_1;
                             
                 string pattern = "^[\\.\\.\\/]+";
                 Regex r = new Regex(pattern);

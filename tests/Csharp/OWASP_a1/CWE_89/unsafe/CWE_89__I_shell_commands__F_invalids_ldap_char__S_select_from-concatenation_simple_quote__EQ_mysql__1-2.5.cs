@@ -25,7 +25,7 @@ using System.IO;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass15567{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;

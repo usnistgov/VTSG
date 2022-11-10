@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass43853{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -45,8 +45,8 @@ namespace default_namespace{
                 text.Replace(">", "&gt;");
                 tainted_3 = text.ToString();
             
-                Class_43852 var_43852 = new Class_43852(tainted_3);
-                tainted_4 = var_43852.get_var_43852();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 
                 string query = "SELECT * FROM Articles WHERE id="+tainted_4;

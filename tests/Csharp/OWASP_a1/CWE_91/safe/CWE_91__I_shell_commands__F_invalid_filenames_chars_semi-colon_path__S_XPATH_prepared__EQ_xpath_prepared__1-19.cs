@@ -28,7 +28,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace default_namespace{
-    class MainClass61607{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -55,7 +55,7 @@ namespace default_namespace{
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
                 tainted_3 = r.Replace(tainted_2, "");
             
-                tainted_4 = function_61606(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 
                 string query = tainted_4;
@@ -73,8 +73,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_61606(string param_61606 ){
-                    return param_61606 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

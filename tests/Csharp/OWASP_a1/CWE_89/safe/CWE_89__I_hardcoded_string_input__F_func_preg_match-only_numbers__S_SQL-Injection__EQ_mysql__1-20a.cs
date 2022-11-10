@@ -23,7 +23,7 @@ using System;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass32379{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -33,8 +33,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_32378 var_32378 = new Class_32378(tainted_0);
-                tainted_5 = var_32378.get_var_32378();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 
                 string query = "SELECT * FROM Articles WHERE id="+tainted_5;

@@ -22,7 +22,7 @@ using System;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass23672{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -33,7 +33,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_23671(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
@@ -45,8 +45,8 @@ namespace default_namespace{
             
         }
         
-                public static string function_23671(string param_23671 ){
-                    return param_23671 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

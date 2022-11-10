@@ -24,7 +24,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass15524{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;

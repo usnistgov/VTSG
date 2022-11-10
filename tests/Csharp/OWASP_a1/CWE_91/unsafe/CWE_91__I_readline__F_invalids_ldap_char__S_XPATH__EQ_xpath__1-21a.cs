@@ -25,7 +25,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass55136{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -36,8 +36,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_55135 var_55135 = new Class_55135(tainted_1);
-                tainted_2 = var_55135.get_var_55135();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){

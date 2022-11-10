@@ -20,16 +20,16 @@ William Mentzer willmentzer20@gmail.com
                 */
                 using System.Text;
                 namespace default_namespace{
-                    class Class_37928{
-                        string var_37928;
-                        public Class_37928(string tainted_2_37928){
-                            var_37928 = tainted_2_37928;
+                    class Class_1{
+                        string var_1;
+                        public Class_1(string tainted_2_1){
+                            var_1 = tainted_2_1;
                         }
-                        public string get_var_37928(){
+                        public string get_var_1(){
                             string tainted_2 = null;
             string tainted_3 = null;
 
-                            tainted_2 = var_37928;
+                            tainted_2 = var_1;
                             
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){

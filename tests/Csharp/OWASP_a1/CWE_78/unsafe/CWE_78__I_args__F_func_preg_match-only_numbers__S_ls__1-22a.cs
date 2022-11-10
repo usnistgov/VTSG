@@ -23,7 +23,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass24420{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -44,8 +44,8 @@ namespace default_namespace{
                     tainted_3 = tainted_2;
                 }
             
-                Class_24419 var_24419 = new Class_24419(tainted_3);
-                tainted_4 = var_24419.get_var_24419();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 //flaw
                 System.Diagnostics.Process.Start("/bin/bash", "-c 'ls " + tainted_4 + "'");

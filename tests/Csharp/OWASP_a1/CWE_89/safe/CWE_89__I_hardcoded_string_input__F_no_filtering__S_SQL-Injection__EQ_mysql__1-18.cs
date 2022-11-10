@@ -22,7 +22,7 @@ using MySql.Data.MySqlClient;
 using System;
 
 namespace default_namespace{
-    class MainClass28675{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -33,7 +33,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_28674(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
@@ -61,8 +61,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_28674(string param_28674 ){
-                    return param_28674 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

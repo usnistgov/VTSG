@@ -23,7 +23,7 @@ using System.Data.OracleClient;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass10851{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;

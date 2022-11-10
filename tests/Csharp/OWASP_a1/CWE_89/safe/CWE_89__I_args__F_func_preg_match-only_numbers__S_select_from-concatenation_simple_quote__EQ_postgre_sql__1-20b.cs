@@ -20,16 +20,16 @@ William Mentzer willmentzer20@gmail.com
                 */
                 using System.Text.RegularExpressions;
                 namespace default_namespace{
-                    class Class_11465{
-                        string var_11465;
-                        public Class_11465(string tainted_2_11465){
-                            var_11465 = tainted_2_11465;
+                    class Class_1{
+                        string var_1;
+                        public Class_1(string tainted_2_1){
+                            var_1 = tainted_2_1;
                         }
-                        public string get_var_11465(){
+                        public string get_var_1(){
                             string tainted_2 = null;
             string tainted_3 = null;
 
-                            tainted_2 = var_11465;
+                            tainted_2 = var_1;
                             
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);

@@ -22,7 +22,7 @@ using System;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass366{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -32,8 +32,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_365 var_365 = new Class_365(tainted_0);
-                tainted_5 = var_365.get_var_365();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 //flaw
                 File.Exists(tainted_5);

@@ -23,8 +23,8 @@ import os
 import sys
 
 
-def function_717( param_717 ):
-    return param_717
+def function_1( param_1 ):
+    return param_1
 
 
 def main():
@@ -39,7 +39,7 @@ def main():
     # No filtering (sanitization)
     tainted_3 = tainted_2
 
-    tainted_4 = function_717(tainted_3)
+    tainted_4 = function_1(tainted_3)
 
     #flaw
     os.system('ls ' + tainted_4)

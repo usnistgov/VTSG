@@ -24,7 +24,7 @@ using System.Data;
 using System.Linq;
 
 namespace default_namespace{
-    class MainClass5914{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -39,7 +39,7 @@ namespace default_namespace{
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                tainted_4 = function_5913(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 string query = "SELECT * FROM '" + tainted_4 + "'";
@@ -62,8 +62,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_5913(string param_5913 ){
-                    return param_5913 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

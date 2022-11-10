@@ -24,7 +24,7 @@ using System.Diagnostics;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass27014{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -45,8 +45,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_27013 var_27013 = new Class_27013(tainted_0);
-                tainted_5 = var_27013.get_var_27013();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 //flaw
                 string query = "SELECT * FROM Articles WHERE id="+tainted_5;

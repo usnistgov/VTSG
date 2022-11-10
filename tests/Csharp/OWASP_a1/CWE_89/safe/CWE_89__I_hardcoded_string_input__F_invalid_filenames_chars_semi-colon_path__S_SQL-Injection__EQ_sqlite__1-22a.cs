@@ -25,7 +25,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass36638{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -41,8 +41,8 @@ namespace default_namespace{
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
                 tainted_3 = r.Replace(tainted_2, "");
             
-                Class_36637 var_36637 = new Class_36637(tainted_3);
-                tainted_4 = var_36637.get_var_36637();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 
                 string query = "SELECT * FROM Articles WHERE id="+tainted_4;

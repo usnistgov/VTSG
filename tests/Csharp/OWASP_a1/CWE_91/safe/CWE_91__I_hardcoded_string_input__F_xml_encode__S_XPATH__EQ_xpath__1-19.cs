@@ -25,7 +25,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass56057{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -45,7 +45,7 @@ namespace default_namespace{
                 text.Replace(">", "&gt;");
                 tainted_3 = text.ToString();
             
-                tainted_4 = function_56056(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 
                 string query = "//user[@name='" + tainted_4 + "']";
@@ -64,8 +64,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_56056(string param_56056 ){
-                    return param_56056 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

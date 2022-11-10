@@ -25,7 +25,7 @@ using System.IO;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass48293{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -56,8 +56,8 @@ namespace default_namespace{
                 text.Replace(">", "&gt;");
                 tainted_3 = text.ToString();
             
-                Class_48292 var_48292 = new Class_48292(tainted_3);
-                tainted_4 = var_48292.get_var_48292();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 string query = "SELECT * FROM Articles WHERE id=@placeholder";
                 string checked_data = tainted_4;

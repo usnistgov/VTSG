@@ -26,7 +26,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass49769{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -47,8 +47,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_49768 var_49768 = new Class_49768(tainted_0);
-                tainted_5 = var_49768.get_var_49768();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 //flaw
                 string query = "(&(objectClass=person)(sn=" + tainted_5 + "))";

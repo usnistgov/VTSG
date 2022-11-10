@@ -26,7 +26,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace default_namespace{
-    class MainClass61056{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -37,8 +37,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_61055 var_61055 = new Class_61055(tainted_1);
-                tainted_2 = var_61055.get_var_61055();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);

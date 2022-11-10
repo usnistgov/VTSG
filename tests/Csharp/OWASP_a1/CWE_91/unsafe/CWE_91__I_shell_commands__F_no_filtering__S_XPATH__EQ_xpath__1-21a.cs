@@ -26,7 +26,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass52731{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -48,8 +48,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_52730 var_52730 = new Class_52730(tainted_1);
-                tainted_2 = var_52730.get_var_52730();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;

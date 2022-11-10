@@ -23,7 +23,7 @@ using System;
 using System.DirectoryServices;
 
 namespace default_namespace{
-    class MainClass49212{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -38,7 +38,7 @@ namespace default_namespace{
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                tainted_4 = function_49211(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 string query = "(&(objectClass=person)(sn=" + tainted_4 + "))";
@@ -63,8 +63,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_49211(string param_49211 ){
-                    return param_49211 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

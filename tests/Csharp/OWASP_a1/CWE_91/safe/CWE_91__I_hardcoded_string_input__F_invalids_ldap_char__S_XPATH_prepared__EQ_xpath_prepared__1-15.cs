@@ -26,7 +26,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace default_namespace{
-    class MainClass62709{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -36,7 +36,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_62708;
+                goto Skip_1;
                 
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){
@@ -67,7 +67,7 @@ namespace default_namespace{
                 }
                 tainted_3 = escape.ToString();
             
-                Skip_62708:
+                Skip_1:
                 {}
             
                 

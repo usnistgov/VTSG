@@ -30,8 +30,8 @@ def main():
     tainted_2 = input()
     tainted_3 = tainted_2
 
-    i_709 = 1
-    for x in range(0, i_709):
+    i_1 = 1
+    for x in range(0, i_1):
 
         # No filtering (sanitization)
         tainted_3 = tainted_2

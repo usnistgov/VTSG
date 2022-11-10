@@ -24,7 +24,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass46994{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -34,8 +34,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_46993 var_46993 = new Class_46993(tainted_0);
-                tainted_5 = var_46993.get_var_46993();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 string query = "SELECT * FROM Articles WHERE id=@placeholder";
                 string checked_data = tainted_5;

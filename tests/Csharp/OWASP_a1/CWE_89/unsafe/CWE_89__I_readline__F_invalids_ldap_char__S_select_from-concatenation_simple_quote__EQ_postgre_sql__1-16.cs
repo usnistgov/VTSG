@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass17008{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -35,8 +35,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_17007;
-                Skip_17007:
+                goto Skip_1;
+                Skip_1:
                 
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){

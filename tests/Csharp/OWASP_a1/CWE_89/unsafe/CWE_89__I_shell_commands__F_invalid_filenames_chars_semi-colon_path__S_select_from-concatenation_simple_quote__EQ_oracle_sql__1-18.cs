@@ -25,7 +25,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass12757{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -47,7 +47,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_12756(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + ";";
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
@@ -76,8 +76,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_12756(string param_12756 ){
-                    return param_12756 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

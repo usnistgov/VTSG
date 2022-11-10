@@ -24,7 +24,7 @@ using System.Data.SQLite;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass39405{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -35,7 +35,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_39404(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){
@@ -86,8 +86,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_39404(string param_39404 ){
-                    return param_39404 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

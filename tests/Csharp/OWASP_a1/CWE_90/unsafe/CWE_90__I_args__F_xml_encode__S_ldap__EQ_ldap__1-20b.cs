@@ -21,16 +21,16 @@ William Mentzer willmentzer20@gmail.com
                 */
                 using System.Text;
                 namespace default_namespace{
-                    class Class_52543{
-                        string var_52543;
-                        public Class_52543(string tainted_2_52543){
-                            var_52543 = tainted_2_52543;
+                    class Class_1{
+                        string var_1;
+                        public Class_1(string tainted_2_1){
+                            var_1 = tainted_2_1;
                         }
-                        public string get_var_52543(){
+                        public string get_var_1(){
                             string tainted_2 = null;
             string tainted_3 = null;
 
-                            tainted_2 = var_52543;
+                            tainted_2 = var_1;
                             
                 StringBuilder text = new StringBuilder(tainted_2);
                 text.Replace("&", "&amp;");

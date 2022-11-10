@@ -24,7 +24,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass13690{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -40,8 +40,8 @@ namespace default_namespace{
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
                 tainted_3 = r.Replace(tainted_2, "");
             
-                Class_13689 var_13689 = new Class_13689(tainted_3);
-                tainted_4 = var_13689.get_var_13689();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 //flaw
                 string query = "SELECT * FROM '" + tainted_4 + "'";

@@ -24,7 +24,7 @@ using System.Data.SQLite;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass41257{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -65,7 +65,7 @@ namespace default_namespace{
                 }
                 tainted_3 = escape.ToString();
             
-                tainted_4 = function_41256(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 string query = "SELECT * FROM Articles WHERE id="+tainted_4;
@@ -86,8 +86,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_41256(string param_41256 ){
-                    return param_41256 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

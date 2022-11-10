@@ -23,7 +23,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass4066{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -33,8 +33,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_4065 var_4065 = new Class_4065(tainted_0);
-                tainted_5 = var_4065.get_var_4065();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 
                 File.Exists(tainted_5);

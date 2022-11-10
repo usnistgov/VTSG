@@ -24,7 +24,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass3883{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -46,8 +46,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_3882 var_3882 = new Class_3882(tainted_1);
-                tainted_2 = var_3882.get_var_3882();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 string pattern = "^[\\.\\.\\/]+";
                 Regex r = new Regex(pattern);

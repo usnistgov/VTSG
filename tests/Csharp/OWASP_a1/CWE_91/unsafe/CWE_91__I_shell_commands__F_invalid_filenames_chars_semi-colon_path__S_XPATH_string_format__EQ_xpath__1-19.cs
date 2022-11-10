@@ -27,7 +27,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass57907{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -54,7 +54,7 @@ namespace default_namespace{
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
                 tainted_3 = r.Replace(tainted_2, "");
             
-                tainted_4 = function_57906(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 string query = string.Format("//user[@name='{0}']",tainted_4);
@@ -73,8 +73,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_57906(string param_57906 ){
-                    return param_57906 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

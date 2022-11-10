@@ -20,16 +20,16 @@ William Mentzer willmentzer20@gmail.com
                 */
                 
                 namespace default_namespace{
-                    class Class_23120{
-                        string var_23120;
-                        public Class_23120(string tainted_2_23120){
-                            var_23120 = tainted_2_23120;
+                    class Class_1{
+                        string var_1;
+                        public Class_1(string tainted_2_1){
+                            var_1 = tainted_2_1;
                         }
-                        public string get_var_23120(){
+                        public string get_var_1(){
                             string tainted_2 = null;
             string tainted_3 = null;
 
-                            tainted_2 = var_23120;
+                            tainted_2 = var_1;
                             
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;

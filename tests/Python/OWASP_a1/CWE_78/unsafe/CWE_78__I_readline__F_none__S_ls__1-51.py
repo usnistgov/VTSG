@@ -23,8 +23,8 @@ import os
 import sys
 
 
-def function_715( param_715 ):
-    return param_715
+def function_1( param_1 ):
+    return param_1
 
 
 def main():
@@ -35,7 +35,7 @@ def main():
     tainted_1 = input()
     tainted_3 = tainted_1
 
-    tainted_2 = function_715(tainted_1)
+    tainted_2 = function_1(tainted_1)
 
     # No filtering (sanitization)
     tainted_3 = tainted_2

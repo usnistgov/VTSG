@@ -1,11 +1,18 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Fri Nov  4 13:36:09 2022" *by "Paul E. Black"
+ *modified "Thu Nov 10 10:46:34 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
 
 Eliminate initial superfluous newline at the beginning of file.
+
+10 Nov 2022
+Add a "new case hook". That is, every time a new case is written, VTSG will run
+a script(?) you give as a "hook".  This takes advantage of modern
+multiprocessors.  While VTSG is generating cases, the generated cases can be
+checked or executed.
+
 
 6 Sep 2022
 Fix Python "Classes" complexity:

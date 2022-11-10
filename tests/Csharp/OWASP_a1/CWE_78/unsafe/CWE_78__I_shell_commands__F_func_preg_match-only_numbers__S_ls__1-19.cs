@@ -24,7 +24,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass23859{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -56,7 +56,7 @@ namespace default_namespace{
                     tainted_3 = tainted_2;
                 }
             
-                tainted_4 = function_23858(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 System.Diagnostics.Process.Start("/bin/bash", "-c 'ls " + tainted_4 + "'");
@@ -64,8 +64,8 @@ namespace default_namespace{
             
         }
         
-                public static string function_23858(string param_23858 ){
-                    return param_23858 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

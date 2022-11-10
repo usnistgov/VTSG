@@ -21,16 +21,16 @@ William Mentzer willmentzer20@gmail.com
                 using System.IO;
 using System.Text.RegularExpressions;
                 namespace default_namespace{
-                    class Class_1660{
-                        string var_1660;
-                        public Class_1660(string tainted_2_1660){
-                            var_1660 = tainted_2_1660;
+                    class Class_1{
+                        string var_1;
+                        public Class_1(string tainted_2_1){
+                            var_1 = tainted_2_1;
                         }
-                        public string get_var_1660(){
+                        public string get_var_1(){
                             string tainted_2 = null;
             string tainted_3 = null;
 
-                            tainted_2 = var_1660;
+                            tainted_2 = var_1;
                             
                 string regexSearch = new string(Path.GetInvalidFileNameChars());
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));

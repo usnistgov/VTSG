@@ -25,7 +25,7 @@ using System.IO;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass47547{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -77,7 +77,7 @@ namespace default_namespace{
                 }
                 tainted_3 = escape.ToString();
             
-                tainted_4 = function_47546(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 string query = "SELECT * FROM Articles WHERE id=@placeholder";
                 string checked_data = tainted_4;
@@ -103,8 +103,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_47546(string param_47546 ){
-                    return param_47546 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

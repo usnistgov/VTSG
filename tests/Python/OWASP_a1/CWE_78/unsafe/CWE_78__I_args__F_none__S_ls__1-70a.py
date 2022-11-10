@@ -30,8 +30,8 @@ def main():
     tainted_0 = sys.argv[1]
     tainted_5 = tainted_0
 
-    var_1081 = Class_1081(tainted_0);
-    tainted_5 = var_1081.get_var_1081();
+    var_1 = Class_1(tainted_0);
+    tainted_5 = var_1.get_var_1();
 
     #flaw
     os.system('ls ' + tainted_5)

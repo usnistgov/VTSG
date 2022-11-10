@@ -31,8 +31,8 @@ def main():
     tainted_1 = sys.argv[1]
     tainted_3 = tainted_1
 
-    var_540 = Class_540(tainted_1)
-    tainted_2 = var_540.get_var_540()
+    var_1 = Class_1(tainted_1)
+    tainted_2 = var_1.get_var_1()
 
     # No filtering (sanitization)
     tainted_3 = tainted_2

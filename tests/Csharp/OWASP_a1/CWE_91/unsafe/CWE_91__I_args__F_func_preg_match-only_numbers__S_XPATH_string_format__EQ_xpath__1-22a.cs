@@ -25,7 +25,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass57728{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -46,8 +46,8 @@ namespace default_namespace{
                     tainted_3 = tainted_2;
                 }
             
-                Class_57727 var_57727 = new Class_57727(tainted_3);
-                tainted_4 = var_57727.get_var_57727();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 //flaw
                 string query = string.Format("//user[@name='{0}']",tainted_4);

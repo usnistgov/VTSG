@@ -23,7 +23,7 @@ using System.Data.SqlClient;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass22383{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -34,8 +34,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_22382 var_22382 = new Class_22382(tainted_1);
-                tainted_2 = var_22382.get_var_22382();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 StringBuilder text = new StringBuilder(tainted_2);
                 text.Replace("&", "&amp;");

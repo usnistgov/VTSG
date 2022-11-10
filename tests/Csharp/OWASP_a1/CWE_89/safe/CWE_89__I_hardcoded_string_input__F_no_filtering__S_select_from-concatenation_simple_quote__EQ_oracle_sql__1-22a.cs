@@ -22,7 +22,7 @@ using System;
 using System.Data.OracleClient;
 
 namespace default_namespace{
-    class MainClass7215{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -37,8 +37,8 @@ namespace default_namespace{
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                Class_7214 var_7214 = new Class_7214(tainted_3);
-                tainted_4 = var_7214.get_var_7214();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 
                 string query = "SELECT * FROM '" + tainted_4 + "'";

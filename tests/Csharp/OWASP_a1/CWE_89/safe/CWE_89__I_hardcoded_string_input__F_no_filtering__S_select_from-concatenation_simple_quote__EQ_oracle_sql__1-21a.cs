@@ -22,7 +22,7 @@ using System;
 using System.Data.OracleClient;
 
 namespace default_namespace{
-    class MainClass7213{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -33,8 +33,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_7212 var_7212 = new Class_7212(tainted_1);
-                tainted_2 = var_7212.get_var_7212();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;

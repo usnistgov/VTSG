@@ -25,7 +25,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass30527{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -57,7 +57,7 @@ namespace default_namespace{
                     tainted_3 = tainted_2;
                 }
             
-                tainted_4 = function_30526(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 
                 string query = "SELECT * FROM Articles WHERE id="+tainted_4;
@@ -81,8 +81,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_30526(string param_30526 ){
-                    return param_30526 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

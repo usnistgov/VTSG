@@ -22,7 +22,7 @@ using MySql.Data.MySqlClient;
 using System;
 
 namespace default_namespace{
-    class MainClass45884{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -32,8 +32,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_45883 var_45883 = new Class_45883(tainted_0);
-                tainted_5 = var_45883.get_var_45883();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 string query = "SELECT * FROM Articles WHERE id=@placeholder";
                 string checked_data = tainted_5;

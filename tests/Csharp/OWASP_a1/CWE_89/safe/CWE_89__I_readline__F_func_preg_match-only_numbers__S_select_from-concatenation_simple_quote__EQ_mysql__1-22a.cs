@@ -23,7 +23,7 @@ using System;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass9250{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -44,8 +44,8 @@ namespace default_namespace{
                     tainted_3 = tainted_2;
                 }
             
-                Class_9249 var_9249 = new Class_9249(tainted_3);
-                tainted_4 = var_9249.get_var_9249();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 
                 string query = "SELECT * FROM '" + tainted_4 + "'";

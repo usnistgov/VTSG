@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass12381{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -48,13 +48,13 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_12380;
+                goto Skip_1;
                 
                 string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + ";";
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
                 tainted_3 = r.Replace(tainted_2, "");
             
-                Skip_12380:
+                Skip_1:
                 {}
             
                 //flaw

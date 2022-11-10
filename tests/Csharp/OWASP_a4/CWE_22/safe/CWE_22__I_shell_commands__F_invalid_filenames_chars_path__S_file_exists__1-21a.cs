@@ -24,7 +24,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass923{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -46,8 +46,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_922 var_922 = new Class_922(tainted_1);
-                tainted_2 = var_922.get_var_922();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));

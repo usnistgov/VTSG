@@ -25,7 +25,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass56230{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -35,7 +35,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                for(int i_56229 = 0; i_56229 <= 1; i_56229++){
+                for(int i_1 = 0; i_1 <= 1; i_1++){
                     
                 StringBuilder text = new StringBuilder(tainted_2);
                 text.Replace("&", "&amp;");

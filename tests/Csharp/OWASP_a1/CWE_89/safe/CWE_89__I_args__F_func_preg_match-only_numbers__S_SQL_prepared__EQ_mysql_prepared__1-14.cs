@@ -23,7 +23,7 @@ using System;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass46612{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;

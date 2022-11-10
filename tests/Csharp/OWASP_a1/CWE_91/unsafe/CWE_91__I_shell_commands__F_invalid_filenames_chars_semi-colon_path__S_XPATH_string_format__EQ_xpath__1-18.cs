@@ -27,7 +27,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass57905{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -49,7 +49,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_57904(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + ";";
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
@@ -73,8 +73,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_57904(string param_57904 ){
-                    return param_57904 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

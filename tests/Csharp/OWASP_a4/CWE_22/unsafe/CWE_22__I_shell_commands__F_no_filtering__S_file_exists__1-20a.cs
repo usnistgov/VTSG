@@ -23,7 +23,7 @@ using System.Diagnostics;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass181{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -44,8 +44,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_180 var_180 = new Class_180(tainted_0);
-                tainted_5 = var_180.get_var_180();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 //flaw
                 File.Exists(tainted_5);

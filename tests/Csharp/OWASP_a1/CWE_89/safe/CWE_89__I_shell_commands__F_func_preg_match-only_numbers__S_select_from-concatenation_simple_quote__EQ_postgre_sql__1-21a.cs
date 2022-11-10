@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass8693{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -49,8 +49,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_8692 var_8692 = new Class_8692(tainted_1);
-                tainted_2 = var_8692.get_var_8692();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);

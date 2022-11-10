@@ -24,7 +24,7 @@ using System.Diagnostics;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass45325{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -46,7 +46,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_45324(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
@@ -76,8 +76,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_45324(string param_45324 ){
-                    return param_45324 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

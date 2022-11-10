@@ -24,7 +24,7 @@ using System.Data.SQLite;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass44026{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -34,8 +34,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_44025;
-                Skip_44025:
+                goto Skip_1;
+                Skip_1:
                 
                 StringBuilder text = new StringBuilder(tainted_2);
                 text.Replace("&", "&amp;");

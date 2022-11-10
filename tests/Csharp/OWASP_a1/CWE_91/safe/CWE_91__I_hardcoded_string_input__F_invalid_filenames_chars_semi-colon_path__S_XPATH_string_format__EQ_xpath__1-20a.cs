@@ -26,7 +26,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass58279{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -36,8 +36,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_58278 var_58278 = new Class_58278(tainted_0);
-                tainted_5 = var_58278.get_var_58278();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 
                 string query = string.Format("//user[@name='{0}']",tainted_5);

@@ -24,7 +24,7 @@ using System.Diagnostics;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass45331{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -46,8 +46,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_45330 var_45330 = new Class_45330(tainted_1);
-                tainted_2 = var_45330.get_var_45330();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;

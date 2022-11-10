@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass19779{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;

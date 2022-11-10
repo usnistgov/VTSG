@@ -23,7 +23,7 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass9421{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -33,7 +33,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_9420;
+                goto Skip_1;
                 
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);
@@ -44,7 +44,7 @@ namespace default_namespace{
                     tainted_3 = tainted_2;
                 }
             
-                Skip_9420:
+                Skip_1:
                 {}
             
                 //flaw

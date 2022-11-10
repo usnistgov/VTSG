@@ -22,7 +22,7 @@ using System;
 using System.Data.SqlClient;
 
 namespace default_namespace{
-    class MainClass29789{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -32,8 +32,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_29788 var_29788 = new Class_29788(tainted_0);
-                tainted_5 = var_29788.get_var_29788();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 //flaw
                 string query = "SELECT * FROM Articles WHERE id="+tainted_5;

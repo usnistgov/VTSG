@@ -22,7 +22,7 @@ using System;
 using System.Data.SqlClient;
 
 namespace default_namespace{
-    class MainClass5719{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;

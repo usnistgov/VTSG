@@ -27,7 +27,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace default_namespace{
-    class MainClass62154{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -37,13 +37,13 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_62153;
+                goto Skip_1;
                 
                 string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + ";";
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
                 tainted_3 = r.Replace(tainted_2, "");
             
-                Skip_62153:
+                Skip_1:
                 {}
             
                 

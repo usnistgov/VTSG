@@ -24,7 +24,7 @@ using System.DirectoryServices;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass51808{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -65,8 +65,8 @@ namespace default_namespace{
                 }
                 tainted_3 = escape.ToString();
             
-                Class_51807 var_51807 = new Class_51807(tainted_3);
-                tainted_4 = var_51807.get_var_51807();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 
                 string query = "(&(objectClass=person)(sn=" + tainted_4 + "))";

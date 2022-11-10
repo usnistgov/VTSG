@@ -23,7 +23,7 @@ using System.Data;
 using System.Data.SQLite;
 
 namespace default_namespace{
-    class MainClass7018{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -33,8 +33,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_7017;
-                Skip_7017:
+                goto Skip_1;
+                Skip_1:
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;

@@ -23,7 +23,7 @@ using System.Data;
 using System.Data.SQLite;
 
 namespace default_namespace{
-    class MainClass7014{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;

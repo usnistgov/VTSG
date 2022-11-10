@@ -25,7 +25,7 @@ using System.Diagnostics;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass5162{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -46,7 +46,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                for(int i_5161 = 0; i_5161 <= 1; i_5161++){
+                for(int i_1 = 0; i_1 <= 1; i_1++){
                     
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;

@@ -24,7 +24,7 @@ using System.IO;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass26077{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -46,7 +46,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_26076(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 StringBuilder text = new StringBuilder(tainted_2);
                 text.Replace("&", "&amp;");
@@ -63,8 +63,8 @@ namespace default_namespace{
             
         }
         
-                public static string function_26076(string param_26076 ){
-                    return param_26076 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

@@ -24,7 +24,7 @@ using System.Data.SQLite;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass40320{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -34,7 +34,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                for(int i_40319 = 0; i_40319 <= 1; i_40319++){
+                for(int i_1 = 0; i_1 <= 1; i_1++){
                     
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){

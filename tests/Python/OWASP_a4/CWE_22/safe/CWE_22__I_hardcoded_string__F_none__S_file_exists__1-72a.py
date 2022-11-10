@@ -35,8 +35,8 @@ def main():
     # No filtering (sanitization)
     tainted_3 = tainted_2
 
-    var_361 = Class_361(tainted_3)
-    tainted_4 = var_361.get_var_361()
+    var_1 = Class_1(tainted_3)
+    tainted_4 = var_1.get_var_1()
 
     print(f'file "{ tainted_4 }" ', end='')
 

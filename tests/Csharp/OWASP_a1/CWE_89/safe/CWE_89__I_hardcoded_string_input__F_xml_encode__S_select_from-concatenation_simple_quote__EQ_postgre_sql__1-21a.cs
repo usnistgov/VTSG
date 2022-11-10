@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass21643{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -36,8 +36,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_21642 var_21642 = new Class_21642(tainted_1);
-                tainted_2 = var_21642.get_var_21642();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 StringBuilder text = new StringBuilder(tainted_2);
                 text.Replace("&", "&amp;");

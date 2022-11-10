@@ -23,7 +23,7 @@ using System.Data.SqlClient;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass20531{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -33,8 +33,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_20530 var_20530 = new Class_20530(tainted_0);
-                tainted_5 = var_20530.get_var_20530();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 //flaw
                 string query = "SELECT * FROM '" + tainted_5 + "'";

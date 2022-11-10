@@ -24,7 +24,7 @@ using System.DirectoryServices;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass50137{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -45,7 +45,7 @@ namespace default_namespace{
                     tainted_3 = tainted_2;
                 }
             
-                tainted_4 = function_50136(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 
                 string query = "(&(objectClass=person)(sn=" + tainted_4 + "))";
@@ -70,8 +70,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_50136(string param_50136 ){
-                    return param_50136 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

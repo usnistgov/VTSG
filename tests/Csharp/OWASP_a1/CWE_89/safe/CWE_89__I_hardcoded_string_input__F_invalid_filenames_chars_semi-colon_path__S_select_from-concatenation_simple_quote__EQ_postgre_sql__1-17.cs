@@ -26,7 +26,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass14235{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -35,7 +35,7 @@ namespace default_namespace{
                 tainted_0 = "hardcoded";
             
             tainted_5 = tainted_0;
-            tainted_5 = function_14234(tainted_0);
+            tainted_5 = function_1(tainted_0);
             
                 
                 string query = "SELECT * FROM '" + tainted_5 + "'";
@@ -58,11 +58,11 @@ namespace default_namespace{
         
         }
         
-                public static string function_14234(string param_14234 ){
+                public static string function_1(string param_1 ){
                     string tainted_2 = null;
             string tainted_3 = null;
 
-                    tainted_2 = param_14234;
+                    tainted_2 = param_1;
                     
                 string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + ";";
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));

@@ -4,8 +4,8 @@ Hardcoded string as input
 no filtering
 sink: check if a file exists
 '''
-class Class_361:
+class Class_1:
     def __init__(self,param):
-        self.var_361 = param
-    def get_var_361(self):
-        return self.var_361
+        self.var_1 = param
+    def get_var_1(self):
+        return self.var_1

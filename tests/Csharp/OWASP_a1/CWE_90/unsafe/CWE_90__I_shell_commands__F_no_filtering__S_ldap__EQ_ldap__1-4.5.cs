@@ -25,7 +25,7 @@ using System.DirectoryServices;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass48907{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;

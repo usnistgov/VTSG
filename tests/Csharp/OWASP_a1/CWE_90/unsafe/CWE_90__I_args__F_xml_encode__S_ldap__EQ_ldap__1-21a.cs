@@ -24,7 +24,7 @@ using System.DirectoryServices;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass52546{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -35,8 +35,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_52545 var_52545 = new Class_52545(tainted_1);
-                tainted_2 = var_52545.get_var_52545();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 StringBuilder text = new StringBuilder(tainted_2);
                 text.Replace("&", "&amp;");

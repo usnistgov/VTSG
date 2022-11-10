@@ -27,7 +27,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace default_namespace{
-    class MainClass60127{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -53,7 +53,7 @@ namespace default_namespace{
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                tainted_4 = function_60126(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 
                 string query = tainted_4;
@@ -71,8 +71,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_60126(string param_60126 ){
-                    return param_60126 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

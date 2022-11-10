@@ -27,7 +27,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace default_namespace{
-    class MainClass60115{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -48,7 +48,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                for(int i_60114 = 0; i_60114 <= 1; i_60114++){
+                for(int i_1 = 0; i_1 <= 1; i_1++){
                     
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;

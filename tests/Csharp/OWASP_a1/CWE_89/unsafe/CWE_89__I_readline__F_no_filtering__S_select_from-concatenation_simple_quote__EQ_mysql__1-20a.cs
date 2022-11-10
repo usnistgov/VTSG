@@ -22,7 +22,7 @@ using MySql.Data.MySqlClient;
 using System;
 
 namespace default_namespace{
-    class MainClass5546{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -32,8 +32,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_5545 var_5545 = new Class_5545(tainted_0);
-                tainted_5 = var_5545.get_var_5545();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 //flaw
                 string query = "SELECT * FROM '" + tainted_5 + "'";

@@ -26,7 +26,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace default_namespace{
-    class MainClass62538{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -67,8 +67,8 @@ namespace default_namespace{
                 }
                 tainted_3 = escape.ToString();
             
-                Class_62537 var_62537 = new Class_62537(tainted_3);
-                tainted_4 = var_62537.get_var_62537();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 
                 string query = tainted_4;

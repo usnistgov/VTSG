@@ -24,7 +24,7 @@ using System.Data;
 using System.Linq;
 
 namespace default_namespace{
-    class MainClass28114{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -34,12 +34,12 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_28113;
+                goto Skip_1;
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                Skip_28113:
+                Skip_1:
                 {}
             
                 //flaw

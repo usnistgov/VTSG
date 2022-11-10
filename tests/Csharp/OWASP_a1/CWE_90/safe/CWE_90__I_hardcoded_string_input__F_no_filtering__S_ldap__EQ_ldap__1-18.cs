@@ -23,7 +23,7 @@ using System;
 using System.DirectoryServices;
 
 namespace default_namespace{
-    class MainClass49395{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -34,7 +34,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_49394(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
@@ -63,8 +63,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_49394(string param_49394 ){
-                    return param_49394 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

@@ -23,7 +23,7 @@ using System.Data.OracleClient;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass41448{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -64,8 +64,8 @@ namespace default_namespace{
                 }
                 tainted_3 = escape.ToString();
             
-                Class_41447 var_41447 = new Class_41447(tainted_3);
-                tainted_4 = var_41447.get_var_41447();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 //flaw
                 string query = "SELECT * FROM Articles WHERE id="+tainted_4;

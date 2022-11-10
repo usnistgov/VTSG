@@ -22,7 +22,7 @@ using MySql.Data.MySqlClient;
 using System;
 
 namespace default_namespace{
-    class MainClass45687{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;

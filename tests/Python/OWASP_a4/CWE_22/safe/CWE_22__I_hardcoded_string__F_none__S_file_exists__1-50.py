@@ -23,11 +23,11 @@ import os
 import sys
 
 
-def function_351( param_351 ):
+def function_1( param_1 ):
     tainted_2 = None
     tainted_3 = None
 
-    tainted_2 = param_351
+    tainted_2 = param_1
 
     # No filtering (sanitization)
     tainted_3 = tainted_2
@@ -39,7 +39,7 @@ def main():
 
     tainted_0 = "-d /;echo Vulnerable: user command run"
     tainted_5 = tainted_0
-    tainted_5 = function_351(tainted_0)
+    tainted_5 = function_1(tainted_0)
 
     print(f'file "{ tainted_5 }" ', end='')
 

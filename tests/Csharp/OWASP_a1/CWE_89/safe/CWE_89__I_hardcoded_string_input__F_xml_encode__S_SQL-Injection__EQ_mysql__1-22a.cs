@@ -23,7 +23,7 @@ using System;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass43483{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -43,8 +43,8 @@ namespace default_namespace{
                 text.Replace(">", "&gt;");
                 tainted_3 = text.ToString();
             
-                Class_43482 var_43482 = new Class_43482(tainted_3);
-                tainted_4 = var_43482.get_var_43482();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 
                 string query = "SELECT * FROM Articles WHERE id="+tainted_4;

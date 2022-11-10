@@ -24,7 +24,7 @@ using System.Diagnostics;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass27004{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -45,12 +45,12 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_27003;
+                goto Skip_1;
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                Skip_27003:
+                Skip_1:
                 {}
             
                 //flaw

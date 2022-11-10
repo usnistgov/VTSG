@@ -24,7 +24,7 @@ using System.DirectoryServices;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass51436{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -35,8 +35,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_51435 var_51435 = new Class_51435(tainted_1);
-                tainted_2 = var_51435.get_var_51435();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){

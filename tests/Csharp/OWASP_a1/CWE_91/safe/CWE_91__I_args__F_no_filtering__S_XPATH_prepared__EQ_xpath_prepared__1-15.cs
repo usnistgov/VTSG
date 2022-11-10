@@ -25,7 +25,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace default_namespace{
-    class MainClass60674{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -35,12 +35,12 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_60673;
+                goto Skip_1;
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                Skip_60673:
+                Skip_1:
                 {}
             
                 

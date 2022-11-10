@@ -23,7 +23,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass3316{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -33,13 +33,13 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_3315;
+                goto Skip_1;
                 
                 string pattern = "^\\.\\.\\/";
                 Regex r = new Regex(pattern);
                 tainted_3 = r.Replace(tainted_2, "");
             
-                Skip_3315:
+                Skip_1:
                 {}
             
                 //flaw

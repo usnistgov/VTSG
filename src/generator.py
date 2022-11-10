@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Mon Nov  7 17:34:10 2022" *by "Paul E. Black"
+ *modified "Thu Nov 10 14:46:18 2022" *by "Paul E. Black"
 """
 
 import time
@@ -137,6 +137,13 @@ class Generator(object):
         self.current_code = None
         self.complexities_queue = []
         self.map_flaw_group = {}
+
+    def resetUID():
+        """
+        (Re)start the UID generator with a definite value, so generation of each
+        case is independent of any cases generated (or not) before it.
+        """
+        Generator.UID = 0
 
     def getUID():
         """
@@ -334,6 +341,7 @@ class Generator(object):
         """
 
         var_id = 0
+        Generator.resetUID()
         # temporary code
 
         self.classes_code = []

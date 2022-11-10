@@ -26,7 +26,7 @@ using System.IO;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass51987{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -57,7 +57,7 @@ namespace default_namespace{
                 text.Replace(">", "&gt;");
                 tainted_3 = text.ToString();
             
-                tainted_4 = function_51986(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 string query = "(&(objectClass=person)(sn=" + tainted_4 + "))";
@@ -82,8 +82,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_51986(string param_51986 ){
-                    return param_51986 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

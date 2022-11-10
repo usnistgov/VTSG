@@ -30,8 +30,8 @@ def main():
     tainted_0 = input()
     tainted_5 = tainted_0
 
-    var_719 = Class_719(tainted_0);
-    tainted_5 = var_719.get_var_719();
+    var_1 = Class_1(tainted_0);
+    tainted_5 = var_1.get_var_1();
 
     #flaw
     os.system('ls ' + tainted_5)

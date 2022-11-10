@@ -22,7 +22,7 @@ using System;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass541{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -32,12 +32,12 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_540;
+                goto Skip_1;
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                Skip_540:
+                Skip_1:
                 {}
             
                 

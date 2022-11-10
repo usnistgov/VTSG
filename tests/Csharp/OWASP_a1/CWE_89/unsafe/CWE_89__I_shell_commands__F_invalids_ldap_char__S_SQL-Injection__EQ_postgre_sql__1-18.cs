@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass38295{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -49,7 +49,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_38294(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){
@@ -102,8 +102,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_38294(string param_38294 ){
-                    return param_38294 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

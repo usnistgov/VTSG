@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass39222{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -66,7 +66,7 @@ namespace default_namespace{
                 }
                 tainted_3 = escape.ToString();
             
-                tainted_4 = function_39221(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 string query = "SELECT * FROM Articles WHERE id="+tainted_4;
@@ -89,8 +89,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_39221(string param_39221 ){
-                    return param_39221 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

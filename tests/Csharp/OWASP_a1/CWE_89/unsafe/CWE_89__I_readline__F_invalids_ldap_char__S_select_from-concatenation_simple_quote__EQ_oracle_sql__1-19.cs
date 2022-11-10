@@ -23,7 +23,7 @@ using System.Data.OracleClient;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass17384{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -64,7 +64,7 @@ namespace default_namespace{
                 }
                 tainted_3 = escape.ToString();
             
-                tainted_4 = function_17383(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 string query = "SELECT * FROM '" + tainted_4 + "'";
@@ -88,8 +88,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_17383(string param_17383 ){
-                    return param_17383 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

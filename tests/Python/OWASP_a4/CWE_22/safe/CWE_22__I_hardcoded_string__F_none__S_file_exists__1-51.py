@@ -23,8 +23,8 @@ import os
 import sys
 
 
-def function_353( param_353 ):
-    return param_353
+def function_1( param_1 ):
+    return param_1
 
 
 def main():
@@ -35,7 +35,7 @@ def main():
     tainted_1 = "-d /;echo Vulnerable: user command run"
     tainted_3 = tainted_1
 
-    tainted_2 = function_353(tainted_1)
+    tainted_2 = function_1(tainted_1)
 
     # No filtering (sanitization)
     tainted_3 = tainted_2

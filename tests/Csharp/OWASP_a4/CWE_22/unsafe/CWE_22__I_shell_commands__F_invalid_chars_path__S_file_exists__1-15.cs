@@ -24,7 +24,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass2391{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -45,13 +45,13 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_2390;
+                goto Skip_1;
                 
                 string regexSearch = new string(Path.GetInvalidPathChars());
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
                 tainted_3 = r.Replace(tainted_2, "");
             
-                Skip_2390:
+                Skip_1:
                 {}
             
                 //flaw

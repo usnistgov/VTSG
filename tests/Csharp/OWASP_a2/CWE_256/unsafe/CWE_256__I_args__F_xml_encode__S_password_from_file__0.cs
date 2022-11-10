@@ -26,7 +26,7 @@ using System.Linq;
 using System.Reflection;
 
 namespace default_namespace{
-    class MainClass63650{
+    class MainClass1{
         public static void Main(string[] args){
             
             

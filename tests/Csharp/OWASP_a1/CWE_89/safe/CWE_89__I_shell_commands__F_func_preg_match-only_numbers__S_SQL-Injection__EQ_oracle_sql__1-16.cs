@@ -25,7 +25,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass31261{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -46,8 +46,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                goto Skip_31260;
-                Skip_31260:
+                goto Skip_1;
+                Skip_1:
                 
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);

@@ -23,7 +23,7 @@ using System.Data;
 using System.Data.SQLite;
 
 namespace default_namespace{
-    class MainClass7024{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -38,7 +38,7 @@ namespace default_namespace{
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                tainted_4 = function_7023(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 
                 string query = "SELECT * FROM '" + tainted_4 + "'";
@@ -59,8 +59,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_7023(string param_7023 ){
-                    return param_7023 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

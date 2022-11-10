@@ -23,7 +23,7 @@ using System.Data.OracleClient;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass40517{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -64,7 +64,7 @@ namespace default_namespace{
                 }
                 tainted_3 = escape.ToString();
             
-                tainted_4 = function_40516(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 
                 string query = "SELECT * FROM Articles WHERE id="+tainted_4;
@@ -88,8 +88,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_40516(string param_40516 ){
-                    return param_40516 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

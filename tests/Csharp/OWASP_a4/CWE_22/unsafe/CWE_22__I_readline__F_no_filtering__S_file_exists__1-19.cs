@@ -22,7 +22,7 @@ using System;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass364{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -37,7 +37,7 @@ namespace default_namespace{
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                tainted_4 = function_363(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 File.Exists(tainted_4);
@@ -45,8 +45,8 @@ namespace default_namespace{
             
         }
         
-                public static string function_363(string param_363 ){
-                    return param_363 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

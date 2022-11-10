@@ -24,7 +24,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass2387{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -45,7 +45,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                for(int i_2386 = 0; i_2386 <= 1; i_2386++){
+                for(int i_1 = 0; i_1 <= 1; i_1++){
                     
                 string regexSearch = new string(Path.GetInvalidPathChars());
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));

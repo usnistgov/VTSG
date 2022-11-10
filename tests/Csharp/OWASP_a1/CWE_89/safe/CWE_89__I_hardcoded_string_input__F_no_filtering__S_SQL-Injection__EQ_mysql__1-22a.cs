@@ -22,7 +22,7 @@ using MySql.Data.MySqlClient;
 using System;
 
 namespace default_namespace{
-    class MainClass28683{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -37,8 +37,8 @@ namespace default_namespace{
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                Class_28682 var_28682 = new Class_28682(tainted_3);
-                tainted_4 = var_28682.get_var_28682();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 
                 string query = "SELECT * FROM Articles WHERE id="+tainted_4;

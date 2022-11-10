@@ -30,8 +30,8 @@ def main():
     tainted_2 = "-d /;echo Vulnerable: user command run"
     tainted_3 = tainted_2
 
-    i_347 = 1
-    for x in range(0, i_347):
+    i_1 = 1
+    for x in range(0, i_1):
 
         # No filtering (sanitization)
         tainted_3 = tainted_2

@@ -23,7 +23,7 @@ using System;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass20332{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -33,7 +33,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_2;
             
-                for(int i_20331 = 0; i_20331 <= 1; i_20331++){
+                for(int i_1 = 0; i_1 <= 1; i_1++){
                     
                 StringBuilder text = new StringBuilder(tainted_2);
                 text.Replace("&", "&amp;");

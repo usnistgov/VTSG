@@ -23,7 +23,7 @@ using System.Data;
 using System.Data.SQLite;
 
 namespace default_namespace{
-    class MainClass7947{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -34,7 +34,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_7946(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
@@ -59,8 +59,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_7946(string param_7946 ){
-                    return param_7946 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

@@ -24,7 +24,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass921{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -45,8 +45,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_920 var_920 = new Class_920(tainted_0);
-                tainted_5 = var_920.get_var_920();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 
                 File.Exists(tainted_5);

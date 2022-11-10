@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass16089{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -79,7 +79,7 @@ namespace default_namespace{
                 }
                 tainted_3 = escape.ToString();
             
-                tainted_4 = function_16088(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 string query = "SELECT * FROM '" + tainted_4 + "'";
@@ -102,8 +102,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_16088(string param_16088 ){
-                    return param_16088 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

@@ -24,7 +24,7 @@ using System.DirectoryServices;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass49950{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -35,7 +35,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_49949(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);
@@ -70,8 +70,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_49949(string param_49949 ){
-                    return param_49949 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

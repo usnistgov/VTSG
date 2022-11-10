@@ -23,7 +23,7 @@ using System.Diagnostics;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass23115{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -43,7 +43,7 @@ namespace default_namespace{
                 }
             
             tainted_5 = tainted_0;
-            tainted_5 = function_23114(tainted_0);
+            tainted_5 = function_1(tainted_0);
             
                 //flaw
                 System.Diagnostics.Process.Start("/bin/bash", "-c 'ls " + tainted_5 + "'");
@@ -51,11 +51,11 @@ namespace default_namespace{
             
         }
         
-                public static string function_23114(string param_23114 ){
+                public static string function_1(string param_1 ){
                     string tainted_2 = null;
             string tainted_3 = null;
 
-                    tainted_2 = param_23114;
+                    tainted_2 = param_1;
                     
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;

@@ -28,7 +28,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace default_namespace{
-    class MainClass63083{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -48,7 +48,7 @@ namespace default_namespace{
                 }
             
             tainted_5 = tainted_0;
-            tainted_5 = function_63082(tainted_0);
+            tainted_5 = function_1(tainted_0);
             
                 
                 string query = tainted_5;
@@ -66,11 +66,11 @@ namespace default_namespace{
         
         }
         
-                public static string function_63082(string param_63082 ){
+                public static string function_1(string param_1 ){
                     string tainted_2 = null;
             string tainted_3 = null;
 
-                    tainted_2 = param_63082;
+                    tainted_2 = param_1;
                     
                 StringBuilder text = new StringBuilder(tainted_2);
                 text.Replace("&", "&amp;");

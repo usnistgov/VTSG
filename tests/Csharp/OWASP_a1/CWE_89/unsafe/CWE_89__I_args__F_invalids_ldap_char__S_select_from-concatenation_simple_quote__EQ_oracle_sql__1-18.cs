@@ -23,7 +23,7 @@ using System.Data.OracleClient;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass19232{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -34,7 +34,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_19231(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){
@@ -88,8 +88,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_19231(string param_19231 ){
-                    return param_19231 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

@@ -19,13 +19,13 @@ William Mentzer willmentzer20@gmail.com
 
                 */
                 namespace default_namespace{
-                    class Class_31457{
-                        string var_31457;
-                        public Class_31457(string param){
-                            var_31457 = param;
+                    class Class_1{
+                        string var_1;
+                        public Class_1(string param){
+                            var_1 = param;
                         }
-                        public string get_var_31457(){
-                            return var_31457;
+                        public string get_var_1(){
+                            return var_1;
                         }
                     }
                 }

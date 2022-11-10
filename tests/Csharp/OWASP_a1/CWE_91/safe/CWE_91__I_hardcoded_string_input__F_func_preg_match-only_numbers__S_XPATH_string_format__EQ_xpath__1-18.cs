@@ -25,7 +25,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass57535{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -36,7 +36,7 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                tainted_2 = function_57534(tainted_1);
+                tainted_2 = function_1(tainted_1);
                 
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);
@@ -65,8 +65,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_57534(string param_57534 ){
-                    return param_57534 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

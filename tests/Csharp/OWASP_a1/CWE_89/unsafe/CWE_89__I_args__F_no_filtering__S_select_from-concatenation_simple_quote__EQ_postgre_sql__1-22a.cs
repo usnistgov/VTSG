@@ -24,7 +24,7 @@ using System.Data;
 using System.Linq;
 
 namespace default_namespace{
-    class MainClass7770{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -39,8 +39,8 @@ namespace default_namespace{
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                Class_7769 var_7769 = new Class_7769(tainted_3);
-                tainted_4 = var_7769.get_var_7769();
+                Class_1 var_1 = new Class_1(tainted_3);
+                tainted_4 = var_1.get_var_1();
             
                 //flaw
                 string query = "SELECT * FROM '" + tainted_4 + "'";

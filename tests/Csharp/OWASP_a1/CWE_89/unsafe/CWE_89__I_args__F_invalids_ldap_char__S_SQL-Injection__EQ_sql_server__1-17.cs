@@ -23,7 +23,7 @@ using System.Data.SqlClient;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass40883{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -32,7 +32,7 @@ namespace default_namespace{
                 tainted_0 = args[1];
             
             tainted_5 = tainted_0;
-            tainted_5 = function_40882(tainted_0);
+            tainted_5 = function_1(tainted_0);
             
                 //flaw
                 string query = "SELECT * FROM Articles WHERE id="+tainted_5;
@@ -56,11 +56,11 @@ namespace default_namespace{
         
         }
         
-                public static string function_40882(string param_40882 ){
+                public static string function_1(string param_1 ){
                     string tainted_2 = null;
             string tainted_3 = null;
 
-                    tainted_2 = param_40882;
+                    tainted_2 = param_1;
                     
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){

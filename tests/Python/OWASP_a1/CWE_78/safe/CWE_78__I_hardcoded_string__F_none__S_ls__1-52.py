@@ -23,8 +23,8 @@ import os
 import sys
 
 
-def function_898( param_898 ):
-    return param_898
+def function_1( param_1 ):
+    return param_1
 
 
 def main():
@@ -39,7 +39,7 @@ def main():
     # No filtering (sanitization)
     tainted_3 = tainted_2
 
-    tainted_4 = function_898(tainted_3)
+    tainted_4 = function_1(tainted_3)
 
 
     os.system('ls ' + tainted_4)

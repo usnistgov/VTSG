@@ -30,8 +30,8 @@ def main():
     tainted_0 = input()
     tainted_5 = tainted_0
 
-    var_176 = Class_176(tainted_0);
-    tainted_5 = var_176.get_var_176();
+    var_1 = Class_1(tainted_0);
+    tainted_5 = var_1.get_var_1();
 
     print(f'file "{ tainted_5 }" ', end='')
     #flaw

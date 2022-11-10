@@ -25,7 +25,7 @@ using System.IO;
 using System.Text;
 
 namespace default_namespace{
-    class MainClass38671{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_1 = null;
             string tainted_2 = null;
@@ -47,8 +47,8 @@ namespace default_namespace{
             
             tainted_3 = tainted_1;
             
-                Class_38670 var_38670 = new Class_38670(tainted_1);
-                tainted_2 = var_38670.get_var_38670();
+                Class_1 var_1 = new Class_1(tainted_1);
+                tainted_2 = var_1.get_var_1();
                 
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_2.Length; ++i){

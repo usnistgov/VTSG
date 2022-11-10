@@ -26,7 +26,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass56427{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;
@@ -52,7 +52,7 @@ namespace default_namespace{
                 //No filtering (sanitization)
                 tainted_3 = tainted_2;
             
-                tainted_4 = function_56426(tainted_3);
+                tainted_4 = function_1(tainted_3);
             
                 //flaw
                 string query = string.Format("//user[@name='{0}']",tainted_4);
@@ -71,8 +71,8 @@ namespace default_namespace{
         
         }
         
-                public static string function_56426(string param_56426 ){
-                    return param_56426 ;
+                public static string function_1(string param_1 ){
+                    return param_1 ;
                 }
 
 

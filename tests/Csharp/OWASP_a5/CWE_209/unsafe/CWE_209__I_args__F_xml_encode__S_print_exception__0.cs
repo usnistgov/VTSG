@@ -21,7 +21,7 @@ William Mentzer willmentzer20@gmail.com
 using System;
 
 namespace default_namespace{
-    class MainClass63651{
+    class MainClass1{
         public static void Main(string[] args){
             
             

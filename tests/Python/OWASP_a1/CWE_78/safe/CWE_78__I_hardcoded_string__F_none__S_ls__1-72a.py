@@ -35,8 +35,8 @@ def main():
     # No filtering (sanitization)
     tainted_3 = tainted_2
 
-    var_904 = Class_904(tainted_3)
-    tainted_4 = var_904.get_var_904()
+    var_1 = Class_1(tainted_3)
+    tainted_4 = var_1.get_var_1()
 
 
     os.system('ls ' + tainted_4)

@@ -25,7 +25,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 namespace default_namespace{
-    class MainClass54018{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -34,7 +34,7 @@ namespace default_namespace{
                 tainted_0 = args[1];
             
             tainted_5 = tainted_0;
-            tainted_5 = function_54017(tainted_0);
+            tainted_5 = function_1(tainted_0);
             
                 //flaw
                 string query = "//user[@name='" + tainted_5 + "']";
@@ -53,11 +53,11 @@ namespace default_namespace{
         
         }
         
-                public static string function_54017(string param_54017 ){
+                public static string function_1(string param_1 ){
                     string tainted_2 = null;
             string tainted_3 = null;
 
-                    tainted_2 = param_54017;
+                    tainted_2 = param_1;
                     
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);

@@ -25,7 +25,7 @@ using System.DirectoryServices;
 using System.IO;
 
 namespace default_namespace{
-    class MainClass49029{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_0 = null;
             string tainted_5 = null;
@@ -46,8 +46,8 @@ namespace default_namespace{
             
             tainted_5 = tainted_0;
             
-                Class_49028 var_49028 = new Class_49028(tainted_0);
-                tainted_5 = var_49028.get_var_49028();
+                Class_1 var_1 = new Class_1(tainted_0);
+                tainted_5 = var_1.get_var_1();
             
                 //flaw
                 string query = "(&(objectClass=person)(sn=" + tainted_5 + "))";
