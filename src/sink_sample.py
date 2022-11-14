@@ -1,7 +1,7 @@
 """
 sink_sample module
 
- *modified "Tue Nov  1 16:32:56 2022" *by "Paul E. Black"
+ *modified "Mon Nov 14 16:29:43 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -30,20 +30,20 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
     """
     # new sink module in the sink.xml file
     def __init__(self, sample):  # Add parameters showing the beginning and the end of the sample
-        Sample.__init__(self, sample, 'sink')
+        Sample.__init__(self, sample, 'sinks')
         self._input_type = sample.find("input_type").text
         if self.input_type is None:
-            print(f'[ERROR] Invalid empty <input_type></input_type> in the sink file.')
+            print(f'[ERROR] Invalid empty <input_type></input_type> in the sinks file.')
             print('An input_type is required: it selects filters with matching output_types (or inputs if the filter is "nofilter"). If no filter or input is needed, put "none".')
             exit(1)
         self._exec_type = sample.find("exec_type").text
         if self.exec_type is None:
-            print(f'[ERROR] Invalid empty <exec_type></exec_type> in the sink file.')
+            print(f'[ERROR] Invalid empty <exec_type></exec_type> in the sinks file.')
             print('An exec_type is required: it selects exec queries with matching types. If no exec query is needed, put "none".')
             exit(1)
         self._flaw_type = sample.find("flaw_type").text
         if self.flaw_type is None:
-            print(f'[ERROR] Invalid empty <flaw_type></flaw_type> in the sink file.')
+            print(f'[ERROR] Invalid empty <flaw_type></flaw_type> in the sinks file.')
             print('A flaw_type string is required; it is used in the name of the generated file.')
             exit(1)
         self._flaw_group = sample.find("flaw_type").get("flaw_group")

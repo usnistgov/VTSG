@@ -1,2 +1,2 @@
-[ERROR] Invalid empty <import></import> in the sink file.
+[ERROR] Invalid empty <import></import> in the sinks file.
 An import is required; it is used in the file template {{stdlib_imports}} section. If this needs no imports, remove <imports></imports>.

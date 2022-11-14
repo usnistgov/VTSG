@@ -1,2 +1,2 @@
-[ERROR] Invalid empty <input_type></input_type> in the sink file.
+[ERROR] Invalid empty <input_type></input_type> in the sinks file.
 An input_type is required: it selects filters with matching output_types (or inputs if the filter is "nofilter"). If no filter or input is needed, put "none".

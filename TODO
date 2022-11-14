@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Mon Nov 14 11:40:45 2022" *by "Paul E. Black"
+ *modified "Mon Nov 14 17:04:14 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -75,12 +75,8 @@ Adding a // flaw line is only done for sink modules.  (In generator.py, around l
 be capable of adding a //flaw line in any module.
 
 4 Nov 2022
-Make the names of language files consistent.  The files with input and sink modules
-are input.xml and sink.xml.  The file with filter modules is filtering.xml (a
-gerund).  The file with complexity and condition modules is complexities.xml
-(plural).  The file with execution query modules is exec_queries.xml (short name and
-plural).
-    File names are in file_manager.py.  The file names are in the template directories.
+Make the names of language modules consistent.  In particular, filter modules and
+functions are often referred to as "filtering".
 
 
 Make sure the PHP and C# code runs, that is, that the generated programs are valid.

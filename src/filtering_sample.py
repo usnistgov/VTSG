@@ -1,18 +1,18 @@
 """
 filtering_sample module
 
- *modified "Wed Oct 12 08:36:51 2022" *by "Paul E. Black"
+ *modified "Mon Nov 14 16:40:34 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
 
 
 class FilteringSample(Sample):  # Initialize rules, safety, code and escape
-    """FiletringSample class
+    """FilteringSample class
 
         Args :
-            **sample** (xml.etree.ElementTree.Element): The XML element containing the filtering tag in the \
-                                                          file "filtering.xml".
+            **sample** (xml.etree.ElementTree.Element): The XML element containing
+		the filter tag in the file "filters.xml".
 
         Attributes :
             **_input_type** (str): Type of input variable (private member, please use getter and setter).
@@ -25,7 +25,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
 
     # new version for new XML
     def __init__(self, sample):  # XML tree in parameter
-        Sample.__init__(self, sample, 'filtering')
+        Sample.__init__(self, sample, 'filters')
         self._input_type = sample.find("input_type").text
         self._output_type = sample.find("output_type").text
         self._flaws = {}
@@ -37,7 +37,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
             # optional attr: self.flaws[flaw_type]["attr"] = option["attr"] if "attr" in option["attr"] else None
 
     def __str__(self):
-        return (f'*** Filtering ***\n{super(FilteringSample, self)}\n' +
+        return (f'*** Filter ***\n{super(FilteringSample, self)}\n' +
                 f'\t input type: {self._input_type}\n' +
                 f'\toutput type: {self._output_type}\n' +
                 f'\tflaws: {self._flaws}\n\n')
@@ -65,7 +65,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
     @property
     def flaws(self):
         """
-        Collection of flaws for this filtering with safety.
+        Collection of flaws for this filter with safety.
 
         :getter: Returns this collection.
         :type: str
@@ -74,7 +74,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
 
     def get_flaws_types(self):
         """
-        Collection of flaws for this filtering with safety.
+        Collection of flaws for this filter with safety.
 
         :getter: Returns the keys of this collection.
         :type: list of str
@@ -83,7 +83,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
 
     def contains_flaw_type(self, flaw_type):
         """
-        Returns True if the flaws of the filtering sample is the same as the given one or if it's a generic filtering, \
+        Returns True if the flaws of the filter sample is the same as the given one or if it's a generic filter, \
         False otherwise.
 
         Args:
@@ -93,7 +93,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
 
     def is_safe(self, flaw_type):
         """
-        Check if current filtering is safe for the given flaw type.
+        Check if current filter is safe for the given flaw type.
 
         Args:
             **flaw_type** (str)
@@ -106,7 +106,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
 
     def is_unsafe(self, flaw_type):
         """
-        Check if current filtering is unsafe for the given flaw type.
+        Check if current filter is unsafe for the given flaw type.
 
         Args:
             **flaw_type** (str)
@@ -119,7 +119,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
 
     def compatible_with_sink(self, sink_sample):
         """
-        Return True if current filtering is compatible with given sink, False otherwise.
+        Return True if current filter is compatible with given sink, False otherwise.
 
         Args:
             **sink_sample** (:class:`.SinkSample`)

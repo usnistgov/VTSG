@@ -1,2 +1,2 @@
-[ERROR] Invalid empty <dir></dir> in the input file.
+[ERROR] Invalid empty <dir></dir> in the inputs file.
 A dir string is required; it is used in the name of the generated file.

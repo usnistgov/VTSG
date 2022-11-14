@@ -1,2 +1,2 @@
-[ERROR] Invalid empty <flaw_type></flaw_type> in the sink file.
+[ERROR] Invalid empty <flaw_type></flaw_type> in the sinks file.
 A flaw_type string is required; it is used in the name of the generated file.

@@ -1,7 +1,7 @@
 """
 Input Class (TODO DOC)
 
- *modified "Wed Oct 12 08:35:53 2022" *by "Paul E. Black"
+ *modified "Mon Nov 14 16:31:03 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -27,7 +27,7 @@ class InputSample(Sample):  # Initialize the type of input and the code paramete
 
     # compatible with new structure
     def __init__(self, sample):  # XML tree in parameter
-        Sample.__init__(self, sample, 'input')
+        Sample.__init__(self, sample, 'inputs')
         self._input_type = sample.find("input_type").text
         self._output_type = sample.find("output_type").text
         self._flaws = {}

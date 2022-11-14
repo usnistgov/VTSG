@@ -1,7 +1,7 @@
 """
 file_manager module
 
- *modified "Fri Nov  4 13:33:12 2022" *by "Paul E. Black"
+ *modified "Mon Nov 14 16:13:35 2022" *by "Paul E. Black"
 """
 
 import os
@@ -76,9 +76,9 @@ class FileManager(object):
         createdFile.close()
 
     _xml = {
-        "inputs": "input.xml",
-        "filters": "filtering.xml",
-        "sinks": "sink.xml",
+        "inputs": "inputs.xml",
+        "filters": "filters.xml",
+        "sinks": "sinks.xml",
         "exec_queries": "exec_queries.xml",
         "file_template": "file_template.xml",
         "complexities": "complexities.xml",
