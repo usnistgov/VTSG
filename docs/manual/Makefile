@@ -1,5 +1,5 @@
 # *created  "Wed Aug 26 15:06:04 2020" *by "Paul E. Black"
-# *modified "Tue Feb  8 11:19:54 2022" *by "Paul E. Black"
+# *modified "Mon Nov 14 13:51:49 2022" *by "Paul E. Black"
 
 TARGET=vulTestSuiteGenV3.pdf
 
@@ -8,6 +8,14 @@ all: ${TARGET}
 
 vulTestSuiteGenV3.bbl: vulTestSuiteGenV3.bib vulTestSuiteGenV3.tex
 	bibtex ${@:.bbl=}
+
+fig_example_code1.png: fig_example_code1.tif
+	echo export as .png
+	gimp $^
+
+fig_example_code2.png: fig_example_code2.tif
+	echo export as .png
+	gimp $^
 
 vulTestSuiteGenV3.pdf: vulTestSuiteGenV3.tex \
 	    vulTestSuiteGenV3.bbl \
