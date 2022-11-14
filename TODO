@@ -1,5 +1,5 @@
   *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu Nov 10 10:46:34 2022" *by "Paul E. Black"
+ *modified "Mon Nov 14 11:40:45 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -7,25 +7,72 @@ FIX BUGS - HANDLE ALL CURRENT LANGUAGES
 
 Eliminate initial superfluous newline at the beginning of file.
 
+6 Sep 2022
+Fix Python "Classes" complexity:
+The main file must import the class-defining file, e.g.
+from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22b import Class_884
+
 10 Nov 2022
 Add a "new case hook". That is, every time a new case is written, VTSG will run
 a script(?) you give as a "hook".  This takes advantage of modern
 multiprocessors.  While VTSG is generating cases, the generated cases can be
 checked or executed.
 
+7 Nov 2022
+Complexities are only wrapped around filters.  In Juliet they can wrap the sink (and
+the input, I think).  Maybe add markers in file_template.xml to indicate where
+complexities can go?  This would represent VTSG's current scheme:
+    {{begin_complexity}}
+    INDENT
+        {{filtering_content}}
+    DEDENT
+    {{end_complexity}}
+    {{sink_content}}
+Here's Juliet's scheme:
+    {{filtering_content}}
+    {{begin_complexity}}
+    INDENT
+        {{sink_content}}
+    DEDENT
+    {{end_complexity}}
 
-6 Sep 2022
-Fix Python "Classes" complexity:
-The main file must import the class-defining file, e.g.
-from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22b import Class_884
+7 Nov 2022
+There should be some way to put several pieces of generated code in the same case, to
+mimic Juliet's structure of having a bad version and one or more good versions in the
+same file.
 
-2 Nov 2022
-Reset the "variable name" counter for each test case.  That is, generate the same
-variable, function, etc. names for each case regardless of what was (or was not)
-generated before it.  For instance,
-    i_890 = 1
-    for x in range(0, i_890):
-If more or fewer cases were generated before this one, the name i_890 will differ.
+7 Nov 2022
+An unrecognized input module input_type, that is, one that doesn't appear in the
+file_template, results in variables with no initialization:
+    tainted_0 =
+    tainted_1 =
+There should be a check or warning about this.
+Note: get_init_var_code() in file_template.py return empty string if type is not
+found.  The only place it is called, complexities_generator.py line 283, checks for
+invalid return, but it checks for (not) None.
+    Different or custom types make it easier to connect certain flaw templates with
+the proper initialization or input.
+
+A higher level capability is to allow "qualified" types, e.g.
+    <intput_type>int,primesOnly</input_type>
+so flaws that need a particular "input" to be "hooked" to modules that produce that
+particular output.
+
+9 Nov 2022
+Any module should be able to add imports or global declarations.  Specifically,
+conditions or complexities may exercise certain libraries or packages.
+    This allows file_template to be smaller, only including, say math, when it is
+needed.
+
+9 Nov 2022
+VTSG doesn't have any notion of a fixed "support" file.  That is, a file written by
+the developer that the test cases (may) need in order to execute.  This is like
+testcasesupport files, for instance, io.c or std_testcase.h.
+
+7 Nov 2022
+Adding a // flaw line is only done for sink modules.  (In generator.py, around line
+430; search for # add comment into code ...)  To be more general, perhaps VTSG should
+be capable of adding a //flaw line in any module.
 
 4 Nov 2022
 Make the names of language files consistent.  The files with input and sink modules
