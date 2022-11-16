@@ -1,5 +1,5 @@
-  *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Mon Nov 14 17:04:14 2022" *by "Paul E. Black"
+*created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
+ *modified "Wed Nov 16 15:34:40 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -12,16 +12,20 @@ Fix Python "Classes" complexity:
 The main file must import the class-defining file, e.g.
 from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22b import Class_884
 
-10 Nov 2022
-Add a "new case hook". That is, every time a new case is written, VTSG will run
-a script(?) you give as a "hook".  This takes advantage of modern
-multiprocessors.  While VTSG is generating cases, the generated cases can be
-checked or executed.
+16 Nov 2022
+Explain in manual what "supported" complexity types and groups do.  That is, *any*
+string can be placed in type or group, but some strings trigger special functions in
+VTSG.
+
+Add examples of how to code things or how to use options, like need_id.
+
+Maybe add a diagram showing how output_type of one module "hooks" to the input_type
+of the next module?
 
 7 Nov 2022
 Complexities are only wrapped around filters.  In Juliet they can wrap the sink (and
 the input, I think).  Maybe add markers in file_template.xml to indicate where
-complexities can go?  This would represent VTSG's current scheme:
+complexities can go?  VTSG's current scheme would be represented as:
     {{begin_complexity}}
     INDENT
         {{filtering_content}}
@@ -35,11 +39,6 @@ Here's Juliet's scheme:
         {{sink_content}}
     DEDENT
     {{end_complexity}}
-
-7 Nov 2022
-There should be some way to put several pieces of generated code in the same case, to
-mimic Juliet's structure of having a bad version and one or more good versions in the
-same file.
 
 7 Nov 2022
 An unrecognized input module input_type, that is, one that doesn't appear in the
@@ -60,23 +59,41 @@ particular output.
 
 9 Nov 2022
 Any module should be able to add imports or global declarations.  Specifically,
-conditions or complexities may exercise certain libraries or packages.
-    This allows file_template to be smaller, only including, say math, when it is
-needed.
+conditions or complexities may exercise certain libraries or packages or may need a
+global variable declared.
+    This allows file_template to be smaller.  The final code only includes say, math,
+when it is needed.
+
+Allow modules, other than complexities, to have <body></body> code. (Now you can put
+ANYTHING in the XML, and anything unrecognized is just ignored.)
 
 9 Nov 2022
 VTSG doesn't have any notion of a fixed "support" file.  That is, a file written by
 the developer that the test cases (may) need in order to execute.  This is like
 testcasesupport files, for instance, io.c or std_testcase.h.
+    This support file would have to be copied into any directory where test cases are
+placed. 
+
+7 Nov 2022
+There should be some way to put several pieces of generated code in the same case, to
+mimic Juliet's structure of having a bad version and one or more good versions in the
+same file.
 
 7 Nov 2022
 Adding a // flaw line is only done for sink modules.  (In generator.py, around line
 430; search for # add comment into code ...)  To be more general, perhaps VTSG should
 be capable of adding a //flaw line in any module.
 
+10 Nov 2022
+Add a "new case hook". That is, every time a new case is written, VTSG will run
+a script(?) you give as a "hook".  This takes advantage of modern
+multiprocessors.  While VTSG is generating cases, the generated cases can be
+checked or executed.
+
 4 Nov 2022
 Make the names of language modules consistent.  In particular, filter modules and
 functions are often referred to as "filtering".
+   Change language entries from {{ filtering_content }} to {{ filter_content }}?
 
 
 Make sure the PHP and C# code runs, that is, that the generated programs are valid.

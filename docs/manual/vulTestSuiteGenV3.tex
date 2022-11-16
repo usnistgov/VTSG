@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Mon Nov 14 17:00:40 2022" *by "Paul E. Black"
+% *modified "Wed Nov 16 15:51:22 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1622,9 +1622,15 @@ complexity modules are inside \verb|<complexities>|.
     \item type: Supported types are: \verb|if|, \verb|switch|, \verb|goto|, 
     \verb|for|, \verb|foreach|, \verb|while|, \\
     \verb|function|, and \verb|class|.
+    If the type is \verb|class|, source code in the \verb|<body></body>| is placed in
+    an additional file that is created the this case.
+    Invocation statements are generated for \verb|function| and \verb|class| types.
+    An extra variable is created for \verb|foreach| types (with group \verb|loops|).
+    No other type has any effect on VTSG.
 
     \item group: Supported groups are: \verb|conditionals|, \verb|jumps|, 
     \verb|loops|, \verb|functions|, and \\ \verb|classes|.
+    No group, other than \verb|loops|, has any effect on VTSG.
 
     \item executed: whether the placeholder will be executed or not. Four 
     values are allowed:
@@ -1743,7 +1749,7 @@ complexity modules are inside \verb|<complexities>|.
 
     \item body: additional source code not in the main execution flow,
     e.g., functions or classes.  This code is placed in a separate file
-    for the case. (optional)
+    of the case if the type is \verb|class|. (optional)
 \end{itemize}
 
 
@@ -1823,6 +1829,8 @@ VTSG names test case files as
     \end{itemize}
     \item x: Sequence of the file within the test.  If the test consists of just one
       file, there is no sequence letter.  If the test consists of more than one file,
+      that is, when the complexity \verb|type| is \verb|class|,
+      see Sec.~\ref{sec: complexity modules},
       the main file is ``a'', and other files, such as classes, are ``b'', ``c'',
       ``d'', etc.
     \item EXT: file extension, given in the \verb|file_template.xml| file, see
@@ -1897,9 +1905,9 @@ Tables~\ref{tab:complexity IDs for CSharp} and
 \ref{tab:condition IDs for CSharp} help us decode them.
 The first, outer complexity is 11 with condition 7. 11 is \verb|while|,
 Fig.~\ref{fig:example complexity-while file}, 
-with condition 7 means \verb|Math.Sqrt(42)<=42|, which always evaluates to true,
+with condition 7 meaning \verb|Math.Sqrt(42)<=42|, which always evaluates to true,
 Fig.~\ref{fig:example complexity-test file}.
-The second, inner complexity is 20 means the sink code is executed in the class body,
+The second, inner complexity is 20 meaning the sink code is executed in the class body,
 Fig.~\ref{fig:example complexity-method file}.
 
 \noindent ``a'' means this is the main file.
