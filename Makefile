@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Nov  9 11:01:30 2022" *by "Paul E. Black"
+# *modified "Wed Nov 23 10:02:14 2022" *by "Paul E. Black"
 
 default: genPython
 
@@ -145,26 +145,17 @@ test014: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
 	(cd $$(ls -dt TestSuite_*/test014 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test014/$$f;done)
 
-# tests for fatal misuses of INDENT ... ENDINDENT
+# tests for misuses of INDENT ... DEDENT
 testIndent: test016 test017
 	@echo test INDENT...ENDINDENT succeeded
 
 test016: $(VTSG_FILES)
-	@echo =====================================================================================
-	@echo The next test should fail with INDENT line without a matching ENDINDENT
-	@echo =====================================================================================
-	sleep 2
-	-python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test016 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test016/$$f;done)
-	sleep 1
+	python3 vtsg.py -l $@ -t tests/templates | tee $(@)_photo | head -2
+	diff $(@)_photo tests/$(@)_photo
 
 test017: $(VTSG_FILES)
-	@echo =====================================================================================
-	@echo The next test should fail with ENDINDENT without a matching INDENT before generating any files
-	@echo =====================================================================================
-	sleep 2
-	-python3 vtsg.py -l $@ -t tests/templates
-	sleep 1
+	python3 vtsg.py -l $@ -t tests/templates | tee $(@)_photo | head -2
+	diff $(@)_photo tests/$(@)_photo
 
 test020: $(VTSG_FILES) src/sarif_writer.py
 	python3 vtsg.py -l $@ -t tests/templates
@@ -172,6 +163,6 @@ test020: $(VTSG_FILES) src/sarif_writer.py
 
 # remove stuff left from running built-in tests
 clean:
-	rm -rf TestSuite_* TestPhoto_* TestCLI*_photo test00*_photo
+	rm -rf TestSuite_* TestPhoto_* TestCLI*_photo test0*_photo
 
 # end of Makefile

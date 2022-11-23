@@ -1,5 +1,5 @@
 # *created  "Mon Aug  3 16:47:40 2020" *by "Paul E. Black"
-# *modified "Fri Nov  4 14:01:54 2022" *by "Paul E. Black"
+# *modified "Wed Nov 23 09:52:04 2022" *by "Paul E. Black"
 """
 Functions to synthesize pieces of code.
 """
@@ -40,7 +40,7 @@ def make_assign(left_hand_side, right_hand_side, language_template_class):
     return left_hand_side + " = " + right_hand_side + statement_terminator
 
 
-def fix_indents(code, indent):
+def fix_indents(code, indent_str):
     ''' Fix up all the indentation within INDENT ... DEDENT sections in the code.
 
         This processes the code line by line. Sections to be fixed are indicated by
@@ -86,7 +86,10 @@ INDENT            text after INDENT is ignored
         if re.match('^\s*INDENT', line):
             indent_depth += 1
         elif re.match('^\s*DEDENT', line):
-            assert indent_depth > 0 # DEDENT without a matching INDENT
+            if indent_depth < 1:
+                print(f'[ERROR] DEDENT without matching INDENT in this code:')
+                print(f'{code}')
+                exit(1)
             indent_depth -= 1
         else:
             if indent_depth > 0:
@@ -95,9 +98,13 @@ INDENT            text after INDENT is ignored
                 line = line.lstrip()
                 if line != '':
                     # step 2: add indent_depth indents
-                    line = (indent * indent_depth) + line
+                    line = (indent_str * indent_depth) + line
             final_content += line + '\n'
-    assert indent_depth == 0 # INDENT line without a matching DEDENT
+
+    if indent_depth != 0:
+        print(f'[ERROR] INDENT(s) without matching DEDENT(s) in this code:')
+        print(f'{code}')
+        exit(1)
 
     return final_content
 

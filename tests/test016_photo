@@ -1,0 +1,51 @@
+[ERROR] INDENT(s) without matching DEDENT(s) in this code:
+
+'''
+Hardcoded string input
+no filtering
+sink: run ls in a dir
+'''
+'''
+Created by Paul E. Black and William Mentzer 2020
+
+This software was developed at the National Institute of Standards and Technology
+by employees of the Federal Government in the course of their official duties.
+Pursuant to title 17 Section 105 of the United States Code the software is not
+subject to copyright protection and are in the public domain.
+
+We would appreciate acknowledgment if the software is used.
+
+Paul E. Black  paul.black@nist.gov
+William Mentzer willmentzer20@gmail.com
+
+'''
+import os
+
+
+def main():
+INDENT
+    tainted_2 = None
+    tainted_3 = None
+
+    tainted_2 = "-d /;echo Vulnerability: user command run"
+    tainted_3 = tainted_2
+    
+        while True:
+	INDENT
+                
+        # No filtering (sanitization)
+        tainted_3 = tainted_2
+            
+                if(1==1):
+		INDENT
+                        break
+		NOTDEDENT
+                break
+	DEDENT
+    
+        
+        os.system('ls ' + tainted_3)
+            
+DEDENT
+if __name__ == '__main__':
+        main()
