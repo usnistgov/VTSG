@@ -36,9 +36,9 @@ def main():
         tainted_3 = tainted_2
 
     elif not 1==1:
-        {}
+        pass
     else:
-        {}
+        pass
 
     print(f'file "{ tainted_3 }" ', end='')
     #flaw

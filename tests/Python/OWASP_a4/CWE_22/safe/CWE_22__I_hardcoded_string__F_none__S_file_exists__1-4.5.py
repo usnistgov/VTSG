@@ -36,7 +36,7 @@ def main():
         tainted_3 = tainted_2
 
     elif not (math.pow(4, 2)<=42):
-        {}
+        pass
 
     print(f'file "{ tainted_3 }" ', end='')
 

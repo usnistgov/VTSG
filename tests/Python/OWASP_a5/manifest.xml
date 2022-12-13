@@ -1,0 +1,15 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2022-12-13</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_12-13-2022_15h28m27/Python/OWASP_a5/CWE_209/unsafe/CWE_209__I_args__F_none__S_info_expose__0.py" language="Python">
+			<flaw line="47" name ="CWE_209"/>
+		</file>
+
+	</testcase>
+
+</container>

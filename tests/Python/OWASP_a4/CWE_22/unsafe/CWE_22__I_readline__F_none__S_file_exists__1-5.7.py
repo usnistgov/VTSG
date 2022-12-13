@@ -31,7 +31,7 @@ def main():
     tainted_3 = tainted_2
 
     if (math.sqrt(42)<=42):
-        {}
+        pass
     elif not (math.sqrt(42)<=42):
 
         # No filtering (sanitization)

@@ -31,9 +31,9 @@ def main():
     tainted_3 = tainted_2
 
     if (math.pow(4, 2)<=42):
-        {}
+        pass
     elif not (math.pow(4, 2)<=42):
-        {}
+        pass
     else:
 
         # No filtering (sanitization)

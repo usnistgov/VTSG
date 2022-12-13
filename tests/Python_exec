@@ -7,7 +7,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-1.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-1.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-1.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-1.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-1.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-1.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-1.4.py
@@ -31,13 +43,31 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-12.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-13.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-14.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-2.1.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-2.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-2.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-2.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-2.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-2.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-2.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-2.4.py
@@ -61,7 +91,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20.4.py
@@ -79,13 +121,61 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20.8.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-20n.8.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-21.1.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-21.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-21.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-21.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-21.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-21.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-21.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-21.4.py
@@ -115,7 +205,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-3.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-3.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-3.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-3.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-3.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-3.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-3.4.py
@@ -139,7 +241,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-4.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-4.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-4.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-4.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-4.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-4.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-4.4.py
@@ -163,7 +277,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-5.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-5.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-5.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-5.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-5.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-5.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-5.4.py
@@ -196,7 +322,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-6.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-6.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-6.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-6.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-6.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-6.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-6.4.py
@@ -220,7 +358,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-7.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-7.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-7.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-7.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-7.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-7.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-7.4.py
@@ -250,7 +400,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-8.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-8.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-8.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-8.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-8.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-8.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-8.4.py
@@ -268,6 +430,12 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-8.8.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-j16e.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__1-j16n.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__0.py
 /
 Vulnerable: user command run
@@ -277,7 +445,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-1.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-1.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-1.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-1.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-1.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-1.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-1.4.py
@@ -301,13 +481,31 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-12.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-13.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-14.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-2.1.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-2.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-2.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-2.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-2.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-2.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-2.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-2.4.py
@@ -331,7 +529,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20.4.py
@@ -349,13 +559,61 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20.8.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-20n.8.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-21.1.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-21.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-21.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-21.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-21.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-21.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-21.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-21.4.py
@@ -385,7 +643,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-3.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-3.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-3.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-3.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-3.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-3.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-3.4.py
@@ -409,7 +679,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-4.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-4.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-4.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-4.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-4.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-4.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-4.4.py
@@ -433,7 +715,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-5.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-5.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-5.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-5.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-5.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-5.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-5.4.py
@@ -466,7 +760,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-6.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-6.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-6.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-6.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-6.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-6.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-6.4.py
@@ -490,7 +796,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-7.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-7.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-7.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-7.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-7.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-7.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-7.4.py
@@ -520,7 +838,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-8.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-8.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-8.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-8.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-8.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-8.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-8.4.py
@@ -538,6 +868,12 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-8.8.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-j16e.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_args__F_none__S_ls__1-j16n.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__0.py
 /
 Vulnerable: user command run
@@ -547,7 +883,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-1.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-1.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-1.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-1.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-1.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-1.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-1.4.py
@@ -571,13 +919,31 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-12.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-13.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-14.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-2.1.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-2.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-2.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-2.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-2.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-2.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-2.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-2.4.py
@@ -601,7 +967,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20.4.py
@@ -619,13 +997,61 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20.8.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-20n.8.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-21.1.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-21.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-21.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-21.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-21.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-21.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-21.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-21.4.py
@@ -655,7 +1081,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-3.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-3.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-3.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-3.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-3.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-3.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-3.4.py
@@ -679,7 +1117,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-4.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-4.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-4.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-4.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-4.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-4.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-4.4.py
@@ -703,7 +1153,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-5.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-5.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-5.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-5.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-5.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-5.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-5.4.py
@@ -736,7 +1198,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-6.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-6.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-6.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-6.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-6.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-6.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-6.4.py
@@ -760,7 +1234,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-7.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-7.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-7.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-7.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-7.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-7.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-7.4.py
@@ -790,7 +1276,19 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-8.2.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-8.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-8.2v.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-8.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-8.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-8.3v.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-8.4.py
@@ -808,13 +1306,27 @@ Vulnerable: user command run
 ./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-8.8.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-j16e.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE_78/unsafe/CWE_78__I_readline__F_none__S_ls__1-j16n.py
+/
+Vulnerable: user command run
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__0.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-1.1.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-1.2.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-1.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-1.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-1.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-1.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-1.3v.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-1.4.py
 file "-d /;echo Vulnerable: user command run" does not exist
@@ -830,11 +1342,23 @@ file "-d /;echo Vulnerable: user command run" does not exist
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-12.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-13.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-14.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-2.1.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-2.2.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-2.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-2.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-2.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-2.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-2.3v.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-2.4.py
 file "-d /;echo Vulnerable: user command run" does not exist
@@ -850,7 +1374,15 @@ file "-d /;echo Vulnerable: user command run" does not exist
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20.2.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20.3v.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20.4.py
 file "-d /;echo Vulnerable: user command run" does not exist
@@ -862,11 +1394,43 @@ file "-d /;echo Vulnerable: user command run" does not exist
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20.8.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.1.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.2.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.3v.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.4.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.5.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.6.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.7.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-20n.8.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-21.1.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-21.2.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-21.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-21.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-21.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-21.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-21.3v.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-21.4.py
 file "-d /;echo Vulnerable: user command run" does not exist
@@ -886,7 +1450,15 @@ file "-d /;echo Vulnerable: user command run" does not exist
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-3.2.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-3.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-3.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-3.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-3.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-3.3v.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-3.4.py
 file "-d /;echo Vulnerable: user command run" does not exist
@@ -902,7 +1474,15 @@ file "-d /;echo Vulnerable: user command run" does not exist
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-4.2.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-4.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-4.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-4.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-4.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-4.3v.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-4.4.py
 file "-d /;echo Vulnerable: user command run" does not exist
@@ -918,7 +1498,15 @@ file "-d /;echo Vulnerable: user command run" does not exist
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-5.2.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-5.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-5.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-5.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-5.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-5.3v.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-5.4.py
 file "-d /;echo Vulnerable: user command run" does not exist
@@ -940,7 +1528,15 @@ file "-d /;echo Vulnerable: user command run" does not exist
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-6.2.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-6.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-6.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-6.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-6.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-6.3v.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-6.4.py
 file "-d /;echo Vulnerable: user command run" does not exist
@@ -956,7 +1552,15 @@ file "-d /;echo Vulnerable: user command run" does not exist
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-7.2.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-7.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-7.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-7.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-7.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-7.3v.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-7.4.py
 file "-d /;echo Vulnerable: user command run" does not exist
@@ -978,7 +1582,15 @@ Class case - do not execute
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-8.2.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-8.2u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-8.2v.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-8.3.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-8.3u.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-8.3v.py
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-8.4.py
 file "-d /;echo Vulnerable: user command run" does not exist
@@ -990,13 +1602,25 @@ file "-d /;echo Vulnerable: user command run" does not exist
 file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-8.8.py
 file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-j16e.py
+file "-d /;echo Vulnerable: user command run" does not exist
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string__F_none__S_file_exists__1-j16n.py
+file "-d /;echo Vulnerable: user command run" does not exist
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__0.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-1.1.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-1.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-1.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-1.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-1.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-1.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-1.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-1.4.py
 file "/Users" ...
@@ -1012,11 +1636,23 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-12.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-13.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-14.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-2.1.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-2.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-2.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-2.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-2.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-2.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-2.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-2.4.py
 file "/Users" ...
@@ -1032,7 +1668,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20.4.py
 file "/Users" ...
@@ -1044,11 +1688,43 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20.8.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.1.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.2.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.2v.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.3v.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.4.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.5.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.6.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.7.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-20n.8.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-21.1.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-21.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-21.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-21.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-21.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-21.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-21.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-21.4.py
 file "/Users" ...
@@ -1068,7 +1744,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-3.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-3.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-3.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-3.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-3.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-3.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-3.4.py
 file "/Users" ...
@@ -1084,7 +1768,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-4.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-4.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-4.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-4.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-4.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-4.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-4.4.py
 file "/Users" ...
@@ -1100,7 +1792,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-5.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-5.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-5.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-5.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-5.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-5.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-5.4.py
 file "/Users" ...
@@ -1122,7 +1822,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-6.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-6.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-6.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-6.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-6.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-6.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-6.4.py
 file "/Users" ...
@@ -1138,7 +1846,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-7.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-7.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-7.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-7.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-7.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-7.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-7.4.py
 file "/Users" ...
@@ -1160,7 +1876,15 @@ Class case - do not execute
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-8.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-8.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-8.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-8.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-8.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-8.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-8.4.py
 file "/Users" ...
@@ -1172,13 +1896,25 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-8.8.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-j16e.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_args__F_none__S_file_exists__1-j16n.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__0.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-1.1.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-1.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-1.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-1.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-1.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-1.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-1.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-1.4.py
 file "/Users" ...
@@ -1194,11 +1930,23 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-12.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-13.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-14.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-2.1.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-2.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-2.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-2.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-2.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-2.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-2.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-2.4.py
 file "/Users" ...
@@ -1214,7 +1962,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20.4.py
 file "/Users" ...
@@ -1226,11 +1982,43 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20.8.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.1.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.2.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.2v.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.3v.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.4.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.5.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.6.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.7.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-20n.8.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-21.1.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-21.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-21.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-21.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-21.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-21.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-21.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-21.4.py
 file "/Users" ...
@@ -1250,7 +2038,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-3.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-3.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-3.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-3.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-3.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-3.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-3.4.py
 file "/Users" ...
@@ -1266,7 +2062,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-4.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-4.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-4.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-4.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-4.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-4.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-4.4.py
 file "/Users" ...
@@ -1282,7 +2086,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-5.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-5.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-5.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-5.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-5.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-5.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-5.4.py
 file "/Users" ...
@@ -1304,7 +2116,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-6.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-6.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-6.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-6.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-6.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-6.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-6.4.py
 file "/Users" ...
@@ -1320,7 +2140,15 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-7.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-7.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-7.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-7.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-7.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-7.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-7.4.py
 file "/Users" ...
@@ -1342,7 +2170,15 @@ Class case - do not execute
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-8.2.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-8.2u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-8.2v.py
+file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-8.3.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-8.3u.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-8.3v.py
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-8.4.py
 file "/Users" ...
@@ -1354,3 +2190,16 @@ file "/Users" ...
 file "/Users" ...
 ./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-8.8.py
 file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-j16e.py
+file "/Users" ...
+./OWASP_a4/CWE_22/unsafe/CWE_22__I_readline__F_none__S_file_exists__1-j16n.py
+file "/Users" ...
+./OWASP_a5/CWE_209/unsafe/CWE_209__I_args__F_none__S_info_expose__0.py
+Current sum: -10.7
+Current sum: 2.5
+Current sum: 26.7
+Current sum: 41.0
+Current sum: 46.5
+Current sum: 102.6
+Current sum: 934.2
+TypeError: 'float' object cannot be interpreted as an integer: for i in range(934.2):

@@ -36,7 +36,7 @@ def main():
         tainted_3 = tainted_2
 
     else:
-        {}
+        pass
 
 
     os.system('ls ' + tainted_3)

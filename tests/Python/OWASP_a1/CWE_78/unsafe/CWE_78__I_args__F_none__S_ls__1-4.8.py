@@ -36,7 +36,7 @@ def main():
         tainted_3 = tainted_2
 
     elif not (math.sqrt(42)>=42):
-        {}
+        pass
 
     #flaw
     os.system('ls ' + tainted_3)

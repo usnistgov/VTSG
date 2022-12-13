@@ -1,11 +1,20 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Wed Nov 16 15:34:40 2022" *by "Paul E. Black"
+ *modified "Wed Nov 23 11:35:22 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
 
 Eliminate initial superfluous newline at the beginning of file.
+
+23 Nov 2022
+Thoroughly document what various attributes in complexities do. For instance,
+• indirection: “1” if the code is split into two chunks (call and declaration) or
+  calls a function. The body tag should be present when calling a function.
+What does indirection="1" DO to the final code?? Does indirection="0" do anything,
+that is, is this an optional flag?  Other attributes that need more explanation are
+• need_id
+• in_out_var (especially the magic that happens when the value is "traversal")
 
 6 Sep 2022
 Fix Python "Classes" complexity:
@@ -21,6 +30,58 @@ Add examples of how to code things or how to use options, like need_id.
 
 Maybe add a diagram showing how output_type of one module "hooks" to the input_type
 of the next module?
+
+18 Nov 2022
+Separate generation of cases from the cases being generated.  That is, have a
+class for the case being generated different from the generator.  Many generator
+class flags and data are not needed for the case:
+    date  Human readable date of the generation.
+    _max_recursion Max level of recursion with complexities
+    _number_generated Number of triplets (input,filter,sink) to generate
+    dir_name  Directory name of the folder containing generated cases.
+    manifest object to complete the manifest file with references to generated files.
+    safe_sample Counter for safe sample.
+    unsafe_sample Counter for unsafe sample.
+    report (dict): The report for each group of flaws.
+    flaw_type_user Flaw types entered by user for the generation.
+    flaw_group_user Flaw groups entered by user for the generation.
+    start (float): Starting time of the generation.
+    end (float): Ending generate time.
+    tab_input all input modules.
+    tab_filtering all filter modules.
+    tab_sink all sink modules.
+    tab_exec_queries all exec query modules.
+    tab_complexity all complexity possibilities.
+    tab_condition all condition possibilities.
+    ?file_template FileTemplate the template for current langage.
+    map_flaw_group dict associating flaws with flaw groups
+
+Here is the beginning of code for this
+
+class Test_Case:
+    """This is a single test case.  The various modules are composed to make all the
+    source code for a complete test case.  The source code is eventually written to
+    disk and logged for the report and manifest."""
+
+    def __init__(self, input_module, filter_module, complexities, sink_module,
+                 exec_query_module):
+        self.input_module      = input_module
+        self.filter_module     = filter_module
+        self.complexities      = complexities
+        self.sink_module       = sink_module
+        self.exec_query_module = exec_query_module
+
+Add in generator.py about line 98:
+        test_cases = []
+
+Add in generator.py about line 376:
+        # Save this combination
+        new_case = Test_Case(self.current_input, self.current_filter,
+                             self.current_sink,  self.current_exec_queries,
+                             self.complexities_queue)
+        self.test_cases.append(new_case)
+
+
 
 7 Nov 2022
 Complexities are only wrapped around filters.  In Juliet they can wrap the sink (and
@@ -78,6 +139,22 @@ placed.
 There should be some way to put several pieces of generated code in the same case, to
 mimic Juliet's structure of having a bad version and one or more good versions in the
 same file.
+
+23 Nov 2022
+Enhance the Juliet/Python tests with THREE variable scopes if you want to make sure
+analyzers follow Python scope rules.
+    Change localFive and globalFive to localConst and globalConst, and add an
+enclosingConst.  These can be combinations of 5 or not 5.  Refer to scopeConst, e.g.
+    def f():
+        scopeConst = 6
+
+	def g():
+	    scopeConst = 5
+
+	    if scopeConst == 5:
+	        # this will always execute . . .
+or perhaps
+	scopeConst = globalConst
 
 7 Nov 2022
 Adding a // flaw line is only done for sink modules.  (In generator.py, around line

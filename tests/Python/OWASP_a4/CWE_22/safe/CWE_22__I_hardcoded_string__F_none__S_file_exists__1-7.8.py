@@ -31,14 +31,14 @@ def main():
     tainted_3 = tainted_2
 
     if (math.sqrt(42)>=42):
-        {}
+        pass
     elif not (math.sqrt(42)>=42):
 
         # No filtering (sanitization)
         tainted_3 = tainted_2
 
     else:
-        {}
+        pass
 
     print(f'file "{ tainted_3 }" ', end='')
 

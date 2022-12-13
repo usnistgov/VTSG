@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Nov 23 10:02:14 2022" *by "Paul E. Black"
+# *modified "Tue Dec 13 16:42:51 2022" *by "Paul E. Black"
 
 default: genPython
 
@@ -24,7 +24,7 @@ genCsharp: $(VTSG_FILES)
 genPHP: $(VTSG_FILES)
 	tests/gen_and_check php
 
-# this produces 546 cases
+# this produces 883 cases
 genPython: $(VTSG_FILES)
 	tests/gen_and_check py
 

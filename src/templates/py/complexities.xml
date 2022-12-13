@@ -46,9 +46,100 @@
         <condition id="8">
             <code>(math.sqrt(42)>=42)</code>
             <value>False</value>
-       </condition>
+        </condition>
 
-        <!-- TODO add other conditions-->
+        <!-- Juliet flow variants. "u" is always true; "v" is always false -->
+        <condition id="2u">
+            <code>True</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="2v">
+            <code>False</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="3u">
+            <code>5 == 5</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="3v">
+            <code>5 != 5</code>
+            <value>False</value>
+        </condition>
+
+<!-- These require extra support code
+        <condition id="4u">
+            <code>globalTrue</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="4v">
+            <code>globalFalse</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="5u">
+            <code>localTrue</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="5v">
+            <code>localFalse</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="6u">
+            <code>localFive == 5</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="6v">
+            <code>localFive != 5</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="8u">
+            <code>localReturnsTrue()</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="8v">
+            <code>localReturnsFalse()</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="10u">
+            <code>julietpy_support.extTrue</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="10v">
+            <code>julietpy_support.extFalse</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="11u">
+            <code>julietpy_support.extReturnsTrue()</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="11v">
+            <code>julietpy_support.extReturnsFalse()</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="13u">
+            <code>julietpy_support.extFive == 5</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="13v">
+            <code>julietpy_support.extFive != 5</code>
+            <value>False</value>
+        </condition>
+ -->
     </conditions>
 
     <complexities>
@@ -78,7 +169,7 @@
 	DEDENT
         else:
 	INDENT
-                {}
+                pass
 	DEDENT
             </code>
         </complexity>
@@ -87,7 +178,7 @@
             <code>
         if {{ condition }}:
 	INDENT
-                {}
+                pass
 	DEDENT
         else:
         INDENT
@@ -104,7 +195,7 @@
 	DEDENT
         elif not {{ condition }}:
 	INDENT
-                {}
+                pass
 	DEDENT
             </code>
         </complexity>
@@ -113,7 +204,7 @@
             <code>
         if {{ condition }}:
 	INDENT
-                {}
+                pass
 	DEDENT
         elif not {{ condition }}:
 	INDENT
@@ -130,11 +221,11 @@
 	DEDENT
         elif not {{ condition }}:
 	INDENT
-                {}
+                pass
 	DEDENT
         else:
         INDENT
-                {}
+                pass
         DEDENT
             </code>
         </complexity>
@@ -143,7 +234,7 @@
             <code>
         if {{ condition }}:
 	INDENT
-                {}
+                pass
 	DEDENT
         elif not {{ condition }}:
 	INDENT
@@ -151,7 +242,7 @@
 	DEDENT
         else:
         INDENT
-                {}
+                pass
         DEDENT
             </code>
         </complexity>
@@ -160,11 +251,11 @@
             <code>
 	if {{condition}}:
 	INDENT
-                {}
+                pass
 	DEDENT
         elif not {{condition}}:
 	INDENT
-                {}
+                pass
 	DEDENT
         else:
         INDENT
@@ -206,7 +297,59 @@
             </code>
         </complexity>
 
+        <complexity id="13" type="switch" group="conditionals" executed="1">
+            <code>
+	match 7:
+	INDENT
+            case 6:
+	    INDENT
+                pass
+	    DEDENT
+            case _:
+	    INDENT
+                {{ placeholder }}
+	    DEDENT
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="14" type="switch" group="conditionals" executed="0">
+            <code>
+	match 7:
+	INDENT
+            case 6:
+	    INDENT
+                {{ placeholder }}
+	    DEDENT
+            case _:
+	    INDENT
+                pass
+	    DEDENT
+	DEDENT
+            </code>
+        </complexity>
+
         <!--Conditional and unconditional loops -->
+
+        <complexity id="j16e" type="while" group="loops" executed="1">
+            <code>
+        while True:
+	INDENT
+                {{ placeholder }}
+                break
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="j16n" type="while" group="loops" executed="0">
+            <code>
+        while True:
+	INDENT
+                break
+                {{ placeholder }}
+	DEDENT
+            </code>
+        </complexity>
 
         <complexity id="20" type="while" group="loops" executed="condition">
             <code>
@@ -214,6 +357,16 @@
 	INDENT
                 {{ placeholder }}
                 break
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="20n" type="while" group="loops" executed="0" need_condition="1">
+            <code>
+        while {{ condition }}:
+	INDENT
+                break
+                {{ placeholder }}
 	DEDENT
             </code>
         </complexity>

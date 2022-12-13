@@ -36,9 +36,9 @@ def main():
         tainted_3 = tainted_2
 
     elif not (math.pow(4, 2)>=42):
-        {}
+        pass
     else:
-        {}
+        pass
 
 
     os.system('ls ' + tainted_3)

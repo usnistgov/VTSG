@@ -31,14 +31,14 @@ def main():
     tainted_3 = tainted_2
 
     if 1==1:
-        {}
+        pass
     elif not 1==1:
 
         # No filtering (sanitization)
         tainted_3 = tainted_2
 
     else:
-        {}
+        pass
 
 
     os.system('ls ' + tainted_3)

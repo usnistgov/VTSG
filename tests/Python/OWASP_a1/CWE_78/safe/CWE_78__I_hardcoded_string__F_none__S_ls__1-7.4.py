@@ -31,14 +31,14 @@ def main():
     tainted_3 = tainted_2
 
     if (4+2>=42):
-        {}
+        pass
     elif not (4+2>=42):
 
         # No filtering (sanitization)
         tainted_3 = tainted_2
 
     else:
-        {}
+        pass
 
 
     os.system('ls ' + tainted_3)

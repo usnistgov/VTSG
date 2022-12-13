@@ -31,9 +31,9 @@ def main():
     tainted_3 = tainted_2
 
     if 1==0:
-        {}
+        pass
     elif not 1==0:
-        {}
+        pass
     else:
 
         # No filtering (sanitization)
