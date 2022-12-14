@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Dec 14 14:36:53 2022" *by "Paul E. Black"
+% *modified "Wed Dec 14 14:54:31 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1477,8 +1477,9 @@ All sink modules are in the language's \verb|sinks.xml| file.
     
     \item options: By default filters are wrapped in complexities.  Complexities may
       be disabled by adding \verb|options| with \verb|need_complexity="0"|. In other
-      words, if \verb|need_complexity| appears with anything other than ``1'', no
-      variations with complexities are generated.
+      words, if \linebreak[4] \verb|need_complexity| is in the first
+      \verb|<options />| with anything other than ``1'', VTSG does not generate any
+      variations with complexities.
 
     \item code: The source code of a sink. It should contain the placeholder
     \verb|{{in_var_name}}|.  The placeholder will be replaced by the variable
