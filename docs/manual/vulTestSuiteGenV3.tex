@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Dec 14 10:59:58 2022" *by "Paul E. Black"
+% *modified "Wed Dec 14 11:32:35 2022" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1282,7 +1282,8 @@ A generated program is not safe if any of the selected input, filter, or sink mo
 are always unsafe, that is \verb|unsafe="1"|.  A program is safe if any of the
 selected input, filter, sink, or exec query modules is always safe, that is
 \verb|safe="1"|, \emph{and} none
-are unsafe.  The filter module must be executed to be considered.  In other words, if
+are unsafe.  If no module is safe, the generated program is unsafe.
+The filter module must be executed to be considered.  In other words, if
 a complexity never executes the filter, then the filter's safe or unsafe marking is
 ignored.  Table~\ref{tab:selection safe algorithm} expresses this as a table.
 
