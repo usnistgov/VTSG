@@ -1,7 +1,7 @@
 """
 sink_sample module
 
- *modified "Mon Nov 14 16:29:43 2022" *by "Paul E. Black"
+ *modified "Wed Dec 14 14:44:22 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -50,7 +50,7 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
         if self._flaw_group is None:
             self._flaw_group = '' # missing flaw_group means no flaw group
         self._need_complexity = True
-        # TODO check why [0]
+        # NOTE: [0] means only look at the FIRST <options>
         if sample.findall("options") and sample.findall("options")[0].get("need_complexity"):
             self._need_complexity = (sample.findall("options")[0].get("need_complexity") == "1")
 
