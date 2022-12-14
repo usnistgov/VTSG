@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Thu Nov 10 14:46:18 2022" *by "Paul E. Black"
+ *modified "Wed Dec 14 09:34:42 2022" *by "Paul E. Black"
 """
 
 import time
@@ -11,7 +11,7 @@ from jinja2 import Template, DebugUndefined, Environment, exceptions
 from src.manifest import Manifest
 from src.file_manager import FileManager
 from src.input_sample import InputSample
-from src.filtering_sample import FilteringSample
+from src.filter_sample import FilterSample
 from src.sink_sample import SinkSample
 from src.exec_query import ExecQuerySample
 from src.complexity import ComplexitySample
@@ -62,7 +62,7 @@ class Generator(object):
             **tab_input** (list): List (of :class:`.InputSample` objects) all input
                 modules.
 
-            **tab_filtering** (list): List (of :class:`.FilteringSample` objects) all
+            **tab_filtering** (list): List (of :class:`.FilterSample` objects) all
                 filter modules.
 
             **tab_sink** (list): List (of :class:`.SinkSample` objects) all sink modules.
@@ -81,7 +81,7 @@ class Generator(object):
 
             **current_input** (:class:`.InputSample`): The current selected input.
 
-            **current_filter** (:class:`.FilteringSample`): The current selected filter.
+            **current_filter** (:class:`.FilterSample`): The current selected filter.
 
             **current_sink** (:class:`.SinkSample`): The current selected sink.
 
@@ -115,7 +115,7 @@ class Generator(object):
         tree_input = ET.parse(FileManager.getXML("inputs", template_directory, language)).getroot()
         self.tab_input = [InputSample(inp) for inp in tree_input]
         tree_filter = ET.parse(FileManager.getXML("filters", template_directory, language)).getroot()
-        self.tab_filter = [FilteringSample(filter) for filter in tree_filter]
+        self.tab_filter = [FilterSample(filter) for filter in tree_filter]
         tree_sink = ET.parse(FileManager.getXML("sinks", template_directory, language)).getroot()
         self.tab_sink = [SinkSample(sink) for sink in tree_sink]
         tree_exec_query = ET.parse(FileManager.getXML("exec_queries", template_directory, language)).getroot()
@@ -213,7 +213,7 @@ class Generator(object):
         and current filter, proceed to the next step: selecting exec query.
         """
         for inp in self.tab_input:
-            if inp.compatible_with_filtering_sink(self.current_filter, self.current_sink):
+            if inp.compatible_with_filter_sink(self.current_filter, self.current_sink):
                 self.current_input = inp
                 self.select_exec_queries()
 

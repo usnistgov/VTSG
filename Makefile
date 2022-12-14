@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Tue Dec 13 16:42:51 2022" *by "Paul E. Black"
+# *modified "Wed Dec 14 09:44:12 2022" *by "Paul E. Black"
 
 default: genPython
 
@@ -12,7 +12,7 @@ testAll: testVarious testCLI testSTerm testIndent
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
 	src/exec_query.py src/file_manager.py src/file_template.py \
-	src/filtering_sample.py src/generator.py src/input_sample.py \
+	src/filter_sample.py src/generator.py src/input_sample.py \
 	src/manifest.py src/sample.py src/sink_sample.py src/synthesize_code.py
 
 # this takes four minutes and produces 33k cases

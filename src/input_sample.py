@@ -1,7 +1,7 @@
 """
 Input Class (TODO DOC)
 
- *modified "Mon Nov 14 16:31:03 2022" *by "Paul E. Black"
+ *modified "Wed Dec 14 09:38:35 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -21,7 +21,7 @@ class InputSample(Sample):  # Initialize the type of input and the code paramete
             **_output_type** (str): Type of output variable (private member, please
               use getter.  Read only).
 
-            **_flaws** (dict str->(dict str->bool): Collection of flaws for this filtering with safety \
+            **_flaws** (dict str->(dict str->bool): Collection of flaws for this filter with safety \
                                           (private member, please use getter.  Read only).
     """
 
@@ -79,17 +79,17 @@ class InputSample(Sample):  # Initialize the type of input and the code paramete
         """
         return self._output_type
 
-    def compatible_with_filtering_sink(self, filtering, sink):
+    def compatible_with_filter_sink(self, filter, sink):
         """
-        Return True if current input is compatible with filtering and sink, False otherwise.
+        Return True if current input is compatible with filter and sink, False otherwise.
 
         Args:
             **sink** (SinkSample)
 
-            **filtering** (FilteringSample)
+            **filter** (FilterSample)
         """
-        if filtering.input_type != "nofilter":
-            return self.output_type == filtering.input_type
+        if filter.input_type != "nofilter":
+            return self.output_type == filter.input_type
         else:
             return self.output_type == sink.input_type
 

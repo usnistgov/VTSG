@@ -1,14 +1,14 @@
 """
-filtering_sample module
+filter_sample module
 
- *modified "Mon Nov 14 16:40:34 2022" *by "Paul E. Black"
+ *modified "Wed Dec 14 09:33:30 2022" *by "Paul E. Black"
 """
 
 from src.sample import Sample
 
 
-class FilteringSample(Sample):  # Initialize rules, safety, code and escape
-    """FilteringSample class
+class FilterSample(Sample):  # Initialize rules, safety, code and escape
+    """FilterSample class
 
         Args :
             **sample** (xml.etree.ElementTree.Element): The XML element containing
@@ -19,7 +19,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
 
             **_output_type** (str): Type of output variable (private member, please use getter and setter).
 
-            **_flaws** (dict str->(dict str->bool): Collection of flaws for this filtering with safety \
+            **_flaws** (dict str->(dict str->bool): Collection of flaws for this filter with safety \
                                                     (private member, please use getter and setter).
     """
 
@@ -37,7 +37,7 @@ class FilteringSample(Sample):  # Initialize rules, safety, code and escape
             # optional attr: self.flaws[flaw_type]["attr"] = option["attr"] if "attr" in option["attr"] else None
 
     def __str__(self):
-        return (f'*** Filter ***\n{super(FilteringSample, self)}\n' +
+        return (f'*** Filter ***\n{super(FilterSample, self)}\n' +
                 f'\t input type: {self._input_type}\n' +
                 f'\toutput type: {self._output_type}\n' +
                 f'\tflaws: {self._flaws}\n\n')
