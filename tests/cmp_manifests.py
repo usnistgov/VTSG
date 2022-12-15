@@ -1,5 +1,5 @@
 #            *created  "Wed Feb  9 10:56:53 2022" *by "Paul E. Black"'
-versionMod=' *modified "Thu Oct  6 11:44:54 2022" *by "Paul E. Black"'
+versionMod=' *modified "Thu Dec 15 11:58:46 2022" *by "Paul E. Black"'
 #
 
 # Compare two manifest.xml files, ignoring unimportant differences like dates
@@ -7,7 +7,7 @@ versionMod=' *modified "Thu Oct  6 11:44:54 2022" *by "Paul E. Black"'
 # matches.  This does not do XML matching.
 
 # usage:
-# $ ./cmp_manifests.py TestSuite_02-09-2022_10h52m26/PHP/OWASP_a1/manifest.xml tests/SuitePHP/PHP/OWASP_a1/manifest.xml
+# $ python ./cmp_manifests.py TestSuite_02-09-2022_10h52m26/PHP/OWASP_a1/manifest.xml tests/SuitePHP/PHP/OWASP_a1/manifest.xml
 
 # This software was developed at the National Institute of Standards and
 # Technology by employees of the Federal Government in the course of their
