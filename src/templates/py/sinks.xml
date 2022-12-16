@@ -415,4 +415,22 @@
             <input_type>string</input_type>
             <exec_type>none</exec_type>
         </sample>
+
+        <sample>
+            <path>
+                <dir>div_zero</dir>
+            </path>
+            <flaw_type>CWE_369</flaw_type>
+            <comment>sink: divide by input</comment>
+            <imports>
+            </imports>
+            <code>
+	        user_input = {{in_var_name}}
+                {{flaw}}
+                print(f'The reciprocal of {user_input} is {1/user_input}')
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>int</input_type>
+            <exec_type>none</exec_type>
+        </sample>
     </sink>

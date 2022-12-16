@@ -52,6 +52,30 @@
 
         <sample>
             <path>
+                <dir>readline</dir>
+            </path>
+            <comment>input: integer from user input</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+	    try:
+	    INDENT
+	        {{out_var_name}} = int(input())
+	    DEDENT
+	    except ValueError:
+	    INDENT
+	        {{out_var_name}} = 1776
+	    DEDENT
+	    </code>
+            <input_type>input: get integer as tainted user input</input_type>
+            <output_type>int</output_type>
+        </sample>
+
+        <sample>
+            <path>
                 <dir>none</dir>
             </path>
             <comment>No Input</comment>
@@ -86,6 +110,7 @@
             </path>
             <comment>Hardcoded integer as input</comment>
             <flaws>
+                <flaw flaw_type="CWE_369" safe="0" unsafe="0"/>
                 <flaw flaw_type="default" safe="1" unsafe="0"/>
             </flaws>
             <imports>
@@ -112,6 +137,30 @@
 
         <sample>
             <path>
+                <dir>arg</dir>
+            </path>
+            <comment>input: integer from command line arg</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+	    try:
+	    INDENT
+	        {{out_var_name}} = int(sys.argv[1])
+	    DEDENT
+	    except ValueError:
+	    INDENT
+	        {{out_var_name}} = 1776
+	    DEDENT
+	    </code>
+            <input_type>input: integer from command line arg</input_type>
+            <output_type>int</output_type>
+        </sample>
+
+        <sample>
+            <path>
                 <dir>env</dir>
             </path>
             <comment>input: environment variable</comment>
@@ -124,6 +173,31 @@
             <code>{{out_var_name}} = os.environ['ADD']</code>
             <input_type>input: environment variable</input_type>
             <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>env</dir>
+            </path>
+            <comment>input: integer from environment variable</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>os</import>
+            </imports>
+            <code>
+	    try:
+	    INDENT
+	        {{out_var_name}} = int(os.environ['ADD'])
+	    DEDENT
+	    except ValueError:
+	    INDENT
+	        {{out_var_name}} = 1776
+	    DEDENT
+	    </code>
+            <input_type>input: integer from environment variable</input_type>
+            <output_type>int</output_type>
         </sample>
 
     <!-- Juliet has input from

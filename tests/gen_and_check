@@ -7,7 +7,7 @@ then
     exit
 fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Thu Dec 15 14:14:37 2022" *by "Paul E. Black"
+# *modified "Fri Dec 16 11:31:59 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -105,8 +105,12 @@ for f in $(find . -name "*.py"|grep -v b[.]|sort); do
     elif [[ $f =~ __S_unchecked_loop[GB]__ ]]; then
 	# number larger than 5
 	a="6"
+    elif [[ $f =~ __S_div_zero__ ]]; then
+	# zero as divisor
+	a="0"
     else
-	echo UNKNOWN SINK FOR $f - EXITING
+	echo UNKNOWN SINK IN $f
+	echo ADD IT TO tests/gen_and_check
         exit
     fi
     # class cases are not valid code currently; don't execute them
@@ -116,8 +120,9 @@ for f in $(find . -name "*.py"|grep -v b[.]|sort); do
     fi
     # timeout in order to limit infinite loops
     #    ignore the result of /Users check so MacOS and non-MacOS systems match
-    echo "$a" | (export ADD="$a";$TIMEOUT python3 $f "$a") | perl -pwe 's/Users".*/Users" .../'
-done) 2>&1 | tee ${EF}
+    #    ignore path and exact name of TestSuite_, which occur in traces
+    echo "$a" | (export ADD="$a";$TIMEOUT python3 $f "$a")
+done) 2>&1 | perl -pwe 's/Users".*/Users" .../;s|File ".*(TestSuite_)[^/]*|...$1...|' | tee ${EF}
 echo checking that execution is as expected | tee -a ${CF}
 diff ${EF} tests/${LD}_exec 2>&1 | tee -a ${CF}
 

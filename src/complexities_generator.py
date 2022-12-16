@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Tue Feb 22 17:10:07 2022" *by "Paul E. Black"
+ *modified "Fri Dec 16 10:27:28 2022" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -238,7 +238,8 @@ class ComplexitiesGenerator(object):
         for c in reversed(self.complexities[1:]):
             if c['type'] == "class_traversal":
                 # add a new class code when we have a traversal class
-                # SKIMP: hardcoded statement_terminator (;) in next line.
+                # SKIMP: find union of imports and call file_template.generate_imports()
+                #   like the code in generator.py at # IMPORTS (about line 455)
                 imports_content = "\n".join([f'using {i_c};' for i_c in sorted(set(self.filtering.imports))])
                 classes_code.append({'code': Template(c['code'], undefined=DebugUndefined).render(static_methods=functions_code, imports=imports_content), 'name': c['name']})
                 functions_code = ""
@@ -270,19 +271,16 @@ class ComplexitiesGenerator(object):
         # loop through every type
         for t in local_var:
             declare_type = self.template.get_type_var_code(t)
-            if declare_type is not None:
-                init = self.template.get_init_var_code(t)
-                # generate code to declare and initialize each variable of this type
-                for n in sorted(list(local_var[t])):
-                    # for second and following vars, add indicated indent
-                    if local_var_code != "":
-                        local_var_code += local_var_indent
-                    # if there is a string to declare the variable, add it and a space
-                    if declare_type != "":
-                        local_var_code += declare_type + " "
-                    local_var_code += make_assign(n, init, self.template) + "\n"
-            else:
-                local_var_code += "//ERROR UNKNOWN type '" + t + "' "
+            init = self.template.get_init_var_code(t)
+            # generate code to declare and initialize each variable of this type
+            for n in sorted(list(local_var[t])):
+                # for second and following vars, add indicated indent
+                if local_var_code != "":
+                    local_var_code += local_var_indent
+                # if there is a string to declare the variable, add it (and a space)
+                if declare_type != "":
+                    local_var_code += declare_type + " "
+                local_var_code += make_assign(n, init, self.template) + "\n"
         return local_var_code
 
     def add_value_dict(self, key, value):

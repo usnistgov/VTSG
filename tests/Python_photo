@@ -22,7 +22,11 @@ Generation report:
 			735 safe samples
 			441 unsafe samples
 		1176 total
-	1176 total
-2353 total
-Generation time 00:00:15
+		CWE_369 generation report:
+			288 safe samples
+			888 unsafe samples
+		1176 total
+	2352 total
+3529 total
+Generation time 00:00:22
 Finish

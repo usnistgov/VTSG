@@ -84,6 +84,28 @@
             <input_type>string</input_type>
             <output_type>int</output_type>
         </sample>
+
+        <sample>
+            <path>
+                <dir>nonzero</dir>
+            </path>
+            <comment>filter: block zero arguments</comment>
+            <flaws>
+                <flaw flaw_type="CWE_369" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+	      <import>sys</import>
+            </imports>
+            <code>
+	        if {{in_var_name}} == 0:
+		INDENT
+		    sys.exit("Zero input not allowed")
+		DEDENT
+		{{out_var_name}} = {{in_var_name}}
+            </code>
+            <input_type>int</input_type>
+            <output_type>int</output_type>
+        </sample>
 <!--
         <sample>
             <path>

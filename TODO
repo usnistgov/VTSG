@@ -1,5 +1,5 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Wed Nov 23 11:35:22 2022" *by "Paul E. Black"
+ *modified "Fri Dec 16 08:46:39 2022" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -20,6 +20,10 @@ that is, is this an optional flag?  Other attributes that need more explanation 
 Fix Python "Classes" complexity:
 The main file must import the class-defining file, e.g.
 from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22b import Class_884
+
+Also, in complexities_generator.py about line 241, union imports and call
+generate_imports(), like the code in generator.py at # IMPORTS.
+"using {{import}};" is currently hardcoded.
 
 16 Nov 2022
 Explain in manual what "supported" complexity types and groups do.  That is, *any*
