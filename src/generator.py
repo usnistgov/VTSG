@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Wed Dec 14 09:34:42 2022" *by "Paul E. Black"
+ *modified "Thu Dec 15 15:57:57 2022" *by "Paul E. Black"
 """
 
 import time
@@ -174,7 +174,7 @@ class Generator(object):
         self.generate_unsafe = generate_unsafe
         # start of chain of calls to generate test cases
         self.select_sink()
-        # generate the repport with number of safe/unsafe, time, ...
+        # generate the report with number of safe/unsafe, time, ...
         self.generation_report()
 
     # first step: select sink
@@ -191,6 +191,9 @@ class Generator(object):
                 if sink.input_type != "none":
                     self.select_filter()
                 else:
+                    # forget any input or filter selections from previous loops
+                    self.current_input  = None
+                    self.current_filter = None
                     self.current_max_rec = 0
                     self.select_exec_queries()
 

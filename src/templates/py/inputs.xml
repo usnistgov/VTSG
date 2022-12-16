@@ -110,4 +110,33 @@
             <output_type>string</output_type>
         </sample>
 
+        <sample>
+            <path>
+                <dir>env</dir>
+            </path>
+            <comment>input: environment variable</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>os</import>
+            </imports>
+            <code>{{out_var_name}} = os.environ['ADD']</code>
+            <input_type>input: environment variable</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+    <!-- Juliet has input from
+	    File
+	    PropertiesFile
+	    Property
+	    URLConnection
+	    connect_tcp
+	    listen_tcp
+	    database
+	    getCookies_Servlet
+	    getParameter_Servlet
+	    getQueryString_Servlet
+    -->
+
     </input>

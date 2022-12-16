@@ -85,4 +85,45 @@
             <exec_type>none</exec_type>
         </sample>
 
+        <sample>
+            <path>
+                <dir>info_expose</dir>
+            </path>
+            <flaw_type flaw_group="OWASP_a5">CWE_209</flaw_type>
+            <comment>sink: information exposure</comment>
+            <imports>
+            </imports>
+            <code>
+	        # find a sum that the compiler won't predict
+                intArray = sorted([2, 37, 849, 24, 42, -10, 93])
+		for nb in intArray:
+		INDENT
+                    r = nb + 3
+                    num = r / 10
+                    sum = num + nb
+                    print(f'Current sum: {sum}')
+		DEDENT
+                try:
+		INDENT
+                    a = 0
+                    b = 1
+		    # sum is a float, so range(sum) throws TypeError
+                    for i in range(sum):
+		    INDENT
+		        (a, b) = (b, a + b)
+		    DEDENT
+                    print(f'{sum}th Fibonacci number is {a}')
+		DEDENT
+                except TypeError as te:
+		INDENT
+                    {{flaw}}
+                    print(f'TypeError: {te}: for i in range({sum}):') # leaks value of sum
+		DEDENT
+            </code>
+            <safety safe="0" unsafe="1"/>
+	    <!-- no input (or filter) needed -->
+            <input_type>none</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+
     </sink>

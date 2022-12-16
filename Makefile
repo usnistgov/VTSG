@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Dec 14 09:44:12 2022" *by "Paul E. Black"
+# *modified "Thu Dec 15 16:08:27 2022" *by "Paul E. Black"
 
 default: genPython
 
@@ -24,7 +24,7 @@ genCsharp: $(VTSG_FILES)
 genPHP: $(VTSG_FILES)
 	tests/gen_and_check php
 
-# this produces 883 cases
+# this produces 2353 cases
 genPython: $(VTSG_FILES)
 	tests/gen_and_check py
 
@@ -78,6 +78,7 @@ test007:
 # test flaw types other than CWE_*
 # test flaw groups other than OWASP_*
 # test missing flaw group
+# test sink with no input (or filter)
 test010: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
 	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test010/$$f;done)

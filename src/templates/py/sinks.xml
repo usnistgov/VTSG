@@ -351,4 +351,68 @@
             <exec_type>none</exec_type>
             <options need_complexity="0"/>
         </sample>
+
+        <sample>
+            <path>
+                <dir>unchecked_loopG</dir>
+            </path>
+            <flaw_type>CWE_606</flaw_type>
+            <comment>sink: loop condition from input - checked</comment>
+            <imports>
+            </imports>
+            <code>
+	        # convert input string to number
+	        try:
+		INDENT
+	            number_of_loops = int({{in_var_name}})
+		DEDENT
+		except ValueError:
+		INDENT
+		    print('Invalid input.  Numeric input expected.  Assuming 1.')
+		    number_of_loops = 1
+		DEDENT
+
+	        if number_of_loops >= 0 and number_of_loops &lt;= 5:
+		INDENT
+		    for j in range(number_of_loops):
+		    INDENT
+                        print('Hello, world')
+		    DEDENT
+		DEDENT
+            </code>
+            <safety safe="1" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>unchecked_loopB</dir>
+            </path>
+            <flaw_type>CWE_606</flaw_type>
+            <comment>sink: loop condition from input - unchecked</comment>
+            <imports>
+            </imports>
+            <code>
+	        # convert input string to number
+	        try:
+		INDENT
+	            number_of_loops = int({{in_var_name}})
+		DEDENT
+		except ValueError:
+		INDENT
+		    print('Invalid input.  Numeric input expected.  Assuming 1.')
+		    number_of_loops = 1
+		DEDENT
+
+                {{flaw}}
+		for j in range(number_of_loops):
+		INDENT
+                    print('Hello, world')
+		DEDENT
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>none</exec_type>
+        </sample>
     </sink>
