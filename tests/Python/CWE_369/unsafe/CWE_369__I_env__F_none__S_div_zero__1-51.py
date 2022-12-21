@@ -35,7 +35,7 @@ def main():
 
     try:
         tainted_1 = int(os.environ['ADD'])
-    except ValueError:	
+    except ValueError:
         tainted_1 = 1776
 
     tainted_3 = tainted_1
