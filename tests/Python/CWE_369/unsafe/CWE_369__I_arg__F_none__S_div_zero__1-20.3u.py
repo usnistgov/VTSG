@@ -29,7 +29,7 @@ def main():
 
     try:
         tainted_2 = int(sys.argv[1])
-    except ValueError:	
+    except ValueError:
         tainted_2 = 1776
 
     tainted_3 = tainted_2

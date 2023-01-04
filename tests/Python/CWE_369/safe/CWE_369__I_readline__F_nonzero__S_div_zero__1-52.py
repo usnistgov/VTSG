@@ -34,7 +34,7 @@ def main():
 
     try:
         tainted_2 = int(input())
-    except ValueError:	
+    except ValueError:
         tainted_2 = 1776
 
     tainted_4 = tainted_2

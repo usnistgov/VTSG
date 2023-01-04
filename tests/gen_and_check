@@ -7,7 +7,7 @@ then
     exit
 fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Fri Dec 16 11:31:59 2022" *by "Paul E. Black"
+# *modified "Wed Dec 21 12:08:54 2022" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -31,7 +31,7 @@ fi
 
 lang=$1
 
-# Time Stamp (nearly) matches name that VTGS will choose for the TestSuite
+# Time Stamp (nearly) matches name that VTSG will choose for the TestSuite
 #    note: since time may differ by a second, names may differ
 TimeStamp=$(date +"%m-%d-%Y_%Hh%Mm%S")
 # choose a name for Photo file, which captures the output
@@ -62,7 +62,9 @@ TDIR="../../tests"
 
 # check that generated files match
 echo checking that generated files match ... | tee -a ${CF}
-(cd ${TSD};for f in $(find . -name "*.${lang}"); do cmp $f ${TDIR}/${LD}/$f;done) 2>&1 | tee -a ${CF}
+CMP=diff # diff doesn't report the names of files that don't match
+CMP=cmp
+(cd ${TSD};for f in $(find . -name "*.${lang}"); do ${CMP} $f ${TDIR}/${LD}/$f;done) 2>&1 | tee -a ${CF}
 
 # check that the manifests match
 echo checking manifests | tee -a ${CF}
