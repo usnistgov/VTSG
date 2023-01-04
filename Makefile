@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Thu Dec 15 16:08:27 2022" *by "Paul E. Black"
+# *modified "Wed Jan  4 15:56:10 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -127,13 +127,15 @@ TestCLI5:
 testSTerm: test011 test012 test013 test014
 	@echo statement_terminator tests succeeded
 
+# also, exercise strings as complexity and condition names
 test011: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
 	(cd $$(ls -dt TestSuite_*/test011 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test011/$$f;done)
 	sleep 1
 
+# also, exercise two levels of complexity
 test012: $(VTSG_FILES)
-	python3 vtsg.py -l $@ -t tests/templates
+	python3 vtsg.py -l $@ -t tests/templates --depth=2
 	(cd $$(ls -dt TestSuite_*/test012 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test012/$$f;done)
 	sleep 1
 

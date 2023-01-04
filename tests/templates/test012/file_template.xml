@@ -9,6 +9,8 @@
         <inline>#</inline>
     </comment>
     <syntax>
+      <!-- indent is four spaces -->
+      <indent>    </indent>
     </syntax>
     <namespace></namespace>
     <variables prefix="" import_code="import {{import_file}}">
@@ -24,6 +26,7 @@
 '''
   Test 2 of 4 for statement_terminator
   ang-syntax-ang, but no ang-statement_terminator-ang
+  also, two levels of complexity
 '''
 '''
 {{ comments }}
@@ -35,6 +38,7 @@
 {{ stdlib_imports }}
 
 def main():
+    INDENT
         {{ local_var }}
     
         {{ input_content }}
@@ -44,6 +48,7 @@ def main():
         {{ sink_content }}
     
         <!--{{ exec_queries_content }}-->
+    DEDENT
 
 main()
 {{ static_methods }}

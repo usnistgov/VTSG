@@ -27,22 +27,32 @@ import os
 import sys
 
 def main():
-    tainted_0 = None
-    tainted_1 = None
+    tainted_4 = None
+    tainted_5 = None
 
 
-    tainted_0 = "." # local directory
+    tainted_4 = "." # local directory
 
-    tainted_1 = tainted_0
+    tainted_5 = tainted_4
+
+    while True:
+
+        if(1==1):
+            {}
+        elif(not 1==1):
+            {}
+        else:
 
 
-    # No filtering (sanitization)
-    tainted_1 = tainted_0
+            # No filtering (sanitization)
+            tainted_5 = tainted_4
 
 
+        if(1==1):
+            break
 
 
-    print(os.path.exists(tainted_1))
+    print(os.path.exists(tainted_5))
 
 
 main()
