@@ -1,11 +1,44 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Fri Dec 16 08:46:39 2022" *by "Paul E. Black"
+ *modified "Wed Jan  4 11:37:58 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
 
 Eliminate initial superfluous newline at the beginning of file.
+
+4 Jan 2023
+
+Change <dir> in modules to <des> (for description) or something.  This is only used
+in test case names.  Maybe files were originally placed in separate directories
+depending on their input or sink.  Thus <path> ... <dir> made sense.  (This may be
+why multiple <dir> entries are allowed.)
+
+Maybe replace the <path> <dir> stuff with one <description> or <name> keyword.
+(You'd have to fix a few modules with multiple <dir> entries.)
+
+
+4 Jan 2023
+
+Maybe there should be a new value "maybe" or "random" or "indeterminate" for test
+conditions code when the analyzer cannot determine.  For instance, Juliet,
+    if (random()) {
+        code
+    }
+
+
+23 Dec 2022
+
+Explain how to add a new flaw.  Explain that you start with a sink, then get
+compatible input.  Maybe add a diagram showing that an input (and a filter) can be
+"hooked" to a sink via the flaw type or via the input type.  (use the blue rectangles
+with pointy ends, as hinted at in Fig 2.) Divide by zero is a good
+example.  Generally a potential div by 0 vulnerability only needs integers.  But to
+be safe the input must be non-zero.
+
+Explain which errors should be caught and which should allowed to crash.  Talk about
+providing (somehow!) PoVs (proofs of vulnerability).
+
 
 23 Nov 2022
 Thoroughly document what various attributes in complexities do. For instance,
