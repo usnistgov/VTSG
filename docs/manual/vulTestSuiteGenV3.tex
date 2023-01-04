@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Dec 14 14:54:31 2022" *by "Paul E. Black"
+% *modified "Wed Jan  4 11:41:30 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -456,9 +456,9 @@ requiring test cases written in PHP, \CSharp, or Python to evaluate a static
 analyzer. These users must know how to invoke VTSG with the command line interface
 and retrieve the appropriate sample from the generated and categorized folders.
 
-The second targeted audience of the VTSG is comprised of people wishing to generate
+The second targeted audience of the VTSG comprises people wishing to generate
 test cases using a programming language other than the languages currently
-supported.  The second group of users must create new templates for the program
+supported.  They must create new templates for the program
 using the XML tags, execute VTSG with the command line interface,
 and retrieve the samples from the generated and categorized file folders.
 
@@ -559,7 +559,9 @@ explanation.} \\
 
 \subsection{Explanation of Options}
 
-The default is to generate both the unsafe (buggy or vulnerable)
+VTSG will generate all flaws in all flaw groups unless limited with
+command line options.
+VTSG's default is to generate both the unsafe (buggy or vulnerable)
 test cases and the safe (not buggy) test cases.  You can select
 either only safe (-s) or only unsafe (-u) cases.  The options are
 mutually exclusive.
@@ -604,7 +606,7 @@ $ python3 vtsg.py -l cs -r 3 --flaw=CWE_89 -u
 \begin{figure}[htbp]
   \includegraphics[width=1\linewidth]{fig_VTSG_overview.png}
   \caption{Overview of VTSG test case generation process. The Template
-  specifies how pieces are assembled. Input, Filter, Complexities,
+  specifies how pieces are assembled. Input, Filter, Complexity,
   Sink, and ExecQuery modules provide alternative code.  
   An example of
   a generated test case is in 
@@ -632,7 +634,7 @@ Filter, Sink, Complexity and ExecQuery files
  vulnerability is triggered.
  \item ExecQuery is an additional piece of code that is mandatory to 
  trigger the vulnerability.
- \item Complexity are additional data flow or control flow complications that are
+ \item Complexities are additional data flow or control flow complications that are
    worked into the structure of the program to exercise tools' abilities.
 \end{itemize}
 The content of these files is detailed in
@@ -779,7 +781,7 @@ must be consistent with the ``Filter'' and ``Sink'' XML tags.
 Then an exec query and complexities are selected
 that are compatible with the currently selected sink module.
 
-When VTSG has selected a set of modules, it begins composing
+When VTSG has selected a set of modules, composes
 their code to generate the source code for a test case.
 The process of composing modules to generate source code is
 based on XML metadata tags.
@@ -832,7 +834,7 @@ nested control flow complexities.
 
 In theory, a static analysis tool only needs to process a few lines of
 code that
-embody the vulnerability. In practice, a tool must analyze most 
+embody the vulnerability. In practice, a tool must analyze much
 of the program,
 noting its control and data flows, to accurately track data and
 determine the
@@ -841,7 +843,7 @@ Code complexities are constructs that may confuse static
 analysis tools.  
 Each code complexity element can have many different attributes
 associated with it.
-They are combined and nested to create more realistic source code.
+They are combined and nested to create slightly more realistic source code.
 For example, the value 
 of an expression may come from a constant, a single variable, 
 some arithmetic 
@@ -1338,6 +1340,8 @@ provides one way for the generated program to get input.
 \end{figure}
 
 \begin{itemize}
+    \item dir and path: see Sec.~\ref{sec:module description}.
+
     \item flaw: vulnerability categories where the sample can be used, that is, the
       flaws that the input is compatible with.  Also whether it is always safe or
       always unsafe for that flaw.  See Sec.~\ref{sec:safe or unsafe}
@@ -1387,6 +1391,8 @@ All filter modules are in the \verb|filters.xml| file.
 \end{figure}
 
 \begin{itemize}
+    \item dir and path: see Sec.~\ref{sec:module description}.
+
     \item input\_type: the input type of the filter. The variable 
     generated with
     the placeholder \verb|{{in_var_name}}| will be that type.
@@ -1442,6 +1448,8 @@ All sink modules are in the language's \verb|sinks.xml| file.
 \end{verbatim}
 
 \begin{itemize}
+    \item dir and path: see Sec.~\ref{sec:module description}.
+
     \item flaw\_type: the flaw\_group is a general category of vulnerability.
     Generated test cases are placed under the flaw group subdirectory, then
     in the flaw type subdirectory under that.  If the flaw\_group is missing or
@@ -1536,6 +1544,8 @@ file.
     \item safe: whether the ExecQuery always makes the case safe.
     See Sec.~\ref{sec:safe or unsafe} for more details.
 
+    \item dir and path: see Sec.~\ref{sec:module description}.
+
     \item code: The source code of a query. It does not contain placeholders.
     It should be linked to the corresponding variable from the Sink. The linking is done through the "exec\_type" attributes within the XML files.
 \end{itemize}
@@ -1599,7 +1609,7 @@ complexity modules are inside \verb|<complexities>|.
 
     \item value: either \verb|<value>True</value>| or
         \verb|<value>False</value>| depending on \\
-        whether the code evaluates to true or false.
+        whether the code always evaluates to true or false.
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -1626,16 +1636,16 @@ complexity modules are inside \verb|<complexities>|.
     \item id: string indicating this complexity.  Appears in the test case
       file name.  Typically this is a number.
 
-    \item type: Supported types are: \verb|if|, \verb|switch|, \verb|goto|, 
+    \item type: Used types are: \verb|if|, \verb|switch|, \verb|goto|,
     \verb|for|, \verb|foreach|, \verb|while|, \\
     \verb|function|, and \verb|class|.
     If the type is \verb|class|, source code in the \verb|<body></body>| is placed in
-    an additional file that is created the this case.
+    an additional file that is created for this case.
     Invocation statements are generated for \verb|function| and \verb|class| types.
     An extra variable is created for \verb|foreach| types (with group \verb|loops|).
     No other type has any effect on VTSG.
 
-    \item group: Supported groups are: \verb|conditionals|, \verb|jumps|, 
+    \item group: Used groups are: \verb|conditionals|, \verb|jumps|,
     \verb|loops|, \verb|functions|, and \\ \verb|classes|.
     No group, other than \verb|loops|, has any effect on VTSG.
 
@@ -1717,7 +1727,8 @@ complexity modules are inside \verb|<complexities>|.
     \\
     \hline
     \end{tabular}
-    \caption{An example of code for each value of executed.}
+    \caption{An example of code for each value of ``executed'' showing whether
+      ``placeholder'' code will be executed.}
     \label{tab:execution examples}
     \end{table}
 
@@ -1756,7 +1767,7 @@ complexity modules are inside \verb|<complexities>|.
 
     \item body: additional source code not in the main execution flow,
     e.g., functions or classes.  This code is placed in a separate file
-    of the case if the type is \verb|class|. (optional)
+    if the type is \verb|class|. (optional)
 \end{itemize}
 
 
@@ -1799,8 +1810,7 @@ Fig.~\ref{fig:example aux file}.
 
 \section{Generated Test Case File Names}
 
-This section describes what the
-names of test case files mean.
+This section describes how the names of test case files are created.
 
 VTSG creates directories and subdirectories for the test cases that it generates.
 The directory structure is described in
@@ -1811,24 +1821,24 @@ Sec.~\ref{sec:case directory structure}.
 
 VTSG names test case files as
 \verb|FLAW__I_INPUT__F_FILTER__S_SINK__EQ_EXEC_| \\
-\verb|QUERY__NBCPLX-CPLX1-CPLX2.CONDx.EXT|
+\verb|QUERY__NMBCPLX-CPLX1-CPLX2.CONDx.EXT|
 \begin{itemize}
-    \item FLAW: Flaw type, e.g. CWE\_89, BF, or STR30-PL
-    \item INPUT:  Input description (optional)
-    \item FILTER:  Filter description (optional)
-    \item SINK:  Description of the critical function
-    \item EXEC\_QUERY:  ExecQuery description (optional)
+    \item FLAW: Flaw type, e.g. CWE\_89, BF, or STR30-PL, see
+	Sec.~\ref{sec:sink modules}.
+    \item INPUT:  Input description (dirs) (optional)
+    \item FILTER:  Filter description (dirs) (optional)
+    \item SINK:  Description (dirs) of the critical function
+    \item EXEC\_QUERY:  ExecQuery description (dirs) (optional)
     
-    \item NBCPLX:  The number of complexities. Each complexity has the tags 
+    \item NMBCPLX:  The number of complexities. Each complexity has the tags
     \begin{itemize}
         \item CPLX1, CPLX2, \ldots: ID given in 
             code complexity modules, 
             see Sec.~\ref{sec: complexity modules}.
             Tables \ref{tab:complexity IDs for CSharp} and
             \ref{tab:complexity IDs for PHP} in the language appendixes list
-            complexity IDs used in \CSharp\ and PHP.
-            (optional)
-        \item COND: ID given in test condition modules,
+            complexity IDs used in \CSharp\ and PHP.  If the complexity has a
+            condition, COND is the ID given in test condition modules,
             see Sec.~\ref{sec: condition modules}.
             Tables \ref{tab:condition IDs for CSharp} and
             \ref{tab:condition IDs for PHP} list condition
@@ -1877,7 +1887,7 @@ identical names, except for the final sequence letter.
   \label{fig:example aux file}
 \end{figure}
 
-This section has an example test case.  The case consists of 
+This section explains the example test case used in this manual.  The case consists of
 two files.
 Fig.~\ref{fig:example main file} is the main file of the example.  
 Fig.~\ref{fig:example aux file} is an auxiliary class file.  
