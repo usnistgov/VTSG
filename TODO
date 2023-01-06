@@ -1,5 +1,5 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Wed Jan  4 11:37:58 2023" *by "Paul E. Black"
+ *modified "Fri Jan  6 14:51:14 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -69,9 +69,9 @@ Maybe add a diagram showing how output_type of one module "hooks" to the input_t
 of the next module?
 
 18 Nov 2022
-Separate generation of cases from the cases being generated.  That is, have a
-class for the case being generated different from the generator.  Many generator
-class flags and data are not needed for the case:
+Separate selecting the set of modules for a case from generating the code from that
+set.  That is, have a class for the case being generated different from the
+generator.  Many generator class flags and data are not needed for the case:
     date  Human readable date of the generation.
     _max_recursion Max level of recursion with complexities
     _number_generated Number of triplets (input,filter,sink) to generate
@@ -90,7 +90,7 @@ class flags and data are not needed for the case:
     tab_exec_queries all exec query modules.
     tab_complexity all complexity possibilities.
     tab_condition all condition possibilities.
-    ?file_template FileTemplate the template for current langage.
+    ?file_template FileTemplate the template for current language.
     map_flaw_group dict associating flaws with flaw groups
 
 Here is the beginning of code for this
@@ -151,7 +151,7 @@ invalid return, but it checks for (not) None.
 the proper initialization or input.
 
 A higher level capability is to allow "qualified" types, e.g.
-    <intput_type>int,primesOnly</input_type>
+    <input_type>int,primesOnly</input_type>
 so flaws that need a particular "input" to be "hooked" to modules that produce that
 particular output.
 
@@ -176,6 +176,14 @@ placed.
 There should be some way to put several pieces of generated code in the same case, to
 mimic Juliet's structure of having a bad version and one or more good versions in the
 same file.
+
+Note: that we can mimic Juliet's corresponding good and bad cases by having TWO
+sinks: one with the good code and one with the bad code.  They go in separate test
+cases (in different subdirectories: safe and unsafe), but at least it's a way for
+VTSG to generate matched pairs (or triples if we need two good versions).  Idea: the
+sinks could have comments that connect the two cases, e.g., "This case has a
+corresponding bad [good] case with the same name, but OBOb [OBOg] as the sink."
+
 
 23 Nov 2022
 Enhance the Juliet/Python tests with THREE variable scopes if you want to make sure
@@ -224,11 +232,11 @@ C#
           - for       : Testing
           - while     : Testing
           - foreach   : Testing
-      - function  : Testing (only trasversal/in/out)
-      - classes   : Testing (only trasversal/in/out)
+      - function  : Testing (only traversal/in/out)
+      - classes   : Testing (only transversal/in/out)
   # Not important
   - benchmark functions
-  - use cython or JVM for optimization ?
+  - use Python or JVM for optimization ?
   # Hard to do
   - add C# print debug to test if safe/unsafe or if it's executed
   - create bash script to compile and run all C# code
