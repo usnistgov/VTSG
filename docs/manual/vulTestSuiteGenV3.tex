@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Thu Jan  5 09:04:00 2023" *by "Paul E. Black"
+% *modified "Thu Jan 12 10:41:10 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -493,6 +493,7 @@ Table~\ref{tab:command line options}.
 
 \begin{table}[H]
 \centering
+\caption{Options for command line invocation}
 \begin{tabular}{|l|l|}
 \hline
 -h -\zws-help & Show help and quit \\
@@ -553,7 +554,6 @@ explanation.} \\
 \makecell[l]{for programmer use} \\
 \hline
 \end{tabular}
-\caption{Options for Command Line Invocation}
 \label{tab:command line options}
 \end{table} 
 
@@ -897,6 +897,8 @@ task without error.
 
 \begin{table}[H]
 \centering
+\caption{Replacement sequences for characters that are treated 
+in a special way in XML files.}
 \begin{tabular}{|c|l|}
 \hline
 \textbf{Character} & \textbf{Replacement} \\
@@ -912,8 +914,6 @@ task without error.
  \verb|&| & \&amp; \\
 \hline
 \end{tabular}
-\caption{Replacement sequences for characters that are treated 
-in a special way in XML files.}
 \label{tab:XML escapes}
 \end{table}
 
@@ -1291,6 +1291,7 @@ ignored.  Table~\ref{tab:selection safe algorithm} expresses this as a table.
 
 \begin{table}[H]
 \centering
+\caption{Decision table for whether a set of modules is safe or unsafe.}
 \begin{tabular}{c|c|c|}
   & \makecell{Any module \\ has safe="1"}
   & \makecell{No module is \\ always safe} \\
@@ -1300,7 +1301,6 @@ ignored.  Table~\ref{tab:selection safe algorithm} expresses this as a table.
 \makecell{No module is \\ always unsafe} &   safe   & not safe \\
 \hline
 \end{tabular}
-\caption{Decision table for whether a selection of modules is considered safe or unsafe.}
 \label{tab:selection safe algorithm}
 \end{table}
 
@@ -1386,7 +1386,8 @@ All filter modules are in the \verb|filters.xml| file.
 
 \begin{figure}[htbp]
   \includegraphics[width=\linewidth]{fig_Filter_file.png}
-  \caption{Example Filter module. Instantiated in lines 19--27 of Fig.~\ref{fig:example aux file}.}
+  \caption{Example Filter module. Instantiated in lines 19--27 of
+           Fig.~\ref{fig:example aux file}.}
   \label{fig:example filter file}
 \end{figure}
 
@@ -1495,7 +1496,7 @@ All sink modules are in the language's \verb|sinks.xml| file.
 
     The placeholder \verb|{{flaw}}| indicates that the next line is the location
     of the flaw.  In other words, if this case is unsafe, the manifest reports a
-    flaw at the number of the line following this.  In generated unsafe cases,
+    flaw at the line following this.  In generated unsafe cases,
     \verb|{{flaw}}| is replaced with the one-line comment string,
     see Sec.~\ref{sec: file template}, and ``flaw''.
     It does not appear in generated safe cases.
@@ -1503,7 +1504,8 @@ All sink modules are in the language's \verb|sinks.xml| file.
 
 \begin{figure}[htbp]
   \includegraphics[width=\linewidth]{fig_Sink_file.png}
-  \caption{Example Sink module. Instantiated at line 23 of Fig.~\ref{fig:example main file}.}
+  \caption{Example Sink module. Instantiated at line 23 of
+           Fig.~\ref{fig:example main file}.}
   \label{fig:example sink file}
 \end{figure}
 
@@ -1661,6 +1663,8 @@ complexity modules are inside \verb|<complexities>|.
 
     \begin{table}[H]
     \centering
+    \caption{An example of code for each value of ``executed'' showing whether
+      ``placeholder'' code will be executed.}
     \begin{tabular}{|r|l|}
     \hline
       \makecell{Value of \\ executed}
@@ -1727,8 +1731,6 @@ complexity modules are inside \verb|<complexities>|.
     \\
     \hline
     \end{tabular}
-    \caption{An example of code for each value of ``executed'' showing whether
-      ``placeholder'' code will be executed.}
     \label{tab:execution examples}
     \end{table}
 
@@ -1972,7 +1974,7 @@ Charles de Oliveira for their contributions to this report.
 
 \appendix
 
-\section{\CSharp\ language}
+\section{\CSharp\ Language}
 \label{sec:CSharp language}
 
 This appendix documents the flaws, flaw groups, conditions, and complexities
@@ -2006,14 +2008,15 @@ The flaws are in the following groups:
 Here are the complexities currently available in \CSharp.
 We explain the concept of code complexities in Sec.~\ref{sec:code complexities} and
 the format of complexity modules in Sec.~\ref{sec: complexity modules}.
-This very brief description is to remind the reader of the complexity.
+The brief descriptive pseudocode reminds the reader of the complexity.
 See the \verb|complexity.xml| file for the specific code.
 
 \begin{table}[H]
 \centering
+\caption{Complexity IDs and pseudocode defined for \CSharp}
 \begin{tabular}{|r|l|}
 \hline
-\textbf{ID} & \textbf{Complexity} \\
+\textbf{ID} & \textbf{Pseudocode} \\
 \hline
  1 & if condition code \\
 \hline
@@ -2061,7 +2064,6 @@ See the \verb|complexity.xml| file for the specific code.
 22 & code then output passed via class \\
 \hline
 \end{tabular}
-\caption{IDs and Code Description of Complexities Defined for \CSharp}
 \label{tab:complexity IDs for CSharp}
 \end{table}
 
@@ -2072,6 +2074,8 @@ always evaluates to true or false.
 
 \begin{table}[H]
 \centering
+\caption{Condition IDs, code, and value to which it evaluates defined for
+  \CSharp}
 \begin{tabular}{|r|l|l|}
 \hline
 \textbf{ID} & \textbf{Code} & \textbf{Value} \\
@@ -2093,13 +2097,11 @@ always evaluates to true or false.
 8 & \verb|Math.Sqrt(42)>=42| & False \\
 \hline
 \end{tabular}
-\caption{IDs, Code, and Value to Which it Evaluates of Conditions Defined for
-  \CSharp}
 \label{tab:condition IDs for CSharp}
 \end{table}
 
 
-\section{PHP language}
+\section{PHP Language}
 \label{sec:PHP language}
 
 This documents the flaw, flaw group, conditions, and complexities currently in the
@@ -2118,14 +2120,15 @@ The flaw is in the following group:
 Here are the complexities currently available in PHP.
 We explain the concept of code complexities in Sec.~\ref{sec:code complexities} and
 the format of complexity modules in Sec.~\ref{sec: complexity modules}.
-This very brief description is to remind the reader of the complexity.
+The brief descriptive pseudocode reminds the reader of the complexity.
 See the \verb|complexity.xml| file for the specific code.
 
 \begin{table}[H]
 \centering
+\caption{Complexity IDs and pseudocode defined for PHP}
 \begin{tabular}{|r|l|}
 \hline
-\textbf{ID} & \textbf{Complexity} \\
+\textbf{ID} & \textbf{Pseudocode} \\
 \hline
  1 & if condition code \\
 \hline
@@ -2173,7 +2176,6 @@ See the \verb|complexity.xml| file for the specific code.
 22 & code then output passed via class \\
 \hline
 \end{tabular}
-\caption{IDs and Code Description of Complexities Defined for PHP}
 \label{tab:complexity IDs for PHP}
 \end{table}
 
@@ -2185,6 +2187,8 @@ always evaluates to true or false.
 
 \begin{table}[H]
 \centering
+\caption{Condition IDs, code, and value to which it evaluates defined for
+  PHP}
 \begin{tabular}{|r|l|l|}
 \hline
 \textbf{ID} & \textbf{Code} & \textbf{Value} \\
@@ -2194,13 +2198,11 @@ always evaluates to true or false.
 2 & \verb|1==0| & False \\
 \hline
 \end{tabular}
-\caption{IDs, Code, and Value to Which it Evaluates of Conditions Defined for
-  PHP}
 \label{tab:condition IDs for PHP}
 \end{table}
 
 
-\section{Python language}
+\section{Python Language}
 \label{sec:Python language}
 
 This documents the flaws, flaw groups, conditions, and complexities currently in the
@@ -2219,14 +2221,15 @@ The following flaws are currently defined for Python:
 Here are the complexities currently defined.
 We explain the concept of code complexities in Sec.~\ref{sec:code complexities} and
 the format of complexity modules in Sec.~\ref{sec: complexity modules}.
-This very brief description is to remind the reader of the complexity.
+The brief descriptive pseudocode reminds the reader of the complexity.
 See the \verb|complexity.xml| file for the specific code.
 
 \begin{table}[H]
 \centering
+\caption{Complexity IDs and pseudocode defined for Python}
 \begin{tabular}{|r|l|}
 \hline
-\textbf{ID} & \textbf{Complexity} \\
+\textbf{ID} & \textbf{Pseudocode} \\
 \hline
  1 & if condition code \\
 \hline
@@ -2283,7 +2286,6 @@ j16n & while True break code \\
 72 & code then output passed via class \\
 \hline
 \end{tabular}
-\caption{IDs and Pseudocode of Complexities Defined for Python}
 \label{tab:complexity IDs for Python}
 \end{table}
 
@@ -2294,6 +2296,8 @@ always evaluates to true or false.
 
 \begin{table}[H]
 \centering
+\caption{Condition IDs, code, and value to which it evaluates defined for
+  Python}
 \begin{tabular}{|r|l|l|}
 \hline
 \textbf{ID} & \textbf{Code} & \textbf{Value} \\
@@ -2323,8 +2327,6 @@ always evaluates to true or false.
 8 & \verb|math.sqrt(42)>=42| & False \\
 \hline
 \end{tabular}
-\caption{ID, Code, and Value to which it evaluates of Conditions Defined for
-  Python}
 \label{tab:condition IDs for Python}
 \end{table}
 
@@ -2340,7 +2342,7 @@ always evaluates to true or false.
   \includegraphics[width=1\linewidth]{fig_git_files.png}
   \caption{Snapshot of files in the VTSG git repository, which is at
     \href{https://github.com/usnistgov/VTSG}{https://github.com/ usnistgov/VTSG},
-    as of 8 March 2022.}
+    as of 12 January 2023.}
   \label{fig:git files}
 \end{figure}
 
@@ -2348,7 +2350,7 @@ always evaluates to true or false.
   \includegraphics[width=0.8\linewidth]{fig_README_md.png}
   \caption{README.md file, which is at
     \href{https://github.com/usnistgov/VTSG/blob/master/README.md}
-         {https://github.com/usnistgov/VTSG/blob/master/ README.md},
+         {https://github.com/usnistgov/VTSG/blob/ master/README.md},
     as of 8 March 2022.}
   \label{fig:README.md file}
 \end{figure}
