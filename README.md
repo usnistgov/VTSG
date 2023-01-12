@@ -31,11 +31,11 @@ You can also install this dependency with your package manager (if such a packag
 
 #### Manual Installation
 
-Jinja2 installation instructions [here](http://jinja.pocoo.org/docs/dev/intro/#installation)
+Jinja2 installation instructions are [here](https://pypi.org/project/Jinja2/)
 
-Docopt installation instructions [here](https://github.com/docopt/docopt#installation)
+Docopt installation instructions are [here](https://github.com/docopt/docopt#installation)
 
-[Setuptools site](http://pythonhosted.org/setuptools/)
+Setuptools installation instructions are [here](https://pypi.org/project/setuptools/)
 
 ## Execute it
 
@@ -51,4 +51,4 @@ $ python3 vtsg.py --help
 
 ## Discussion
 
-For discussion please send me an email at: Bertrand 'dot' STIVALET 'at' gmail.com
+For discussion please email: samate@nist.gov

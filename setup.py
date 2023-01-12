@@ -1,4 +1,4 @@
-# *modified "Tue Feb 15 09:02:23 2022" *by "Paul E. Black"
+# *modified "Wed Jan 11 14:56:11 2023" *by "Paul E. Black"
 
 import os
 from setuptools import setup
@@ -15,8 +15,8 @@ def read(fname):
 
 setup(
     name="vulnerability test suite generator",
-    version="3",
-    packages=['vuln_test_suite_gen'],
+    version="3.0",
+    packages=['src'],
     scripts=['vtsg.py'],
 
     # Project uses reStructuredText, so ensure that the docutils get
@@ -31,12 +31,13 @@ setup(
     # metadata for upload to PyPI
     author="Bertrand Stivalet",
     author_email="bertrand.stivalet@gmail.com",
+    maintainer="SAMATE team",
+    maintainer_email="samate@nist.gov",
     description="Collection of vulnerable and fixed synthetic test cases expressing specific flaws.",
     license="MIT",
     keywords="flaws vulnerability generator",
     long_description=read('README.md'),
-
-    # could also include long_description, download_url, classifiers, etc.
+    long_description_content_type='text/markdown',
 )
 
 # end of setup.py
