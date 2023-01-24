@@ -1,5 +1,5 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Fri Jan  6 14:51:14 2023" *by "Paul E. Black"
+ *modified "Thu Jan 12 12:27:53 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -234,9 +234,6 @@ C#
           - foreach   : Testing
       - function  : Testing (only traversal/in/out)
       - classes   : Testing (only transversal/in/out)
-  # Not important
-  - benchmark functions
-  - use Python or JVM for optimization ?
   # Hard to do
   - add C# print debug to test if safe/unsafe or if it's executed
   - create bash script to compile and run all C# code
