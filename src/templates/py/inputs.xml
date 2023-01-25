@@ -110,7 +110,7 @@
             </path>
             <comment>Hardcoded integer as input</comment>
             <flaws>
-                <flaw flaw_type="CWE_369" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE369" safe="0" unsafe="0"/>
                 <flaw flaw_type="default" safe="1" unsafe="0"/>
             </flaws>
             <imports>

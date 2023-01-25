@@ -2,12 +2,12 @@
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2022-12-16</date>
+			<date>2023-01-25</date>
 			<input>None : None</input>
 		</meta-data>
 
-		<file path="TestSuite_12-16-2022_10h50m40/Python/OWASP_a5/CWE_209/unsafe/CWE_209__S_info_expose__0.py" language="Python">
-			<flaw line="45" name ="CWE_209"/>
+		<file path="TestSuite_01-25-2023_16h40m29/Python/OWASP_a5/CWE209/unsafe/CWE209__S_info_expose__0.py" language="Python">
+			<flaw line="45" name ="CWE209"/>
 		</file>
 
 	</testcase>

@@ -42,10 +42,10 @@
             </path>
             <comment>filtering : check if there is only numbers</comment>
             <flaws>
-                <flaw flaw_type="CWE_89" safe="1" unsafe="0"/>
-                <flaw flaw_type="CWE_78" safe="0" unsafe="0"/>
-                <flaw flaw_type="CWE_91" safe="0" unsafe="0"/>
-                <flaw flaw_type="CWE_90" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE89" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE78" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE91" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE90" safe="0" unsafe="0"/>
             </flaws>
             <imports>
                 <import>System.Text.RegularExpressions</import>
@@ -71,10 +71,10 @@
             </path>
             <comment>filtering : cast tainted into integer</comment>
             <flaws>
-                <flaw flaw_type="CWE_89" safe="1" unsafe="0"/>
-                <flaw flaw_type="CWE_78" safe="0" unsafe="0"/>
-                <flaw flaw_type="CWE_91" safe="0" unsafe="0"/>
-                <flaw flaw_type="CWE_90" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE89" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE78" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE91" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE90" safe="0" unsafe="0"/>
             </flaws>
             <imports>
             </imports>
@@ -91,7 +91,7 @@
             </path>
             <comment>filter: block zero arguments</comment>
             <flaws>
-                <flaw flaw_type="CWE_369" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE369" safe="1" unsafe="0"/>
             </flaws>
             <imports>
 	      <import>sys</import>
@@ -113,7 +113,7 @@
             </path>
             <comment>filtering : remove all invalid filenames and chars in paths</comment>
             <flaws>
-                <flaw flaw_type="CWE_22" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE22" safe="1" unsafe="0"/>
             </flaws>
             <imports>
                 <import>System.IO</import>
@@ -134,10 +134,10 @@
             </path>
             <comment>filtering : remove semi-colon and all invalid filenames and chars in paths</comment>
             <flaws>
-                <flaw flaw_type="CWE_78" safe="1" unsafe="0"/>
-                <flaw flaw_type="CWE_89" safe="0" unsafe="0"/>
-                <flaw flaw_type="CWE_91" safe="0" unsafe="0"/>
-                <flaw flaw_type="CWE_90" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE78" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE89" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE91" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE90" safe="0" unsafe="0"/>
             </flaws>
             <imports>
                 <import>System.IO</import>
@@ -158,10 +158,10 @@
             </path>
             <comment>filtering : remove all '\', '*', '(', ')', 'u0000', '/' in parameter</comment>
             <flaws>
-                <flaw flaw_type="CWE_90" safe="1" unsafe="0"/>
-                <flaw flaw_type="CWE_78" safe="0" unsafe="0"/>
-                <flaw flaw_type="CWE_89" safe="0" unsafe="0"/>
-                <flaw flaw_type="CWE_91" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE90" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE78" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE89" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE91" safe="0" unsafe="0"/>
             </flaws>
             <imports>
                 <import>System.Text</import>
@@ -206,10 +206,10 @@
             </path>
             <comment>Xpath replace char</comment>
             <flaws>
-                <flaw flaw_type="CWE_91" safe="1" unsafe="0"/>
-                <flaw flaw_type="CWE_90" safe="0" unsafe="0"/>
-                <flaw flaw_type="CWE_78" safe="0" unsafe="0"/>
-                <flaw flaw_type="CWE_89" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE91" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE90" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE78" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE89" safe="0" unsafe="0"/>
             </flaws>
             <imports>
                 <import>System.Text</import>
@@ -234,7 +234,7 @@
             </path>
             <comment>filtering : remove all invalid filenames in a path</comment>
             <flaws>
-                <flaw flaw_type="CWE_22" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE22" safe="0" unsafe="0"/>
             </flaws>
             <imports>
                 <import>System.IO</import>
@@ -255,7 +255,7 @@
             </path>
             <comment>filtering : remove all invalid chars in a path</comment>
             <flaws>
-                <flaw flaw_type="CWE_22" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE22" safe="0" unsafe="0"/>
             </flaws>
             <imports>
                 <import>System.IO</import>
@@ -276,7 +276,7 @@
             </path>
             <comment>filtering : remove first "../" in path</comment>
             <flaws>
-                <flaw flaw_type="CWE_22" safe="0" unsafe="0"/>
+                <flaw flaw_type="CWE22" safe="0" unsafe="0"/>
             </flaws>
             <imports>
                 <import>System.Text.RegularExpressions</import>
@@ -296,7 +296,7 @@
             </path>
             <comment>filtering : remove all "../" in path</comment>
             <flaws>
-                <flaw flaw_type="CWE_22" safe="1" unsafe="0"/>
+                <flaw flaw_type="CWE22" safe="1" unsafe="0"/>
             </flaws>
             <imports>
                 <import>System.Text.RegularExpressions</import>
