@@ -1,4 +1,3 @@
-
 /*
 input : shell commands
 filtering : check if there is only numbers

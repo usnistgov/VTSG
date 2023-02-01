@@ -1,4 +1,3 @@
-
 /*
 Hardcoded string input
 filtering : remove all '\', '*', '(', ')', 'u0000', '/' in parameter

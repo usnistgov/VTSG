@@ -1,4 +1,3 @@
-
 '''
 input: direct user input in string
 no filtering

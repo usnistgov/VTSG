@@ -1,4 +1,3 @@
-
 /*
 input : shell commands
 filtering : remove semi-colon and all invalid filenames and chars in paths

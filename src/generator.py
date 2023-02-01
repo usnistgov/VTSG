@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Thu Dec 15 15:57:57 2022" *by "Paul E. Black"
+ *modified "Wed Feb  1 09:00:12 2023" *by "Paul E. Black"
 """
 
 import time
@@ -518,6 +518,8 @@ class Generator(object):
                                   self.is_safe_selection(),
                                   self.current_code)
         filemanager.createFile()
+
+        # start entry for manifest
         full_path = filemanager.getPath() + main_filename
         line = 0
         if not self.is_safe_selection():

@@ -1,4 +1,3 @@
-
 /*
 Command line args
 filtering : remove all '\', '*', '(', ')', 'u0000', '/' in parameter

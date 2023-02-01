@@ -2,12 +2,12 @@
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2022-12-15</date>
+			<date>2023-02-01</date>
 			<input>None : None</input>
 		</meta-data>
 
-		<file path="TestSuite_12-15-2022_16h18m46/Csharp/OWASP_a5/CWE_209/unsafe/CWE_209__S_print_exception__0.cs" language="Csharp">
-			<flaw line="51" name ="CWE_209"/>
+		<file path="TestSuite_02-01-2023_11h00m45/Csharp/OWASP_a5/CWE_209/unsafe/CWE_209__S_print_exception__0.cs" language="Csharp">
+			<flaw line="50" name ="CWE_209"/>
 		</file>
 
 	</testcase>

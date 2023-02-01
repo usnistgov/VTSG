@@ -1,4 +1,3 @@
-
 '''
   Test an unsafe case with NO curly-curly-flaw-curly-curly line.
   Test unusual indentation: tab space tab

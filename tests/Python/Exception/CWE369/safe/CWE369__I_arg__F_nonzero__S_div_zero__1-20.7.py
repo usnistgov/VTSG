@@ -1,4 +1,3 @@
-
 '''
 input: integer from command line arg
 filter: block zero arguments

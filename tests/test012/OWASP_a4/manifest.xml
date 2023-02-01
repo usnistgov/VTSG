@@ -2,77 +2,77 @@
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2023-01-04</date>
+			<date>2023-02-01</date>
 			<input>input : no input</input>
 		</meta-data>
 
-		<file path="TestSuite_01-04-2023_16h22m49/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__0.py" language="test012"/>
+		<file path="TestSuite_02-01-2023_10h06m47/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__0.py" language="test012"/>
 
 	</testcase>
 
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2023-01-04</date>
+			<date>2023-02-01</date>
 			<input>input : no input</input>
 		</meta-data>
 
-		<file path="TestSuite_01-04-2023_16h22m49/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__1-8.1.py" language="test012"/>
+		<file path="TestSuite_02-01-2023_10h06m47/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__1-8.1.py" language="test012"/>
 
 	</testcase>
 
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2023-01-04</date>
+			<date>2023-02-01</date>
 			<input>input : no input</input>
 		</meta-data>
 
-		<file path="TestSuite_01-04-2023_16h22m49/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__1-12.1.py" language="test012"/>
+		<file path="TestSuite_02-01-2023_10h06m47/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__1-12.1.py" language="test012"/>
 
 	</testcase>
 
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2023-01-04</date>
+			<date>2023-02-01</date>
 			<input>input : no input</input>
 		</meta-data>
 
-		<file path="TestSuite_01-04-2023_16h22m49/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__2-8.1-8.1.py" language="test012"/>
+		<file path="TestSuite_02-01-2023_10h06m47/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__2-8.1-8.1.py" language="test012"/>
 
 	</testcase>
 
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2023-01-04</date>
+			<date>2023-02-01</date>
 			<input>input : no input</input>
 		</meta-data>
 
-		<file path="TestSuite_01-04-2023_16h22m49/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__2-8.1-12.1.py" language="test012"/>
+		<file path="TestSuite_02-01-2023_10h06m47/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__2-8.1-12.1.py" language="test012"/>
 
 	</testcase>
 
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2023-01-04</date>
+			<date>2023-02-01</date>
 			<input>input : no input</input>
 		</meta-data>
 
-		<file path="TestSuite_01-04-2023_16h22m49/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__2-12.1-8.1.py" language="test012"/>
+		<file path="TestSuite_02-01-2023_10h06m47/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__2-12.1-8.1.py" language="test012"/>
 
 	</testcase>
 
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2023-01-04</date>
+			<date>2023-02-01</date>
 			<input>input : no input</input>
 		</meta-data>
 
-		<file path="TestSuite_01-04-2023_16h22m49/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__2-12.1-12.1.py" language="test012"/>
+		<file path="TestSuite_02-01-2023_10h06m47/test012/OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded_string_input__F_no_filtering__S_file_exists__2-12.1-12.1.py" language="test012"/>
 
 	</testcase>
 

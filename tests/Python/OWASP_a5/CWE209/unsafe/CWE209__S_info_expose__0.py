@@ -1,4 +1,3 @@
-
 '''
 sink: information exposure
 '''

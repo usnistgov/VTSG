@@ -1,4 +1,3 @@
-
 /*
 input : direct user input in string
 filtering : remove all '\', '*', '(', ')', 'u0000', '/' in parameter

@@ -1,4 +1,3 @@
-
 /*
 Hardcoded string input
 filtering : remove first "../" in path

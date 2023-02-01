@@ -1,7 +1,7 @@
 """
 file_template module
 
- *modified "Wed Sep  7 16:32:39 2022" *by "Paul E. Black"
+ *modified "Wed Feb  1 10:04:29 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -12,25 +12,25 @@ class FileTemplate(object):
     """FileTemplate class
 
         Attributes :
-            **_language_name** (str): Name of language (private member, please use getter and setter).
+            **_language_name** (str): Name of language (private member, please use getter).
 
-            **_file_extension** (str): File extension (private member, please use getter and setter).
+            **_file_extension** (str): File extension (private member, please use getter).
 
-            **_namespace** (int): Namespace (private member, please use getter and setter).
+            **_namespace** (int): Namespace (private member, please use getter).
 
-            **_code** (str): Template code (private member, please use getter and setter).
+            **_code** (str): Template code (private member, please use getter).
 
-            **_imports** (list of str): imports for template (private member, please use getter and setter).
+            **_imports** (list of str): imports for template (private member, please use getter).
 
             **_comment** (dict str->str): Structure for comment (inline, multiline) \
-                                          (private member, please use getter and setter).
+                                          (private member, please use getter).
 
-            **_prefix** (str): Variables prefix (private member, please use getter and setter).
+            **_prefix** (str): Variables prefix (private member, please use getter).
 
-            **_import_code** (str): Import code with placeholder (private member, please use getter and setter).
+            **_import_code** (str): Import code with placeholder (private member).
 
             **_variables** (dict str->(dict str->str)): Identifier and initializer for variables \
-                                          (private member, please use getter and setter).
+                                          (private member, please use functions).
 
     """
 
@@ -40,8 +40,9 @@ class FileTemplate(object):
         self._namespace = ""
         if file_template.find("namespace") is not None:
             self._namespace = file_template.find("namespace").text
-        self._code = file_template.find("code").text
-        self._code = src.generator.Generator.remove_indent(self._code)
+        template_code = file_template.find("code").text
+        template_code = template_code.lstrip() # remove any leading new lines
+        self._code = src.generator.Generator.remove_indent(template_code)
         self._imports = [imp.text for imp in file_template.find("imports").findall("import")]
         self._comment = {}
         self._comment['open'] = file_template.find("comment").find("open").text

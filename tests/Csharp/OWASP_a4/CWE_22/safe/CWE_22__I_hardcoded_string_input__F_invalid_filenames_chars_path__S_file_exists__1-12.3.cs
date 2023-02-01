@@ -1,4 +1,3 @@
-
 /*
 Hardcoded string input
 filtering : remove all invalid filenames and chars in paths

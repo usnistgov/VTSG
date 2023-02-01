@@ -1,4 +1,3 @@
-
 /*
 input : shell commands
 filtering : remove all invalid filenames in a path

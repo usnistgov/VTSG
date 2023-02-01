@@ -1,4 +1,3 @@
-
 /*
 input : direct user input in string
 filtering : remove all invalid chars in a path

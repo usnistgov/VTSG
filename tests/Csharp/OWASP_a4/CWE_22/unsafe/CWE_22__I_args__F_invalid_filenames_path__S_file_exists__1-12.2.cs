@@ -1,4 +1,3 @@
-
 /*
 Command line args
 filtering : remove all invalid filenames in a path

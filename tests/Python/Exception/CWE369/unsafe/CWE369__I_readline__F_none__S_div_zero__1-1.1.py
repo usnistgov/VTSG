@@ -1,4 +1,3 @@
-
 '''
 input: integer from user input
 no filtering

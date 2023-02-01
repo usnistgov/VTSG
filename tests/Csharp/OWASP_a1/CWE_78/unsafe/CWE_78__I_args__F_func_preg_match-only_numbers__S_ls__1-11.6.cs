@@ -1,4 +1,3 @@
-
 /*
 Command line args
 filtering : check if there is only numbers

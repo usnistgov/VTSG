@@ -1,4 +1,3 @@
-
 '''
   Test 2 of 4 for statement_terminator
   ang-syntax-ang, but no ang-statement_terminator-ang

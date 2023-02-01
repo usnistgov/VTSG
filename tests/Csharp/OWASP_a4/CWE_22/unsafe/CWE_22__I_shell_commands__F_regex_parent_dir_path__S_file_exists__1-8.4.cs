@@ -1,4 +1,3 @@
-
 /*
 input : shell commands
 filtering : remove first "../" in path

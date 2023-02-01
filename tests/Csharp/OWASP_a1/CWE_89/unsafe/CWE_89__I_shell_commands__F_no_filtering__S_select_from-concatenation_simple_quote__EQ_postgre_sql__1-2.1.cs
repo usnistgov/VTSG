@@ -1,4 +1,3 @@
-
 /*
 input : shell commands
 no filtering

@@ -1,4 +1,3 @@
-
 '''
 Hardcoded string as input
 no filtering

@@ -1,0 +1,12 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-02-01</date>
+			<input>input : no input</input>
+		</meta-data>
+
+		<file path="TestSuite_02-01-2023_10h15m16/test016/OWASP_a1/CWE_78/safe/CWE_78__I_hardcoded_string__F_none__S_ls__0.py" language="test016"/>
+
+	</testcase>
+

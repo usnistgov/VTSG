@@ -2,12 +2,12 @@
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2022-03-11</date>
+			<date>2023-02-01</date>
 			<input>input : Command line args</input>
 		</meta-data>
 
-		<file path="TestSuite_03-11-2022_08h21m53/test010/Zarahemla/CWE_22/unsafe/CWE_22__I_args__F_no_filtering__S_ls__0_File1.py" language="test010">
-			<flaw line="43" name ="CWE_22"/>
+		<file path="TestSuite_02-01-2023_09h53m46/test010/Zarahemla/CWE_22/unsafe/CWE_22__I_args__F_no_filtering__S_ls__0.py" language="test010">
+			<flaw line="42" name ="CWE_22"/>
 		</file>
 
 	</testcase>
@@ -15,12 +15,38 @@
 	<testcase>
 		<meta-data>
 			<author>Paul E. Black</author>
-			<date>2022-03-11</date>
+			<date>2023-02-01</date>
 			<input>input : Command line args</input>
 		</meta-data>
 
-		<file path="TestSuite_03-11-2022_08h21m53/test010/Zarahemla/CWE_22/unsafe/CWE_22__I_args__F_no_filtering__S_ls__1-1.1_File1.py" language="test010">
-			<flaw line="45" name ="CWE_22"/>
+		<file path="TestSuite_02-01-2023_09h53m46/test010/Zarahemla/CWE_22/unsafe/CWE_22__I_args__F_no_filtering__S_ls__1-1.1.py" language="test010">
+			<flaw line="44" name ="CWE_22"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-02-01</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_02-01-2023_09h53m46/test010/Zarahemla/CWE_22/unsafe/CWE_22__I_hardcoded__F_no_filtering__S_ls__0.py" language="test010">
+			<flaw line="41" name ="CWE_22"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-02-01</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_02-01-2023_09h53m46/test010/Zarahemla/CWE_22/unsafe/CWE_22__I_hardcoded__F_no_filtering__S_ls__1-1.1.py" language="test010">
+			<flaw line="43" name ="CWE_22"/>
 		</file>
 
 	</testcase>

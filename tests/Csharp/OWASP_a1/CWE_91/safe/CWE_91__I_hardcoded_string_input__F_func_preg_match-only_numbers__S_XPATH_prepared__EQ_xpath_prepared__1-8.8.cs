@@ -1,4 +1,3 @@
-
 /*
 Hardcoded string input
 filtering : check if there is only numbers

@@ -1,4 +1,3 @@
-
 /*
 input : direct user input in string
 filtering : check if there is only numbers

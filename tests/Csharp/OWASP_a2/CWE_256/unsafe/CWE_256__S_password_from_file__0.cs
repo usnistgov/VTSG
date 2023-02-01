@@ -1,4 +1,3 @@
-
 /*
 sink : connection to a database using hardcoded password in a file
 */

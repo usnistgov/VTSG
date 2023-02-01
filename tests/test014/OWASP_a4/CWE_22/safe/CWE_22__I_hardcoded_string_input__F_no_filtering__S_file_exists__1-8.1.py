@@ -1,4 +1,3 @@
-
 '''
   Test 4 of 4 for statement_terminator
   two semicolons for statement_terminator

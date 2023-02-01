@@ -1,4 +1,3 @@
-
 '''
 input: integer from environment variable
 no filtering
