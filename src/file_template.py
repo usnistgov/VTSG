@@ -1,7 +1,7 @@
 """
 file_template module
 
- *modified "Wed Feb  1 10:04:29 2023" *by "Paul E. Black"
+ *modified "Thu Feb  2 11:56:05 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -41,7 +41,8 @@ class FileTemplate(object):
         if file_template.find("namespace") is not None:
             self._namespace = file_template.find("namespace").text
         template_code = file_template.find("code").text
-        template_code = template_code.lstrip() # remove any leading new lines
+        if template_code[0] == '\n':
+            template_code = template_code[1:] # remove any leading new lines
         self._code = src.generator.Generator.remove_indent(template_code)
         self._imports = [imp.text for imp in file_template.find("imports").findall("import")]
         self._comment = {}
