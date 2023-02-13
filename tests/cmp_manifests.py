@@ -1,13 +1,14 @@
 #            *created  "Wed Feb  9 10:56:53 2022" *by "Paul E. Black"'
-versionMod=' *modified "Thu Dec 15 11:58:46 2022" *by "Paul E. Black"'
+versionMod=' *modified "Mon Feb 13 09:27:53 2023" *by "Paul E. Black"'
 #
 
 # Compare two manifest.xml files, ignoring unimportant differences like dates
+# If they differ, report the first difference and exit.
 # SKIMP this checks line by line.  XML files may differ in format, while the content
 # matches.  This does not do XML matching.
 
 # usage:
-# $ python ./cmp_manifests.py TestSuite_02-09-2022_10h52m26/PHP/OWASP_a1/manifest.xml tests/SuitePHP/PHP/OWASP_a1/manifest.xml
+# $ python ./cmp_manifests.py TestSuite_02-09-2022_10h52m26/PHP/OWASP_a1/manifest.xml tests/PHP/OWASP_a1/manifest.xml
 
 # This software was developed at the National Institute of Standards and
 # Technology by employees of the Federal Government in the course of their
@@ -92,6 +93,7 @@ if __name__ == '__main__':
             print(f'{manifest1} {manifest2} differ: line {line}')
             print(f'{line1}', end='')
             print(f'{line2}', end='')
+            print(f'exiting')
             sys.exit(-2)
 
     # manifest 1 is done.  Check that nothing remains in manifest 2
