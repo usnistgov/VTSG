@@ -20,6 +20,35 @@
 
         <sample>
             <path>
+                <dir>path_traversal</dir>
+            </path>
+            <flaw_type flaw_group="Other">CWE23</flaw_type>
+            <comment>sink: open file named by input</comment>
+            <imports>
+                <import>os</import>
+            </imports>
+            <code>
+	root = '/Users/'
+
+        if {{in_var_name}} is not None:
+	INDENT
+            {{flaw}} # no validation - concatenated value could have path traversal
+	    file = os.path.join(root, {{in_var_name}})
+	    with open(file, 'r') as f:
+	    INDENT
+	        print(f.readline(), end='')
+	    DEDENT
+	DEDENT
+
+	print('Done')
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>string,filter_input</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+
+        <sample>
+            <path>
                 <dir>file_exists</dir>
             </path>
             <flaw_type flaw_group="OWASP_a4">CWE22</flaw_type>

@@ -106,6 +106,28 @@
             <input_type>int</input_type>
             <output_type>int</output_type>
         </sample>
+
+	<!-- source input is in the filter so it is wrapped with complexities -->
+        <sample>
+            <path>
+                <dir>console_input</dir>
+            </path>
+            <comment>input (filter): console &lt;&lt; INPUT
+../etc/passwd
+INPUT</comment>
+            <flaws>
+                <flaw flaw_type="CWE23" safe="0" unsafe="1"/> <!-- unsafe user input -->
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+                {{out_var_name}} = input() # read one line
+            </code>
+            <input_type>InitToNone</input_type>
+            <output_type>string,filter_input</output_type>
+        </sample>
+
+
 <!--
         <sample>
             <path>

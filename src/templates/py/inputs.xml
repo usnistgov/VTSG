@@ -91,6 +91,24 @@
 
         <sample>
             <path>
+                <dir>InitNone</dir>
+            </path>
+            <comment>Initialize to None</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+	        # no input
+		{{out_var_name}} = None
+	    </code>
+            <input_type>input: no input</input_type>
+            <output_type>InitToNone</output_type>
+        </sample>
+
+        <sample>
+            <path>
                 <dir>hardcoded_string</dir>
             </path>
             <comment>Hardcoded string as input</comment>
