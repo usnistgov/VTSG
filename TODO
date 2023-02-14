@@ -1,5 +1,5 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Wed Feb  1 12:28:47 2023" *by "Paul E. Black"
+ *modified "Tue Feb 14 12:53:41 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -277,8 +277,6 @@ other cases to discover any limitations VTSG has.
 
 GENERATE CASES SMARTER
 
-Don't "declare" local variables if not necessary, e.g., in Python.
-
 Create s01, s02, s03, etc. subdirectories so there aren't hundreds of thousands of
 cases in one directory.
 
@@ -292,9 +290,6 @@ test run.
     The -n (number generated) option does something vaguely like this.  However, it
 stops generation after N sink/filter/input/exec query combinations are generated.
 Search for number_generated in generator.py.
-
-Enhance VTSG to count and report (not print) cases.
-    This is a prelude to combinatorial test generation, see next.
 
 Incorporate combinatorial test generation
     Now VTSG generates all combinations, like Juliet. It may be useful to generate
