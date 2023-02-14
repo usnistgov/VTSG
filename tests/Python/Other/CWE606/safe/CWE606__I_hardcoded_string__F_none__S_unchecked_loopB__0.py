@@ -22,9 +22,6 @@ import sys
 
 
 def main():
-    tainted_0 = None
-    tainted_1 = None
-
     tainted_0 = "-d /;echo Vulnerable: user command run"
     tainted_1 = tainted_0
 

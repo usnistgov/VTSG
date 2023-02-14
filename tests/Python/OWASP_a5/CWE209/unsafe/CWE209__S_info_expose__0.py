@@ -23,7 +23,6 @@ def main():
 
 
 
-
     # find a sum that the compiler won't predict
     intArray = sorted([2, 37, 849, 24, 42, -10, 93])
     for nb in intArray:

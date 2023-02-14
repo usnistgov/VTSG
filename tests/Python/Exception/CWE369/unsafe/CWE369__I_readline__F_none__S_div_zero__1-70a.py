@@ -22,9 +22,6 @@ import sys
 
 
 def main():
-    tainted_0 = 0
-    tainted_5 = 0
-
 
     try:
         tainted_0 = int(input())

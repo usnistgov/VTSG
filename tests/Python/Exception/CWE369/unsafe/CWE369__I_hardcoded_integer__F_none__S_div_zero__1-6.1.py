@@ -23,9 +23,6 @@ import sys
 
 def main():
     tainted_2 = 0
-    tainted_3 = 0
-
-    tainted_2 = 0
     tainted_3 = tainted_2
 
     if 1==1:

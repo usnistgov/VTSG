@@ -22,10 +22,6 @@ import sys
 
 
 def main():
-    tainted_1 = 0
-    tainted_2 = 0
-    tainted_3 = 0
-
 
     try:
         tainted_1 = int(sys.argv[1])

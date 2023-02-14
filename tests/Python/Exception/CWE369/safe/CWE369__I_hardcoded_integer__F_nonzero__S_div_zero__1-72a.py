@@ -23,10 +23,6 @@ import sys
 
 def main():
     tainted_2 = 0
-    tainted_3 = 0
-    tainted_4 = 0
-
-    tainted_2 = 0
     tainted_4 = tainted_2
 
 

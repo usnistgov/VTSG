@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Jan  4 15:56:10 2023" *by "Paul E. Black"
+# *modified "Tue Feb 14 09:36:21 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -7,7 +7,7 @@ all: testAll generate
 
 generate: genPython genCsharp genPHP
 
-testAll: testVarious testCLI testSTerm testIndent
+testAll: testVarious testCLI testSTerm testIndent testDeclVars
 	@echo All built-in self-tests succeeded
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
@@ -81,7 +81,7 @@ test007:
 # test sink with no input (or filter)
 test010: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test010/$$f;done)
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/$(@)/$$f;done)
 	@echo $@ finished
 	sleep 1
 
@@ -130,23 +130,23 @@ testSTerm: test011 test012 test013 test014
 # also, exercise strings as complexity and condition names
 test011: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test011 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test011/$$f;done)
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/$(@)/$$f;done)
 	sleep 1
 
 # also, exercise two levels of complexity
 test012: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates --depth=2
-	(cd $$(ls -dt TestSuite_*/test012 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test012/$$f;done)
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/$(@)/$$f;done)
 	sleep 1
 
 test013: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test013 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test013/$$f;done)
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/$(@)/$$f;done)
 	sleep 1
 
 test014: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates
-	(cd $$(ls -dt TestSuite_*/test014 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test014/$$f;done)
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/$(@)/$$f;done)
 
 # tests for misuses of INDENT ... DEDENT
 testIndent: test016 test017
@@ -160,9 +160,23 @@ test017: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates | tee $(@)_photo | head -2
 	diff $(@)_photo tests/$(@)_photo
 
-test020: $(VTSG_FILES) src/sarif_writer.py
+# tests for inconsistent declaring local variables
+testDeclVars: test020 test021
+	@echo test inconsistent declaring local variables succeeded
+
+# no {{local_var}}, but <variable ... /> given
+test020: $(VTSG_FILES)
+	python3 vtsg.py -l $@ -t tests/templates -r 0 | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+# {{local_var}} given, but no <variable ... /> statements
+test021: $(VTSG_FILES)
+	python3 vtsg.py -l $@ -t tests/templates -r 0 | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+testNNN: $(VTSG_FILES) src/sarif_writer.py
 	python3 vtsg.py -l $@ -t tests/templates
-	-(cd $$(ls -dt TestSuite_*/test020 | head -1);pwd;for f in $$(find . -name "*.sarif"|sort); do echo $$f; cat $$f;done)|more
+	-(cd $$(ls -dt TestSuite_*/$(@) | head -1);pwd;for f in $$(find . -name "*.sarif"|sort); do echo $$f; cat $$f;done)|more
 
 # remove stuff left from running built-in tests
 clean:

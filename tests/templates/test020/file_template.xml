@@ -1,0 +1,52 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!-- *created  "Mon Feb 13 13:48:52 2023" *by "Paul E. Black" -->
+<!-- *modified "Mon Feb 13 16:00:09 2023" *by "Paul E. Black" -->
+
+<!-- test inconsistent declaring local variables, that is,
+     mismatch between {{Local_var}} and <variable /> statements -->
+<template name="test021">
+    <file_extension>py</file_extension>
+    <comment>
+        <open>'''</open>
+        <close>'''</close>
+        <inline>#</inline>
+    </comment>
+    <syntax>
+      <!-- If language doesn't have a terminator, leave empty-->
+      <statement_terminator></statement_terminator>
+      <!-- Insert desired indentation level using spaces-->
+      <indent>    </indent>
+    </syntax>
+    <namespace></namespace>
+    <variables prefix="" import_code="import {{import_file}}">
+    </variables>
+    <imports>
+    </imports>
+    <code>
+'''
+{{ comments }}
+'''
+
+'''
+{{ license }}
+'''
+{{ stdlib_imports }}
+
+{{ static_methods }}
+
+
+def main():
+    INDENT
+    {{local_var}}
+    {{input_content}}
+    {{filtering_content}}
+    {{sink_content}}
+    DEDENT
+
+if __name__ == '__main__':
+        main()
+    </code>
+</template>
+
+<!-- end of file_template.xml -->

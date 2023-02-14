@@ -27,10 +27,6 @@ def function_1( param_1 ):
 
 
 def main():
-    tainted_2 = None
-    tainted_3 = None
-    tainted_4 = None
-
     tainted_2 = os.environ['ADD']
     tainted_4 = tainted_2
 

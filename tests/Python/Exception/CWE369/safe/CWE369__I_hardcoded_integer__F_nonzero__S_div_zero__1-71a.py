@@ -23,10 +23,6 @@ import sys
 
 def main():
     tainted_1 = 0
-    tainted_2 = 0
-    tainted_3 = 0
-
-    tainted_1 = 0
     tainted_3 = tainted_1
 
     var_1 = Class_1(tainted_1)

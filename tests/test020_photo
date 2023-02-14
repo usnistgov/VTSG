@@ -1,0 +1,2 @@
+[ERROR] {{local_var}} but no <variable type code init /> statements in file_template.xml
+Both are needed to show where and how to declare local variables

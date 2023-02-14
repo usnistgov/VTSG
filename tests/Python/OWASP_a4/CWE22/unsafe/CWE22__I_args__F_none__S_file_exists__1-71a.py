@@ -23,10 +23,6 @@ import sys
 
 
 def main():
-    tainted_1 = None
-    tainted_2 = None
-    tainted_3 = None
-
     tainted_1 = sys.argv[1]
     tainted_3 = tainted_1
 

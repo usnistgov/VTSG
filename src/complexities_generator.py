@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Fri Dec 16 10:27:28 2022" *by "Paul E. Black"
+ *modified "Fri Feb 10 16:42:24 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -259,7 +259,7 @@ class ComplexitiesGenerator(object):
         # return all classes not in the main file
         return classes_code
 
-    def generate_local_var_code(self, local_var):
+    def generate_local_var_code(self, local_vars):
         '''Generate statement(s) to declare and initialize local variables. For example,
                       "string localvar_1 = None;\n    int localvar_2 = 0;"
            Indentation precedes second and following vars, since macro replacement
@@ -268,12 +268,16 @@ class ComplexitiesGenerator(object):
         '''
         local_var_code = ""
         local_var_indent = get_indent('local_var', self.template.code)
+        if local_var_indent is None:
+            # no {{local_var}} provided - don't declare variables in this language
+            return ""
+
         # loop through every type
-        for t in local_var:
+        for t in local_vars:
             declare_type = self.template.get_type_var_code(t)
             init = self.template.get_init_var_code(t)
             # generate code to declare and initialize each variable of this type
-            for n in sorted(list(local_var[t])):
+            for n in sorted(list(local_vars[t])):
                 # for second and following vars, add indicated indent
                 if local_var_code != "":
                     local_var_code += local_var_indent

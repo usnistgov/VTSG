@@ -23,10 +23,6 @@ import sys
 
 
 def main():
-    tainted_2 = 0
-    tainted_3 = 0
-    tainted_4 = 0
-
 
     try:
         tainted_2 = int(os.environ['ADD'])

@@ -331,26 +331,6 @@
 
         <!--Conditional and unconditional loops -->
 
-        <complexity id="j16e" type="while" group="loops" executed="1">
-            <code>
-        while True:
-	INDENT
-                {{ placeholder }}
-                break
-	DEDENT
-            </code>
-        </complexity>
-
-        <complexity id="j16n" type="while" group="loops" executed="0">
-            <code>
-        while True:
-	INDENT
-                break
-                {{ placeholder }}
-	DEDENT
-            </code>
-        </complexity>
-
         <complexity id="20" type="while" group="loops" executed="condition">
             <code>
         while {{ condition }}:

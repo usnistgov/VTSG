@@ -23,8 +23,6 @@ import sys
 
 
 def function_1( param_1 ):
-    tainted_2 = None
-    tainted_3 = None
 
     tainted_2 = param_1
 
@@ -33,9 +31,6 @@ def function_1( param_1 ):
 
     return tainted_3
 def main():
-    tainted_0 = None
-    tainted_5 = None
-
     tainted_0 = input()
     tainted_5 = tainted_0
     tainted_5 = function_1(tainted_0)

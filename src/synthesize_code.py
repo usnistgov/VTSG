@@ -1,5 +1,5 @@
 # *created  "Mon Aug  3 16:47:40 2020" *by "Paul E. Black"
-# *modified "Wed Nov 23 09:52:04 2022" *by "Paul E. Black"
+# *modified "Mon Feb 13 17:05:21 2023" *by "Paul E. Black"
 """
 Functions to synthesize pieces of code.
 """
@@ -27,7 +27,10 @@ def get_indent(var_name, template_code):
     '''
     # find indentation before {{ var_name }}
     indentMO = re.search('\n([^{\n]*){{-?\s*'+var_name+'\s*-?}}', template_code)
-    # SKIMP - what if there is no {{ var_name }}?
+
+    if indentMO is None:
+        return None
+
     return indentMO.group(1)
 
 
@@ -83,9 +86,9 @@ INDENT            text after INDENT is ignored
     indent_depth = 0
     final_content = ''
     for line in code.splitlines():
-        if re.match('^\s*INDENT', line):
+        if re.match('\s*INDENT', line):
             indent_depth += 1
-        elif re.match('^\s*DEDENT', line):
+        elif re.match('\s*DEDENT', line):
             if indent_depth < 1:
                 print(f'[ERROR] DEDENT without matching INDENT in this code:')
                 print(f'{code}')

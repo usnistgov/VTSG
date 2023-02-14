@@ -1,0 +1,23 @@
+<?xml version = "1.0" standalone="no"?>
+<!-- *created  "Mon Feb 13 13:48:52 2023" *by "Paul E. Black" -->
+<!-- *modified "Mon Feb 13 15:40:20 2023" *by "Paul E. Black" -->
+<!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
+    <filtering>
+        <sample>
+            <path>
+                <dir>none</dir>
+            </path>
+            <comment>no filtering</comment>
+            <flaws>
+                <flaw flaw_type="ALL" safe="0" unsafe="0"/>
+            </flaws>
+            <imports></imports>
+            <code>
+        # No filtering or sanitization
+            </code>
+            <input_type>nofilter</input_type>
+            <output_type>nofilter</output_type>
+        </sample>
+    </filtering>
+
+<!-- end of filtering.xml -->

@@ -1,9 +1,10 @@
 """
 file_template module
 
- *modified "Thu Feb  2 11:56:05 2023" *by "Paul E. Black"
+ *modified "Tue Feb 14 09:35:16 2023" *by "Paul E. Black"
 """
 
+import re
 from jinja2 import Template, DebugUndefined
 import src.generator
 
@@ -42,7 +43,7 @@ class FileTemplate(object):
             self._namespace = file_template.find("namespace").text
         template_code = file_template.find("code").text
         if template_code[0] == '\n':
-            template_code = template_code[1:] # remove any leading new lines
+            template_code = template_code[1:] # remove a leading new line
         self._code = src.generator.Generator.remove_indent(template_code)
         self._imports = [imp.text for imp in file_template.find("imports").findall("import")]
         self._comment = {}
@@ -57,10 +58,23 @@ class FileTemplate(object):
                 self._syntax['indent'] = s.find('indent').text
         self._prefix = file_template.find("variables").get("prefix")
         self._import_code = file_template.find("variables").get("import_code")
-        """ Import code with placeholder"""
+        # the preceding is the import code, which has a placeholder
         self._variables = {}
         for v in file_template.find("variables"):
             self._variables[v.get("type")] = {"code": v.get("code"), "init": v.get("init")}
+        # consistency check: must have both {{local_var}} and type/code/init or neither
+        has_local_vars = re.search("{{\s*local_var\s*}}", self.code) is not None
+        has_var_decls  = self._variables != {}
+        if has_local_vars != has_var_decls:
+            # inconsistent!
+            if has_local_vars:
+                assert not has_var_decls
+                print('[ERROR] {{local_var}} but no <variable type code init /> statements in file_template.xml')
+            if has_var_decls:
+                assert not has_local_vars
+                print('[ERROR] <variable type code init /> statements but no {{local_var}} in file_template.xml')
+            print(f'Both are needed to show where and how to declare local variables')
+            exit(1)
 
     @property
     def language_name(self):
@@ -144,7 +158,7 @@ class FileTemplate(object):
         """
          Template code.
 
-        :getter: Returns this code.
+        :getter: Returns the source code.
         :type: str
         """
         return self._code

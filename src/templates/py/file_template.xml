@@ -1,6 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
-<!-- *modified "Wed Sep  7 16:25:54 2022" *by "Paul E. Black" -->
+<!-- *modified "Mon Feb 13 22:16:17 2023" *by "Paul E. Black" -->
 
 <template name="Python">
     <file_extension>py</file_extension>
@@ -17,10 +17,6 @@
     </syntax>
     <namespace></namespace>
     <variables prefix="" import_code="import {{import_file}}">
-        <variable type="int" code="" init="0"/>
-        <variable type="string" code="" init="None"/>
-	<variable type="bool" code="" init="False"/>
-	<variable type="float" code="" init="0.0"/>
     </variables>
     <imports>
         <import>sys</import>
@@ -41,7 +37,6 @@
 
 def main():
 INDENT
-    {{local_var}}
     {{input_content}}
     {{filtering_content}}
     {{sink_content}}

@@ -23,8 +23,6 @@ import sys
 
 
 def function_1( param_1 ):
-    tainted_2 = 0
-    tainted_3 = 0
 
     tainted_2 = param_1
 
@@ -34,9 +32,6 @@ def function_1( param_1 ):
 
     return tainted_3
 def main():
-    tainted_0 = 0
-    tainted_5 = 0
-
 
     try:
         tainted_0 = int(os.environ['ADD'])
