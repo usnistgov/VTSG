@@ -7,7 +7,7 @@ then
     exit
 fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Wed Dec 21 12:08:54 2022" *by "Paul E. Black"
+# *modified "Wed Feb 15 15:18:11 2023" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -25,7 +25,7 @@ if [ $# != 1 ]
 then
     echo expecting one command line argument
     echo $help_message
-    echo The first argument is the -l option passed to vtsg, i.e. the name of the language subdirectory under the template directory.
+    echo The first argument is the -l option passed to vtsg.
     exit -1
 fi
 
@@ -110,6 +110,9 @@ for f in $(find . -name "*.py"|grep -v b[.]|sort); do
     elif [[ $f =~ __S_div_zero__ ]]; then
 	# zero as divisor
 	a="0"
+    elif [[ $f =~ __S_path_traversal__ ]]; then
+	# unlimited file path access
+	a="../etc/passwd"
     else
 	echo UNKNOWN SINK IN $f
 	echo ADD IT TO tests/gen_and_check
