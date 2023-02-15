@@ -107,12 +107,12 @@
             <output_type>int</output_type>
         </sample>
 
-	<!-- source input is in the filter so it is wrapped with complexities -->
+	<!-- source input is a filter so that it is wrapped with complexities -->
         <sample>
             <path>
                 <dir>console_input</dir>
             </path>
-            <comment>input (filter): console &lt;&lt; INPUT
+            <comment>input (filter): stdin &lt;&lt; INPUT
 ../etc/passwd
 INPUT</comment>
             <flaws>
