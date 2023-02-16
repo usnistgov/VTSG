@@ -20,10 +20,13 @@
 
         <sample>
             <path>
-                <dir>path_traversal</dir>
+                <dir>rel_path_trav</dir>
             </path>
             <flaw_type flaw_group="Other">CWE23</flaw_type>
-            <comment>sink: open file named by input</comment>
+            <comment>sink: open file named by input
+&lt;&lt; POV
+../etc/passwd
+POV</comment>
             <imports>
                 <import>os</import>
             </imports>

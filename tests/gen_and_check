@@ -7,7 +7,7 @@ then
     exit
 fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Wed Feb 15 15:18:11 2023" *by "Paul E. Black"
+# *modified "Thu Feb 16 15:04:10 2023" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -110,7 +110,7 @@ for f in $(find . -name "*.py"|grep -v b[.]|sort); do
     elif [[ $f =~ __S_div_zero__ ]]; then
 	# zero as divisor
 	a="0"
-    elif [[ $f =~ __S_path_traversal__ ]]; then
+    elif [[ $f =~ __S_rel_path_trav__ ]]; then
 	# unlimited file path access
 	a="../etc/passwd"
     else
@@ -118,6 +118,15 @@ for f in $(find . -name "*.py"|grep -v b[.]|sort); do
 	echo ADD IT TO tests/gen_and_check
         exit
     fi
+
+    # save attack in file if input is from file
+    if grep -q 'input.*: file ' $f; then
+	# file name follows the "file" keyword
+	fileName=$(grep 'input.*: file ' $f | perl -pwe 's/.* file ([^ ]+).*/$1/')
+	rm -f $fileName # make sure nothing is left over
+	echo "$a" > $fileName
+    fi
+
     # class cases are not valid code currently; don't execute them
     if [[ $f =~ -7[012] ]]; then
         echo Class case - do not execute

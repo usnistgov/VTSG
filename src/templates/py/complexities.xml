@@ -384,6 +384,7 @@
         arr_{{ id }}.append(None)
         arr_{{ id }}.append(None)
         arr_{{ id }}.append(None)
+	assert {{in_var_name}} is not None, 'code only executed when {{in_var_name}} != None'
         arr_{{ id }}.append({{ in_var_name }})
 
         for val_{{id}} in arr_{{ id }}:

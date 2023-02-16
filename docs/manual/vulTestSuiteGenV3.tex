@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Thu Feb 16 09:47:57 2023" *by "Paul E. Black"
+% *modified "Thu Feb 16 14:43:43 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1986,7 +1986,7 @@ currently in the
 \CSharp\ language files.
 
 The following flaws are currently defined for this language:
-\begin{itemize}
+\begin{itemize}[nosep]
     \item SQL Injection (CWE-89)
     \item XPath Injection (CWE-91)
     \item LDAP Injection (CWE-90)
@@ -1998,8 +1998,10 @@ The following flaws are currently defined for this language:
     \item NULL Pointer Dereference (CWE-476)
 \end{itemize}
 
+\vspace{1em}
+
 The flaws are in the following groups:
-\begin{itemize}
+\begin{itemize}[nosep]
     \item OWASP\_a1 has CWE\_78, CWE\_89, CWE\_89, CWE\_89, CWE\_90, CWE\_91,
       CWE\_91, and CWE\_91.
     \item OWASP\_a2 has CWE\_256.
@@ -2217,13 +2219,13 @@ Python language files.
 The following flaws are currently defined for Python.  The flaw group is in
 parentheses.  Flaws in the ``Exception'' flaw group are caught by the Python runtime.
 These are unlikely to be vulnerabilities (except denial of service).
-\begin{itemize}
+\begin{itemize}[nosep]
     \item OS Command Injection (CWE-78) (OWASP\_a1)
     \item SQL Injection (CWE-89) (OWASP\_a1)
     \item Path traversal (CWE-22) (OWASP\_a4)
     \item Information Leak Through Error Message (CWE-209) (OWASP\_a5)
     \item Loop on Unchecked Input (CWE-606) (Other)
-    \item Path Traversal (CWE-23) (Other)
+    \item Relative Path Traversal (CWE-23) (Other)
     \item Divide by Zero (CWE-369) (Exception)
 \end{itemize}
 

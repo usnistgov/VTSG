@@ -127,6 +127,46 @@ INPUT</comment>
             <output_type>string,filter_input</output_type>
         </sample>
 
+        <sample>
+            <path>
+                <dir>env</dir>
+            </path>
+            <comment>input (filter): environment variable ADD &lt;&lt; INPUT
+../etc/passwd
+INPUT</comment>
+            <flaws>
+                <flaw flaw_type="CWE23" safe="0" unsafe="1"/> <!-- unsafe user input -->
+            </flaws>
+            <imports>
+                <import>os</import>
+            </imports>
+            <code>
+	        {{out_var_name}} = os.environ['ADD']
+            </code>
+            <input_type>InitToNone</input_type>
+            <output_type>string,filter_input</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>file</dir>
+            </path>
+            <comment>input (filter): file data.txt</comment>
+            <flaws>
+                <flaw flaw_type="CWE23" safe="0" unsafe="1"/> <!-- unsafe user input -->
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+	    with open('data.txt', 'r') as f:
+	    INDENT
+                {{out_var_name}} = f.readline().rstrip() # read one line, remove newline
+	    DEDENT
+            </code>
+            <input_type>InitToNone</input_type>
+            <output_type>string,filter_input</output_type>
+        </sample>
+
 
 <!--
         <sample>

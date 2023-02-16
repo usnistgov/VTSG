@@ -36,6 +36,7 @@ def main():
     arr_1.append(None)
     arr_1.append(None)
     arr_1.append(None)
+    assert tainted_1 is not None, 'code only executed when tainted_1 != None'
     arr_1.append(tainted_1)
     for val_1 in arr_1:
         if val_1!=None:
