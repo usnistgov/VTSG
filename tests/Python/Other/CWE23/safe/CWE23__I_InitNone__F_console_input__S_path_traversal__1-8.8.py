@@ -1,6 +1,6 @@
 '''
 Initialize to None
-input (filter): console << INPUT
+input (filter): stdin << INPUT
 ../etc/passwd
 INPUT
 sink: open file named by input

@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Feb 14 11:42:25 2023" *by "Paul E. Black"
+% *modified "Thu Feb 16 09:47:57 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1981,7 +1981,7 @@ Charles de Oliveira for their contributions to this report.
 \section{\CSharp\ Language}
 \label{sec:CSharp language}
 
-This appendix documents the flaws, flaw groups, conditions, and complexities
+This appendix documents the flaws, flaw groups, complexities, and conditions
 currently in the
 \CSharp\ language files.
 
@@ -2008,6 +2008,8 @@ The flaws are in the following groups:
     \item OWASP\_a6 has CWE\_327
     \item OWASP\_a9 has CWE\_476.
 \end{itemize}
+
+\newpage
 
 Here are the complexities currently available in \CSharp.
 We explain the concept of code complexities in Sec.~\ref{sec:code complexities} and
@@ -2071,6 +2073,8 @@ See the \verb|complexity.xml| file for the specific code.
 \label{tab:complexity IDs for CSharp}
 \end{table}
 
+\newpage
+
 Here are the conditions currently available to be used in code complexities.
 We explain condition modules in Sec.~\ref{sec: condition modules}.
 Table~\ref{tab:condition IDs for CSharp} shows the ID, the code, and whether it
@@ -2108,18 +2112,16 @@ always evaluates to true or false.
 \section{PHP Language}
 \label{sec:PHP language}
 
-This documents the flaw, flaw group, conditions, and complexities currently in the
+This documents the flaw, flaw group, complexities, and conditions currently in the
 PHP language files.
 
-The following flaw is currently defined for this language:
+The following flaw is currently defined for this language.  The flaw group is in
+parentheses.
 \begin{itemize}
-    \item SQL Injection (CWE-89)
+    \item SQL Injection (CWE-89) (OWASP\_injection)
 \end{itemize}
 
-The flaw is in the following group:
-\begin{itemize}
-    \item OWASP\_injection has CWE\_89.
-\end{itemize}
+\newpage
 
 Here are the complexities currently available in PHP.
 We explain the concept of code complexities in Sec.~\ref{sec:code complexities} and
@@ -2209,18 +2211,23 @@ always evaluates to true or false.
 \section{Python Language}
 \label{sec:Python language}
 
-This documents the flaws, flaw groups, conditions, and complexities currently in the
+This documents the flaws, flaw groups, complexities, and conditions currently in the
 Python language files.
 
-The following flaws are currently defined for Python:
+The following flaws are currently defined for Python.  The flaw group is in
+parentheses.  Flaws in the ``Exception'' flaw group are caught by the Python runtime.
+These are unlikely to be vulnerabilities (except denial of service).
 \begin{itemize}
     \item OS Command Injection (CWE-78) (OWASP\_a1)
     \item SQL Injection (CWE-89) (OWASP\_a1)
     \item Path traversal (CWE-22) (OWASP\_a4)
     \item Information Leak Through Error Message (CWE-209) (OWASP\_a5)
-    \item Divide by Zero (CWE-369) (no flaw group)
-    \item Loop on Unchecked Input (CWE-606) (no flaw group)
+    \item Loop on Unchecked Input (CWE-606) (Other)
+    \item Path Traversal (CWE-23) (Other)
+    \item Divide by Zero (CWE-369) (Exception)
 \end{itemize}
+
+\newpage
 
 Here are the complexities currently defined.
 We explain the concept of code complexities in Sec.~\ref{sec:code complexities} and
@@ -2288,6 +2295,8 @@ See the \verb|complexity.xml| file for the specific code.
 \end{tabular}
 \label{tab:complexity IDs for Python}
 \end{table}
+
+\newpage
 
 Here are the conditions currently available to be used in code complexities.
 We explain condition modules in Sec.~\ref{sec: condition modules}.
