@@ -40,7 +40,11 @@ def main():
     elif not (math.sqrt(42)>=42):
         pass
 
-    root = '/Users/'
+    if sys.platform == 'linux':
+        root = '/home'
+    else:
+        # MacOS
+        root = '/Users'
 
     if tainted_3 is not None:
         # no validation - concatenated value could have path traversal

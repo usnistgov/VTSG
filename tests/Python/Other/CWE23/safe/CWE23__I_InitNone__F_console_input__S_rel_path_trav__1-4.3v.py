@@ -41,7 +41,11 @@ def main():
     elif not 5 != 5:
         pass
 
-    root = '/Users/'
+    if sys.platform == 'linux':
+        root = '/home'
+    else:
+        # MacOS
+        root = '/Users'
 
     if tainted_3 is not None:
         # no validation - concatenated value could have path traversal

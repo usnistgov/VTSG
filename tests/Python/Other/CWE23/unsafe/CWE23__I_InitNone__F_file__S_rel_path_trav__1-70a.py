@@ -35,7 +35,11 @@ def main():
     var_1 = Class_1(tainted_0);
     tainted_5 = var_1.get_var_1();
 
-    root = '/Users/'
+    if sys.platform == 'linux':
+        root = '/home'
+    else:
+        # MacOS
+        root = '/Users'
 
     if tainted_5 is not None:
         #flaw # no validation - concatenated value could have path traversal

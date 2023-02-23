@@ -37,7 +37,11 @@ def main():
     tainted_1 = input() # read one line
 
 
-    root = '/Users/'
+    if sys.platform == 'linux':
+        root = '/home'
+    else:
+        # MacOS
+        root = '/Users'
 
     if tainted_1 is not None:
         #flaw # no validation - concatenated value could have path traversal

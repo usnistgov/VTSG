@@ -36,7 +36,11 @@ def main():
         tainted_1 = f.readline().rstrip() # read one line, remove newline
 
 
-    root = '/Users/'
+    if sys.platform == 'linux':
+        root = '/home'
+    else:
+        # MacOS
+        root = '/Users'
 
     if tainted_1 is not None:
         #flaw # no validation - concatenated value could have path traversal

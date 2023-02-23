@@ -29,9 +29,18 @@
 POV</comment>
             <imports>
                 <import>os</import>
+		<import>sys</import>
             </imports>
             <code>
-	root = '/Users/'
+	if sys.platform == 'linux':
+	INDENT
+	    root = '/home'
+	DEDENT
+	else:
+	INDENT
+	    # MacOS
+	    root = '/Users'
+	DEDENT
 
         if {{in_var_name}} is not None:
 	INDENT
