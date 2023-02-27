@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Wed Feb  1 09:00:12 2023" *by "Paul E. Black"
+ *modified "Mon Feb 27 12:19:52 2023" *by "Paul E. Black"
 """
 
 import time
@@ -27,8 +27,8 @@ class Generator(object):
     """Generator class
 
         Args :
-            **date** (str): Human readable date of the generation used for the folder containing generated codes (for \
-                        the manifest). Generated using strftime().
+            **date** (str): Human readable date of the generation used for the folder
+             containing generated codes (for the manifest). Generated using strftime().
 
             **language** (str): Targeted language of the generator ('cs', 'php', and 'py' are currently coded).
             **template_directory** (str): The directory where the language files are found.
@@ -783,7 +783,12 @@ class Generator(object):
 
     @staticmethod
     def remove_indent(code, all=False):
-        code_res = ""
+        """
+        Remove tabs that precede every line.  In other words, find the fewest number
+        of leading tabs, and remove that many from every line after the first line.
+        Remove blank lines after the first line.  "Blank line" means empty or
+        consisting of only white space.
+        """
         if all:
             for line in code.split('\n'):
                 if len(line.strip()):
@@ -791,24 +796,193 @@ class Generator(object):
         else:
             min_space = -1
             for line in code.split('\n'):
-                nb = -1
                 if len(line.strip()):
-                    nb = 0
-                    for c in line:
-                        # if c == ' ':
-                        #    nb += 1
-                        if c == '\t':
-                            nb += 1
-                        else:
-                            break
-                if (nb < min_space or min_space == -1) and nb != -1:
-                    min_space = nb
+                    # line is not blank
+                    nlt = len(line) - len(line.lstrip('\t'))
+                    # nlt is the number of leading tabs
+                    if nlt < min_space or min_space == -1:
+                        min_space = nlt
+            # here, min_space is least number of leading tabs or -1 if all lines are blank
             if min_space == -1:
                 min_space = 0
             for i, line in enumerate(code.split('\n')):
                 if i == 0:
-                    code_res += line + '\n'
+                    code_res = line + '\n'
                 else:
                     if len(line.strip()):
                         code_res += line[min_space:] + "\n"
         return code_res
+
+def test_remove_indents():
+    """Built-in self-test for remove_indents().  The plan is a kind of exhaustive test:
+    try 129 640 short strings that represent classes that might make a difference.
+    See below for details."""
+
+    ##################################################################################
+    #
+    #		auxiliary functions to test remove_indents()
+    #
+    ##################################################################################
+
+    def print_show_eof(text):
+        """Print text. End with % and newline if text does not end with newline.
+        Replace spaces with periods (.) for visibility"""
+        text = text.replace(' ', '.')
+        if len(text) == 0:
+            print('%')
+        elif text[-1] == '\n':
+            print(text, end='')
+        else:
+            print(f'{text}%')
+
+    def compare_remove_indents(text, test_name, verbose = False):
+        """Compare the result of a new implementation of remove_indent() and the
+        existing implementation as an oracle.  If anything differs, report it and exit."""
+
+        if verbose:
+            print(f'test {test_name}.  Test input is:')
+            print_show_eof(text)
+
+        result     = Generator.remove_indent(text)
+        new_result = Generator.NEW_remove_indent(text)
+
+        if result != new_result:
+            print(f'## results differ for {test_name}.  Test input is:')
+            print_show_eof(text)
+
+            print('## remove_indent() returns')
+            print_show_eof(result)
+
+            print('## new remove_indent() returns')
+            print_show_eof(new_result)
+
+            import sys
+            sys.exit(1)
+
+    def one_word():
+        """Return a new word every time this is executed."""
+        import re
+        # "text" is the quote below as an array of words.  All non-letters are removed.
+        text = re.split('[^a-zA-Z]+', """
+        34 Behold, there are many called, but few are chosen. And why are they not chosen?
+        35 Because their hearts are set so much upon the things of this world, and aspire to the honors of men, that they do not learn this one lesson—
+        36 That the rights of the priesthood are inseparably connected with the powers of heaven, and that the powers of heaven cannot be controlled nor handled only upon the principles of righteousness.
+        37 That they may be conferred upon us, it is true; but when we undertake to cover our sins, or to gratify our pride, our vain ambition, or to exercise control or dominion or compulsion upon the souls of the children of men, in any degree of unrighteousness, behold, the heavens withdraw themselves; the Spirit of the Lord is grieved; and when it is withdrawn, Amen to the priesthood or the authority of that man.
+        38 Behold, ere he is aware, he is left unto himself, to kick against the pricks, to persecute the saints, and to fight against God.
+        39 We have learned by sad experience that it is the nature and disposition of almost all men, as soon as they get a little authority, as they suppose, they will immediately begin to exercise unrighteous dominion.
+        40 Hence many are called, but few are chosen.
+        41 No power or influence can or ought to be maintained by virtue of the priesthood, only by persuasion, by long-suffering, by gentleness and meekness, and by love unfeigned;
+        42 By kindness, and pure knowledge, which shall greatly enlarge the soul without hypocrisy, and without guile—
+        43 Reproving betimes with sharpness, when moved upon by the Holy Ghost; and then showing forth afterwards an increase of love toward him whom thou hast reproved, lest he esteem thee to be his enemy;
+        44 That he may know that thy faithfulness is stronger than the cords of death.
+        45 Let thy bowels also be full of charity towards all men, and to the household of faith, and let virtue garnish thy thoughts unceasingly; then shall thy confidence wax strong in the presence of God; and the doctrine of the priesthood shall distil upon thy soul as the dews from heaven.
+        46 The Holy Ghost shall be thy constant companion, and thy scepter an unchanging scepter of righteousness and truth; and thy dominion shall be an everlasting dominion, and without compulsory means it shall flow unto thee forever and ever.
+        """) # Doctrine and Covenants 121:34-46
+
+        index = 1
+        while True:
+            if text[index]: # skip empty strings
+                yield text[index]
+            index += 1
+            # start over, if necessary
+            if index >= len(text):
+                index = 1
+
+    # start a single word generator that all test generators use.
+    word = one_word()
+
+    def generate_test_lines():
+        """Return all strings consisting of 0 to 4 tabs then 0 to 3 blank spaces then an
+        optional word.  The RE is     [\t]{0,4}[ ]{0,3}[:word:]?
+        The rationale is that leading tabs are special, and lines that are empty (all
+        white space) are special.  Tabs after a non-tab don't matter.  White space
+        after a non-white-space don't matter.  This makes 5*4*2 = 40 different lines."""
+
+        for tabs in range(4+1):
+            for spaces in range(3+1):
+                line = '\t' * tabs + ' ' * spaces
+                yield line # without a word
+                yield line + next(word) # with a word
+
+    def generate_test_text_bare():
+        """Return all strings (or, "paragraphs") of 1 to 3 lines.
+        This makes 40 + 40*40 + 40*40*40 = 65 640 paragraphs."""
+
+        # single lines
+        for line in generate_test_lines():
+            yield line
+
+        # pairs of lines
+        for line1 in generate_test_lines():
+            for line2 in generate_test_lines():
+                yield line1 + '\n' + line2
+
+        # triples of lines
+        for line1 in generate_test_lines():
+            for line2 in generate_test_lines():
+                for line3 in generate_test_lines():
+                    yield line1 + '\n' + line2 + '\n' + line3
+
+    def generate_test_text():
+        """Return all strings (or, "paragraphs") of lines.  Return each paragraph twice:
+        once as is, i.e. without a final newline (\n), and once with a final newline.
+        Don't return the paragraph "as is" if it ends in a newline.  That only happens
+        when line2 in pairs or line3 in triples was the empty string.  Those cases
+        are duplicates of paragraphs one line shorter where THIS function adds the
+        newline.  For example,
+            connected\n
+            rights\n
+            (empty string)
+        returned as it is results in the same thing as
+            connected\n
+            rights
+        with a newline added here.
+        This makes 2 * 65 640 - (40*1 + 40*40*1) = 129 640 test texts."""
+        for paragraph in generate_test_text_bare():
+            if paragraph == '' or paragraph[-1] != '\n':
+                # the last line (line2 or line3) was not the empty string
+                yield paragraph
+            yield paragraph + '\n'
+
+
+    ##################################################################################
+    #
+    #		The main body to test remove_indents()
+    #
+    ##################################################################################
+
+    print('TESTING remove_indents()')
+
+    count = 0
+
+    for paragraph in generate_test_text():
+
+        # identify each test case a little by counting the number of line
+        num_lines = paragraph.count('\n')
+        if paragraph == '' or paragraph[-1] != '\n':
+            # paragraph did not end with a newline
+            num_lines += 1
+
+        # further identify particular test cases
+        case = ''
+        if paragraph == '': case = 'empty string'
+        elif paragraph == '\n': case = 'just newline'
+        elif paragraph[0] != '\t': case = 'no tabs on first line'
+        if case != '': case = ' ' + case # separate case with a space if not empty
+
+        count += 1
+        compare_remove_indents(paragraph, f'{count}. {num_lines} line(s){case}')
+
+    print(f'Done with {count} tests')
+    # if this is a test, don't continue running vtsg
+    import sys
+    sys.exit(1)
+
+# To test remove_indents()
+#   Step 1. define a New_remove_indents()
+#   Step 2. uncomment the call of test_remove_indents() below
+#   Step 3. run vtsg like usual, e.g. python vtsy.py -l py
+# When generator.py is loaded, test_remove_indent() will run then exit
+#test_remove_indents()
+
+# end of generator.py
