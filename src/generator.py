@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Mon Feb 27 12:19:52 2023" *by "Paul E. Black"
+ *modified "Mon Feb 27 12:25:59 2023" *by "Paul E. Black"
 """
 
 import time
@@ -794,23 +794,23 @@ class Generator(object):
                 if len(line.strip()):
                     code_res += line.strip() + "\n"
         else:
-            min_space = -1
+            min_tabs = -1
             for line in code.split('\n'):
                 if len(line.strip()):
                     # line is not blank
                     nlt = len(line) - len(line.lstrip('\t'))
                     # nlt is the number of leading tabs
-                    if nlt < min_space or min_space == -1:
-                        min_space = nlt
-            # here, min_space is least number of leading tabs or -1 if all lines are blank
-            if min_space == -1:
-                min_space = 0
+                    if nlt < min_tabs or min_tabs == -1:
+                        min_tabs = nlt
+            # here, min_tabs is least number of leading tabs or -1 if all lines are blank
+            if min_tabs == -1:
+                min_tabs = 0
             for i, line in enumerate(code.split('\n')):
                 if i == 0:
                     code_res = line + '\n'
                 else:
                     if len(line.strip()):
-                        code_res += line[min_space:] + "\n"
+                        code_res += line[min_tabs:] + "\n"
         return code_res
 
 def test_remove_indents():
