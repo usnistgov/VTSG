@@ -20,6 +20,33 @@
 
         <sample>
             <path>
+                <dir>ext_sys_ctl</dir>
+            </path>
+            <flaw_type flaw_group="Other">CWE15</flaw_type>
+            <comment>sink: add directory named by input to Python module search path
+&lt;&lt; POV
+.
+POV</comment>
+            <imports>
+		<import>sys</import>
+            </imports>
+            <code>
+        if {{in_var_name}} is not None:
+	INDENT
+            {{flaw}} # no validation - concatenated value allows arbitrary execution
+	    sys.path += [{{in_var_name}}]
+	    print(f'added { {{in_var_name}} } to Python module search path')
+	DEDENT
+
+	print('Finished')
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>string,filter_input</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+
+        <sample>
+            <path>
                 <dir>rel_path_trav</dir>
             </path>
             <flaw_type flaw_group="Other">CWE23</flaw_type>

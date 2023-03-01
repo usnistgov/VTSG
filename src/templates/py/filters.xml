@@ -116,7 +116,7 @@
 ../etc/passwd
 INPUT</comment>
             <flaws>
-                <flaw flaw_type="CWE23" safe="0" unsafe="1"/> <!-- unsafe user input -->
+                <flaw flaw_type="ALL" safe="0" unsafe="1"/> <!-- unsafe user input -->
             </flaws>
             <imports>
             </imports>
@@ -135,7 +135,7 @@ INPUT</comment>
 ../etc/passwd
 INPUT</comment>
             <flaws>
-                <flaw flaw_type="CWE23" safe="0" unsafe="1"/> <!-- unsafe user input -->
+                <flaw flaw_type="ALL" safe="0" unsafe="1"/> <!-- unsafe user input -->
             </flaws>
             <imports>
                 <import>os</import>
@@ -153,7 +153,7 @@ INPUT</comment>
             </path>
             <comment>input (filter): file data.txt</comment>
             <flaws>
-                <flaw flaw_type="CWE23" safe="0" unsafe="1"/> <!-- unsafe user input -->
+                <flaw flaw_type="ALL" safe="0" unsafe="1"/> <!-- unsafe user input -->
             </flaws>
             <imports>
             </imports>

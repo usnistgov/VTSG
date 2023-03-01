@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Mon Feb 27 12:25:59 2023" *by "Paul E. Black"
+ *modified "Wed Mar  1 12:56:44 2023" *by "Paul E. Black"
 """
 
 import time
@@ -790,6 +790,7 @@ class Generator(object):
         consisting of only white space.
         """
         if all:
+            code_res = ''
             for line in code.split('\n'):
                 if len(line.strip()):
                     code_res += line.strip() + "\n"

@@ -7,7 +7,7 @@ then
     exit
 fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Thu Feb 16 15:04:10 2023" *by "Paul E. Black"
+# *modified "Wed Mar  1 10:33:36 2023" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -113,6 +113,9 @@ for f in $(find . -name "*.py"|grep -v b[.]|sort); do
     elif [[ $f =~ __S_rel_path_trav__ ]]; then
 	# unlimited file path access
 	a="../etc/passwd"
+    elif [[ $f =~ __S_ext_sys_ctl__ ]]; then
+	# CWE-15: unlimited Python module search path
+	a="."
     else
 	echo UNKNOWN SINK IN $f
 	echo ADD IT TO tests/gen_and_check
