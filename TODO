@@ -1,9 +1,32 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Feb 14 12:53:41 2023" *by "Paul E. Black"
+ *modified "Wed Mar  1 15:00:43 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
+
+1 March 2023
+
+Inputs use "default" flaw_type to indicate the safety to be used if a flaw is
+not an exception.  Filters use "ALL" flaw_type to mean exactly the same thing.
+From input_sample.py:
+    def is_unsafe(self, flaw_type):
+        if flaw_type in self.get_flaws_types():
+            return self.flaws[flaw_type]["unsafe"]
+        if "default" in self.get_flaws_types():
+            return self.flaws["default"]["unsafe"]
+        return None
+From filter_sample.py:
+    def is_unsafe(self, flaw_type):
+        if flaw_type in self.get_flaws_types():
+            return self.flaws[flaw_type]["unsafe"]
+        if "ALL" in self.get_flaws_types():
+            return self.flaws["ALL"]["unsafe"]
+        return None
+
+Use either ALL or default in both places. (Maybe move is_unsafe() and is_safe()
+to sample.py?  You might have to move the flaw stuff, too.)
+
 
 4 Jan 2023
 
@@ -37,6 +60,9 @@ be safe the input must be non-zero.
 Explain which errors should be caught and which should allowed to crash.  Talk about
 providing (somehow!) PoVs (proofs of vulnerability).
 
+Maybe add a diagram showing how output_type of one module "hooks" to the input_type
+of the next module?
+
 
 23 Nov 2022
 Thoroughly document what various attributes in complexities do. For instance,
@@ -63,8 +89,6 @@ VTSG.
 
 Add examples of how to code things or how to use options, like need_id.
 
-Maybe add a diagram showing how output_type of one module "hooks" to the input_type
-of the next module?
 
 18 Nov 2022
 Separate selecting the set of modules for a case from generating the code from that
