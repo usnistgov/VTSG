@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Thu Feb 16 14:43:43 2023" *by "Paul E. Black"
+% *modified "Wed Mar  1 16:21:36 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -31,6 +31,8 @@
 \renewcommand{\cfttabpresnum}{\tablename\ }
 \setlength{\cfttabindent}{0in}    %% adjust as you like
 \setlength{\cftfigindent}{0in} 
+
+\setcounter{tocdepth}{2} % only show down to subsections
 
 \usepackage{enumitem}         % to control spacing between bullets/numbered lists
 
@@ -1346,10 +1348,9 @@ provides one way for the generated program to get input.
 \begin{itemize}
     \item dir and path, comment, and imports: see Sec.~\ref{sec:shared attributes}.
 
-    \item flaw: vulnerability categories where the sample can be used, that is, the
-      flaws that the input is compatible with.  Also whether it is always safe or
-      always unsafe for that flaw.  See Sec.~\ref{sec:safe or unsafe}
-      for more details.  If this input is generic and compatible with all
+    \item flaw: indicate whether this input is always safe, always unsafe, or
+      neither for a particular flaw type.  See Sec.~\ref{sec:safe or unsafe} for
+      more details.  If this input has the same safe/unsafe value for most
       types of vulnerabilities, put ``default'' as the \verb|flaw_type|.
 
     \item input\_type: this string is placed in the manifest.  It has no other
@@ -1357,6 +1358,8 @@ provides one way for the generated program to get input.
 
     \item output\_type: the type of output.  The variable generated with the
       placeholder \\ \verb|{{out_var_name}}| in the code will be that type.
+      An input is selected of it matches the \verb|input_type| of the Filter or
+      Sink, if the Filter \verb|input_type| is ``nofilter''.
 
     \item code: The source code of an input. It should contain the placeholder \\
       \verb|{{out_var_name}}|.  That placeholder will be replaced by the variable
@@ -1410,11 +1413,10 @@ All filter modules are in the \verb|filters.xml| file.
     \verb|out_var_name| and make the input\_type and output\_type \verb|nofilter|.
     This passes the variable from the Input directly to the Sink.
 
-    \item flaw: vulnerability categories where the filter can be used, that is, the
-      flaws that the filter is compatible with.  Also whether it is always safe or
-      always unsafe for that flaw.  See Sec.~\ref{sec:safe or unsafe}
-      for more details.  If this filter is generic and compatible with all
-      types of vulnerabilities, put ``default'' as the \verb|flaw_type|.
+    \item flaw: indicate whether this filter is always safe, always unsafe, or
+      neither for a particular flaw type.  See Sec.~\ref{sec:safe or unsafe} for
+      more details.  If this filter has the same safe/unsafe value for most
+      types of vulnerabilities, put ``ALL'' as the \verb|flaw_type|.
 
     \item code: The source code of an filter. It should contain the placeholders
     \\
@@ -1868,6 +1870,53 @@ File names reflect the entire case, not just the code in a
 particular file.  If a case consists of more than one file, as in the
 example in Sec.~\ref{sec:generated files}, all files have
 identical names, except for the final sequence letter.
+
+
+\section{Adding to VTSG}
+
+Explain how to add stuff . . .
+
+\subsection{How to Add a Language}
+
+The easiest is to
+\begin{enumerate}
+\item decide the short name of the language, e.g., py for Python and php for
+  PHP.  Using the extension of those programs is a good idea.
+\item create a directory by that name under src/template
+\item copy the six files of an existing language
+\item change the name attribute in file\_template.xml to the language name.
+\end{enumerate}
+Change language characteristics in all the files.  Execute the resulting source
+code, to make sure syntax and other details are correct.  It's best to start by
+converting just one or two sinks, inputs, and filters for quick turn around.
+Comment out all the rest at the beginning.
+
+\subsection{How to Add a Flaw}
+
+A good first step is to take an existing generated test case and modify the
+source code to present the target flaw.  Then decide what parts of the code are
+in sinks, what parts are in filters (and wrapped in complexities), and what
+parts are inputs.
+
+Write the new flaw sink or sinks.  It's likely that nothing will be generated
+the first time because VTSG cannot find any compatible filters and inputs.
+
+Compatible inputs, filters, and sinks are ``connected'' various ways.  A filter
+is used with a sink if
+\begin{enumerate}
+\item the filter \verb|output_type| is ``nofilter'' or the same as the sink
+  \verb|input_type| \emph{and}
+\item the filter has a \verb|flaw_type| that is ``ALL'' or is the same as the
+  sink \verb|flaw_type|.
+\end{enumerate}
+An input is used with a sink and a filter if
+\begin{enumerate}
+\item the filter \verb|input_type| is ``nofilter'' and the \verb|output_type|
+  of the input is the same as the sink \verb|input_type| \emph{or}
+\item the filter \verb|input_type| is not ``nofilter'' and the
+  \verb|output_type| of the input is the same as the filter \verb|input_type|.
+\end{enumerate}
+
 
 \section{Example Test Case}
 \label{sec:generated files}
