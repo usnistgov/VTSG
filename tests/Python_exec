@@ -10951,6 +10951,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE15/unsafe/CWE15__I_InitNone__F_console_input__S_ext_sys_ctl__1-23.py", line 42, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_console_input__S_ext_sys_ctl__1-3.2.py
 added . to Python module search path
@@ -11165,6 +11166,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE15/unsafe/CWE15__I_InitNone__F_env__S_ext_sys_ctl__1-23.py", line 43, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_env__S_ext_sys_ctl__1-3.2.py
 added . to Python module search path
@@ -11379,6 +11381,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE15/unsafe/CWE15__I_InitNone__F_file__S_ext_sys_ctl__1-23.py", line 40, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_file__S_ext_sys_ctl__1-3.2.py
 added . to Python module search path
@@ -12037,6 +12040,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE23/unsafe/CWE23__I_InitNone__F_console_input__S_rel_path_trav__1-23.py", line 43, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_console_input__S_rel_path_trav__1-3.2.py
 ##
@@ -12251,6 +12255,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE23/unsafe/CWE23__I_InitNone__F_env__S_rel_path_trav__1-23.py", line 43, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_env__S_rel_path_trav__1-3.2.py
 ##
@@ -12465,6 +12470,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE23/unsafe/CWE23__I_InitNone__F_file__S_rel_path_trav__1-23.py", line 41, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_file__S_rel_path_trav__1-3.2.py
 ##
