@@ -1,7 +1,7 @@
 """
 filter_sample module
 
- *modified "Wed Dec 14 09:33:30 2022" *by "Paul E. Black"
+ *modified "Thu Mar  2 09:59:42 2023" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -15,15 +15,14 @@ class FilterSample(Sample):  # Initialize rules, safety, code and escape
 		the filter tag in the file "filters.xml".
 
         Attributes :
-            **_input_type** (str): Type of input variable (private member, please use getter and setter).
+            **_input_type** (str): Type of input variable (private member, please use getter).
 
-            **_output_type** (str): Type of output variable (private member, please use getter and setter).
+            **_output_type** (str): Type of output variable (private member, please use getter).
 
-            **_flaws** (dict str->(dict str->bool): Collection of flaws for this filter with safety \
-                                                    (private member, please use getter and setter).
+            **_flaws** (dict str->(dict str->bool): Collection of flaws for this
+                filter with safety (private member, please use getter).
     """
 
-    # new version for new XML
     def __init__(self, sample):  # XML tree in parameter
         Sample.__init__(self, sample, 'filters')
         self._input_type = sample.find("input_type").text
@@ -83,13 +82,14 @@ class FilterSample(Sample):  # Initialize rules, safety, code and escape
 
     def contains_flaw_type(self, flaw_type):
         """
-        Returns True if the flaws of the filter sample is the same as the given one or if it's a generic filter, \
+        Return True if the given flaw is in this filter's list of flaws or if has a
+        generic flaw type.
         False otherwise.
 
         Args:
             **flaw_type** (str)
         """
-        return "ALL" in self.flaws.keys() or flaw_type in self.flaws
+        return "default" in self.flaws.keys() or flaw_type in self.flaws
 
     def is_safe(self, flaw_type):
         """
@@ -100,8 +100,8 @@ class FilterSample(Sample):  # Initialize rules, safety, code and escape
         """
         if flaw_type in self.get_flaws_types():
             return self.flaws[flaw_type]["safe"]
-        if "ALL" in self.get_flaws_types():
-            return self.flaws["ALL"]["safe"]
+        if "default" in self.get_flaws_types():
+            return self.flaws["default"]["safe"]
         return None
 
     def is_unsafe(self, flaw_type):
@@ -113,8 +113,8 @@ class FilterSample(Sample):  # Initialize rules, safety, code and escape
         """
         if flaw_type in self.get_flaws_types():
             return self.flaws[flaw_type]["unsafe"]
-        if "ALL" in self.get_flaws_types():
-            return self.flaws["ALL"]["unsafe"]
+        if "default" in self.get_flaws_types():
+            return self.flaws["default"]["unsafe"]
         return None
 
     def compatible_with_sink(self, sink_sample):
@@ -126,3 +126,5 @@ class FilterSample(Sample):  # Initialize rules, safety, code and escape
         """
         return (self.output_type == sink_sample.input_type or self.output_type == "nofilter") and \
             self.contains_flaw_type(sink_sample.flaw_type)
+
+# end of filter_sample.py

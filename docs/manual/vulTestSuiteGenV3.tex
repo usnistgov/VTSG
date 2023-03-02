@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Mar  1 16:21:36 2023" *by "Paul E. Black"
+% *modified "Thu Mar  2 09:48:36 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1358,7 +1358,7 @@ provides one way for the generated program to get input.
 
     \item output\_type: the type of output.  The variable generated with the
       placeholder \\ \verb|{{out_var_name}}| in the code will be that type.
-      An input is selected of it matches the \verb|input_type| of the Filter or
+      An input module is selected if it matches the \verb|input_type| of the Filter or
       Sink, if the Filter \verb|input_type| is ``nofilter''.
 
     \item code: The source code of an input. It should contain the placeholder \\
@@ -1410,13 +1410,17 @@ All filter modules are in the \verb|filters.xml| file.
     \item output\_type: the output type of the filter.  The variable generated
     with the placeholder \verb|{{out_var_name}}| will be that type. \\
     Tip: To generate a test without Filter, assign \verb|in_var_name| to
-    \verb|out_var_name| and make the input\_type and output\_type \verb|nofilter|.
-    This passes the variable from the Input directly to the Sink.
+    \verb|out_var_name| in the code, e.g.,
+\begin{verbatim}
+    {{out_var_name}} = {{in_var_name}};
+\end{verbatim}
+    and make the input\_type and output\_type \verb|nofilter|.
+    This passes the value from the Input directly to the Sink.
 
     \item flaw: indicate whether this filter is always safe, always unsafe, or
       neither for a particular flaw type.  See Sec.~\ref{sec:safe or unsafe} for
       more details.  If this filter has the same safe/unsafe value for most
-      types of vulnerabilities, put ``ALL'' as the \verb|flaw_type|.
+      types, put ``default'' as the \verb|flaw_type|.
 
     \item code: The source code of an filter. It should contain the placeholders
     \\
@@ -1906,7 +1910,7 @@ is used with a sink if
 \begin{enumerate}
 \item the filter \verb|output_type| is ``nofilter'' or the same as the sink
   \verb|input_type| \emph{and}
-\item the filter has a \verb|flaw_type| that is ``ALL'' or is the same as the
+\item the filter has a \verb|flaw_type| that is ``default'' or is the same as the
   sink \verb|flaw_type|.
 \end{enumerate}
 An input is used with a sink and a filter if

@@ -1,5 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
+<!-- *modified "Thu Mar  2 10:11:47 2023" *by "Paul E. Black" -->
     <filtering>
         <!--
         <sample>
@@ -23,7 +24,7 @@
             </path>
             <comment>no filtering</comment>
             <flaws>
-                <flaw flaw_type="ALL" safe="0" unsafe="0"/>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
             </flaws>
             <imports></imports>
             <code>
@@ -116,7 +117,7 @@
 ../etc/passwd
 INPUT</comment>
             <flaws>
-                <flaw flaw_type="ALL" safe="0" unsafe="1"/> <!-- unsafe user input -->
+                <flaw flaw_type="default" safe="0" unsafe="1"/> <!-- unsafe user input -->
             </flaws>
             <imports>
             </imports>
@@ -135,7 +136,7 @@ INPUT</comment>
 ../etc/passwd
 INPUT</comment>
             <flaws>
-                <flaw flaw_type="ALL" safe="0" unsafe="1"/> <!-- unsafe user input -->
+                <flaw flaw_type="default" safe="0" unsafe="1"/> <!-- unsafe user input -->
             </flaws>
             <imports>
                 <import>os</import>
@@ -153,7 +154,7 @@ INPUT</comment>
             </path>
             <comment>input (filter): file data.txt</comment>
             <flaws>
-                <flaw flaw_type="ALL" safe="0" unsafe="1"/> <!-- unsafe user input -->
+                <flaw flaw_type="default" safe="0" unsafe="1"/> <!-- unsafe user input -->
             </flaws>
             <imports>
             </imports>

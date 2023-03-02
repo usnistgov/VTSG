@@ -1,6 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!-- *created  "Fri Sep  9 16:00:36 2022" *by "Paul E. Black" -->
-<!-- *modified "Fri Sep  9 16:04:52 2022" *by "Paul E. Black" -->
+<!-- *modified "Thu Mar  2 10:02:11 2023" *by "Paul E. Black" -->
 <!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
     <filtering>
         <sample>
@@ -9,7 +9,7 @@
             </path>
             <comment>no filtering</comment>
             <flaws>
-                <flaw flaw_type="ALL" safe="0" unsafe="0"/>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
             </flaws>
             <imports></imports>
             <code>
