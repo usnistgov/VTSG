@@ -1,5 +1,5 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu Mar  2 11:56:51 2023" *by "Paul E. Black"
+ *modified "Thu Mar  9 14:14:09 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -16,6 +16,12 @@ Maybe replace the <path> <dir> stuff with one <description> or <name> keyword.
 (You'd have to fix a few modules with multiple <dir> entries.)
 
 
+3 Mar 2023
+
+Allow the user to specify the variable name root, that is, something other than
+"tainted".
+
+
 4 Jan 2023
 
 Maybe there should be a new value "maybe" or "random" or "indeterminate" for test
@@ -27,18 +33,11 @@ conditions code when the analyzer cannot determine.  For instance, Juliet,
 
 23 Dec 2022
 
-Explain how to add a new flaw.  Explain that you start with a sink, then get
-compatible input.  Maybe add a diagram showing that an input (and a filter) can be
-"hooked" to a sink via the flaw type or via the input type.  (use the blue rectangles
-with pointy ends, as hinted at in Fig 2.) Divide by zero is a good
-example.  Generally a potential div by 0 vulnerability only needs integers.  But to
-be safe the input must be non-zero.
-
-Explain which errors should be caught and which should allowed to crash.  Talk about
-providing (somehow!) PoVs (proofs of vulnerability).
-
-Maybe add a diagram showing how output_type of one module "hooks" to the input_type
-of the next module?
+Explain which errors in VTSG should be caught and which should allowed to crash.
+Anything that the users can do, like specify incompatible things, should be caught
+and explained.  Internal errors, like empty lists from another piece of VTSG code,
+can be allowed to crash (they indicate that the OTHER piece of code needs to be
+improved).
 
 
 23 Nov 2022

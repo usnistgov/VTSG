@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Thu Mar  2 09:48:36 2023" *by "Paul E. Black"
+% *modified "Mon Mar 13 16:32:31 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -35,6 +35,7 @@
 \setcounter{tocdepth}{2} % only show down to subsections
 
 \usepackage{enumitem}         % to control spacing between bullets/numbered lists
+%\setlist{nosep} % no space between list items or around lists
 
 \usepackage[numbers,sort&compress]{natbib} % format bibliography 
 \renewcommand{\bibsection}{}
@@ -1878,49 +1879,227 @@ identical names, except for the final sequence letter.
 
 \section{Adding to VTSG}
 
-Explain how to add stuff . . .
+The next subsection gives some advice on how to add a new language to VTSG.
+The subsection after that is a brief tutorial giving advice on how to add a new
+flaw.
 
 \subsection{How to Add a Language}
 
-The easiest is to
-\begin{enumerate}
+The easiest way is to
+\begin{enumerate}[nosep]
 \item decide the short name of the language, e.g., py for Python and php for
   PHP.  Using the extension of those programs is a good idea.
 \item create a directory by that name under src/template
 \item copy the six files of an existing language
 \item change the name attribute in file\_template.xml to the language name.
 \end{enumerate}
-Change language characteristics in all the files.  Execute the resulting source
-code, to make sure syntax and other details are correct.  It's best to start by
-converting just one or two sinks, inputs, and filters for quick turn around.
-Comment out all the rest at the beginning.
+Change language characteristics in all the files.  Generate a few cases and
+execute them to make sure syntax and other details are correct.  It's best to
+start by converting just one or two sinks, inputs, and filters for quick turn around.
+Comment out all the rest of the modules to start.
+As you convert or add flaws, you may find that some language specifications need
+adjustment.
 
 \subsection{How to Add a Flaw}
 
-A good first step is to take an existing generated test case and modify the
-source code to present the target flaw.  Then decide what parts of the code are
-in sinks, what parts are in filters (and wrapped in complexities), and what
-parts are inputs.
+The easiest way to add a new flaw is modify a similar existing flaw to present the
+new flaw.  If nothing is suitable, here is a tutorial for writing a brand new flaw.
 
-Write the new flaw sink or sinks.  It's likely that nothing will be generated
-the first time because VTSG cannot find any compatible filters and inputs.
+There are so many interacting specifications for a flaw, it is best to write it in
+three steps: first, write the flaw in regular source code; second, decide how to
+divide the code among modules, and third, specify the pieces in VTSG.
 
-Compatible inputs, filters, and sinks are ``connected'' various ways.  A filter
-is used with a sink if
-\begin{enumerate}
+As a first step, choose a generated test case and modify the source code to present
+the target flaw.  Here is a potential divide by zero guarded by a filter:
+\begin{verbatim}
+    data = console_input()
+
+    if data == 0:
+        print('Invalid input')
+        sys.exit(1)
+
+    print(f'The reciprocal of {data} is {1/data}')
+\end{verbatim}
+You may want to try different variants to find which fits your needs best.  One
+variant is for the filter to provide a safe value instead of aborting, like this:
+(Since the the console input line is always the same, we will not show it
+further.)
+\begin{verbatim}
+    if data == 0:
+        print('Invalid input')
+        data = 1
+
+    print(f'The reciprocal of {data} is {1/data}')
+\end{verbatim}
+Another variant is for the weakness itself to be guarded by the filter:
+\begin{verbatim}
+    if data != 0:
+        print(f'The reciprocal of {data} is {1/data}')
+    else:
+        print('Invalid input')
+\end{verbatim}
+
+It helps later checking to write the code to demonstrate the failure, instead of
+failing silently.  In the above code if division by zero is ever attempting, Python
+aborts with failure messages.  In contrast consider a path traversal weakness.  Path
+traversal is when the user might access private directories.  Here is a simple
+version.  It intends to open a file named by the user in the \verb|/home| directory:
+\begin{verbatim}
+    tainted_1 = input() # read one line
+
+    file = os.path.join('/home', tainted_1)
+    f = open(file, 'r')
+\end{verbatim}
+Running this with an input that exploits the weakness, like
+\verb|../etc/passwd|, doesn't give any indication that the exploit succeeded.  The
+file is opened and then the program ends.  The following variant is better.  It
+prints a line from the password file to demonstrate the exploit:
+\begin{verbatim}
+    tainted_1 = input() # read one line
+
+    file = os.path.join('/home', tainted_1)
+    with open(file, 'r') as f:
+        print(f.readline(), end='')
+\end{verbatim}
+
+
+The second step is to decide what parts of the code are inputs, what parts are
+filters (which will be wrapped in complexities), and what parts are sinks.
+
+If you want to generate cases where some piece of code may or may not be executed,
+put that code in Filter modules.  The second example above might generate a case
+like this.  (Comments show the origin of each piece of source code.)
+\begin{verbatim}
+    # Complexity
+    if True:
+        # Filter
+        if data == 0:
+            print('Invalid input')
+            data = 1
+
+    # Sink
+    print(f'The reciprocal of {data} is {1/data}')
+\end{verbatim}
+
+If the sink is guarded, as in the third example, it may need to be a Filter module.
+In this case, the ``Sink'' module may be empty.
+\begin{verbatim}
+    # Complexity
+    if True:
+        # Filter
+        if data != 0:
+            print(f'The reciprocal of {data} is {1/data}')
+        else:
+            print('Invalid input')
+\end{verbatim}
+
+
+Now that you have an idea of how to split up the code, the third step is to
+write a new sink (or filter) module in VTSG for the flaw.  Edit the sinks.xml (or
+filters.xml) file to add it, then run VTSG.  It's likely that nothing is
+generated the very first time you try because VTSG cannot find a compatible input and
+filter.
+
+\label{sec:connecting inputs, filters, and sinks}
+Figure~\ref{fig:VTS operation overview} suggests that the result of the Input module
+connects to and must match the input of the Filter module, and its output connects to
+and must match the input of the Sink.  These modules are shown together in
+Fig.~\ref{fig:input, filter, and sink}.
+\begin{figure}[htbp]
+  \centerline{\includegraphics[width=.7\linewidth]{fig_input_filter_sink.png}}
+  \caption{The result of the Input module connects to the input of the Filter module,
+    and its output connects to the input of the Sink module.
+  }
+  \label{fig:input, filter, and sink}
+\end{figure}
+Compatible inputs, filters, and sinks are ``connected'' various ways.  Remember that
+VTSG chooses a sink module first then chooses compatible filter and input modules to
+use with it.  A filter is used with a sink if
+\begin{enumerate}[nosep]
 \item the filter \verb|output_type| is ``nofilter'' or the same as the sink
   \verb|input_type| \emph{and}
 \item the filter has a \verb|flaw_type| that is ``default'' or is the same as the
   sink \verb|flaw_type|.
 \end{enumerate}
+\begin{figure}[htbp]
+  \centerline{\includegraphics[width=.8\linewidth]{fig_filters_and_sinks.png}}
+  \caption{How filters are chosen for a sink.  Filters A, B, and C will be used.
+    Filter P is not used because the output\_type differs.  Filter Q is not
+    used because the flaw\_type differs.
+  }
+  \label{fig:how filters fit a sink}
+\end{figure}
+Figure~\ref{fig:how filters fit a sink} suggests that filters A, B, and C will
+be used with the sink.  Filter B is compatible because the \verb|flaw_type| is
+``default''; it is compatible with any type of flaw.  Filter C is ``nofilter'' and
+should just pass the value through.  Filter P is never used with that sink because
+the \verb|output_type| is not the same as the sink \verb|input_type|.
+Filter Q is never used because the \verb|flaw_type| is not the same.
+
 An input is used with a sink and a filter if
-\begin{enumerate}
+\begin{enumerate}[nosep]
 \item the filter \verb|input_type| is ``nofilter'' and the \verb|output_type|
   of the input is the same as the sink \verb|input_type| \emph{or}
-\item the filter \verb|input_type| is not ``nofilter'' and the
+\item the filter \verb|input_type| is something other than ``nofilter'' and the
   \verb|output_type| of the input is the same as the filter \verb|input_type|.
 \end{enumerate}
+Fig.~\ref{fig:how inputs fit} illustrates this matching rule.  Input 1 is used with
+Filter A, and Input 2 is used with Filter B.  Input 1 is also used with Filter C
+because Filter C is ``nofilter'' and Input 1 matches the sink.
+\begin{figure}[htbp]
+  \centerline{\includegraphics[width=.667\linewidth]{fig_inputs_filters_and_sinks.png}}
+  \caption{How inputs are chosen for a filter and sink.  Input 1 is used with
+    Filter A.  Input 2 is used with Filter B.  Input 1 is also used with Filter C
+    because Filter C is ``nofilter'' and Input 1 matches the sink.
+  }
+  \label{fig:how inputs fit}
+\end{figure}
 
+Be aware that any string is allowed in the \verb|input_type| or \verb|output_type|.
+This allows you to use a kind of ``extended types'' to connect specific inputs,
+filters, and sinks.  An example is in Python.  I wanted the input to be wrapped in
+complexities, like the following:
+\begin{verbatim}
+    # Input
+    tainted_1 = None
+
+    # Complexity
+    if 5 == 5:
+        # Filter
+        tainted_1 = input()
+
+    # Sink
+    if tainted_1 is not None:
+        # flaw # no validation - allows arbitrary execution
+        sys.path += [tainted_1]
+        print(f'added { tainted_1 } to Python module search path')
+\end{verbatim}
+Variables aren't declared in Python, but I had to initialize the variable to
+\verb|None| in case the input is not executed.  I declared the variable in the input
+module and put the input code in the filter module, so that the input code would be
+wrapped in complexities.  I used custom types \verb|string,filter_input| to connect
+the sink to the ``filter'' (really, input) and \verb|InitToNone| to connect the
+``filter'' to the ``input'' (really, initialization).
+
+Figuring out how to mark the modules as safe or unsafe can be tricky.
+The following code may allow a large \emph{negative} index access, and thus cause an
+exception.  I thought this is always unsafe.
+\begin{verbatim}
+    if index < len(array):
+        print(array[index]
+\end{verbatim}
+I discovered my mistake when I executed the cases and ``unsafe'' cases did
+\emph{not} produce the exploit evidence.  If the ``input'' was a safe hardcoded
+value, the code was safe!
+\begin{verbatim}
+    index = 0
+
+    if index < len(array):
+        print(array[index]
+\end{verbatim}
+The proper marking is that the sink is neither always safe nor always unsafe.
+A proper filter or guard can make it safe.
+See Sec.~\ref{sec:safe or unsafe} for details.
 
 \section{Example Test Case}
 \label{sec:generated files}

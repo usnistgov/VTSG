@@ -19,6 +19,7 @@ ExecQuery
 Fong
 Github
 ICST
+InitToNone
 Intern'l
 Jinja
 LDAP
@@ -65,6 +66,7 @@ foreach
 func
 funcpregmatch
 goto
+hardcoded
 importcode
 init
 inoutvar
