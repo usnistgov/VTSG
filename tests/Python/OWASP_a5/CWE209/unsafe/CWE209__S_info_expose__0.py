@@ -38,8 +38,8 @@ def main():
             (a, b) = (b, a + b)
         print(f'{sum}th Fibonacci number is {a}')
     except TypeError as te:
-        #flaw
-        print(f'TypeError: {te}: for i in range({sum}):') # leaks value of sum
+        #flaw # leaks value of sum
+        print(f'TypeError: {te}: for i in range({sum}):')
 
 
 if __name__ == '__main__':
