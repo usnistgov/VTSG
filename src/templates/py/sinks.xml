@@ -114,24 +114,6 @@ POV</comment>
 
         <sample>
             <path>
-                <dir>select_from</dir>
-                <dir>concatenation_simple_quote</dir>
-            </path>
-            <flaw_type flaw_group="OWASP_a1">CWE89</flaw_type>
-            <comment>construction : concatenation with simple quote</comment>
-            <imports></imports>
-            <code>
-        {{flaw}}
-        query = "SELECT * FROM '" + {{in_var_name}} + "'"
-	    </code>
-            <safety safe="0" unsafe="0"/>
-            <input_type>string</input_type>
-            <exec_type>SQL</exec_type>
-        </sample>
-
-
-        <sample>
-            <path>
                 <dir>ls</dir>
             </path>
             <flaw_type flaw_group="OWASP_a1">CWE78</flaw_type>
