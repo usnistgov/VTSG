@@ -23,6 +23,9 @@ InitToNone
 Intern'l
 Jinja
 LDAP
+MIMD
+MISD
+MPP
 MSSQL
 Mentzer
 NIST
@@ -30,12 +33,16 @@ NIST's
 NISTIR
 NMBCPLX
 Namespace
+NoneType
 Noyalet
 OWASP
 OWASPa
 OWASPinjection
 Oliveira
 README
+SIMD
+SISD
+SPMD
 STR
 Sqrt
 Stivalet
@@ -109,6 +116,7 @@ subdirectory
 techpubs
 testsuite
 tion
+traceback
 txt
 untrusted
 urlstyle

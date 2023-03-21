@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Mon Mar 13 16:32:31 2023" *by "Paul E. Black"
+% *modified "Tue Mar 21 15:07:27 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1883,23 +1883,6 @@ The next subsection gives some advice on how to add a new language to VTSG.
 The subsection after that is a brief tutorial giving advice on how to add a new
 flaw.
 
-\subsection{How to Add a Language}
-
-The easiest way is to
-\begin{enumerate}[nosep]
-\item decide the short name of the language, e.g., py for Python and php for
-  PHP.  Using the extension of those programs is a good idea.
-\item create a directory by that name under src/template
-\item copy the six files of an existing language
-\item change the name attribute in file\_template.xml to the language name.
-\end{enumerate}
-Change language characteristics in all the files.  Generate a few cases and
-execute them to make sure syntax and other details are correct.  It's best to
-start by converting just one or two sinks, inputs, and filters for quick turn around.
-Comment out all the rest of the modules to start.
-As you convert or add flaws, you may find that some language specifications need
-adjustment.
-
 \subsection{How to Add a Flaw}
 
 The easiest way to add a new flaw is modify a similar existing flaw to present the
@@ -2021,6 +2004,8 @@ use with it.  A filter is used with a sink if
 \item the filter has a \verb|flaw_type| that is ``default'' or is the same as the
   sink \verb|flaw_type|.
 \end{enumerate}
+Figure~\ref{fig:how filters fit a sink} suggests that filters A, B, and C will
+be used with the sink.
 \begin{figure}[htbp]
   \centerline{\includegraphics[width=.8\linewidth]{fig_filters_and_sinks.png}}
   \caption{How filters are chosen for a sink.  Filters A, B, and C will be used.
@@ -2029,10 +2014,9 @@ use with it.  A filter is used with a sink if
   }
   \label{fig:how filters fit a sink}
 \end{figure}
-Figure~\ref{fig:how filters fit a sink} suggests that filters A, B, and C will
-be used with the sink.  Filter B is compatible because the \verb|flaw_type| is
+Filter B is compatible because the \verb|flaw_type| is
 ``default''; it is compatible with any type of flaw.  Filter C is ``nofilter'' and
-should just pass the value through.  Filter P is never used with that sink because
+just passes the value through.  Filter P is never used with that sink because
 the \verb|output_type| is not the same as the sink \verb|input_type|.
 Filter Q is never used because the \verb|flaw_type| is not the same.
 
@@ -2100,6 +2084,51 @@ value, the code was safe!
 The proper marking is that the sink is neither always safe nor always unsafe.
 A proper filter or guard can make it safe.
 See Sec.~\ref{sec:safe or unsafe} for details.
+
+
+\subsection{How to Add a Language}
+
+The easiest way is to
+\begin{enumerate}[nosep]
+\item decide the short name of the language, e.g., py for Python or php for
+  PHP.  Using the extension of those programs is a good idea.
+\item create a directory by that name under src/template
+\item copy the six files of an existing language
+\item change the name attribute in file\_template.xml to the language name.
+\end{enumerate}
+Change language characteristics in all the files.  Generate a few cases and
+execute them to make sure syntax and other details are correct.  It's best to
+start by converting just one or two sinks, inputs, and filters for quick turn around.
+Comment out all the rest of the modules to start.
+As you convert or add flaws, you may find that some language specifications need
+adjustment.
+
+
+\subsection{Adding Capabilities}
+
+New VTSG capabilities often allow the user who is describing programming languages or
+flaws to make new mistakes.  Suppose input modules now have a \verb|parallel|
+attribute, which must have one or more types of processing, such as Single
+Instruction, Single Data (SISD); Multiple Instruction, Single Data (MISD); Single
+Instruction, Multiple Data (SIMD); Multiple Instruction, Multiple Data (MIMD); Single
+Program, Multiple Data (SPMD), or Massively Parallel Processing (MPP).  What should
+VTSG do when the user gives an input module a \verb|parallel| attribute, but no type
+of processing?  VTSG code could just crash with a traceback about \verb|NoneType|
+object.
+
+If the user can make a mistake, such as mismatched attributes or invalid fields, VTSG
+should explain what the problem is, where it arose, why it is invalid (e.g. where the
+information will be used), and what are correct approaches or alternatives.  For
+example, for an empty \verb|<dir></dir>| in an input module, VTSG reports
+\begin{verbatim}
+[ERROR] Invalid empty <dir></dir> in the inputs file.
+A dir string is required; it is used in the name of the generated file.
+\end{verbatim}
+then exits.
+
+In case of an error due to a bug in VTSG itself, it may crash.  In theory, VTSG
+developers will find and fix all bugs before the user runs it.
+
 
 \section{Example Test Case}
 \label{sec:generated files}

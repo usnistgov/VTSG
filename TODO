@@ -1,9 +1,30 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu Mar  9 14:14:09 2023" *by "Paul E. Black"
+ *modified "Tue Mar 21 15:12:13 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
+
+21 March 2023
+
+Have some method of variants. They are vaguely like complexities, but apply broadly.
+Juliet has the same code instantiated with different types.  Kratkiewcz has array
+access at the end, just beyond, some beyond, and far beyond.  These variants have to
+potentially be incorporated in all modules.
+
+Sinks should be able to supply code to other modules.  In particular, certain sinks
+need a hardcoded "input" to be a certain value in order to be safe or to exploit the
+weakness.
+
+
+21 March 2023
+
+Warn if the chosen sink doesn't generate any test cases.  It's relatively easy to
+warn if there are no matching filters.  It gets progressively harder to count that
+there are no filter/input or filter/input/exec_query combinations.
+    Maybe just count the number of cases generated (for an input).  If the number is
+zero, produce a warning.
+
 
 4 Jan 2023
 
@@ -30,14 +51,6 @@ conditions code when the analyzer cannot determine.  For instance, Juliet,
         code
     }
 
-
-23 Dec 2022
-
-Explain which errors in VTSG should be caught and which should allowed to crash.
-Anything that the users can do, like specify incompatible things, should be caught
-and explained.  Internal errors, like empty lists from another piece of VTSG code,
-can be allowed to crash (they indicate that the OTHER piece of code needs to be
-improved).
 
 
 23 Nov 2022
