@@ -1,4 +1,4 @@
-# *modified "Fri Sep 30 09:56:33 2022" *by "Paul E. Black"
+# *modified "Tue Mar 21 16:59:29 2023" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
@@ -26,7 +26,7 @@ Examples:
     vtsg.py -l cs -g IDOR -g Injection    (generate cases with all flaws in the IDOR or Injection groups)
     vtsg.py -l cs -f CWE_354              (generate cases with CWE 354)
     vtsg.py -l cs -f CWE_89 -f CWE_78     (generate cases with CWE 89 or CWE 78)
-    vtsg.py -l cs -r 2                    (generate cases with the complexity depth equals to 2, two level of nesting)
+    vtsg.py -l cs -r 2                    (generate cases with the complexity depth up to  and including two levels of nesting)
     vtsg.py -l cs -n 1                    (generate cases with only one combination of input, filter, and sink for all flaws)
     vtsg.py -l cs -s                      (generate cases where the vulnerabilities have been fixed)
     vtsg.py -l cs -u                      (generate cases where there are vulnerabilities)
