@@ -132,6 +132,37 @@ POV</comment>
 
         <sample>
             <path>
+                <dir>index</dir>
+            </path>
+            <flaw_type flaw_group="Exception">CWE129</flaw_type>
+	    <comment>
+&lt;&lt; POV
+-6
+POV</comment>
+            <imports>
+            </imports>
+            <code>
+	array = [0, 1, 2, 3, 4]
+
+        {{flaw}} # check that {{in_var_name}} &lt; len(array), but not that it is &gt;= 0, so may attempt to read out of array bounds
+        if {{in_var_name}} &lt; len(array):
+	INDENT
+	    print(array[{{in_var_name}}])
+	DEDENT
+	else:
+	INDENT
+	    print('Array index out of bounds')
+	DEDENT
+
+	print('Done')
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>int</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+
+        <sample>
+            <path>
                 <dir>info_expose</dir>
             </path>
             <flaw_type flaw_group="OWASP_a5">CWE209</flaw_type>

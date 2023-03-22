@@ -7,7 +7,7 @@ then
     exit
 fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Wed Mar  1 10:33:36 2023" *by "Paul E. Black"
+# *modified "Wed Mar 22 10:54:12 2023" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -116,6 +116,9 @@ for f in $(find . -name "*.py"|grep -v b[.]|sort); do
     elif [[ $f =~ __S_ext_sys_ctl__ ]]; then
 	# CWE-15: unlimited Python module search path
 	a="."
+    elif [[ $f =~ __S_index__ ]]; then
+	# CWE-129: improper validation of array index
+	a="-6"
     else
 	echo UNKNOWN SINK IN $f
 	echo ADD IT TO tests/gen_and_check

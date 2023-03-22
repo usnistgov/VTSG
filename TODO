@@ -1,5 +1,5 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Mar 21 15:12:13 2023" *by "Paul E. Black"
+ *modified "Wed Mar 22 11:22:50 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -173,8 +173,9 @@ global variable declared.
     This allows file_template to be smaller.  The final code only includes say, math,
 when it is needed.
 
-Allow modules, other than complexities, to have <body></body> code. (Now you can put
-ANYTHING in the XML, and anything unrecognized is just ignored.)
+Allow modules, other than complexities, to have <body></body> code to be placed in
+another file.
+
 
 9 Nov 2022
 VTSG doesn't have any notion of a fixed "support" file.  That is, a file written by
