@@ -76,6 +76,33 @@
 
         <sample>
             <path>
+                <dir>file</dir>
+            </path>
+            <comment>input: file data.txt containing an integer</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>
+	    try:
+	    INDENT
+		with open('data.txt', 'r') as f:
+		INDENT
+                    {{out_var_name}} = int(f.readline())
+		DEDENT
+	    DEDENT
+	    except ValueError:
+	    INDENT
+	        {{out_var_name}} = 1776
+	    DEDENT
+	    </code>
+            <input_type>input: get integer as tainted input from a file</input_type>
+            <output_type>int</output_type>
+        </sample>
+
+        <sample>
+            <path>
                 <dir>none</dir>
             </path>
             <comment>No Input</comment>

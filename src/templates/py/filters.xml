@@ -1,6 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
-<!-- *modified "Thu Mar  2 10:11:47 2023" *by "Paul E. Black" -->
+<!-- *modified "Wed Mar 22 16:28:07 2023" *by "Paul E. Black" -->
     <filtering>
         <!--
         <sample>
@@ -101,6 +101,28 @@
 	        if {{in_var_name}} == 0:
 		INDENT
 		    sys.exit("Zero input not allowed")
+		DEDENT
+		{{out_var_name}} = {{in_var_name}}
+            </code>
+            <input_type>int</input_type>
+            <output_type>int</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>nonneg</dir>
+            </path>
+            <comment>filter: block inputs less than 0</comment>
+            <flaws>
+                <flaw flaw_type="CWE129" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+	      <import>sys</import>
+            </imports>
+            <code>
+	        if {{in_var_name}} &lt; 0:
+		INDENT
+		    sys.exit("Negative input not allowed")
 		DEDENT
 		{{out_var_name}} = {{in_var_name}}
             </code>
