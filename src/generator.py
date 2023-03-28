@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Wed Mar  1 12:56:44 2023" *by "Paul E. Black"
+ *modified "Tue Mar 28 13:06:20 2023" *by "Paul E. Black"
 """
 
 import time
@@ -194,7 +194,6 @@ class Generator(object):
                     # forget any input or filter selections from previous loops
                     self.current_input  = None
                     self.current_filter = None
-                    self.current_max_rec = 0
                     self.select_exec_queries()
 
     # second step: select filter
@@ -241,12 +240,15 @@ class Generator(object):
     # fifth step: generate complexity depths if needed or go right to compose
     def recursion_or_compose(self):
         '''
-        If this uses an input, wrap the filter in appropriate depths of complexities.
+        If this uses an input and a filter, wrap the filter in appropriate depths of
+        complexities.
         Otherwise, proceed directly to compose.
         '''
-        if self.current_sink.input_type != "none":
+        if self.current_sink.input_type != 'none' and self.current_filter.input_type != 'nofilter':
             self.recursion_level()
         else:
+            # forget any level of complexities from previous loops
+            self.current_max_rec = 0
             self.compose()
 
     # fifth-and-a-half step: generate all depths of complexities up to maximum
@@ -337,10 +339,11 @@ class Generator(object):
     def compose(self):
         """
         This method composes previously selected code chunks into a final program.
-        Complexities are composed with the class complexities_generator and the filter is included into them.
-        After we add input, complexities with filter, sink, exec query into the template code.
+        Complexities are composed with the class complexities_generator and the
+        filter is included into them.  After that add input, complexities with
+        filter, sink, exec query into the template code.
         Also, we add include, license, comments, into the template.
-        At the end, we have final code which can be save into files.
+        At the end, we have final code that we save in files.
         """
 
         var_id = 0
@@ -673,11 +676,13 @@ class Generator(object):
             name += self.current_exec_queries.module_description()
 
         name += "__"
-        cplx_name = ""
-        for c in self.complexities_queue:
-            cplx_name += "-" + c.get_complete_id()
 
-        name += f'{self.current_max_rec}{cplx_name}'
+        # add the number of complexities used ...
+        name += f'{self.current_max_rec}'
+        # ... and their ids
+        for c in self.complexities_queue:
+            name += "-" + c.get_complete_id()
+
         # suffix - for cases consisting of multiple files
         name += suffix
         # extension

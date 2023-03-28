@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Mar 21 15:07:27 2023" *by "Paul E. Black"
+% *modified "Tue Mar 28 14:29:45 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -715,7 +715,7 @@ sink, filter, input, exec query, and complexities that are
 compatible with each other and consistent with any flaw group or
 flaw constraints the user gives on the command line.  Second, VTSG
 composes test case source code from the selected modules, 
-synthesizing variable and functions names, and writes the file(s).
+synthesizing variable and function names, and writes the file(s).
 
 The code structure is roughly
 \begin{verbatim}
@@ -851,9 +851,9 @@ They are combined and nested to create slightly more realistic source code.
 For example, the value 
 of an expression may come from a constant, a single variable, 
 some arithmetic 
-combination, or the return value of a function call.  
+combination, or the return value of a function call.
 Flow of control may be
-influenced by loops, conditionals, and functions calls.  
+influenced by loops, conditionals, and function calls.
 Also, there could be many 
 layers or depths of such nesting structures.  
 
@@ -949,13 +949,16 @@ different source, such as command line options or hard-coded values.
 \subsection{Maintain Indentation with INDENT ... DEDENT}
 \label{sec:indent}
 
+VTSG using Jinja does a haphazard job of producing proper indentation.  Indentation
+does not matter for many languages.  It is critical for Python, however.  This
+section explains how to use INDENT and DEDENT to encsure correct indentation in the
+final source code.
+
 \subsubsection{Using INDENT ... DEDENT}
 INDENT ... DEDENT sections may appear in any of the above files.  They
 most often occur in \verb|file_template.xml| and \verb|complexities.xml| files.
 
-VTSG using Jinja does a haphazard job of producing proper indentation.  Indentation
-does not matter for many languages.  It is critical for Python, however.  To maintain
-correct indentation, use INDENT and DEDENT lines in code chunks to indicate that
+Use INDENT and DEDENT lines in code chunks to indicate that
 any code between those lines should be indented consistently.  For example,
 \begin{verbatim}
 def main():
@@ -1040,10 +1043,10 @@ Indent sections may be nested.
 
 INDENT and DEDENT lines are removed.
 For lines within an INDENT ... DEDENT section,
-\begin{itemize}
+\begin{itemize}[nosep]
 \item first, any leading whitespace is removed, and
-\item second, indent is added for each nested INDENT ... DEDENT section this
-  is in if the line is not empty.
+\item second, if the line is not empty, indentation is added for each nested
+  INDENT ... DEDENT section this is in.
 \end{itemize}
 
 Here is a convoluted example to illustrate the fine points.  Suppose this is the
@@ -1406,17 +1409,19 @@ All filter modules are in the \verb|filters.xml| file.
     generated with
     the placeholder \verb|{{in_var_name}}| will be that type.
     Declarations of \verb|variable| in the File Template give
-    available types, see Sec.~\ref{sec: file template}.
-
-    \item output\_type: the output type of the filter.  The variable generated
-    with the placeholder \verb|{{out_var_name}}| will be that type. \\
-    Tip: To generate a test without Filter, assign \verb|in_var_name| to
-    \verb|out_var_name| in the code, e.g.,
+    available types, see Sec.~\ref{sec: file template}. \\
+    Tip: To generate a test without functional filtering, assign \verb|in_var_name|
+    to \verb|out_var_name| in the code, e.g.,
 \begin{verbatim}
     {{out_var_name}} = {{in_var_name}};
 \end{verbatim}
     and make the input\_type and output\_type \verb|nofilter|.
     This passes the value from the Input directly to the Sink.
+    Making the input\_type \verb|nofilter| prevents the filter from being wrapped
+    in any complexity.
+
+    \item output\_type: the output type of the filter.  The variable generated
+    with the placeholder \verb|{{out_var_name}}| will be that type.
 
     \item flaw: indicate whether this filter is always safe, always unsafe, or
       neither for a particular flaw type.  See Sec.~\ref{sec:safe or unsafe} for
@@ -1482,7 +1487,8 @@ All sink modules are in the language's \verb|sinks.xml| file.
 
     The input type specifies the kind of data this sink needs from the filter (or
     from the input).  VTSG only selects filters whose output types are the same as
-    this input type.  If the filter is ``nofilter'', then VTSG selects inputs whose
+    this input type.  If the filter input type is ``nofilter'',
+    then VTSG selects input modules whose
     output types are the same as this input type.
 
     \item exec\_type: link a sink to the exec queries.  It must have 
@@ -1650,27 +1656,51 @@ complexity modules are inside \verb|<complexities>|.
       file name.  Typically this is a number.
 
     \item type: Used types are: \verb|if|, \verb|switch|, \verb|goto|,
-    \verb|for|, \verb|foreach|, \verb|while|, \\
+    \verb|for|, \verb|foreach|, \verb|while|,
     \verb|function|, and \verb|class|.
     If the type is \verb|class|, source code in the \verb|<body></body>| is placed in
     an additional file that is created for this case.
     Invocation statements are generated for \verb|function| and \verb|class| types.
-    An extra variable is created for \verb|foreach| types (with group \verb|loops|).
+
+    An extra variable is created for \verb|foreach| type complexities (with group
+    \verb|loops|).
     No other type has any effect on VTSG.
 
     \item group: Used groups are: \verb|conditionals|, \verb|jumps|,
-    \verb|loops|, \verb|functions|, and \\ \verb|classes|.
+    \verb|loops|, \verb|functions|, and \verb|classes|.
     No group, other than \verb|loops|, has any effect on VTSG.
 
     \item executed: whether the placeholder will be executed or not. Four 
     values are allowed:
-    \begin{itemize}
+    \begin{itemize}[nosep]
         \item 0: Never executed
         \item 1: Always executed
         \item condition:  Executed if the condition is true
         \item not\_condition:  Executed if the condition is false
     \end{itemize}
     Table~\ref{tab:execution examples} gives example code for each value.
+
+    \item in\_out\_var: whether the variable (from the Input) will be used or
+    transformed in the Complexity before being used in the Filter.  If the
+    variable is neither used nor transformed, do not use this attribute.
+    Three values are allowed:
+    \begin{itemize}[nosep]
+        \item in: the variable is used before the placeholder
+        \item out: the variable is used after the placeholder
+        \item traversal: the variable is used in the placeholder
+    \end{itemize}
+    If this attribute is used, the code should contain the following
+    placeholders: \\
+    \verb|{{in_var_name}}|, \verb|{{out_var_name}}|, and \verb|{{var_type}}|.
+
+    \item need\_condition: ``1'' if this complexity needs a condition.
+      This complexity is also combined with conditions (see
+      Sec.~\ref{sec: condition modules}) if \verb|executed| is \verb|condition|
+      or \\ \verb|not_condition|. (optional)
+
+    \item indirection: ``1'' if the code is split into two chunks (call and
+    declaration) or calls a function.  The body tag should be present when
+    calling a function.
 
     \begin{table}[H]
     \centering
@@ -1745,28 +1775,6 @@ complexity modules are inside \verb|<complexities>|.
     \label{tab:execution examples}
     \end{table}
 
-    \item in\_out\_var: whether the variable (from the Input) will be used or
-    transformed in the Complexity before being used in the Filter.  If the
-    variable is neither used nor transformed, do not use this attribute.
-    Three values are allowed:
-    \begin{itemize}
-        \item in: the variable is used before the placeholder 
-        \item out: the variable is used after the placeholder
-        \item traversal: the variable is used in the placeholder
-    \end{itemize}
-    If this attribute is used, the code should contain the following 
-    placeholders: \\
-    \verb|{{in_var_name}}|, \verb|{{out_var_name}}|, and \verb|{{var_type}}|.
-
-    \item need\_condition: ``1'' if this complexity needs a condition.
-      This complexity is also combined with conditions (see
-      Sec.~\ref{sec: condition modules}) if \verb|executed| is \verb|condition|
-      or \\ \verb|not_condition|. (optional)
-
-    \item indirection: ``1'' if the code is split into two chunks (call and
-    declaration) or calls a function.  The body tag should be present when 
-    calling a function.
-
     \item need\_id: ``1'' if the code has a placeholder, \verb|{{id}}|,
     to generate a unique ID for the Complexity.  This ID to generate 
     a label, a parameter, or a function name in a nested
@@ -1821,67 +1829,12 @@ The \verb|<body>| part is instantiated in
 Fig.~\ref{fig:example aux file}.
 
 
-\section{Generated Test Case File Names}
-
-This section describes how the names of test case files are created.
-
-VTSG creates directories and subdirectories for the test cases that it generates.
-The directory structure is described in
-Sec.~\ref{sec:case directory structure}.
-
-%\subsection{Test Case File Names}
-\label{sec:case file name}
-
-VTSG names test case files as
-\verb|FLAW__I_INPUT__F_FILTER__S_SINK__EQ_EXEC_| \\
-\verb|QUERY__NMBCPLX-CMPLX1[.COND]-CMPLX2[.COND]x.EXT|
-\begin{itemize}
-    \item FLAW: Flaw type, e.g. CWE\_89, BF, or STR30-PL, see
-	Sec.~\ref{sec:sink modules}.
-    \item INPUT:  Input description (dirs) (optional)
-    \item FILTER:  Filter description (dirs) (optional)
-    \item SINK:  Description (dirs) of the critical function
-    \item EXEC\_QUERY:  ExecQuery description (dirs) (optional)
-    
-    \item NMBCPLX:  The number of complexities.
-    \item CMPLX1[.COND], CMPLX2[.COND], \ldots: List of complexities.
-            CMPLX is the id in the code complexity module,
-            see Sec.~\ref{sec: complexity modules}.
-            Tables \ref{tab:complexity IDs for CSharp},
-            \ref{tab:complexity IDs for PHP}, and
-            \ref{tab:complexity IDs for Python} in the language appendixes list
-            complexity ids defined in \CSharp\ , PHP, and Python.
-            If the complexity has a
-            condition, COND is the id in test condition modules,
-            see Sec.~\ref{sec: condition modules}.
-            Tables \ref{tab:condition IDs for CSharp},
-            \ref{tab:condition IDs for PHP}, and
-            \ref{tab:condition IDs for Python} list condition
-            ids defined in \CSharp\ , PHP, and Python. (optional)
-    \item x: Sequence of the file within the test.  If the test consists of just one
-      file, there is no sequence letter.  If the test consists of more than one file,
-      that is, when the complexity \verb|type| is \verb|class|,
-      see Sec.~\ref{sec: complexity modules},
-      the main file is ``a'', and other files, such as classes, are ``b'', ``c'',
-      ``d'', etc. (optional)
-    \item EXT: file extension, given in the \verb|file_template.xml| file, see
-    Sec.~\ref{sec: file template}.
-\end{itemize}
-
-See the next section, \ref{sec:generated files}, for an example of the file name of a
-generated test case and the various pieces.
-
-File names reflect the entire case, not just the code in a 
-particular file.  If a case consists of more than one file, as in the
-example in Sec.~\ref{sec:generated files}, all files have
-identical names, except for the final sequence letter.
-
-
 \section{Adding to VTSG}
 
-The next subsection gives some advice on how to add a new language to VTSG.
-The subsection after that is a brief tutorial giving advice on how to add a new
-flaw.
+The next subsection is a brief tutorial giving advice on how to add a new flaw to an
+existing language in VTSG.  The subsection after that gives some advice on how to add
+a new language.  Finally a subsection offers some guidance on adding new capabilities
+or features.
 
 \subsection{How to Add a Flaw}
 
@@ -1893,7 +1846,8 @@ three steps: first, write the flaw in regular source code; second, decide how to
 divide the code among modules, and third, specify the pieces in VTSG.
 
 As a first step, choose a generated test case and modify the source code to present
-the target flaw.  Here is a potential divide by zero guarded by a filter:
+the target flaw.  Here is the core code of
+a potential divide by zero guarded by a filter:
 \begin{verbatim}
     data = console_input()
 
@@ -1903,8 +1857,9 @@ the target flaw.  Here is a potential divide by zero guarded by a filter:
 
     print(f'The reciprocal of {data} is {1/data}')
 \end{verbatim}
-You may want to try different variants to find which fits your needs best.  One
-variant is for the filter to provide a safe value instead of aborting, like this:
+You may want to try different variants to find which fits your needs best.  For
+instance, one variant of this flaw is for the filter to provide a safe value instead
+of aborting, like this:
 (Since the the console input line is always the same, we will not show it
 further.)
 \begin{verbatim}
@@ -2128,6 +2083,62 @@ then exits.
 
 In case of an error due to a bug in VTSG itself, it may crash.  In theory, VTSG
 developers will find and fix all bugs before the user runs it.
+
+
+\section{Generated Test Case File Names}
+
+This section describes how the names of test case files are created.
+
+VTSG creates directories and subdirectories for the test cases that it generates.
+The directory structure is described in
+Sec.~\ref{sec:case directory structure}.
+
+%\subsection{Test Case File Names}
+\label{sec:case file name}
+
+VTSG names test case files as
+\verb|FLAW__I_INPUT__F_FILTER__S_SINK__EQ_EXEC_| \\
+\verb|QUERY__NMBCPLX-CMPLX1[.COND]-CMPLX2[.COND]x.EXT|
+\begin{itemize}[nosep]
+    \item FLAW: Flaw type, e.g. CWE\_89, BF, or STR30-PL, see
+	Sec.~\ref{sec:sink modules}.
+    \item INPUT:  Input description (dirs) (optional)
+    \item FILTER:  Filter description (dirs) (optional)
+    \item SINK:  Description (dirs) of the critical function
+    \item EXEC\_QUERY:  ExecQuery description (dirs) (optional)
+
+    \item NMBCPLX:  The number of complexities.
+    \item CMPLX1[.COND], CMPLX2[.COND], \ldots: List of complexities.
+            CMPLX is the id in the code complexity module,
+            see Sec.~\ref{sec: complexity modules}.
+            Tables \ref{tab:complexity IDs for CSharp},
+            \ref{tab:complexity IDs for PHP}, and
+            \ref{tab:complexity IDs for Python} in the language appendixes list
+            complexity ids defined in \CSharp\ , PHP, and Python.
+            If the complexity has a
+            condition, COND is the id in test condition modules,
+            see Sec.~\ref{sec: condition modules}.
+            Tables \ref{tab:condition IDs for CSharp},
+            \ref{tab:condition IDs for PHP}, and
+            \ref{tab:condition IDs for Python} list condition
+            ids defined in \CSharp\ , PHP, and Python. (optional)
+    \item x: Sequence of the file within the test.  If the test consists of just one
+      file, there is no sequence letter.  If the test consists of more than one file,
+      that is, when the complexity \verb|type| is \verb|class|,
+      see Sec.~\ref{sec: complexity modules},
+      the main file is ``a'', and other files, such as classes, are ``b'', ``c'',
+      ``d'', etc. (optional)
+    \item EXT: file extension, given in the \verb|file_template.xml| file, see
+    Sec.~\ref{sec: file template}.
+\end{itemize}
+
+See the next section, \ref{sec:generated files}, for an example of the file name of a
+generated test case and the various pieces.
+
+File names reflect the entire case, not just the code in a
+particular file.  If a case consists of more than one file, as in the
+example in Sec.~\ref{sec:generated files}, all files have
+identical names, except for the final sequence letter.
 
 
 \section{Example Test Case}
@@ -2534,8 +2545,6 @@ See the \verb|complexity.xml| file for the specific code.
 20 & while condition code break \\
 \hline
 20n & while condition break code \\
-\hline
-21 & while True code if condition break break \\
 \hline
 22 & for range(0, 1) code \\
 \hline

@@ -245,8 +245,7 @@
             <output_type>int</output_type>
         </sample>
 
-    <!-- Juliet has input from
-	    File
+    <!-- Juliet also has input from
 	    PropertiesFile
 	    Property
 	    URLConnection

@@ -1,6 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!-- *created  "Fri Sep  9 16:00:36 2022" *by "Paul E. Black" -->
-<!-- *modified "Thu Mar  2 10:02:27 2023" *by "Paul E. Black" -->
+<!-- *modified "Tue Mar 28 10:11:30 2023" *by "Paul E. Black" -->
 <!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
     <filtering>
         <sample>
@@ -16,8 +16,8 @@
         # No filtering (sanitization)
         {{out_var_name}} = {{in_var_name}}
             </code>
-            <input_type>nofilter</input_type>
-            <output_type>nofilter</output_type>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
         </sample>
     </filtering>
 

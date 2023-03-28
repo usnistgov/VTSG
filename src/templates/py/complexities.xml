@@ -351,20 +351,6 @@
             </code>
         </complexity>
 
-        <complexity id="21" type="while" group="loops" executed="1" need_condition="1">
-            <code>
-        while True:
-	INDENT
-                {{ placeholder }}
-                if {{ condition }}:
-		INDENT
-                        break
-		DEDENT
-                break
-	DEDENT
-            </code>
-        </complexity>
-
         <complexity id="22" type="for" group="loops" executed="1" need_id="1">
             <code>
         i_{{id}} = 1
