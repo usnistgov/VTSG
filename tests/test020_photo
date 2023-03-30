@@ -1,2 +1,3 @@
+[WARNING] no {{out_var_name}} in the <code> of filter "none".  {{out_var_name}} must be assigned a value in all execution paths.
 [ERROR] {{local_var}} but no <variable type code init /> statements in file_template.xml
 Both are needed to show where and how to declare local variables

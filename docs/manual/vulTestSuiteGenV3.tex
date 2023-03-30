@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Mar 28 14:29:45 2023" *by "Paul E. Black"
+% *modified "Wed Mar 29 20:46:19 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -951,7 +951,7 @@ different source, such as command line options or hard-coded values.
 
 VTSG using Jinja does a haphazard job of producing proper indentation.  Indentation
 does not matter for many languages.  It is critical for Python, however.  This
-section explains how to use INDENT and DEDENT to encsure correct indentation in the
+section explains how to use INDENT and DEDENT to ensure correct indentation in the
 final source code.
 
 \subsubsection{Using INDENT ... DEDENT}
@@ -1409,15 +1409,8 @@ All filter modules are in the \verb|filters.xml| file.
     generated with
     the placeholder \verb|{{in_var_name}}| will be that type.
     Declarations of \verb|variable| in the File Template give
-    available types, see Sec.~\ref{sec: file template}. \\
-    Tip: To generate a test without functional filtering, assign \verb|in_var_name|
-    to \verb|out_var_name| in the code, e.g.,
-\begin{verbatim}
-    {{out_var_name}} = {{in_var_name}};
-\end{verbatim}
-    and make the input\_type and output\_type \verb|nofilter|.
-    This passes the value from the Input directly to the Sink.
-    Making the input\_type \verb|nofilter| prevents the filter from being wrapped
+    available types, see Sec.~\ref{sec: file template}.
+    If the input\_type is \verb|nofilter|, the filter will not be wrapped
     in any complexity.
 
     \item output\_type: the output type of the filter.  The variable generated
@@ -1431,8 +1424,18 @@ All filter modules are in the \verb|filters.xml| file.
     \item code: The source code of an filter. It should contain the placeholders
     \\
     \verb|{{in_var_name}}| and \verb|{{out_var_name}}|.  Those placeholders will 
-    be replaced by the variable names used in the Input and Sink.  Do not declare 
-    these variables.
+    be replaced by the variable names that will be used in the Input and in Sink.  Do
+    not declare these variables.
+    \verb|{{out_var_name}}| must receive a value in all possible executions of the
+    filter.
+    \\
+    Tip: To generate a test without functional filtering, just assign
+    \verb|out_var_name| the value of \verb|in_var_name|, e.g.,
+\begin{verbatim}
+    {{out_var_name}} = {{in_var_name}};
+\end{verbatim}
+    and make the input\_type and output\_type \verb|nofilter|.
+    This passes the value from the Input directly to the Sink.
 \end{itemize}
 
 The example Filter file in Fig.~\ref{fig:example filter file} makes sure

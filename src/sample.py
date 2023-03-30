@@ -1,7 +1,7 @@
 """
 sample module
 
- *modified "Thu Nov  3 11:22:00 2022" *by "Paul E. Black"
+ *modified "Thu Mar 30 10:35:32 2023" *by "Paul E. Black"
 """
 
 import src.generator
@@ -113,6 +113,7 @@ class Sample(object):
         """
         return self._need_id
 
+    @property
     def module_description(self):
         """
         Return the description of this module.

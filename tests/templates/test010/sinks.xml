@@ -55,7 +55,7 @@
             </code>
             <safety safe="0" unsafe="0"/>
             <input_type>string</input_type>
-            <exec_type>none</exec_type>
+            <exec_type>pass</exec_type>
         </sample>
 
         <sample>

@@ -1,0 +1,30 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{Available at }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{https://doi.org/\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{https://doi.org/\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{StivaletFongVTSPHP2016}
+Stivalet B, Fong E (2016) Large scale generation of complex and faulty {PHP}
+  test cases. \emph{2016 {IEEE} Intern'l Conf. on Software Testing,
+  Verification and Validation ({ICST})}, ,  pp 409--415.
+  \href{https://doi.org/10.1109/ICST.2016.43}{\doi{10.1109/ICST.2016.43}}.
+  \url{https://doi.org/10.1109/ICST.2016.43}
+
+\bibitem{OWASPTop10-2017}
+ (2017) {OWASP} top 10 web application security risks,
+  \url{https://owasp.org/www-project-top-ten/}. Accessed: 17 June 2020.
+
+\bibitem{CWE}
+ (2020) Common weakness enumeration,  \url{https://cwe.mitre.org/}. Accessed:
+  17 June 2020.
+
+\bibitem{CWE89}
+ (2020) {CWE-89}: Improper neutralization of special elements used in an {SQL}
+  command ('{SQL} injection'),
+  \url{https://cwe.mitre.org/data/definitions/89.html}. Accessed: 18 June 2020.
+
+\end{thebibliography}

@@ -283,4 +283,860 @@ POV</comment>
             <input_type>int</input_type>
             <exec_type>none</exec_type>
         </sample>
+
+    <!-- Kendra Kratkiewicz examples -->
+        <sample>
+            <path>
+                <dir>KwBasic</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 001: write, basic</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      {{flaw}}
+	      buf[{{in_var_name}}] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KrStr</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 001: read str</comment>
+            <code>
+	      buf = ''.join(chr(ord('a')+i) for i in range(10))
+
+	      {{flaw}}
+	      read_value = buf[{{in_var_name}}]
+	      print(read_value)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>Kread</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 002: read</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      {{flaw}}
+	      read_value = buf[{{in_var_name}}]
+	      print(read_value)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KipS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 014 (and 054): inter-procedural scope</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      def function1(buffer):
+	      INDENT
+	          {{flaw}}
+		  buffer[{{in_var_name}}] = 'A'
+	      DEDENT
+
+	      function1(buf)
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+	<sample>
+            <path>
+                <dir>KarC</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 017: array container</comment>
+            <code>
+	      buf = [[i + 3*j for i in range(10)] for j in range(5)]
+
+	      {{flaw}}
+	      buf[4][{{in_var_name}}] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KfrI</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 038: index is function return value</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      def function1(arg1):
+	      INDENT
+	          return arg1
+	      DEDENT
+
+	      {{flaw}}
+	      buf[function1({{in_var_name}})] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KacI</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 039: index is array content</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      index_array = [0] * 5
+
+	      index_array[0] = {{in_var_name}}
+
+	      {{flaw}}
+	      buf[index_array[0]] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KfnAC</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 043: buffer is function return value</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      def function1(arg1):
+	      INDENT
+	          return arg1
+	      DEDENT
+
+	      {{flaw}}
+	      function1(buf)[{{in_var_name}}] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KacAC</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 044: buffer is array contents</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      addr_array = [0] * 5
+	      addr_array[0] = buf
+
+	      {{flaw}}
+	      addr_array[0][{{in_var_name}}] = 'A'
+	      print(addr_array)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>K1lAA</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 053: 1 level of address alias</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      buf_alias = buf
+
+	      {{flaw}}
+	      buf_alias[{{in_var_name}}] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>K2lAA</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 055: 2 level of address alias</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      buf_alias1 = buf
+	      buf_alias2 = buf_alias1
+
+	      {{flaw}}
+	      buf_alias2[{{in_var_name}}] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KipS2lAA</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 056: inter-procedural scope, two level address alias</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      def function2(buffer):
+	      INDENT
+	          {{flaw}}
+		  buffer[{{in_var_name}}] = 'A'
+	      DEDENT
+
+	      def function1(buffer):
+	      INDENT
+		  function2(buffer)
+	      DEDENT
+
+	      function1(buf)
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>K1lIA</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 057: one level of index alias</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      j = {{in_var_name}}
+
+	      {{flaw}}
+	      buf[j] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>K2lIA</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 058: two levels of index alias</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      j = {{in_var_name}}
+	      k = j
+
+	      {{flaw}}
+	      buf[k] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KifCF</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 059: "if" local control flow</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      flag = True
+
+	      if flag:
+	      INDENT
+	          {{flaw}}
+		  buf[{{in_var_name}}] = 'A'
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KmaCF</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 060: "match" (switch) local control flow</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      flag = 1
+
+	      match flag:
+	      INDENT
+	          case 1:
+		  INDENT
+	              {{flaw}}
+		      buf[{{in_var_name}}] = 'A'
+		  DEDENT
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KipSfpCF</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 064: inter-procedural, function pointer local control flow</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      def function1(buffer):
+	      INDENT
+	          {{flaw}}
+		  buffer[{{in_var_name}}] = 'A'
+	      DEDENT
+
+	      fptr = function1
+
+	      fptr(buf)
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KipSrCF</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 065: inter-procedural, recursion local control flow</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      def function1(buffer, counter):
+	      INDENT
+	          if counter > 0:
+	          INDENT
+		      function1(buffer, counter - 1)
+		      return
+		  DEDENT
+	          {{flaw}}
+		  buffer[{{in_var_name}}] = 'A'
+	      DEDENT
+
+	      function1(buf, 3)
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KifSF</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 066: "if" secondary control flow</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      if len(buf) &gt; {{in_var_name}} + 1:
+	      INDENT
+	          return 0
+	      DEDENT
+
+	      {{flaw}}
+	      buf[{{in_var_name}}] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KmaSF</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 067: "match" secondary control flow</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      match len(buf) &gt; {{in_var_name}} + 1:
+	      INDENT
+	          case True:
+	          INDENT
+	              return 0
+		  DEDENT
+	      DEDENT
+
+	      {{flaw}}
+	      buf[{{in_var_name}}] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KceSF</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 068: conditional expression secondary control flow</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      i = 0 if len(buf) &gt; {{in_var_name}} + 1 else {{in_var_name}}
+
+	      {{flaw}}
+	      buf[i] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KfpSF</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 071: function pointer secondary control flow</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      def function1():
+	      INDENT
+	          return {{in_var_name}}
+	      DEDENT
+
+	      fptr = function1
+	      i = fptr()
+
+	      {{flaw}}
+	      buf[i] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KrSF</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 072: recursion secondary control flow</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      def function1(counter):
+	      INDENT
+	          if counter > 0:
+	          INDENT
+		      return function1(counter - 1)
+		  DEDENT
+		  else:
+	          INDENT
+		      return {{in_var_name}}
+		  DEDENT
+	      DEDENT
+
+	      fptr = function1
+	      i = fptr(3)
+
+	      {{flaw}}
+	      buf[i] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KwbLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 083: "while" non-standard loop structure</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      loop_counter = 0
+	      while True:
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+		  loop_counter += 1
+	          if loop_counter &gt; {{in_var_name}}: break
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KwliLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 088: "while" loop structure with init</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      init_value = 0
+
+	      loop_counter = init_value
+	      while loop_counter &lt;= {{in_var_name}}:
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+		  loop_counter += 1
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KwbiLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 096: "while" non-standard loop structure; initial value</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      init_value = 0
+
+	      loop_counter = init_value
+	      while True:
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+		  loop_counter += 1
+	          if loop_counter &gt; {{in_var_name}}: break
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KwltLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 101: "while" loop structure; test variable</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      test_value = {{in_var_name}}
+
+	      loop_counter = 0
+	      while loop_counter &lt;= test_value:
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+		  loop_counter += 1
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KwitLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 110: "while" non-standard loop structure; update; test variable</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      test_value = {{in_var_name}}
+
+	      loop_counter = 0
+	      while (loop_counter := loop_counter + 1) and (loop_counter &lt;= test_value):
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KwibtLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 111: "while" non-standard loop structure; update; test value</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      test_value = {{in_var_name}}
+
+	      loop_counter = 0
+	      while loop_counter := loop_counter + 1:
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+		  if loop_counter &gt;= test_value: break
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KwliiLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 140: "while" loop structure with init and inc</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      init_value = 0
+	      inc_value = {{in_var_name}} - ({{in_var_name}} - 1) # result is 1
+
+	      loop_counter = init_value
+	      while loop_counter &lt;= {{in_var_name}}:
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+		  loop_counter += inc_value
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KwlbitiLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 174: "while" non-standard loop structure; update; test and inc value</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      init_value = 0
+	      test_value = {{in_var_name}}
+	      inc_value = {{in_var_name}} - ({{in_var_name}} - 1) # result is 1
+
+	      loop_counter = init_value
+	      while True:
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+		  loop_counter += inc_value
+		  if loop_counter &gt; test_value: break
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>Kthread</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 177: thread</comment>
+            <imports>
+                <import>threading</import>
+            </imports>
+            <code>
+	      def thread_function1():
+	      INDENT
+	          buf = [i for i in range(10)]
+
+		  {{flaw}}
+		  buf[{{in_var_name}}] = 'A'
+		  print(buf)
+	      DEDENT
+
+	      thread1 = threading.Thread(target=thread_function1, args=())
+	      thread1.start()
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>Kfork</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 178: fork</comment>
+            <imports>
+                <import>os</import>
+                <import>sys</import>
+                <import>time</import>
+            </imports>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      pid = os.fork()
+	      if pid == 0:
+	      INDENT
+	          time.sleep(1)
+		  sys.exit(0)
+	      DEDENT
+	      elif pid != -1:
+	      INDENT
+		  child_status = os.waitpid(pid, 0)
+		  if os.WIFEXITED(child_status[1]):
+		  INDENT
+		      {{flaw}}
+		      buf[{{in_var_name}}] = 'A'
+		      print(buf)
+		  DEDENT
+	      DEDENT
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>Kinputs</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 180, 181, and 182: inputs from various sources; basic write</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      {{flaw}}
+	      buf[{{in_var_name}}] = 'A'
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>int</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KfrLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz (073) 184: "for" loop structure</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      for loop_counter in range({{in_var_name}} + 1):
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KwlLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz (075) 186: "while" loop structure</comment>
+            <code>
+	      buf = [i for i in range(10)]
+
+	      loop_counter = 0
+	      while loop_counter &lt;= {{in_var_name}}:
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+		  loop_counter += 1
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KfritiLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 278: "for" non-standard loop structure</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      init_value = 0
+	      test_value = {{in_var_name}}
+	      inc_value = {{in_var_name}} - ({{in_var_name}} - 1) # yields 1
+
+	      # Python doesn't have a "for" loop like C.  This is a similar "while" loop.
+	      loop_counter = init_value
+	      while True:
+	      INDENT
+	          if loop_counter &gt; test_value: break
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+		  loop_counter += inc_value
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>KwbitiLS</dir>
+            </path>
+            <flaw_type flaw_group="Exception">KK</flaw_type>
+            <comment>Kratkiewicz 285: "while" non-standard loop structure; init, test, and inc variables</comment>
+            <code>
+	      buf = [i for i in range(10)]
+	      init_value = 0
+	      test_value = {{in_var_name}}
+	      inc_value = {{in_var_name}} - ({{in_var_name}} - 1) # yields 1
+
+	      loop_counter = init_value
+	      while True:
+	      INDENT
+	          {{flaw}}
+		  buf[loop_counter] = chr(ord('A') + loop_counter)
+		  loop_counter += inc_value
+	          if loop_counter &gt; test_value: break
+	      DEDENT
+	      print(buf)
+	    </code>
+            <safety safe="" unsafe=""/>
+            <input_type>index</input_type>
+            <exec_type>none</exec_type>
+        </sample>
     </sink>

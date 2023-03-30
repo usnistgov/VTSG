@@ -1,11 +1,11 @@
 """
 filter_sample module
 
- *modified "Thu Mar  2 09:59:42 2023" *by "Paul E. Black"
+ *modified "Thu Mar 30 10:35:41 2023" *by "Paul E. Black"
 """
 
 from src.sample import Sample
-
+import re
 
 class FilterSample(Sample):  # Initialize rules, safety, code and escape
     """FilterSample class
@@ -34,6 +34,15 @@ class FilterSample(Sample):  # Initialize rules, safety, code and escape
             self._flaws[flaw_type]["safe"] = (flaw.get("safe") == "1")
             self._flaws[flaw_type]["unsafe"] = (flaw.get("unsafe") == "1")
             # optional attr: self.flaws[flaw_type]["attr"] = option["attr"] if "attr" in option["attr"] else None
+        # Below is only an approximate test.  Every filter that is used must assign
+        # value to {{out_var_name}} in every execution path.  However, this test
+        # would not warn if the string was in a comment, a value was not be assigned
+        # in some paths, etc.  A comprehensive test requires semantic anaylsis.
+        if re.search('out_var_name', self.code) is None:
+            print('[WARNING] no {{out_var_name}} in the <code> of filter "'
+                  + str(self.module_description) +
+                  '".  {{out_var_name}} must be assigned a value in all execution paths.')
+            # Maybe there are legitimate filters with no {{out_var_name}}, so no exit
 
     def __str__(self):
         return (f'*** Filter ***\n{super(FilterSample, self)}\n' +

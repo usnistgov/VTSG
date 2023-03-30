@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Tue Feb 14 09:36:21 2023" *by "Paul E. Black"
+# *modified "Thu Mar 30 10:43:12 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -24,7 +24,7 @@ genCsharp: $(VTSG_FILES)
 genPHP: $(VTSG_FILES)
 	tests/gen_and_check php
 
-# this produces 2353 cases
+# this produces 3564 cases
 genPython: $(VTSG_FILES)
 	tests/gen_and_check py
 
@@ -86,38 +86,38 @@ test010: $(VTSG_FILES)
 	sleep 1
 
 # tests for command line interface
-testCLI: TestCLI1 TestCLI1a TestCLI2 TestCLI3 TestCLI4 TestCLI5
+testCLI: testCLI1 testCLI1a testCLI2 testCLI3 testCLI4 testCLI5
 	@echo command line interface \(CLI\) tests succeeded
 
 # unknown language
-TestCLI1:
+testCLI1:
 	python3 vtsg.py --language=unknownLang | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
 # unknown language in given directory; test --template-directory option
-TestCLI1a:
+testCLI1a:
 	python3 vtsg.py -l cs --template-directory=/tmp | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
 # flaw type not in the language
-TestCLI2:
+testCLI2:
 	python3 vtsg.py -l test010 -f CWE_99 -t tests/templates | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
 # generate one of the flaw types in the language
-TestCLI3:
+testCLI3:
 	python3 vtsg.py -l test010 --flaw=IDS00-PL -t tests/templates | tee $(@)_photo
 	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 	sleep 1
 
 # flaw group not in the language
-TestCLI4:
+testCLI4:
 	python3 vtsg.py -l test010 --group=Santa\ Monica -t tests/templates | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
 # generate one of the flaw groups in the language
-TestCLI5:
+testCLI5:
 	python3 vtsg.py -l test010 -g Zarahemla -t tests/templates | tee $(@)_photo
 	(cd $$(ls -dt TestSuite_*/test010 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test010/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
@@ -164,11 +164,13 @@ test017: $(VTSG_FILES)
 testDeclVars: test020 test021
 	@echo test inconsistent declaring local variables succeeded
 
+# no {{out_var_name}} in filter
 # no {{local_var}}, but <variable ... /> given
 test020: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates -r 0 | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
+# no {{out_var_name}} in filter
 # {{local_var}} given, but no <variable ... /> statements
 test021: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates -r 0 | tee $(@)_photo
@@ -180,6 +182,6 @@ testNNN: $(VTSG_FILES) src/sarif_writer.py
 
 # remove stuff left from running built-in tests
 clean:
-	rm -rf TestSuite_* TestPhoto_* TestCLI*_photo test0*_photo
+	rm -rf TestSuite_* TestPhoto_* testCLI*_photo test0*_photo
 
 # end of Makefile

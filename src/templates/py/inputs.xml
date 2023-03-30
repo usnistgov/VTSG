@@ -245,6 +245,66 @@
             <output_type>int</output_type>
         </sample>
 
+    <!-- Kendra Kratkiewicz examples -->
+        <sample>
+            <path>
+                <dir>ok</dir>
+            </path>
+            <comment>magnitude is ok - no overflow</comment>
+            <flaws>
+                <flaw flaw_type="KK" safe="1"/>
+            </flaws>
+            <code>
+	      {{out_var_name}} = 9
+	    </code>
+            <input_type>no overflow</input_type>
+            <output_type>index</output_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>min</dir>
+            </path>
+            <comment>magnitude is minimum - 1 byte overflow</comment>
+            <flaws>
+                <flaw flaw_type="KK" unsafe="1"/>
+            </flaws>
+            <code>
+	      {{out_var_name}} = 10
+	    </code>
+            <input_type>minimum overflow</input_type>
+            <output_type>index</output_type>
+        </sample>
+    <!-- These don't add anything interesting for Python
+        <sample>
+            <path>
+                <dir>med</dir>
+            </path>
+            <comment>magnitude is medium - 8 byte overflow</comment>
+            <flaws>
+                <flaw flaw_type="KK" safe=""/>
+            </flaws>
+            <code>
+	      {{out_var_name}} = 17
+	    </code>
+            <input_type>medium overflow</input_type>
+            <output_type>index</output_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>large</dir>
+            </path>
+            <comment>magnitude is large - 4096 byte overflow</comment>
+            <flaws>
+                <flaw flaw_type="KK" safe=""/>
+            </flaws>
+            <code>
+	      {{out_var_name}} = 4105
+	    </code>
+            <input_type>large overflow</input_type>
+            <output_type>index</output_type>
+        </sample>
+    -->
+
     <!-- Juliet also has input from
 	    PropertiesFile
 	    Property

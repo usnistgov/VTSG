@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Mar 28 13:06:20 2023" *by "Paul E. Black"
+ *modified "Thu Mar 30 10:36:06 2023" *by "Paul E. Black"
 """
 
 import time
@@ -664,16 +664,16 @@ class Generator(object):
         name = self.current_sink.flaw_type
         if self.current_input:
             name += "__I_"
-            name += self.current_input.module_description()
+            name += self.current_input.module_description
         if self.current_filter:
             name += "__F_"
-            name += self.current_filter.module_description()
+            name += self.current_filter.module_description
         name += "__S_"
-        name += self.current_sink.module_description()
+        name += self.current_sink.module_description
 
         if self.current_exec_queries:
             name += "__EQ_"
-            name += self.current_exec_queries.module_description()
+            name += self.current_exec_queries.module_description
 
         name += "__"
 

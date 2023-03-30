@@ -1,6 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
-<!-- *modified "Wed Mar 22 16:28:07 2023" *by "Paul E. Black" -->
+<!-- *modified "Thu Mar 30 10:19:45 2023" *by "Paul E. Black" -->
     <filtering>
         <!--
         <sample>
@@ -190,6 +190,49 @@ INPUT</comment>
             <output_type>string,filter_input</output_type>
         </sample>
 
+
+    <!-- Kendra Kratkiewicz examples -->
+        <sample>
+            <path>
+                <dir>ok</dir>
+            </path>
+            <comment>filter out invalid input</comment>
+            <imports>
+              <import>sys</import>
+            </imports>
+            <flaws>
+                <flaw flaw_type="KK" safe="1" unsafe=""/>
+            </flaws>
+            <code>
+	      if {{in_var_name}} &lt; 0 or {{in_var_name}} &gt; 9:
+	      INDENT
+	          print('Bad value')
+	          sys.exit(0)
+	      DEDENT
+	      {{out_var_name}} = {{in_var_name}}
+	    </code>
+            <input_type>int</input_type>
+            <output_type>int</output_type>
+        </sample>
+        <sample>
+            <path>
+                <dir>min</dir>
+            </path>
+            <comment>incorrectly filter out invalid input</comment>
+            <flaws>
+                <flaw flaw_type="KK" safe="" unsafe=""/>
+            </flaws>
+            <code>
+	      if {{in_var_name}} &lt; 0 or {{in_var_name}} &gt; 10:
+	      INDENT
+	          print('Bad value')
+	          sys.exit(0)
+	      DEDENT
+	      {{out_var_name}} = {{in_var_name}}
+	    </code>
+            <input_type>int</input_type>
+            <output_type>int</output_type>
+        </sample>
 
 <!--
         <sample>

@@ -34,13 +34,17 @@ Generation report:
 			295 safe samples
 			375 unsafe samples
 		670 total
-	1340 total
+		KK generation report:
+			540 safe samples
+			869 unsafe samples
+		1409 total
+	2749 total
 	OWASP_a5 group generation report:
 		CWE209 generation report:
 			0 safe samples
 			1 unsafe samples
 		1 total
 	1 total
-2155 total
-Generation time 00:00:13
+3564 total
+Generation time 00:00:22
 Finish
