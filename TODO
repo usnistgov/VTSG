@@ -1,9 +1,27 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Mar 28 10:47:02 2023" *by "Paul E. Black"
+ *modified "Thu Mar 30 10:54:01 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
+
+30 March 2023
+
+Add some kind of --label or --source option so that every line of code in the final
+generated case has some comment indicating where it comes from.  Something like
+    try:                                     # input
+        tainted_0 = int(sys.argv[1])         # input
+    except ValueError:                       # input
+        tainted_0 = 1776                     # input
+                                             # input
+    tainted_1 = tainted_0                    # synthesized
+                                             # filter
+    # No filtering (sanitization)            # filter
+    tainted_1 = tainted_0                    # filter
+                                             # filter
+    array = [0, 1, 2, 3, 4]                  # sink
+(The file name tells us *which* input, filter, or sink was used.)
+
 
 21 March 2023
 
