@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Mar 29 20:46:19 2023" *by "Paul E. Black"
+% *modified "Wed Apr  5 10:19:56 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -512,17 +512,18 @@ cases, cs, for \CSharp\ cases, or py, \\
 for Python cases. 
 See Sec.~\ref{sec: directory structure}.} \\
 \hline
-\makecell[l]{-g GROUP[,GROUP]* \\
--\zws-group=GROUP[,GROUP]*} &
+\makecell[l]{-g GROUP
+-\zws-group=GROUP} &
 \makecell[l]{Only generate cases with \\
 vulnerabilities in the specified \\
-group(s). See Sec.~\ref{sec:sink modules}.} \\
-\hline
--f Flaw[,Flaw]*
--\zws-flaw=Flaw[,Flaw]* &
-\makecell[l]{Only generate cases with \\
-the specified flaw(s). \\
+group(s). May be repeated. \\
 See Sec.~\ref{sec:sink modules}.} \\
+\hline
+-f Flaw
+-\zws-flaw=Flaw &
+\makecell[l]{Only generate cases with the \\
+specified flaw(s). May be \\
+repeated. See Sec.~\ref{sec:sink modules}.} \\
 \hline
 -s
 -\zws-safe &
@@ -1476,8 +1477,8 @@ All sink modules are in the language's \verb|sinks.xml| file.
     empty, flaw type subdirectories are created immediately under the language
     directory.
     The user can limit
-    cases generated to certain flaw groups with the \verb|-g| command
-    line option or certain flaws with the \verb|-f| option.
+    cases generated to certain flaw groups with \verb|-g| command
+    line options or certain flaws with \verb|-f| options.
     
     \item input\_type: the input type of the sink. The variable
     generated with the placeholder \verb|{{in_var_name}}| will be 
