@@ -1,5 +1,5 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu Mar 30 10:54:01 2023" *by "Paul E. Black"
+ *modified "Tue Apr  4 16:20:19 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -266,7 +266,7 @@ C#
           - while     : Testing
           - foreach   : Testing
       - function  : Testing (only traversal/in/out)
-      - classes   : Testing (only transversal/in/out)
+      - classes   : Testing (only traversal/in/out)
   # Hard to do
   - add C# print debug to test if safe/unsafe or if it's executed
   - create bash script to compile and run all C# code

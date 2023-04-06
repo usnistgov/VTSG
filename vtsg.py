@@ -1,4 +1,4 @@
-# *modified "Tue Mar 21 16:59:29 2023" *by "Paul E. Black"
+# *modified "Wed Apr  5 10:10:43 2023" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
@@ -11,8 +11,8 @@ Options:
     -h, --help                                                      Show this message
     --version                                                       Show version
     -l LANGUAGE --language=LANGUAGE                                 Select language for generation
-    -g GROUP[,GROUP] --group=GROUP[,GROUP]                          Generate files with vulnerabilities in the specified group of flaws (can be repeated)
-    -f FLAW[,FLAW] --flaw=FLAW[,FLAW]                               Generate files with vulnerabilities in the specified FLAW (can be repeated)
+    -g GROUP --group=GROUP                                          Generate cases with vulnerabilities in the specified group of flaws (can be repeated)
+    -f FLAW --flaw=FLAW                                             Generate cases with vulnerabilities in the specified FLAW (can be repeated)
     -s --safe                                                       Only generate safe cases
     -u --unsafe                                                     Only generate unsafe cases
     -r DEPTH --depth=DEPTH                                          Depth of the Complexities (Default: 1)

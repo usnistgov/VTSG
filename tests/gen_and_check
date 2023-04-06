@@ -7,7 +7,7 @@ then
     exit
 fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Wed Mar 29 20:59:48 2023" *by "Paul E. Black"
+# *modified "Thu Apr  6 17:52:07 2023" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -19,8 +19,26 @@ fi
 # For Python, it also executes the generated programs to make sure they are valid.
 
 # Usage:
-help_message="$ tests/gen_and_check {py,cs,php}"
+help_message="Usage: tests/gen_and_check [-f FLAW]* {py,cs,php}"
 
+while getopts ":f:" flag; do
+    case ${flag} in
+      f)
+	flaws="-f $OPTARG $flaws"
+	;;
+      :)
+	echo Must supply an argument to -$OPTARG
+	echo $help_message
+	exit -1
+	;;
+      *)
+	echo Invalid option: -$OPTARG
+	echo $help_message
+	exit -1
+	;;
+    esac
+done
+shift $((OPTIND-1))
 if [ $# != 1 ]
 then
     echo expecting one command line argument
@@ -42,8 +60,8 @@ CF="TestPhoto_${TimeStamp}_check"
 EF="TestPhoto_${TimeStamp}_exec"
 
 # run VTSG and capture its output (generation report)
-echo running vtsg.py -l $lang ...
-python3 vtsg.py -l $lang 2>&1 | tee ${PF}
+echo running vtsg.py ${flaws} -l $lang ...
+python3 vtsg.py ${flaws} -l $lang 2>&1 | tee ${PF}
 
 # guess what VTSG named the TestSuite directory, e.g., the latest TestSuite directory
 LTSD=$(ls -dt TestSuite_* | head -1)
@@ -53,9 +71,12 @@ LD=$(ls $LTSD)
 TSD=$LTSD/$LD
 echo ${TSD}
 
-# check that the outputs match
-echo checking that VTSG outputs match | tee -a ${CF}
-diff ${PF} tests/${LD}_photo 2>&1 | tee -a ${CF}
+if [ "$flaws" == "" ]
+then
+    # check that the outputs match
+    echo checking that VTSG outputs match | tee -a ${CF}
+    diff ${PF} tests/${LD}_photo 2>&1 | tee -a ${CF}
+fi
 
 # test directory, relative to the new TestSuite... directory
 TDIR="../../tests"
@@ -66,9 +87,12 @@ CMP=diff # diff doesn't report the names of files that don't match
 CMP=cmp
 (cd ${TSD};for f in $(find . -name "*.${lang}"); do ${CMP} $f ${TDIR}/${LD}/$f;done) 2>&1 | tee -a ${CF}
 
-# check that the manifests match
-echo checking manifests | tee -a ${CF}
-(cd ${TSD};for m in $(find . -name "manifest.xml"); do echo $m;python3 ${TDIR}/cmp_manifests.py $m ${TDIR}/${LD}/$m;done) 2>&1 | tee -a ${CF}
+if [ "$flaws" == "" ]
+then
+    # check that the manifests match
+    echo checking manifests | tee -a ${CF}
+    (cd ${TSD};for m in $(find . -name "manifest.xml"); do echo $m;python3 ${TDIR}/cmp_manifests.py $m ${TDIR}/${LD}/$m;done) 2>&1 | tee -a ${CF}
+fi
 
 if [ $LD != Python ]
 then
@@ -146,7 +170,10 @@ for f in $(find . -name "*.py"|grep -v b[.]|sort); do
     #    ignore path and exact name of TestSuite_, which occur in traces
     echo "$a" | (export ADD="$a";$TIMEOUT python3 $f "$a")
 done) 2>&1 | perl -pwe 's/Users".*/Users" .../;s|File ".*(TestSuite_)[^/]*|...$1...|' | tee ${EF}
-echo checking that execution is as expected | tee -a ${CF}
-diff ${EF} tests/${LD}_exec 2>&1 | tee -a ${CF}
+if [ "$flaws" == "" ]
+then
+    echo checking that execution is as expected | tee -a ${CF}
+    diff ${EF} tests/${LD}_exec 2>&1 | tee -a ${CF}
+fi
 
 # end of gen_and_check
