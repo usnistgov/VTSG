@@ -199,7 +199,6 @@ POV</comment>
             <safety safe="0" unsafe="1"/>
             <input_type>none</input_type>
             <exec_type>none</exec_type>
-            <options need_complexity="0"/>
         </sample>
 
         <sample>

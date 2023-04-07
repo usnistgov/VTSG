@@ -1,2 +1,4 @@
-[ERROR] Invalid empty <flaw_type></flaw_type> in the sinks file.
+[WARNING] input_type is nofilter, but no need_complexity="0" in the no_filtering filter.
+input_type nofilter promises to just pass the input unchanged, so complexities are useless.
+[ERROR] Invalid empty <flaw_type></flaw_type> in the file_exists sink.
 A flaw_type string is required; it is used in the name of the generated file.

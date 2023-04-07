@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Thu Mar 30 10:36:06 2023" *by "Paul E. Black"
+ *modified "Fri Apr  7 15:07:12 2023" *by "Paul E. Black"
 """
 
 import time
@@ -240,11 +240,11 @@ class Generator(object):
     # fifth step: generate complexity depths if needed or go right to compose
     def recursion_or_compose(self):
         '''
-        If this uses an input and a filter, wrap the filter in appropriate depths of
-        complexities.
+        If this uses an input and the filter needs complexities, wrap the filter
+        in appropriate depths of complexities.
         Otherwise, proceed directly to compose.
         '''
-        if self.current_sink.input_type != 'none' and self.current_filter.input_type != 'nofilter':
+        if self.current_sink.input_type != 'none' and self.current_filter.need_complexity:
             self.recursion_level()
         else:
             # forget any level of complexities from previous loops
@@ -267,9 +267,8 @@ class Generator(object):
             return
         self.number_generated -= 1
 
-        # generate with 0,1,2,... level of complexities
-        max_rec = self.max_recursion if self.current_sink.need_complexity else 0
-        for i in range(0, max_rec+1):
+        # generate with 0, 1, 2, ... level of complexities
+        for i in range(0, self.max_recursion + 1):
             self.current_max_rec = i
             # generate the case wrapped in i complexities
             self.select_complexities(i)
@@ -278,8 +277,8 @@ class Generator(object):
     def select_complexities(self, level):
         """
         This function browse all complexities.
-        Each type of complexity can be use with special processing and call the need_condition method
-        to check if the complexity need a condition.
+        Each type of complexity can be use with special processing and call the
+        need_condition method to check if the complexity needs a condition.
         At the end we call the next function for compose then into one code chunk.
 
         Args :

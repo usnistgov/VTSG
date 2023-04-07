@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Apr  5 10:19:56 2023" *by "Paul E. Black"
+% *modified "Fri Apr  7 15:41:46 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1363,8 +1363,8 @@ provides one way for the generated program to get input.
 
     \item output\_type: the type of output.  The variable generated with the
       placeholder \\ \verb|{{out_var_name}}| in the code will be that type.
-      An input module is selected if it matches the \verb|input_type| of the Filter or
-      Sink, if the Filter \verb|input_type| is ``nofilter''.
+      An input module is selected if it matches the \verb|input_type| of the Filter
+      (or of the Sink, if the Filter \verb|input_type| is ``nofilter'').
 
     \item code: The source code of an input. It should contain the placeholder \\
       \verb|{{out_var_name}}|.  That placeholder will be replaced by the variable
@@ -1393,6 +1393,7 @@ All filter modules are in the \verb|filters.xml| file.
     <code></code>
     <input_type></input_type>
     <output_type></output_type>
+    <options need_complexity=""/>
 </sample>
 \end{verbatim}
 
@@ -1411,8 +1412,6 @@ All filter modules are in the \verb|filters.xml| file.
     the placeholder \verb|{{in_var_name}}| will be that type.
     Declarations of \verb|variable| in the File Template give
     available types, see Sec.~\ref{sec: file template}.
-    If the input\_type is \verb|nofilter|, the filter will not be wrapped
-    in any complexity.
 
     \item output\_type: the output type of the filter.  The variable generated
     with the placeholder \verb|{{out_var_name}}| will be that type.
@@ -1437,6 +1436,12 @@ All filter modules are in the \verb|filters.xml| file.
 \end{verbatim}
     and make the input\_type and output\_type \verb|nofilter|.
     This passes the value from the Input directly to the Sink.
+
+    \item options: By default filters are wrapped in complexities.  Complexities may
+      be disabled by adding \verb|options| with \verb|need_complexity="0"|.
+      In other words, if \linebreak[4] \verb|need_complexity| is in
+      \verb|<options />| with anything other than ``1'', VTSG does not generate any
+      variations with complexities.
 \end{itemize}
 
 The example Filter file in Fig.~\ref{fig:example filter file} makes sure
@@ -1464,7 +1469,6 @@ All sink modules are in the language's \verb|sinks.xml| file.
     <code></code>
     <input_type></input_type>
     <exec_type></exec_type>
-    <options need_complexity=""/>
 </sample>
 \end{verbatim}
 
@@ -1505,12 +1509,6 @@ All sink modules are in the language's \verb|sinks.xml| file.
       See Sec.~\ref{sec:safe or unsafe}
       for more details.
     
-    \item options: By default filters are wrapped in complexities.  Complexities may
-      be disabled by adding \verb|options| with \verb|need_complexity="0"|. In other
-      words, if \linebreak[4] \verb|need_complexity| is in the first
-      \verb|<options />| with anything other than ``1'', VTSG does not generate any
-      variations with complexities.
-
     \item code: The source code of a sink. It should contain the placeholder
     \verb|{{in_var_name}}|.  The placeholder will be replaced by the variable
     name used in the Filter.  Do not declare this variable.

@@ -1,3 +1,5 @@
+[WARNING] input_type is nofilter, but no need_complexity="0" in the none filter.
+input_type nofilter promises to just pass the input unchanged, so complexities are useless.
 [ERROR] DEDENT without matching INDENT in this code:
 '''
 Hardcoded string input

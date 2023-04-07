@@ -1,2 +1,2 @@
-[ERROR] Invalid empty <exec_type></exec_type> in the sinks file.
+[ERROR] Invalid empty <exec_type></exec_type> in the file_exists sink.
 An exec_type is required: it selects exec queries with matching types. If no exec query is needed, put "none".

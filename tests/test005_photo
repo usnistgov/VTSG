@@ -1,2 +1,4 @@
-[ERROR] Invalid empty <input_type></input_type> in the sinks file.
+[WARNING] input_type is nofilter, but no need_complexity="0" in the no_filtering filter.
+input_type nofilter promises to just pass the input unchanged, so complexities are useless.
+[ERROR] Invalid empty <input_type></input_type> in the file_exists sink.
 An input_type is required: it selects filters with matching output_types (or inputs if the filter is "nofilter"). If no filter or input is needed, put "none".

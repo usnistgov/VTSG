@@ -1,3 +1,5 @@
+[WARNING] input_type is nofilter, but no need_complexity="0" in the none filter.
+input_type nofilter promises to just pass the input unchanged, so complexities are useless.
 [WARNING] no {{out_var_name}} in the <code> of filter "none".  {{out_var_name}} must be assigned a value in all execution paths.
 [ERROR] <variable type code init /> statements but no {{local_var}} in file_template.xml
 Both are needed to show where and how to declare local variables

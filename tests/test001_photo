@@ -1,2 +1,4 @@
+[WARNING] input_type is nofilter, but no need_complexity="0" in the no_filtering filter.
+input_type nofilter promises to just pass the input unchanged, so complexities are useless.
 [ERROR] Invalid empty <import></import> in the sinks file.
 An import is required; it is used in the file template {{stdlib_imports}} section. If this needs no imports, remove <imports></imports>.

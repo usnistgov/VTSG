@@ -1,7 +1,7 @@
 """
 filter_sample module
 
- *modified "Thu Mar 30 10:35:41 2023" *by "Paul E. Black"
+ *modified "Fri Apr  7 15:23:00 2023" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -21,6 +21,9 @@ class FilterSample(Sample):  # Initialize rules, safety, code and escape
 
             **_flaws** (dict str->(dict str->bool): Collection of flaws for this
                 filter with safety (private member, please use getter).
+
+            **_need_complexity** (bool): If false the filter doesn't need complexities \
+                                        (private member, please use getter).
     """
 
     def __init__(self, sample):  # XML tree in parameter
@@ -34,6 +37,13 @@ class FilterSample(Sample):  # Initialize rules, safety, code and escape
             self._flaws[flaw_type]["safe"] = (flaw.get("safe") == "1")
             self._flaws[flaw_type]["unsafe"] = (flaw.get("unsafe") == "1")
             # optional attr: self.flaws[flaw_type]["attr"] = option["attr"] if "attr" in option["attr"] else None
+        self._need_complexity = True
+        options = sample.find("options")
+        if options is not None and options.get("need_complexity") is not None:
+            self._need_complexity = (options.get("need_complexity") == "1")
+        if self._input_type == 'nofilter' and self._need_complexity == True:
+            print(f'[WARNING] input_type is nofilter, but no need_complexity="0" in the {self.module_description} filter.')
+            print('input_type nofilter promises to just pass the input unchanged, so complexities are useless.')
         # Below is only an approximate test.  Every filter that is used must assign
         # value to {{out_var_name}} in every execution path.  However, this test
         # would not warn if the string was in a comment, a value was not be assigned
@@ -43,6 +53,7 @@ class FilterSample(Sample):  # Initialize rules, safety, code and escape
                   + str(self.module_description) +
                   '".  {{out_var_name}} must be assigned a value in all execution paths.')
             # Maybe there are legitimate filters with no {{out_var_name}}, so no exit
+
 
     def __str__(self):
         return (f'*** Filter ***\n{super(FilterSample, self)}\n' +
@@ -69,6 +80,16 @@ class FilterSample(Sample):  # Initialize rules, safety, code and escape
         :type: str
         """
         return self._output_type
+
+    @property
+    def need_complexity(self):
+        """
+        If false the filter doesn't need complexities.
+
+        :getter: Returns this boolean.
+        :type: str
+        """
+        return self._need_complexity
 
     @property
     def flaws(self):

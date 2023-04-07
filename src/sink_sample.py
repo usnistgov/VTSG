@@ -1,7 +1,7 @@
 """
 sink_sample module
 
- *modified "Wed Dec 14 14:44:22 2022" *by "Paul E. Black"
+ *modified "Fri Apr  7 16:12:19 2023" *by "Paul E. Black"
 """
 
 from src.sample import Sample
@@ -11,8 +11,8 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
     """FiletringSample class
 
         Args :
-            **sample** (xml.etree.ElementTree.Element): The XML element containing the sink tag in the \
-                                                          file "sink.xml".
+            **sample** (xml.etree.ElementTree.Element): The XML element containing \
+				the sink tag in the file "sink.xml".
 
         Attributes :
             **_input_type** (str): Type of input variable (private member, please use getter).
@@ -24,35 +24,28 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
             **_flaw_group** (str): Flaw group.  Empty string means no group \
                                         (private member, please use getter).
 
-            **_need_complexity** (bool): If false the sink doesn't need complexities \
-                                        (private member, please use getter).
-
     """
     # new sink module in the sink.xml file
     def __init__(self, sample):  # Add parameters showing the beginning and the end of the sample
         Sample.__init__(self, sample, 'sinks')
         self._input_type = sample.find("input_type").text
         if self.input_type is None:
-            print(f'[ERROR] Invalid empty <input_type></input_type> in the sinks file.')
+            print(f'[ERROR] Invalid empty <input_type></input_type> in the {self.module_description} sink.')
             print('An input_type is required: it selects filters with matching output_types (or inputs if the filter is "nofilter"). If no filter or input is needed, put "none".')
             exit(1)
         self._exec_type = sample.find("exec_type").text
         if self.exec_type is None:
-            print(f'[ERROR] Invalid empty <exec_type></exec_type> in the sinks file.')
+            print(f'[ERROR] Invalid empty <exec_type></exec_type> in the {self.module_description} sink.')
             print('An exec_type is required: it selects exec queries with matching types. If no exec query is needed, put "none".')
             exit(1)
         self._flaw_type = sample.find("flaw_type").text
         if self.flaw_type is None:
-            print(f'[ERROR] Invalid empty <flaw_type></flaw_type> in the sinks file.')
+            print(f'[ERROR] Invalid empty <flaw_type></flaw_type> in the {self.module_description} sink.')
             print('A flaw_type string is required; it is used in the name of the generated file.')
             exit(1)
         self._flaw_group = sample.find("flaw_type").get("flaw_group")
         if self._flaw_group is None:
             self._flaw_group = '' # missing flaw_group means no flaw group
-        self._need_complexity = True
-        # NOTE: [0] means only look at the FIRST <options>
-        if sample.findall("options") and sample.findall("options")[0].get("need_complexity"):
-            self._need_complexity = (sample.findall("options")[0].get("need_complexity") == "1")
 
     def __str__(self):
         return (f'*** Sink ***\n{super(SinkSample, self)}\n' +
@@ -60,16 +53,6 @@ class SinkSample(Sample):  # Load parameters and code beginning and end
                 f'\t exec type: {self._exec_type}\n' +
                 f'\t flaw type: {self._flaw_type}\n' +
                 f'\tflaw group: {self._flaw_group}\n')
-
-    @property
-    def need_complexity(self):
-        """
-        If false the sink doesn't need complexities.
-
-        :getter: Returns this boolean.
-        :type: str
-        """
-        return self._need_complexity
 
     def needs_exec(self):
         """

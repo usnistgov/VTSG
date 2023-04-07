@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Thu Mar 30 10:43:12 2023" *by "Paul E. Black"
+# *modified "Fri Apr  7 11:28:00 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -79,8 +79,10 @@ test007:
 # test flaw groups other than OWASP_*
 # test missing flaw group
 # test sink with no input (or filter)
+# test sink with unneeded need_complexity="0"
 test010: $(VTSG_FILES)
-	python3 vtsg.py -l $@ -t tests/templates
+	python3 vtsg.py -l $@ -t tests/templates | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
 	(cd $$(ls -dt TestSuite_*/$(@) | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/$(@)/$$f;done)
 	@echo $@ finished
 	sleep 1
