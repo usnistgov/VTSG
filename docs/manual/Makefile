@@ -1,12 +1,22 @@
 # *created  "Wed Aug 26 15:06:04 2020" *by "Paul E. Black"
-# *modified "Thu Jan 12 10:36:59 2023" *by "Paul E. Black"
+# *modified "Wed Apr 12 14:55:26 2023" *by "Paul E. Black"
 
 TARGET=vulTestSuiteGenV3
 
 DETEX=detex
 
+UNAME_S = $(shell uname -s)
+ifeq (${UNAME_S},Linux)
+# Ubuntu
+SHOW_PDF = evince
+endif
+ifeq (${UNAME_S},Darwin)
+# MacOS
+SHOW_PDF = preview
+endif
+
 all: ${TARGET}.pdf
-	preview $^ &
+	${SHOW_PDF} $^ &
 
 .SUFFIXES: .tex .spell
 
