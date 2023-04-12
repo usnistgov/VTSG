@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Fri Apr  7 15:41:46 2023" *by "Paul E. Black"
+% *modified "Wed Apr 12 16:12:39 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -318,15 +318,32 @@ We would appreciate acknowledgment if this document is used.
 The Vulnerability Test Suite Generator (VTSG) generates collections 
 of vulnerable and non-vulnerable
 synthetic programs expressing specific flaws.  
-The programs can be used as 
+The programs can be
 test cases to evaluate static analyzers. 
 Each test case targets one flaw. There are two types of test cases:
-cases with flawed code (unsafe), leading to a vulnerability, and cases that
-have similar behavior, but have the flaw corrected, that is, no
-vulnerability (safe).  Exactly corresponding vulnerable and non-vulnerable
+\begin{itemize}[nosep]
+  \item cases with flawed code (unsafe), leading to a vulnerability, and
+  \item safe cases with similar behavior, but without the flaws, that is, no
+	vulnerability.
+\end{itemize}
+Exactly corresponding vulnerable and non-vulnerable
 cases could, in theory, be generated in pairs. However, since each test case
 is generated separately, there is no exact correspondence between 
 cases.
+
+Figure~\ref{fig:cartesian product} suggests that just three sources of input,
+two ways of filtering the input, and four sinks already yields 3 × 2 × 4 = 24
+combinations.  Multiply that by many different kinds of bugs and all flow control
+complexities with various conditions, then include ``scaffolding'' such as
+initializing variables, importing libraries, and declaring functions to get an
+idea of the work that VTSG may save.
+
+\begin{figure}[htbp]
+  \includegraphics[width=1\linewidth]{fig_cartesian_product.png}
+  \caption{Just three sources of input, two ways of filtering, and four sinks
+    yield 24 possible test cases.}
+  \label{fig:cartesian product}
+\end{figure}
 
 NIST's Software Assurance Reference Dataset (SARD) has suites of paired test cases in
 the Juliet test suites for C/C++ and Java, which are available as SARD test suites
@@ -342,12 +359,13 @@ The list of files and the README.md file are given in App.~\ref{gitContent}.
 
 \subsection{History} 
 
-VTS version 1 only generated \CSharp\ programs. VTS version 2 generated PHP
+Originally named Vulnerability Test Suite (VTS) generator, version 1 only
+generated \CSharp\ programs. VTS version 2 generated PHP
 programs~\cite{StivaletFongVTSPHP2016} in addition.  Version 2 was more
 customizable to generate other programming languages.
-VTSG version 3 (V3) systematically maintains indentation, so also
+VTSG version 3 systematically maintains indentation, so also
 generates Python programs.
-% VTSG V3 produces manifest files in the Static Analysis Results Interchange Format
+% VTSG produces manifest files in the Static Analysis Results Interchange Format
 % (SARIF) Version 2.1.0~\cite{SARIF2.1.0} format.
 
 Readers can download the PHP and \CSharp\ test cases generated 
@@ -487,12 +505,11 @@ programming language.  The invocation command looks like this:
 \begin{verbatim}
 $ python3 vtsg.py -l {php,cs,py} <options>
 \end{verbatim}
-
 % Overleaf complains that textcomp doesn't provide \textlangle
 % and \textrangle in the font family.  So we define our own.
 \newcommand{\texlangle}{$\langle$}
 \newcommand{\texrangle}{$\rangle$}
-Where \verb|<options>| can be selected from
+where \verb|<options>| are listed in
 Table~\ref{tab:command line options}.
 
 \begin{table}[H]
@@ -566,12 +583,12 @@ explanation.} \\
 
 VTSG will generate all flaws in all flaw groups unless limited with
 command line options.
-VTSG's default is to generate both the unsafe (buggy or vulnerable)
-test cases and the safe (not buggy) test cases.  You can select
+VTSG will generate both the unsafe (buggy or vulnerable)
+test cases and the safe (not buggy) test cases if the user does not select
 either only safe (-s) or only unsafe (-u) cases.  The options are
 mutually exclusive.
 
-The -n (number-generated) option has limited utility.  When the
+The -n (number-generated) option is not very useful.  When the
 specified number of sink, filter, input (and exec query, if needed)
 combinations are generated, VTSG terminates.  The default, -1,
 means generate all combinations.
@@ -625,7 +642,24 @@ structure of VTSG itself and the structure of test cases that it generates.
 
 \subsection{Overview of Test Case Generation}
 
-VTSG V3 generates test cases from information in Template, Input,
+Suppose you write an analyzer to look for bugs in programs.  To test the
+analyzer, you need test cases.  Test cases could be lots of many different
+programs with lots of different kinds of bugs in different places (and programs
+without bugs, too, to test false positives).  It is tedious and error prone to
+construct these test cases manually.  VTSG is written to construct huge numbers
+of test cases consistently.
+
+In pseudocode, the structure of test cases that VTSG generates is
+\begin{verbatim}
+        input = get_input_from_somewhere()
+        if is an injection attack then
+            reject it (filter)
+        use the input to make a query (sink)
+        execute the query in SQL
+\end{verbatim}
+You can see this structure in Fig.~\ref{fig:VTS operation overview}.
+
+VTSG generates test cases from information in Template, Input,
 Filter, Sink, Complexity and ExecQuery files 
 (see Fig.~\ref{fig:VTS operation overview}):
 \begin{itemize}
@@ -844,24 +878,15 @@ of the program,
 noting its control and data flows, to accurately track data and
 determine the
 conditions when the code with weaknesses may be executed.
-Code complexities are constructs that may confuse static 
-analysis tools.  
-Each code complexity element can have many different attributes
-associated with it.
-They are combined and nested to create slightly more realistic source code.
-For example, the value 
-of an expression may come from a constant, a single variable, 
-some arithmetic 
-combination, or the return value of a function call.
-Flow of control may be
-influenced by loops, conditionals, and function calls.
-Also, there could be many 
-layers or depths of such nesting structures.  
+Tracing execution through structures like \verb|while| loops, \verb|if|
+statements, and function calls may confuse static analysis tools.
+We refer to these constructs as code complexities.
+VTSG can nest code complexities to create slightly more realistic source code.
 
 The complexities currently defined
 are listed in the appendixes for their languages.
 
-Here is an example code complexity from \verb|cwe_89__I_shell_commands__F_no_|\\ 
+Here is an example of code complexities from \verb|cwe_89__I_shell_commands__F_no_|\\
 \verb|filtering__S_select_from-concatenation_simple_quote__EQ_mysql| \\
 \verb|__3-2.5-9-21a.cs|: \\
 {\texttt
@@ -879,14 +904,12 @@ Here is an example code complexity from \verb|cwe_89__I_shell_commands__F_no_|\\
 \hspace*{2em}{\colorbox{yellow}{\{\}}}\\
 {\colorbox{yellow}{\}}}
 }
+\\
+The above has three nested control structures:\\
+{\colorbox{yellow}{Level 1 is the ``if'' statement.}}\\
+\hspace*{2em}{\colorbox{green}{Level 2 is the ``switch'' statement.}}\\
+\hspace*{4em}{\colorbox{cyan}{Level 3 is the call of a method from a Class.}}
 
-
-The above has complexity depth 3, note \verb|__3| near the end of 
-the file
-name. They correspond to:\\
-{\colorbox{yellow}{Level 1 is the conditional}} id = 2 with condition 5\\
-\hspace*{2em}{\colorbox{green}{Level 2 is the switch statement}} id = 9\\
-\hspace*{4em}{\colorbox{cyan}{Level 3 is the call of a method from a Class defined in a different file}}, id = 21.
 
 \section{Template, Input, Filter, Sink, Exec\_Query, and Complexity Files}
 \label{sec:source files}
@@ -1557,7 +1580,7 @@ file.
     \verb|exec_type| tag of the Sink to link them together during
     generation process.  The type should only contain letters, numerals, and
     underscore (``\_'').\\
-    Languages currently available for VTSG V3 support many database management
+    Languages currently available for VTSG support many database management
     systems, including ORACLE, MySQL, MSSQL, PostgreSQL, SQLite, and XPATH.
     The syntax of each ExecQuery must be
     compatible with its associated database system language.
@@ -1811,8 +1834,8 @@ complexity modules are inside \verb|<complexities>|.
   \label{fig:example complexity-method file}
 \end{figure}
 
-VTSG can use several complexities in one test case.
-The example in Sec.~\ref{sec:generated files} has two types of
+VTSG can put several complexities in one test case.
+The example in Sec.~\ref{sec:case file name} has two types of
 Complexity: a control flow complexity and a data flow complexity. 
 The control flow complexity specification is in 
 Fig.~\ref{fig:example complexity-while file}.  It is instantiated in 
@@ -2104,7 +2127,7 @@ VTSG names test case files as
 \begin{itemize}[nosep]
     \item FLAW: Flaw type, e.g. CWE\_89, BF, or STR30-PL, see
 	Sec.~\ref{sec:sink modules}.
-    \item INPUT:  Input description (dirs) (optional)
+    \item INPUT: Input description (dirs), see Sec.~\ref{sec:module description} (optional)
     \item FILTER:  Filter description (dirs) (optional)
     \item SINK:  Description (dirs) of the critical function
     \item EXEC\_QUERY:  ExecQuery description (dirs) (optional)
@@ -2134,17 +2157,10 @@ VTSG names test case files as
     Sec.~\ref{sec: file template}.
 \end{itemize}
 
-See the next section, \ref{sec:generated files}, for an example of the file name of a
-generated test case and the various pieces.
-
 File names reflect the entire case, not just the code in a
 particular file.  If a case consists of more than one file, as in the
-example in Sec.~\ref{sec:generated files}, all files have
+example used in this manual, all files have
 identical names, except for the final sequence letter.
-
-
-\section{Example Test Case}
-\label{sec:generated files}
 
 \begin{figure}[htbp]
   \includegraphics[width=\linewidth]{fig_example_code1.png}
@@ -2168,7 +2184,8 @@ identical names, except for the final sequence letter.
   \label{fig:example aux file}
 \end{figure}
 
-This section explains the example test case used in this manual.  The case consists of
+As an example of a file name, consider the test case used in this manual.  The case
+consists of
 two files.
 Fig.~\ref{fig:example main file} is the main file of the example.  
 Fig.~\ref{fig:example aux file} is an auxiliary class file.  
@@ -2176,15 +2193,15 @@ The code in
 the main file invokes the class at line 18.
 
 The name of the main file is
-\verb|CWE_89__I_shell_commands__F_func_preg_| \\
-\verb|match-only_numbers__S_select_from-concatenation_simple_quote__| \\
-\verb|sql_server__2-11.7-20a.cs|.
+\verb|CWE_89__I_shell_commands__F_func_preg_match-| \\
+\verb|only_numbers__S_select_from-concatenation_simple_quote__sql_server| \\
+\verb|__2-11.7-20a.cs|.
 The name of the class file, Fig.~\ref{fig:example aux file}, is
 identical, except for the
 file letter ``b'' instead of ``a'' at the end.
 
-Using Sec.~\ref{sec:case file name} and the extension, cs, which shows that it is a
-\CSharp\ file, the file name is read as follows:
+The extension, cs, shows that it is a \CSharp\ file.
+We understand the file name as follows:
 
 \noindent CWE 89: Improper Neutralization of Special Elements used in an SQL Command
 ('SQL Injection') \cite{CWE89}
@@ -2198,7 +2215,8 @@ Fig.~\ref{fig:example filter file}.
 \noindent The sink is select\_from-concatenation\_simple\_quote\_\_sql\_server,
 Fig.~\ref{fig:example sink file}.
 
-\noindent The next part, 2-11.7-20, means this has two complexities.
+\noindent The last part, 2-11.7-20, describes the complexities.
+The first number, 2, means this has two complexities.
 Tables~\ref{tab:complexity IDs for CSharp} and
 \ref{tab:condition IDs for CSharp} help us decode them.
 The first, outer complexity is 11 with condition 7. 11 is \verb|while|,
