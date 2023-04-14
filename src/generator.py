@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Fri Apr  7 15:07:12 2023" *by "Paul E. Black"
+ *modified "Fri Apr 14 16:33:52 2023" *by "Paul E. Black"
 """
 
 import time
@@ -18,6 +18,7 @@ from src.complexity import ComplexitySample
 from src.condition import ConditionSample
 from src.file_template import FileTemplate
 from src.synthesize_code import make_assign, get_indent, fix_indents
+from src.test_case import TestCase
 import src.complexities_generator
 
 import xml.etree.ElementTree as ET
@@ -299,10 +300,8 @@ class Generator(object):
                     var_type = self.current_input.output_type
                     # replace id and var type name for foreach
                     curr_complexity.code = Template(curr_complexity.code, undefined=DebugUndefined).render(id=level, var_type=var_type)
-                    self.need_condition(curr_complexity, level)
-                else:
-                    # everything else is handled the same
-                    self.need_condition(curr_complexity, level)
+
+                self.need_condition(curr_complexity, level)
 
                 # remove current complexity
                 self.complexities_queue.pop()
@@ -345,9 +344,7 @@ class Generator(object):
         At the end, we have final code that we save in files.
         """
 
-        var_id = 0
         Generator.resetUID()
-        # temporary code
 
         self.classes_code = []
         if self.current_sink.input_type != "none":
@@ -373,24 +370,39 @@ class Generator(object):
             # import the new template that contains complexities
             self.template_code = compl_gen.get_template()
         else:
+            compl_gen = None
             self.template_code = self.file_template.code
 
         # check if we need to generate (if it's only safe/unsafe generation)
         if (self.is_safe_selection() and not self.generate_safe) or (not self.is_safe_selection() and not self.generate_unsafe):
             return
 
+        test_case = TestCase()
+
+        self.gen_code(compl_gen)
+
+        # write test case to file, update summary counts, and add to manifest
+        self.write_files()
+
+    # seventh-and-a-half step: generate code
+    def gen_code(self, compl_gen):
+        """
+        Add input, complexities with filter, sink, exec query into the template
+        code.  Also add includes, license, and comments into the template.
+        At the end, we have final code that can be saved in file(s).
+        """
+
+        var_id = 0
+
         input_code = ""
         filter_code = ""
         if self.current_sink.input_type != "none":
             # INPUT
             input_code = self.current_input.code
-            # set output var name
-            if self.current_input.output_type != "none":
-                # We set the name of output tainted variable and get the result into input_code
-                input_code = Template(input_code).render(out_var_name=compl_gen.in_ext_name, id=var_id)
+            # set the name of output tainted variable and put the result in input_code
+            input_code = Template(input_code).render(out_var_name=compl_gen.in_ext_name, id=var_id) + '\n'
             if self.current_input.need_id:
                 var_id += 1
-            input_code += '\n'
 
             # init filter var with input var
             input_code += (get_indent('input_content', self.template_code)
@@ -409,7 +421,7 @@ class Generator(object):
                 out_name = compl_gen.out_int_name
             if self.current_filter.need_id:
                 var_id += 1
-            # We set the name of input/output tainted variable and get the result into filter_code
+            # set the name of input/output tainted variable and put it in filter_code
             filter_code = Template(filter_code, undefined=DebugUndefined).render(in_var_name=in_name, out_var_name=out_name, id=var_id)
 
         # add comment into code at the position of the flaw if unsafe
@@ -497,8 +509,6 @@ class Generator(object):
                                                            filtering_content=filter_code)
             self.classes_code[i]['code'] = fix_indents(aux_file_content, self.file_template.indent)
 
-        # write test case to file, update summary counts, and add to manifest
-        self.write_files()
 
     # eighth step: write on disk, update counts, and add to manifest
     def write_files(self):
