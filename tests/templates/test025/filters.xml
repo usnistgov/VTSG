@@ -1,0 +1,44 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
+<!-- *modified "Fri Apr 14 10:27:55 2023" *by "Paul E. Black" -->
+    <filtering>
+
+        <sample>
+            <path>
+                <dir>no_filtering</dir>
+            </path>
+            <comment>no filtering</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports></imports>
+            <code>
+        # No filtering (sanitization)
+        {{out_var_name}} = {{in_var_name}}
+            </code>
+            <input_type>nofilter</input_type>
+            <output_type>nofilter</output_type>
+	    <options need_complexity="0" />
+        </sample>
+        <sample>
+            <path>
+                <dir>remove_bad_chars_path</dir>
+            </path>
+            <comment>filter: remove all potentially dangerous characters from path</comment>
+            <flaws>
+                <flaw flaw_type="CWE_22" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>re</import>
+            </imports>
+            <code>
+	      # remove any other characters
+	      pattern = r'[^a-zA-Z0-9_ ,/]'
+	      # lstrip removes any leading /
+              {{out_var_name}} = re.sub(pattern, '', {{in_var_name}}).lstrip('/')
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+    </filtering>

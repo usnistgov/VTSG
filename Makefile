@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Fri Apr  7 11:28:00 2023" *by "Paul E. Black"
+# *modified "Fri Apr 14 13:22:50 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -7,7 +7,7 @@ all: testAll generate
 
 generate: genPython genCsharp genPHP
 
-testAll: testVarious testCLI testSTerm testIndent testDeclVars
+testAll: testVarious testCLI testSTerm testIndent testDeclVars testSafeUnsafe
 	@echo All built-in self-tests succeeded
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
@@ -176,6 +176,25 @@ test020: $(VTSG_FILES)
 # {{local_var}} given, but no <variable ... /> statements
 test021: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates -r 0 | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+# test generate only safe or only unsafe cases
+testSafeUnsafe: test025su test025s test025u
+	@echo test generate only safe or only unsafe cases succeeded
+
+test025su: $(VTSG_FILES)
+	python3 vtsg.py -l test025 -s -u -t tests/templates | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+test025s: $(VTSG_FILES)
+	python3 vtsg.py -l test025 -s -t tests/templates | tee $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test025 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test025/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+	sleep 1
+
+test025u: $(VTSG_FILES)
+	python3 vtsg.py -l test025 -u -t tests/templates | tee $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test025 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test025/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
 testNNN: $(VTSG_FILES) src/sarif_writer.py

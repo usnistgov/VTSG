@@ -1,0 +1,25 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
+<!-- *created  "Fri Apr 14 09:31:25 2023" *by "Paul E. Black" -->
+<!-- *modified "Fri Apr 14 11:55:10 2023" *by "Paul E. Black" -->
+<root>
+    <conditions>
+        <condition id="1">
+            <code>1==1</code>
+            <value>True</value>
+        </condition>
+
+    </conditions>
+
+    <complexities>
+        <complexity id="1" type="if" group="conditionals" executed="condition">
+            <code>
+        if {{ condition }}:
+	INDENT
+            {{ placeholder }}
+	DEDENT
+            </code>
+        </complexity>
+
+    </complexities>
+</root>

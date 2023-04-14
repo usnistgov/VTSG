@@ -1,0 +1,48 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!-- *created  "Fri Apr 14 09:31:25 2023" *by "Paul E. Black" -->
+<!-- *modified "Fri Apr 14 11:41:56 2023" *by "Paul E. Black" -->
+
+<template name="test025">
+    <file_extension>py</file_extension>
+    <comment>
+        <open>'''</open>
+        <close>'''</close>
+        <inline>#</inline>
+    </comment>
+    <syntax>
+      <!-- If language doesn't have a terminator, leave empty-->
+      <statement_terminator></statement_terminator>
+      <!-- Insert desired indentation level using spaces-->
+      <indent>    </indent>
+    </syntax>
+    <namespace></namespace>
+    <variables prefix="" import_code="import {{import_file}}">
+    </variables>
+    <imports>
+    </imports>
+    <code>
+'''
+{{ comments }}
+'''
+
+'''
+{{ license }}
+'''
+{{ stdlib_imports }}
+
+{{ static_methods }}
+
+
+def main():
+INDENT
+    {{input_content}}
+    {{filtering_content}}
+    {{sink_content}}
+    {{exec_queries_content}}
+DEDENT
+
+if __name__ == '__main__':
+        main()
+    </code>
+</template>

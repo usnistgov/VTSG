@@ -1,0 +1,31 @@
+Generation report:
+	OWASP_a4 group generation report:
+		CWE_22 generation report:
+			4 safe samples
+			0 unsafe samples
+		4 total
+	4 total
+	Zarahemla group generation report:
+		CWE_22 generation report:
+			4 safe samples
+			0 unsafe samples
+		4 total
+	4 total
+	Empty group generation report:
+		OWASP_A01 generation report:
+			1 safe samples
+			0 unsafe samples
+		1 total
+	1 total
+9 total
+Generation time 00:00:00
+Finish
+./OWASP_A01/safe/OWASP_A01__I_hardcoded__F_no_filtering__S_file_exists__0.py
+./OWASP_a4/CWE_22/safe/CWE_22__I_args__F_remove_bad_chars_path__S_file_exists__0.py
+./OWASP_a4/CWE_22/safe/CWE_22__I_args__F_remove_bad_chars_path__S_file_exists__1-1.1.py
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded__F_remove_bad_chars_path__S_file_exists__0.py
+./OWASP_a4/CWE_22/safe/CWE_22__I_hardcoded__F_remove_bad_chars_path__S_file_exists__1-1.1.py
+./Zarahemla/CWE_22/safe/CWE_22__I_args__F_remove_bad_chars_path__S_ls__EQ_pass__0.py
+./Zarahemla/CWE_22/safe/CWE_22__I_args__F_remove_bad_chars_path__S_ls__EQ_pass__1-1.1.py
+./Zarahemla/CWE_22/safe/CWE_22__I_hardcoded__F_remove_bad_chars_path__S_ls__EQ_pass__0.py
+./Zarahemla/CWE_22/safe/CWE_22__I_hardcoded__F_remove_bad_chars_path__S_ls__EQ_pass__1-1.1.py
