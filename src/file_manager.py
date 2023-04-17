@@ -1,7 +1,7 @@
 """
 file_manager module
 
- *modified "Mon Nov 14 16:13:35 2022" *by "Paul E. Black"
+ *modified "Mon Apr 17 13:32:26 2023" *by "Paul E. Black"
 """
 
 import os
@@ -132,11 +132,4 @@ class FileManager(object):
         """
         return self.filename
 
-    def addContent(self, content):
-        """
-        Concatenates the given content to the attribute content.
-
-        Args:
-            **content** (str): The content to add.
-        """
-        self.content += content
+# end of file_manager.py
