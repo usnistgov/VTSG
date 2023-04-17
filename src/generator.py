@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Mon Apr 17 16:25:16 2023" *by "Paul E. Black"
+ *modified "Mon Apr 17 16:44:10 2023" *by "Paul E. Black"
 """
 
 import time
@@ -53,8 +53,6 @@ class Generator(object):
 
             **start** (float): Starting time of the generation.
 
-            **end** (float): Ending generate time.
-
             **tab_input** (list): List (of :class:`.InputSample` objects) all input
                 modules.
 
@@ -72,7 +70,7 @@ class Generator(object):
             **tab_condition** (list): List (of :class:`.ConditionSample`) all
                 condition possibilities.
 
-            **file_template** (list): List (of :class:`.FileTemplate`) the template
+            **file_template** (:class:`.FileTemplate`) the template
                 for current langage.
 
             **current_input** (:class:`.InputSample`): The current selected input.
@@ -89,6 +87,10 @@ class Generator(object):
 
             **map_flaw_group** (dict: flaw_group -> list(flaw)): a dict associating a
                 list containing the numbers of flaws (str) to a flaw group (str).
+
+            **test_cases**  (List of :class:`.TestCase`): The generated test cases,
+              where each case is the selection of input, filter, sink, complexities, etc.
+
        """
 
     def __init__(self, date, language, template_directory):
@@ -100,7 +102,7 @@ class Generator(object):
         self.flaw_group_user = None
         self.start = time.time()
         self.language = language
-        self.end = 0
+        self.test_cases = []
 
         # parse XML files
         tree_input = ET.parse(FileManager.getXML("inputs", template_directory, language)).getroot()
@@ -348,6 +350,9 @@ class Generator(object):
         if (case.is_safe_selection() and not self.generate_safe) or (not case.is_safe_selection() and not self.generate_unsafe):
             return
 
+        # save this selection
+        self.test_cases.append(TestCase)
+
         # update summary counts
         self.update_counts(case)
 
@@ -463,8 +468,8 @@ class Generator(object):
             total += group_total
 
         print(f'{total} total')
-        self.end = time.time()
-        print(f'Generation time {time.strftime("%H:%M:%S", time.gmtime(self.end - self.start))}')
+        end = time.time()
+        print(f'Generation time {time.strftime("%H:%M:%S", time.gmtime(end - self.start))}')
 
     @property
     def max_recursion(self):
