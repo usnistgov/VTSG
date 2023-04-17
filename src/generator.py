@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Mon Apr 17 16:15:22 2023" *by "Paul E. Black"
+ *modified "Mon Apr 17 16:25:16 2023" *by "Paul E. Black"
 """
 
 import time
@@ -44,10 +44,6 @@ class Generator(object):
                 the manifest files and the generated cases.
 
             **manifest** (Manifest): Manifest object to complete the manifest file with references to generated files.
-
-            **safe_sample** (int): Counter for safe sample.
-
-            **unsafe_sample** (int): Counter for unsafe sample.
 
             **report** (dict): The report for each group of flaws.
 
@@ -99,8 +95,6 @@ class Generator(object):
         self._max_recursion = 1
         self._number_generated = -1
         self.date = date
-        self.safe_sample = 0
-        self.unsafe_sample = 0
         self.report = {}
         self.flaw_type_user = None
         self.flaw_group_user = None
