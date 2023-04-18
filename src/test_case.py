@@ -5,7 +5,7 @@ This is one test case.  A test case is created by the generator.  It becomes a s
 code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Mon Apr 17 15:56:25 2023" *by "Paul E. Black"
+ *modified "Tue Apr 18 09:11:40 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -78,10 +78,6 @@ class TestCase(object):
             # Compose the complexities.  Return code for any additional class files.
             self.classes_code = compl_gen.compose()
 
-            classes_imports = []
-            # for each class, collect imports to use other generated classes
-            for c in self.classes_code:
-                classes_imports.append(c['name'])
             # remember if the filter code in these complexities is executed or not
             self.executed = compl_gen.executed
             # import the new template that contains complexities
