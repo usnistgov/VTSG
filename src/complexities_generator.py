@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Fri Feb 10 16:42:24 2023" *by "Paul E. Black"
+ *modified "Tue Apr 18 09:27:30 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -40,10 +40,7 @@ class ComplexitiesGenerator(object):
                 **uid** (int): UID for variables/functions/classes name.
 
                 **complexities** (list of dict): list of dict with complexities, \
-                                                 type (function or class) and local var for composition.
-
-                **_executed** (bool): True if the final placeholder will be executed \
-                                      (private member, please use getter and setter).
+                                  type (function or class) and local var for composition.
 
                 **id_var_in** (int): ID for intern variables used in composition of complexities (in).
 
@@ -76,8 +73,6 @@ class ComplexitiesGenerator(object):
 
         self.complexities = []
         self.complexities.append({'type': None, 'code': "{{filtering_content}}", 'local_var': {}, 'name': ""})
-
-        self._executed = True
 
         self.id_var_in = len(complexities_array)*2
         self.id_var_out = self.id_var_in+1
@@ -130,16 +125,6 @@ class ComplexitiesGenerator(object):
         """
         return self._out_int_name
 
-    @property
-    def executed(self):
-        """
-        True if placeholder code is executed, false otherwise.
-
-        :getter: Returns this name.
-        :type: str
-        """
-        return self._executed
-
     def get_template(self):
         """
         Gets modified template.
@@ -160,7 +145,6 @@ class ComplexitiesGenerator(object):
         This method composes all complexities.
         """
         for c in reversed(self.complexities_array):
-            self._executed = self._executed and c.is_executed()
             # check if complexities is in 2 parts (code and body)
             if c.indirection and c.in_out_var == "traversal":
                 t = Template(c.body, undefined=DebugUndefined)

@@ -5,7 +5,7 @@ This is one test case.  A test case is created by the generator.  It becomes a s
 code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Tue Apr 18 09:11:40 2023" *by "Paul E. Black"
+ *modified "Tue Apr 18 09:56:48 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -17,7 +17,7 @@ class TestCase(object):
     """TestCase class
 
         Args:
-            **generator** (:class:`.Generator`): the generator, with all the global
+            **generator** (:class:`.Generator`): the generator, which has the global
                 information that is the same for all case files
 
             **input** (:class:`.InputSample`): The input module.
@@ -27,9 +27,6 @@ class TestCase(object):
             **sink** (:class:`.SinkSample`): The sink module.
 
             **exec_query** (:class:`.ExecQuerySample`): The exec query module.
-
-            **classes_code** (List of Dict): The list of things to build additional
-                class files.
 
             **complexity_list** (List of :class:`.ComplexitySample`): The list of
                 complexities to wrap the filter in.
@@ -51,6 +48,8 @@ class TestCase(object):
 
             **complexity_list** (List of :class:`.ComplexitySample`): The list of
                 complexities to wrap the filter in.
+
+            **_executed** (bool): True if the final placeholder code will be executed
        """
 
     def __init__(self, generator, input, complexity_list, filter, sink, exec_query):
@@ -62,32 +61,10 @@ class TestCase(object):
         self.complexity_list = complexity_list
         self.UID = 0
 
-        # THIS IS DONE EARLY TO FIGURE OUT IF THE CASE IS SAFE OR NOT
-        self.classes_code = []
-        if self.sink.input_type != "none":
-            # Create a ComplexitiesGenerator to compose complexities.  This also has
-            # input and output variable names.
-            compl_gen = ComplexitiesGenerator(
-			    complexities_array=self.complexity_list,
-			    template=self.generator.file_template,
-		            input_type=self.input.output_type,
-			    output_type=self.sink.input_type,
-			    filtering=self.filter,
-			    language=self.generator.language
-                        )
-            # Compose the complexities.  Return code for any additional class files.
-            self.classes_code = compl_gen.compose()
-
-            # remember if the filter code in these complexities is executed or not
-            self.executed = compl_gen.executed
-            # import the new template that contains complexities
-            self.template_code = compl_gen.get_template()
-        else:
-            compl_gen = None
-            self.template_code = self.generator.file_template.code
-
-        # save the input and output variable names for later
-        self.complexity_generator = compl_gen
+        # the final embedded code is executed if ALL complexities are executed
+        self._executed = True
+        for c in self.complexity_list:
+            self._executed = self._executed and c.is_executed()
 
     def is_safe_selection(self):
         """
@@ -102,7 +79,8 @@ class TestCase(object):
             safe_input = self.input.is_safe(self.sink.flaw_type)  # input is safe
         safe_filter = False
         if self.filter:
-            safe_filter = self.filter.is_safe(self.sink.flaw_type) and self.executed  # filter is safe and executed
+            # filter makes this kind of flaw safe and is executed
+            safe_filter = self.filter.is_safe(self.sink.flaw_type) and self._executed
         safe_sink = self.sink.safe  # sink is safe
         safe_eq = False
         if self.exec_query:
@@ -112,9 +90,10 @@ class TestCase(object):
             unsafe_input = self.input.is_unsafe(self.sink.flaw_type)  # input is unsafe
         unsafe_filter = False
         if self.filter:
-            unsafe_filter = self.filter.is_unsafe(self.sink.flaw_type) and self.executed
+            unsafe_filter = self.filter.is_unsafe(self.sink.flaw_type) and self._executed
         unsafe_sink = self.sink.unsafe
-        return ((safe_input or safe_filter or safe_sink or safe_eq) and not (unsafe_input or unsafe_filter or unsafe_sink))
+        return ((safe_input or safe_filter or safe_sink or safe_eq) and
+                not (unsafe_input or unsafe_filter or unsafe_sink))
 
     def generate_file_name(self, suffix):
         """
@@ -164,7 +143,26 @@ class TestCase(object):
         At the end, we have final code that can be saved in file(s).
         """
 
-        compl_gen = self.complexity_generator
+        self.classes_code = []
+        if self.sink.input_type != "none":
+            # Create a ComplexitiesGenerator to compose complexities.  This also has
+            # input and output variable names.
+            compl_gen = ComplexitiesGenerator(
+			    complexities_array=self.complexity_list,
+			    template=self.generator.file_template,
+		            input_type=self.input.output_type,
+			    output_type=self.sink.input_type,
+			    filtering=self.filter,
+			    language=self.generator.language
+                        )
+            # Compose the complexities.  Return code for any additional class files.
+            self.classes_code = compl_gen.compose()
+
+            # import the new template that contains complexities
+            self.template_code = compl_gen.get_template()
+        else:
+            self.template_code = self.generator.file_template.code
+
         file_template = self.generator.file_template
 
         var_id = 0
@@ -185,8 +183,8 @@ class TestCase(object):
 									file_template))
 
             # FILTER
-            # set input var name
             filter_code = self.filter.code
+            # set input var name
             in_name = ""
             out_name = ""
             if self.filter.input_type != "none":
@@ -215,7 +213,7 @@ class TestCase(object):
             print(sink_code)
             raise # reraise the exception
         if self.sink.input_type != "none":
-            # We set the name of input tainted variable and get the result into sink_code
+            # set the name of input tainted variable and put the result in sink_code
             try:
                 sink_code = Template(sink_code, undefined=DebugUndefined).render(in_var_name=compl_gen.out_ext_name, id=var_id)
             except exceptions.TemplateSyntaxError:
