@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Mon Apr 17 16:44:10 2023" *by "Paul E. Black"
+ *modified "Tue Apr 18 10:38:42 2023" *by "Paul E. Black"
 """
 
 import time
@@ -488,12 +488,6 @@ class Generator(object):
         Set the maximum recursion parameter.
         """
         self._max_recursion = value
-
-    def get_extension(self):
-        """
-        Return the extension file
-        """
-        return self.file_template.file_extension
 
     @property
     def number_generated(self):

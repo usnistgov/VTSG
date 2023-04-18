@@ -1,7 +1,7 @@
 """
 file_manager module
 
- *modified "Mon Apr 17 13:32:26 2023" *by "Paul E. Black"
+ *modified "Tue Apr 18 10:37:11 2023" *by "Paul E. Black"
 """
 
 import os
@@ -16,32 +16,32 @@ class FileManager(object):
     """FileManager class
 
         Args :
-            **filename** (str): The filename of current test case.
+            **filename** (str): The filename of the test case.
 
-            **dir_name** (str): The directory of current test case.
+            **dir_name** (str): The directory of the test case.
 
-            **flaw_group** (str): Flaw group of current test case.
+            **flaw_group** (str): Flaw group of the test case.
 
-            **flaw_type** (str): Flaw type of current test case.
+            **flaw_type** (str): Flaw type of the test case.
 
-            **is_safe** (bool): If true the current test case is safe.
+            **is_safe** (bool): If true the the test case is safe.
 
-            **content** (str): Code of current test case.
+            **content** (str): Code of the test case.
 
         Attributes :
-            **filename** (str): The filename of current test case.
+            **filename** (str): The filename of the test case.
 
-            **dir_name** (str): The directory of current test case.
+            **dir_name** (str): The directory of the test case.
 
-            **flaw_group** (str): Flaw group of current test case.
+            **flaw_group** (str): Flaw group of the test case.
 
-            **flaw_type** (str): Flaw type of current test case.
+            **flaw_type** (str): Flaw type of the test case.
 
-            **is_safe** (bool): If true the current test case is safe.
+            **is_safe** (bool): If true the the test case is safe.
 
-            **content** (str): Code of current test case.
+            **content** (str): Code of the test case.
 
-            **path** (str): Path of current test case.
+            **path** (str): Path to the test case.
     """
 
     def __init__(self, filename, dir_name, flaw_group, flaw_type, is_safe, content):
@@ -92,44 +92,10 @@ class FileManager(object):
         """
         return os.path.join(template_directory, language, cls._xml[xmlfile])
 
-    # Getters and setters
-    def setPath(self, path):
-        """
-        Sets the path.
-
-        Args:
-            **path** (str): The new path.
-        """
-        self.path = path
-
-    def addPath(self, path):
-        """
-        Adds the given path to the attribute path.
-
-        Args:
-            **path** (str): the path to add.
-        """
-        self.path = os.path.join(self.path, path)
-
     def getPath(self):
         """
         Returns the path.
         """
         return self.path
-
-    def setName(self, filename):
-        """
-        Sets the filename.
-
-        Args:
-            **filename** (str): The new filename.
-        """
-        self.filename = filename
-
-    def getName(self):
-        """
-        Returns the filename.
-        """
-        return self.filename
 
 # end of file_manager.py
