@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Tue Apr 18 09:27:30 2023" *by "Paul E. Black"
+ *modified "Tue Apr 18 10:12:18 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -15,7 +15,8 @@ class ComplexitiesGenerator(object):
         Complexities Generator class
 
             Args :
-                **complexities_array** (List of :class:`.ComplexitySample`): Contains the current stack of complexities.
+                **complexities_array** (List of :class:`.ComplexitySample`): the list \
+			of complexities to wrap around the filter.
 
                 **template** (str): Template code.
 
@@ -23,11 +24,11 @@ class ComplexitiesGenerator(object):
 
                 **output_type** (str): Output type got from the xml file.
 
-                **filtering** (str): Current filtering.
+                **filtering** (str): filter.
 
             Attributes :
-
-                **complexities_array** (List of :class:`.ComplexitySample`): Contains the current stack of complexities.
+                **complexities_array** (List of :class:`.ComplexitySample`): the list \
+			of complexities to wrap around the filter.
 
                 **template** (:class:`.FileTemplate`): Template code.
 
@@ -35,7 +36,7 @@ class ComplexitiesGenerator(object):
 
                 **output_type** (str): Output type got from the xml file.
 
-                **filtering** (:class:`.FilteringSample`): Current filtering.
+                **filtering** (:class:`.FilterSample`): filter.
 
                 **uid** (int): UID for variables/functions/classes name.
 
