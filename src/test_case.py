@@ -5,7 +5,7 @@ This is one test case.  A test case is created by the generator.  It becomes a s
 code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Tue Apr 18 09:56:48 2023" *by "Paul E. Black"
+ *modified "Tue Apr 18 14:46:28 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -360,6 +360,10 @@ class TestCase(object):
 
 
     def __str__(self):
-        return ('*** Test Case ***\n')
+        return ('*** Test Case ***\n' +
+                f'input {self.input.module_description}\n' +
+                f'{len(self.complexity_list)} complexities\n' +
+                f'filter {self.filter.module_description}\n' +
+                f'sink {self.sink.module_description}')
 
 # end of test_case.py

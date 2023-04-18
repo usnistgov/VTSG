@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Apr 18 10:38:42 2023" *by "Paul E. Black"
+ *modified "Tue Apr 18 16:02:54 2023" *by "Paul E. Black"
 """
 
 import time
@@ -341,7 +341,7 @@ class Generator(object):
 
         case = TestCase(generator  = self, # ACCESS ONLY - DOES NOT MODIFY ANY ATTRIBUTE
                         input      = self.current_input,
-                        complexity_list = self.complexities_queue, # deep copy?
+                        complexity_list = self.complexities_queue.copy(),
                         filter     = self.current_filter,
                         sink       = self.current_sink,
                         exec_query = self.current_exec_queries)
@@ -351,7 +351,7 @@ class Generator(object):
             return
 
         # save this selection
-        self.test_cases.append(TestCase)
+        self.test_cases.append(case)
 
         # update summary counts
         self.update_counts(case)
