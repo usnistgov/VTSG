@@ -1,7 +1,7 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
 <!-- *created  "Fri Apr 14 09:31:25 2023" *by "Paul E. Black" -->
-<!-- *modified "Fri Apr 14 11:55:10 2023" *by "Paul E. Black" -->
+<!-- *modified "Wed Apr 19 10:50:02 2023" *by "Paul E. Black" -->
 <root>
     <conditions>
         <condition id="1">
@@ -9,6 +9,10 @@
             <value>True</value>
         </condition>
 
+        <condition id="3">
+            <code>4+2&lt;=42</code>
+            <value>True</value>
+        </condition>
     </conditions>
 
     <complexities>
