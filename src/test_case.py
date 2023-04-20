@@ -5,13 +5,14 @@ This is one test case.  A test case is created by the generator.  It becomes a s
 code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Wed Apr 19 09:36:10 2023" *by "Paul E. Black"
+ *modified "Thu Apr 20 12:03:25 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
 from src.file_manager import FileManager
 from src.complexities_generator import ComplexitiesGenerator
 from src.synthesize_code import make_assign, get_indent, fix_indents
+import src.generator # for resetUID()
 
 class TestCase(object):
     """TestCase class
@@ -142,6 +143,9 @@ class TestCase(object):
         code.  Also add includes, license, and comments into the template.
         At the end, we have final code that can be saved in file(s).
         """
+
+        # restart numbering of variables, classes, etc.
+        src.generator.Generator.resetUID()
 
         self.classes_code = []
         if self.sink.input_type != "none":

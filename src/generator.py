@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Wed Apr 19 11:11:46 2023" *by "Paul E. Black"
+ *modified "Thu Apr 20 11:54:43 2023" *by "Paul E. Black"
 """
 
 import time
@@ -124,7 +124,7 @@ class Generator(object):
         self.dir_name = "TestSuite_"+date+"/"+self.file_template.language_name
         self.manifest = Manifest(self.dir_name, self.date)
 
-        # set current sample
+        # set current test case
         self.current_input = None
         self.current_filter = None
         self.current_sink = None
@@ -167,8 +167,18 @@ class Generator(object):
         self.debug = debug
         self.generate_safe = generate_safe
         self.generate_unsafe = generate_unsafe
+
         # start of chain of calls to generate test cases
         self.select_sink()
+
+        # generate code for all cases and write the source code files and the manifest
+        for case in self.test_cases:
+            # generate the code
+            case.gen_code()
+
+            # write test case file(s) and add to manifest
+            case.write_files()
+
         # generate the report with number of safe/unsafe, time, ...
         self.generation_report()
 
@@ -333,11 +343,7 @@ class Generator(object):
         Create a new testcase for the selected modules and complexities.  Return if
         this case should not be generated, i.e., because of user-selected safety.
         Count this case in the final summary.
-        Compose all the module code, generated variables, any includes, license, and
-        comments.  At the end, write the final code to test case file(s).
         """
-
-        Generator.resetUID()
 
         case = TestCase(generator  = self, # ACCESS ONLY - DOES NOT MODIFY ANY ATTRIBUTE
                         input      = self.current_input,
@@ -355,12 +361,6 @@ class Generator(object):
 
         # update summary counts
         self.update_counts(case)
-
-        # generate the code
-        case.gen_code()
-
-        # write test case file(s) and add to manifest
-        case.write_files()
 
     def update_counts(self, case):
         """
