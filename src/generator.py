@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Apr 18 16:02:54 2023" *by "Paul E. Black"
+ *modified "Wed Apr 19 11:11:46 2023" *by "Paul E. Black"
 """
 
 import time
@@ -302,8 +302,8 @@ class Generator(object):
 
     def need_condition(self, curr_complexity, level):
         """
-        This function checkd if the current complexity needs a condition.
-        If it's needed, browse all conditions and compose them into the complexity code.
+        If the current complexity needs a condition, loop through all conditions and
+        compose them into the complexity code.
         The state of the complexity is updated with the result of the conditional.
 
         Args :
@@ -341,7 +341,7 @@ class Generator(object):
 
         case = TestCase(generator  = self, # ACCESS ONLY - DOES NOT MODIFY ANY ATTRIBUTE
                         input      = self.current_input,
-                        complexity_list = self.complexities_queue.copy(),
+                        complexity_list = [c.clone() for c in self.complexities_queue],
                         filter     = self.current_filter,
                         sink       = self.current_sink,
                         exec_query = self.current_exec_queries)
