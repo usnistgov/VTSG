@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Apr 12 16:12:39 2023" *by "Paul E. Black"
+% *modified "Mon May  1 16:53:07 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -332,7 +332,8 @@ is generated separately, there is no exact correspondence between
 cases.
 
 Figure~\ref{fig:cartesian product} suggests that just three sources of input,
-two ways of filtering the input, and four sinks already yields 3 × 2 × 4 = 24
+two ways of filtering the input, four sinks, and two ways to execute the query
+already yields 3 × 2 × 4 x 2 = 48
 combinations.  Multiply that by many different kinds of bugs and all flow control
 complexities with various conditions, then include ``scaffolding'' such as
 initializing variables, importing libraries, and declaring functions to get an
@@ -340,8 +341,8 @@ idea of the work that VTSG may save.
 
 \begin{figure}[htbp]
   \includegraphics[width=1\linewidth]{fig_cartesian_product.png}
-  \caption{Just three sources of input, two ways of filtering, and four sinks
-    yield 24 possible test cases.}
+  \caption{Just three sources of input, two ways of filtering, four sinks, and
+    two query executions yield 48 possible test cases.}
   \label{fig:cartesian product}
 \end{figure}
 
@@ -1969,14 +1970,17 @@ connects to and must match the input of the Filter module, and its output connec
 and must match the input of the Sink.  These modules are shown together in
 Fig.~\ref{fig:input, filter, and sink}.
 \begin{figure}[htbp]
-  \centerline{\includegraphics[width=.7\linewidth]{fig_input_filter_sink.png}}
+  \centerline{\includegraphics[width=\linewidth]{fig_input_filter_sink.png}}
   \caption{The result of the Input module connects to the input of the Filter module,
-    and its output connects to the input of the Sink module.
+    its output connects to the input of the Sink module, and its output connects
+    to the input of the Exec Query module.
   }
   \label{fig:input, filter, and sink}
 \end{figure}
-Compatible inputs, filters, and sinks are ``connected'' various ways.  Remember that
-VTSG chooses a sink module first then chooses compatible filter and input modules to
+Compatible inputs, filters, sinks, and exec queries are ``connected'' various
+ways.  Remember that
+VTSG chooses a sink module first then chooses compatible filter, input, and exec
+query modules to
 use with it.  A filter is used with a sink if
 \begin{enumerate}[nosep]
 \item the filter \verb|output_type| is ``nofilter'' or the same as the sink

@@ -50,7 +50,6 @@ TELECOM
 Technol
 TestSuite
 VTS
-VTSG's
 XPATH
 XPath
 arabic
@@ -107,6 +106,7 @@ sanitization
 selectfrom
 shellcommands
 sinkcontent
+sql
 src
 statementterminator
 staticmethods
