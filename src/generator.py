@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Thu Apr 20 11:54:43 2023" *by "Paul E. Black"
+ *modified "Thu May  4 13:51:53 2023" *by "Paul E. Black"
 """
 
 import time
@@ -171,16 +171,23 @@ class Generator(object):
         # start of chain of calls to generate test cases
         self.select_sink()
 
+        # select which test cases to produce
+        self.selected_test_cases = TestCase.select_test_cases(self.test_cases)
+
         # generate code for all cases and write the source code files and the manifest
-        for case in self.test_cases:
+        for case in self.selected_test_cases:
             # generate the code
             case.gen_code()
 
             # write test case file(s) and add to manifest
             case.write_files()
 
-        # generate the report with number of safe/unsafe, time, ...
-        self.generation_report()
+        # finish the manifest files
+        self.manifest.closeManifests()
+
+        # report the number of safe/unsafe cases generated, time, etc.
+        elapsed_time = time.strftime("%H:%M:%S", time.gmtime(time.time() - self.start))
+        self.generation_report(elapsed_time)
 
     # first step: select sink
     def select_sink(self):
@@ -362,26 +369,6 @@ class Generator(object):
         # update summary counts
         self.update_counts(case)
 
-    def update_counts(self, case):
-        """
-        Update the counts in the report for this test case.
-        """
-
-        flaw_group = case.sink.flaw_group
-        flaw = case.sink.flaw_type
-        # create group or flaw if this is the first case in the group or flaw
-        if flaw_group not in self.report:
-            self.report[flaw_group] = {}
-        if flaw not in self.report[flaw_group]:
-            self.report[flaw_group][flaw] = {}
-            self.report[flaw_group][flaw]["safe_sample"] = 0
-            self.report[flaw_group][flaw]["unsafe_sample"] = 0
-
-        if case.is_safe_selection():
-            self.report[flaw_group][flaw]["safe_sample"] += 1
-        else:
-            self.report[flaw_group][flaw]["unsafe_sample"] += 1
-
 
     def get_group_list(self):
         """
@@ -441,12 +428,31 @@ class Generator(object):
         else:
             return list(self.get_group_list())
 
+    def update_counts(self, case):
+        """
+        Update the counts in the report for this test case.
+        """
+
+        flaw_group = case.sink.flaw_group
+        flaw = case.sink.flaw_type
+        # create group or flaw if this is the first case in the group or flaw
+        if flaw_group not in self.report:
+            self.report[flaw_group] = {}
+        if flaw not in self.report[flaw_group]:
+            self.report[flaw_group][flaw] = {}
+            self.report[flaw_group][flaw]["safe_sample"] = 0
+            self.report[flaw_group][flaw]["unsafe_sample"] = 0
+
+        if case.is_safe_selection():
+            self.report[flaw_group][flaw]["safe_sample"] += 1
+        else:
+            self.report[flaw_group][flaw]["unsafe_sample"] += 1
+
     # TODO:20 move this elsewhere either in the generator or in a new class
-    def generation_report(self):
+    def generation_report(self, elapsed_time):
         """
         Print final report for this run: number of safe/unsafe by flaw, group, and time.
         """
-        self.manifest.closeManifests()
         total = 0
         print('Generation report:')
         for flaw_group in self.report:
@@ -468,8 +474,7 @@ class Generator(object):
             total += group_total
 
         print(f'{total} total')
-        end = time.time()
-        print(f'Generation time {time.strftime("%H:%M:%S", time.gmtime(end - self.start))}')
+        print(f'Generation time {elapsed_time}')
 
     @property
     def max_recursion(self):

@@ -5,7 +5,7 @@ This is one test case.  A test case is created by the generator.  It becomes a s
 code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Thu Apr 20 12:03:25 2023" *by "Paul E. Black"
+ *modified "Thu May  4 14:31:41 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -136,6 +136,23 @@ class TestCase(object):
         name += "."+self.generator.file_template.file_extension
 
         return name
+
+    @staticmethod
+    def select_test_cases(test_cases):
+        """
+        Return a list of test cases selected to be generated and written.
+        """
+
+        # SKIMP - for now, return all of them
+
+        selected_test_cases = []
+        count = 0
+        for case in test_cases:
+            if True: #count % 3 == 0:       Rrturn 1 in 3
+                selected_test_cases.append(case)
+            count += 1
+
+        return selected_test_cases
 
     def gen_code(self):
         """
