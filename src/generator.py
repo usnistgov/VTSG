@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Thu May  4 13:51:53 2023" *by "Paul E. Black"
+ *modified "Fri May  5 14:48:33 2023" *by "Paul E. Black"
 """
 
 import time
@@ -20,6 +20,70 @@ from src.file_template import FileTemplate
 from src.test_case import TestCase
 
 import xml.etree.ElementTree as ET
+
+
+class CaseSummary(object):
+    """
+    Count of the number of safe and unsafe test cases, by flaw and by group
+
+    Args:
+        none
+
+    Attributes:
+        **counts** (dict of dict of dict): The counts.  First dict is by group,
+        which is dict by flaw, which is a dict of counts of safe & unsafe cases.
+
+    """
+
+    def __init__(self):
+        self.counts = {} # nothing saved, yet
+
+    def update_counts(self, case):
+        """
+        Update the counts for this test case.
+        """
+
+        flaw_group = case.sink.flaw_group
+        flaw = case.sink.flaw_type
+        # create group or flaw if this is the first case in the group or flaw
+        if flaw_group not in self.counts:
+            self.counts[flaw_group] = {}
+        if flaw not in self.counts[flaw_group]:
+            self.counts[flaw_group][flaw] = {}
+            self.counts[flaw_group][flaw]["safe_sample"] = 0
+            self.counts[flaw_group][flaw]["unsafe_sample"] = 0
+
+        if case.is_safe_selection():
+            self.counts[flaw_group][flaw]["safe_sample"] += 1
+        else:
+            self.counts[flaw_group][flaw]["unsafe_sample"] += 1
+
+    def report_counts(self, elapsed_time, caption):
+        """
+        Print final report for this run: number of safe/unsafe by flaw, group, and time.
+        """
+        total = 0
+        print(f'{caption}')
+        for flaw_group in self.counts:
+            group_total = 0
+            flaw_group_label = flaw_group
+            # in case the flaw_group is missing or the empty string
+            if flaw_group_label == '':
+                flaw_group_label = 'Empty'
+            print(f'\t{flaw_group_label} group generation report:')
+            for flaw in self.counts[flaw_group]:
+                print(f'\t\t{flaw} generation report:')
+                print(f'\t\t\t{self.counts[flaw_group][flaw]["safe_sample"]} safe samples')
+                print(f'\t\t\t{self.counts[flaw_group][flaw]["unsafe_sample"]} unsafe samples')
+                flaw_total = self.counts[flaw_group][flaw]["safe_sample"] + self.counts[flaw_group][flaw]["unsafe_sample"]
+                group_total += flaw_total
+                print(f'\t\t{flaw_total} total')
+
+            print(f'\t{group_total} total')
+            total += group_total
+
+        print(f'{total} total')
+        print(f'Generation time {elapsed_time}')
 
 
 class Generator(object):
@@ -97,7 +161,7 @@ class Generator(object):
         self._max_recursion = 1
         self._number_generated = -1
         self.date = date
-        self.report = {}
+        self.report = CaseSummary()
         self.flaw_type_user = None
         self.flaw_group_user = None
         self.start = time.time()
@@ -187,7 +251,7 @@ class Generator(object):
 
         # report the number of safe/unsafe cases generated, time, etc.
         elapsed_time = time.strftime("%H:%M:%S", time.gmtime(time.time() - self.start))
-        self.generation_report(elapsed_time)
+        self.report.report_counts(elapsed_time, 'Generation report:')
 
     # first step: select sink
     def select_sink(self):
@@ -367,7 +431,7 @@ class Generator(object):
         self.test_cases.append(case)
 
         # update summary counts
-        self.update_counts(case)
+        self.report.update_counts(case)
 
 
     def get_group_list(self):
@@ -428,53 +492,6 @@ class Generator(object):
         else:
             return list(self.get_group_list())
 
-    def update_counts(self, case):
-        """
-        Update the counts in the report for this test case.
-        """
-
-        flaw_group = case.sink.flaw_group
-        flaw = case.sink.flaw_type
-        # create group or flaw if this is the first case in the group or flaw
-        if flaw_group not in self.report:
-            self.report[flaw_group] = {}
-        if flaw not in self.report[flaw_group]:
-            self.report[flaw_group][flaw] = {}
-            self.report[flaw_group][flaw]["safe_sample"] = 0
-            self.report[flaw_group][flaw]["unsafe_sample"] = 0
-
-        if case.is_safe_selection():
-            self.report[flaw_group][flaw]["safe_sample"] += 1
-        else:
-            self.report[flaw_group][flaw]["unsafe_sample"] += 1
-
-    # TODO:20 move this elsewhere either in the generator or in a new class
-    def generation_report(self, elapsed_time):
-        """
-        Print final report for this run: number of safe/unsafe by flaw, group, and time.
-        """
-        total = 0
-        print('Generation report:')
-        for flaw_group in self.report:
-            group_total = 0
-            flaw_group_label = flaw_group
-            # in case the flaw_group is missing or the empty string
-            if flaw_group_label == '':
-                flaw_group_label = 'Empty'
-            print(f'\t{flaw_group_label} group generation report:')
-            for flaw in self.report[flaw_group]:
-                print(f'\t\t{flaw} generation report:')
-                print(f'\t\t\t{self.report[flaw_group][flaw]["safe_sample"]} safe samples')
-                print(f'\t\t\t{self.report[flaw_group][flaw]["unsafe_sample"]} unsafe samples')
-                flaw_total = self.report[flaw_group][flaw]["safe_sample"] + self.report[flaw_group][flaw]["unsafe_sample"]
-                group_total += flaw_total
-                print(f'\t\t{flaw_total} total')
-
-            print(f'\t{group_total} total')
-            total += group_total
-
-        print(f'{total} total')
-        print(f'Generation time {elapsed_time}')
 
     @property
     def max_recursion(self):
