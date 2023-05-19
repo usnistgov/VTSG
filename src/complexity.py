@@ -1,7 +1,7 @@
 """
 Complexity module.
 
- *modified "Mon Nov 14 16:44:29 2022" *by "Paul E. Black"
+ *modified "Thu May 18 17:17:31 2023" *by "Paul E. Black"
 """
 
 import copy
@@ -95,6 +95,10 @@ class ComplexitySample(object):
             return self._id+"."+self._cond_id
         else:
             return self._id
+
+    @property
+    def cond_id(self):
+        return self._cond_id
 
     def set_cond_id(self, nb):
         """
