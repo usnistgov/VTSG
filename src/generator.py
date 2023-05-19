@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Fri May  5 14:48:33 2023" *by "Paul E. Black"
+ *modified "Fri May 19 10:45:36 2023" *by "Paul E. Black"
 """
 
 import time
@@ -135,7 +135,7 @@ class Generator(object):
                 condition possibilities.
 
             **file_template** (:class:`.FileTemplate`) the template
-                for current langage.
+                for current language.
 
             **current_input** (:class:`.InputSample`): The current selected input.
 
@@ -238,7 +238,9 @@ class Generator(object):
         # select which test cases to produce
         self.selected_test_cases = TestCase.select_test_cases(self.test_cases)
 
-        # generate code for all cases and write the source code files and the manifest
+        selected_case_report = CaseSummary()
+
+        # generate code and write the source files for the selected cases
         for case in self.selected_test_cases:
             # generate the code
             case.gen_code()
@@ -246,12 +248,18 @@ class Generator(object):
             # write test case file(s) and add to manifest
             case.write_files()
 
+            selected_case_report.update_counts(case)
+
         # finish the manifest files
         self.manifest.closeManifests()
 
-        # report the number of safe/unsafe cases generated, time, etc.
         elapsed_time = time.strftime("%H:%M:%S", time.gmtime(time.time() - self.start))
+
+        # report the number of safe/unsafe cases generated, time, etc.
         self.report.report_counts(elapsed_time, 'Generation report:')
+
+        # report the number of safe/unsafe cases selected
+        #selected_case_report.report_counts(elapsed_time, 'Selected case report:')
 
     # first step: select sink
     def select_sink(self):
@@ -352,9 +360,9 @@ class Generator(object):
     # sixth step: wrap filter in "level" depth of complexities
     def select_complexities(self, level):
         """
-        This function browse all complexities.
-        Each type of complexity can be use with special processing and call the
-        need_condition method to check if the complexity needs a condition.
+        Go through all complexities.
+        Specially process types of complexities, then call handle_condition to add
+        conditions if the complexity needs one and recursively call this.
         At the end we call the next function for compose then into one code chunk.
 
         Args :
@@ -376,15 +384,17 @@ class Generator(object):
                     # replace id and var type name for foreach
                     curr_complexity.code = Template(curr_complexity.code, undefined=DebugUndefined).render(id=level, var_type=var_type)
 
-                self.need_condition(curr_complexity, level)
+                self.handle_condition(curr_complexity, level)
 
                 # remove current complexity
                 self.complexities_queue.pop()
 
-    def need_condition(self, curr_complexity, level):
+    # sixth-and-a-half step: add conditions if needed. Recursively do next complexity.
+    def handle_condition(self, curr_complexity, level):
         """
         If the current complexity needs a condition, loop through all conditions and
-        compose them into the complexity code.
+        compose them into the complexity code.  Regardless, recursively handle next
+        level of complexities.
         The state of the complexity is updated with the result of the conditional.
 
         Args :
