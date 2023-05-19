@@ -1,7 +1,7 @@
 """
 Complexity module.
 
- *modified "Thu May 18 17:17:31 2023" *by "Paul E. Black"
+ *modified "Fri May 19 10:26:47 2023" *by "Paul E. Black"
 """
 
 import copy
@@ -18,21 +18,24 @@ class ComplexitySample(object):
 
             **_code** (str): Code of complexity (private member, please use getter and setter).
 
-            **_type** (str): Type of complexity (if, switch, for, function, classe, ...) \
+            **_type** (str): Type of complexity (if, switch, for, function, class, ...) \
                              (private member, please use getter and setter).
 
-            **_group** (str): Group of complexity (conditionnals, loops, functions, classes, ...) \
+            **_group** (str): Group of complexity (conditionals, loops, functions, classes, ...) \
                               (private member, please use getter and setter).
 
-            **_executed** (str): If True the placeholder is executed (private member, please use getter and setter).
+            **_executed** (str): The situation when the placeholder code is executed:
+              one of "condition" (executed if the condition evaluates to True),
+              "not_condition" (executed if the condition is False), "1" (always
+              executed), or "0" (never executed).  (private member, please use getter).
 
             **_need_condition** (bool): If True the complexity need a condition (set _cond_id) \
                                         (private member, please use getter and setter).
 
-            **_need_id** (bool): If True the complexity needs uniq id (private member, please use getter and setter).
+            **_need_id** (bool): If True the complexity needs unique id (private member, please use getter and setter).
 
             **_in_out_var** (bool): Specifies where the placeholder is in the complexity for variables name setting \
-                                    (in, trasversal, out)
+                                    (in, transversal, out)
 
             **_indirection** (bool): If True, the complexity need to have a body \
                                     (private member, please use getter and setter).
@@ -49,6 +52,7 @@ class ComplexitySample(object):
         self._type = xml_compl.get("type")
         self._group = xml_compl.get("group")
         self._executed = xml_compl.get("executed")
+        assert self._executed in {'condition', 'not_condition', '1', '0'}, '[ERROR] executed must be "condition", "not_condition", "1", or "0"'
         self._need_condition = False
         if "condition" in self._executed or xml_compl.get("need_condition") == "1":
             self._need_condition = True
@@ -141,7 +145,7 @@ class ComplexitySample(object):
     @property
     def need_id(self):
         """
-        If True the complexity needs uniq id.
+        If True the complexity needs unique id.
 
         :getter: Returns this boolean.
         :type: bool
@@ -150,7 +154,8 @@ class ComplexitySample(object):
 
     def need_condition(self):
         """
-        If True the complexity need a condition (set _cond_id).
+        True if this complexity needs a condition. (set _cond_id to indicate which
+        condition is used.)
 
         :getter: Returns this boolean.
         :type: bool
@@ -159,17 +164,19 @@ class ComplexitySample(object):
 
     def set_condition(self, condition):
         """
-        If True the complexity need a condition (set _cond_id).
+        Set the value of what the condition used for this complexity evaluates to.
+        For example, 1==1 is always True and (4+2>=42) is always False.
 
-        :setter: Sets this boolean.
+        :setter: Sets this value.
         :type: bool
         """
+        assert type(condition) is bool
         self.condition = condition
 
     @property
     def type(self):
         """
-        Type of complexity (if, switch, for, function, classe, ...).
+        Type of complexity (if, switch, for, function, class, ...).
 
         :getter: Returns this type.
         :type: str
@@ -179,7 +186,7 @@ class ComplexitySample(object):
     @property
     def group(self):
         """
-        Group of complexity (conditionnals, loops, functions, classes, ...).
+        Group of complexity (conditionals, loops, functions, classes, ...).
 
         :getter: Returns this group.
         :type: str
@@ -202,7 +209,7 @@ class ComplexitySample(object):
         self._code = value
 
     def is_executed(self):
-        """ compute if the placeholder is executed"""
+        """ True if the placeholder code is executed"""
         if self._executed == "condition":
             return self.condition
         elif self._executed == "not_condition":
@@ -215,3 +222,5 @@ class ComplexitySample(object):
 
     def clone(self):
         return copy.deepcopy(self)
+
+# end of complexity.py
