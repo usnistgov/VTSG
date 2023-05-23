@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Fri May 19 10:45:36 2023" *by "Paul E. Black"
+ *modified "Tue May 23 10:51:44 2023" *by "Paul E. Black"
 """
 
 import time
@@ -640,14 +640,14 @@ def test_remove_indents():
 
         index = 1
         while True:
-            if text[index]: # skip empty strings
+            if text[index]: # don't return empty strings
                 yield text[index]
             index += 1
             # start over, if necessary
             if index >= len(text):
                 index = 1
 
-    # start a single word generator that all test generators use.
+    # start a generator yielding one word at a time.  All test generators use it.
     word = one_word()
 
     def generate_test_lines():
