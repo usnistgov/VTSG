@@ -1,11 +1,11 @@
 """
 Test Case Module.
 
-This is one test case.  A test case is created by the generator.  It becomes a source
-code file by being composed.
+The components or modules for one test case.  A test case is created by the
+generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Thu May  4 14:31:41 2023" *by "Paul E. Black"
+ *modified "Tue May 23 15:56:21 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -144,11 +144,10 @@ class TestCase(object):
         """
 
         # SKIMP - for now, return all of them
-
         selected_test_cases = []
         count = 0
         for case in test_cases:
-            if True: #count % 3 == 0:       Rrturn 1 in 3
+            if True: #count % 3 == 0:       Return 1 in 3
                 selected_test_cases.append(case)
             count += 1
 
@@ -221,7 +220,7 @@ class TestCase(object):
         # add comment into code at the position of the flaw if unsafe
         flaw_str = ""
         if not self.is_safe_selection():
-            # this flag is use to compute the line of the flaw in final file
+            # this string marks the location of the flaw in the final file
             flaw_str = file_template.comment['inline']+"flaw"
 
         # SINK
@@ -255,7 +254,7 @@ class TestCase(object):
         license_content = self.generator.license
 
         # IMPORTS
-        # compose imports used on input, filter, and sink
+        # compose any imports used in input, filter, and sink
         imports_content = set(self.sink.imports).union(set(file_template.imports))
         if self.sink.input_type != "none":
             imports_content = imports_content.union(set(self.input.imports)
@@ -266,7 +265,7 @@ class TestCase(object):
         # create source code with imports
         imports_code = file_template.generate_imports(imports_content)
 
-        # comments at the beginning of the code that document modules used
+        # comments at the beginning of the code that document which modules were used
         comments_code = ''
         if self.input and self.input.comment:
             comments_code += self.input.comment + '\n'
@@ -381,17 +380,25 @@ class TestCase(object):
 
 
     def __str__(self):
+        if self.input is None:
+            input_description = '(none)'
+        else:
+            input_description = self.input.module_description
         complexity_ids = ''
         for c in self.complexity_list:
             complexity_ids += ' ' + c.get_complete_id()
+        if self.filter is None:
+            filter_description = '(none)'
+        else:
+            filter_description = self.filter.module_description
         if self.exec_query is None:
-            eq_description = 'None'
+            eq_description = '(none)'
         else:
             eq_description = self.exec_query.module_description
         return ('*** Test Case ***\n' +
-                f'input {self.input.module_description}\n' +
+                f'input {input_description}\n' +
                 f'{len(self.complexity_list)} complexities{complexity_ids}\n' +
-                f'filter {self.filter.module_description}\n' +
+                f'filter {filter_description}\n' +
                 f'sink {self.sink.module_description}\n' +
                 f'exec query {eq_description}')
 
