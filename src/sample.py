@@ -1,33 +1,36 @@
 """
-sample module
+ One module used to build the case. This is specialized for input, filter, sink, and
+ exec query modules.
 
- *modified "Thu Mar 30 10:35:32 2023" *by "Paul E. Black"
+ *modified "Fri May 26 09:26:09 2023" *by "Paul E. Black"
 """
-
-import src.generator
-
 
 class Sample(object):
     """Sample class
 
         Args :
-            **sample** (xml.etree.ElementTree.Element): The XML element containing the filtering tag in the \
-                                                          file "filtering.xml".
+            **sample** (xml.etree.ElementTree.Element): The XML element specifying
+              this module. From inputs.xml, sinks.xml, etc.
 
         Attributes :
-            **_path** (str): path for identify the sample (private member, please use getter and setter).
+            **_path** (str): description of this module; used in the file name
+	      (private member, please use getter).
 
-            **_code** (str): Code of sample (private member, please use getter and setter).
+            **_code** (str): source code for this module (private member, please use
+              getter).
 
-            **_comment** (str): comment for sample (private member, please use getter and setter).
+            **_comment** (str): comment placed at the beginning of the code if this
+              module is used (private member, please use getter).
 
-            **_imports** (list of str): path for identify the sample (private member, please use getter and setter).
+            **_imports** (list of str): names of modules to be imported for the code
+              to run (private member, please use getter).
 
-            **_need_id** (bool): True if sample need id for code chunk (private member, please use getter and setter).
+            **_need_id** (bool): True if module needs an id in the code chunk
+              (private member, please use getter).
 
-            **_safe** (bool): Safe tag (private member, please use getter and setter).
+            **_safe** (bool): Safe tag (private member, please use getter).
 
-            **_unsafe** (bool): Unsafe tag (private member, please use getter and setter).
+            **_unsafe** (bool): Unsafe tag (private member, please use getter).
 
 
     """
@@ -145,10 +148,6 @@ class Sample(object):
         """
         return self._imports
 
-    @imports.setter
-    def imports(self, value):
-        self._imports = value
-
     @property
     def comment(self):
         """
@@ -158,3 +157,5 @@ class Sample(object):
         :type: str
         """
         return self._comment
+
+# end of sample.py
