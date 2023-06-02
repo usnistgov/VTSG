@@ -6,7 +6,7 @@ tool", 2013 IEEE Sixth International Conference on Software Testing, Verificatio
 Validation (ICST).
 
   *created "Thu Jun  1 09:39:16 2023" *by "Paul E. Black"
- *modified "Fri Jun  2 11:24:13 2023" *by "Paul E. Black"
+ *modified "Fri Jun  2 14:34:54 2023" *by "Paul E. Black"
 
 The interface is select_cases_ACTS().  Pass a list of cases; select via ACTS; and
 return a subset of the cases passed.
@@ -121,8 +121,11 @@ def write_parameters_and_constraints(fp, cases):
     ai = ACTS_interface()
 
     ###################################################################################
+    #
     # extract the inputs, filters, complexities, etc. used in these cases
+    #
     ###################################################################################
+
     # set of inputs, filters, and eqs used by each sink; for constraints
     sink_inputs = {}
     sink_filters = {}
