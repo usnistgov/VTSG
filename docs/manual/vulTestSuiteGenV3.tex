@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Jun 13 10:53:06 2023" *by "Paul E. Black"
+% *modified "Tue Jun 13 16:40:19 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -415,7 +415,14 @@ Here is the command to install it:
     sudo python3 -m pip install --upgrade pip
 \end{verbatim}
 
-See Sec.~\ref{sec:run csharp} for instructions on how to run \CSharp\ programs.
+\subsection{Install Optional Packages}
+
+VTSG can use combinatorial testing, specifically ACTS~\cite{ACTS2013}, to select
+cases instead of producing all possible cases.  The ACTS software is freely available.
+To get ACTS, send email to Rick Kuhn
+\href{mailto:kuhn@nist.gov}{kuhn@nist.gov}~\cite{CombinTesting}.
+
+See App.~\ref{sec:run csharp} for instructions on how to run \CSharp\ programs.
 
 \subsection{Install VTSG}
 
@@ -834,7 +841,7 @@ VTSG generates hundreds of test cases in minutes.
 
 VTSG is built to generate test cases with all consistent combinations
 of modules for the flaw groups and flaws specified in the invocation.
-If VTSG is invoked with particular flaw groups (\verb|-g|) or flaws (\verb|-f|),
+If VTSG is invoked with particular flaws (\verb|-f|) or flaw groups (\verb|-g|),
 only sinks satisfying those specified are used.
 If no flaw group is specified, all flaw groups are used.  
 If no flaws are specified, all flaws are used.

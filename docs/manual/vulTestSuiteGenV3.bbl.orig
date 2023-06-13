@@ -11,8 +11,18 @@
 Stivalet B, Fong E (2016) Large scale generation of complex and faulty {PHP}
   test cases. \emph{2016 {IEEE} Intern'l Conf. on Software Testing,
   Verification and Validation ({ICST})}, ,  pp 409--415.
-  \href{https://doi.org/10.1109/ICST.2016.43}{\doi{10.1109/ICST.2016.43}}.
-  \url{https://doi.org/10.1109/ICST.2016.43}
+  \href{https://doi.org/10.1109/ICST.2016.43}{\doi{10.1109/ICST.2016.43}}
+
+\bibitem{ACTS2013}
+Yu L, Lei Y, Kacker RN, Kuhn DR (2013) {ACTS}: A combinatorial test generation
+  tool. \emph{2013 {IEEE} Intern'l Conf. on Software Testing, Verification and
+  Validation ({ICST})}, ,  pp 370--375.
+  \href{https://doi.org/10.1109/ICST.2013.52}{\doi{10.1109/ICST.2013.52}}
+
+\bibitem{CombinTesting}
+ (2023) Combinatorial testing,
+  \url{https://csrc.nist.gov/Projects/automated-combinatorial-testing-for-software}.
+  Accessed: 13 June 2023.
 
 \bibitem{OWASPTop10-2017}
  (2017) {OWASP} top 10 web application security risks,
