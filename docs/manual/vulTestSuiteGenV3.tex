@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Mon May  1 16:53:07 2023" *by "Paul E. Black"
+% *modified "Tue Jun 13 10:53:06 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -415,23 +415,7 @@ Here is the command to install it:
     sudo python3 -m pip install --upgrade pip
 \end{verbatim}
 
-\noindent To validate \CSharp\ test cases, install \emph{mono} and \emph{mcs}
-to run them. The Mono project created \emph{mono} as an open source
-platform, which
-implements the .NET Framework. Class libraries and \CSharp\ compilation are enabled
-by \emph{mcs} (\href{http://github.com/mono/mono}{http://github.com/mono/mono}).
-
-\noindent Here is the command to install it:
-
-\begin{verbatim}
-    sudo apt-get install mono-complete
-\end{verbatim}
-
-\noindent Here is the command to install it:
-
-\begin{verbatim}
-    sudo apt-get install mcs
-\end{verbatim}
+See Sec.~\ref{sec:run csharp} for instructions on how to run \CSharp\ programs.
 
 \subsection{Install VTSG}
 
@@ -1732,67 +1716,72 @@ complexity modules are inside \verb|<complexities>|.
     \centering
     \caption{An example of code for each value of ``executed'' showing whether
       ``placeholder'' code will be executed.}
-    \begin{tabular}{|r|l|}
+    \begin{tabular}{|r|c|l|}
     \hline
-      \makecell{Value of \\ executed}
-      & example code \\
+      \makecell{Value of \\ ``executed''} &
+      \makecell{When \\ executed} &
+      example code \\
     \hline
     0 &
+    never &
     \begin{minipage}{3in}
     \begin{verbatim}
 
 
-        switch(6) {
-          case(6):
-            break;
-          default:
-            {{ placeholder }}
-            break;
-        }
+    switch(6) {
+      case(6):
+        break;
+      default:
+        {{ placeholder }}
+        break;
+    }
     \end{verbatim}
     \end{minipage}
     \\
     \hline
     1 &
+    always &
     \begin{minipage}{3in}
     \begin{verbatim}
 
 
-        switch(6) {
-          case(6):
-            {{ placeholder }}
-            break;
-          default:
-            break;
-        }
+    switch(6) {
+      case(6):
+        {{ placeholder }}
+        break;
+      default:
+        break;
+    }
     \end{verbatim}
     \end{minipage}
     \\
     \hline
     condition &
+    \makecell{when \\ condition \\ is true} &
     \begin{minipage}{3in}
     \begin{verbatim}
 
 
-      if ({{ condition }}) {
-            {{ placeholder }}
-        } else {
-            {}
-        }
+    if ({{ condition }}) {
+          {{ placeholder }}
+    } else {
+          {}
+    }
     \end{verbatim}
     \end{minipage}
     \\
     \hline
     not\_condition &
+    \makecell{when \\ condition \\ is false} &
     \begin{minipage}{3in}
     \begin{verbatim}
 
 
-        if ({{ condition }}) {
-            {}
-        } else {
-            {{ placeholder }}
-        }
+    if ({{ condition }}) {
+          {}
+    } else {
+          {{ placeholder }}
+    }
     \end{verbatim}
     \end{minipage}
     \\
@@ -1979,7 +1968,7 @@ Fig.~\ref{fig:input, filter, and sink}.
 \end{figure}
 Compatible inputs, filters, sinks, and exec queries are ``connected'' various
 ways.  Remember that
-VTSG chooses a sink module first then chooses compatible filter, input, and exec
+VTSG first chooses a sink module then chooses compatible filter, input, and exec
 query modules to
 use with it.  A filter is used with a sink if
 \begin{enumerate}[nosep]
@@ -1993,16 +1982,17 @@ be used with the sink.
 \begin{figure}[htbp]
   \centerline{\includegraphics[width=.8\linewidth]{fig_filters_and_sinks.png}}
   \caption{How filters are chosen for a sink.  Filters A, B, and C will be used.
-    Filter P is not used because the output\_type differs.  Filter Q is not
-    used because the flaw\_type differs.
+    Filter P is not used because the flaw\_type differs.
+    Filter Q is not used because the output\_type differs.
   }
   \label{fig:how filters fit a sink}
 \end{figure}
 Filter B is compatible because the \verb|flaw_type| is
 ``default''; it is compatible with any type of flaw.  Filter C is ``nofilter'' and
 just passes the value through.  Filter P is never used with that sink because
-the \verb|output_type| is not the same as the sink \verb|input_type|.
-Filter Q is never used because the \verb|flaw_type| is not the same.
+the \verb|flaw_type| is not the same.
+Filter Q is never used because the \verb|output_type| is not the same as the
+sink \verb|input_type|.
 
 An input is used with a sink and a filter if
 \begin{enumerate}[nosep]
@@ -2054,7 +2044,7 @@ The following code may allow a large \emph{negative} index access, and thus caus
 exception.  I thought this is always unsafe.
 \begin{verbatim}
     if index < len(array):
-        print(array[index]
+        print(array[index])
 \end{verbatim}
 I discovered my mistake when I executed the cases and ``unsafe'' cases did
 \emph{not} produce the exploit evidence.  If the ``input'' was a safe hardcoded
@@ -2063,7 +2053,7 @@ value, the code was safe!
     index = 0
 
     if index < len(array):
-        print(array[index]
+        print(array[index])
 \end{verbatim}
 The proper marking is that the sink is neither always safe nor always unsafe.
 A proper filter or guard can make it safe.
@@ -2088,7 +2078,7 @@ As you convert or add flaws, you may find that some language specifications need
 adjustment.
 
 
-\subsection{Adding Capabilities}
+\subsection{Adding New Capabilities to VTSG}
 
 New VTSG capabilities often allow the user who is describing programming languages or
 flaws to make new mistakes.  Suppose input modules now have a \verb|parallel|
@@ -2098,7 +2088,7 @@ Instruction, Multiple Data (SIMD); Multiple Instruction, Multiple Data (MIMD); S
 Program, Multiple Data (SPMD), or Massively Parallel Processing (MPP).  What should
 VTSG do when the user gives an input module a \verb|parallel| attribute, but no type
 of processing?  VTSG code could just crash with a traceback about \verb|NoneType|
-object.
+object.  This does not help the user much.
 
 If the user can make a mistake, such as mismatched attributes or invalid fields, VTSG
 should explain what the problem is, where it arose, why it is invalid (e.g. where the
@@ -2140,17 +2130,17 @@ VTSG names test case files as
     \item CMPLX1[.COND], CMPLX2[.COND], \ldots: List of complexities.
             CMPLX is the id in the code complexity module,
             see Sec.~\ref{sec: complexity modules}.
+            If the complexity has a
+            condition, COND is the id in the test condition module,
+            see Sec.~\ref{sec: condition modules}.
             Tables \ref{tab:complexity IDs for CSharp},
             \ref{tab:complexity IDs for PHP}, and
             \ref{tab:complexity IDs for Python} in the language appendixes list
-            complexity ids defined in \CSharp\ , PHP, and Python.
-            If the complexity has a
-            condition, COND is the id in test condition modules,
-            see Sec.~\ref{sec: condition modules}.
+            complexity ids defined in \CSharp, PHP, and Python.
             Tables \ref{tab:condition IDs for CSharp},
             \ref{tab:condition IDs for PHP}, and
             \ref{tab:condition IDs for Python} list condition
-            ids defined in \CSharp\ , PHP, and Python. (optional)
+            ids defined in \CSharp, PHP, and Python. (optional)
     \item x: Sequence of the file within the test.  If the test consists of just one
       file, there is no sequence letter.  If the test consists of more than one file,
       that is, when the complexity \verb|type| is \verb|class|,
@@ -2280,6 +2270,7 @@ Charles de Oliveira for their contributions to this report.
 This appendix documents the flaws, flaw groups, complexities, and conditions
 currently in the
 \CSharp\ language files.
+It also gives instructions how to compile and run the test cases.
 
 The following flaws are currently defined for this language:
 \begin{itemize}[nosep]
@@ -2406,6 +2397,28 @@ always evaluates to true or false.
 \label{tab:condition IDs for CSharp}
 \end{table}
 
+
+\label{sec:run csharp}
+To compile and run \CSharp\ test cases, install \emph{mono} and \emph{mcs}.
+The Mono project created \emph{mono} as an open source platform that
+implements the .NET Framework. Class libraries and \CSharp\ compilation are enabled
+by \emph{mcs}. See \href{http://github.com/mono/mono}{http://github.com/mono/mono}.
+
+Here is the command to install mono:
+
+\begin{verbatim}
+    sudo apt-get install mono-complete
+\end{verbatim}
+
+Here is the command to install mcs:
+
+\begin{verbatim}
+    sudo apt-get install mcs
+\end{verbatim}
+
+On a Mac, install Homebrew first. See
+\href{https://brew.sh/}{https://brew.sh/}.
+Then use homebrew to install mono.  See \href{https://formulae.brew.sh/formula/mono}{https://formulae.brew.sh/formula/mono}.
 
 \section{PHP Language}
 \label{sec:PHP language}
