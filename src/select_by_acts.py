@@ -6,7 +6,7 @@ tool", 2013 IEEE Sixth International Conference on Software Testing, Verificatio
 Validation (ICST).
 
   *created "Thu Jun  1 09:39:16 2023" *by "Paul E. Black"
- *modified "Fri Jun  2 14:34:54 2023" *by "Paul E. Black"
+ *modified "Tue Jun 13 15:18:21 2023" *by "Paul E. Black"
 
 The interface is select_cases_ACTS().  Pass a list of cases; select via ACTS; and
 return a subset of the cases passed.
@@ -319,12 +319,11 @@ def run_ACTS(file_path):
 
     import os
 
-    # SKIMP - remove output.txt or make sure a new one is created (that ACTS didn't fail)
     # SKIMP - Default is 2-way coverage.  Allow for different coverages.
-    # save command line output in a file to not mess up expected results and check success
+    # send std out and err in a file to not mess up expected results, then check success
     ACTS_photo = 'TestPhoto_ACTS'
     ACTS_output = 'output.txt'
-    expected = os.system(f'rm {ACTS_output};java -Doutput=csv -jar ACTS3.2/acts_3.2.jar {file_path} > {ACTS_photo};[[ $(cat {ACTS_photo}) =~ "Output file: " ]]')
+    expected = os.system(f'rm -f {ACTS_output};java -Doutput=csv -jar ACTS3.2/acts_3.2.jar {file_path} > {ACTS_photo} 2>&1;[ "$(head -1 {ACTS_photo}|cut -c -13)" = "Output file: " ]')
     if expected != 0:
         # ACTS command line output was not what we expected
         print(f'[ERROR] unexpected ACTS output, which is in {ACTS_photo}')
