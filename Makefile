@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Fri Apr 14 13:22:50 2023" *by "Paul E. Black"
+# *modified "Wed Jun 28 10:04:57 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -182,8 +182,9 @@ test021: $(VTSG_FILES)
 testSafeUnsafe: test025su test025s test025u
 	@echo test generate only safe or only unsafe cases succeeded
 
+# test that vtsg rejects giving both -s and -u
 test025su: $(VTSG_FILES)
-	python3 vtsg.py -l test025 -s -u -t tests/templates | tee $(@)_photo
+	python3 vtsg.py -l test025 -s -u -t tests/templates 2>&1 | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
 test025s: $(VTSG_FILES)
