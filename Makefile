@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Jun 28 10:04:57 2023" *by "Paul E. Black"
+# *modified "Wed Jun 28 16:56:17 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -189,13 +189,20 @@ test025su: $(VTSG_FILES)
 
 test025s: $(VTSG_FILES)
 	python3 vtsg.py -l test025 -s -t tests/templates | tee $(@)_photo
-	(cd $$(ls -dt TestSuite_*/test025 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test025/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test025 | head -1);for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test025/$$f;done) | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 	sleep 1
 
 test025u: $(VTSG_FILES)
 	python3 vtsg.py -l test025 -u -t tests/templates | tee $(@)_photo
-	(cd $$(ls -dt TestSuite_*/test025 | head -1);pwd;for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test025/$$f;done) | grep -v TestSuite_ | tee -a $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test025 | head -1);for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/test025/$$f;done) | tee -a $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+# (re)generate all test025 cases
+# this is NOT run during normal testing
+test025: $(VTSG_FILES)
+	python3 vtsg.py -l $(@) -t tests/templates 2>&1 | tee $(@)_photo
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/$(@)/$$f;done) | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
 testNNN: $(VTSG_FILES) src/sarif_writer.py
