@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Jun 13 16:40:19 2023" *by "Paul E. Black"
+% *modified "Wed Jun 28 11:46:17 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1864,8 +1864,11 @@ The easiest way to add a new flaw is modify a similar existing flaw to present t
 new flaw.  If nothing is suitable, here is a tutorial for writing a brand new flaw.
 
 There are so many interacting specifications for a flaw, it is best to write it in
-three steps: first, write the flaw in regular source code; second, decide how to
+three steps: first, write an example of the flaw in regular source code; second,
+decide how to
 divide the code among modules, and third, specify the pieces in VTSG.
+
+\subsubsection{Write an Example With the Flaw}
 
 As a first step, choose a generated test case and modify the source code to present
 the target flaw.  Here is the core code of
@@ -1900,7 +1903,7 @@ Another variant is for the weakness itself to be guarded by the filter:
 \end{verbatim}
 
 It helps later checking to write the code to demonstrate the failure, instead of
-failing silently.  In the above code if division by zero is ever attempting, Python
+failing silently.  In the above code if division by zero is ever attempted, Python
 aborts with failure messages.  In contrast consider a path traversal weakness.  Path
 traversal is when the user might access private directories.  Here is a simple
 version.  It intends to open a file named by the user in the \verb|/home| directory:
@@ -1922,6 +1925,8 @@ prints a line from the password file to demonstrate the exploit:
         print(f.readline(), end='')
 \end{verbatim}
 
+
+\subsubsection{Decide What is Input, What is Filter, What is Sink, etc.}
 
 The second step is to decide what parts of the code are inputs, what parts are
 filters (which will be wrapped in complexities), and what parts are sinks.
@@ -1954,11 +1959,14 @@ In this case, the ``Sink'' module may be empty.
 \end{verbatim}
 
 
+\subsubsection{Write the Modules}
+
 Now that you have an idea of how to split up the code, the third step is to
-write a new sink (or filter) module in VTSG for the flaw.  Edit the sinks.xml (or
-filters.xml) file to add it, then run VTSG.  It's likely that nothing is
-generated the very first time you try because VTSG cannot find a compatible input and
-filter.
+write new modules in VTSG for the flaw.  You probably need to write new sinks
+and filters, but you should be able to use existing input and exec query
+modules.  Edit the sinks.xml (or filters.xml or other) file to add them,
+then run VTSG.  It's likely that nothing is generated the very first time you
+try because VTSG cannot find an input and filter compatible with your new sink.
 
 \label{sec:connecting inputs, filters, and sinks}
 Figure~\ref{fig:VTS operation overview} suggests that the result of the Input module
@@ -1973,7 +1981,7 @@ Fig.~\ref{fig:input, filter, and sink}.
   }
   \label{fig:input, filter, and sink}
 \end{figure}
-Compatible inputs, filters, sinks, and exec queries are ``connected'' various
+Compatibility of inputs, filters, sinks, and exec queries is computed various
 ways.  Remember that
 VTSG first chooses a sink module then chooses compatible filter, input, and exec
 query modules to
@@ -2020,9 +2028,11 @@ because Filter C is ``nofilter'' and Input 1 matches the sink.
   \label{fig:how inputs fit}
 \end{figure}
 
-Be aware that any string is allowed in the \verb|input_type| or \verb|output_type|.
+Be aware that \emph{any} string is allowed in the \verb|input_type| or
+\verb|output_type|.
 This allows you to use a kind of ``extended types'' to connect specific inputs,
-filters, and sinks.  An example is in Python.  I wanted the input to be wrapped in
+filters, and sinks.  Follwing is an example is in Python.
+I wanted the input to be wrapped in
 complexities, like the following:
 \begin{verbatim}
     # Input
@@ -2045,6 +2055,8 @@ module and put the input code in the filter module, so that the input code would
 wrapped in complexities.  I used custom types \verb|string,filter_input| to connect
 the sink to the ``filter'' (really, input) and \verb|InitToNone| to connect the
 ``filter'' to the ``input'' (really, initialization).
+
+\subsubsection{Making Sure Case Safety is Computed Correctly}
 
 Figuring out how to mark the modules as safe or unsafe can be tricky.
 The following code may allow a large \emph{negative} index access, and thus cause an
@@ -2426,6 +2438,9 @@ Here is the command to install mcs:
 On a Mac, install Homebrew first. See
 \href{https://brew.sh/}{https://brew.sh/}.
 Then use homebrew to install mono.  See \href{https://formulae.brew.sh/formula/mono}{https://formulae.brew.sh/formula/mono}.
+
+The script \verb|compilationTester.sh| uses mcs to compile all the
+\CSharp\ cases that are generated.
 
 \section{PHP Language}
 \label{sec:PHP language}
