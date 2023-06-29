@@ -6,7 +6,7 @@ tool", 2013 IEEE Sixth International Conference on Software Testing, Verificatio
 Validation (ICST).
 
   *created "Thu Jun  1 09:39:16 2023" *by "Paul E. Black"
- *modified "Tue Jun 13 15:18:21 2023" *by "Paul E. Black"
+ *modified "Thu Jun 29 10:17:24 2023" *by "Paul E. Black"
 
 The interface is select_cases_ACTS().  Pass a list of cases; select via ACTS; and
 return a subset of the cases passed.
@@ -228,8 +228,9 @@ def write_parameters_and_constraints(fp, cases):
         """
         fp.write(f'    <Constraint text="{expr}">\n')
         fp.write(f'      <Parameters>\n')
-#        for parameter in parameters:
-#            fp.write(f'        <Parameter name="{parameter}" />\n')
+        # ACTS doesn't seem to need these
+        # for parameter in parameters:
+        #     fp.write(f'        <Parameter name="{parameter}" />\n')
         fp.write(f'      </Parameters>\n')
         fp.write(f'    </Constraint>\n')
 
@@ -312,18 +313,19 @@ def write_cases(file_path, cases):
     return ai
 
 
-def run_ACTS(file_path):
+def run_ACTS(file_path, ACTS_output):
     """
-    Run ACTS on the given file_path.  Results are in output.txt in the local directory.
+    Run ACTS on the given file_path.  Results are in ACTS_output.
     """
 
     import os
 
     # SKIMP - Default is 2-way coverage.  Allow for different coverages.
-    # send std out and err in a file to not mess up expected results, then check success
     ACTS_photo = 'TestPhoto_ACTS'
-    ACTS_output = 'output.txt'
-    expected = os.system(f'rm -f {ACTS_output};java -Doutput=csv -jar ACTS3.2/acts_3.2.jar {file_path} > {ACTS_photo} 2>&1;[ "$(head -1 {ACTS_photo}|cut -c -13)" = "Output file: " ]')
+    if os.path.exists(ACTS_photo):
+        os.remove(ACTS_photo) # don't let previous output confuse the success test
+    # put std out and err in a file to not mess up expected results, then check success
+    expected = os.system(f'java -Doutput=csv -jar ACTS3.2/acts_3.2.jar {file_path} {ACTS_output} > {ACTS_photo} 2>&1;[ "$(tail -1 {ACTS_photo}|cut -c -13)" = "Output file: " ]')
     if expected != 0:
         # ACTS command line output was not what we expected
         print(f'[ERROR] unexpected ACTS output, which is in {ACTS_photo}')
@@ -331,7 +333,7 @@ def run_ACTS(file_path):
         sys.exit(1)
 
 
-def read_selections(cases, ai):
+def read_selections(ACTS_output_file, cases, ai):
     """
     Read the cases that ACTS picks.  Select them from the generated cases.
     """
@@ -371,21 +373,19 @@ def read_selections(cases, ai):
 
     selected_test_cases = []
 
-    with open('output.txt', "r") as fp:
+    with open(ACTS_output_file, "r") as fp:
         # skip the comment lines
         for line in fp:
             if line[0] != '#':
                 break
 
-        # here, the content of "line" is the parameter line, e.g. INPUT,FILTER,SINK,...
+        # at this point, the content of "line" is the parameter names, e.g. INPUT,FILTER,SINK,...
 
         # read each case (line)
         for line in fp:
             values = line.rstrip().split(',')
             # remove leading labeling character, like I*, F*, and S*
             (ival, fval, sval, eqval, cpxval, cndval) = [value[1:] for value in values]
-            if ACTS_print_debug_output:
-                print(f'Content: {ival}, {fval}, {sval}, {eqval}, {cpxval}, {cndval}')
             # find a matching test case
             case = matching_case(cases, ival, fval, sval, eqval, cpxval, cndval)
             if case:
@@ -393,7 +393,7 @@ def read_selections(cases, ai):
                 selected_test_cases.append(case)
             else:
                 import sys
-                print('NO CASE FOUND')
+                print(f'NO CASE FOUND FOR I{ival}, F{fval}, S{sval}, E{eqval}, C{cpxval}, C{cndval}')
                 sys.exit(1)
 
     return selected_test_cases
@@ -408,15 +408,16 @@ def select_cases_ACTS(cases):
     Step 4: Return matching cases.
     """
 
-    # SKIMP - put this in the TestSuite directory.  Name it for the language.
-    acts_file = "/tmp/VTSG.xml"
+    # pick a "random" suffix from 00000 to 99999
+    #from random import randint
+    #randophane = f'{randint(0, 99999):05}'
+    ACTS_XML_file = '/tmp/VTSG_ACTS_input.xml'
+    ACTS_output   = '/tmp/VTSG_ACTS_output.txt'
 
-    ai = write_cases(acts_file, cases)
+    ai = write_cases(ACTS_XML_file, cases)
 
-    # run ACTS
-    run_ACTS(acts_file)
+    run_ACTS(ACTS_XML_file, ACTS_output)
 
-    # read selections produced
-    return read_selections(cases, ai)
+    return read_selections(ACTS_output, cases, ai)
 
 # end of select_by_acts.py
