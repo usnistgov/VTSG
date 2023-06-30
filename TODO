@@ -1,5 +1,5 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu May 18 11:17:38 2023" *by "Paul E. Black"
+ *modified "Fri Jun 30 15:47:13 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -56,6 +56,8 @@ why multiple <dir> entries are allowed.)
 
 Maybe replace the <path> <dir> stuff with one <description> or <name> keyword.
 (You'd have to fix a few modules with multiple <dir> entries.)
+
+Remember to update DTDs.
 
 
 3 Mar 2023
@@ -274,11 +276,6 @@ test run.
     The -n (number generated) option does something vaguely like this.  However, it
 stops generation after N sink/filter/input/exec query combinations are generated.
 Search for number_generated in generator.py.
-
-Incorporate combinatorial test generation
-    Now VTSG generates all combinations, like Juliet. It may be useful to generate
-    all n-way combinations.  This allows *far* more situations to be generated
-    without making millions of cases.
 
 
 OTHER? GENERAL?

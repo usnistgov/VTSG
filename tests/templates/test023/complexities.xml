@@ -1,0 +1,521 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
+<!-- *created  "Fri Jun 30 16:13:47 2023" *by "Paul E. Black" -->
+<!-- *modified "Fri Jun 30 16:14:48 2023" *by "Paul E. Black" -->
+<root>
+    <conditions>
+        <!--
+        <condition id="">
+            <code></code>
+            <value></value>
+        </condition>
+        -->
+        <condition id="1">
+            <code>1==1</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="2">
+            <code>1==0</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="3">
+            <code>(4+2&lt;=42)</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="4">
+            <code>(4+2>=42)</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="5">
+            <code>(math.pow(4, 2)&lt;=42)</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="6">
+            <code>(math.pow(4, 2)>=42)</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="7">
+            <code>(math.sqrt(42)&lt;=42)</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="8">
+            <code>(math.sqrt(42)>=42)</code>
+            <value>False</value>
+        </condition>
+
+        <!-- Juliet flow variants. "u" is always true; "v" is always false -->
+        <condition id="2u">
+            <code>True</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="2v">
+            <code>False</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="3u">
+            <code>5 == 5</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="3v">
+            <code>5 != 5</code>
+            <value>False</value>
+        </condition>
+
+<!-- These require extra support code
+        <condition id="4u">
+            <code>globalTrue</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="4v">
+            <code>globalFalse</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="5u">
+            <code>localTrue</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="5v">
+            <code>localFalse</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="6u">
+            <code>localFive == 5</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="6v">
+            <code>localFive != 5</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="8u">
+            <code>localReturnsTrue()</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="8v">
+            <code>localReturnsFalse()</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="10u">
+            <code>julietpy_support.extTrue</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="10v">
+            <code>julietpy_support.extFalse</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="11u">
+            <code>julietpy_support.extReturnsTrue()</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="11v">
+            <code>julietpy_support.extReturnsFalse()</code>
+            <value>False</value>
+        </condition>
+
+        <condition id="13u">
+            <code>julietpy_support.extFive == 5</code>
+            <value>True</value>
+        </condition>
+
+        <condition id="13v">
+            <code>julietpy_support.extFive != 5</code>
+            <value>False</value>
+        </condition>
+ -->
+    </conditions>
+
+    <complexities>
+        <!--
+        <complexity id="" type="" group="" executed="" in_out_var="i" indirection="" need_id="">
+            <code></code>
+            <body></body>
+        </complexity>
+        -->
+        <!-- Conditional branching -->
+        <!-- if statements-->
+
+        <complexity id="1" type="if" group="conditionals" executed="condition">
+            <code>
+        if {{ condition }}:
+	INDENT
+                {{ placeholder }}
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="2" type="if" group="conditionals" executed="condition">
+            <code>
+        if {{ condition }}:
+	INDENT
+                {{ placeholder }}
+	DEDENT
+        else:
+	INDENT
+                pass
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="3" type="if" group="conditionals" executed="not_condition">
+            <code>
+        if {{ condition }}:
+	INDENT
+                pass
+	DEDENT
+        else:
+        INDENT
+                {{ placeholder }}
+        DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="4" type="if" group="conditionals" executed="condition">
+            <code>
+        if {{ condition }}:
+	INDENT
+                {{ placeholder }}
+	DEDENT
+        elif not {{ condition }}:
+	INDENT
+                pass
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="5" type="if" group="conditionals" executed="not_condition">
+            <code>
+        if {{ condition }}:
+	INDENT
+                pass
+	DEDENT
+        elif not {{ condition }}:
+	INDENT
+                {{ placeholder }}
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="6" type="if" group="conditionals" executed="condition">
+            <code>
+        if {{ condition }}:
+	INDENT
+                {{ placeholder }}
+	DEDENT
+        elif not {{ condition }}:
+	INDENT
+                pass
+	DEDENT
+        else:
+        INDENT
+                pass
+        DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="7" type="if" group="conditionals" executed="not_condition">
+            <code>
+        if {{ condition }}:
+	INDENT
+                pass
+	DEDENT
+        elif not {{ condition }}:
+	INDENT
+                {{ placeholder }}
+	DEDENT
+        else:
+        INDENT
+                pass
+        DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="8" type="if" group="conditionals" executed="0" need_condition="1">
+            <code>
+	if {{condition}}:
+	INDENT
+                pass
+	DEDENT
+        elif not {{condition}}:
+	INDENT
+                pass
+	DEDENT
+        else:
+        INDENT
+	    {{placeholder}}
+	DEDENT
+            </code>
+        </complexity>
+
+        <!-- Switch cases  -->
+        <complexity id="11" type="switch" group="conditionals" executed="0">
+            <code>
+	match 6:
+	INDENT
+            case 6:
+	    INDENT
+                pass
+	    DEDENT
+            case _:
+	    INDENT
+                {{ placeholder }}
+	    DEDENT
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="12" type="switch" group="conditionals" executed="1">
+            <code>
+	match 6:
+	INDENT
+            case 6:
+	    INDENT
+                {{ placeholder }}
+	    DEDENT
+            case _:
+	    INDENT
+                pass
+	    DEDENT
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="13" type="switch" group="conditionals" executed="1">
+            <code>
+	match 7:
+	INDENT
+            case 6:
+	    INDENT
+                pass
+	    DEDENT
+            case _:
+	    INDENT
+                {{ placeholder }}
+	    DEDENT
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="14" type="switch" group="conditionals" executed="0">
+            <code>
+	match 7:
+	INDENT
+            case 6:
+	    INDENT
+                {{ placeholder }}
+	    DEDENT
+            case _:
+	    INDENT
+                pass
+	    DEDENT
+	DEDENT
+            </code>
+        </complexity>
+
+        <!--Conditional and unconditional loops -->
+
+        <complexity id="20" type="while" group="loops" executed="condition">
+            <code>
+        while {{ condition }}:
+	INDENT
+                {{ placeholder }}
+                break
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="20n" type="while" group="loops" executed="0" need_condition="1">
+            <code>
+        while {{ condition }}:
+	INDENT
+                break
+                {{ placeholder }}
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="22" type="for" group="loops" executed="1" need_id="1">
+            <code>
+        i_{{id}} = 1
+        for x in range(0, i_{{id}}):
+	INDENT
+                {{ placeholder }}
+	DEDENT
+            </code>
+        </complexity>
+
+        <complexity id="23" type="foreach" group="loops" executed="1" need_id="1" in_out_var="in">
+            <code>
+        # Declaring an array
+        arr_{{ id }} = []
+
+        # Storing value in array element
+        arr_{{ id }}.append(None)
+        arr_{{ id }}.append(None)
+        arr_{{ id }}.append(None)
+	assert {{in_var_name}} is not None, 'code only executed when {{in_var_name}} != None'
+        arr_{{ id }}.append({{ in_var_name }})
+
+        for val_{{id}} in arr_{{ id }}:
+	INDENT
+            if val_{{ id }}!=None:
+	    INDENT
+                {{ out_var_name }} = val_{{ id }}
+                {{ placeholder }}
+	    DEDENT
+	DEDENT
+            </code>
+        </complexity>
+
+        <!-- Unconditional jumps -->
+	<!-- not supported in Python -->
+
+        <!-- Functions -->
+        <complexity id="50" type="function" group="functions" executed="1" in_out_var="traversal" indirection="1" need_id="1">
+            <code>{{out_var_name}} = {{call_name}}({{in_var_name}})</code>
+            <body>
+def {{call_name}}( param_{{id}} ):
+INDENT
+        {{local_var}}
+        {{in_var_name}} = param_{{id}}
+        {{ placeholder }}
+        return {{out_var_name}}
+DEDENT
+
+            </body>
+        </complexity>
+
+        <complexity id="51" type="function" group="functions" executed="1" in_out_var="in" indirection="1" need_id="1">
+            <code>
+        {{out_var_name}} = {{call_name}}({{in_var_name}})
+        {{ placeholder}}
+            </code>
+            <body>
+def {{call_name}}( param_{{id}} ):
+INDENT
+        return param_{{id}}
+DEDENT
+
+            </body>
+        </complexity>
+
+        <complexity id="52" type="function" group="functions" executed="1" in_out_var="out" indirection="1" need_id="1">
+            <code>
+        {{ placeholder}}
+        {{out_var_name}} = {{call_name}}({{in_var_name}})
+            </code>
+            <body>
+def {{call_name}}( param_{{id}} ):
+INDENT
+        return param_{{id}}
+DEDENT
+
+            </body>
+        </complexity>
+
+        <!-- Classes -->
+        <complexity id="70" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
+            <code>
+        var_{{id}} = {{call_name}}({{in_var_name}});
+        {{out_var_name}} = var_{{id}}.get_var_{{id}}();
+            </code>
+            <body>
+'''
+{{comments}}
+'''
+
+{{ imports }}
+
+{{static_methods}}
+
+class {{call_name}}:
+INDENT
+        def __init__(self,{{in_var_name}}_{{id}}):
+	INDENT
+                self.var_{{id}} = {{in_var_name}}_{{id}}
+	DEDENT
+
+        def  get_var_{{id}}(self):
+	INDENT
+                {{local_var}}
+                {{in_var_name}} = var_{{id}}
+                {{ placeholder}}
+                return {{out_var_name}}
+	DEDENT
+DEDENT
+            </body>
+        </complexity>
+
+        <complexity id="71" type="class" group="classes" executed="1" in_out_var="in" need_id="1" indirection="1">
+            <code>
+        var_{{id}} = {{call_name}}({{in_var_name}})
+        {{out_var_name}} = var_{{id}}.get_var_{{id}}()
+        {{placeholder}}
+            </code>
+            <body>
+'''
+{{comments}}
+'''
+               
+class {{call_name}}:
+INDENT
+        def __init__(self, param):
+	INDENT
+                self.var_{{id}} = param
+	DEDENT
+
+        def get_var_{{id}}(self):
+	INDENT
+                return self.var_{{id}}
+	DEDENT
+
+DEDENT
+            </body>
+        </complexity>
+
+        <complexity id="72" type="class" group="classes" executed="1" in_out_var="out" need_id="1" indirection="1">
+            <code>
+        {{placeholder}}
+        var_{{id}} = {{call_name}}({{in_var_name}})
+        {{out_var_name}} = var_{{id}}.get_var_{{id}}()
+            </code>
+            <body>
+'''
+{{comments}}
+'''
+
+class {{call_name}}:
+INDENT
+        def __init__(self,param):
+	INDENT
+                self.var_{{id}} = param
+	DEDENT
+    
+        def get_var_{{id}}(self):
+	INDENT
+                return self.var_{{id}}
+	DEDENT
+DEDENT
+            </body>
+        </complexity>
+    </complexities>
+</root>

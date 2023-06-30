@@ -1,0 +1,54 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!-- *created  "Fri Jun 30 16:13:47 2023" *by "Paul E. Black" -->
+<!-- *modified "Fri Jun 30 16:17:14 2023" *by "Paul E. Black" -->
+
+<template name="test023">
+    <file_extension>py</file_extension>
+    <comment>
+        <open>'''</open>
+        <close>'''</close>
+        <inline>#</inline>
+    </comment>
+    <syntax>
+      <!-- If language doesn't have a terminator, leave empty-->
+      <statement_terminator></statement_terminator>
+      <!-- Insert desired indentation level using spaces-->
+      <indent>    </indent>
+    </syntax>
+    <namespace></namespace>
+    <variables prefix="" import_code="import {{import_file}}">
+    </variables>
+    <imports>
+        <import>sys</import>
+        <import>math</import>
+    </imports>
+    <code>
+'''
+VTSG test023
+Test choosing cases using ACTS
+{{ comments }}
+'''
+
+'''
+{{ license }}
+'''
+{{ stdlib_imports }}
+
+{{ static_methods }}
+
+
+def main():
+INDENT
+    {{input_content}}
+    {{filtering_content}}
+    {{sink_content}}
+    {{exec_queries_content}}
+DEDENT
+
+if __name__ == '__main__':
+        main()
+    </code>
+</template>
+
+<!-- end of file_template.xml -->

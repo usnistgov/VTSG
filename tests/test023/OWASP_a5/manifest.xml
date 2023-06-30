@@ -1,0 +1,15 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-06-30</date>
+			<input>None : None</input>
+		</meta-data>
+
+		<file path="TestSuite_06-30-2023_15h57m01/Python/OWASP_a5/CWE209/unsafe/CWE209__S_info_expose__0.py" language="Python">
+			<flaw line="43" name ="CWE209"/>
+		</file>
+
+	</testcase>
+
+</container>
