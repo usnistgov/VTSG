@@ -38,6 +38,11 @@ Kuhn DR, Wallace DR, {Gallo Jr} AM (2004) Software fault interactions and
   Engineering},  Vol.~30,  pp 418--421.
   \href{https://doi.org/10.1109/TSE.2004.24}{\doi{10.1109/TSE.2004.24}}
 
+\bibitem{KuhnEtAl2010PracCT}
+Kuhn DR, Kacker RN, Lei Y (2010) Practical combinatorial testing (National
+  Institute of Standards and Technology),  NIST-SP 800-142.
+  \href{https://doi.org/10.6028/NIST.SP.800-142}{\doi{10.6028/NIST.SP.800-142}}
+
 \bibitem{CWE89}
  (2020) {CWE-89}: Improper neutralization of special elements used in an {SQL}
   command ('{SQL} injection'),
