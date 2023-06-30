@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Jun 28 11:46:17 2023" *by "Paul E. Black"
+% *modified "Fri Jun 30 15:01:51 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -75,8 +75,10 @@ pdfkeywords={}
 
 % put a light gray ``DRAFT'' diagonally across each page
 \usepackage{draftwatermark}
-\usepackage{datetime} % for \shortmonthname
-\SetWatermarkText{DRAFT \number\day\ \shortmonthname}
+% datetime2 replaces datetime.
+% DTMenglishshortmonthname replaces shortmonthname, but it doesn't work.
+\usepackage{datetime} % for short month name, e.g. Jan, Feb, Mar, etc.
+\SetWatermarkText{DRAFT \number\day\ \shortmonthname\ \the\year}
 % bigger percentage is closer to white
 \SetWatermarkColor[gray]{0.9}
 \SetWatermarkFontSize{3cm}
@@ -557,6 +559,13 @@ meaning all) See below for \\
 explanation.} \\
 
 \hline
+\makecell[l]{-c ALGORITHM[,OPT] \\
+-\zws-choose=ALGORITHM[,OPT]} &
+\makecell[l]{Choose cases using the algorithm.\\
+ACTS is the only algorithm \\
+implemented. See Sec.~\ref{sec:selecting cases}.} \\
+
+\hline
 \makecell[l]{-t TEMPLATE\_DIRECTORY \\
 -\zws-template-directory=TEMPLATE\_DIRECTORY} &
 \makecell[l]{The language templates directory. \\
@@ -571,7 +580,7 @@ explanation.} \\
 \label{tab:command line options}
 \end{table} 
 
-\subsection{Explanation of Options}
+\subsection{Explanation of Some Options}
 
 VTSG will generate all flaws in all flaw groups unless limited with
 command line options.
@@ -641,15 +650,17 @@ without bugs, too, to test false positives).  It is tedious and error prone to
 construct these test cases manually.  VTSG is written to construct huge numbers
 of test cases consistently.
 
-In pseudocode, the structure of test cases that VTSG generates is
+In pseudocode, the basic structure of test cases that VTSG generates is
 \begin{verbatim}
+        declarations
         input = get_input_from_somewhere()
         if is an injection attack then
             reject it (filter)
         use the input to make a query (sink)
         execute the query in SQL
 \end{verbatim}
-You can see this structure in Fig.~\ref{fig:VTS operation overview}.
+You can see this structure in the center rectangle in
+Fig.~\ref{fig:VTS operation overview}.
 
 VTSG generates test cases from information in Template, Input,
 Filter, Sink, Complexity and ExecQuery files 
@@ -674,7 +685,7 @@ Details of the generation process are explained in
 Sec.~\ref{sec: generation detail}.
 
 \label{sec:case directory structure}
-When invoked to generate test cases, VTSG creates a directory with all the results.
+When invoked to generate test cases, VTSG creates a directory for all the results.
 The directory is named for the date and time created, for example,
 \verb|TestSuite_03-08-2022_| \verb|16h46m35|.
 The language directory, \verb|PHP|,
@@ -683,10 +694,10 @@ This language name comes from the \verb|name|
 in the \verb|file_template.xml| file.  See Sec.~\ref{sec: file template}.
 
 Under the language directory, VTSG creates one directory for each flaw group, for
-instance, \verb|OWASP_a1| or \verb|OWASP_a4|.  These come from the \verb|flaw_group|
+instance, \verb|OWASP_a1| or \verb|Exception|.  These come from the \verb|flaw_group|
 in the \verb|sinks.xml| file; see Sec.~\ref{sec:sink modules}.
 Under each flaw group directory is a subdirectory for each specific flaw, for
-instance, \verb|CWE_78| or \verb|CWE_89|.  These come from the \verb|flaw_type|
+instance, \verb|CWE78| or \verb|CWE_89|.  These come from the \verb|flaw_type|
 entries, which are also in the \verb|sinks.xml| file.
 VTSG also creates a manifest file of all the test cases generated for each flaw
 group, named
@@ -695,9 +706,8 @@ group, named
 If the \verb|flaw_group| is missing or empty, subdirectories for flaw types are
 created immediately under the language directory.
 
-Under the flaw directory are directories for safe or unsafe
-(vulnerable) test cases, depending on
-which are generated.
+Under the flaw directory are directories \verb|safe| and \verb|unsafe| for test
+cases that are not vulnerable or that are vulnerable respectively.
 
 \subsection{VTSG Directory Structure}
 \label{sec: directory structure}
@@ -715,7 +725,7 @@ and \verb|exec_queries.xml|.
 The files are described in Sec.~\ref{sec:source files}.
 To add another language,
 simply create a subdirectory for that language with the six description
-files.
+files.  See Sec.~\ref{sec:add a language} for more detail.
 
 The \verb|src/templates| directory has \verb|file_rights.txt|, which is
 copied into each generated test case to declare license rights and
@@ -741,10 +751,12 @@ VTSG generates test cases with two broad steps.  First, VTSG selects
 sink, filter, input, exec query, and complexities that are
 compatible with each other and consistent with any flaw group or
 flaw constraints the user gives on the command line.  Second, VTSG
-composes test case source code from the selected modules, 
+composes source code from the selected modules, 
 synthesizing variable and function names, and writes the file(s).
+The user may name an algorithm to choose which cases VTSG composes and writes,
+Sec.~\ref{sec:selecting cases}.
 
-The code structure is roughly
+VTSG code structure is roughly
 \begin{verbatim}
     for each specified sink
         for each filter
@@ -757,8 +769,7 @@ The code is more complicated because only compatible modules are
 selected.
 In addition, some sinks do not need any input or filtering at all,
 see Sec.~\ref{sec:sink modules}.
-The
-code is structured as a series of function calls to allow types
+The code is actually structured as a series of function calls to allow types
 of modules to be skipped.  Here is a slightly more detailed
 overview of those steps, which are in \verb|generator.py|:
 \begin{verbatim}
@@ -800,7 +811,7 @@ overview of those steps, which are in \verb|generator.py|:
     ... and so forth
 \end{verbatim}
 
-The \emph{vtsg.py} script creates a new object of the
+The \verb|vtsg.py| script creates a new object of the
 \emph{Generator} class. 
 The program iterates through all sink modules, selecting those
 specified by the user, see
@@ -812,8 +823,9 @@ must be consistent with the ``Filter'' and ``Sink'' XML tags.
 Then an exec query and complexities are selected
 that are compatible with the currently selected sink module.
 
-When VTSG has selected a set of modules, it composes
-their code to generate the source code for a test case.
+When VTSG has selected a set of modules, it saves them as one test case.
+Eventually VTSG goes through the list of test cases one by one.  For each one it
+composes the code of their modules to generate the source code for a test case.
 The process of composing modules to generate source code is
 based on XML metadata tags.
 After the imports and class definition declaration for the 
@@ -859,6 +871,46 @@ all cases with no complexities, all cases with one complexity,
 and all cases with two nested complexities.
 See Sec.~\ref{sec:code complexities} for an example of three 
 nested control flow complexities.
+
+\subsection{Choose a Subset of Cases by an Algorithm}
+\label{sec:selecting cases}
+
+By default VTSG generates all compatible combinations of inputs, filters, sinks,
+exec queries, complexities, and conditions.  The result can easily be tens of
+thousands of cases.  Yet, a small, carefully chosen subset of cases may
+suffice~\cite{SWInteractions2004}.
+
+ACTS is a combinatorial testing method to choose cases such that all consistent
+pairs or triples or N-way combinations of modules are represented.  For an
+explanation of combinatorial testing, see~\cite{KuhnEtAl2010PracCT} especially
+Sec. 2.1.
+
+For example,
+\begin{verbatim}
+$ python3 vtsg.py -l php -c ACTS
+\end{verbatim}
+generates a small set of PHP test cases that have all pairs of compatible
+modules.
+\begin{verbatim}
+$ python3 vtsg.py -l py -g Exception --choose=ACTS,doi=4
+\end{verbatim}
+generates a small set of Python test cases that have all 4-way combinations of
+compatible modules in the \verb|Exception| flaw group.
+If ACTS should select a combination of modules that was not generated, VTSG will
+halt with an error message.
+
+VTSG first generates all consistent combinations of modules,
+Sec.~\ref{sec: generation detail}.  If \verb|ACTS| is indicated, VTSG writes
+the list of modules and constraints on compatible modules to
+\verb|/tmp/VTSG_ACTS_input.xml|, runs ACTS, reads the selected sets of modules
+from \\ \verb|/tmp/VTSG_ACTS_output.txt|, and creates a list of matching module
+combinations.  VTSG then composes the code from modules and writes the test
+cases.
+
+Currently, the code to write ACTS input and read its output does \emph{not}
+handle more than one complexity in a case.  It should be straight forward to
+enhance the code, which is in \verb|select_by_acts.py|, to handle many
+complexities.
 
 \subsection{Code Complexities}
 \label{sec:code complexities}
@@ -2080,6 +2132,7 @@ See Sec.~\ref{sec:safe or unsafe} for details.
 
 
 \subsection{How to Add a Language}
+\label{sec:add a language}
 
 The easiest way is to
 \begin{enumerate}[nosep]
