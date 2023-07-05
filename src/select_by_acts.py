@@ -6,7 +6,7 @@ tool", 2013 IEEE Sixth International Conference on Software Testing, Verificatio
 Validation (ICST).
 
   *created "Thu Jun  1 09:39:16 2023" *by "Paul E. Black"
- *modified "Thu Jun 29 10:17:24 2023" *by "Paul E. Black"
+ *modified "Wed Jul  5 15:11:44 2023" *by "Paul E. Black"
 
 The interface is select_cases_ACTS().  Pass a list of cases; select via ACTS; and
 return a subset of the cases passed.
@@ -191,11 +191,11 @@ def write_parameters_and_constraints(fp, cases):
         fp.write(f'    <Parameter id="{id}" name="{name}" type="1">\n')
         fp.write(f'      <values>\n')
         for value in sorted(values): # sort - to always have the same order
+            fp.write(f'        <value>{value}</value>')
             if map_table:
                 description = map_table.description(value[1:])
-            else:
-                description = ''
-            fp.write(f'        <value>{value}</value>\t<!-- {description} -->\n')
+                fp.write(f'\t<!-- {description} -->')
+            fp.write('\n')
         fp.write(f'      </values>\n')
         fp.write(f'    </Parameter>\n')
 
