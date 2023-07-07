@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Fri Jun 30 15:01:51 2023" *by "Paul E. Black"
+% *modified "Fri Jul  7 15:23:49 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -525,15 +525,14 @@ See Sec.~\ref{sec: directory structure}.} \\
 \hline
 \makecell[l]{-g GROUP
 -\zws-group=GROUP} &
-\makecell[l]{Only generate cases with \\
-vulnerabilities in the specified \\
-group(s). May be repeated. \\
+\makecell[l]{Only generate cases in the \\
+specified group. May be repeated. \\
 See Sec.~\ref{sec:sink modules}.} \\
 \hline
 -f Flaw
 -\zws-flaw=Flaw &
 \makecell[l]{Only generate cases with the \\
-specified flaw(s). May be \\
+specified flaw. May be \\
 repeated. See Sec.~\ref{sec:sink modules}.} \\
 \hline
 -s
@@ -551,19 +550,15 @@ complexities (Default: 1) See \\
 Sec.~\ref{sec:depth of complexities}.} \\
 \hline
 -n NUMBER
--\zws-number-generated=NUMBER &
-\makecell[l]{Maximum number of sink, filter, \\
-input, and exec query combina- \\
-tions to generate. (Default: -1, \\
-meaning all) See below for \\
+-\zws-number-sampled=NUMBER &
+\makecell[l]{Only write one of every NUMBER \\
+cases generated. See below for \\
 explanation.} \\
 
 \hline
-\makecell[l]{-c ALGORITHM[,OPT] \\
--\zws-choose=ALGORITHM[,OPT]} &
-\makecell[l]{Choose cases using the algorithm.\\
-ACTS is the only algorithm \\
-implemented. See Sec.~\ref{sec:selecting cases}.} \\
+-\zws-ACTS[,doi] &
+\makecell[l]{Select cases using ACTS. See \\
+Sec.~\ref{sec:selecting cases}. (No short option.)} \\
 
 \hline
 \makecell[l]{-t TEMPLATE\_DIRECTORY \\
@@ -584,23 +579,20 @@ implemented. See Sec.~\ref{sec:selecting cases}.} \\
 
 VTSG will generate all flaws in all flaw groups unless limited with
 command line options.
+
 VTSG will generate both the unsafe (buggy or vulnerable)
-test cases and the safe (not buggy) test cases if the user does not select
+test cases and the safe (not buggy) test cases unless the user selects
 either only safe (-s) or only unsafe (-u) cases.  The options are
 mutually exclusive.
 
-The -n (number-generated) option is not very useful.  When the
-specified number of sink, filter, input (and exec query, if needed)
-combinations are generated, VTSG terminates.  The default, -1,
-means generate all combinations.
-
-Each combination of sink, filter, input, and exec query is elaborated
-with DEPTH nested complexities.  Suppose there are 5 complexities
-and VTSG is invoked with \verb|-r 2|.  Each combination will yield
-1 (no complexities) + 5 (each complexity, not nested) + 
-25 (each complexities nested within every complexity) = 31 test cases.  
-Hence VTSG will generate \emph{far} more test cases than the number
-given with the -n option.
+Use -n (number-sampled) to get a sample of all cases that would be generated.
+For instance, -n 3 directs VTSG to write case 1, skip 2 and 3, write case
+4, skip 5 and 6, write case 7, and so forth.  This option approximates random
+case selection (but is repeatable), combinatorial testing (in case ACTS is not
+installed), random testing (to spot check generation), and percentage of cases
+(that is, only write p\% of cases).  Note that there is no way to generate mixed
+fractions such as exactly $2/5$ of all cases.  The -n option and -\zws-ACTS are
+mutually exclusive.
 
 \subsection{Example Invocations}
 
@@ -654,7 +646,7 @@ In pseudocode, the basic structure of test cases that VTSG generates is
 \begin{verbatim}
         declarations
         input = get_input_from_somewhere()
-        if is an injection attack then
+        if input is an attack then
             reject it (filter)
         use the input to make a query (sink)
         execute the query in SQL
@@ -678,6 +670,7 @@ Filter, Sink, Complexity and ExecQuery files
  trigger the vulnerability.
  \item Complexities are additional data flow or control flow complications that are
    worked into the structure of the program to exercise tools' abilities.
+   Included are conditions inserted into complexities.
 \end{itemize}
 The content of these files is detailed in
 Sec.~\ref{sec:source files}.
@@ -763,7 +756,9 @@ VTSG code structure is roughly
             for each input
                 for each exec query
                     for up to DEPTH combinations of each complexity
-                        compose a test case with these modules
+                        save these modules
+    for set of saved modules
+        compose this set of modules into code for a test case
 \end{verbatim}
 The code is more complicated because only compatible modules are 
 selected.
@@ -798,22 +793,22 @@ overview of those steps, which are in \verb|generator.py|:
             for each exec_query:
                 if exec_query is compatible with sink:
                     use this exec_query
-                    recursion_or_compose()
+                    recursion_or_save()
         else:
-            recursion_or_compose()
+            recursion_or_save()
 
-    def recursion_or_compose():
+    def recursion_or_save():
         if input_type is not none:
             recursive_select_complexity()
         else:
-            compose()
+            save_test_case()
 
     ... and so forth
 \end{verbatim}
 
 The \verb|vtsg.py| script creates a new object of the
 \emph{Generator} class. 
-The program iterates through all sink modules, selecting those
+The program iterates through defined sink modules, selecting those
 specified by the user, see
 Sec.~\ref{sec:command line interface}, 
 or all of them if the user does not specify. It subsequently
@@ -822,6 +817,7 @@ The \verb|<input_type>| and \verb|<output_type>|
 must be consistent with the ``Filter'' and ``Sink'' XML tags.
 Then an exec query and complexities are selected
 that are compatible with the currently selected sink module.
+See \ref{sec:compatible modules} for details on module compatibility.
 
 When VTSG has selected a set of modules, it saves them as one test case.
 Eventually VTSG goes through the list of test cases one by one.  For each one it
@@ -840,10 +836,10 @@ is added to the test case.  Finally, the ``ExecQuery'' type is
 noted and the 
 \verb|<code>| portion of the ``ExecQuery'' is added
 to the 
-test case.  The test case is written to a file.  
-The location chosen for the file is
+test case.  The test case is written to one or more files.
+The location chosen for the files is
 described in Sec.~\ref{sec:case directory structure}.
-Section~\ref{sec:case file name} describes how VTSG names the file.
+Section~\ref{sec:case file name} describes how VTSG names the files.
 
 VTSG generates many different test cases, both with and without
 flaws, with various control flow complexities.  After VTSG finishes
@@ -872,7 +868,7 @@ and all cases with two nested complexities.
 See Sec.~\ref{sec:code complexities} for an example of three 
 nested control flow complexities.
 
-\subsection{Choose a Subset of Cases by an Algorithm}
+\subsection{Using ACTS to Select a Subset of Cases}
 \label{sec:selecting cases}
 
 By default VTSG generates all compatible combinations of inputs, filters, sinks,
@@ -880,24 +876,39 @@ exec queries, complexities, and conditions.  The result can easily be tens of
 thousands of cases.  Yet, a small, carefully chosen subset of cases may
 suffice~\cite{SWInteractions2004}.
 
-ACTS is a combinatorial testing method to choose cases such that all consistent
-pairs or triples or N-way combinations of modules are represented.  For an
+ACTS is a combinatorial method to choose cases such that all consistent
+pairs or triples or D-way combinations of modules are represented.  For an
 explanation of combinatorial testing, see~\cite{KuhnEtAl2010PracCT} especially
 Sec. 2.1.
 
+Degree of interaction (doi) is the coverage guaranteed.  Two-way means every
+pair of parameter values is represented, like every (allowed) input with every
+complexity.  If doi is 3, then every triple is covered, e.g. every input, sink,
+and condition combination.  Again only allowed combinations\footnote{The
+interface code checks which combinations are actually generated and
+writes ACTS constraints to \emph{not} create combinations that never occur.
+For instance, one filter, named ``none'', just passes the input value; it
+doesn't filter anything.  The filter is marked as need\_complexity="0" (See
+Sec.~\ref{sec:need complexity}), to avoid wrapping it in any complexity: it
+would useless to wrap an if or while around it.  The interface code sees that
+filter ``none'' never has complexities, so constrains ACTS to only match that
+filter with ``no complexity''.
+}
+are created.
+
 For example,
 \begin{verbatim}
-$ python3 vtsg.py -l php -c ACTS
+$ python3 vtsg.py -l php --ACTS
 \end{verbatim}
 generates a small set of PHP test cases that have all pairs of compatible
 modules.
 \begin{verbatim}
-$ python3 vtsg.py -l py -g Exception --choose=ACTS,doi=4
+$ python3 vtsg.py -l py -g Exception --ACTS,4
 \end{verbatim}
 generates a small set of Python test cases that have all 4-way combinations of
 compatible modules in the \verb|Exception| flaw group.
-If ACTS should select a combination of modules that was not generated, VTSG will
-halt with an error message.
+If ACTS should select a combination of modules that was not generated, VTSG
+halts with an error message.
 
 VTSG first generates all consistent combinations of modules,
 Sec.~\ref{sec: generation detail}.  If \verb|ACTS| is indicated, VTSG writes
@@ -907,10 +918,14 @@ from \\ \verb|/tmp/VTSG_ACTS_output.txt|, and creates a list of matching module
 combinations.  VTSG then composes the code from modules and writes the test
 cases.
 
-Currently, the code to write ACTS input and read its output does \emph{not}
-handle more than one complexity in a case.  It should be straight forward to
-enhance the code, which is in \verb|select_by_acts.py|, to handle many
+Currently, the code to write input for ACTS and read its output does \emph{not}
+handle more than one complexity in a case.  Therefore, \verb|-r| (depth) and
+-\zws-ACTS may not be used together.  It should be straight forward to enhance
+the code, which is in \verb|select_by_acts.py|, to handle any number of
 complexities.
+
+The -n option is another way to select which cases VTSG should write.
+Therefore, -n and -\zws-ACTS are mutually exclusive.
 
 \subsection{Code Complexities}
 \label{sec:code complexities}
@@ -1314,7 +1329,7 @@ some modules use it.
 \label{sec:module comment}
 
 If a sample module has a comment string, it is added to the
-\verb|{{comments}}| area given in the file template, Sec.~\ref{sec: file template}.
+\verb|{{comments}}| area in the file template, Sec.~\ref{sec: file template}.
 This informs the user about the purpose or structure of the input, filter, sink, and
 exec query modules included.  Below is an example comment string.
 
@@ -1333,7 +1348,7 @@ in the comments area.
 \label{sec:module import}
 
 Sometimes the use of code requires some library to be imported or used.  This is
-indicated with names given in \verb|<import></import>| directives within
+indicated with names in \verb|<import></import>| directives within
 \verb|<imports></imports>| sections.
 
 Code statements are synthesized from the \verb|import_code| in the file template and
@@ -1420,8 +1435,8 @@ provides one way for the generated program to get input.
 \begin{itemize}
     \item dir and path, comment, and imports: see Sec.~\ref{sec:shared attributes}.
 
-    \item flaw: indicate whether this input is always safe, always unsafe, or
-      neither for a particular flaw type.  See Sec.~\ref{sec:safe or unsafe} for
+    \item flaw: may indicate whether this input is always safe or always unsafe.
+      See Sec.~\ref{sec:safe or unsafe} for
       more details.  If this input has the same safe/unsafe value for most
       types of vulnerabilities, put ``default'' as the \verb|flaw_type|.
 
@@ -1488,7 +1503,7 @@ All filter modules are in the \verb|filters.xml| file.
       more details.  If this filter has the same safe/unsafe value for most
       types, put ``default'' as the \verb|flaw_type|.
 
-    \item code: The source code of an filter. It should contain the placeholders
+    \item code: The source code of a filter. It should contain the placeholders
     \\
     \verb|{{in_var_name}}| and \verb|{{out_var_name}}|.  Those placeholders will 
     be replaced by the variable names that will be used in the Input and in Sink.  Do
@@ -1506,6 +1521,7 @@ All filter modules are in the \verb|filters.xml| file.
 
     \item options: By default filters are wrapped in complexities.  Complexities may
       be disabled by adding \verb|options| with \verb|need_complexity="0"|.
+      \label{sec:need complexity}
       In other words, if \linebreak[4] \verb|need_complexity| is in
       \verb|<options />| with anything other than ``1'', VTSG does not generate any
       variations with complexities.
@@ -1905,10 +1921,10 @@ Fig.~\ref{fig:example aux file}.
 
 \section{Adding to VTSG}
 
-The next subsection is a brief tutorial giving advice on how to add a new flaw to an
-existing language in VTSG.  The subsection after that gives some advice on how to add
-a new language.  Finally a subsection offers some guidance on adding new capabilities
-or features.
+The next subsection is a brief tutorial giving suggestions on how to add a new
+flaw to an existing language in VTSG.  The subsection after that has suggestions
+on how to add a new language.  The final subsection offers some guidance on
+adding new capabilities or features to VTSG itself.
 
 \subsection{How to Add a Flaw}
 
@@ -1926,8 +1942,6 @@ As a first step, choose a generated test case and modify the source code to pres
 the target flaw.  Here is the core code of
 a potential divide by zero guarded by a filter:
 \begin{verbatim}
-    data = console_input()
-
     if data == 0:
         print('Invalid input')
         sys.exit(1)
@@ -1937,8 +1951,6 @@ a potential divide by zero guarded by a filter:
 You may want to try different variants to find which fits your needs best.  For
 instance, one variant of this flaw is for the filter to provide a safe value instead
 of aborting, like this:
-(Since the the console input line is always the same, we will not show it
-further.)
 \begin{verbatim}
     if data == 0:
         print('Invalid input')
@@ -2014,7 +2026,7 @@ In this case, the ``Sink'' module may be empty.
 \subsubsection{Write the Modules}
 
 Now that you have an idea of how to split up the code, the third step is to
-write new modules in VTSG for the flaw.  You probably need to write new sinks
+write new modules for VTSG for the flaw.  You probably need to write new sinks
 and filters, but you should be able to use existing input and exec query
 modules.  Edit the sinks.xml (or filters.xml or other) file to add them,
 then run VTSG.  It's likely that nothing is generated the very first time you
@@ -2037,7 +2049,9 @@ Compatibility of inputs, filters, sinks, and exec queries is computed various
 ways.  Remember that
 VTSG first chooses a sink module then chooses compatible filter, input, and exec
 query modules to
-use with it.  A filter is used with a sink if
+use with it.
+\label{sec:compatible modules}
+A filter is used with a sink if
 \begin{enumerate}[nosep]
 \item the filter \verb|output_type| is ``nofilter'' or the same as the sink
   \verb|input_type| \emph{and}
@@ -2080,10 +2094,10 @@ because Filter C is ``nofilter'' and Input 1 matches the sink.
   \label{fig:how inputs fit}
 \end{figure}
 
-Be aware that \emph{any} string is allowed in the \verb|input_type| or
+Be aware that \emph{any} string may be in the \verb|input_type| or
 \verb|output_type|.
 This allows you to use a kind of ``extended types'' to connect specific inputs,
-filters, and sinks.  Follwing is an example is in Python.
+filters, and sinks.  Following is an example is in Python.
 I wanted the input to be wrapped in
 complexities, like the following:
 \begin{verbatim}
@@ -2118,7 +2132,8 @@ exception.  I thought this is always unsafe.
         print(array[index])
 \end{verbatim}
 I discovered my mistake when I executed the cases and ``unsafe'' cases did
-\emph{not} produce the exploit evidence.  If the ``input'' was a safe hardcoded
+\emph{not} produce any evidence of a successful exploit.  I realized that, if the
+``input'' was a safe hardcoded
 value, the code was safe!
 \begin{verbatim}
     index = 0
@@ -2164,7 +2179,7 @@ object.  This does not help the user much.
 
 If the user can make a mistake, such as mismatched attributes or invalid fields, VTSG
 should explain what the problem is, where it arose, why it is invalid (e.g. where the
-information will be used), and what are correct approaches or alternatives.  For
+information will be used), and what are the correct approaches or alternatives.  For
 example, for an empty \verb|<dir></dir>| in an input module, VTSG reports
 \begin{verbatim}
 [ERROR] Invalid empty <dir></dir> in the inputs file.
@@ -2299,7 +2314,7 @@ Fig.~\ref{fig:example complexity-method file}.
 \section{Acknowledgments}
 
 Bertrand Stivalet and Aurelien Delaitre, from the NIST SAMATE team, designed the
-architecture of the VTSG project and managed its implementation.  The project was
+architecture of the VTSG and managed its implementation.  The project was
 implemented by students from TELECOM Nancy: Jean-Philippe Eisenbarth, Valentin
 Giannini, and Vincent Noyalet.  We thank Terry Cohen for her comments and
 suggestions, which improved this report.  We also thank Elizabeth Fong and
