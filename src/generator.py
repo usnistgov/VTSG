@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue May 23 10:51:44 2023" *by "Paul E. Black"
+ *modified "Fri Jul  7 14:14:54 2023" *by "Paul E. Black"
 """
 
 import time
@@ -232,16 +232,17 @@ class Generator(object):
         self.generate_safe = generate_safe
         self.generate_unsafe = generate_unsafe
 
-        # start of chain of calls to generate test cases
+        # start of chain of calls to generate a list of test cases
         self.select_sink()
 
         # select which test cases to produce
-        self.selected_test_cases = TestCase.select_test_cases(self.test_cases)
+        selected_test_cases = TestCase.select_test_cases(self.test_cases)
 
+        # start a new report to record only the selected test cases
         selected_case_report = CaseSummary()
 
         # generate code and write the source files for the selected cases
-        for case in self.selected_test_cases:
+        for case in selected_test_cases:
             # generate the code
             case.gen_code()
 
@@ -255,7 +256,7 @@ class Generator(object):
 
         elapsed_time = time.strftime("%H:%M:%S", time.gmtime(time.time() - self.start))
 
-        # report the number of safe/unsafe cases generated, time, etc.
+        # report the number of safe/unsafe cases generated
         self.report.report_counts(elapsed_time, 'Generation report:')
 
         # report the number of safe/unsafe cases selected
@@ -307,33 +308,32 @@ class Generator(object):
     def select_exec_queries(self):
         """
         If this case needs an exec query, use all compatible exec queries.  In
-        any case, proceed to complexity recursion step if needed or directly
-        to compose step if no complexities needed.
+        any case, proceed to complexity recursion-or-save step.
         """
         if self.current_sink.needs_exec():
             # select exec_queries
             for exec_query in self.tab_exec_queries:
                 if self.current_sink.compatible_with_exec_queries(exec_query):
                     self.current_exec_queries = exec_query
-                    self.recursion_or_compose()
+                    self.recursion_or_save()
         else:
             # sink doesn't need exec query
             self.current_exec_queries = None
-            self.recursion_or_compose()
+            self.recursion_or_save()
 
-    # fifth step: generate complexity depths if needed or go right to compose
-    def recursion_or_compose(self):
+    # fifth step: generate complexity depths if needed or go right to save test case
+    def recursion_or_save(self):
         '''
         If this uses an input and the filter needs complexities, wrap the filter
         in appropriate depths of complexities.
-        Otherwise, proceed directly to compose.
+        Otherwise, save the test case.
         '''
         if self.current_sink.input_type != 'none' and self.current_filter.need_complexity:
             self.recursion_level()
         else:
             # forget any level of complexities from previous loops
             self.current_max_rec = 0
-            self.compose()
+            self.save_test_case()
 
     # fifth-and-a-half step: generate all depths of complexities up to maximum
     def recursion_level(self):
@@ -346,11 +346,6 @@ class Generator(object):
 		complexity, and cases with two complexities around the filter code.
             * and so on ...
         """
-        # HACK limit the number of generated combinations of (input, filter, sink)
-        if self.number_generated == 0:
-            return
-        self.number_generated -= 1
-
         # generate with 0, 1, 2, ... level of complexities
         for i in range(0, self.max_recursion + 1):
             self.current_max_rec = i
@@ -363,14 +358,14 @@ class Generator(object):
         Go through all complexities.
         Specially process types of complexities, then call handle_condition to add
         conditions if the complexity needs one and recursively call this.
-        At the end we call the next function for compose then into one code chunk.
+        At the end, save all the modules as a test case.
 
         Args :
             **level** (int): Nesting level of the complexity being generated.
         """
         if level == 0:
-            # at the end of recursive call, we compose selected into one
-            self.compose()
+            # at the end of recursive call, we save selected modules
+            self.save_test_case()
         else:
             # Select complexity for this level
             for complexity in self.tab_complexity:
@@ -418,8 +413,8 @@ class Generator(object):
             # recursive call
             self.select_complexities(level-1)
 
-    # seventh step: compose previous code chunks, write file(s), and count
-    def compose(self):
+    # seventh step: save modules in a test case and count
+    def save_test_case(self):
         """
         Create a new testcase for the selected modules and complexities.  Return if
         this case should not be generated, i.e., because of user-selected safety.
