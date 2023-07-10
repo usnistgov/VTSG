@@ -1,8 +1,8 @@
-# *modified "Wed Apr  5 10:10:43 2023" *by "Paul E. Black"
+# *modified "Mon Jul 10 10:45:12 2023" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
-    vtsg.py -l LANGUAGE [-g GROUP ...] [-f FLAW ...] [-r DEPTH] [-s | -u] [-t TEMPLATE_DIRECTORY] [-n NUMBER_GENERATED] [-d]
+    vtsg.py -l LANGUAGE [-g GROUP ...] [-f FLAW ...] [-r DEPTH] [-s | -u] [--ACTS [<DOI>]] [-t TEMPLATE_DIRECTORY] [-n NUMBER_SKIPPED] [-d]
     vtsg.py (-h | --help)
     vtsg.py --version
 
@@ -15,9 +15,10 @@ Options:
     -f FLAW --flaw=FLAW                                             Generate cases with vulnerabilities in the specified FLAW (can be repeated)
     -s --safe                                                       Only generate safe cases
     -u --unsafe                                                     Only generate unsafe cases
-    -r DEPTH --depth=DEPTH                                          Depth of the Complexities (Default: 1)
+    -r DEPTH --depth=DEPTH                                          Depth of the Complexities [default: 1]
+    --ACTS                                                          Use ACTS to select cases. [default: 2]
     -t TEMPLATE_DIRECTORY --template-directory TEMPLATE_DIRECTORY   Directory with language template files
-    -n NUMBER_GENERATED --number-generated=NUMBER_GENERATED         (DEPRECATED - DON'T USE, SHOULD BE REMOVED SOON) Number of combinations of input, filter, and sink to generate (Default: -1, it means all)
+    -n NUMBER_SKIPPED --number-skipped=NUMBER_SKIPPED               Write 1 of every N cases
     -d --debug                                                      Debug (programmer hook)
 
 Examples:
@@ -27,15 +28,16 @@ Examples:
     vtsg.py -l cs -f CWE_354              (generate cases with CWE 354)
     vtsg.py -l cs -f CWE_89 -f CWE_78     (generate cases with CWE 89 or CWE 78)
     vtsg.py -l cs -r 2                    (generate cases with the complexity depth up to  and including two levels of nesting)
-    vtsg.py -l cs -n 1                    (generate cases with only one combination of input, filter, and sink for all flaws)
+    vtsg.py -l cs -n 3                    (write only one of every three cases generated)
+    vtsg.py -l py --ACTS 3                (generate Python cases covering all triples of modules)
     vtsg.py -l cs -s                      (generate cases where the vulnerabilities have been fixed)
     vtsg.py -l cs -u                      (generate cases where there are vulnerabilities)
     vtsg.py -l example -t tests/templates (generate the manual example, where the files for the "example" language are in tests/templates)
 
-    All these options can be combined (except for -s and -u).
+    All these options can be combined (except for -s and -u, --ACTS and -r > 1, and --ACTS and -n).
 
     For example:
-        vtsg.py -l cs -f CWE_78 -g IDOR -r 1 -n 1 -s
+        vtsg.py -l cs -f CWE_78 -g OWASP_a1 -r 2 -n 5 -s
 """
 
 
@@ -92,8 +94,9 @@ def main():
         if flaw not in flaw_list:
             print(f'Language {language} does not have flaw {flaw}. See --help.')
             sys.exit(1)
+    # this check for safe & unsafe is performed by docopt and is no longer needed
     if args["--safe"] and args["--unsafe"]:
-        print("Invalid option. Cannot specify both -s and -u. See --help")
+        print("Invalid options. Cannot specify both -s and -u. See --help")
         sys.exit(1)
     if args["--safe"]:
         safe = True
@@ -103,16 +106,37 @@ def main():
         unsafe = True
     debug = args["--debug"]
     try:
-        arg = args["--depth"]
-        g.max_recursion = int(arg) if arg is not None else 1
+        parameter = args["--depth"]
+        g.max_recursion = int(parameter)
+        if g.max_recursion < 0: raise ValueError
     except ValueError:
-        print("Invalid option. Value of the -r option must be an integer. See --help")
+        print("Invalid option. Argument of -r must be a non-negative integer. See --help")
         sys.exit(1)
     try:
-        arg = args["--number-generated"]
-        g.number_generated = int(arg) if arg is not None else -1
+        parameter = args["--number-skipped"]
+        g.number_skipped = int(parameter) if parameter is not None else -1
+        if g.number_skipped < 1 and g.number_skipped != -1: raise ValueError
     except ValueError:
-        print("Invalid option. Value of the -n option must be an integer. See --help")
+        print("Invalid option. Argument of -n must be a positive integer. See --help")
+        sys.exit(1)
+
+    # options that select cases written
+    g.ACTS_doi = None # signal don't use ACTS
+    if args["--ACTS"]:
+        if args["<DOI>"] is None:
+            g.ACTS_doi = 2 # default Degree of Interaction
+        else:
+            try:
+                g.ACTS_doi = int(args["<DOI>"])
+                if g.ACTS_doi < 1: raise ValueError
+            except ValueError:
+                print("Invalid option. Argument of --ACTS must be a positive integer. See --help")
+                sys.exit(1)
+    if args["--ACTS"] and g.number_skipped != -1:
+        print("Invalid options. Cannot specify both --ACTS and -n. See --help")
+        sys.exit(1)
+    if args["--ACTS"] and g.max_recursion > 1:
+        print("Invalid options. Cannot specify both --ACTS and -r > 1. See --help")
         sys.exit(1)
 
     # set user list
@@ -127,3 +151,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# end of vtsg.py
