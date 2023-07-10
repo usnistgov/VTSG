@@ -1,4 +1,4 @@
 Usage:
-    vtsg.py -l LANGUAGE [-g GROUP ...] [-f FLAW ...] [-r DEPTH] [-s | -u] [-t TEMPLATE_DIRECTORY] [-n NUMBER_GENERATED] [-d]
+    vtsg.py -l LANGUAGE [-g GROUP ...] [-f FLAW ...] [-r DEPTH] [-s | -u] [--ACTS [<DOI>]] [-t TEMPLATE_DIRECTORY] [-n NUMBER_SKIPPED] [-d]
     vtsg.py (-h | --help)
     vtsg.py --version
