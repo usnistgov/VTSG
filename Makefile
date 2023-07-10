@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Jun 28 16:56:17 2023" *by "Paul E. Black"
+# *modified "Mon Jul 10 11:09:34 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -7,13 +7,15 @@ all: testAll generate
 
 generate: genPython genCsharp genPHP
 
-testAll: testVarious testCLI testSTerm testIndent testDeclVars testSafeUnsafe
+testAll: testVarious testCLI testSTerm testIndent testDeclVars \
+	testACTS testSafeUnsafe
 	@echo All built-in self-tests succeeded
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
 	src/exec_query.py src/file_manager.py src/file_template.py \
 	src/filter_sample.py src/generator.py src/input_sample.py \
-	src/manifest.py src/sample.py src/sink_sample.py src/synthesize_code.py
+	src/manifest.py src/sample.py src/select_by_acts.py \
+	src/sink_sample.py src/synthesize_code.py src/test_case.py
 
 # this takes four minutes and produces 33k cases
 genCsharp: $(VTSG_FILES)
@@ -178,6 +180,32 @@ test021: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates -r 0 | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
+# test using ACTS to select cases
+testACTS: test023rACTS test023nACTS test023badArg test023default test023d3
+	@echo test using ACTS to select cases succeeded
+
+test023rACTS: $(VTSG_FILES)
+	python3 vtsg.py -l test023 -t tests/templates -r 2 --ACTS | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+test023nACTS: $(VTSG_FILES)
+	python3 vtsg.py -l test023 -t tests/templates -n 1 --ACTS | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+test023badArg: $(VTSG_FILES)
+	python3 vtsg.py -l test023 -t tests/templates --ACTS 0 | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+test023default: $(VTSG_FILES)
+	python3 vtsg.py -l test023 -t tests/templates --ACTS | tee $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test023 | head -1);for f in $$(find . -name "*.py"|sort); do diff $$f $(TDIR)/test023/$$f;done) | tee -a $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+test023d3: $(VTSG_FILES)
+	python3 vtsg.py -l test023 -t tests/templates --ACTS 3 | tee $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test023 | head -1);for f in $$(find . -name "*.py"|sort); do diff $$f $(TDIR)/test023/$$f;done) | tee -a $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
 # test generate only safe or only unsafe cases
 testSafeUnsafe: test025su test025s test025u
 	@echo test generate only safe or only unsafe cases succeeded
@@ -201,9 +229,7 @@ test025u: $(VTSG_FILES)
 # (re)generate all test025 cases
 # this is NOT run during normal testing
 test025: $(VTSG_FILES)
-	python3 vtsg.py -l $(@) -t tests/templates 2>&1 | tee $(@)_photo
-	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*.py"|sort); do echo $$f; diff $$f $(TDIR)/$(@)/$$f;done) | tee -a $(@)_photo
-	diff $(@)_photo tests/$(@)_photo
+	python3 vtsg.py -l $(@) -t tests/templates
 
 testNNN: $(VTSG_FILES) src/sarif_writer.py
 	python3 vtsg.py -l $@ -t tests/templates
