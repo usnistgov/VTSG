@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 input: file data.txt containing an integer
 no filtering
 sink: divide by input

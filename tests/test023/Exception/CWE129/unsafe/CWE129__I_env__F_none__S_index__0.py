@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 input: integer from environment variable
 no filtering
 

@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 input: integer from command line arg
 filter: block inputs less than 0
 

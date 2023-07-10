@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 input: integer from user input
 no filtering
 Kratkiewicz 180, 181, and 182: inputs from various sources; basic write

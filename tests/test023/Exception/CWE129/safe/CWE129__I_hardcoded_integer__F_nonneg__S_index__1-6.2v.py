@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 Hardcoded integer as input
 filter: block inputs less than 0
 

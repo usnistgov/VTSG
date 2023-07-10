@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 input: direct user input in string
 no filtering
 sink: run ls in a dir

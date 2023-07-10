@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 input: file data.txt containing an integer
 filter: block inputs less than 0
 

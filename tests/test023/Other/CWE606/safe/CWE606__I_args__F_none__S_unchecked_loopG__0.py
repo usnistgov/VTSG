@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 Command line args
 no filtering
 sink: loop condition from input - checked

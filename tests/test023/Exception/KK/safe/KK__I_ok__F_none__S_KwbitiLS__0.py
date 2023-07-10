@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 magnitude is ok - no overflow
 no filtering
 Kratkiewicz 285: "while" non-standard loop structure; init, test, and inc variables

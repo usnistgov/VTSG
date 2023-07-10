@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 input: integer from command line arg
 no filtering
 sink: divide by input

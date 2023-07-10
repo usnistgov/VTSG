@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 magnitude is minimum - 1 byte overflow
 no filtering
 Kratkiewicz 071: function pointer secondary control flow

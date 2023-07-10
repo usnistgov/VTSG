@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 magnitude is minimum - 1 byte overflow
 no filtering
 Kratkiewicz 053: 1 level of address alias

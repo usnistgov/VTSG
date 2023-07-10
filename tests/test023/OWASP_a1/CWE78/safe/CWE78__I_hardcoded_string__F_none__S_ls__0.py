@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 Hardcoded string as input
 no filtering
 sink: run ls in a dir

@@ -1,4 +1,6 @@
 '''
+VTSG test023
+Test choosing cases using ACTS
 Initialize to None
 input (filter): environment variable ADD << INPUT
 ../etc/passwd
