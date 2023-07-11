@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Jul 11 14:44:38 2023" *by "Paul E. Black"
+ *modified "Tue Jul 11 15:58:48 2023" *by "Paul E. Black"
 """
 
 import time
@@ -101,8 +101,8 @@ class Generator(object):
             **_max_recursion** (int): Max level of recursion with complexities, 0 for flat code, 1 for one complexity, \
                                       2 for two, ... (private member, please use getter and setter).
 
-            **_number_skipped** (int): Number of cases skipped or NOT selected. \
-                    None means do not skip any. (private member, please use getter).
+            **_number_sampled** (int): Select 1 of every N cases. None means select all. \
+                (private member, please use getter).
 
             **dir_name** (str): Name of the top-level director containing all
                 the manifest files and the generated cases.
@@ -159,7 +159,7 @@ class Generator(object):
 
     def __init__(self, date, language, template_directory):
         self._max_recursion = 1
-        self._number_skipped = None # don't skip any generated cases
+        self._number_sampled = None # select all generated cases
         self._ACTS_doi = None # don't use ACTS to select cases
         self.date = date
         self.report = CaseSummary()
@@ -237,10 +237,10 @@ class Generator(object):
         self.select_sink()
 
         # select which test cases to produce
-        if self.number_skipped is not None:
-            # skip every N test cases
+        if self.number_sampled is not None:
+            # select 1 of every N test cases
             selected_test_cases = []
-            for i in range(0, len(self.test_cases), self.number_skipped+1):
+            for i in range(0, len(self.test_cases), self.number_sampled):
                 selected_test_cases.append(self.test_cases[i])
         elif self.ACTS_doi is not None:
             # select using ACTS
@@ -269,7 +269,7 @@ class Generator(object):
         # report the number of safe/unsafe cases generated
         self.report.report_counts('Generation report:')
 
-        if self.number_skipped is not None or self.ACTS_doi is not None:
+        if self.number_sampled is not None or self.ACTS_doi is not None:
             # report the number of safe/unsafe cases selected
             selected_case_report.report_counts('\nSelected case report:')
 
@@ -530,14 +530,14 @@ class Generator(object):
         self._max_recursion = value
 
     @property
-    def number_skipped(self):
+    def number_sampled(self):
         """
-        Number of cases that are not selected for every one generated case that is.
+        Select one of every N generated cases.
 
         :getter: Returns this number.
         :type: int
         """
-        return self._number_skipped
+        return self._number_sampled
 
     @property
     def ACTS_doi(self):

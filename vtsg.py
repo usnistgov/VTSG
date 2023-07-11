@@ -1,8 +1,8 @@
-# *modified "Tue Jul 11 14:26:30 2023" *by "Paul E. Black"
+# *modified "Tue Jul 11 15:54:48 2023" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
-    vtsg.py -l LANGUAGE [-g GROUP ...] [-f FLAW ...] [-r DEPTH] [-s | -u] [--ACTS [<DOI>]] [-t TEMPLATE_DIRECTORY] [-n NUMBER_SKIPPED] [-d]
+    vtsg.py -l LANGUAGE [-g GROUP ...] [-f FLAW ...] [-r DEPTH] [-s | -u] [--ACTS [<DOI>]] [-t TEMPLATE_DIRECTORY] [-n NUMBER_SAMPLED] [-d]
     vtsg.py (-h | --help)
     vtsg.py --version
 
@@ -18,7 +18,7 @@ Options:
     -r DEPTH --depth=DEPTH                                          Depth of the Complexities [default: 1]
     --ACTS                                                          Use ACTS to select cases. [default: 2]
     -t TEMPLATE_DIRECTORY --template-directory TEMPLATE_DIRECTORY   Directory with language template files
-    -n NUMBER_SKIPPED --number-skipped=NUMBER_SKIPPED               Write 1 of every N cases
+    -n NUMBER_SAMPLED --number-sampled=NUMBER_SAMPLED               Write 1 of every N cases
     -d --debug                                                      Debug (programmer hook)
 
 Examples:
@@ -112,10 +112,10 @@ def main():
     except ValueError:
         print("Invalid parameter: -r takes a non-negative integer. See --help")
         sys.exit(1)
-    if args["--number-skipped"]:
+    if args["--number-sampled"]:
         try:
-            g._number_skipped = int(args["--number-skipped"]) # ValueError if not number
-            if g.number_skipped < 1: raise ValueError
+            g._number_sampled = int(args["--number-sampled"]) # ValueError if not number
+            if g.number_sampled < 1: raise ValueError
         except ValueError:
             print("Invalid parameter: -n takes a positive integer. See --help")
             sys.exit(1)
@@ -131,7 +131,7 @@ def main():
             except ValueError:
                 print("Invalid parameter: --ACTS takes a positive integer. See --help")
                 sys.exit(1)
-    if args["--ACTS"] and g.number_skipped is not None:
+    if args["--ACTS"] and g.number_sampled is not None:
         print("Invalid options. Cannot specify both --ACTS and -n. See --help")
         sys.exit(1)
     if args["--ACTS"] and g.max_recursion > 1:
