@@ -5,14 +5,13 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Thu Jun  1 09:58:23 2023" *by "Paul E. Black"
+ *modified "Tue Jul 11 10:20:00 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
 from src.file_manager import FileManager
 from src.complexities_generator import ComplexitiesGenerator
 from src.synthesize_code import make_assign, get_indent, fix_indents
-import src.select_by_acts
 import src.generator # for resetUID()
 
 class TestCase(object):
@@ -137,17 +136,6 @@ class TestCase(object):
         name += "."+self.generator.file_template.file_extension
 
         return name
-
-    @staticmethod
-    def select_test_cases(test_cases):
-        """
-        Return a list of test cases selected to be generated and written.
-        """
-
-        # SKIMP - select by different methods. Or just use all of them.
-        selected_test_cases = src.select_by_acts.select_cases_ACTS(test_cases)
-
-        return selected_test_cases
 
     def gen_code(self):
         """

@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Fri Jul  7 14:14:54 2023" *by "Paul E. Black"
+ *modified "Tue Jul 11 14:37:23 2023" *by "Paul E. Black"
 """
 
 import time
@@ -18,6 +18,7 @@ from src.complexity import ComplexitySample
 from src.condition import ConditionSample
 from src.file_template import FileTemplate
 from src.test_case import TestCase
+import src.select_by_acts
 
 import xml.etree.ElementTree as ET
 
@@ -58,9 +59,9 @@ class CaseSummary(object):
         else:
             self.counts[flaw_group][flaw]["unsafe_sample"] += 1
 
-    def report_counts(self, elapsed_time, caption):
+    def report_counts(self, caption):
         """
-        Print final report for this run: number of safe/unsafe by flaw, group, and time.
+        Print final report for this run: number of safe/unsafe by flaw, group, and total.
         """
         total = 0
         print(f'{caption}')
@@ -83,7 +84,6 @@ class CaseSummary(object):
             total += group_total
 
         print(f'{total} total')
-        print(f'Generation time {elapsed_time}')
 
 
 class Generator(object):
@@ -101,8 +101,8 @@ class Generator(object):
             **_max_recursion** (int): Max level of recursion with complexities, 0 for flat code, 1 for one complexity, \
                                       2 for two, ... (private member, please use getter and setter).
 
-            **_number_generated** (int): Number of triplets (input,filter,sink) generated (private member, \
-                                         please use getter and setter).
+            **_number_skipped** (int): Number of cases skipped or NOT selected. \
+                    None means do not skip any. (private member, please use getter).
 
             **dir_name** (str): Name of the top-level director containing all
                 the manifest files and the generated cases.
@@ -159,7 +159,8 @@ class Generator(object):
 
     def __init__(self, date, language, template_directory):
         self._max_recursion = 1
-        self._number_generated = -1
+        self._number_skipped = None # don't skip any generated cases
+        self._ACTS_doi = None # don't use ACTS to select cases
         self.date = date
         self.report = CaseSummary()
         self.flaw_type_user = None
@@ -236,7 +237,16 @@ class Generator(object):
         self.select_sink()
 
         # select which test cases to produce
-        selected_test_cases = TestCase.select_test_cases(self.test_cases)
+        if self.number_skipped is not None:
+            # skip every N test cases
+            selected_test_cases = []
+            for i in range(0, len(self.test_cases), self.number_skipped+1):
+                selected_test_cases.append(self.test_cases[i])
+        elif self.ACTS_doi is not None:
+            # select using ACTS
+            selected_test_cases = src.select_by_acts.select_cases_ACTS(self.test_cases, self.ACTS_doi)
+        else:
+            selected_test_cases = self.test_cases
 
         # start a new report to record only the selected test cases
         selected_case_report = CaseSummary()
@@ -257,10 +267,13 @@ class Generator(object):
         elapsed_time = time.strftime("%H:%M:%S", time.gmtime(time.time() - self.start))
 
         # report the number of safe/unsafe cases generated
-        self.report.report_counts(elapsed_time, 'Generation report:')
+        self.report.report_counts('Generation report:')
 
-        # report the number of safe/unsafe cases selected
-        #selected_case_report.report_counts(elapsed_time, 'Selected case report:')
+        if self.number_skipped is not None or self.ACTS_doi is not None:
+            # report the number of safe/unsafe cases selected
+            selected_case_report.report_counts('\nSelected case report:')
+
+        print(f'Generation time {elapsed_time}')
 
     # first step: select sink
     def select_sink(self):
@@ -517,22 +530,24 @@ class Generator(object):
         self._max_recursion = value
 
     @property
-    def number_generated(self):
+    def number_skipped(self):
         """
-        Number of triplets (input,filter,sink) generated.
+        Number of cases that are not selected for every one generated case that is.
 
         :getter: Returns this number.
-        :setter: Sets this number.
         :type: int
         """
-        return self._number_generated
+        return self._number_skipped
 
-    @number_generated.setter
-    def number_generated(self, value):
+    @property
+    def ACTS_doi(self):
         """
-        Sets the number of generated trio.
+        If not None, use ACTS with this Degree of Interaction to select cases.
+
+        :getter: Returns this number.
+        :type: int
         """
-        self._number_generated = value
+        return self._ACTS_doi
 
     @staticmethod
     def remove_indent(code, all=False):

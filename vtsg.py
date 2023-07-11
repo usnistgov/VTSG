@@ -1,4 +1,4 @@
-# *modified "Tue Jul 11 10:31:00 2023" *by "Paul E. Black"
+# *modified "Tue Jul 11 14:26:30 2023" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
@@ -112,23 +112,21 @@ def main():
     except ValueError:
         print("Invalid parameter: -r takes a non-negative integer. See --help")
         sys.exit(1)
-    g.number_skipped = None
     if args["--number-skipped"]:
         try:
-            g.number_skipped = int(args["--number-skipped"]) # ValueError if not number
+            g._number_skipped = int(args["--number-skipped"]) # ValueError if not number
             if g.number_skipped < 1: raise ValueError
         except ValueError:
             print("Invalid parameter: -n takes a positive integer. See --help")
             sys.exit(1)
 
     # options that select cases written
-    g.ACTS_doi = None # signal don't use ACTS
     if args["--ACTS"]:
         if args["<DOI>"] is None:
-            g.ACTS_doi = 2 # default Degree of Interaction
+            g._ACTS_doi = 2 # default Degree of Interaction
         else:
             try:
-                g.ACTS_doi = int(args["<DOI>"])
+                g._ACTS_doi = int(args["<DOI>"])
                 if g.ACTS_doi < 1: raise ValueError
             except ValueError:
                 print("Invalid parameter: --ACTS takes a positive integer. See --help")

@@ -6,7 +6,7 @@ tool", 2013 IEEE Sixth International Conference on Software Testing, Verificatio
 Validation (ICST).
 
   *created "Thu Jun  1 09:39:16 2023" *by "Paul E. Black"
- *modified "Wed Jul  5 15:11:44 2023" *by "Paul E. Black"
+ *modified "Tue Jul 11 12:12:39 2023" *by "Paul E. Black"
 
 The interface is select_cases_ACTS().  Pass a list of cases; select via ACTS; and
 return a subset of the cases passed.
@@ -14,6 +14,8 @@ return a subset of the cases passed.
 ACTS has two important options, neither of which are (currently) supported with this
 interface.  They are degree of interaction (default 2) and algorithm.
 """
+
+import sys
 
 # these were helpful while I was developing
 ACTS_print_debug_output = False
@@ -313,23 +315,21 @@ def write_cases(file_path, cases):
     return ai
 
 
-def run_ACTS(file_path, ACTS_output):
+def run_ACTS(file_path, ACTS_output, doi):
     """
     Run ACTS on the given file_path.  Results are in ACTS_output.
     """
 
     import os
 
-    # SKIMP - Default is 2-way coverage.  Allow for different coverages.
     ACTS_photo = 'TestPhoto_ACTS'
     if os.path.exists(ACTS_photo):
         os.remove(ACTS_photo) # don't let previous output confuse the success test
     # put std out and err in a file to not mess up expected results, then check success
-    expected = os.system(f'java -Doutput=csv -jar ACTS3.2/acts_3.2.jar {file_path} {ACTS_output} > {ACTS_photo} 2>&1;[ "$(tail -1 {ACTS_photo}|cut -c -13)" = "Output file: " ]')
+    expected = os.system(f'java -Doutput=csv -Ddoi={doi} -jar ACTS3.2/acts_3.2.jar {file_path} {ACTS_output} > {ACTS_photo} 2>&1;[ "$(tail -1 {ACTS_photo}|cut -c -13)" = "Output file: " ]')
     if expected != 0:
         # ACTS command line output was not what we expected
         print(f'[ERROR] unexpected ACTS output, which is in {ACTS_photo}')
-        import sys
         sys.exit(1)
 
 
@@ -392,14 +392,13 @@ def read_selections(ACTS_output_file, cases, ai):
                 if ACTS_print_debug_output: print(case)
                 selected_test_cases.append(case)
             else:
-                import sys
                 print(f'NO CASE FOUND FOR I{ival}, F{fval}, S{sval}, E{eqval}, C{cpxval}, C{cndval}')
                 sys.exit(1)
 
     return selected_test_cases
 
 
-def select_cases_ACTS(cases):
+def select_cases_ACTS(cases, doi):
     """
     Select test cases by automated combinatorial testing (ACTS).
     Step 1: Write descriptions of the cases to a file.
@@ -408,15 +407,20 @@ def select_cases_ACTS(cases):
     Step 4: Return matching cases.
     """
 
-    # pick a "random" suffix from 00000 to 99999
+    # pick a "random" suffix from 00000 to 99999 to make these temporary (more) unique
     #from random import randint
     #randophane = f'{randint(0, 99999):05}'
     ACTS_XML_file = '/tmp/VTSG_ACTS_input.xml'
     ACTS_output   = '/tmp/VTSG_ACTS_output.txt'
 
+    # we only use 6 parameters to encode our test cases for ACTS
+    if doi > 6:
+        print('[ERROR] ACTS degree of interaction should not exceed 6')
+        sys.exit(1)
+
     ai = write_cases(ACTS_XML_file, cases)
 
-    run_ACTS(ACTS_XML_file, ACTS_output)
+    run_ACTS(ACTS_XML_file, ACTS_output, doi)
 
     return read_selections(ACTS_output, cases, ai)
 
