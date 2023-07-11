@@ -1,9 +1,16 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Fri Jun 30 15:47:13 2023" *by "Paul E. Black"
+ *modified "Tue Jul 11 15:37:41 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
+
+11 July 2023
+
+Remove <namespace> stuff.  Only C# uses it, and it is only a fixed name.
+Although a name is available in the file_template, the REFERENCES to it appear
+to be hardcoded in complexities.  Might as well hardcode all of them (I think).
+
 
 30 March 2023
 
@@ -86,6 +93,14 @@ that is, is this an optional flag?  Other attributes that need more explanation 
 • in_out_var (especially the magic that happens when the value is "traversal")
 
 
+16 Nov 2022
+Explain in manual what "supported" complexity types and groups do.  That is, *any*
+string can be placed in type or group, but some strings trigger special functions in
+VTSG.
+
+Add examples of how to code things or how to use options, like need_id.
+
+
 6 Sep 2022
 Fix Python "Classes" complexity:
 The main file must import the class-defining file, e.g.
@@ -94,14 +109,6 @@ from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22b import Class_884
 Also, in complexities_generator.py about line 241, union imports and call
 generate_imports(), like the code in generator.py at # IMPORTS.
 "using {{import}};" is currently hardcoded.
-
-
-16 Nov 2022
-Explain in manual what "supported" complexity types and groups do.  That is, *any*
-string can be placed in type or group, but some strings trigger special functions in
-VTSG.
-
-Add examples of how to code things or how to use options, like need_id.
 
 
 7 Nov 2022
