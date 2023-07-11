@@ -1,4 +1,4 @@
-# *modified "Tue Jul 11 09:29:40 2023" *by "Paul E. Black"
+# *modified "Tue Jul 11 10:31:00 2023" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
@@ -112,13 +112,14 @@ def main():
     except ValueError:
         print("Invalid parameter: -r takes a non-negative integer. See --help")
         sys.exit(1)
-    try:
-        parameter = args["--number-skipped"]
-        g.number_skipped = int(parameter) if parameter is not None else -1
-        if g.number_skipped < 1 and g.number_skipped != -1: raise ValueError
-    except ValueError:
-        print("Invalid parameter: -n takes a positive integer. See --help")
-        sys.exit(1)
+    g.number_skipped = None
+    if args["--number-skipped"]:
+        try:
+            g.number_skipped = int(args["--number-skipped"]) # ValueError if not number
+            if g.number_skipped < 1: raise ValueError
+        except ValueError:
+            print("Invalid parameter: -n takes a positive integer. See --help")
+            sys.exit(1)
 
     # options that select cases written
     g.ACTS_doi = None # signal don't use ACTS
@@ -132,7 +133,7 @@ def main():
             except ValueError:
                 print("Invalid parameter: --ACTS takes a positive integer. See --help")
                 sys.exit(1)
-    if args["--ACTS"] and g.number_skipped != -1:
+    if args["--ACTS"] and g.number_skipped is not None:
         print("Invalid options. Cannot specify both --ACTS and -n. See --help")
         sys.exit(1)
     if args["--ACTS"] and g.max_recursion > 1:
