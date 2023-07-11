@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Mon Jul 10 11:09:34 2023" *by "Paul E. Black"
+# *modified "Tue Jul 11 11:34:42 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -8,7 +8,7 @@ all: testAll generate
 generate: genPython genCsharp genPHP
 
 testAll: testVarious testCLI testSTerm testIndent testDeclVars \
-	testACTS testSafeUnsafe
+	testSelect testSafeUnsafe
 	@echo All built-in self-tests succeeded
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
@@ -180,9 +180,11 @@ test021: $(VTSG_FILES)
 	python3 vtsg.py -l $@ -t tests/templates -r 0 | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
-# test using ACTS to select cases
-testACTS: test023rACTS test023nACTS test023badArg test023default test023d3
-	@echo test using ACTS to select cases succeeded
+# test using ACTS or -n to select cases
+testSelect: test023rACTS test023nACTS test023ACTSbadArg \
+	test023ACTSdefault test023ACTSd1 \
+	test023-NbadArg test023-N59
+	@echo test selecting cases succeeded
 
 test023rACTS: $(VTSG_FILES)
 	python3 vtsg.py -l test023 -t tests/templates -r 2 --ACTS | tee $(@)_photo
@@ -192,17 +194,26 @@ test023nACTS: $(VTSG_FILES)
 	python3 vtsg.py -l test023 -t tests/templates -n 1 --ACTS | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
-test023badArg: $(VTSG_FILES)
+test023ACTSbadArg: $(VTSG_FILES)
 	python3 vtsg.py -l test023 -t tests/templates --ACTS 0 | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
-test023default: $(VTSG_FILES)
-	python3 vtsg.py -l test023 -t tests/templates --ACTS | tee $(@)_photo
+test023ACTSdefault: $(VTSG_FILES)
+	python3 vtsg.py -l test023 -t tests/templates --ACTS | grep -v "Generation time " | tee $(@)_photo
 	(cd $$(ls -dt TestSuite_*/test023 | head -1);for f in $$(find . -name "*.py"|sort); do diff $$f $(TDIR)/test023/$$f;done) | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
-test023d3: $(VTSG_FILES)
-	python3 vtsg.py -l test023 -t tests/templates --ACTS 3 | tee $(@)_photo
+test023ACTSd1: $(VTSG_FILES)
+	python3 vtsg.py -l test023 -t tests/templates --ACTS 1 | grep -v "Generation time " | tee $(@)_photo
+	(cd $$(ls -dt TestSuite_*/test023 | head -1);for f in $$(find . -name "*.py"|sort); do diff $$f $(TDIR)/test023/$$f;done) | tee -a $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+test023-NbadArg: $(VTSG_FILES)
+	python3 vtsg.py -l test023 -t tests/templates -n -5 | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
+
+test023-N59: $(VTSG_FILES)
+	python3 vtsg.py -l test023 -t tests/templates --number-skipped 59 | grep -v "Generation time " | tee $(@)_photo
 	(cd $$(ls -dt TestSuite_*/test023 | head -1);for f in $$(find . -name "*.py"|sort); do diff $$f $(TDIR)/test023/$$f;done) | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
