@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Jul 11 14:37:23 2023" *by "Paul E. Black"
+ *modified "Tue Jul 11 14:44:38 2023" *by "Paul E. Black"
 """
 
 import time
@@ -65,7 +65,7 @@ class CaseSummary(object):
         """
         total = 0
         print(f'{caption}')
-        for flaw_group in self.counts:
+        for flaw_group in sorted(self.counts):
             group_total = 0
             flaw_group_label = flaw_group
             # in case the flaw_group is missing or the empty string
