@@ -11,7 +11,6 @@
     <syntax>
       <statement_terminator>;</statement_terminator>
     </syntax>
-    <namespace>default_namespace</namespace>
     <variables prefix="" import_code="using {{import_file}};">
         <variable type="int" code="int" init="0"/>
         <variable type="string" code="string" init="null"/>
@@ -28,7 +27,7 @@
 {{license}}
 */
 {{stdlib_imports}}
-namespace {{namespace_name}}{
+namespace default_namespace{
     class {{main_name}}{
         public static void Main(string[] args){
             {{local_var}}

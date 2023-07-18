@@ -1,16 +1,9 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Jul 11 15:37:41 2023" *by "Paul E. Black"
+ *modified "Tue Jul 18 16:53:01 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
 FIX BUGS - HANDLE ALL CURRENT LANGUAGES
-
-11 July 2023
-
-Remove <namespace> stuff.  Only C# uses it, and it is only a fixed name.
-Although a name is available in the file_template, the REFERENCES to it appear
-to be hardcoded in complexities.  Might as well hardcode all of them (I think).
-
 
 30 March 2023
 

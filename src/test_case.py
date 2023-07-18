@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Tue Jul 11 10:20:00 2023" *by "Paul E. Black"
+ *modified "Tue Jul 18 16:18:59 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -267,7 +267,6 @@ class TestCase(object):
         file_content = template.render(license=license_content,
                                        comments=comments_code,
                                        stdlib_imports=imports_code,
-                                       namespace_name=file_template.namespace,
                                        main_name=main_class_name,
                                        input_content=input_code,
                                        filtering_content=filter_code,

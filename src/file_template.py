@@ -1,7 +1,7 @@
 """
 file_template module
 
- *modified "Tue Feb 14 09:35:16 2023" *by "Paul E. Black"
+ *modified "Tue Jul 18 16:19:32 2023" *by "Paul E. Black"
 """
 
 import re
@@ -16,8 +16,6 @@ class FileTemplate(object):
             **_language_name** (str): Name of language (private member, please use getter).
 
             **_file_extension** (str): File extension (private member, please use getter).
-
-            **_namespace** (int): Namespace (private member, please use getter).
 
             **_code** (str): Template code (private member, please use getter).
 
@@ -38,9 +36,6 @@ class FileTemplate(object):
     def __init__(self, file_template):
         self._language_name = file_template.get("name")
         self._file_extension = file_template.find("file_extension").text
-        self._namespace = ""
-        if file_template.find("namespace") is not None:
-            self._namespace = file_template.find("namespace").text
         template_code = file_template.find("code").text
         if template_code[0] == '\n':
             template_code = template_code[1:] # remove a leading new line
@@ -85,16 +80,6 @@ class FileTemplate(object):
         :type: str
         """
         return self._language_name
-
-    @property
-    def namespace(self):
-        """
-        Namespace.
-
-        :getter: Returns this namespace.
-        :type: str
-        """
-        return self._namespace
 
     @property
     def imports(self):

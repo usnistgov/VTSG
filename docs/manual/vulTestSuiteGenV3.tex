@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Jul 11 15:47:11 2023" *by "Paul E. Black"
+% *modified "Tue Jul 18 16:25:33 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1186,7 +1186,6 @@ We chose ``DEDENT'' because it is used in Python's grammar description.
         <statement_terminator></statement_terminator>
         <indent></indent>
     </syntax>
-    <namespace></namespace>
     <variables prefix="" import_code="using {{import_file}};">
         <variable type="" code="" init=""/>
     </variables>
@@ -1227,8 +1226,6 @@ We chose ``DEDENT'' because it is used in Python's grammar description.
           can be any string.
     \end{itemize}
     
-    \item namespace: Namespace name, if applicable
-
     \item variables: Information about variable names and types and how
     to include libraries.
     \begin{itemize}
@@ -1275,8 +1272,6 @@ We chose ``DEDENT'' because it is used in Python's grammar description.
         
         \item stdlib\_imports:  This is a placeholder for
         \emph{all} imports for the generated program
-
-        \item namespace\_name:  Used if the language requires it
 
         \item main\_name:  Name of the main class
 
