@@ -1,0 +1,98 @@
+Generation report:
+	Exception group generation report:
+		CWE129 generation report:
+			370 safe samples
+			300 unsafe samples
+		670 total
+		CWE369 generation report:
+			295 safe samples
+			375 unsafe samples
+		670 total
+		KK generation report:
+			540 safe samples
+			869 unsafe samples
+		1409 total
+	2749 total
+	OWASP_a1 group generation report:
+		CWE78 generation report:
+			1 safe samples
+			3 unsafe samples
+		4 total
+	4 total
+	OWASP_a4 group generation report:
+		CWE22 generation report:
+			1 safe samples
+			3 unsafe samples
+		4 total
+	4 total
+	OWASP_a5 group generation report:
+		CWE209 generation report:
+			0 safe samples
+			1 unsafe samples
+		1 total
+	1 total
+	Other group generation report:
+		CWE15 generation report:
+			222 safe samples
+			177 unsafe samples
+		399 total
+		CWE23 generation report:
+			222 safe samples
+			177 unsafe samples
+		399 total
+		CWE606 generation report:
+			5 safe samples
+			3 unsafe samples
+		8 total
+	806 total
+3564 total
+
+Selected case report:
+	Exception group generation report:
+		KK generation report:
+			69 safe samples
+			71 unsafe samples
+		140 total
+		CWE129 generation report:
+			27 safe samples
+			12 unsafe samples
+		39 total
+		CWE369 generation report:
+			19 safe samples
+			17 unsafe samples
+		36 total
+	215 total
+	OWASP_a1 group generation report:
+		CWE78 generation report:
+			1 safe samples
+			3 unsafe samples
+		4 total
+	4 total
+	OWASP_a4 group generation report:
+		CWE22 generation report:
+			1 safe samples
+			3 unsafe samples
+		4 total
+	4 total
+	OWASP_a5 group generation report:
+		CWE209 generation report:
+			0 safe samples
+			1 unsafe samples
+		1 total
+	1 total
+	Other group generation report:
+		CWE15 generation report:
+			16 safe samples
+			32 unsafe samples
+		48 total
+		CWE23 generation report:
+			18 safe samples
+			23 unsafe samples
+		41 total
+		CWE606 generation report:
+			5 safe samples
+			3 unsafe samples
+		8 total
+	97 total
+321 total
+Finish

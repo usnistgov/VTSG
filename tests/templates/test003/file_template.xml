@@ -1,7 +1,7 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
 <!--  *created "Wed Oct 12 15:46:11 2022" *by "Paul E. Black" -->
-<!-- *modified "Wed Oct 12 15:46:34 2022" *by "Paul E. Black" -->
+<!-- *modified "Tue Jul 18 16:51:05 2023" *by "Paul E. Black" -->
 
 <template name="test003">
     <file_extension>py</file_extension>
@@ -16,7 +16,6 @@
       <!-- Insert desired indentation level using spaces-->
       <indent>        </indent>
     </syntax>
-    <namespace></namespace>
     <variables prefix="" import_code="import {{import_file}}">
         <variable type="int" code="" init="0"/>
         <variable type="string" code="" init="None"/>

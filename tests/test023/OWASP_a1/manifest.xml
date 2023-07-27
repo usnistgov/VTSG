@@ -1,0 +1,52 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-07-10</date>
+			<input>input : get user input in tainted</input>
+		</meta-data>
+
+		<file path="TestSuite_07-10-2023_10h52m28/test023/OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_none__S_ls__0.py" language="test023">
+			<flaw line="37" name ="CWE78"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-07-10</date>
+			<input>input : no input</input>
+		</meta-data>
+
+		<file path="TestSuite_07-10-2023_10h52m28/test023/OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_none__S_ls__0.py" language="test023"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-07-10</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_07-10-2023_10h52m28/test023/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_none__S_ls__0.py" language="test023">
+			<flaw line="37" name ="CWE78"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-07-10</date>
+			<input>input: environment variable</input>
+		</meta-data>
+
+		<file path="TestSuite_07-10-2023_10h52m28/test023/OWASP_a1/CWE78/unsafe/CWE78__I_env__F_none__S_ls__0.py" language="test023">
+			<flaw line="37" name ="CWE78"/>
+		</file>
+
+	</testcase>
+
+</container>

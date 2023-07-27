@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Fri Feb 10 16:42:24 2023" *by "Paul E. Black"
+ *modified "Tue Apr 18 10:16:11 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -15,7 +15,8 @@ class ComplexitiesGenerator(object):
         Complexities Generator class
 
             Args :
-                **complexities_array** (List of :class:`.ComplexitySample`): Contains the current stack of complexities.
+                **complexities_array** (List of :class:`.ComplexitySample`): the list \
+			of complexities to wrap around the filter.
 
                 **template** (str): Template code.
 
@@ -23,11 +24,11 @@ class ComplexitiesGenerator(object):
 
                 **output_type** (str): Output type got from the xml file.
 
-                **filtering** (str): Current filtering.
+                **filtering** (str): filter.
 
             Attributes :
-
-                **complexities_array** (List of :class:`.ComplexitySample`): Contains the current stack of complexities.
+                **complexities_array** (List of :class:`.ComplexitySample`): the list \
+			of complexities to wrap around the filter.
 
                 **template** (:class:`.FileTemplate`): Template code.
 
@@ -35,15 +36,10 @@ class ComplexitiesGenerator(object):
 
                 **output_type** (str): Output type got from the xml file.
 
-                **filtering** (:class:`.FilteringSample`): Current filtering.
-
-                **uid** (int): UID for variables/functions/classes name.
+                **filtering** (:class:`.FilterSample`): filter.
 
                 **complexities** (list of dict): list of dict with complexities, \
-                                                 type (function or class) and local var for composition.
-
-                **_executed** (bool): True if the final placeholder will be executed \
-                                      (private member, please use getter and setter).
+                                  type (function or class) and local var for composition.
 
                 **id_var_in** (int): ID for intern variables used in composition of complexities (in).
 
@@ -72,12 +68,9 @@ class ComplexitiesGenerator(object):
         self.output_type = output_type
         self.filtering = filtering
         self.language = language
-        self.uid = 0
 
         self.complexities = []
         self.complexities.append({'type': None, 'code': "{{filtering_content}}", 'local_var': {}, 'name': ""})
-
-        self._executed = True
 
         self.id_var_in = len(complexities_array)*2
         self.id_var_out = self.id_var_in+1
@@ -130,16 +123,6 @@ class ComplexitiesGenerator(object):
         """
         return self._out_int_name
 
-    @property
-    def executed(self):
-        """
-        True if placeholder code is executed, false otherwise.
-
-        :getter: Returns this name.
-        :type: str
-        """
-        return self._executed
-
     def get_template(self):
         """
         Gets modified template.
@@ -160,7 +143,6 @@ class ComplexitiesGenerator(object):
         This method composes all complexities.
         """
         for c in reversed(self.complexities_array):
-            self._executed = self._executed and c.is_executed()
             # check if complexities is in 2 parts (code and body)
             if c.indirection and c.in_out_var == "traversal":
                 t = Template(c.body, undefined=DebugUndefined)
@@ -170,17 +152,17 @@ class ComplexitiesGenerator(object):
 
             # if function/class generate a name
             call_name = None
-            self.uid = src.generator.Generator.getUID()
+            uid = src.generator.Generator.getUID()
             if c.type == "function":
-                call_name = f'function_{self.uid}'
+                call_name = f'function_{uid}'
             elif c.type == "class":
-                call_name = f'Class_{self.uid}'
+                call_name = f'Class_{uid}'
 
             # create in/out vars
             in_var, out_var = self.get_in_out_var(c)
 
             # render on code
-            self.complexities[0]['code'] = t.render(placeholder=self.complexities[0]['code'], id=self.uid, in_var_name=in_var, out_var_name=out_var, call_name=call_name, in_var_type=self.input_type, out_var_type=self.output_type)
+            self.complexities[0]['code'] = t.render(placeholder=self.complexities[0]['code'], id=uid, in_var_name=in_var, out_var_name=out_var, call_name=call_name, in_var_type=self.input_type, out_var_type=self.output_type)
 
             # traversal for class/function where the placeholder is in the body of function/class
             if c.indirection and c.in_out_var == "traversal":
@@ -209,21 +191,21 @@ class ComplexitiesGenerator(object):
                 # insert new dict for the next complexity
                 self.complexities.insert(0, {'type': None, 'code': c.code, 'local_var': {}, 'name': ""})
                 t = Template(c.code, undefined=DebugUndefined)
-                self.complexities[0]['code'] = t.render(placeholder=self.complexities[0]['code'], id=self.uid, in_var_name=in_var, out_var_name=out_var, call_name=call_name)
+                self.complexities[0]['code'] = t.render(placeholder=self.complexities[0]['code'], id=uid, in_var_name=in_var, out_var_name=out_var, call_name=call_name)
             # in case if the placeholder is before or after the call to class/function
             elif c.indirection and (c.in_out_var == "in" or c.in_out_var == "out"):
                 if c.type == "class":
-                    body = Template(c.body, undefined=DebugUndefined).render(id=self.uid, in_var_type=self.input_type, out_var_type=self.output_type, call_name=call_name)
+                    body = Template(c.body, undefined=DebugUndefined).render(id=uid, in_var_type=self.input_type, out_var_type=self.output_type, call_name=call_name)
                     self.complexities.insert(1, {'type': "class", 'code': body, 'local_var': {}, 'name': call_name})
                 elif c.type == "function":
-                    body = Template(c.body).render(id=self.uid, in_var_type=self.input_type, out_var_type=self.output_type, call_name=call_name)
+                    body = Template(c.body).render(id=uid, in_var_type=self.input_type, out_var_type=self.output_type, call_name=call_name)
                     self.complexities.insert(1, {'type': "function", 'code': body, 'local_var': {}, 'name': call_name})
 
         return self.fill_template()
 
     def fill_template(self):
         """
-        This method fills template with previous composed complexities with local var and instructions.
+        Fill template with previous composed complexities with local var and instructions.
         """
         # name of external variable to join with input and sink
         self._in_ext_name = self.var_name(self.id_var_in)
@@ -321,3 +303,5 @@ class ComplexitiesGenerator(object):
             self.add_value_dict(self.input_type, in_var)
             self.add_value_dict(self.output_type, out_var)
         return in_var, out_var
+
+# end of complexities_generator.py

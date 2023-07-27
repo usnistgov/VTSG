@@ -1,4 +1,10 @@
 Generation report:
+	Empty group generation report:
+		OWASP_A01 generation report:
+			1 safe samples
+			1 unsafe samples
+		2 total
+	2 total
 	OWASP_a4 group generation report:
 		CWE_22 generation report:
 			0 safe samples
@@ -9,24 +15,18 @@ Generation report:
 			4 unsafe samples
 		4 total
 	6 total
-	Zarahemla group generation report:
-		CWE_22 generation report:
-			0 safe samples
-			2 unsafe samples
-		2 total
-	2 total
-	Empty group generation report:
-		OWASP_A01 generation report:
-			1 safe samples
-			1 unsafe samples
-		2 total
-	2 total
 	OWASP_a5 group generation report:
 		CWE_209 generation report:
 			0 safe samples
 			1 unsafe samples
 		1 total
 	1 total
+	Zarahemla group generation report:
+		CWE_22 generation report:
+			0 safe samples
+			2 unsafe samples
+		2 total
+	2 total
 11 total
 Generation time 00:00:00
 Finish

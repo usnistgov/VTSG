@@ -7,7 +7,7 @@ then
     exit
 fi
 # *created  "Mon Feb 14 08:46:21 2022" *by "Paul E. Black"
-# *modified "Thu Apr  6 17:52:07 2023" *by "Paul E. Black"
+# *modified "Mon Apr 17 14:58:49 2023" *by "Paul E. Black"
 
 # Generate the requested vulnerability test suite and check the result
 
@@ -62,6 +62,11 @@ EF="TestPhoto_${TimeStamp}_exec"
 # run VTSG and capture its output (generation report)
 echo running vtsg.py ${flaws} -l $lang ...
 python3 vtsg.py ${flaws} -l $lang 2>&1 | tee ${PF}
+exitStatus=${PIPESTATUS[0]} # get exit status of first process in pipe
+if [[ $exitStatus != 0 ]];
+then
+    exit $exitStatus
+fi
 
 # guess what VTSG named the TestSuite directory, e.g., the latest TestSuite directory
 LTSD=$(ls -dt TestSuite_* | head -1)

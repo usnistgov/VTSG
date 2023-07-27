@@ -103,21 +103,6 @@
 
         <sample>
             <path>
-                <dir>none</dir>
-            </path>
-            <comment>No Input</comment>
-            <flaws>
-                <flaw flaw_type="default" safe="1" unsafe="0"/>
-            </flaws>
-            <imports>
-            </imports>
-            <code># no input</code>
-            <input_type>input : no input</input_type>
-            <output_type>none</output_type>
-        </sample>
-
-        <sample>
-            <path>
                 <dir>InitNone</dir>
             </path>
             <comment>Initialize to None</comment>

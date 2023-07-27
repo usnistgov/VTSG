@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Fri Apr  7 15:07:12 2023" *by "Paul E. Black"
+ *modified "Tue Jul 11 15:58:48 2023" *by "Paul E. Black"
 """
 
 import time
@@ -17,10 +17,73 @@ from src.exec_query import ExecQuerySample
 from src.complexity import ComplexitySample
 from src.condition import ConditionSample
 from src.file_template import FileTemplate
-from src.synthesize_code import make_assign, get_indent, fix_indents
-import src.complexities_generator
+from src.test_case import TestCase
+import src.select_by_acts
 
 import xml.etree.ElementTree as ET
+
+
+class CaseSummary(object):
+    """
+    Count of the number of safe and unsafe test cases, by flaw and by group
+
+    Args:
+        none
+
+    Attributes:
+        **counts** (dict of dict of dict): The counts.  First dict is by group,
+        which is dict by flaw, which is a dict of counts of safe & unsafe cases.
+
+    """
+
+    def __init__(self):
+        self.counts = {} # nothing saved, yet
+
+    def update_counts(self, case):
+        """
+        Update the counts for this test case.
+        """
+
+        flaw_group = case.sink.flaw_group
+        flaw = case.sink.flaw_type
+        # create group or flaw if this is the first case in the group or flaw
+        if flaw_group not in self.counts:
+            self.counts[flaw_group] = {}
+        if flaw not in self.counts[flaw_group]:
+            self.counts[flaw_group][flaw] = {}
+            self.counts[flaw_group][flaw]["safe_sample"] = 0
+            self.counts[flaw_group][flaw]["unsafe_sample"] = 0
+
+        if case.is_safe_selection():
+            self.counts[flaw_group][flaw]["safe_sample"] += 1
+        else:
+            self.counts[flaw_group][flaw]["unsafe_sample"] += 1
+
+    def report_counts(self, caption):
+        """
+        Print final report for this run: number of safe/unsafe by flaw, group, and total.
+        """
+        total = 0
+        print(f'{caption}')
+        for flaw_group in sorted(self.counts):
+            group_total = 0
+            flaw_group_label = flaw_group
+            # in case the flaw_group is missing or the empty string
+            if flaw_group_label == '':
+                flaw_group_label = 'Empty'
+            print(f'\t{flaw_group_label} group generation report:')
+            for flaw in self.counts[flaw_group]:
+                print(f'\t\t{flaw} generation report:')
+                print(f'\t\t\t{self.counts[flaw_group][flaw]["safe_sample"]} safe samples')
+                print(f'\t\t\t{self.counts[flaw_group][flaw]["unsafe_sample"]} unsafe samples')
+                flaw_total = self.counts[flaw_group][flaw]["safe_sample"] + self.counts[flaw_group][flaw]["unsafe_sample"]
+                group_total += flaw_total
+                print(f'\t\t{flaw_total} total')
+
+            print(f'\t{group_total} total')
+            total += group_total
+
+        print(f'{total} total')
 
 
 class Generator(object):
@@ -38,16 +101,13 @@ class Generator(object):
             **_max_recursion** (int): Max level of recursion with complexities, 0 for flat code, 1 for one complexity, \
                                       2 for two, ... (private member, please use getter and setter).
 
-            **_number_generated** (int): Number of triplets (input,filter,sink) generated (private member, \
-                                         please use getter and setter).
+            **_number_sampled** (int): Select 1 of every N cases. None means select all. \
+                (private member, please use getter).
 
-            **dir_name** (str): Directory name of the folder containing generated cases.
+            **dir_name** (str): Name of the top-level director containing all
+                the manifest files and the generated cases.
 
             **manifest** (Manifest): Manifest object to complete the manifest file with references to generated files.
-
-            **safe_sample** (int): Counter for safe sample.
-
-            **unsafe_sample** (int): Counter for unsafe sample.
 
             **report** (dict): The report for each group of flaws.
 
@@ -56,8 +116,6 @@ class Generator(object):
             **flaw_group_user** (list): Flaw groups entered by user for the generation.
 
             **start** (float): Starting time of the generation.
-
-            **end** (float): Ending generate time.
 
             **tab_input** (list): List (of :class:`.InputSample` objects) all input
                 modules.
@@ -76,8 +134,8 @@ class Generator(object):
             **tab_condition** (list): List (of :class:`.ConditionSample`) all
                 condition possibilities.
 
-            **file_template** (list): List (of :class:`.FileTemplate`) the template
-                for current langage.
+            **file_template** (:class:`.FileTemplate`) the template
+                for current language.
 
             **current_input** (:class:`.InputSample`): The current selected input.
 
@@ -93,23 +151,23 @@ class Generator(object):
 
             **map_flaw_group** (dict: flaw_group -> list(flaw)): a dict associating a
                 list containing the numbers of flaws (str) to a flaw group (str).
-       """
 
-    UID = 0
-    """Unique ID for generated functions/classes/variables name."""
+            **test_cases**  (List of :class:`.TestCase`): The generated test cases,
+              where each case is the selection of input, filter, sink, complexities, etc.
+
+       """
 
     def __init__(self, date, language, template_directory):
         self._max_recursion = 1
-        self._number_generated = -1
+        self._number_sampled = None # select all generated cases
+        self._ACTS_doi = None # don't use ACTS to select cases
         self.date = date
-        self.safe_sample = 0
-        self.unsafe_sample = 0
-        self.report = {}
+        self.report = CaseSummary()
         self.flaw_type_user = None
         self.flaw_group_user = None
         self.start = time.time()
         self.language = language
-        self.end = 0
+        self.test_cases = []
 
         # parse XML files
         tree_input = ET.parse(FileManager.getXML("inputs", template_directory, language)).getroot()
@@ -126,10 +184,12 @@ class Generator(object):
 
         self.file_template = FileTemplate(ET.parse(FileManager.getXML("file_template", template_directory, language)).getroot())
 
+        self.license = open("src/templates/file_rights.txt", "r").read()
+
         self.dir_name = "TestSuite_"+date+"/"+self.file_template.language_name
         self.manifest = Manifest(self.dir_name, self.date)
 
-        # set current sample
+        # set current test case
         self.current_input = None
         self.current_filter = None
         self.current_sink = None
@@ -172,10 +232,48 @@ class Generator(object):
         self.debug = debug
         self.generate_safe = generate_safe
         self.generate_unsafe = generate_unsafe
-        # start of chain of calls to generate test cases
+
+        # start of chain of calls to generate a list of test cases
         self.select_sink()
-        # generate the report with number of safe/unsafe, time, ...
-        self.generation_report()
+
+        # select which test cases to produce
+        if self.number_sampled is not None:
+            # select 1 of every N test cases
+            selected_test_cases = []
+            for i in range(0, len(self.test_cases), self.number_sampled):
+                selected_test_cases.append(self.test_cases[i])
+        elif self.ACTS_doi is not None:
+            # select using ACTS
+            selected_test_cases = src.select_by_acts.select_cases_ACTS(self.test_cases, self.ACTS_doi)
+        else:
+            selected_test_cases = self.test_cases
+
+        # start a new report to record only the selected test cases
+        selected_case_report = CaseSummary()
+
+        # generate code and write the source files for the selected cases
+        for case in selected_test_cases:
+            # generate the code
+            case.gen_code()
+
+            # write test case file(s) and add to manifest
+            case.write_files()
+
+            selected_case_report.update_counts(case)
+
+        # finish the manifest files
+        self.manifest.closeManifests()
+
+        elapsed_time = time.strftime("%H:%M:%S", time.gmtime(time.time() - self.start))
+
+        # report the number of safe/unsafe cases generated
+        self.report.report_counts('Generation report:')
+
+        if self.number_sampled is not None or self.ACTS_doi is not None:
+            # report the number of safe/unsafe cases selected
+            selected_case_report.report_counts('\nSelected case report:')
+
+        print(f'Generation time {elapsed_time}')
 
     # first step: select sink
     def select_sink(self):
@@ -223,33 +321,32 @@ class Generator(object):
     def select_exec_queries(self):
         """
         If this case needs an exec query, use all compatible exec queries.  In
-        any case, proceed to complexity recursion step if needed or directly
-        to compose step if no complexities needed.
+        any case, proceed to complexity recursion-or-save step.
         """
         if self.current_sink.needs_exec():
             # select exec_queries
             for exec_query in self.tab_exec_queries:
                 if self.current_sink.compatible_with_exec_queries(exec_query):
                     self.current_exec_queries = exec_query
-                    self.recursion_or_compose()
+                    self.recursion_or_save()
         else:
             # sink doesn't need exec query
             self.current_exec_queries = None
-            self.recursion_or_compose()
+            self.recursion_or_save()
 
-    # fifth step: generate complexity depths if needed or go right to compose
-    def recursion_or_compose(self):
+    # fifth step: generate complexity depths if needed or go right to save test case
+    def recursion_or_save(self):
         '''
         If this uses an input and the filter needs complexities, wrap the filter
         in appropriate depths of complexities.
-        Otherwise, proceed directly to compose.
+        Otherwise, save the test case.
         '''
         if self.current_sink.input_type != 'none' and self.current_filter.need_complexity:
             self.recursion_level()
         else:
             # forget any level of complexities from previous loops
             self.current_max_rec = 0
-            self.compose()
+            self.save_test_case()
 
     # fifth-and-a-half step: generate all depths of complexities up to maximum
     def recursion_level(self):
@@ -262,11 +359,6 @@ class Generator(object):
 		complexity, and cases with two complexities around the filter code.
             * and so on ...
         """
-        # HACK limit the number of generated combinations of (input, filter, sink)
-        if self.number_generated == 0:
-            return
-        self.number_generated -= 1
-
         # generate with 0, 1, 2, ... level of complexities
         for i in range(0, self.max_recursion + 1):
             self.current_max_rec = i
@@ -276,17 +368,17 @@ class Generator(object):
     # sixth step: wrap filter in "level" depth of complexities
     def select_complexities(self, level):
         """
-        This function browse all complexities.
-        Each type of complexity can be use with special processing and call the
-        need_condition method to check if the complexity needs a condition.
-        At the end we call the next function for compose then into one code chunk.
+        Go through all complexities.
+        Specially process types of complexities, then call handle_condition to add
+        conditions if the complexity needs one and recursively call this.
+        At the end, save all the modules as a test case.
 
         Args :
             **level** (int): Nesting level of the complexity being generated.
         """
         if level == 0:
-            # at the end of recursive call, we compose selected into one
-            self.compose()
+            # at the end of recursive call, we save selected modules
+            self.save_test_case()
         else:
             # Select complexity for this level
             for complexity in self.tab_complexity:
@@ -299,18 +391,18 @@ class Generator(object):
                     var_type = self.current_input.output_type
                     # replace id and var type name for foreach
                     curr_complexity.code = Template(curr_complexity.code, undefined=DebugUndefined).render(id=level, var_type=var_type)
-                    self.need_condition(curr_complexity, level)
-                else:
-                    # everything else is handled the same
-                    self.need_condition(curr_complexity, level)
+
+                self.handle_condition(curr_complexity, level)
 
                 # remove current complexity
                 self.complexities_queue.pop()
 
-    def need_condition(self, curr_complexity, level):
+    # sixth-and-a-half step: add conditions if needed. Recursively do next complexity.
+    def handle_condition(self, curr_complexity, level):
         """
-        This function checkd if the current complexity needs a condition.
-        If it's needed, browse all conditions and compose them into the complexity code.
+        If the current complexity needs a condition, loop through all conditions and
+        compose them into the complexity code.  Regardless, recursively handle next
+        level of complexities.
         The state of the complexity is updated with the result of the conditional.
 
         Args :
@@ -334,235 +426,31 @@ class Generator(object):
             # recursive call
             self.select_complexities(level-1)
 
-    # seventh step : compose previous code chunks
-    def compose(self):
+    # seventh step: save modules in a test case and count
+    def save_test_case(self):
         """
-        This method composes previously selected code chunks into a final program.
-        Complexities are composed with the class complexities_generator and the
-        filter is included into them.  After that add input, complexities with
-        filter, sink, exec query into the template code.
-        Also, we add include, license, comments, into the template.
-        At the end, we have final code that we save in files.
+        Create a new testcase for the selected modules and complexities.  Return if
+        this case should not be generated, i.e., because of user-selected safety.
+        Count this case in the final summary.
         """
 
-        var_id = 0
-        Generator.resetUID()
-        # temporary code
-
-        self.classes_code = []
-        if self.current_sink.input_type != "none":
-            # COMPLEXITIES
-            # A ComplexitiesGenerator is created to compose complexities.
-            # The return code is a sum complexities with input and output var which will be merged with input and sink variables
-            compl_gen = src.complexities_generator.ComplexitiesGenerator(
-			complexities_array=self.complexities_queue,
-			template=self.file_template,
-			input_type=self.current_input.output_type,
-			output_type=self.current_sink.input_type,
-			filtering=self.current_filter,
-			language=self.language
-            )
-            # execute the compose method
-            self.classes_code = compl_gen.compose()
-            classes_imports = []
-            # for each class, collect imports to use other generated classes
-            for c in self.classes_code:
-                classes_imports.append(c['name'])
-            # remember if the filter code in these complexities is executed or not
-            self.executed = compl_gen.executed
-            # import the new template that contains complexities
-            self.template_code = compl_gen.get_template()
-        else:
-            self.template_code = self.file_template.code
+        case = TestCase(generator  = self, # ACCESS ONLY - DOES NOT MODIFY ANY ATTRIBUTE
+                        input      = self.current_input,
+                        complexity_list = [c.clone() for c in self.complexities_queue],
+                        filter     = self.current_filter,
+                        sink       = self.current_sink,
+                        exec_query = self.current_exec_queries)
 
         # check if we need to generate (if it's only safe/unsafe generation)
-        if (self.is_safe_selection() and not self.generate_safe) or (not self.is_safe_selection() and not self.generate_unsafe):
+        if (case.is_safe_selection() and not self.generate_safe) or (not case.is_safe_selection() and not self.generate_unsafe):
             return
 
-        input_code = ""
-        filter_code = ""
-        if self.current_sink.input_type != "none":
-            # INPUT
-            input_code = self.current_input.code
-            # set output var name
-            if self.current_input.output_type != "none":
-                # We set the name of output tainted variable and get the result into input_code
-                input_code = Template(input_code).render(out_var_name=compl_gen.in_ext_name, id=var_id)
-            if self.current_input.need_id:
-                var_id += 1
-            input_code += '\n'
+        # save this selection
+        self.test_cases.append(case)
 
-            # init filter var with input var
-            input_code += (get_indent('input_content', self.template_code)
-                           + make_assign(compl_gen.out_ext_name, compl_gen.in_ext_name,
-								self.file_template))
+        # update summary counts
+        self.report.update_counts(case)
 
-            # FILTER
-            # set input var name
-            filter_code = self.current_filter.code
-            in_name = ""
-            out_name = ""
-            if self.current_filter.input_type != "none":
-                in_name = compl_gen.in_int_name
-            # set output var name
-            if self.current_filter.output_type != "none":
-                out_name = compl_gen.out_int_name
-            if self.current_filter.need_id:
-                var_id += 1
-            # We set the name of input/output tainted variable and get the result into filter_code
-            filter_code = Template(filter_code, undefined=DebugUndefined).render(in_var_name=in_name, out_var_name=out_name, id=var_id)
-
-        # add comment into code at the position of the flaw if unsafe
-        flaw_str = ""
-        if not self.is_safe_selection():
-            # this flag is use to compute the line of the flaw in final file
-            flaw_str = self.file_template.comment['inline']+"flaw"
-
-        # SINK
-        sink_code = self.current_sink.code
-        try:
-            sink_code = Template(sink_code, undefined=DebugUndefined).render(flaw=flaw_str)
-        except exceptions.TemplateSyntaxError:
-            # error in Jinja rendering
-            print('Error while rendering sink code. sink_code is', end='')
-            print(sink_code)
-            raise # reraise the exception
-        if self.current_sink.input_type != "none":
-            # We set the name of input tainted variable and get the result into sink_code
-            try:
-                sink_code = Template(sink_code, undefined=DebugUndefined).render(in_var_name=compl_gen.out_ext_name, id=var_id)
-            except exceptions.TemplateSyntaxError:
-                # error in Jinja rendering
-                print('Error while rendering sink code. sink_code is', end='')
-                print(sink_code)
-                raise # reraise the exception
-
-        if self.current_sink.need_id:
-            var_id += 1
-
-        # EXEC QUERIES
-        exec_queries_code = ""
-        if self.current_exec_queries:
-            exec_queries_code = self.current_exec_queries.code
-
-
-
-        # LICENCE
-        license_content = open("src/templates/file_rights.txt", "r").read()
-
-        # IMPORTS
-        # compose imports used on input, filter, and sink
-        imports_content = set(self.current_sink.imports).union(set(self.file_template.imports))
-        if self.current_sink.input_type != "none":
-            imports_content = imports_content.union(set(self.current_input.imports)
-                                                    .union(set(self.current_filter.imports)))
-        # add imports from exec query if it's used
-        if self.current_exec_queries:
-            imports_content = imports_content.union(set(self.current_exec_queries.imports))
-        # create source code with imports
-        imports_code = self.file_template.generate_imports(imports_content)
-
-        # comments at the beginning of the code that document modules used
-        comments_code = ''
-        if self.current_input and self.current_input.comment:
-            comments_code += self.current_input.comment + '\n'
-        if self.current_filter and self.current_filter.comment:
-            comments_code += self.current_filter.comment + '\n'
-        comments_code += self.current_sink.comment + '\n'
-        if self.current_exec_queries and self.current_exec_queries.comment:
-            comments_code += self.current_exec_queries.comment + '\n'
-        comments_code = comments_code.rstrip('\n') # since composition adds a newline
-
-        main_class_name = f'MainClass{src.generator.Generator.getUID()}'
-
-        # COMPOSE TEMPLATE
-        template = Template(self.template_code)
-        file_content = template.render(license=license_content,
-                                       comments=comments_code,
-                                       stdlib_imports=imports_code,
-                                       namespace_name=self.file_template.namespace,
-                                       main_name=main_class_name,
-                                       input_content=input_code,
-                                       filtering_content=filter_code,
-                                       sink_content=sink_code,
-                                       exec_queries_content=exec_queries_code)
-        self.current_code = fix_indents(file_content, self.file_template.indent)
-
-        # generate code for any additional files
-        # include filter into good code chunk on complexities
-        # TODO improve this with preselected class
-        for i, cl in enumerate(self.classes_code):
-            aux_file_content = Template(cl['code']).render(license=license_content,
-                                                           comments=comments_code,
-                                                           filtering_content=filter_code)
-            self.classes_code[i]['code'] = fix_indents(aux_file_content, self.file_template.indent)
-
-        # write test case to file, update summary counts, and add to manifest
-        self.write_files()
-
-    # eighth step: write on disk, update counts, and add to manifest
-    def write_files(self):
-        """
-        This method writes code for then current selection into files
-        It adds an entry into the manifest with specified informations
-        """
-        current_flaw_group = self.current_sink.flaw_group
-        current_flaw = self.current_sink.flaw_type
-        files_path = []
-        # Create main file
-        file_name_suffix = ""
-        if len(self.classes_code) > 0:
-            file_name_suffix = "a"
-        main_filename = self.generate_file_name(file_name_suffix)
-        filemanager = FileManager(main_filename, self.dir_name,
-                                  current_flaw_group,
-                                  current_flaw,
-                                  self.is_safe_selection(),
-                                  self.current_code)
-        filemanager.createFile()
-
-        # start entry for manifest
-        full_path = filemanager.getPath() + main_filename
-        line = 0
-        if not self.is_safe_selection():
-            line = Generator.find_flaw(full_path, self.file_template.comment['inline'])
-        files_path.append({'path': full_path, 'line': line})
-
-        # Create any additional class files
-        for i, cl in enumerate(self.classes_code):
-            file_name_suffix = chr(ord("a") + 1 + i)
-            filename = self.generate_file_name(file_name_suffix)
-            filemanager = FileManager(filename, self.dir_name,
-                                      current_flaw_group,
-                                      current_flaw,
-                                      self.is_safe_selection(),
-                                      cl['code'])
-            filemanager.createFile()
-            full_path = filemanager.getPath() + filename
-            files_path.append({'path': full_path, 'line': 0})
-
-        # Update the report
-        if current_flaw_group not in self.report:
-            self.report[current_flaw_group] = {}
-        if current_flaw not in self.report[current_flaw_group]:
-            self.report[current_flaw_group][current_flaw] = {}
-            self.report[current_flaw_group][current_flaw]["safe_sample"] = 0
-            self.report[current_flaw_group][current_flaw]["unsafe_sample"] = 0
-
-        if self.is_safe_selection():
-            self.report[current_flaw_group][current_flaw]["safe_sample"] += 1
-        else:
-            self.report[current_flaw_group][current_flaw]["unsafe_sample"] += 1
-
-        # update manifest
-        input_type = "None : None"
-        if self.current_input:
-            input_type = self.current_input.input_type
-        self.manifest.addTestCase(input_type,
-                                  current_flaw_group,
-                                  current_flaw,
-                                  files_path,
-                                  self.file_template.language_name)
 
     def get_group_list(self):
         """
@@ -575,33 +463,6 @@ class Generator(object):
         Return all flaw types got from the XML files.
         """
         return {sink.flaw_type for sink in self.tab_sink}
-
-    def is_safe_selection(self):
-        """
-        Returns true if the final source code is safe, false otherwise.
-        The computation is :
-        * True if any input, filter (and it is executed), sink, or exec query
-            is safe and no input, executed filter, or sink is unsafe.
-        * False else
-        """
-        safe_input = False
-        if self.current_input:
-            safe_input = self.current_input.is_safe(self.current_sink.flaw_type)  # input is safe
-        safe_filter = False
-        if self.current_filter:
-            safe_filter = self.current_filter.is_safe(self.current_sink.flaw_type) and self.executed  # filter is safe and executed
-        safe_sink = self.current_sink.safe  # sink is safe
-        safe_eq = False
-        if self.current_exec_queries:
-            safe_eq = self.current_exec_queries.safe  # exec query is safe
-        unsafe_input = False
-        if self.current_input:
-            unsafe_input = self.current_input.is_unsafe(self.current_sink.flaw_type)  # input is unsafe
-        unsafe_filter = False
-        if self.current_filter:
-            unsafe_filter = self.current_filter.is_unsafe(self.current_sink.flaw_type) and self.executed
-        unsafe_sink = self.current_sink.unsafe
-        return ((safe_input or safe_filter or safe_sink or safe_eq) and not (unsafe_input or unsafe_filter or unsafe_sink))
 
     def set_flaw_type_user(self, value):
         """
@@ -649,99 +510,6 @@ class Generator(object):
         else:
             return list(self.get_group_list())
 
-    def generate_file_name(self, suffix):
-        """
-        Generate file name in format :
-            flawtype__inputname__filtername__sinkname__execqueryname__X-Y1-Y2_File*suffix*.ext
-            with X the number of complexity level, Y1, Y2 id of complexities and *suffix* the file number
-            (0 for main file).
-
-        Args :
-            **suffix** (str): the file number (for the filename).
-        """
-        # flaw [input] [filter] sink [exec] complexity
-        name = self.current_sink.flaw_type
-        if self.current_input:
-            name += "__I_"
-            name += self.current_input.module_description
-        if self.current_filter:
-            name += "__F_"
-            name += self.current_filter.module_description
-        name += "__S_"
-        name += self.current_sink.module_description
-
-        if self.current_exec_queries:
-            name += "__EQ_"
-            name += self.current_exec_queries.module_description
-
-        name += "__"
-
-        # add the number of complexities used ...
-        name += f'{self.current_max_rec}'
-        # ... and their ids
-        for c in self.complexities_queue:
-            name += "-" + c.get_complete_id()
-
-        # suffix - for cases consisting of multiple files
-        name += suffix
-        # extension
-        name += "."+self.file_template.file_extension
-        return name
-
-    # TODO:20 move this elsewhere either in the generator or in a new class
-    def generation_report(self):
-        """
-        Print final report for this run: number of safe/unsafe by flaw, group, and time.
-        """
-        self.manifest.closeManifests()
-        total = 0
-        print('Generation report:')
-        for flaw_group in self.report:
-            group_total = 0
-            flaw_group_label = flaw_group
-            # in case the flaw_group is missing or the empty string
-            if flaw_group_label == '':
-                flaw_group_label = 'Empty'
-            print(f'\t{flaw_group_label} group generation report:')
-            for flaw in self.report[flaw_group]:
-                print(f'\t\t{flaw} generation report:')
-                print(f'\t\t\t{self.report[flaw_group][flaw]["safe_sample"]} safe samples')
-                print(f'\t\t\t{self.report[flaw_group][flaw]["unsafe_sample"]} unsafe samples')
-                flaw_total = self.report[flaw_group][flaw]["safe_sample"] + self.report[flaw_group][flaw]["unsafe_sample"]
-                group_total += flaw_total
-                print(f'\t\t{flaw_total} total')
-
-            print(f'\t{group_total} total')
-            total += group_total
-
-        print(f'{total} total')
-        self.end = time.time()
-        print(f'Generation time {time.strftime("%H:%M:%S", time.gmtime(self.end - self.start))}')
-
-    @staticmethod
-    def find_flaw(fileName, comment_inline_code):
-        """
-        Return the number of the line following the first
-                      //flaw...
-        that is, a line with the string starting an in-line comment for this language
-        and "flaw" in the generated file.  Return 0 if no such line found.
-
-        Args :
-            **fileName** (str): The name of the file in which //flaw will be sought.
-
-            **comment_inline_code** (str): String starting an in-line comment
-        """
-        sample = open(fileName, 'r')
-        flaw_code = comment_inline_code + "flaw"
-        i = 1
-        for line in sample:
-            i += 1
-            if (line.lstrip())[:len(flaw_code)] == flaw_code:
-                return i + 1
-
-        # //flaw not found
-        return 0
-
 
     @property
     def max_recursion(self):
@@ -761,29 +529,25 @@ class Generator(object):
         """
         self._max_recursion = value
 
-    def get_extension(self):
-        """
-        Return the extension file
-        """
-        return self.file_template.file_extension
-
     @property
-    def number_generated(self):
+    def number_sampled(self):
         """
-        Number of triplets (input,filter,sink) generated.
+        Select one of every N generated cases.
 
         :getter: Returns this number.
-        :setter: Sets this number.
         :type: int
         """
-        return self._number_generated
+        return self._number_sampled
 
-    @number_generated.setter
-    def number_generated(self, value):
+    @property
+    def ACTS_doi(self):
         """
-        Sets the number of generated trio.
+        If not None, use ACTS with this Degree of Interaction to select cases.
+
+        :getter: Returns this number.
+        :type: int
         """
-        self._number_generated = value
+        return self._ACTS_doi
 
     @staticmethod
     def remove_indent(code, all=False):
@@ -886,14 +650,14 @@ def test_remove_indents():
 
         index = 1
         while True:
-            if text[index]: # skip empty strings
+            if text[index]: # don't return empty strings
                 yield text[index]
             index += 1
             # start over, if necessary
             if index >= len(text):
                 index = 1
 
-    # start a single word generator that all test generators use.
+    # start a generator yielding one word at a time.  All test generators use it.
     word = one_word()
 
     def generate_test_lines():

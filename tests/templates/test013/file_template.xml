@@ -11,7 +11,6 @@
     <syntax>
         <statement_terminator></statement_terminator>
     </syntax>
-    <namespace></namespace>
     <variables prefix="" import_code="import {{import_file}}">
         <variable type="int" code="" init="0"/>
         <variable type="string" code="" init="None"/>

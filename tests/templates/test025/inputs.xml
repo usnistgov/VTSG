@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE input SYSTEM "../dtd/input.dtd">
+<!-- *created  "Fri Apr 14 09:31:25 2023" *by "Paul E. Black" -->
+<!-- *modified "Fri Apr 14 11:54:58 2023" *by "Paul E. Black" -->
+    <input>
+        <sample>
+            <path>
+                <dir>args</dir>
+            </path>
+            <comment>input: command line args</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+              <import>sys</import>
+            </imports>
+            <code>{{out_var_name}} = sys.argv[1]</code>
+            <input_type>input: Command line args</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+        <sample>
+            <path>
+                <dir>hardcoded</dir>
+            </path>
+            <comment>input: hard coded string</comment>
+            <flaws>
+                <flaw flaw_type="OWASP_A01" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+            </imports>
+            <code>{{out_var_name}} = 'hardcoded'</code>
+            <input_type>input: hard coded string</input_type>
+            <output_type>string</output_type>
+        </sample>
+    </input>

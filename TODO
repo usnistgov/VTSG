@@ -1,5 +1,5 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Apr  4 16:20:19 2023" *by "Paul E. Black"
+ *modified "Tue Jul 18 16:53:01 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -57,6 +57,8 @@ why multiple <dir> entries are allowed.)
 Maybe replace the <path> <dir> stuff with one <description> or <name> keyword.
 (You'd have to fix a few modules with multiple <dir> entries.)
 
+Remember to update DTDs.
+
 
 3 Mar 2023
 
@@ -83,14 +85,6 @@ that is, is this an optional flag?  Other attributes that need more explanation 
 • need_id
 • in_out_var (especially the magic that happens when the value is "traversal")
 
-6 Sep 2022
-Fix Python "Classes" complexity:
-The main file must import the class-defining file, e.g.
-from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22b import Class_884
-
-Also, in complexities_generator.py about line 241, union imports and call
-generate_imports(), like the code in generator.py at # IMPORTS.
-"using {{import}};" is currently hardcoded.
 
 16 Nov 2022
 Explain in manual what "supported" complexity types and groups do.  That is, *any*
@@ -100,56 +94,14 @@ VTSG.
 Add examples of how to code things or how to use options, like need_id.
 
 
-18 Nov 2022
-Separate selecting the set of modules for a case from generating the code from that
-set.  That is, have a class for the case being generated different from the
-generator.  Many generator class flags and data are not needed for the case:
-    date  Human readable date of the generation.
-    _max_recursion Max level of recursion with complexities
-    _number_generated Number of triplets (input,filter,sink) to generate
-    dir_name  Directory name of the folder containing generated cases.
-    manifest object to complete the manifest file with references to generated files.
-    safe_sample Counter for safe sample.
-    unsafe_sample Counter for unsafe sample.
-    report (dict): The report for each group of flaws.
-    flaw_type_user Flaw types entered by user for the generation.
-    flaw_group_user Flaw groups entered by user for the generation.
-    start (float): Starting time of the generation.
-    end (float): Ending generate time.
-    tab_input all input modules.
-    tab_filtering all filter modules.
-    tab_sink all sink modules.
-    tab_exec_queries all exec query modules.
-    tab_complexity all complexity possibilities.
-    tab_condition all condition possibilities.
-    ?file_template FileTemplate the template for current language.
-    map_flaw_group dict associating flaws with flaw groups
+6 Sep 2022
+Fix Python "Classes" complexity:
+The main file must import the class-defining file, e.g.
+from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22b import Class_884
 
-Here is the beginning of code for this
-
-class Test_Case:
-    """This is a single test case.  The various modules are composed to make all the
-    source code for a complete test case.  The source code is eventually written to
-    disk and logged for the report and manifest."""
-
-    def __init__(self, input_module, filter_module, complexities, sink_module,
-                 exec_query_module):
-        self.input_module      = input_module
-        self.filter_module     = filter_module
-        self.complexities      = complexities
-        self.sink_module       = sink_module
-        self.exec_query_module = exec_query_module
-
-Add in generator.py about line 98:
-        test_cases = []
-
-Add in generator.py about line 376:
-        # Save this combination
-        new_case = Test_Case(self.current_input, self.current_filter,
-                             self.current_sink,  self.current_exec_queries,
-                             self.complexities_queue)
-        self.test_cases.append(new_case)
-
+Also, in complexities_generator.py about line 241, union imports and call
+generate_imports(), like the code in generator.py at # IMPORTS.
+"using {{import}};" is currently hardcoded.
 
 
 7 Nov 2022
@@ -169,6 +121,7 @@ Here's Juliet's scheme:
         {{sink_content}}
     DEDENT
     {{end_complexity}}
+
 
 7 Nov 2022
 An unrecognized input module input_type, that is, one that doesn't appear in the
@@ -300,8 +253,6 @@ Extend VTSG & Python to handle (all?) Juliet-type cases
 
 Add swapped argument errors, see Vineeth Kashyap https://arxiv.org/abs/2009.09117
 
-Add complexities from Kratkiewcz test cases
-
 Generalize the structure of VTSG.  Now it looks for inputs, filters, and queries in
 rigid combinations.  Maybe VTSG should read the template, then go hunting for each
 kind of module mentioned.  Connections between them, via variables or call/return,
@@ -325,11 +276,6 @@ test run.
     The -n (number generated) option does something vaguely like this.  However, it
 stops generation after N sink/filter/input/exec query combinations are generated.
 Search for number_generated in generator.py.
-
-Incorporate combinatorial test generation
-    Now VTSG generates all combinations, like Juliet. It may be useful to generate
-    all n-way combinations.  This allows *far* more situations to be generated
-    without making millions of cases.
 
 
 OTHER? GENERAL?

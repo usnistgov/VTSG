@@ -1,0 +1,52 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-07-10</date>
+			<input>input : get user input in tainted</input>
+		</meta-data>
+
+		<file path="TestSuite_07-10-2023_10h52m28/test023/OWASP_a4/CWE22/unsafe/CWE22__I_readline__F_none__S_file_exists__0.py" language="test023">
+			<flaw line="38" name ="CWE22"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-07-10</date>
+			<input>input : no input</input>
+		</meta-data>
+
+		<file path="TestSuite_07-10-2023_10h52m28/test023/OWASP_a4/CWE22/safe/CWE22__I_hardcoded_string__F_none__S_file_exists__0.py" language="test023"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-07-10</date>
+			<input>input : Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_07-10-2023_10h52m28/test023/OWASP_a4/CWE22/unsafe/CWE22__I_args__F_none__S_file_exists__0.py" language="test023">
+			<flaw line="38" name ="CWE22"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2023-07-10</date>
+			<input>input: environment variable</input>
+		</meta-data>
+
+		<file path="TestSuite_07-10-2023_10h52m28/test023/OWASP_a4/CWE22/unsafe/CWE22__I_env__F_none__S_file_exists__0.py" language="test023">
+			<flaw line="38" name ="CWE22"/>
+		</file>
+
+	</testcase>
+
+</container>

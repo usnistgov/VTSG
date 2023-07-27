@@ -11,8 +11,18 @@
 Stivalet B, Fong E (2016) Large scale generation of complex and faulty {PHP}
   test cases. \emph{2016 {IEEE} Intern'l Conf. on Software Testing,
   Verification and Validation ({ICST})}, ,  pp 409--415.
-  \href{https://doi.org/10.1109/ICST.2016.43}{\doi{10.1109/ICST.2016.43}}.
-  \url{https://doi.org/10.1109/ICST.2016.43}
+  \href{https://doi.org/10.1109/ICST.2016.43}{\doi{10.1109/ICST.2016.43}}
+
+\bibitem{ACTS2013}
+Yu L, Lei Y, Kacker RN, Kuhn DR (2013) {ACTS}: A combinatorial test generation
+  tool. \emph{2013 {IEEE} Intern'l Conf. on Software Testing, Verification and
+  Validation ({ICST})}, ,  pp 370--375.
+  \href{https://doi.org/10.1109/ICST.2013.52}{\doi{10.1109/ICST.2013.52}}
+
+\bibitem{CombinTesting}
+ (2023) Combinatorial testing,
+  \url{https://csrc.nist.gov/Projects/automated-combinatorial-testing-for-software}.
+  Accessed: 13 June 2023.
 
 \bibitem{OWASPTop10-2017}
  (2017) {OWASP} top 10 web application security risks,
@@ -21,6 +31,17 @@ Stivalet B, Fong E (2016) Large scale generation of complex and faulty {PHP}
 \bibitem{CWE}
  (2020) Common weakness enumeration,  \url{https://cwe.mitre.org/}. Accessed:
   17 June 2020.
+
+\bibitem{SWInteractions2004}
+Kuhn DR, Wallace DR, {Gallo Jr} AM (2004) Software fault interactions and
+  implications for software testing. \emph{{IEEE} Transactions on Software
+  Engineering},  Vol.~30,  pp 418--421.
+  \href{https://doi.org/10.1109/TSE.2004.24}{\doi{10.1109/TSE.2004.24}}
+
+\bibitem{KuhnEtAl2010PracCT}
+Kuhn DR, Kacker RN, Lei Y (2010) Practical combinatorial testing (National
+  Institute of Standards and Technology),  NIST-SP 800-142.
+  \href{https://doi.org/10.6028/NIST.SP.800-142}{\doi{10.6028/NIST.SP.800-142}}
 
 \bibitem{CWE89}
  (2020) {CWE-89}: Improper neutralization of special elements used in an {SQL}

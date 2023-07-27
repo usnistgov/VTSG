@@ -108,6 +108,7 @@ sanitization
 selectfrom
 shellcommands
 sinkcontent
+sql
 src
 statementterminator
 staticmethods

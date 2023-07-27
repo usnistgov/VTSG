@@ -1,11 +1,10 @@
-<!ELEMENT template (file_extension, comment, namespace?, variables, imports, code)>
+<!ELEMENT template (file_extension, comment, variables, imports, code)>
 <!ATTLIST template name CDATA #REQUIRED>
 <!ELEMENT file_extension (#PCDATA)>
 <!ELEMENT comment (open, close, inline)>
 <!ELEMENT open (#PCDATA)>
 <!ELEMENT close (#PCDATA)>
 <!ELEMENT inline (#PCDATA)>
-<!ELEMENT namespace (#PCDATA)>
 <!ELEMENT variables (variable+)>
 <!ATTLIST variables prefix CDATA #REQUIRED>
 <!ATTLIST variables import_code CDATA #REQUIRED>

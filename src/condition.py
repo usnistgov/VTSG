@@ -14,7 +14,8 @@ class ConditionSample(object):
 
             **_code** (str): Code of condition (private member, please use getter and setter).
 
-            **_value** (str): Value of condition (private member, please use getter and setter).
+            **_value** (bool): The boolean value that this condition always evalutes
+		to, either True or False.
     """
 
     def __init__(self, xml_cond):
@@ -45,9 +46,12 @@ class ConditionSample(object):
     @property
     def value(self):
         """
-        Value of condition.
+        The boolean value that this condition always evalutes to, either True or
+        False.
 
         :getter: Returns this value.
-        :type: str
+        :type: bool
         """
         return self._value
+
+# end of condition.py
