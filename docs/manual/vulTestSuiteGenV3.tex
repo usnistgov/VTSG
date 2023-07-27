@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Thu Jul 27 10:04:13 2023" *by "Paul E. Black"
+% *modified "Thu Jul 27 10:36:33 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -706,8 +706,8 @@ cases that are not vulnerable or that are vulnerable respectively.
 \subsection{VTSG Directory Structure}
 \label{sec: directory structure}
 
-All the language information files are accessed from a single subdirectory by
-default.  The default is \verb|src/templates|.  A different directory may be
+All the language information files are accessed from a single subdirectory.
+The default is \verb|src/templates|.  A different directory may be
 given with the -t command
 line option, see Table~\ref{tab:command line options}.
 
@@ -748,7 +748,7 @@ compatible with each other and consistent with any flaw group or
 flaw constraints the user gives on the command line.  Second, VTSG
 composes source code from the selected modules, 
 synthesizing variable and function names, and writes the file(s).
-The user may select which cases VTSG composes and writes two ways; see
+The user may specify two ways that VTSG selects a subset of cases to write; see
 Sec.~\ref{sec:selecting cases}.
 
 VTSG code structure is roughly
@@ -870,7 +870,7 @@ and all cases with two nested complexities.
 See Sec.~\ref{sec:code complexities} for an example of three 
 nested control flow complexities.
 
-\subsection{Using ACTS to Select a Subset of Cases}
+\subsection{Using ACTS or -n to Select a Subset of Cases}
 \label{sec:selecting cases}
 
 By default VTSG generates all compatible combinations of inputs, filters, sinks,
