@@ -6,19 +6,16 @@ tool", 2013 IEEE Sixth International Conference on Software Testing, Verificatio
 Validation (ICST).
 
   *created "Thu Jun  1 09:39:16 2023" *by "Paul E. Black"
- *modified "Tue Jul 11 12:12:39 2023" *by "Paul E. Black"
+ *modified "Fri Jul 28 14:43:00 2023" *by "Paul E. Black"
 
-The interface is select_cases_ACTS().  Pass a list of cases; select via ACTS; and
-return a subset of the cases passed.
+The interface is select_cases_ACTS().  Pass a list of cases and the degree of
+interaction; select via ACTS; and return a subset of the cases passed.
 
-ACTS has two important options, neither of which are (currently) supported with this
-interface.  They are degree of interaction (default 2) and algorithm.
+ACTS has another option that may pertain to us: algorithm.  The interface does
+not currently support algorithm selection.
 """
 
 import sys
-
-# these were helpful while I was developing
-ACTS_print_debug_output = False
 
 class module_map_table():
     """
@@ -102,7 +99,7 @@ class ACTS_interface():
                 if mod is not None:
                     description = mod.module_description
                 else:
-                    description = 'Nothing'
+                    description = '(none)'
                 print(f'  {i} {description}', end='')
             print('') # the new line
 
@@ -138,7 +135,7 @@ def write_parameters_and_constraints(fp, cases):
     # the set of complexities that don't need conditions.  make constraints from these
     bare_complexities = set()
     conditions = set()
-    no_condition = f'CNONE' # the special value meaning no condition for a complexity
+    no_condition = 'CNONE' # the special value meaning no condition for a complexity
     for case in cases:
         input_value = ai.inputs.get_value(case.input)
         filter_value = ai.filters.get_value(case.filter)
@@ -172,12 +169,6 @@ def write_parameters_and_constraints(fp, cases):
                     bare_complexities |= {complexity}
                     conditions |= {no_condition} # we need this pseudo-value for a Constraint
 
-    # Make sure "no"_condition is an ACTS value because at least one VTSG test case
-    # doesn't have any conditions, and we have to make a constraint that will use
-    # no_condition.
-#    if len(conditions) == 0:
-#        conditions |= {no_condition}
-
     #ai.print_module_maps() # map of values to module description is in the xml
 
     ###################################################################################
@@ -203,7 +194,7 @@ def write_parameters_and_constraints(fp, cases):
 
     def write_parameter(fp, id, map_table):
         """
-        Write a parameter and its values
+        Write a parameter table and its values
         """
         write_parameter_base(fp, id, map_table, map_table.name, map_table.values)
 
@@ -230,7 +221,7 @@ def write_parameters_and_constraints(fp, cases):
         """
         fp.write(f'    <Constraint text="{expr}">\n')
         fp.write(f'      <Parameters>\n')
-        # ACTS doesn't seem to need these
+        # ACTS doesn't need a list of parameters, just an empty <Parameters></Parameters>
         # for parameter in parameters:
         #     fp.write(f'        <Parameter name="{parameter}" />\n')
         fp.write(f'      </Parameters>\n')
@@ -306,9 +297,9 @@ def write_cases(file_path, cases):
 
         ai = write_parameters_and_constraints(fp, cases)
 
-        # OutputParameters?
+        # VTSG doesn't need OutputParameters
 
-        # Relations?
+        # VTSG doesn't need Relations
 
         fp.write('</System>\n')
 
@@ -335,10 +326,33 @@ def run_ACTS(file_path, ACTS_output, doi):
 
 def read_selections(ACTS_output_file, cases, ai):
     """
-    Read the cases that ACTS picks.  Select them from the generated cases.
+    Read the value sets that ACTS picks.  Select matching cases from the
+    generated cases.
     """
 
-    def matching_case(cases, ival, fval, sval, eqval, cpxval, cndval):
+    def values_to_key(input, filter, sink, exec_query, cpx_id, cnd_id):
+        """
+        Return a key for the values passed. (Just a tuple, for now at least)
+        """
+        return (input, filter, sink, exec_query, cpx_id, cnd_id)
+
+
+    def case_to_key(case):
+        """
+        Return a (unique?) dictionary key for a case
+        """
+        if len(case.complexity_list) > 0:
+            cpx_id = f'PX{case.complexity_list[0].id}'
+            if case.complexity_list[0].cond_id:
+                cnd_id = f'ND{case.complexity_list[0].cond_id}'
+            else:
+                cnd_id = 'NONE'
+        else:
+            cpx_id = 'P0'
+            cnd_id = 'NONE'
+        return values_to_key(case.input, case.filter, case.sink, case.exec_query, cpx_id, cnd_id)
+
+    def matching_case(cases_dict, ival, fval, sval, eqval, cpxval, cndval):
         """
         Return a case that matches the values.  If no match, return None.
         """
@@ -346,6 +360,7 @@ def read_selections(ACTS_output_file, cases, ai):
         fmod = ai.filters.module(fval)
         smod = ai.sinks.module(sval)
         eqmod = ai.eqs.module(eqval)
+        """ Useful when developing this code
         if ACTS_print_debug_output:
             print(f'Find I {ival} {imod.module_description if imod is not None else "(none)"}', end='')
             print(f'  F {fval} {fmod.module_description if fmod is not None else "(none)"}', end='')
@@ -353,23 +368,18 @@ def read_selections(ACTS_output_file, cases, ai):
             print(f'  EQ {eqval} {eqmod.module_description if eqmod is not None else "(none)"}', end='')
             print(f'  CPX {cpxval}', end='')
             print(f'  CND {cndval}')
-        for c in cases:
-            # SKIMP - this matches at most one complexity
-            if len(c.complexity_list) > 0:
-                cpx_id = f'PX{c.complexity_list[0].id}'
-                if c.complexity_list[0].cond_id:
-                    cnd_id = f'ND{c.complexity_list[0].cond_id}'
-                else:
-                    cnd_id = 'NONE'
-            else:
-                cpx_id = 'P0'
-                cnd_id = 'NONE'
-            if (imod == c.input and fmod == c.filter and smod == c.sink and
-                eqmod == c.exec_query and cpxval == cpx_id and cndval == cnd_id):
-                return c
+        """
+        key = values_to_key(imod, fmod, smod, eqmod, cpxval, cndval)
+        try:
+            return cases_dict[key]
+        except KeyError:
+            # No VTSG case matches this combination of values
+            return None
 
-        # No VTSG case matches this combination of values
-        return None
+    # put the cases in a dictionary for fast lookup
+    cases_dict = {}
+    for c in cases:
+        cases_dict[case_to_key(c)] = c
 
     selected_test_cases = []
 
@@ -387,12 +397,11 @@ def read_selections(ACTS_output_file, cases, ai):
             # remove leading labeling character, like I*, F*, and S*
             (ival, fval, sval, eqval, cpxval, cndval) = [value[1:] for value in values]
             # find a matching test case
-            case = matching_case(cases, ival, fval, sval, eqval, cpxval, cndval)
+            case = matching_case(cases_dict, ival, fval, sval, eqval, cpxval, cndval)
             if case:
-                if ACTS_print_debug_output: print(case)
                 selected_test_cases.append(case)
             else:
-                print(f'NO CASE FOUND FOR I{ival}, F{fval}, S{sval}, E{eqval}, C{cpxval}, C{cndval}')
+                print(f'[ERROR] No case found for I{ival}, F{fval}, S{sval}, E{eqval}, C{cpxval}, C{cndval}')
                 sys.exit(1)
 
     return selected_test_cases
