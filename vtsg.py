@@ -1,4 +1,4 @@
-# *modified "Tue Jul 11 15:54:48 2023" *by "Paul E. Black"
+# *modified "Mon Jul 31 15:15:19 2023" *by "Paul E. Black"
 """ Vulnerability Test Suite Generator (VTSG)
 
 Usage:
@@ -55,7 +55,7 @@ def main():
     unsafe = True
     date = time.strftime("%m-%d-%Y_%Hh%Mm%S")
 
-    args = docopt(__doc__, version='0.4')
+    args = docopt(__doc__, version='3')
 
     # get selected language
     language = None
