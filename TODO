@@ -1,5 +1,5 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Jul 18 16:53:01 2023" *by "Paul E. Black"
+ *modified "Mon Jul 31 11:23:23 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -204,26 +204,23 @@ functions are often referred to as "filtering".
    Change language entries from {{ filtering_content }} to {{ filter_content }}?
 
 
-Make sure the PHP and C# code runs, that is, that the generated programs are valid.
+Make sure the PHP code runs, that is, that the generated programs are valid.
 Fix any problems . . .
 
 C#
   - check all str functions
   - Complexities :
-      - if        : Testing
       - ternary   : None (possible?)
       - switch    : Testing
       - goto      : Testing
       - loop      : Testing
           - for       : Testing
-          - while     : Testing
           - foreach   : Testing
       - function  : Testing (only traversal/in/out)
       - classes   : Testing (only traversal/in/out)
   # Hard to do
   - add C# print debug to test if safe/unsafe or if it's executed
-  - create bash script to compile and run all C# code
-      -> compilation script done
+
 
 Isolate code related to complexities.  Complexities relating to classes are
 functional, however, the code needs to be isolated so it does not interfere with
@@ -265,17 +262,6 @@ GENERATE CASES SMARTER
 
 Create s01, s02, s03, etc. subdirectories so there aren't hundreds of thousands of
 cases in one directory.
-
-Enhance VTSG to produce p% of cases.  That is, it would write 1 of every N
-combinations, including complexities, that it comes up with.  This is an easy way to
-approximate combinatorial tests.
-    An alternative is to (pseudo)randomly decide which case to write.  That is, write
-any case with probability p%.  This should write about p% of cases.  It must be
-PSEDUOrandom so we can provide a seed and generate exactly the same cases in each
-test run.
-    The -n (number generated) option does something vaguely like this.  However, it
-stops generation after N sink/filter/input/exec query combinations are generated.
-Search for number_generated in generator.py.
 
 
 OTHER? GENERAL?
