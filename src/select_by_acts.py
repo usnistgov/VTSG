@@ -6,7 +6,7 @@ tool", 2013 IEEE Sixth International Conference on Software Testing, Verificatio
 Validation (ICST).
 
   *created "Thu Jun  1 09:39:16 2023" *by "Paul E. Black"
- *modified "Fri Jul 28 14:43:00 2023" *by "Paul E. Black"
+ *modified "Mon Jul 31 11:00:01 2023" *by "Paul E. Black"
 
 The interface is select_cases_ACTS().  Pass a list of cases and the degree of
 interaction; select via ACTS; and return a subset of the cases passed.
@@ -336,11 +336,11 @@ def read_selections(ACTS_output_file, cases, ai):
         """
         return (input, filter, sink, exec_query, cpx_id, cnd_id)
 
-
     def case_to_key(case):
         """
-        Return a (unique?) dictionary key for a case
+        Return a dictionary key for a case
         """
+        # SKIMP - this matches at most one complexity
         if len(case.complexity_list) > 0:
             cpx_id = f'PX{case.complexity_list[0].id}'
             if case.complexity_list[0].cond_id:
@@ -379,10 +379,13 @@ def read_selections(ACTS_output_file, cases, ai):
     # put the cases in a dictionary for fast lookup
     cases_dict = {}
     for c in cases:
-        cases_dict[case_to_key(c)] = c
+        case_key = case_to_key(c)
+        assert case_key not in cases_dict, f'duplicate key: {case_key}'
+        cases_dict[case_key] = c
 
     selected_test_cases = []
 
+    # read the ACTS output file, parse it for values, and select cases matching those
     with open(ACTS_output_file, "r") as fp:
         # skip the comment lines
         for line in fp:
@@ -391,7 +394,7 @@ def read_selections(ACTS_output_file, cases, ai):
 
         # at this point, the content of "line" is the parameter names, e.g. INPUT,FILTER,SINK,...
 
-        # read each case (line)
+        # read each value set (line)
         for line in fp:
             values = line.rstrip().split(',')
             # remove leading labeling character, like I*, F*, and S*
@@ -422,7 +425,7 @@ def select_cases_ACTS(cases, doi):
     ACTS_XML_file = '/tmp/VTSG_ACTS_input.xml'
     ACTS_output   = '/tmp/VTSG_ACTS_output.txt'
 
-    # we only use 6 parameters to encode our test cases for ACTS
+    # we only use 6 parameters to encode VTSG test cases for ACTS
     if doi > 6:
         print('[ERROR] ACTS degree of interaction should not exceed 6')
         sys.exit(1)
