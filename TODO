@@ -1,9 +1,21 @@
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Mon Jul 31 11:23:23 2023" *by "Paul E. Black"
+ *modified "Mon Jul 31 16:52:41 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
-FIX BUGS - HANDLE ALL CURRENT LANGUAGES
+
+31 July 2023
+
+Change <sample></sample> to <module></module>.
+
+
+31 July 2023
+
+In file_template.xml, move import_code from variables to syntax (or imports).
+Maybe
+  <import_code>using {{import_file}};</import_code>
+I can't see any reason to have it in variables.
+
 
 30 March 2023
 
