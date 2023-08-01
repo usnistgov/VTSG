@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Tue Jul 11 16:00:25 2023" *by "Paul E. Black"
+# *modified "Tue Aug  1 15:05:43 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -216,6 +216,11 @@ test023-N60: $(VTSG_FILES)
 	python3 vtsg.py -l test023 -t tests/templates --number-sampled 60 | grep -v "Generation time " | tee $(@)_photo
 	(cd $$(ls -dt TestSuite_*/test023 | head -1);for f in $$(find . -name "*.py"|sort); do diff $$f $(TDIR)/test023/$$f;done) | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
+
+# (re)generate all test023 cases
+# this is NOT run during normal testing
+test023: $(VTSG_FILES)
+	python3 vtsg.py -l $(@) -t tests/templates
 
 # test generate only safe or only unsafe cases
 testSafeUnsafe: test025su test025s test025u
