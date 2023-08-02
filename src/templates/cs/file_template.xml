@@ -10,8 +10,9 @@
     </comment>
     <syntax>
       <statement_terminator>;</statement_terminator>
+      <import_code>using {{import_file}};</import_code>
     </syntax>
-    <variables prefix="" import_code="using {{import_file}};">
+    <variables prefix="">
         <variable type="int" code="int" init="0"/>
         <variable type="string" code="string" init="null"/>
     </variables>

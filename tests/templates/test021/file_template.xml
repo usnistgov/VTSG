@@ -1,7 +1,7 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
 <!-- *created  "Mon Feb 13 13:48:52 2023" *by "Paul E. Black" -->
-<!-- *modified "Tue Jul 18 16:49:17 2023" *by "Paul E. Black" -->
+<!-- *modified "Tue Aug  1 13:39:30 2023" *by "Paul E. Black" -->
 
 <!-- test inconsistent declaring local variables, that is,
      mismatch between {{Local_var}} and <variable /> statements -->
@@ -17,8 +17,9 @@
       <statement_terminator></statement_terminator>
       <!-- Insert desired indentation level using spaces-->
       <indent>    </indent>
+      <import_code>import {{import_file}}</import_code>
     </syntax>
-    <variables prefix="" import_code="import {{import_file}}">
+    <variables prefix="">
         <variable type="int" code="" init="0"/>
         <variable type="string" code="" init="None"/>
 	<variable type="bool" code="" init="False"/>

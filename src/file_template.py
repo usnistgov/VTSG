@@ -1,7 +1,7 @@
 """
 file_template module
 
- *modified "Tue Jul 18 16:19:32 2023" *by "Paul E. Black"
+ *modified "Tue Aug  1 16:18:16 2023" *by "Paul E. Black"
 """
 
 import re
@@ -46,13 +46,14 @@ class FileTemplate(object):
         self._comment['close'] = file_template.find("comment").find("close").text
         self._comment['inline'] = file_template.find("comment").find("inline").text
         self._syntax = {}
-        if (s := file_template.find('syntax')) is not None:
+        s = file_template.find('syntax')
+        if s is not None:
             if s.find('statement_terminator') is not None:
                 self._syntax['statement_terminator'] = s.find('statement_terminator').text
             if s.find('indent') is not None:
                 self._syntax['indent'] = s.find('indent').text
+            self._import_code = s.find('import_code').text
         self._prefix = file_template.find("variables").get("prefix")
-        self._import_code = file_template.find("variables").get("import_code")
         # the preceding is the import code, which has a placeholder
         self._variables = {}
         for v in file_template.find("variables"):
@@ -93,10 +94,10 @@ class FileTemplate(object):
 
     def generate_imports(self, imports):
         """
-        Fills the template by replacing the placeholder for the import  with the given arguments.
+        Generate import statements with the template import_code and the names passed.
 
         Args :
-            **imports** (str): The value to write.
+            **imports** (set of str): libraries to import, e.g. {'sys', 'os'}.
         """
         res = ""
         for i in sorted(imports):

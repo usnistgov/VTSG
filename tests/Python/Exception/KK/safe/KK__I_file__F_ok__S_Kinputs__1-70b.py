@@ -4,7 +4,8 @@ input: file data.txt containing an integer
 filter out invalid input
 Kratkiewicz 180, 181, and 182: inputs from various sources; basic write
 '''
-using sys;
+import sys
+
 
 class Class_1:
     def __init__(self,tainted_2_1):

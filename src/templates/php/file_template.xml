@@ -9,8 +9,9 @@
     </comment>
     <syntax>
       <statement_terminator>;</statement_terminator>
+      <import_code>include "{{import_file}}";</import_code>
     </syntax>
-    <variables prefix="$" import_code="include &quot;{{import_file}}&quot;;">
+    <variables prefix="$">
         <variable type="int" code="" init="0"/>
         <variable type="string" code="" init="null"/>
     </variables>

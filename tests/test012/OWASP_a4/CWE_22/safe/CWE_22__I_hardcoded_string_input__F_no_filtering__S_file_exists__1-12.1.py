@@ -1,5 +1,5 @@
 '''
-  Test 2 of 4 for statement_terminator
+  Test 1 of 3 for statement_terminator
   ang-syntax-ang, but no ang-statement_terminator-ang
   also, two levels of complexity
 '''

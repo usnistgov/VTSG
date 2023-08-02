@@ -11,8 +11,9 @@
     <syntax>
       <!-- indent is four spaces -->
       <indent>    </indent>
+      <import_code>import {{import_file}}</import_code>
     </syntax>
-    <variables prefix="" import_code="import {{import_file}}">
+    <variables prefix="">
         <variable type="int" code="" init="0"/>
         <variable type="string" code="" init="None"/>
 	<variable type="bool" code="" init="False"/>
@@ -23,7 +24,7 @@
     </imports>
     <code>
 '''
-  Test 2 of 4 for statement_terminator
+  Test 1 of 3 for statement_terminator
   ang-syntax-ang, but no ang-statement_terminator-ang
   also, two levels of complexity
 '''

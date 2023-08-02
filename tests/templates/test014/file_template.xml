@@ -11,8 +11,9 @@
     <syntax>
         <statement_terminator>;;</statement_terminator>
 	<indent> ;-) </indent>
+      <import_code>import {{import_file}}</import_code>
     </syntax>
-    <variables prefix="" import_code="import {{import_file}}">
+    <variables prefix="">
         <variable type="int" code="" init="0"/>
         <variable type="string" code="" init="None"/>
 	<variable type="bool" code="" init="False"/>
@@ -23,7 +24,7 @@
     </imports>
     <code>
 '''
-  Test 4 of 4 for statement_terminator
+  Test 3 of 3 for statement_terminator
   two semicolons for statement_terminator
   Test INDENT...DEDENT code
 '''

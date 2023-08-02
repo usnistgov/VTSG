@@ -9,7 +9,8 @@ sink: add directory named by input to Python module search path
 .
 POV
 '''
-using os;
+import os
+
 
 class Class_1:
     def __init__(self,tainted_2_1):

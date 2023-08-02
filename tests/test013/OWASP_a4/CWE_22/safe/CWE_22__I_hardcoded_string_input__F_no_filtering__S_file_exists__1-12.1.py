@@ -1,5 +1,5 @@
 '''
-  Test 3 of 4 for statement_terminator
+  Test 2 of 3 for statement_terminator
   Null string for statement_terminator
 '''
 '''

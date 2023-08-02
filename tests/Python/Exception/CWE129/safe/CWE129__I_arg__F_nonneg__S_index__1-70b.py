@@ -7,7 +7,8 @@ filter: block inputs less than 0
 -6
 POV
 '''
-using sys;
+import sys
+
 
 class Class_1:
     def __init__(self,tainted_2_1):

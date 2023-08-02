@@ -9,7 +9,8 @@ sink: open file named by input
 ../etc/passwd
 POV
 '''
-using os;
+import os
+
 
 class Class_1:
     def __init__(self,tainted_2_1):

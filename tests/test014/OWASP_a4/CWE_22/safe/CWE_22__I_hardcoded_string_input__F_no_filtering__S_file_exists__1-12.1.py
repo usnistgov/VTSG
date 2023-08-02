@@ -1,5 +1,5 @@
 '''
-  Test 4 of 4 for statement_terminator
+  Test 3 of 3 for statement_terminator
   two semicolons for statement_terminator
   Test INDENT...DEDENT code
 '''

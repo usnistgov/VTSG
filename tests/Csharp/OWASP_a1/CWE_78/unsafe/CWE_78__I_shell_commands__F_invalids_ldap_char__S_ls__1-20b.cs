@@ -19,6 +19,7 @@ William Mentzer willmentzer20@gmail.com
 
                 */
                 using System.Text;
+
                 namespace default_namespace{
                     class Class_1{
                         string var_1;

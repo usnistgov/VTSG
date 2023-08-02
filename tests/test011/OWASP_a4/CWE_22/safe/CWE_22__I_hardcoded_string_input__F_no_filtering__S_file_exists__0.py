@@ -1,6 +1,4 @@
 '''
-  Test 1 of 4 for statement_terminator
-  No ang-syntax-ang at all.
   Test using arbitrary strings for id in conditions and complexities
 '''
 '''

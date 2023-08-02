@@ -3,6 +3,7 @@ Bernardino
 CMPLX
 COND
 CWEs
+Combinatorial
 Conf
 Copan
 Cryptographic
@@ -17,9 +18,11 @@ Eisenbarth
 ExecQuery
 Fong
 Github
+Homebrew
 ICST
 Intern'l
 Jinja
+Kacker
 LDAP
 MIMD
 MISD
@@ -48,16 +51,19 @@ VTS
 VTSG
 XPATH
 XPath
+Yu
 anchorcolor
 arabic
 citecolor
 colorlinks
+combinatorial
 concatenationsimplequotesqlserver
 cryptographic
 customizable
 de
 dir
 dirs
+doi
 eps
 execqueriescontent
 exectype
@@ -69,7 +75,9 @@ filteringcontent
 flawgroup
 flawtype
 funcpregmatch
+github
 hardcoded
+homebrew
 importcode
 init
 inoutvar
@@ -117,6 +125,7 @@ subdirectories
 subdirectory
 techpubs
 testsuite
+testsuites
 tion
 tocsectionReferences
 traceback

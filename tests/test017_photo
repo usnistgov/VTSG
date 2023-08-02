@@ -2,6 +2,9 @@
 input_type nofilter promises to just pass the input unchanged, so complexities are useless.
 [ERROR] DEDENT without matching INDENT in this code:
 '''
+test fatal misuse of INDENT ... DEDENT in code: extra DEDENT
+'''
+'''
 Hardcoded string input
 no filtering
 sink: run ls in a dir

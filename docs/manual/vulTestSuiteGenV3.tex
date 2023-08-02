@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Mon Jul 31 16:56:39 2023" *by "Paul E. Black"
+% *modified "Tue Aug  1 12:26:02 2023" *by "Paul E. Black"
 
 \documentclass[12pt]{article}
 \usepackage{amsmath}
@@ -1187,8 +1187,9 @@ We chose ``DEDENT'' because it is used in Python's grammar description.
     <syntax>
         <statement_terminator></statement_terminator>
         <indent></indent>
+        <import_code>using {{import_file}};</import_code>
     </syntax>
-    <variables prefix="" import_code="using {{import_file}};">
+    <variables prefix="">
         <variable type="" code="" init=""/>
     </variables>
     <imports>
@@ -1226,6 +1227,11 @@ We chose ``DEDENT'' because it is used in Python's grammar description.
         \item indent: string used to indent code, see Sec.~\ref{sec:indent}.
           This is typically four spaces, but
           can be any string.
+
+        \item import\_code: Code to include a library. The code
+        must have the placeholder \verb|{{import_file}}|.
+        For example, \verb|#include <{{import_name}}>|.
+        Note: include any needed statement terminator.  None is added.
     \end{itemize}
     
     \item variables: Information about variable names and types and how
@@ -1235,10 +1241,6 @@ We chose ``DEDENT'' because it is used in Python's grammar description.
         \$ for PHP.
         Leave it empty if no prefix is required required.
 
-        \item import\_code: Code to include a library. The code
-        should have the placeholder \verb|{{import_file}}|.
-        For example, \verb|#include <{{import_name}}>|.
-        
         \item variable: Defines each variable type and how to initialize it. (optional)
         \begin{itemize}
         \item type: Names the type. This string 

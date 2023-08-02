@@ -21,6 +21,7 @@ William Mentzer willmentzer20@gmail.com
                 */
                 using System.IO;
 using System.Text.RegularExpressions;
+
                 namespace default_namespace{
                     class Class_1{
                         string var_1;

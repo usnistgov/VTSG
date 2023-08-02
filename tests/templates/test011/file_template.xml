@@ -1,6 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
-<!-- *modified "Tue Jul 18 16:50:25 2023" *by "Paul E. Black" -->
+<!-- *modified "Tue Aug  1 14:02:44 2023" *by "Paul E. Black" -->
 
 <template name="test011">
     <file_extension>py</file_extension>
@@ -9,7 +9,10 @@
         <close>'''</close>
         <inline>#</inline>
     </comment>
-    <variables prefix="" import_code="import {{import_file}}">
+    <syntax>
+      <import_code>import {{import_file}}</import_code>
+    </syntax>
+    <variables prefix="">
         <variable type="int" code="" init="0"/>
         <variable type="string" code="" init="None"/>
 	<variable type="bool" code="" init="False"/>
@@ -20,8 +23,6 @@
     </imports>
     <code>
 '''
-  Test 1 of 4 for statement_terminator
-  No ang-syntax-ang at all.
   Test using arbitrary strings for id in conditions and complexities
 '''
 '''

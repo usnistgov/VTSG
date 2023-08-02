@@ -1,6 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
-<!-- *modified "Tue Jul 18 16:21:13 2023" *by "Paul E. Black" -->
+<!-- *modified "Tue Aug  1 11:48:37 2023" *by "Paul E. Black" -->
 
 <template name="Python">
     <file_extension>py</file_extension>
@@ -12,10 +12,11 @@
     <syntax>
       <!-- If language doesn't have a terminator, leave empty-->
       <statement_terminator></statement_terminator>
-      <!-- Insert desired indentation level using spaces-->
+      <!-- Insert desired indentation for one level -->
       <indent>    </indent>
+      <import_code>import {{import_file}}</import_code>
     </syntax>
-    <variables prefix="" import_code="import {{import_file}}">
+    <variables prefix="">
     </variables>
     <imports>
         <import>sys</import>

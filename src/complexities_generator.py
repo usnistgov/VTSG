@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Tue Apr 18 10:16:11 2023" *by "Paul E. Black"
+ *modified "Tue Aug  1 14:20:21 2023" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -220,9 +220,7 @@ class ComplexitiesGenerator(object):
         for c in reversed(self.complexities[1:]):
             if c['type'] == "class_traversal":
                 # add a new class code when we have a traversal class
-                # SKIMP: find union of imports and call file_template.generate_imports()
-                #   like the code in generator.py at # IMPORTS (about line 455)
-                imports_content = "\n".join([f'using {i_c};' for i_c in sorted(set(self.filtering.imports))])
+                imports_content = self.template.generate_imports(set(self.filtering.imports))
                 classes_code.append({'code': Template(c['code'], undefined=DebugUndefined).render(static_methods=functions_code, imports=imports_content), 'name': c['name']})
                 functions_code = ""
             elif c['type'] == "class":

@@ -1,4 +1,3 @@
-
 /*
 Command line args
 filtering : check if there is only numbers
@@ -23,7 +22,7 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
-    class MainClass3{
+    class MainClass2{
         public static void Main(string[] args){
             string tainted_2 = null;
             string tainted_3 = null;

@@ -1,5 +1,8 @@
 [ERROR] INDENT(s) without matching DEDENT(s) in this code:
 '''
+test fatal misuse of INDENT ... DEDENT in code: missing DEDENT
+'''
+'''
 Hardcoded string input
 no filtering
 sink: run ls in a dir

@@ -1,7 +1,9 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
 <!-- *created  "Fri Jun 30 16:13:47 2023" *by "Paul E. Black" -->
-<!-- *modified "Tue Jul 18 16:49:10 2023" *by "Paul E. Black" -->
+<!-- *modified "Tue Aug  1 13:35:25 2023" *by "Paul E. Black" -->
+
+<!-- test for selecting a subset of cases, either by ACTS or by -n -->
 
 <template name="test023">
     <file_extension>py</file_extension>
@@ -15,8 +17,9 @@
       <statement_terminator></statement_terminator>
       <!-- Insert desired indentation level using spaces-->
       <indent>    </indent>
+      <import_code>import {{import_file}}</import_code>
     </syntax>
-    <variables prefix="" import_code="import {{import_file}}">
+    <variables prefix="">
     </variables>
     <imports>
         <import>sys</import>

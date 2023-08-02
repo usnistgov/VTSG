@@ -4,7 +4,8 @@ input: integer from environment variable
 filter: block zero arguments
 sink: divide by input
 '''
-using sys;
+import sys
+
 
 class Class_1:
     def __init__(self,tainted_2_1):
