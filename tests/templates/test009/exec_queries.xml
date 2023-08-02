@@ -1,0 +1,13 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE exec_queries SYSTEM "../dtd/exec_queries.dtd">
+<!-- *created  "Wed Aug  2 10:26:24 2023" *by "Paul E. Black" -->
+<!-- *modified "Wed Aug  2 10:26:35 2023" *by "Paul E. Black" -->
+<exec_queries>
+    <exec_query type="pass" safe="">
+        <path>
+            <dir>pass</dir>
+        </path>
+        <comment>exec_query: make sure EQ is used at least once in tests</comment>
+        <code>pass</code>
+    </exec_query>
+</exec_queries>

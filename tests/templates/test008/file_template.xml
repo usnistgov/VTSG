@@ -1,0 +1,48 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!-- *created  "Wed Aug  2 10:24:04 2023" *by "Paul E. Black" -->
+<!-- *modified "Wed Aug  2 10:25:16 2023" *by "Paul E. Black" -->
+
+<!-- missing ang-syntax-ang section -->
+
+<template name="test008">
+    <file_extension>py</file_extension>
+    <comment>
+        <open>'''</open>
+        <close>'''</close>
+        <inline>#</inline>
+    </comment>
+    <variables prefix="">
+        <variable type="int" code="" init="0"/>
+        <variable type="string" code="" init="None"/>
+	<variable type="bool" code="" init="False"/>
+	<variable type="float" code="" init="0.0"/>
+    </variables>
+    <imports>
+        <import>sys</import>
+        <import>math</import>
+    </imports>
+    <code>
+'''
+{{ comments }}
+'''
+
+'''
+{{ license }}
+'''
+{{ stdlib_imports }}
+
+{{ static_methods }}
+
+
+def main():
+	 	{{local_var}}
+	 	{{input_content}}
+{{filtering_content}}
+{{sink_content}}
+{{exec_queries_content}}
+
+if __name__ == '__main__':
+        main()
+    </code>
+</template>

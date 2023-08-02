@@ -1,7 +1,7 @@
 """
 file_template module
 
- *modified "Tue Aug  1 16:18:16 2023" *by "Paul E. Black"
+ *modified "Wed Aug  2 10:21:57 2023" *by "Paul E. Black"
 """
 
 import re
@@ -26,7 +26,8 @@ class FileTemplate(object):
 
             **_prefix** (str): Variables prefix (private member, please use getter).
 
-            **_import_code** (str): Import code with placeholder (private member).
+            **_syntax** (array str): Various syntax specifics, such as statement
+			    terminator, indentation, and import code (private member).
 
             **_variables** (dict str->(dict str->str)): Identifier and initializer for variables \
                                           (private member, please use functions).
@@ -47,12 +48,17 @@ class FileTemplate(object):
         self._comment['inline'] = file_template.find("comment").find("inline").text
         self._syntax = {}
         s = file_template.find('syntax')
-        if s is not None:
-            if s.find('statement_terminator') is not None:
-                self._syntax['statement_terminator'] = s.find('statement_terminator').text
-            if s.find('indent') is not None:
-                self._syntax['indent'] = s.find('indent').text
-            self._import_code = s.find('import_code').text
+        if s is None:
+            print('[ERROR] no <syntax></syntax> found.  It is required, at least for <import_code>')
+            exit(1)
+        if s.find('statement_terminator') is not None:
+            self._syntax['statement_terminator'] = s.find('statement_terminator').text
+        if s.find('indent') is not None:
+            self._syntax['indent'] = s.find('indent').text
+        if s.find('import_code') is None:
+            print('[ERROR] no required <import_code></import_code>')
+            exit(1)
+        self._syntax['import_code'] = s.find('import_code').text
         self._prefix = file_template.find("variables").get("prefix")
         # the preceding is the import code, which has a placeholder
         self._variables = {}
@@ -101,7 +107,7 @@ class FileTemplate(object):
         """
         res = ""
         for i in sorted(imports):
-            imp = Template(self._import_code).render(import_file=i)
+            imp = Template(self._syntax['import_code']).render(import_file=i)
             res += imp + "\n"
         return res
 
