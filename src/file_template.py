@@ -1,7 +1,7 @@
 """
 file_template module
 
- *modified "Wed Aug  2 10:21:57 2023" *by "Paul E. Black"
+ *modified "Mon Aug  7 14:39:08 2023" *by "Paul E. Black"
 """
 
 import re
@@ -60,7 +60,6 @@ class FileTemplate(object):
             exit(1)
         self._syntax['import_code'] = s.find('import_code').text
         self._prefix = file_template.find("variables").get("prefix")
-        # the preceding is the import code, which has a placeholder
         self._variables = {}
         for v in file_template.find("variables"):
             self._variables[v.get("type")] = {"code": v.get("code"), "init": v.get("init")}
