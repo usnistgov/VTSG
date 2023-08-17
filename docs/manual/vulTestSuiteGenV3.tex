@@ -1,77 +1,36 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Aug  1 12:26:02 2023" *by "Paul E. Black"
+% *modified "Thu Aug 17 16:47:29 2023" *by "Paul E. Black"
 
-\documentclass[12pt]{article}
+% typeset C#
+% According to the ECMA-334 C# Language Specification, 5th Edition, Sec. 5,
+% Acronyms and abbreviations, ``The name C# is written as the LATIN CAPITAL LETTER
+% C (U+0043) followed by the NUMBER SIGN # (U+0023).'' \cite{ECMA-CSharp2017}
+% https://www.ecma-international.org/publications/standards/Ecma-334.htm
+% Dec 2017, Accessed: 12 June 2020
+\newcommand{\CSharp}{C{\fontseries{b}\selectfont\#}}
+% another possibility is C\nolinebreak\#\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   	FILL OUT METADATA IN PREAMBLE TEX FILE FIRST
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble.tex}
+
 \usepackage{amsmath}
 \usepackage{amsfonts}   % if you want the fonts
 \usepackage{amssymb}    % if you want extra symbols
 \usepackage{graphicx}   % need for figures
-\usepackage{xcolor}
+\usepackage{xcolor}	% for colored text and backgrounds
 \usepackage{bm}
 \usepackage{secdot}		
 \usepackage{mathptmx}
 \usepackage{float}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
-\usepackage[hang,flushmargin,bottom]{footmisc} % footnote format
-
-\usepackage{titlesec}
-\titleformat{\section}{\normalsize\bfseries}{\thesection.}{1em}{}	% required for heading numbering style
-\titleformat*{\subsection}{\normalsize\bfseries}
-
-\usepackage{tocloft}	% change typeset, titles, and format list of appendices/figures/tables
-\renewcommand{\cftdot}{}	
-\renewcommand{\contentsname}{Table of Contents}
-\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % for parts
-\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
-\renewcommand\cftbeforesecskip{\setlength{4pt}{}}
-\addtolength{\cftfignumwidth}{1em}
-\renewcommand{\cftfigpresnum}{\figurename\ }
-\addtolength{\cfttabnumwidth}{1em}
-\renewcommand{\cfttabpresnum}{\tablename\ }
-\setlength{\cfttabindent}{0in}    %% adjust as you like
-\setlength{\cftfigindent}{0in} 
 
 \setcounter{tocdepth}{2} % only show down to subsections
 
 \usepackage{enumitem}         % to control spacing between bullets/numbered lists
-%\setlist{nosep} % no space between list items or around lists
-
-\usepackage[numbers,sort&compress]{natbib} % format bibliography 
-\renewcommand{\bibsection}{}
-\setlength{\bibsep}{0.0pt}
-
-% hyphenate URLs in more places (must precede hyperref)
-\usepackage[hyphens,obeyspaces]{url}
-\usepackage[hidelinks]{hyperref}
-\hypersetup{
-	colorlinks = true,
-urlcolor ={blue},
-citecolor = {.},
-linkcolor = {.},
-anchorcolor = {.},
-filecolor = {.},
-menucolor = {.},
-runcolor = {.}
-pdftitle={},
-pdfsubject={},
-pdfauthor={},
-pdfkeywords={}
-}
-\urlstyle{same}
-
-\usepackage{epstopdf} % converting EPS figure files to PDF
-
-\usepackage{fancyhdr, lastpage}	% formatting document, calculating number of pages, formatting headers
-\setlength{\topmargin}{-0.5in}
-\setlength{\headheight}{39pt}
-\setlength{\oddsidemargin}{0.25in}
-\setlength{\evensidemargin}{0.25in}
-\setlength{\textwidth}{6.0in}
-\setlength{\textheight}{8.5in}
-
-\usepackage{caption} % required for Figure labels
-\captionsetup{font=small,labelfont=bf,figurename=Fig.,labelsep=period,justification=raggedright} 
+\setlist{nosep} % no space between list items or around lists
 
 % put a light gray ``DRAFT'' diagonally across each page
 \usepackage{draftwatermark}
@@ -85,24 +44,9 @@ pdfkeywords={}
 \SetWatermarkAngle{55}
 \SetWatermarkHorCenter{11cm}
 
-\usepackage{xcolor} % for colored text and backgrounds
-
-%%%%%%%%%%% !!!!!! REQUIRED - FILL OUT METADATA FOR NISTIR HERE !!!!!!!! %%%%%%%%%%%%%%
-%  	Report Number - fill in Report Number sent to you (see info below)
-%   DOI Statement - fill in DOI sent to you 
-%   Month Year - fill in Month and Year of Publication
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\pubnumber}{XXXX}
-\newcommand{\DOI}{https://doi.org/10.6028/NIST.IR.XXXX}
-\newcommand{\monthyear}{March 2023}
-\newcommand{\paperTitle}{Vulnerability Test Suite Generator (VTSG) Version 3}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   	BEGIN DOCUMENT 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% correct bad hyphenation here
-\hyphenation{e-qua-tion}
 
 % list of commands for horizontal spacing---and there are a LOT of them---and
 % examples of each one
@@ -111,48 +55,41 @@ pdfkeywords={}
 % to wrap paragraph in table cells
 \usepackage{makecell}
 
-% typeset C#
-% According to the ECMA-334 C# Language Specification, 5th
-% Edition, Sec. 5, Acronyms and abbreviations, ``The name 
-% C# is written as the LATIN CAPITAL LETTER C (U+0043) followed 
-% by the NUMBER SIGN # (U+0023).'' \cite{ECMA-CSharp2017}
-% https://www.ecma-international.org/publications/standards/Ecma-334.htm
-% Dec 2017, Accessed: 12 June 2020
-\newcommand{\CSharp}{C{\fontseries{b}\selectfont\#}}
-% another possibility is C\nolinebreak\#\
-
 % zero-width space, so "--" does not become en dash
 \newcommand{\zws}{\hspace{0pt}}
 
 \begin{document}
 	\urlstyle{rm} % Format style of \url   
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Cover Page is REQUIRED and must contain the information 
 %	displayed here, at a minimum. Additional artwork may be included 
 %	(e.g., official project/conference logo, etc.).
-%	Pub Number automated based on metadata
+%	Most info automated based on metadata entered in preamble.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{titlepage}
 \begin{flushright}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 	Automated based on metadata - delete if not applicable
+% 	Automated based on metadata
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\LARGE{\textbf{NISTIR \pubnumber}}\\
+\LARGE{\sffamily{\textbf{NIST \pubseries}}}\\
+\LARGE{\sffamily{\textbf{\pubnumber}}}\\
 \vfill
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	Title 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Huge{\textbf{\paperTitle}}\\
+\Huge{\sffamily{\textbf{\pubtitle}}}\\
+\ifdefined\pubsubtitle
+\Large{\sffamily{\textit{\pubsubtitle}}}\\
+\fi
+%\vfill                % include if draft
+%\Large{\draftstage}\\ % include if draft
     \vfill
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	Authors - add complete list of authors, affiliations will be 
-%   added on title page
+%	Authors - automated based on metadata
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \large Paul E. Black \\
-    \large William Mentzer\\
-    \large Elizabeth Fong \\
-    \large Bertrand Stivalet
+\large \authorone\\
+\large \authortwo\\
+\large \authorthree\\
+\large \authorfour\\
+%\large \authorfive\\
+%\large \authorsix\\
 \vfill
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	The DOI is automated based on metadata.	
@@ -161,12 +98,13 @@ pdfkeywords={}
 \DOI\\
 \vfill
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	NIST LOGO - keep as-is
+%	NIST LOGO - keep as-is The cover page can include additional
+% visual elements. Commercial logos are not permitted. NIST program
+% logos are permitted. Other agency logos are permitted if
+% interagency report.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\includegraphics[width=0.3\linewidth]{NIST-logo.eps}\\ 
- 
-  
+\includegraphics[trim=0 0 0.7in 0,clip,width=3.62in]{NIST-logo.png}\\
 \end{flushright}
 \end{titlepage}
 \begin{titlepage}
@@ -175,14 +113,15 @@ pdfkeywords={}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{flushright}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   Publication Series & Number - automated
+%   Automated based on metadata
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\LARGE{\textbf{NISTIR \pubnumber}}\\
-\vfill 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	Title 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Huge{\textbf{\paperTitle}}\\
+\LARGE{\sffamily{\textbf{NIST \pubseries}}}\\
+\LARGE{\sffamily{\textbf{\pubnumber}}}\\
+\vfill
+\Huge{\sffamily{\textbf{\pubtitle}}}\\
+%\Large{\sffamily{\textit{\pubsubtitle}}}\\
+%\vfill include if draft
+%\Large{\draftstage}\\ include if draft
     \vfill
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	Author Order and Grouping. Always identify the primary author/creator first
@@ -194,120 +133,189 @@ pdfkeywords={}
 %	For NIST authors, include the Division and Laboratory names (but do not
 % include their city and state).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \normalsize 
-    Paul E. Black\\
+\normalsize
+\authorone\\
      \textit{Software and Systems Division}\\
      \textit{Information Technology Laboratory}\\
      \vspace{12pt}
-    William Mentzer\\
+\authortwo\\
      \textit{California State University}\\
      \textit{San Bernardino, California}\\
      \vspace{12pt}
-    Elizabeth Fong \\
-     \textit{affiliation}\\
-     \textit{location}\\
+\authorthree\\
      \vspace{12pt}
-    Bertrand Stivalet \\
-     \textit{affiliation}\\
-     \textit{location}
+\authorfour\\
+    \textit{International Committee of the Red Cross}\\
+    \textit{Geneva, Switzerland}\\
+    \vspace{12pt}
+%\authorfive\\
+%\authorsix\\
 \vfill
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   DOI Statement - automated
+%   Automated based on metadata
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \normalsize This publication is available free of charge from:\\
 \DOI\\
 \vfill
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   Date - Month and Year - automated
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\normalsize \monthyear
+\normalsize \pubmonth~\pubyear\\
+%\textsc{Includes Updates as of \erratadate; See \appendixname~\ref{app:log}} %include if errata update
 \vfill
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Department of Commerce LOGO - leave as-is
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-
-\includegraphics[width=0.18\linewidth]{DoC-logo.eps}\\ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\includegraphics[width=0.2\linewidth]{DoC-logo.pdf}\\
  \vfill
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Department of Commerce & NIST Leadership 
 %	will be updated as changes occur
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \footnotesize U.S. Department of Commerce\\ 
-\textit{Wilbur L. Ross, Jr., Secretary}\\
+\textit{Gina M. Raimondo, Secretary}\\
 \vspace{10pt}
 National Institute of Standards and Technology\\ 
-\textit{Walter Copan, NIST Director and Undersecretary of Commerce for Standards and Technology}  
+\hspace*{-3cm}\textit{Laurie E. Locascio, NIST Director and Under Secretary of Commerce for Standards and Technology}
 \end{flushright}
 \end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Disclaimer & Publication History Page -- REQUIRED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{titlepage}
+\begin{flushleft}
+\footnotesize  Certain commercial equipment, instruments, or materials, commercial or
+non-commercial, are identified in this paper in order to specify the experimental
+procedure adequately. Such identification does not imply recommendation or
+endorsement of any product or service by NIST, nor does it imply that the materials
+or equipment identified are necessarily the best available for the purpose.\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   Disclaimer/CODEN page - required
+% OTHER DISCLAIMERS - INCLUDE AS APPROPRIATE %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{flushright}
-\footnotesize  Certain commercial entities, equipment, or materials may be identified
-in this document in order to describe an experimental procedure or concept
-adequately. Such identification is not intended to imply recommendation or
-endorsement by the National Institute of Standards and Technology, nor is it intended
-to imply that the entities, materials, or equipment are necessarily the best
-available for the purpose.\\
+\vfill
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   This section maintained by Library - do not change
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\footnotesize
+\sffamily{\textbf{NIST Technical Series Policies}}\\
+\rmfamily {\href{https://doi.org/10.6028/NIST-TECHPUBS.CROSSMARK-POLICY}{Copyright, Use, and Licensing Statements}\\
+\href{https://www.nist.gov/nist-research-library/nist-technical-series-publications-author-instructions#pubid}{NIST Technical Series Publication Identifier Syntax}}
 \vfill
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   This section automated - do not change
+%  Complete this section as appropriate
+% ERB approval date is REQUIRED.
+% Publication ID, Month/Year, and DOI of report being replaced
+% (superseded) is only required if this manuscript is a new version
+% (revision, edition, errata update).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\normalsize \textbf{National Institute of Standards and Technology \\ Internal Report \pubnumber\\ 
-Natl. Inst. Stand. Technol. Intern. Rep. \pubnumber, \pageref{LastPage} pages (\monthyear)} \\
-\vspace{12pt}
-\textbf{This publication is available free of charge from: \DOI}
+\sffamily{\textbf{Publication History}}\\
+ \rmfamily {Approved by the NIST Editorial Review Board on YYYY-MM-DD}\\
+%\rmfamily {Approved by the NIST Editorial Review Board on YYYY-MM-DD\\
+%Supersedes NIST Series XXX (Month Year) DOI}\\
 \vfill
-\end{flushright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This section is automated
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\sffamily{\textbf{How to cite this NIST Technical Series Publication:}} \\
+ \rmfamily {\authorlist~(\pubyear)~\pubtitle.~(National Institute of Standards
+   and Technology, Gaithersburg, MD),~\pubnumber.~ \DOI}
+\vfill
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORCID IDs required for all NIST authors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\sffamily{\textbf{NIST Author ORCID iDs}}\\
+ \rmfamily {\authorone: 0000-0002-7561-6614\\
+\authortwo: 0000-0000-0000-0000\\
+%\authorthree: 0000-0000-0000-0000\\ % Elizabeth Fong
+%\authorfour: 0000-0000-0000-0000\\  % Bertrand Stivalet
+ }
+\vfill
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% OPTIONAL, include email address / mailing address / etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\sffamily{\textbf{Contact Information}}\\
+%\rmfamily {
+%contact@nist.gov
+%}
+\vfill
+\end{flushleft}
 \end{titlepage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Start front matter - page number starts with "i"
+% Additional information can be added to the verso and front matter as needed
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
 \pagenumbering{roman}
-
+\thispagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+  \fancyhead{}
+  \fancyhead[l]{\small \pubnumber \\
+	\small \pubmonth~\pubyear \\}
+	\fancyfoot[c]{\thepage}
 \section*{Abstract}
-\normalsize
-The Vulnerability Test Suite Generator (VTSG) can create vast numbers of
-synthetic programs with and without specific flaws or vulnerabilities.
-It was designed by the Software Assurance Metrics and Tool Evaluation (SAMATE) team
-and originally implemented by students from TELECOM Nancy.
-The latest version is structured to be able to generate vulnerable and nonvulnerable
-synthetic programs expressing specific flaws in \emph{any} programming language.
-It has libraries to generate PHP, \CSharp, and Python programs.
-This document may help if you are trying to generate test cases written in 
-PHP, \CSharp, or Python, adding new complexities or flaws or vulnerability, or
-modifying VTSG Version 3 to generate test
-cases in other programming languages.
-
-\section*{Key words}
-\normalsize Software assurance; static analyzer; test case generator; 
-software vulnerabilities.
-
-% push next part to the bottom of the page
-\vfill
-
-This document was written at the National Institute of Standards and
-Technology by employees of the Federal Government in the course of
-their official duties.  Pursuant to title 17 Section 105 of the United
-States Code this is not subject to copyright protection and
-is in the public domain.
-
-
-We would appreciate acknowledgment if this document is used.
-
-\pagebreak
+\pubabstract
+\section*{Keywords}
+\keywords
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Table of Contents is required
 % 	List of Tables & Figures required if more than 5 tables/figures
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{-3cm}\small{\pubnumber \newline  \pubmonth~\pubyear}
+\vspace{18pt}
 \begin{center}
 \tableofcontents
+\appendixtitleon
+\appendixtitletocon
 \listoftables
 \listoffigures
 \end{center}
 \pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Front matter continued
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+  \fancyhead{}
+  \fancyhead[l]{\small \pubnumber \\
+	\small \pubmonth~\pubyear \\}
+	\fancyfoot[c]{\thepage}
+\section*{Acknowledgments}
+
+Bertrand Stivalet and Aurelien Delaitre, from the NIST SAMATE team, designed the
+architecture of the VTSG and managed its implementation.  The project was
+implemented by students from TELECOM Nancy: Jean-Philippe Eisenbarth, Valentin
+Giannini, and Vincent Noyalet.  We thank Terry Cohen for her comments and
+suggestions, which improved this report.  We also thank
+Charles de Oliveira for his contributions to this manual.
+% On 12 June 2020, Terry Cohen wrote the following [[much editing by PEB]]
+% Bertrand and Liz wrote the original document. I did some quick grammatical
+% editing. Liz submitted it, but Barbara wanted it to cover both C# and PHP. The
+% original did not have both. Because of the SATE V and CSIAC projects, this was put
+% on hold.
+%
+% As I revised the NIST IR, I went through all of the instructions to verify the PHP
+% statistics in the paper that Bertrand and Liz published and to generate C#
+% statistics. I discovered errors and/or missing commands in the
+% instructions. Charles pointed out the missing instructions.
+%
+% I recommend crediting Bertrand and Liz, because they started documentation.  I
+% wrote the new document covering both C# and PHP.
+%
+% I added Charles because he helped me find the missing commands.  At the time, he
+% was indifferent to being listed as a co-author.  We were using it as a learning
+% exercise.
+%
+% In summary, I recommend that Bertrand, Liz, you, and your team be listed as co-authors.
+
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Header text and page numbering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+  \fancyhead{}
+  \fancyhead[l]{\small \pubnumber \\
+	\small \pubmonth~\pubyear \\}
+\pagenumbering{arabic}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Start body of text - page number starts with "1"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -383,14 +391,14 @@ packages already installed on their Linux machines. Users who already have these
 packages may skip this section.
 
 \noindent To download files from Github, first install the \emph{Git} package.
-Here is the command to install it:
+Here is a command to install it:
 
 \begin{verbatim}
     sudo apt-get install git    
 \end{verbatim}
 
 \noindent VTSG is written in Python 3, so Python 3 must be installed, too.
-Here is the command to install it:
+Here is a command to install it:
 
 \begin{verbatim}
     sudo apt-get install python3
@@ -398,14 +406,14 @@ Here is the command to install it:
 
 \noindent To download Python source code packages, install the \emph{pip
 Python} package manager.
-Here is the command to install it:
+Here is a command to install it:
 
 \begin{verbatim}
     sudo apt-get install python-pip
 \end{verbatim}
 
 \noindent One may also have to install the \emph{pip Python 3} package manager.
-Here is the command to install it:
+Here is a command to install it:
 
 \begin{verbatim}
     sudo apt-get install python3-pip
@@ -441,7 +449,7 @@ Click on it, then click on the ``copy'' icon to copy the web URL.
   \label{fig:clone button}
 \end{figure}
 
-\noindent Here is the command to copy the source code and other material to the local
+\noindent Here is a command to copy the source code and other material to the local
 directory:
 
 \begin{verbatim}
@@ -708,7 +716,7 @@ cases that are not vulnerable or that are vulnerable respectively.
 \subsection{VTSG Directory Structure}
 \label{sec: directory structure}
 
-All the language information files are accessed from a single subdirectory.
+VTSG accesses all the language information files from a single subdirectory.
 The default is \verb|src/templates|.  A different directory may be
 given with the -t command
 line option, see Table~\ref{tab:command line options}.
@@ -753,7 +761,7 @@ synthesizing variable and function names, and writes the file(s).
 The user may specify two ways that VTSG selects a subset of cases to write; see
 Sec.~\ref{sec:selecting cases}.
 
-VTSG code structure is roughly
+VTSG code structure is broadly
 \begin{verbatim}
     for each specified sink
         for each filter
@@ -816,7 +824,7 @@ The program iterates through defined sink modules, selecting those
 specified by the user, see
 Sec.~\ref{sec:command line interface}, 
 or all of them if the user does not specify. It subsequently
-selects a compatible filter.  It then goes through all inputs.
+selects all compatible filters.  It then goes through all inputs.
 The \verb|<input_type>| and \verb|<output_type>|
 must be consistent with the ``Filter'' and ``Sink'' XML tags.
 Then an exec query and complexities are selected
@@ -825,7 +833,8 @@ See \ref{sec:compatible modules} for details on module compatibility.
 When VTSG has selected a set of modules, it saves them as one test case.
 
 When VTSG finishes generating all possible test cases, it then selects the cases
-to compose or selects all of them, as directed by the user.
+to compose or selects all of them, as directed by the user;
+see Sec.~\ref{sec:selecting cases}.
 Then VTSG goes through the selected test cases one by one.  For each one it
 composes the code of their modules to generate the source code for a test case.
 The process of composing modules to generate source code is
@@ -906,19 +915,19 @@ For example,
 \begin{verbatim}
 $ python3 vtsg.py -l php --ACTS
 \end{verbatim}
-generates a small set of PHP test cases that have all pairs of compatible
+generates a small set of PHP test cases that has all pairs of compatible
 modules.
 \begin{verbatim}
 $ python3 vtsg.py -l py -g Exception --ACTS 4
 \end{verbatim}
-generates a small set of Python test cases that have all 4-way combinations of
+generates a small set of Python test cases that has all 4-way combinations of
 compatible modules in the \verb|Exception| flaw group.
 
 VTSG first generates all consistent combinations of modules,
 Sec.~\ref{sec: generation detail}.  If \verb|ACTS| is indicated, VTSG writes
 the list of modules and constraints on compatible modules to
-\verb|/tmp/VTSG_ACTS_input.xml|, runs ACTS, reads the selected sets of modules
-from \\ \verb|/tmp/VTSG_ACTS_output.txt|, and creates a list of matching module
+\verb|/tmp/| \verb|VTSG_ACTS_input.xml|, runs ACTS, reads the selected sets of modules
+from \verb|/tmp/| \\ \verb|VTSG_ACTS_output.txt|, and creates a list of matching module
 combinations.  VTSG then composes the code from modules and writes the test
 cases.
 
@@ -1030,7 +1039,7 @@ one \verb|filters.xml| file, one \verb|complexities.xml| file,
 one \\ \verb|sinks.xml| file, and one \verb|exec_queries.xml| file.
 
 All the files, except \verb|file_template.xml|, may have many
-modules, that is alternate chucks of code, in them.
+modules, that is alternate chunks of code, in them.
 For example, \verb|inputs.xml|, Sec.~\ref{sec: input module}, typically has many input
 modules.  Each module in \verb|inputs.xml| provides a method to get input from a
 different source, such as command line options or hard-coded values.
@@ -1170,7 +1179,7 @@ Note: because \emph{all} leading whitespace is removed from lines in indent sect
 using INDENT ... DEDENT anywhere means that every indentation must be indicated
 with INDENT ... DEDENT lines.
 
-We chose ``DEDENT'' because it is used in Python's grammar description.
+We chose ``DEDENT'' because Python's grammar description uses it.
 
 
 \subsection{File Template}
@@ -1185,8 +1194,8 @@ We chose ``DEDENT'' because it is used in Python's grammar description.
         <inline></inline>
     </comment>
     <syntax>
-        <statement_terminator></statement_terminator>
-        <indent></indent>
+        <statement_terminator>;</statement_terminator>
+        <indent>    </indent>
         <import_code>using {{import_file}};</import_code>
     </syntax>
     <variables prefix="">
@@ -1241,10 +1250,10 @@ We chose ``DEDENT'' because it is used in Python's grammar description.
         \$ for PHP.
         Leave it empty if no prefix is required required.
 
-        \item variable: Defines each variable type and how to initialize it. (optional)
+        \item variable: Define each variable type and how to initialize it. (optional)
         \begin{itemize}
         \item type: Names the type. This string 
-        does not appear in the test case code.  It tells VTSG
+        does not appear in the generated test case code.  It tells VTSG
         the type of variable that is being used.  The input\_type
         and output\_type in Input, Filter, and Sink modules use
         this string.
@@ -2316,45 +2325,35 @@ Fig.~\ref{fig:example complexity-method file}.
 
 
 
-\section{Acknowledgments}
-
-Bertrand Stivalet and Aurelien Delaitre, from the NIST SAMATE team, designed the
-architecture of the VTSG and managed its implementation.  The project was
-implemented by students from TELECOM Nancy: Jean-Philippe Eisenbarth, Valentin
-Giannini, and Vincent Noyalet.  We thank Terry Cohen for her comments and
-suggestions, which improved this report.  We also thank Elizabeth Fong and
-Charles de Oliveira for their contributions to this report.
-% On 12 June 2020, Terry Cohen wrote the following [[much editing by PEB]]
-% Bertrand and Liz wrote the original document. I did some quick grammatical editing. Liz submitted it, but Barbara wanted it to cover both C# and PHP. The original did not have both. Because of the SATE V and CSIAC projects, this was put on hold.
-%
-% As I revised the NIST IR, I went through all of the instructions to verify the PHP statistics in the paper that Bertrand and Liz published and to generate C# statistics. I discovered errors and/or missing commands in the instructions. Charles pointed out the missing instructions.
-%
-% I recommend crediting Bertrand and Liz, because they started documentation.  I
-% wrote the new document covering both C# and PHP.
-%
-% I added Charles because he helped me find the missing commands.  At the time, he was indifferent to being listed as a co-author.  We were using it as a learning exercise.
-%
-% In summary, I recommend that Bertrand, Liz, you, and your team be listed as co-authors.
-
-
-% references section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Please use the techpubs BibTeX style when compiling bibliography
+%   to format your .bib / .bbl file appropriately.
+%   Authors can choose between using Numeric (“[1]”) and Named with
+%   no spaces (“[SP800-300]”) references but should use only one.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{References}
 \addcontentsline{toc}{section}{References}
 \bibliographystyle{techpubs}
 \bibliography{vulTestSuiteGenV3}
 
-\newpage
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%           APPENDIX
+%    Appendix section change for appendix package
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{\section}{\normalsize\bfseries\sffamily}{\appendixname~\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries\sffamily}{\appendixname~\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\sffamily}{\appendixname~\thesubsubsection.}{0.5em}{}
+\titleformat{\paragraph}{\normalsize\bfseries\sffamily}{\appendixname~\theparagraph.}{0.5em}{}
 
 % make the Appendix begin on a new page (not a new column) even in
 % two-column mode
 \clearpage
 
-\appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin appendices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{appendices}
 
 \section{\CSharp\ Language}
 \label{sec:CSharp language}
@@ -2496,13 +2495,13 @@ The Mono project created \emph{mono} as an open source platform that
 implements the .NET Framework. Class libraries and \CSharp\ compilation are enabled
 by \emph{mcs}. See the \href{http://github.com/mono/mono}{mono github repository}.
 
-Here is the command to install mono:
+Here is a command to install mono:
 
 \begin{verbatim}
     sudo apt-get install mono-complete
 \end{verbatim}
 
-Here is the command to install mcs:
+Here is a command to install mcs:
 
 \begin{verbatim}
     sudo apt-get install mcs
@@ -2770,9 +2769,63 @@ always evaluates to true or false.
   \label{fig:README.md file}
 \end{figure}
 
+%\section{Selected Bibliography}
+%\label{app:bib}
+%OPTIONAL. Additional sources of information not referenced in the text.  Do not include if the Reference section is a complete list.
+%\subsection{Heading 2}
+%Example of an Appendix Heading 2
+%\paragraph{Heading 4}
+%Example of an Appendix Heading 4
 
-%\section*{Appendix B: Change Log}
-%\addcontentsline{toc}{section}{Appendix B: Change Log}
-%If updating document with errata, detail changes made to document – delete if not applicable. \\
+%\section{List of Symbols, Abbreviations, and Acronyms}
+%\label{app:abbr}
+%OPTIONAL, if more than five symbols, abbreviations, and/or acronyms are used in a report that are not readily recognized as a standard in the field. Do not include symbols, abbreviations, and/or acronyms that are commonly used in the field of the target audience.
+%\begin{description}
+%\item[Abbreviation/Acronym/Symbol] Definition.
+%\item[Abbreviation/Acronym/Symbol] Definition.
+%\end{description}
 
+%\section{Glossary}
+%\label{app:gloss}
+%OPTIONAL. List of terms defined and explained to facilitate a reader’s comprehension of the report.
+%\begin{description}
+%\item[Term] Definition.
+%\item[Term] Definition.
+%\end{description}
+
+%\section{Index}
+%\label{app:index}
+%OPTIONAL. Alphabetical listing of all major topics discussed in a report. An index cites the page or location where the topic can be found. The arrangement and level of detail of the index are determined by the structure of the report, its target audience, and use.
+
+%\section{Change Log}
+%\label{app:change log}
+%REQUIRED IF UPDATE OR REVISION. If this report is an update, revision, or new edition
+%of a previously published report, briefly state changes made and the date of
+%changes. Some examples of how to list changes made are:
+%In a table:
+%\begin{table}[H]
+%\begin{tabular}{|l|l|l|l|}
+%\hline
+%Date & Type of Edit & Change & Location \\ \hline
+%     &              &        &          \\ \hline
+%     &              &        &          \\ \hline
+%     &              &        &          \\ \hline
+%\end{tabular}
+%\end{table}
+%Or an informative sentence:
+%\begin{tcolorbox}
+%Page 37, line 5 reads cosine of the angle, but should read sine of the angle.
+%\end{tcolorbox}
+%Or a narrative and accompanying bulleted list:
+%\vspace{12pt}
+%In May 2022, the following changes were made to the report:
+%\begin{itemize}
+%\item Abstract –provides direct information on the key establishment schemes (DH, MQV)
+%and the underlying mathematics structure (discrete logs on finite field, elliptic curve).
+%\item Section 3.1 – Added definitions of assumption, binding, bit string, byte, byte
+%  string, destroy, key-establishment pair, key-wrapping key, trusted association;
+%  removed definitions on assurance of identifier, initiator, and responder.
+%\end{itemize}
+
+\end{appendices}
 \end{document}

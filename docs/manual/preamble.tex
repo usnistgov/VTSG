@@ -1,0 +1,75 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     LaTeX source code to approximate a NIST Technical report
+%	DOI and CrossMark watermark will be added on final PDF
+% 	Developed by K. Miller, kmm5@nist.gov 
+%	Last updated: 21-June-2022
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document class and template package DO NOT DELETE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{article}
+\usepackage{settings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DRAFT: TRUE OR FALSE?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% REQUIRED!!! Select either Draft (toggletrue) or Final (togglefalse)
+\newtoggle{draft}
+% \toggletrue{draft} % use if this is a Draft
+ \togglefalse{draft} % use if this is Final
+%
+
+\iftoggle{draft}{
+\usepackage{lineno}
+\linenumbers
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Publication Metadata
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pubseries}{Series IR} % Replace with a series title from the list below
+% {Advanced Manufacturing Series}
+% {Data Collection Instruments}
+% {Economic Analysis Brief}
+% {Grant/Contractor Report}
+% {Handbook}
+% {IR}
+% {Special Publication}
+% {Technical Note}
+% {Technology Transfer Brief}
+% {NCSTAR}
+\newcommand{\pubnumber}{Publication Identifier} 
+\newcommand{\DOI}{https://doi.org/10.6028/NIST.XXX.XXXX}
+\newcommand{\pubmonth}{September}
+\newcommand{\pubyear}{2023}
+\newcommand{\erratadate}{MM-DD-YYYY}
+\newcommand{\pubtitle}{Vulnerability Test Suite Generator (VTSG) Version 3}
+%\newcommand{\pubsubtitle}{Subtitle} % delete if no subtitle %
+%\newcommand{\draftstage}{Draft Stage} % Draft Stage is REQUIRED for drafts/preprints; Draft stages are listed in the NIST Publication Identifier guidance: https://www.nist.gov/nist-research-library/nist-technical-series-publications-author-instructions#pubid   %
+\newcommand{\authorlist}{Paul E. Black, William Mentzer, Elizabeth Fong, and Bertrand Stivalet}
+\newcommand{\authorone}{Paul E. Black}
+\newcommand{\authortwo}{William Mentzer}
+\newcommand{\authorthree}{Elizabeth Fong}
+\newcommand{\authorfour}{Bertrand Stivalet}
+%\newcommand{\authorfive}{Author 5}
+%\newcommand{\authorsix}{Author 6} % Add or delete commands based on number of authors %
+\newcommand{\pubabstract}{
+The Vulnerability Test Suite Generator (VTSG) can create vast numbers of
+synthetic programs with and without specific flaws or vulnerabilities.
+It was designed by the Software Assurance Metrics and Tool Evaluation (SAMATE) team
+and originally implemented by students from TELECOM Nancy.
+The latest version is structured to be able to generate vulnerable and nonvulnerable
+synthetic programs expressing specific flaws in \emph{any} programming language.
+It has libraries to generate PHP, \CSharp, and Python programs.
+This document may help if you are trying to generate test cases written in 
+PHP, \CSharp, or Python, adding new complexities or flaws or vulnerability, or
+modifying VTSG Version 3 to have new capabilities or to generate test
+cases in other programming languages.
+}
+\newcommand{\keywords}{
+Software assurance; static analyzer; test case generator; 
+software vulnerabilities.
+}
+\newcommand{\publang}{English} %If translation, change to correct language%
+\usepackage{pdfproperties}

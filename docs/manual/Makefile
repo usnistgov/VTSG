@@ -1,5 +1,5 @@
 # *created  "Wed Aug 26 15:06:04 2020" *by "Paul E. Black"
-# *modified "Tue Apr 18 11:37:46 2023" *by "Paul E. Black"
+# *modified "Thu Aug 17 16:53:01 2023" *by "Paul E. Black"
 
 TARGET=vulTestSuiteGenV3
 
@@ -33,10 +33,6 @@ ${TARGET}.spell: ${TARGET}.tex ${TARGET}.bbl
 
 vulTestSuiteGenV3.bbl: vulTestSuiteGenV3.bib vulTestSuiteGenV3.tex
 	bibtex ${@:.bbl=}
-	# remove empty fields (comma followed by another comma or period)
-	# remove periods after question marks
-	mv $@ $@.orig
-	perl -pwe 'while(/, [,.]/){s/, ([,.])/$$1/;s/\?[.]/?/}' $@.orig|tee $@ > /dev/null
 
 fig_example_code1.png: fig_example_code1.tif
 	echo export as .png
@@ -46,7 +42,7 @@ fig_example_code2.png: fig_example_code2.tif
 	echo export as .png
 	gimp $^
 
-vulTestSuiteGenV3.pdf: vulTestSuiteGenV3.tex \
+vulTestSuiteGenV3.pdf: vulTestSuiteGenV3.tex preamble.tex \
 	    vulTestSuiteGenV3.bbl \
 	    fig_Complexity_file_method.png fig_Input_file.png \
 	    fig_Complexity_file_test.png fig_Sink_file.png \

@@ -1,4 +1,4 @@
-%%
+
 %% This is file `jresnistdoi01.bst',
 %% generated with the docstrip utility.
 %%
@@ -1111,7 +1111,11 @@ date.block
 format.btitle "title" output.check
 new.sentence
 crossref missing$
-{ format.bvolume output
+{ 
+format.bvolume empty$
+{skip$}
+{format.bvolume output}
+if$
 format.number.series output
 format.publisher.address output
 }
@@ -1119,7 +1123,10 @@ format.publisher.address output
 format.book.crossref output.nonnull
 }
 if$
-", " * format.edition output
+format.edition empty$
+{skip$}
+{", " * format.edition output}
+if$
 new.sentence
 format.doi output
 new.sentence
@@ -1166,7 +1173,10 @@ crossref missing$
 {
 format.number.series output
 format.publisher.address output
-", " * format.bvolume output
+format.bvolume empty$
+{skip$}
+{", " * format.bvolume output}
+if$
 ", " * format.chapter.pages "chapter and pages" output.check
 }
 {
@@ -1174,7 +1184,10 @@ format.chapter.pages "chapter and pages" output.check
 format.book.crossref output.nonnull
 }
 if$
-", " * format.edition output
+format.edition empty$
+{skip$}
+{", " * format.edition output}
+if$
 ", " * format.pages "pages" output.check
 new.sentence
 format.doi output
@@ -1201,12 +1214,18 @@ publisher empty$
 format.publisher.address output
 }
 if$
-", " * format.bvolume output
+format.bvolume empty$
+{skip$}
+{", " * format.bvolume output}
+if$
 }
 { format.incoll.inproc.crossref output.nonnull
 }
 if$
-", " * format.pages "pages" output.check
+pages empty$
+{skip$}
+{", " * format.pages "pages" output.check}
+if$
 new.sentence
 format.doi output
 new.sentence
@@ -1231,12 +1250,18 @@ publisher empty$
 format.publisher.address output
 }
 if$
-", " * format.bvolume output
+format.bvolume empty$
+{skip$}
+{", " * format.bvolume output}
+if$
 }
 { format.incoll.inproc.crossref output.nonnull
 }
 if$
-", " * format.pages "pages" output.check
+pages empty$
+{skip$}
+{", " * format.pages "pages" output.check}
+if$
 new.sentence
 format.doi output
 new.sentence
