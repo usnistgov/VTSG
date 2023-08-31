@@ -1,5 +1,7 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Fri Aug 18 08:35:00 2023" *by "Paul E. Black"
+% *modified "Thu Aug 31 09:02:26 2023" *by "Paul E. Black"
+
+% ERB Control# N2023-1500
 
 % typeset C#
 % According to the ECMA-334 C# Language Specification, 5th Edition, Sec. 5,
@@ -2623,14 +2625,17 @@ Python language files.
 The following flaws are currently defined for Python.  The flaw group is in
 parentheses.  Flaws in the ``Exception'' flaw group are caught by the Python runtime.
 These are unlikely to be vulnerabilities (except denial of service).
+``KK'' are from Kendra Kratkiewicz's work~\cite{Kratkiewicz2005}.
 \begin{itemize}[nosep]
     \item OS Command Injection (CWE-78) (OWASP\_a1)
-    \item SQL Injection (CWE-89) (OWASP\_a1)
     \item Path traversal (CWE-22) (OWASP\_a4)
     \item Information Leak Through Error Message (CWE-209) (OWASP\_a5)
     \item Loop on Unchecked Input (CWE-606) (Other)
     \item Relative Path Traversal (CWE-23) (Other)
+    \item External Control of System or Configuration Setting (CWE-15) (Other)
     \item Divide by Zero (CWE-369) (Exception)
+    \item Improper Validation of Array Index (CWE-129) (Exception)
+    \item Buffer Overflow (KK) (Exception)
 \end{itemize}
 
 \newpage
@@ -2680,7 +2685,7 @@ See the \verb|complexity.xml| file for the specific code.
 \hline
 22 & for range(0, 1) code \\
 \hline
-22 & for array if value code \\
+23 & for array if value code \\
 \hline
 
 50 & function body executes code \\
@@ -2755,8 +2760,8 @@ always evaluates to true or false.
   \includegraphics[width=1\linewidth]{fig_git_files.png}
   \caption{Snapshot of files in the
     \href{https://github.com/usnistgov/VTSG}{VTSG git repository}, which is at
-    https://github.com/usnistgov/ VTSG,
-    as of 12 January 2023.}
+    https://github.com/ usnistgov/VTSG,
+    as of 31 August 2023.}
   \label{fig:git files}
 \end{figure}
 
