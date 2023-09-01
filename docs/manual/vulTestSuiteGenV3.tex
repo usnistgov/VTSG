@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Thu Aug 31 09:02:26 2023" *by "Paul E. Black"
+% *modified "Thu Aug 31 17:01:54 2023" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -2360,36 +2360,67 @@ Fig.~\ref{fig:example complexity-method file}.
 \section{\CSharp\ Language}
 \label{sec:CSharp language}
 
-This appendix documents the flaws, flaw groups, complexities, and conditions
+This appendix documents the flaws, flaw groups, conditions, and complexities
 currently in the
 \CSharp\ language files.
 It also gives instructions how to compile and run the test cases.
 
-The following flaws are currently defined for this language:
+The following flaws are currently defined for \CSharp.
+The flaw group is in parentheses.
 \begin{itemize}[nosep]
     \item SQL Injection (CWE-89)
+        (OWASP\_a1)
     \item XPath Injection (CWE-91)
+        (OWASP\_a1)
     \item LDAP Injection (CWE-90)
+        (OWASP\_a1)
     \item OS Command Injection (CWE-78)
+        (OWASP\_a1)
     \item Path traversal (CWE-22)
+        (OWASP\_a4)
     \item Information Leak Through Error Message (CWE-209)
+        (OWASP\_a5)
     \item Storing Password in Plain Text (CWE-256)
+        (OWASP\_a2)
     \item Use of Insecure Cryptographic Algorithm (CWE-327)
+        (OWASP\_a6)
     \item NULL Pointer Dereference (CWE-476)
+        (OWASP\_a9)
 \end{itemize}
 
-\vspace{1em}
+Here are the conditions currently available to be used in code complexities.
+We explain condition modules in Sec.~\ref{sec: condition modules}.
+Table~\ref{tab:condition IDs for CSharp} shows the ID, the code, and whether it
+always evaluates to true or false.
 
-The flaws are in the following groups:
-\begin{itemize}[nosep]
-    \item OWASP\_a1 has CWE\_78, CWE\_89, CWE\_89, CWE\_89, CWE\_90, CWE\_91,
-      CWE\_91, and CWE\_91.
-    \item OWASP\_a2 has CWE\_256.
-    \item OWASP\_a4 has CWE\_22.
-    \item OWASP\_a5 has CWE\_209.
-    \item OWASP\_a6 has CWE\_327
-    \item OWASP\_a9 has CWE\_476.
-\end{itemize}
+\begin{table}[H]
+\centering
+\caption{Condition IDs, code, and value to which it evaluates defined for
+  \CSharp}
+\begin{tabular}{|r|l|l|}
+\hline
+\textbf{ID} & \textbf{Code} & \textbf{Value} \\
+\hline
+1 & \verb|1==1| & True \\
+\hline
+2 & \verb|1==0| & False \\
+\hline
+3 & \verb|4+2<=42| & True \\
+\hline
+4 & \verb|4+2>=42| & False \\
+\hline
+5 & \verb|Math.Pow(4, 2)<=42| & True \\
+\hline
+6 & \verb|Math.Pow(4, 2)>=42| & False \\
+\hline
+7 & \verb|Math.Sqrt(42)<=42| & True \\
+\hline
+8 & \verb|Math.Sqrt(42)>=42| & False \\
+\hline
+\end{tabular}
+\label{tab:condition IDs for CSharp}
+\end{table}
+
 
 \newpage
 
@@ -2455,42 +2486,6 @@ See the \verb|complexity.xml| file for the specific code.
 \label{tab:complexity IDs for CSharp}
 \end{table}
 
-\newpage
-
-Here are the conditions currently available to be used in code complexities.
-We explain condition modules in Sec.~\ref{sec: condition modules}.
-Table~\ref{tab:condition IDs for CSharp} shows the ID, the code, and whether it
-always evaluates to true or false.
-
-\begin{table}[H]
-\centering
-\caption{Condition IDs, code, and value to which it evaluates defined for
-  \CSharp}
-\begin{tabular}{|r|l|l|}
-\hline
-\textbf{ID} & \textbf{Code} & \textbf{Value} \\
-\hline
-1 & \verb|1==1| & True \\
-\hline
-2 & \verb|1==0| & False \\
-\hline
-3 & \verb|4+2<=42| & True \\
-\hline
-4 & \verb|4+2>=42| & False \\
-\hline
-5 & \verb|Math.Pow(4, 2)<=42| & True \\
-\hline
-6 & \verb|Math.Pow(4, 2)>=42| & False \\
-\hline
-7 & \verb|Math.Sqrt(42)<=42| & True \\
-\hline
-8 & \verb|Math.Sqrt(42)>=42| & False \\
-\hline
-\end{tabular}
-\label{tab:condition IDs for CSharp}
-\end{table}
-
-
 \label{sec:run csharp}
 To compile and run \CSharp\ test cases, install \emph{mono} and \emph{mcs}.
 The Mono project created \emph{mono} as an open source platform that
@@ -2520,7 +2515,7 @@ The script \verb|compilationTester.sh| uses mcs to compile all the
 \section{PHP Language}
 \label{sec:PHP language}
 
-This documents the flaw, flaw group, complexities, and conditions currently in the
+This documents the flaw, flaw group, conditions, and complexities currently in the
 PHP language files.
 
 The following flaw is currently defined for this language.  The flaw group is in
@@ -2528,6 +2523,27 @@ parentheses.
 \begin{itemize}
     \item SQL Injection (CWE-89) (OWASP\_injection)
 \end{itemize}
+
+Here are the conditions currently available to be used in code complexities.
+We explain condition modules in Sec.~\ref{sec: condition modules}.
+Table~\ref{tab:condition IDs for PHP} shows the ID, the code, and whether it
+always evaluates to true or false.
+
+\begin{table}[H]
+\centering
+\caption{Condition IDs, code, and value to which it evaluates defined for
+  PHP}
+\begin{tabular}{|r|l|l|}
+\hline
+\textbf{ID} & \textbf{Code} & \textbf{Value} \\
+\hline
+1 & \verb|1==1| & True \\
+\hline
+2 & \verb|1==0| & False \\
+\hline
+\end{tabular}
+\label{tab:condition IDs for PHP}
+\end{table}
 
 \newpage
 
@@ -2593,33 +2609,12 @@ See the \verb|complexity.xml| file for the specific code.
 \label{tab:complexity IDs for PHP}
 \end{table}
 
-
-Here are the conditions currently available to be used in code complexities.
-We explain condition modules in Sec.~\ref{sec: condition modules}.
-Table~\ref{tab:condition IDs for PHP} shows the ID, the code, and whether it
-always evaluates to true or false.
-
-\begin{table}[H]
-\centering
-\caption{Condition IDs, code, and value to which it evaluates defined for
-  PHP}
-\begin{tabular}{|r|l|l|}
-\hline
-\textbf{ID} & \textbf{Code} & \textbf{Value} \\
-\hline
-1 & \verb|1==1| & True \\
-\hline
-2 & \verb|1==0| & False \\
-\hline
-\end{tabular}
-\label{tab:condition IDs for PHP}
-\end{table}
-
+\newpage
 
 \section{Python Language}
 \label{sec:Python language}
 
-This documents the flaws, flaw groups, complexities, and conditions currently in the
+This documents the flaws, flaw groups, conditions, and complexities currently in the
 Python language files.
 
 The following flaws are currently defined for Python.  The flaw group is in
@@ -2637,6 +2632,47 @@ These are unlikely to be vulnerabilities (except denial of service).
     \item Improper Validation of Array Index (CWE-129) (Exception)
     \item Buffer Overflow (KK) (Exception)
 \end{itemize}
+
+Here are the conditions currently available to be used in code complexities.
+We explain condition modules in Sec.~\ref{sec: condition modules}.
+This table shows the ID, the code, and whether it
+always evaluates to true or false.
+
+\begin{table}[H]
+\centering
+\caption{Condition IDs, code, and value to which it evaluates defined for
+  Python}
+\begin{tabular}{|r|l|l|}
+\hline
+\textbf{ID} & \textbf{Code} & \textbf{Value} \\
+\hline
+1 & \verb|1==1| & True \\
+\hline
+2 & \verb|1==0| & False \\
+\hline
+2u & True & True \\
+\hline
+2v & False & False \\
+\hline
+3 & \verb|4+2<=42| & True \\
+\hline
+3u & \verb|5==5| & True \\
+\hline
+3v & \verb|5!=5| & False \\
+\hline
+4 & \verb|4+2>=42| & False \\
+\hline
+5 & \verb|math.pow(4, 2)<=42| & True \\
+\hline
+6 & \verb|math.pow(4, 2)>=42| & False \\
+\hline
+7 & \verb|math.sqrt(42)<=42| & True \\
+\hline
+8 & \verb|math.sqrt(42)>=42| & False \\
+\hline
+\end{tabular}
+\label{tab:condition IDs for Python}
+\end{table}
 
 \newpage
 
@@ -2704,50 +2740,6 @@ See the \verb|complexity.xml| file for the specific code.
 \end{tabular}
 \label{tab:complexity IDs for Python}
 \end{table}
-
-\newpage
-
-Here are the conditions currently available to be used in code complexities.
-We explain condition modules in Sec.~\ref{sec: condition modules}.
-This table shows the ID, the code, and whether it
-always evaluates to true or false.
-
-\begin{table}[H]
-\centering
-\caption{Condition IDs, code, and value to which it evaluates defined for
-  Python}
-\begin{tabular}{|r|l|l|}
-\hline
-\textbf{ID} & \textbf{Code} & \textbf{Value} \\
-\hline
-1 & \verb|1==1| & True \\
-\hline
-2 & \verb|1==0| & False \\
-\hline
-2u & True & True \\
-\hline
-2v & False & False \\
-\hline
-3 & \verb|4+2<=42| & True \\
-\hline
-3u & \verb|5==5| & True \\
-\hline
-3v & \verb|5!=5| & False \\
-\hline
-4 & \verb|4+2>=42| & False \\
-\hline
-5 & \verb|math.pow(4, 2)<=42| & True \\
-\hline
-6 & \verb|math.pow(4, 2)>=42| & False \\
-\hline
-7 & \verb|math.sqrt(42)<=42| & True \\
-\hline
-8 & \verb|math.sqrt(42)>=42| & False \\
-\hline
-\end{tabular}
-\label{tab:condition IDs for Python}
-\end{table}
-
 
 % make this begin on a new page (not a new column) even in
 % two-column mode
