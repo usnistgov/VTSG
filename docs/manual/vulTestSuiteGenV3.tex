@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Sep 12 16:30:24 2023" *by "Paul E. Black"
+% *modified "Wed Sep 13 15:59:54 2023" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -341,12 +341,12 @@ analyzers will not catch all problems, NIST's ``Guidelines on Minimum Standards
 for Developer Verification of Software''~\cite{MinGuidelines2021} recommends
 that all software development include appropriate static analysis tools~(p.~6).
 
-We can measure how well static analyzers perform with programs having known
+We can measure how well static analyzers perform using programs having known
 flaws.  With more than 100 classes of flaws and many popular programming
 languages, the task of producing measurement test suites is already daunting.
 For thorough evaluation each flaw class should be represented by programs with
 inputs from different source, various valid and invalid methods to filter the
-input data, varying sinks and where the data is passed along.
+input data, different ways of conveying data, and varying sinks.
 Figure~\ref{fig:cartesian product} suggests that just three sources of input,
 two ways of filtering the input, four sinks, and two ways to execute the query
 already yields 3 × 2 × 4 x 2 = 48
@@ -355,7 +355,7 @@ complexities with various conditions, then include ``scaffolding'' such as
 initializing variables, importing libraries, and declaring functions and the
 need to produce programs without weaknesses to test false positives to get an
 idea of the work needed to provide a comprehensive static analyzer test suite.
-In addition it is tedious and error prone to construct these test cases
+It would be tedious and error prone to construct these test cases
 manually.
 
 \begin{figure}[htbp]
@@ -366,14 +366,14 @@ manually.
 \end{figure}
 
 The purpose of the Vulnerability Test Suite Generator (VTSG) is to generate
-thousands of example programs in many languages, exhibiting various flaws, which
+thousands of example programs in many languages exhibiting various flaws, which
 are expressed in different ways and wrapped in an assortment of programming
 constructs.
 
 All example programs, or test cases, have a similar structure. In pseudocode,
 the high-level structure of test cases that VTSG generates is
 \begin{verbatim}
-        declarations
+        imports, definitions, and declarations
 
         input = get_input_from_somewhere()
 
@@ -384,18 +384,21 @@ the high-level structure of test cases that VTSG generates is
 
         execute the query
 \end{verbatim}
-The input is the source of data in the program, e.g., command line, variable, file,
+The \emph{input} is the source of data in the program, e.g., command line, variable,
+file,
 or form method.
 
-VTSG refers to the code that checks the input as the \emph{filter}.  That is, it
+In VTSG we refer to the code that checks the input as the \emph{filter}.  That is, it
 filters the input with functions or code such as rejecting unacceptable values,
 sanitization functions, or substituting a safe default value.  In this example, the
 \verb|if input ... reject it| code is the filter.
 
-VTSG refers to the code that uses the input, to construct a query in this example, as
-the \emph{sink}.  Information flows from the input source to the sink. This is where
+VTSG refers to the code that uses the input, in this example to construct a query, as
+the \emph{sink}.  Information flows from the input source to the sink. The sink is where
 a sensitive operation, such as an array access, is executed with potentially unsafe
-input and where a vulnerability is triggered.  You can see this high-level program
+input and where a vulnerability is triggered.
+
+You can see this high-level program
 structure within the center gray rectangle of Fig.~\ref{fig:VTS operation overview}.
 
 \begin{figure}[htbp]
@@ -403,14 +406,14 @@ structure within the center gray rectangle of Fig.~\ref{fig:VTS operation overvi
   \caption{Overview of VTSG test case generation.  The File Template specifies how
     pieces are assembled.  Input, Filter, Complexity, Sink, and Execute Query modules
     provide code.  The filter is wrapped with two complexities.
-    An example of a generated test case is in
+    An example test case is in
   Figs.~\ref{fig:example main file} and \ref{fig:example aux file}.}
   \label{fig:VTS operation overview}
 \end{figure}
 
 In theory, a static analysis tool only needs to process the few lines of code that
 embody a problematic piece of code to determine whether it is actually a weakness.
-In practice however, a tool must analyze much of the program, noting its control and
+In practice, a tool must analyze much of the program, noting its control and
 data flows, to accurately track data and determine the conditions when the code in
 question may be executed.  Tracing execution through structures like \verb|while|
 loops, \verb|if| statements, and function calls exercises static analysis tools'
@@ -418,34 +421,21 @@ abilities.  VTSG refers to these data flow and control constructs as
 \emph{complexities}.  You can see in Fig.~\ref{fig:VTS operation overview} that the
 filter code is wrapped within two control flow complexities.  Various
 \emph{conditions} are inserted into complexities to further examine tools'
-capabilities.
+capabilities.  See Sec.~\ref{sec:code complexities} for an example.
 
 Finally, additional code may be needed to trigger the vulnerability, for example
 executing the query constructing in the sink code.  VTSG refers to this as
 \emph{ExecQuery}.
 
-This manual is divided into several section.  The next section,
+The information in this manual is divided into several section.  The next section,
 Sect.~\ref{sec:user manual} is a user manual.  It explains how to invoke various
 options in VTSG with currently defined languages and flaws and the resulting cases.
 Section~\ref{sec:advanced user manual} explains how to install VTSG and required
 supporting packages, add new flaw classes, sinks, inputs, etc. to existing languages
 and how to add a completely new language.
-Finally, Sect.~\ref{sec:extending VTSG} explains the internal architecture of VTSG
+Finally, Sect.~\ref{sec: high-level documentation} explains the internal architecture
+of VTSG
 and offers suggestions about how to enhance or extend VTSG's capabilities.
-
-\subsection{Relation With Other SAMATE Work}
-
-VTSG is further work by the SAMATE team to measure software assurance.  The test
-cases that VTSG generates can help us determine how much assurance static analyzers,
-and other software assurance tools, can bring.  This complements our work collecting
-test cases in the Software Assurance Reference Dataset
-(\href{https://samate.nist.gov/SARD}{SARD}) \cite{SARD2018}, available at
-https://samate.nist.gov/SARD on-line.  VTSG also supports our Static Analysis Tool
-Exposition
-(\href{https://www.nist.gov/itl/ssd/software-quality-group/samate/static-analysis-tool-exposition-sate}{SATE})
-\cite{SATEIV2023}, which requires large, varied sets of programs as targets of
-analysis.  We foresee that VTSG will be able to generate test cases structured as
-needed in any language, for any weakness class.
 
 \subsection{Strengths and Limitations of VTSG}
 
@@ -480,7 +470,7 @@ possible future enhancements.
     module types instead of or in addition to input, filter, sink, and execQuery.
   \item Mark ``flaw'' lines in any module, not just sinks.
   \item Allow the user to specify the file names of generated cases.  Currently the
-    names are quite long.  It may be useful to structure the names differently or
+    names are long.  It may be useful to structure the names differently or
     even just number them.
   \item Write manifests in Static Analysis Results Interchange Format (SARIF).
 \end{itemize}
@@ -492,17 +482,26 @@ Originally named Vulnerability Test Suite (VTS) generator, version 1 only
 generated \CSharp\ programs. VTS version 2 generated PHP
 programs~\cite{StivaletFongVTSPHP2016} in addition.  Version 2 was more
 customizable to generate other programming languages.
-VTSG version 3 systematically maintains indentation, so also
-can generate Python programs.
+VTSG version 3 systematically maintains indentation, so can also generate Python
+programs.
 
 The PHP and \CSharp\ test suites are
-available in NIST's Software Assurance Reference Dataset
-(\href{https://samate.nist.gov/SARD}{SARD}), URL https://samate.nist.gov/SARD as
-SARD test suites 103 and 105.
-The SARD also has collections of test cases, such as, the C/C++ and Java Juliet
-test suites as well as many other
+available in our Software Assurance Reference Dataset
+(\href{https://samate.nist.gov/SARD}{SARD}) \cite{SARD2018},
+URL https://samate.nist.gov/SARD as test suites 103 and 105.
+The SARD has additional collections of test cases, such as the C/C++ and Java Juliet
+test suites and many other
 \href{https://samate.nist.gov/SARD/testsuite.php}{test suites}.
 
+VTSG is further work by the SAMATE team to measure software assurance.  The test
+cases that VTSG generates help us determine how much assurance static analyzers,
+and other software assurance tools, can bring.  This complements our work collecting
+test cases in the SARD.  VTSG also supports our Static Analysis Tool
+Exposition
+(\href{https://www.nist.gov/itl/ssd/software-quality-group/samate/static-analysis-tool-exposition-sate}{SATE})
+\cite{SATEIV2023}, which requires large, varied sets of programs as targets of
+analysis.  We foresee that VTSG will be able to generate test cases structured as
+needed in any language, for any weakness class.
 
 \section{VTSG User Manual}
 \label{sec:user manual}
@@ -574,8 +573,7 @@ Sec.~\ref{sec:depth of complexities}.} \\
 -n NUMBER
 -\zws-number-sampled=NUMBER &
 \makecell[l]{Only write one of every NUMBER \\
-cases generated. See below for \\
-explanation.} \\
+cases generated. See Sec.~\ref{sec:selecting cases}.} \\
 
 \hline
 -\zws-ACTS [doi] &
@@ -587,7 +585,7 @@ Note: no short option.} \\
 \makecell[l]{-t TEMPLATE\_DIRECTORY \\
 -\zws-template-directory=TEMPLATE\_DIRECTORY} &
 \makecell[l]{The language templates directory. \\
-  (Default: src/templates)} \\
+(Default: src/templates) See Sec.~\ref{sec: alternate template directory}.} \\
 
 \hline
 -d
@@ -598,24 +596,17 @@ Note: no short option.} \\
 \label{tab:command line options}
 \end{table} 
 
-\subsection{Explanation of Some Options}
+%\subsection{Explanation of Some Options}
 
-VTSG will generate all flaws in all flaw groups unless limited with
-command line options.
+By default VTSG generates all consistent combinations of test cases with all flaws in
+all flaw groups.  If VTSG is invoked with particular flaws (\verb|-f|) or flaw groups
+(\verb|-g|), only sinks matching those are used.
+If no flaw group is specified, all flaw groups are used.
+If no flaws are specified, all flaws (in specified flaw groups) are used.
 
-VTSG will generate both the unsafe (buggy or vulnerable)
+VTSG generates both the unsafe (buggy or vulnerable)
 test cases and the safe (not buggy) test cases unless the user selects
 either only safe (-s) or only unsafe (-u) cases.  The options are
-mutually exclusive.
-
-Use -n (number-sampled) to get a sample of all cases that would be generated.
-For example, -n 3 directs VTSG to write one of every three cases, that is case
-1, skip 2 and 3, write case
-4, skip 5 and 6, write case 7, and so forth.  This option approximates random
-case selection (but is repeatable), combinatorial testing (in case ACTS is not
-installed), random testing (to spot check generation), and percentage of cases
-(that is, only write p\% of cases).  Note that there is no way to generate mixed
-fractions such as exactly $2/5$ of all cases.  The -n option and -\zws-ACTS are
 mutually exclusive.
 
 \subsection{Example Invocations}
@@ -633,26 +624,35 @@ $ python3 vtsg.py -l php
 This takes about 25 minutes.  (Generating all the \CSharp\ cases takes about four
 minutes.)
 
-Generate a \CSharp\ (\verb|-l cs|) test suite made of vulnerable (unsafe) test
+Generate a \CSharp\ (\verb|-l cs|) test suite consisting of vulnerable (unsafe) test
 cases (\verb|-u|) with SQL injection vulnerabilities (\verb|--flaw=CWE_89|)
 and up to 3 nested levels of complexity (\verb|-r 3|).
 \begin{verbatim}
 $ python3 vtsg.py -l cs -r 3 --flaw=CWE_89 -u
 \end{verbatim}
  
+Generate a Python test suite consisting of every 42nd test case based on Kendra
+Kratkiewicz's work (KK) or Loop on Unchecked Input (CWE606).
+\begin{verbatim}
+$ python3 vtsg.py -l py -n 42 -f KK -f CWE606
+\end{verbatim}
+
 Some of the OWASP Top 10~\cite{OWASPTop10-2017} and
 Common Weakness Enumerations (CWEs)~\cite{CWE} are encoded.
 See Apps.~\ref{sec:CSharp language}, \ref{sec:PHP language}, and
 \ref{sec:Python language} for details of what vulnerabilities are encoded in which
 languages.
 
+\subsection{Results and Output}
+
 \label{sec:case directory structure}
-When invoked to generate test cases, VTSG creates a directory for all the results.
+When invoked to generate test cases, VTSG creates a directory for all the resulting
+test cases.
 The directory is named for the date and time created, for example,
-\verb|TestSuite_03-08-2022_| \verb|16h46m35|.
-The language directory, \verb|PHP|,
+\verb|TestSuite_03-| \verb|08-2022_16h46m35|.
+A language directory, \verb|PHP|,
 \verb|Csharp|, or \verb|Python| is created in this directory.
-This language name comes from the \verb|name|
+This name comes from the \verb|name|
 in the \verb|file_template.xml| file.  See Sec.~\ref{sec: file template}.
 
 Under the language directory, VTSG creates one directory for each flaw group, for
@@ -671,15 +671,28 @@ created immediately under the language directory.
 Under the flaw directory are directories \verb|safe| and \verb|unsafe| for test
 cases that are not vulnerable or that are vulnerable respectively.
 
+After VTSG finishes generating and writing cases, it displays how many safe
+(non-vulnerable) and unsafe (vulnerable) test cases it generated in each group and
+flaw.  If a subset was selected with -n or -\zws-ACTS
+(Sec.~\ref{sec:selecting cases}), VTSG also reports the number of test cases
+selected.
 
 
 \subsection{Code Complexities}
 \label{sec:code complexities}
 
-VTSG can nest code complexities to create slightly more realistic source code.
+VTSG can generate code with the filter nested inside control flow complexities to
+create slightly more realistic source code.  Each language defines its own
+complexities.  See Apps.~\ref{sec:CSharp language}, \ref{sec:PHP language}, and
+\ref{sec:Python language} for currently defined complexities.
 
-The complexities currently defined
-are listed in the appendixes for their languages.
+\label{sec:depth of complexities}
+The depth command line option, \verb|-r| or \verb|--depth|, specifies the most nested
+flow control complexities produced.  VTSG generates test cases with all complexities
+up to the depth indicated.  For example, the default depth, 1, leads VTSG to generate
+all test cases with no flow complexities and all test cases with one complexity.
+The option \verb|-r 2| leads VTSG to generate all cases with no complexities, all
+cases with one complexity, and all cases with two nested complexities.
 
 Here is an example of code complexities from \verb|cwe_89__I_shell_commands__F_no_|\\
 \verb|filtering__S_select_from-concatenation_simple_quote__EQ_mysql| \\
@@ -705,44 +718,14 @@ The above has three nested control structures:\\
 \hspace*{2em}{\colorbox{green}{Level 2 is the ``switch/case/default'' statements.}}\\
 \hspace*{4em}{\colorbox{cyan}{Level 3 is the call of a method from a Class.}}
 
-
-
-
-
-VTSG generates many different test cases, both with and without
-flaws, with various control flow complexities.  After VTSG finishes
-generating each vulnerability category, it displays how many safe (non-vulnerable)
-and unsafe (vulnerable) test cases it produced.
-
-VTSG is built to generate test cases with all consistent combinations
-of modules for the flaw groups and flaws specified in the invocation.
-If VTSG is invoked with particular flaws (\verb|-f|) or flaw groups (\verb|-g|),
-only sinks satisfying those specified are used.
-If no flaw group is specified, all flaw groups are used.  
-If no flaws are specified, all flaws are used.
-
-\label{sec:depth of complexities}
-The depth command line option, \verb|-r| or \verb|--depth|, 
-specifies the
-most nested flow control complexities produced.
-VTSG generates test cases with all complexities up to the depth
-indicated.
-For example, the default depth, 1, leads VTSG to generate all
-test cases with no flow complexities and all test cases with 
-one complexity.  The option \verb|-r 2| leads VTSG to generate
-all cases with no complexities, all cases with one complexity, 
-and all cases with two nested complexities.
-See Sec.~\ref{sec:code complexities} for an example of three 
-nested control flow complexities.
-
-
 \subsection{Using ACTS or -n to Select a Subset of Cases}
 \label{sec:selecting cases}
 
 By default VTSG generates all compatible combinations of inputs, filters, sinks,
 exec queries, complexities, and conditions.  The result can easily be tens of
 thousands of cases.  Yet, a small, carefully chosen subset of cases may
-suffice~\cite{SWInteractions2004}.
+suffice~\cite{SWInteractions2004}.  VTSG has two command line options to select a
+subset of cases to be written: -\zws-ACTS and -n.
 
 ACTS is a combinatorial method to choose cases such that all consistent
 pairs or triples or D-way combinations of modules are represented.  For an
@@ -792,20 +775,31 @@ than 1 and
 the code, which is in \verb|select_by_acts.py|, to handle any number of
 complexities.
 
-The -n option is another way to select which cases VTSG should write.
-Therefore, -n and -\zws-ACTS are mutually exclusive.
+The -n (number-sampled) option is another way to select which cases VTSG writes.
+It specifies that VTSG should write one of every N cases that are generated.
+For example, -n 3 directs VTSG to write one of every three cases, that is case
+1, skip 2 and 3, write case
+4, skip 5 and 6, write case 7, and so forth.  This option approximates random
+case selection (but is repeatable), combinatorial testing (in case ACTS is not
+installed), random testing (to spot check generation), and percentage of cases
+(that is, only write p\% of cases).  Note that there is no way to generate mixed
+fractions such as exactly $2/5$ of all cases.
+
+The -n option and -\zws-ACTS are mutually exclusive.
 
 
-
-
-
-\section{VTSG Advanced User Manual}
+\section{Advanced User Manual}
 \label{sec:advanced user manual}
+
+This section begins by explaining how to install VTSG, including required and
+optional supporting packages.  Section~\ref{sec:adding a new flaw} is a brief
+tutorial on how to add a new flaw class.  The final section explains how to add a
+language in addition to PHP, \CSharp, and Python.
 
 \subsection{Installing Supporting Packages}
 
 \noindent The following instructions are provided for users who may not have these
-packages already installed on their Linux machines. Users who already have these
+packages installed on their Linux machines.  Users who already have these
 packages may skip this section.
 
 \noindent To download files from Github, first install the \emph{Git} package.
@@ -890,13 +884,13 @@ directory was created.
 \end{verbatim}
 
 
+\subsection{Adding a New Flaw}
+\label{sec:adding a new flaw}
 
-The next subsection is a brief tutorial giving suggestions on how to add a new
-flaw to an existing language in VTSG.  The subsection after that has suggestions
+This subsection is a brief tutorial giving suggestions on how to add a new
+flaw to an existing language in VTSG.  The subsection after this has suggestions
 on how to add a new language.  Some guidance on adding new capabilities or
 features to VTSG itself is in Sec.~\ref{sec:extending VTSG}.
-
-\subsection{Adding a New Flaw}
 
 The easiest way to add a new flaw is modify a similar existing flaw to present the
 new flaw.  If nothing is suitable, here is a tutorial for writing a brand new flaw.
@@ -1149,6 +1143,7 @@ authorship, see Sec.~\ref{sec: file template}, and a
 \verb|dtd| subdirectory, which has document type definitions (DTDs)
 for all of the XML files.
 
+\label{sec: alternate template directory}
 You can tell VTSG to look for a language subdirectory someplace else with the -t command
 line option, see Table~\ref{tab:command line options}.
 
@@ -2102,6 +2097,7 @@ Fig.~\ref{fig:example aux file}.
 
 
 \section{VTSG Software Documentation}
+\label{sec: high-level documentation}
 
 This section has high level documentation of VTSG and directions to help add
 extensions or new features.
@@ -2654,14 +2650,14 @@ parentheses.  Flaws in the ``Exception'' flaw group are caught by the Python run
 These are unlikely to be vulnerabilities (except denial of service).
 ``KK'' are from Kendra Kratkiewicz's work~\cite{Kratkiewicz2005}.
 \begin{itemize}[nosep]
-    \item OS Command Injection (CWE-78) (OWASP\_a1)
-    \item Path traversal (CWE-22) (OWASP\_a4)
-    \item Information Leak Through Error Message (CWE-209) (OWASP\_a5)
-    \item Loop on Unchecked Input (CWE-606) (Other)
-    \item Relative Path Traversal (CWE-23) (Other)
-    \item External Control of System or Configuration Setting (CWE-15) (Other)
-    \item Divide by Zero (CWE-369) (Exception)
-    \item Improper Validation of Array Index (CWE-129) (Exception)
+    \item OS Command Injection (CWE78) (OWASP\_a1)
+    \item Path traversal (CWE22) (OWASP\_a4)
+    \item Information Leak Through Error Message (CWE209) (OWASP\_a5)
+    \item Loop on Unchecked Input (CWE606) (Other)
+    \item Relative Path Traversal (CWE23) (Other)
+    \item External Control of System or Configuration Setting (CWE15) (Other)
+    \item Divide by Zero (CWE369) (Exception)
+    \item Improper Validation of Array Index (CWE129) (Exception)
     \item Buffer Overflow (KK) (Exception)
 \end{itemize}
 
