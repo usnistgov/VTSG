@@ -124,7 +124,9 @@ nosep
 notcondition
 onlynumbers
 outputtype
+pdf
 php
+png
 preg
 pseudocode
 pubidNIST
@@ -144,6 +146,7 @@ subdirectory
 techpubs
 testsuite
 tmp
+tocsectionReferences
 traceback
 txt
 urlstyle
