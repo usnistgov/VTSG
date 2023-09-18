@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Aug  2 10:28:46 2023" *by "Paul E. Black"
+# *modified "Mon Sep 18 14:58:41 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -37,8 +37,13 @@ example: $(VTSG_FILES)
 	(cd $$(ls -dt TestSuite_*/example | head -1);pwd;for f in $$(find . -name "*.cs"|sort); do echo $$f; diff $$f $(TDIR)/example/$$f;done)
 	sleep 1
 
-testVarious: test001 test002 test003 test004 test005 test006 test007 test008 test009 test010
+testVarious: test000 test001 test002 test003 test004 test005 test006 test007 test008 test009 test010
 	@echo various tests succeeded
+
+# test the help message
+test000:
+	python3 vtsg.py -h | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
 
 # test empty <import></import> string
 test001:

@@ -1,0 +1,39 @@
+Vulnerability Test Suite Generator (VTSG)
+Usage:
+    vtsg.py -l LANGUAGE [-g GROUP ...] [-f FLAW ...] [-r DEPTH] [-s | -u] [--ACTS [<DOI>]] [-t TEMPLATE_DIRECTORY] [-n NUMBER_SAMPLED] [-d]
+    vtsg.py (-h | --help)
+    vtsg.py --version
+
+VTSG creates a directory, named TestSuite_DD_MM_YYYY_HHhMMmSS for the date and time run, for generated cases.
+
+Options:
+    -h, --help                                              Show this message
+    --version                                               Show version
+    -l LANGUAGE --language=LANGUAGE                         Select language for generation
+    -g GROUP --group=GROUP                                  Generate cases with vulnerabilities in the specified group of flaws (may be repeated)
+    -f FLAW --flaw=FLAW                                     Generate cases with vulnerabilities in the specified FLAW (may be repeated)
+    -s --safe                                               Only generate safe cases
+    -u --unsafe                                             Only generate unsafe cases
+    -r DEPTH --depth=DEPTH                                  Depth of the Complexities [default: 1]
+    --ACTS                                                  Use ACTS to select cases. [default: 2]
+    -t TEMPLATE_DIRECTORY --template-directory TEMPLATE_DIRECTORY  Directory with language template files
+    -n NUMBER_SAMPLED --number-sampled=NUMBER_SAMPLED       Write 1 of every N cases
+    -d --debug                                              Debug (programmer hook)
+
+Examples:
+    vtsg.py -l cs                         (generate C# cases with all flaws coded, safe and unsafe, complexity depth = 1)
+    vtsg.py -l php -g IDOR                (generate PHP cases with all flaws in the IDOR group, and other options to default)
+    vtsg.py -l cs -g IDOR -g Injection    (generate cases with all flaws in the IDOR or Injection groups)
+    vtsg.py -l cs -f CWE_354              (generate cases with CWE 354)
+    vtsg.py -l cs -f CWE_89 -f CWE_78     (generate cases with CWE 89 or CWE 78)
+    vtsg.py -l cs -r 2                    (generate cases with the complexity depth up to  and including two levels of nesting)
+    vtsg.py -l cs -n 3                    (write only one of every three cases generated)
+    vtsg.py -l py --ACTS 3                (generate Python cases covering all triples of modules)
+    vtsg.py -l cs -s                      (generate cases where the vulnerabilities have been fixed)
+    vtsg.py -l cs -u                      (generate cases where there are vulnerabilities)
+    vtsg.py -l example -t tests/templates (generate the manual example, where the files for the "example" language are in tests/templates)
+
+    All these options can be combined (except for -s and -u, --ACTS and -r > 1, and --ACTS and -n).
+
+    For example:
+        vtsg.py -l cs -f CWE_78 -g OWASP_a1 -r 2 -n 5 -s
