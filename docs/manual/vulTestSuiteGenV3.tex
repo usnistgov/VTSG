@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Wed Sep 13 15:59:54 2023" *by "Paul E. Black"
+% *modified "Mon Sep 18 15:32:44 2023" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -358,7 +358,7 @@ idea of the work needed to provide a comprehensive static analyzer test suite.
 It would be tedious and error prone to construct these test cases
 manually.
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=1\linewidth]{fig_cartesian_product.png}
   \caption{Just three sources of input, two ways of filtering, four sinks, and
     two query executions yield 48 possible test cases.}
@@ -401,7 +401,7 @@ input and where a vulnerability is triggered.
 You can see this high-level program
 structure within the center gray rectangle of Fig.~\ref{fig:VTS operation overview}.
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=1\linewidth]{fig_VTSG_overview.png}
   \caption{Overview of VTSG test case generation.  The File Template specifies how
     pieces are assembled.  Input, Filter, Complexity, Sink, and Execute Query modules
@@ -427,12 +427,15 @@ Finally, additional code may be needed to trigger the vulnerability, for example
 executing the query constructing in the sink code.  VTSG refers to this as
 \emph{ExecQuery}.
 
-The information in this manual is divided into several section.  The next section,
+The information in this manual is divided into several sections.  The next section,
 Sect.~\ref{sec:user manual} is a user manual.  It explains how to invoke various
 options in VTSG with currently defined languages and flaws and the resulting cases.
 Section~\ref{sec:advanced user manual} explains how to install VTSG and required
-supporting packages, add new flaw classes, sinks, inputs, etc. to existing languages
+supporting packages, add new flaw classes, sinks, inputs, etc.\ to % not sentence end
+existing languages
 and how to add a completely new language.
+Section~\ref{sec:source files} documents the files to which new flaws, sinks, or
+languages would be added.
 Finally, Sect.~\ref{sec: high-level documentation} explains the internal architecture
 of VTSG
 and offers suggestions about how to enhance or extend VTSG's capabilities.
@@ -501,7 +504,7 @@ Exposition
 (\href{https://www.nist.gov/itl/ssd/software-quality-group/samate/static-analysis-tool-exposition-sate}{SATE})
 \cite{SATEIV2023}, which requires large, varied sets of programs as targets of
 analysis.  We foresee that VTSG will be able to generate test cases structured as
-needed in any language, for any weakness class.
+needed in many languages, for most weakness classes.
 
 \section{VTSG User Manual}
 \label{sec:user manual}
@@ -672,7 +675,7 @@ Under the flaw directory are directories \verb|safe| and \verb|unsafe| for test
 cases that are not vulnerable or that are vulnerable respectively.
 
 After VTSG finishes generating and writing cases, it displays how many safe
-(non-vulnerable) and unsafe (vulnerable) test cases it generated in each group and
+(non-vulner\-able) and unsafe (vulnerable) test cases it generated in each group and
 flaw.  If a subset was selected with -n or -\zws-ACTS
 (Sec.~\ref{sec:selecting cases}), VTSG also reports the number of test cases
 selected.
@@ -798,18 +801,12 @@ language in addition to PHP, \CSharp, and Python.
 
 \subsection{Installing Supporting Packages}
 
-\noindent The following instructions are provided for users who may not have these
-packages installed on their Linux machines.  Users who already have these
+\noindent The following instructions are provided for users who do not have these
+packages installed on their Linux machines that use apt for package management.
+Users who already have these
 packages may skip this section.
 
-\noindent To download files from Github, first install the \emph{Git} package.
-Here is a command to install it:
-
-\begin{verbatim}
-    sudo apt-get install git
-\end{verbatim}
-
-\noindent VTSG is written in Python 3, so Python 3 must be installed, too.
+\noindent VTSG is written in Python 3, so Python 3 must be installed.
 Here is a command to install it:
 
 \begin{verbatim}
@@ -824,7 +821,7 @@ Here is a command to install it:
     sudo apt-get install python-pip
 \end{verbatim}
 
-\noindent One may also have to install the \emph{pip Python 3} package manager.
+\noindent You may also have to install the \emph{pip Python 3} package manager.
 Here is a command to install it:
 
 \begin{verbatim}
@@ -837,29 +834,27 @@ Here is a command to install it:
     sudo python3 -m pip install --upgrade pip
 \end{verbatim}
 
-\subsection{Installing Optional Packages}
-
-VTSG can use combinatorial testing, specifically ACTS~\cite{ACTS2013}, to select
-cases instead of producing all possible cases.  The ACTS software is freely available.
-To get ACTS, send email to Rick Kuhn
-\href{mailto:kuhn@nist.gov}{kuhn@nist.gov}~\cite{CombinTesting}.
-
-See App.~\ref{sec:run csharp} for packages needed to run \CSharp\ programs.
-
 \subsection{Installing VTSG}
+
+\noindent To download VTSG from Github, the \emph{Git} package must be installed.
+Here is a command to install it:
+
+\begin{verbatim}
+    sudo apt-get install git
+\end{verbatim}
 
 \noindent To copy the generic VTSG from GitHub to a local Linux machine, change to a
 directory under which you want to install VTSG.
 
-\noindent Looking at the GitHub website, one will see a green box labeled ``Code''.
-See Fig.~\ref{fig:clone button}.
-Click on it, then click on the ``copy'' icon to copy the web URL.
-
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=1\linewidth]{fig_clone_tab.png}
   \caption{usnistgov/VTSG: button to clone repository.}
   \label{fig:clone button}
 \end{figure}
+
+\noindent Looking at the GitHub website, you will see a green box labeled ``Code''.
+See Fig.~\ref{fig:clone button}.
+Click on it, then click on the ``copy'' icon to copy the web URL.
 
 \noindent Here is a command to copy the source code and other material to the local
 directory:
@@ -868,20 +863,25 @@ directory:
     git clone https://github.com/usnistgov/VTSG.git
 \end{verbatim}
 
-\noindent If one types the \verb|ls| command, one will see that the \textbf{VTSG}
+\noindent If you type the \verb|ls| command, you will see that the \textbf{VTSG}
 directory was created.
 
-\noindent Go into that directory, using this command:
+\noindent Go into that directory and install the required dependencies with these
+commands:
 
 \begin{verbatim}
     cd VTSG
-\end{verbatim}
-
-\noindent To install the dependencies, use this command:
-
-\begin{verbatim}
     pip3 install --user -r requirements.txt
 \end{verbatim}
+
+\subsection{Installing Optional Packages}
+
+VTSG can use combinatorial testing, specifically ACTS~\cite{ACTS2013}, to select
+cases instead of producing all possible cases.  The ACTS software is freely available.
+To get ACTS, send email to Rick Kuhn
+\href{mailto:kuhn@nist.gov}{kuhn@nist.gov}~\cite{CombinTesting}.
+
+See App.~\ref{sec:run csharp} for packages needed to run \CSharp\ programs.
 
 
 \subsection{Adding a New Flaw}
@@ -1002,7 +1002,7 @@ Figure~\ref{fig:VTS operation overview} suggests that the result of the Input mo
 connects to and must match the input of the Filter module, and its output connects to
 and must match the input of the Sink.  These modules are shown together in
 Fig.~\ref{fig:input, filter, and sink}.
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \centerline{\includegraphics[width=\linewidth]{fig_input_filter_sink.png}}
   \caption{The result of the Input module connects to the input of the Filter module,
     its output connects to the input of the Sink module, and its output connects
@@ -1010,7 +1010,7 @@ Fig.~\ref{fig:input, filter, and sink}.
   }
   \label{fig:input, filter, and sink}
 \end{figure}
-Compatible inputs, filters, sinks, and exec queries are ``connected'' various
+Compatible inputs, filters, sinks, and exec queries are ``connected'' in various
 ways.  Remember that
 VTSG first chooses a sink module then chooses compatible filter, input, and exec
 query modules to
@@ -1025,7 +1025,7 @@ A filter is used with a sink if
 \end{enumerate}
 Figure~\ref{fig:how filters fit a sink} suggests that filters A, B, and C will
 be used with the sink.
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \centerline{\includegraphics[width=.8\linewidth]{fig_filters_and_sinks.png}}
   \caption{How filters are chosen for a sink.  Filters A, B, and C will be used.
     Filter P is not used because the flaw\_type differs.
@@ -1050,7 +1050,7 @@ An input is used with a sink and a filter if
 Fig.~\ref{fig:how inputs fit} illustrates this matching rule.  Input 1 is used with
 Filter A, and Input 2 is used with Filter B.  Input 1 is also used with Filter C
 because Filter C is ``nofilter'' and Input 1 matches the sink.
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \centerline{\includegraphics[width=.667\linewidth]{fig_inputs_filters_and_sinks.png}}
   \caption{How inputs are chosen for a filter and sink.  Input 1 is used with
     Filter A.  Input 2 is used with Filter B.  Input 1 is also used with Filter C
@@ -1063,7 +1063,7 @@ Be aware that \emph{any} string may be in the \verb|input_type| or
 \verb|output_type|.
 This allows you to use a kind of ``extended types'' to connect specific inputs,
 filters, and sinks.  Following is an example is in Python.
-I wanted the input to be wrapped in
+We wanted the input to be wrapped in
 complexities, like the following:
 \begin{verbatim}
     # Input
@@ -1080,10 +1080,10 @@ complexities, like the following:
         sys.path += [tainted_1]
         print(f'added { tainted_1 } to Python module search path')
 \end{verbatim}
-Variables aren't declared in Python, but I had to initialize the variable to
-\verb|None| in case the input is not executed.  I declared the variable in the input
+Variables aren't declared in Python, but we had to initialize the variable to
+\verb|None| in case the input is not executed.  We declared the variable in the input
 module and put the input code in the filter module, so that the input code would be
-wrapped in complexities.  I used custom types \verb|string,filter_input| to connect
+wrapped in complexities.  We used custom types \verb|string,filter_input| to connect
 the sink to the ``filter'' (really, input) and \verb|InitToNone| to connect the
 ``filter'' to the ``input'' (really, initialization).
 
@@ -1091,13 +1091,13 @@ the sink to the ``filter'' (really, input) and \verb|InitToNone| to connect the
 
 Figuring out how to mark the modules as safe or unsafe can be tricky.
 The following code may allow a large \emph{negative} index access, and thus cause an
-exception.  I thought this is always unsafe.
+exception.  We thought this is always unsafe.
 \begin{verbatim}
     if index < len(array):
         print(array[index])
 \end{verbatim}
-I discovered my mistake when I executed the cases and ``unsafe'' cases did
-\emph{not} produce any evidence of a successful exploit.  I realized that, if the
+We discovered the mistake when we executed the cases and ``unsafe'' cases did
+\emph{not} produce any evidence of a successful exploit.  We realized that, if the
 ``input'' was a safe hardcoded
 value, the code was safe!
 \begin{verbatim}
@@ -1118,7 +1118,7 @@ VTSG accesses all the language information files through a
 single subdirectory.  The default is \verb|src/templates|.  Under this is one
 subdirectory for each language.  Each language subdirectory has six files:
 \verb|file_template.xml|, \verb|inputs.xml|, \verb|complexities.xml|,
-\verb|filters.xml|, \verb|sinks.xml|, and \verb|exec_queries.xml|.  The files
+\verb|filters.| \verb|xml|, \verb|sinks.xml|, and \verb|exec_queries.xml|.  The files
 are described in Sec.~\ref{sec:source files}.
 
 Here are the steps to add another language.
@@ -1137,7 +1137,7 @@ As you convert or add flaws, you may find that some language specifications need
 adjustment.
 
 In addition to subdirectories for languages, the \verb|src/templates| directory
-has \verb|file_rights.txt|, which is
+has \verb|file_rights.| \verb|txt|, which is
 copied into each generated test case to declare license rights and
 authorship, see Sec.~\ref{sec: file template}, and a
 \verb|dtd| subdirectory, which has document type definitions (DTDs)
@@ -1339,7 +1339,8 @@ periods and a comma is only for example clarity.)
 \end{verbatim}
 
 Note: because \emph{all} leading whitespace is removed from lines in indent sections,
-using INDENT ... DEDENT anywhere means that every indentation must be indicated
+using INDENT ... DEDENT anywhere means that every indentation in code that might be
+nested within it must be indicated
 with INDENT ... DEDENT lines.
 
 We chose ``DEDENT'' because Python's grammar description uses it.
@@ -1602,7 +1603,7 @@ provides one way for the generated program to get input.
 </sample>
 \end{verbatim}
 
-\begin{figure}[htb]
+\begin{figure}[tbp]
   \includegraphics{fig_Input_file.png}
   \caption{Example Input module.  Instantiated at line 14 of 
   Fig.~\ref{fig:example main file}.}
@@ -1656,7 +1657,7 @@ All filter modules are in the \verb|filters.xml| file.
 </sample>
 \end{verbatim}
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=\linewidth]{fig_Filter_file.png}
   \caption{Example Filter module. Instantiated in lines 19--27 of
            Fig.~\ref{fig:example aux file}.}
@@ -1781,7 +1782,7 @@ All sink modules are in the language's \verb|sinks.xml| file.
     It does not appear in generated safe cases.
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=\linewidth]{fig_Sink_file.png}
   \caption{Example Sink module. Instantiated at line 23 of
            Fig.~\ref{fig:example main file}.}
@@ -1828,11 +1829,12 @@ file.
     \item dir and path, comment, and imports: see Sec.~\ref{sec:shared attributes}.
 
     \item code: The source code of a query. It does not contain placeholders.
-    It should be linked to the corresponding variable from the Sink. The linking is done through the "exec\_type" attributes within the XML files.
+    It should be linked to the corresponding variable from the Sink. The linking is
+    done through the "exec\_type" attributes within the XML files.
 \end{itemize}
 
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=\linewidth]{fig_Exec_Query_file.png}
   \caption{Example Exec\_Query module. Instantiated in lines 25--39 of
     Fig.~\ref{fig:example main file}.}
@@ -1893,7 +1895,7 @@ complexity modules are inside \verb|<complexities>|.
         whether the code always evaluates to true or false.
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   % width makes the text about the same size as text in Complexity_file_while
   \includegraphics[width=2.4in]{fig_Complexity_file_test.png}
   \caption{Example test condition module.  Instantiated in
@@ -2059,14 +2061,14 @@ complexity modules are inside \verb|<complexities>|.
 \end{itemize}
 
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=4in]{fig_Complexity_file_while.png}
   \caption{Example Complexity module with a {\texttt while} loop.  Instantiated in
     Fig.~\ref{fig:example main file}, lines 16--21.}
   \label{fig:example complexity-while file}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=\linewidth]{fig_Complexity_file_method.png}
   \caption{Example Complexity module with a method invocation.
   The \texlangle code\texrangle\  part is instantiated in
@@ -2255,7 +2257,7 @@ particular file.  If a case consists of more than one file, as in the
 example used in this manual, all files have
 identical names, except for the final sequence letter.
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=\linewidth]{fig_example_code1.png}
   \caption{Main file of example. Line 14 instantiates input code from 
     Fig.~\ref{fig:example input file}. Lines 16--19 instantiates complexity code from 
@@ -2268,7 +2270,7 @@ identical names, except for the final sequence letter.
   \label{fig:example main file}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=0.85\linewidth]{fig_example_code2.png}
   \caption{Auxiliary file of example.  It instantiates code from the
     \texlangle body\texrangle\ part of Fig.~\ref{fig:example complexity-method file}.
@@ -2776,7 +2778,7 @@ See the \verb|complexity.xml| file for the specific code.
 \section{Contents of git Repository}
 \label{gitContent}
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=1\linewidth]{fig_git_files.png}
   \caption{Snapshot of files in the
     \href{https://github.com/usnistgov/VTSG}{VTSG git repository}, which is at
@@ -2785,7 +2787,7 @@ See the \verb|complexity.xml| file for the specific code.
   \label{fig:git files}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \includegraphics[width=0.8\linewidth]{fig_README_md.png}
   \caption{\href{https://github.com/usnistgov/VTSG/blob/master/README.md}
     {README.md file}, which is at

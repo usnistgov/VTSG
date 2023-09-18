@@ -1,25 +1,25 @@
-# *modified "Mon Jul 31 15:15:19 2023" *by "Paul E. Black"
-""" Vulnerability Test Suite Generator (VTSG)
-
+# *modified "Mon Sep 18 14:55:24 2023" *by "Paul E. Black"
+"""Vulnerability Test Suite Generator (VTSG)
 Usage:
     vtsg.py -l LANGUAGE [-g GROUP ...] [-f FLAW ...] [-r DEPTH] [-s | -u] [--ACTS [<DOI>]] [-t TEMPLATE_DIRECTORY] [-n NUMBER_SAMPLED] [-d]
     vtsg.py (-h | --help)
     vtsg.py --version
 
+VTSG creates a directory, named TestSuite_DD_MM_YYYY_HHhMMmSS for the date and time run, for generated cases.
 
 Options:
-    -h, --help                                                      Show this message
-    --version                                                       Show version
-    -l LANGUAGE --language=LANGUAGE                                 Select language for generation
-    -g GROUP --group=GROUP                                          Generate cases with vulnerabilities in the specified group of flaws (can be repeated)
-    -f FLAW --flaw=FLAW                                             Generate cases with vulnerabilities in the specified FLAW (can be repeated)
-    -s --safe                                                       Only generate safe cases
-    -u --unsafe                                                     Only generate unsafe cases
-    -r DEPTH --depth=DEPTH                                          Depth of the Complexities [default: 1]
-    --ACTS                                                          Use ACTS to select cases. [default: 2]
-    -t TEMPLATE_DIRECTORY --template-directory TEMPLATE_DIRECTORY   Directory with language template files
-    -n NUMBER_SAMPLED --number-sampled=NUMBER_SAMPLED               Write 1 of every N cases
-    -d --debug                                                      Debug (programmer hook)
+    -h, --help                                              Show this message
+    --version                                               Show version
+    -l LANGUAGE --language=LANGUAGE                         Select language for generation
+    -g GROUP --group=GROUP                                  Generate cases with vulnerabilities in the specified group of flaws (may be repeated)
+    -f FLAW --flaw=FLAW                                     Generate cases with vulnerabilities in the specified FLAW (may be repeated)
+    -s --safe                                               Only generate safe cases
+    -u --unsafe                                             Only generate unsafe cases
+    -r DEPTH --depth=DEPTH                                  Depth of the Complexities [default: 1]
+    --ACTS                                                  Use ACTS to select cases. [default: 2]
+    -t TEMPLATE_DIRECTORY --template-directory TEMPLATE_DIRECTORY  Directory with language template files
+    -n NUMBER_SAMPLED --number-sampled=NUMBER_SAMPLED       Write 1 of every N cases
+    -d --debug                                              Debug (programmer hook)
 
 Examples:
     vtsg.py -l cs                         (generate C# cases with all flaws coded, safe and unsafe, complexity depth = 1)
