@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Mon Sep 18 15:32:44 2023" *by "Paul E. Black"
+% *modified "Tue Sep 19 12:00:36 2023" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -411,11 +411,11 @@ structure within the center gray rectangle of Fig.~\ref{fig:VTS operation overvi
   \label{fig:VTS operation overview}
 \end{figure}
 
-In theory, a static analysis tool only needs to process the few lines of code that
-embody a problematic piece of code to determine whether it is actually a weakness.
-In practice, a tool must analyze much of the program, noting its control and
+A static analysis tool must analyze much of a program, noting its control and
 data flows, to accurately track data and determine the conditions when the code in
-question may be executed.  Tracing execution through structures like \verb|while|
+question may be executed.  Only then can it process the few lines of code that
+embody a problematic piece of code to determine whether it is actually a weakness.
+Tracing execution through structures like \verb|while|
 loops, \verb|if| statements, and function calls exercises static analysis tools'
 abilities.  VTSG refers to these data flow and control constructs as
 \emph{complexities}.  You can see in Fig.~\ref{fig:VTS operation overview} that the
@@ -476,6 +476,16 @@ possible future enhancements.
     names are long.  It may be useful to structure the names differently or
     even just number them.
   \item Write manifests in Static Analysis Results Interchange Format (SARIF).
+  \item Enhance the ACTS interface code to handle arbitrary depths of nested
+    complexities.
+  \item Have a new test condition value such as ``maybe'', ``random'', or
+    ``indeterminate'' for when the analyzer would not be able to determine.  For
+    example, Juliet has
+    \begin{verbatim}
+    if (random()) {
+        code
+    }
+    \end{verbatim}
 \end{itemize}
 
 
@@ -607,8 +617,8 @@ all flaw groups.  If VTSG is invoked with particular flaws (\verb|-f|) or flaw g
 If no flaw group is specified, all flaw groups are used.
 If no flaws are specified, all flaws (in specified flaw groups) are used.
 
-VTSG generates both the unsafe (buggy or vulnerable)
-test cases and the safe (not buggy) test cases unless the user selects
+VTSG generates both the unsafe (vulnerable)
+test cases and the safe (not vulnerable) test cases unless the user selects
 either only safe (-s) or only unsafe (-u) cases.  The options are
 mutually exclusive.
 
@@ -776,7 +786,7 @@ handle more than one complexity in a case.  Therefore, \verb|-r| (depth) greater
 than 1 and
 -\zws-ACTS may not be used together.  It should be straight forward to enhance
 the code, which is in \verb|select_by_acts.py|, to handle any number of
-complexities.
+nested complexities.
 
 The -n (number-sampled) option is another way to select which cases VTSG writes.
 It specifies that VTSG should write one of every N cases that are generated.
@@ -1084,8 +1094,8 @@ Variables aren't declared in Python, but we had to initialize the variable to
 \verb|None| in case the input is not executed.  We declared the variable in the input
 module and put the input code in the filter module, so that the input code would be
 wrapped in complexities.  We used custom types \verb|string,filter_input| to connect
-the sink to the ``filter'' (really, input) and \verb|InitToNone| to connect the
-``filter'' to the ``input'' (really, initialization).
+the sink to the ``filter'' (i.e. input) and \verb|InitToNone| to connect the
+``filter'' to the ``input'' (i.e. initialization).
 
 \subsubsection{Making Sure Case Safety is Computed Correctly}
 
@@ -1306,7 +1316,7 @@ INDENT and DEDENT lines are removed.
 For lines within an INDENT ... DEDENT section,
 \begin{itemize}[nosep]
 \item first, any leading whitespace is removed, and
-\item second, if the line is not empty, indentation is added for each nested
+\item second, if the line is not empty, VTSG adds indentation for each nested
   INDENT ... DEDENT section this is in.
 \end{itemize}
 
@@ -1476,7 +1486,7 @@ We chose ``DEDENT'' because Python's grammar description uses it.
 \label{sec:shared attributes}
 
 Many module types use the same attributes.  Instead of repeating explanation of
-these attributes in each module, they are here.
+these attributes in each module, we explain them here.
 
 \subsubsection{Module Description in Path and Dir Tags}
 \label{sec:module description}
@@ -1498,9 +1508,8 @@ For example, if a sink has
 then cases using that module will have file names containing \\
 \verb|_S_select_from-concatenation_simple_quote_|.
 
-Note: we cannot think of any reason why it is better to give multiple description
-strings instead of just one string.  But the functionality is provided in VTSG, and
-some existing modules use it.
+In the future this should be changed to have one \verb|<path>| string, instead of
+multiple \verb|<dir>| description strings.
 
 
 \subsubsection{Module Comment}
@@ -1845,8 +1854,7 @@ The block of code in the Exec\_Query example,
 Fig.~\ref{fig:example exec-query file}, executes the SQL query, used 
 for database management
 systems, including MySQL, Oracle, PostgreSQL, and SQLite.  This example is
-vulnerable.  If a non-vulnerable execution of an SQL query is required,
-use an SQL prepared statement.
+vulnerable.
 
 
 \subsection{Code Complexity and Test Condition Modules}
@@ -2195,13 +2203,11 @@ Sec.~\ref{sec:selecting cases}.  Then VTSG goes through the selected test cases
 one by one.  For each one it composes the code of their modules to generate the
 source code for a test case.  The process of composing modules to generate
 source code is based on XML metadata tags.  After the imports and class
-definition declaration for the specific program language, the ``Input'' metadata
-\verb|<code>| portion is added to the test case.  The ``Filtering'' metadata
-\verb|<code>| portion, plus its \verb|<flaw type>| and safety indicator, are
-added to the test case.  Next, the ``Sink'' metadata \verb|<code>| portion is
-added to the test case.  Finally, the ``ExecQuery'' type is noted and the
-\verb|<code>| portion of the ``ExecQuery'' is added to the test case.  The test
-case is written to one or more files.  The location chosen for the files is
+definition declaration for the specific program language, VTSG adds the ``Input''
+\verb|<code>| to the test case.  Then it adds the ``Filter'' \verb|<code>|, plus its
+\verb|<flaw type>| and safety indicator, and the ``Sink'' \verb|<code>|.
+Finally, VTSG notes the ``ExecQuery'' type and adds its \verb|<code>| to the test
+case.  VTSG then writes the test to one or more files.  The location of the files is
 described in Sec.~\ref{sec:case directory structure}.
 Section~\ref{sec:case file name} describes how VTSG names the files.
 
