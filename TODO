@@ -1,5 +1,6 @@
+
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Aug  1 16:13:23 2023" *by "Paul E. Black"
+ *modified "Tue Sep 19 11:45:39 2023" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -73,7 +74,7 @@ Allow the user to specify the variable name root, that is, something other than
 4 Jan 2023
 
 Maybe there should be a new value "maybe" or "random" or "indeterminate" for test
-conditions code when the analyzer cannot determine.  For instance, Juliet,
+conditions code when the analyzer cannot determine.  For example, Juliet,
     if (random()) {
         code
     }
@@ -81,7 +82,7 @@ conditions code when the analyzer cannot determine.  For instance, Juliet,
 
 
 23 Nov 2022
-Thoroughly document what various attributes in complexities do. For instance,
+Thoroughly document what various attributes in complexities do. For example,
 • indirection: “1” if the code is split into two chunks (call and declaration) or
   calls a function. The body tag should be present when calling a function.
 What does indirection="1" DO to the final code?? Does indirection="0" do anything,
