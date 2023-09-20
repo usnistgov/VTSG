@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Mon Sep 18 14:58:41 2023" *by "Paul E. Black"
+# *modified "Wed Sep 20 10:14:47 2023" *by "Paul E. Black"
 
 default: genPython
 
@@ -37,13 +37,8 @@ example: $(VTSG_FILES)
 	(cd $$(ls -dt TestSuite_*/example | head -1);pwd;for f in $$(find . -name "*.cs"|sort); do echo $$f; diff $$f $(TDIR)/example/$$f;done)
 	sleep 1
 
-testVarious: test000 test001 test002 test003 test004 test005 test006 test007 test008 test009 test010
+testVarious: test001 test002 test003 test004 test005 test006 test007 test008 test009 test010
 	@echo various tests succeeded
-
-# test the help message
-test000:
-	python3 vtsg.py -h | tee $(@)_photo
-	diff $(@)_photo tests/$(@)_photo
 
 # test empty <import></import> string
 test001:
@@ -105,8 +100,13 @@ test010: $(VTSG_FILES)
 	sleep 1
 
 # tests for command line interface
-testCLI: testCLI1 testCLI1a testCLI2 testCLI3 testCLI4 testCLI5
+testCLI: testCLI0 testCLI1 testCLI1a testCLI2 testCLI3 testCLI4 testCLI5
 	@echo command line interface \(CLI\) tests succeeded
+
+# test the help message
+testCLI0:
+	python3 vtsg.py -h | tee $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
 
 # unknown language
 testCLI1:
