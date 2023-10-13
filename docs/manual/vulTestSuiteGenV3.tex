@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Sep 19 12:00:36 2023" *by "Paul E. Black"
+% *modified "Fri Oct 13 10:10:04 2023" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -35,16 +35,16 @@
 \setlist{nosep} % no space between list items or around lists
 
 % put a light gray ``DRAFT'' diagonally across each page
-\usepackage{draftwatermark}
+%%%%\usepackage{draftwatermark}
 % datetime2 replaces datetime.
 % DTMenglishshortmonthname replaces shortmonthname, but it doesn't work.
 \usepackage{datetime} % for short month name, e.g. Jan, Feb, Mar, etc.
-\SetWatermarkText{DRAFT \number\day\ \shortmonthname\ \the\year}
+%%%%\SetWatermarkText{DRAFT \number\day\ \shortmonthname\ \the\year}
 % bigger percentage is closer to white
-\SetWatermarkColor[gray]{0.9}
-\SetWatermarkFontSize{3cm}
-\SetWatermarkAngle{55}
-\SetWatermarkHorCenter{11cm}
+%%%%\SetWatermarkColor[gray]{0.9}
+%%%%\SetWatermarkFontSize{3cm}
+%%%%\SetWatermarkAngle{55}
+%%%%\SetWatermarkHorCenter{11cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   	BEGIN DOCUMENT 
@@ -209,7 +209,7 @@ or equipment identified are necessarily the best available for the purpose.\\
 % (revision, edition, errata update).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sffamily{\textbf{Publication History}}\\
- \rmfamily {Approved by the NIST Editorial Review Board on YYYY-MM-DD}\\
+ \rmfamily {Approved by the NIST Editorial Review Board on 2023-10-12}\\
 %\rmfamily {Approved by the NIST Editorial Review Board on YYYY-MM-DD\\
 %Supersedes NIST Series XXX (Month Year) DOI}\\
 \vfill
@@ -282,12 +282,13 @@ or equipment identified are necessarily the best available for the purpose.\\
 	\fancyfoot[c]{\thepage}
 \section*{Acknowledgments}
 
-Bertrand Stivalet and Aurelien Delaitre, from the NIST SAMATE team, designed the
+Bertrand Stivalet and Aurelien Delaitre, from the
+National Institute of Standards and Technology SAMATE team, designed the
 architecture of the VTSG and managed its implementation.  The project was
 implemented by students from TELECOM Nancy: Jean-Philippe Eisenbarth, Valentin
 Giannini, and Vincent Noyalet.  We thank Terry Cohen for her comments and
 suggestions, which improved this report.  We also thank
-Charles de Oliveira for his contributions to this manual.
+Charles de Oliveira and Sheryl Taylor for their contributions to this manual.
 % On 12 June 2020, Terry Cohen wrote the following [[much editing by PEB]]
 % Bertrand and Liz wrote the original document. I did some quick grammatical
 % editing. Liz submitted it, but Barbara wanted it to cover both C# and PHP. The
@@ -335,7 +336,8 @@ examination of the source code or executable.  Static analysis has the theoretic
 advantage of considering \emph{all} possible executions.  It ``has the potential to
 efficiently preclude several classes of errors \ldots''~\cite[p.~7]{DRSV2016}.
 Current static analysis tools check many issues, such as uninitialized variables,
-buffer overflows, SQL injections, noncompliance with an organization’s coding
+buffer overflows, Structured Query Language (SQL) injections,
+noncompliance with an organization’s coding
 standards, and calling a function with incorrect arguments.  Although static
 analyzers will not catch all problems, NIST's ``Guidelines on Minimum Standards
 for Developer Verification of Software''~\cite{MinGuidelines2021} recommends
@@ -428,10 +430,10 @@ executing the query constructing in the sink code.  VTSG refers to this as
 \emph{ExecQuery}.
 
 The information in this manual is divided into several sections.  The next section,
-Sect.~\ref{sec:user manual} is a user manual.  It explains how to invoke various
+Sect.~\ref{sec:user manual}, is a user manual.  It explains how to invoke various
 options in VTSG with currently defined languages and flaws and the resulting cases.
 Section~\ref{sec:advanced user manual} explains how to install VTSG and required
-supporting packages, add new flaw classes, sinks, inputs, etc.\ to % not sentence end
+supporting packages, add new flaw classes, sinks, inputs, etc., to
 existing languages
 and how to add a completely new language.
 Section~\ref{sec:source files} documents the files to which new flaws, sinks, or
@@ -463,7 +465,7 @@ VTSG?
 VTSG is not nearly as powerful as we could wish for.  Here are some limitations and
 possible future enhancements.
 \begin{itemize}
-  \item Have a method of variants.  For example, data types that are given once and a
+  \item Have a method of variants.  For example, data types are given once, then a
     ``generic'' case is elaborated with each data type.  This would yield test cases
     that are structurally identical but handle, say, ints, floats, doubles, etc.
   \item Enhance support for multi-file cases.  In particular, be able to handle
@@ -476,7 +478,8 @@ possible future enhancements.
     names are long.  It may be useful to structure the names differently or
     even just number them.
   \item Write manifests in Static Analysis Results Interchange Format (SARIF).
-  \item Enhance the ACTS interface code to handle arbitrary depths of nested
+  \item Enhance the Automated Combinatorial Testing for Software (ACTS) interface
+    code to handle arbitrary depths of nested
     complexities.
   \item Have a new test condition value such as ``maybe'', ``random'', or
     ``indeterminate'' for when the analyzer would not be able to determine.  For
@@ -527,7 +530,8 @@ interface
 can generate all test cases, a specific group of test cases, or a subset of
 cases based on several
 options.  For example, the user can generate vulnerable or non-vulnerable test cases
-based on selected flaws or groups of flaws, for example, OWASP categories.
+based on selected flaws or groups of flaws, for example,
+Open Web Application Security Project (OWASP) categories.
 The user must specify the
 programming language.  The invocation command looks like this:
 \begin{verbatim}
@@ -611,7 +615,7 @@ Note: no short option.} \\
 
 %\subsection{Explanation of Some Options}
 
-By default VTSG generates all consistent combinations of test cases with all flaws in
+By default, VTSG generates all consistent combinations of test cases with all flaws in
 all flaw groups.  If VTSG is invoked with particular flaws (\verb|-f|) or flaw groups
 (\verb|-g|), only sinks matching those are used.
 If no flaw group is specified, all flaw groups are used.
@@ -664,7 +668,7 @@ test cases.
 The directory is named for the date and time created, for example,
 \verb|TestSuite_03-| \verb|08-2022_16h46m35|.
 A language directory, \verb|PHP|,
-\verb|Csharp|, or \verb|Python| is created in this directory.
+\verb|Csharp|, or \verb|Python|, is created in this directory.
 This name comes from the \verb|name|
 in the \verb|file_template.xml| file.  See Sec.~\ref{sec: file template}.
 
@@ -682,7 +686,7 @@ If the \verb|flaw_group| is missing or empty, subdirectories for flaw types are
 created immediately under the language directory.
 
 Under the flaw directory are directories \verb|safe| and \verb|unsafe| for test
-cases that are not vulnerable or that are vulnerable respectively.
+cases that are not vulnerable or that are vulnerable, respectively.
 
 After VTSG finishes generating and writing cases, it displays how many safe
 (non-vulner\-able) and unsafe (vulnerable) test cases it generated in each group and
@@ -734,7 +738,7 @@ The above has three nested control structures:\\
 \subsection{Using ACTS or -n to Select a Subset of Cases}
 \label{sec:selecting cases}
 
-By default VTSG generates all compatible combinations of inputs, filters, sinks,
+By default, VTSG generates all compatible combinations of inputs, filters, sinks,
 exec queries, complexities, and conditions.  The result can easily be tens of
 thousands of cases.  Yet, a small, carefully chosen subset of cases may
 suffice~\cite{SWInteractions2004}.  VTSG has two command line options to select a
@@ -747,14 +751,15 @@ Sec. 2.1.
 
 Degree of interaction (doi) is the coverage guaranteed.  Two-way means every
 pair of parameter values is represented, like every (allowed) input with every
-complexity.  If doi is 3, then every triple is covered, e.g. every input, sink,
+complexity.  If doi is 3, then every triple is covered, e.g., every input, sink,
 and condition combination.  Again only allowed combinations\footnote{The
 interface code checks which combinations are actually generated and
 writes ACTS constraints to \emph{not} create combinations that never occur.
 For example, one filter, named ``none'', just passes the input value; it
 doesn't filter anything.  The filter is marked as need\_complexity="0" (See
 Sec.~\ref{sec:need complexity}), to avoid wrapping it in any complexity: it
-would useless to wrap an if or while around it.  The interface code sees that
+would be useless to wrap an ``if'' or ``while'' around it.
+The interface code sees that
 filter ``none'' never has complexities, so constrains ACTS to only match that
 filter with ``no complexity''.
 }
@@ -777,7 +782,8 @@ VTSG first generates all consistent combinations of modules,
 Sec.~\ref{sec: generation detail}.  If \verb|ACTS| is indicated, VTSG writes
 the list of modules and constraints on compatible modules to
 \verb|/tmp/| \verb|VTSG_ACTS_input.xml|, runs ACTS, reads the selected sets of modules
-from \verb|/tmp/| \\ \verb|VTSG_ACTS_output.txt|, and creates a list of matching module
+from \verb|/tmp/| \linebreak \verb|VTSG_ACTS_output.txt|,
+and creates a list of matching module
 combinations.  VTSG then composes the code from modules and writes the test
 cases.
 
@@ -790,12 +796,12 @@ nested complexities.
 
 The -n (number-sampled) option is another way to select which cases VTSG writes.
 It specifies that VTSG should write one of every N cases that are generated.
-For example, -n 3 directs VTSG to write one of every three cases, that is case
+For example, -n 3 directs VTSG to write one of every three cases, that is, case
 1, skip 2 and 3, write case
 4, skip 5 and 6, write case 7, and so forth.  This option approximates random
 case selection (but is repeatable), combinatorial testing (in case ACTS is not
 installed), random testing (to spot check generation), and percentage of cases
-(that is, only write p\% of cases).  Note that there is no way to generate mixed
+(that is, only write p\,\% of cases).  Note that there is no way to generate mixed
 fractions such as exactly $2/5$ of all cases.
 
 The -n option and -\zws-ACTS are mutually exclusive.
@@ -864,7 +870,8 @@ directory under which you want to install VTSG.
 
 \noindent Looking at the GitHub website, you will see a green box labeled ``Code''.
 See Fig.~\ref{fig:clone button}.
-Click on it, then click on the ``copy'' icon to copy the web URL.
+Click on it, then click on the ``copy'' icon to copy the web uniform resource locator
+(URL).
 
 \noindent Here is a command to copy the source code and other material to the local
 directory:
@@ -902,7 +909,7 @@ flaw to an existing language in VTSG.  The subsection after this has suggestions
 on how to add a new language.  Some guidance on adding new capabilities or
 features to VTSG itself is in Sec.~\ref{sec:extending VTSG}.
 
-The easiest way to add a new flaw is modify a similar existing flaw to present the
+The easiest way to add a new flaw is to modify a similar existing flaw to present the
 new flaw.  If nothing is suitable, here is a tutorial for writing a brand new flaw.
 
 There are so many interacting requirements for a flaw, it is best to write it in
@@ -1072,7 +1079,7 @@ because Filter C is ``nofilter'' and Input 1 matches the sink.
 Be aware that \emph{any} string may be in the \verb|input_type| or
 \verb|output_type|.
 This allows you to use a kind of ``extended types'' to connect specific inputs,
-filters, and sinks.  Following is an example is in Python.
+filters, and sinks.  Following is an example, which is in Python.
 We wanted the input to be wrapped in
 complexities, like the following:
 \begin{verbatim}
@@ -1094,13 +1101,13 @@ Variables aren't declared in Python, but we had to initialize the variable to
 \verb|None| in case the input is not executed.  We declared the variable in the input
 module and put the input code in the filter module, so that the input code would be
 wrapped in complexities.  We used custom types \verb|string,filter_input| to connect
-the sink to the ``filter'' (i.e. input) and \verb|InitToNone| to connect the
-``filter'' to the ``input'' (i.e. initialization).
+the sink to the ``filter'' (i.e., input) and \verb|InitToNone| to connect the
+``filter'' to the ``input'' (i.e., initialization).
 
 \subsubsection{Making Sure Case Safety is Computed Correctly}
 
 Figuring out how to mark the modules as safe or unsafe can be tricky.
-The following code may allow a large \emph{negative} index access, and thus cause an
+The following code may allow a large \emph{negative} index access, and, thus, cause an
 exception.  We thought this is always unsafe.
 \begin{verbatim}
     if index < len(array):
@@ -1141,7 +1148,7 @@ Here are the steps to add another language.
 \end{enumerate}
 Change language characteristics in all the files.  Generate a few cases and
 execute them to make sure syntax and other details are correct.  It's best to
-start by converting just one or two sinks, inputs, and filters for quick turn around.
+start by converting just one or two sinks, inputs, and filters for quick turnaround.
 Comment out all the rest of the modules to start.
 As you convert or add flaws, you may find that some language specifications need
 adjustment.
@@ -1151,7 +1158,7 @@ has \verb|file_rights.| \verb|txt|, which is
 copied into each generated test case to declare license rights and
 authorship, see Sec.~\ref{sec: file template}, and a
 \verb|dtd| subdirectory, which has document type definitions (DTDs)
-for all of the XML files.
+for all of the Extensible Markup Language (XML) files.
 
 \label{sec: alternate template directory}
 You can tell VTSG to look for a language subdirectory someplace else with the -t command
@@ -1212,7 +1219,7 @@ one \verb|filters.xml| file, one \verb|complexities.xml| file,
 one \\ \verb|sinks.xml| file, and one \verb|exec_queries.xml| file.
 
 All the files, except \verb|file_template.xml|, may have many
-modules, that is alternate chunks of code, in them.
+modules, that is, alternate chunks of code, in them.
 For example, \verb|inputs.xml|, Sec.~\ref{sec: input module}, typically has many input
 modules.  Each module in \verb|inputs.xml| provides a method to get input from a
 different source, such as command line options or hard-coded values.
@@ -1408,7 +1415,7 @@ We chose ``DEDENT'' because Python's grammar description uses it.
         \verb|<statement_terminator></statement_terminator>|.
 
         \item indent: string used to indent code, see Sec.~\ref{sec:indent}.
-          This is typically four spaces, but
+          This is typically four spaces but
           can be any string.
 
         \item import\_code: Code to include a library. The code
@@ -1422,7 +1429,7 @@ We chose ``DEDENT'' because Python's grammar description uses it.
     \begin{itemize}
         \item prefix: Any prefix required for variable names.
         \$ for PHP.
-        Leave it empty if no prefix is required required.
+        Leave it empty if no prefix is required.
 
         \item variable: Define each variable type and how to initialize it. (optional)
         \begin{itemize}
@@ -1547,12 +1554,13 @@ the name or names given here.
 
 Using some modules in a program for certain flaws may make them safe or may make them
 unsafe.  For example, prepared SQL statements are always safe from SQL injection
-vulnerabilities.  In contrast using a broken cryptographic algorithm is always
+vulnerabilities.  In contrast, using a broken cryptographic algorithm is always
 unsafe, regardless of how any user input is filtered.  Similarly certain
 hard-coded inputs may always make a program safe from certain flaws, and some filters
 may make a program safe from certain flaws for any user input.
 
 Input, filter, and sink modules can be marked as always safe or always unsafe using
+\linebreak % otherwise safe="1" sticks out
 \verb|safe="1"| or \verb|unsafe="1"|.  Modules may be always safe or always unsafe
 (or neither) for some flaws and have different safety attributes for other
 flaws.
@@ -1561,8 +1569,8 @@ Exec query modules may be marked as always safe.  (No exec query module can make
 program unsafe.)
 
 A generated program is not safe if any of the selected input, filter, or sink modules
-are always unsafe, that is \verb|unsafe="1"|.  A program is safe if any of the
-selected input, filter, sink, or exec query modules is always safe, that is
+are always unsafe, that is, \verb|unsafe="1"|.  A program is safe if any of the
+selected input, filter, sink, or exec query modules is always safe, that is,
 \verb|safe="1"|, \emph{and} none
 are unsafe.  If no module is safe, the generated program is unsafe.
 The filter module must be executed to be considered.  In other words, if
@@ -1706,7 +1714,7 @@ All filter modules are in the \verb|filters.xml| file.
     and make the input\_type and output\_type \verb|nofilter|.
     This passes the value from the Input directly to the Sink.
 
-    \item options: By default filters are wrapped in complexities.  Complexities may
+    \item options: By default, filters are wrapped in complexities.  Complexities may
       be disabled by adding \verb|options| with \verb|need_complexity="0"|.
       \label{sec:need complexity}
       In other words, if \linebreak[4] \verb|need_complexity| is in
@@ -1779,16 +1787,16 @@ All sink modules are in the language's \verb|sinks.xml| file.
       See Sec.~\ref{sec:safe or unsafe}
       for more details.
     
-    \item code: The source code of a sink. It should contain the placeholder
-    \verb|{{in_var_name}}|.  The placeholder will be replaced by the variable
+    \item code: The source code of a sink. It should contain
+    \verb|{{in_var_name}}|.  It will be replaced by the variable
     name used in the Filter.  Do not declare this variable.
 
     The placeholder \verb|{{flaw}}| indicates that the next line is the location
     of the flaw.  In other words, if this case is unsafe, the manifest reports a
-    flaw at the line following this.  In generated unsafe cases,
+    flaw at the line following this.  In unsafe cases,
     \verb|{{flaw}}| is replaced with the one-line comment string,
     see Sec.~\ref{sec: file template}, and ``flaw''.
-    It does not appear in generated safe cases.
+    Nothing appears in safe cases.
 \end{itemize}
 
 \begin{figure}[tbp]
@@ -1850,6 +1858,21 @@ file.
   \label{fig:example exec-query file}
 \end{figure}
 
+\begin{figure}[tbp]
+  % width makes the text about the same size as text in Complexity_file_while
+  \includegraphics[width=2.4in]{fig_Complexity_file_test.png}
+  \caption{Example test condition module.  Instantiated in
+    Fig.~\ref{fig:example main file}, line 16.}
+  \label{fig:example complexity-test file}
+\end{figure}
+
+\begin{figure}[tbp]
+  \includegraphics[width=4in]{fig_Complexity_file_while.png}
+  \caption{Example Complexity module with a {\texttt while} loop.  Instantiated in
+    Fig.~\ref{fig:example main file}, lines 16--21.}
+  \label{fig:example complexity-while file}
+\end{figure}
+
 The block of code in the Exec\_Query example, 
 Fig.~\ref{fig:example exec-query file}, executes the SQL query, used 
 for database management
@@ -1882,6 +1905,16 @@ complexity modules are inside \verb|<complexities>|.
     <complexities>
 \end{verbatim}
 
+\begin{figure}[tbph]
+  \includegraphics[width=\linewidth]{fig_Complexity_file_method.png}
+  \caption{Example Complexity module with a method invocation.
+  The \texlangle code\texrangle\  part is instantiated in
+  Fig.~\ref{fig:example main file}, lines 18 and 19.
+  The \texlangle body\texrangle\  part is instantiated in
+  Fig.~\ref{fig:example aux file}.}
+  \label{fig:example complexity-method file}
+\end{figure}
+
 \subsubsection{Test Condition Modules}
 \label{sec: condition modules}
 
@@ -1902,14 +1935,6 @@ complexity modules are inside \verb|<complexities>|.
         \verb|<value>False</value>| depending on \\
         whether the code always evaluates to true or false.
 \end{itemize}
-
-\begin{figure}[tbp]
-  % width makes the text about the same size as text in Complexity_file_while
-  \includegraphics[width=2.4in]{fig_Complexity_file_test.png}
-  \caption{Example test condition module.  Instantiated in
-    Fig.~\ref{fig:example main file}, line 16.}
-  \label{fig:example complexity-test file}
-\end{figure}
 
 
 \subsubsection{Code Complexity Modules}
@@ -1974,7 +1999,84 @@ complexity modules are inside \verb|<complexities>|.
     declaration) or calls a function.  The body tag should be present when
     calling a function.
 
-    \begin{table}[H]
+    \item need\_id: ``1'' if the code has a placeholder, \verb|{{id}}|,
+    to generate a unique identifier (ID) for the Complexity.  This ID to generate
+    a label, a parameter, or a function name in a nested
+    context.
+
+    \item code: the source code of the Complexity.  Code or
+    body should contain \\ \verb|{{placeholder}}|
+    where the Filter is inserted.  It may also contain
+    \verb|{{condition}}| where the Condition
+    is inserted.
+
+    \item body: additional source code not in the main execution flow,
+    e.g., functions or classes.  This code is placed in a separate file
+    if the type is \verb|class|. (optional)
+\end{itemize}
+
+VTSG can put several complexities in one test case.
+The example in Sec.~\ref{sec:case file name} has two instances of
+Complexity: a control flow complexity and a data flow complexity.
+The control flow complexity specification is in
+Fig.~\ref{fig:example complexity-while file}.  It is instantiated in
+lines 16--21 of
+Fig.~\ref{fig:example main file}.  Line 16 is the instantiation of
+the control flow condition
+specified in Fig.~\ref{fig:example complexity-test file}.
+
+The data flow complexity is a method call within the \verb|while| loop.
+The specification
+is in Fig.~\ref{fig:example complexity-method file}.
+The \verb|<code>|
+part is instantiated in lines 18 and 19 of
+Fig.~\ref{fig:example main file}.
+The \verb|<body>| part is instantiated in
+Fig.~\ref{fig:example aux file}.
+
+\section{VTSG Software Documentation}
+\label{sec: high-level documentation}
+
+This section has high-level documentation of VTSG and directions to help add
+extensions or new features.
+
+\subsection{Details of Test Case Generation}
+\label{sec: generation detail}
+
+Each test case is constructed based on the file template, as shown in
+Fig.~\ref{fig:VTS operation overview}. Test cases are programs in a specific
+programming language.  Each test case is generated by assembling the modules
+according to the Template.  The template may direct construction of a simple
+test case with just an Input and a Sink.  The Filter code may be embedded in
+data and control flow Complexity code.
+
+VTSG generates test cases with two broad steps.  First, VTSG selects sink,
+filter, input, exec query, and complexities that are compatible with each other
+and consistent with any flaw group or flaw constraints the user gives on the
+command line.  Second, VTSG composes source code from the selected modules,
+synthesizing variable and function names, and writes the file(s).  The user may
+specify two ways that VTSG selects a subset of cases to write; see
+Sec.~\ref{sec:selecting cases}.
+
+The structure of the VTSG code itself is broadly
+\begin{verbatim}
+    for each specified sink
+        for each filter
+            for each input
+                for each exec query
+                    for up to DEPTH combinations of each complexity
+                        save this set of modules
+    for each set of saved modules
+        compose this set of modules into code for a test case
+\end{verbatim}
+The code is more complicated because only compatible modules are
+selected.
+In addition, some sinks do not need any input or filtering at all,
+see Sec.~\ref{sec:sink modules}.
+The code is actually structured as a series of function calls to allow types
+of modules to be skipped.
+
+\begin{table}[H]
     \centering
     \caption{An example of code for each value of ``executed'' showing whether
       ``placeholder'' code will be executed.}
@@ -2050,103 +2152,10 @@ complexity modules are inside \verb|<complexities>|.
     \hline
     \end{tabular}
     \label{tab:execution examples}
-    \end{table}
+\end{table}
 
-    \item need\_id: ``1'' if the code has a placeholder, \verb|{{id}}|,
-    to generate a unique ID for the Complexity.  This ID to generate
-    a label, a parameter, or a function name in a nested
-    context.
-
-    \item code: the source code of the Complexity.  Code or
-    body should contain \\ \verb|{{placeholder}}|
-    where the Filter is inserted.  It may also contain
-    \verb|{{condition}}| where the Condition
-    is inserted.
-
-    \item body: additional source code not in the main execution flow,
-    e.g., functions or classes.  This code is placed in a separate file
-    if the type is \verb|class|. (optional)
-\end{itemize}
-
-
-\begin{figure}[tbp]
-  \includegraphics[width=4in]{fig_Complexity_file_while.png}
-  \caption{Example Complexity module with a {\texttt while} loop.  Instantiated in
-    Fig.~\ref{fig:example main file}, lines 16--21.}
-  \label{fig:example complexity-while file}
-\end{figure}
-
-\begin{figure}[tbp]
-  \includegraphics[width=\linewidth]{fig_Complexity_file_method.png}
-  \caption{Example Complexity module with a method invocation.
-  The \texlangle code\texrangle\  part is instantiated in
-  Fig.~\ref{fig:example main file}, lines 18 and 19.
-  The \texlangle body\texrangle\  part is instantiated in
-  Fig.~\ref{fig:example aux file}.}
-  \label{fig:example complexity-method file}
-\end{figure}
-
-VTSG can put several complexities in one test case.
-The example in Sec.~\ref{sec:case file name} has two instances of
-Complexity: a control flow complexity and a data flow complexity.
-The control flow complexity specification is in
-Fig.~\ref{fig:example complexity-while file}.  It is instantiated in
-lines 16--21 of
-Fig.~\ref{fig:example main file}.  Line 16 is the instantiation of
-the control flow condition
-specified in Fig.~\ref{fig:example complexity-test file}.
-
-The data flow complexity is a method call within the \verb|while| loop.
-The specification
-is in Fig.~\ref{fig:example complexity-method file}.
-The \verb|<code>|
-part is instantiated in lines 18 and 19 of
-Fig.~\ref{fig:example main file}.
-The \verb|<body>| part is instantiated in
-Fig.~\ref{fig:example aux file}.
-
-
-\section{VTSG Software Documentation}
-\label{sec: high-level documentation}
-
-This section has high level documentation of VTSG and directions to help add
-extensions or new features.
-
-\subsection{Details of Test Case Generation}
-\label{sec: generation detail}
-
-Each test case is constructed based on the file template, as shown in
-Fig.~\ref{fig:VTS operation overview}. Test cases are programs in a specific
-programming language.  Each test case is generated by assembling the modules
-according to the Template.  The template may direct construction of a simple
-test case with just an Input and a Sink.  The Filter code may be embedded in
-data and control flow Complexity code.
-
-VTSG generates test cases with two broad steps.  First, VTSG selects sink,
-filter, input, exec query, and complexities that are compatible with each other
-and consistent with any flaw group or flaw constraints the user gives on the
-command line.  Second, VTSG composes source code from the selected modules,
-synthesizing variable and function names, and writes the file(s).  The user may
-specify two ways that VTSG selects a subset of cases to write; see
-Sec.~\ref{sec:selecting cases}.
-
-VTSG code structure is broadly
-\begin{verbatim}
-    for each specified sink
-        for each filter
-            for each input
-                for each exec query
-                    for up to DEPTH combinations of each complexity
-                        save this set of modules
-    for each set of saved modules
-        compose this set of modules into code for a test case
-\end{verbatim}
-The code is more complicated because only compatible modules are
-selected.
-In addition, some sinks do not need any input or filtering at all,
-see Sec.~\ref{sec:sink modules}.
-The code is actually structured as a series of function calls to allow types
-of modules to be skipped.  Here is a slightly more detailed
+\clearpage
+Here is a slightly more detailed
 overview of those steps, which are in \verb|generator.py|:
 \begin{verbatim}
     for each sink:
@@ -2226,7 +2235,7 @@ VTSG names test case files as
 \verb|FLAW__I_INPUT__F_FILTER__S_SINK__EQ_EXEC_| \\
 \verb|QUERY__NMBCPLX-CMPLX1[.COND]-CMPLX2[.COND]x.EXT|
 \begin{itemize}[nosep]
-    \item FLAW: Flaw type, e.g. CWE\_89, BF, or STR30-PL, see
+    \item FLAW: Flaw type, e.g., CWE\_89, BF, or STR30-PL, see
 	Sec.~\ref{sec:sink modules}.
     \item INPUT: Input description (dirs), see Sec.~\ref{sec:module description} (optional)
     \item FILTER:  Filter description (dirs) (optional)
@@ -2243,11 +2252,11 @@ VTSG names test case files as
             Tables \ref{tab:complexity IDs for CSharp},
             \ref{tab:complexity IDs for PHP}, and
             \ref{tab:complexity IDs for Python} in the language appendixes list
-            complexity ids defined in \CSharp, PHP, and Python.
+            complexity IDs defined in \CSharp, PHP, and Python.
             Tables \ref{tab:condition IDs for CSharp},
             \ref{tab:condition IDs for PHP}, and
             \ref{tab:condition IDs for Python} list condition
-            ids defined in \CSharp, PHP, and Python. (optional)
+            IDs defined in \CSharp, PHP, and Python. (optional)
     \item x: Sequence of the file within the test.  If the test consists of just one
       file, there is no sequence letter.  If the test consists of more than one file,
       that is, when the complexity \verb|type| is \verb|class|,
@@ -2318,13 +2327,13 @@ Fig.~\ref{fig:example sink file}.
 
 \noindent The last part, 2-11.7-20, describes the complexities.
 The first number, 2, means this has two complexities.
-Tables~\ref{tab:complexity IDs for CSharp} and
-\ref{tab:condition IDs for CSharp} help us decode them.
-The first, outer complexity is 11 with condition 7. 11 is \verb|while|,
+Tables~\ref{tab:condition IDs for CSharp} and
+\ref{tab:complexity IDs for CSharp} help us decode them.
+The first, outer complexity is 11 with condition 7. 11 means a \verb|while| loop,
 Fig.~\ref{fig:example complexity-while file}, 
 with condition 7 meaning \verb|Math.Sqrt(42)<=42|, which always evaluates to true,
 Fig.~\ref{fig:example complexity-test file}.
-The second, inner complexity is 20 meaning the sink code is executed in the class body,
+The second, inner complexity is 20, meaning the sink code is executed in the class body,
 Fig.~\ref{fig:example complexity-method file}.
 
 \noindent ``a'' means this is the main file.
@@ -2344,19 +2353,18 @@ attribute, which must have one or more types of processing, such as Single
 Instruction, Single Data (SISD); Multiple Instruction, Single Data (MISD); Single
 Instruction, Multiple Data (SIMD); Multiple Instruction, Multiple Data (MIMD); Single
 Program, Multiple Data (SPMD), or Massively Parallel Processing (MPP).  What should
-VTSG do when the user gives an input module a \verb|parallel| attribute, but no type
+VTSG do when the user gives an input module a \verb|parallel| attribute but no type
 of processing?  VTSG code could just crash with a traceback about \verb|NoneType|
-object.  This does not help the user much.
+object.  This does not help the user.
 
 If the user can make a mistake, such as mismatched attributes or invalid fields, VTSG
-should explain what the problem is, where it arose, why it is invalid (e.g. where the
+should explain what the problem is, where it arose, why it is invalid (e.g., where the
 information will be used), and what are the correct approaches or alternatives.  For
 example, for an empty \verb|<dir></dir>| in an input module, VTSG reports
 \begin{verbatim}
 [ERROR] Invalid empty <dir></dir> in the inputs file.
 A dir string is required; it is used in the name of the generated file.
 \end{verbatim}
-then exits.
 
 In case of an error due to a bug in VTSG itself, it may crash.  In theory, VTSG
 developers will find and fix all bugs before the user runs it.
@@ -2548,6 +2556,7 @@ Then use homebrew to install mono.  See directions to
 The script \verb|compilationTester.sh| uses mcs to compile all the
 \CSharp\ cases that are generated.
 
+
 \section{Summary of Information for Generating PHP Cases}
 \label{sec:PHP language}
 
@@ -2656,9 +2665,9 @@ Python language files.
 The following flaws are currently defined for Python.  The flaw group is in
 parentheses.  Flaws in the ``Exception'' flaw group are caught by the Python runtime.
 These are unlikely to be vulnerabilities (except denial of service).
-``KK'' are from Kendra Kratkiewicz's work~\cite{Kratkiewicz2005}.
+``KK'' flaws are adapted from Kendra Kratkiewicz's work~\cite{Kratkiewicz2005}.
 \begin{itemize}[nosep]
-    \item OS Command Injection (CWE78) (OWASP\_a1)
+    \item Operating system (OS) Command Injection (CWE78) (OWASP\_a1)
     \item Path traversal (CWE22) (OWASP\_a4)
     \item Information Leak Through Error Message (CWE209) (OWASP\_a5)
     \item Loop on Unchecked Input (CWE606) (Other)
@@ -2784,7 +2793,7 @@ See the \verb|complexity.xml| file for the specific code.
 \section{Contents of git Repository}
 \label{gitContent}
 
-\begin{figure}[tbp]
+\begin{figure}[htbp]
   \includegraphics[width=1\linewidth]{fig_git_files.png}
   \caption{Snapshot of files in the
     \href{https://github.com/usnistgov/VTSG}{VTSG git repository}, which is at
