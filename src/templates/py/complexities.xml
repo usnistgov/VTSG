@@ -1,5 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
+<!-- *modified "Thu Jan  4 14:32:17 2024" *by "Paul E. Black" -->
 <root>
     <conditions>
         <!--
@@ -433,12 +434,15 @@ DEDENT
         <!-- Classes -->
         <complexity id="70" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
             <code>
-        var_{{id}} = {{call_name}}({{in_var_name}});
-        {{out_var_name}} = var_{{id}}.get_var_{{id}}();
+        var_{{id}} = {{call_name}}({{in_var_name}})
+        {{out_var_name}} = var_{{id}}.get_var_{{id}}()
             </code>
             <body>
 '''
 {{comments}}
+'''
+'''
+{{ license }}
 '''
 
 {{ imports }}
@@ -447,7 +451,7 @@ DEDENT
 
 class {{call_name}}:
 INDENT
-        def __init__(self,{{in_var_name}}_{{id}}):
+        def __init__(self, {{in_var_name}}_{{id}}):
 	INDENT
                 self.var_{{id}} = {{in_var_name}}_{{id}}
 	DEDENT
@@ -455,7 +459,7 @@ INDENT
         def  get_var_{{id}}(self):
 	INDENT
                 {{local_var}}
-                {{in_var_name}} = var_{{id}}
+                {{in_var_name}} = self.var_{{id}}
                 {{ placeholder}}
                 return {{out_var_name}}
 	DEDENT
@@ -473,7 +477,10 @@ DEDENT
 '''
 {{comments}}
 '''
-               
+'''
+{{ license }}
+'''
+
 class {{call_name}}:
 INDENT
         def __init__(self, param):
@@ -500,10 +507,13 @@ DEDENT
 '''
 {{comments}}
 '''
+'''
+{{ license }}
+'''
 
 class {{call_name}}:
 INDENT
-        def __init__(self,param):
+        def __init__(self, param):
 	INDENT
                 self.var_{{id}} = param
 	DEDENT
