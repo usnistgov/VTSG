@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Fri Oct 13 10:10:04 2023" *by "Paul E. Black"
+% *modified "Thu Jan  4 14:20:24 2024" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -1113,17 +1113,17 @@ exception.  We thought this is always unsafe.
     if index < len(array):
         print(array[index])
 \end{verbatim}
-We discovered the mistake when we executed the cases and ``unsafe'' cases did
+We discovered the mistake when we executed the cases and the ``unsafe'' cases did
 \emph{not} produce any evidence of a successful exploit.  We realized that, if the
 ``input'' was a safe hardcoded
-value, the code was safe!
+value, as below, the code was safe!
 \begin{verbatim}
     index = 0
 
     if index < len(array):
         print(array[index])
 \end{verbatim}
-The proper marking is that the sink is neither always safe nor always unsafe.
+The proper marking in this case is that the sink is neither always safe nor always unsafe.
 A proper filter or guard can make it safe.
 See Sec.~\ref{sec:safe or unsafe} for details.
 
