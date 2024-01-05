@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Sep 20 10:14:47 2023" *by "Paul E. Black"
+# *modified "Fri Jan  5 16:00:17 2024" *by "Paul E. Black"
 
 default: genPython
 
@@ -198,7 +198,7 @@ test021: $(VTSG_FILES)
 # test using ACTS or -n to select cases
 testSelect: test023rACTS test023nACTS test023ACTSbadArg \
 	test023ACTSdefault test023ACTSd1 \
-	test023-NbadArg test023-N60
+	test023-NbadArg test023-N50
 	@echo test selecting cases succeeded
 
 test023rACTS: $(VTSG_FILES)
@@ -227,8 +227,8 @@ test023-NbadArg: $(VTSG_FILES)
 	python3 vtsg.py -l test023 -t tests/templates -n -5 | tee $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
-test023-N60: $(VTSG_FILES)
-	python3 vtsg.py -l test023 -t tests/templates --number-sampled 60 | grep -v "Generation time " | tee $(@)_photo
+test023-N50: $(VTSG_FILES)
+	python3 vtsg.py -l test023 -t tests/templates --number-sampled 50 | grep -v "Generation time " | tee $(@)_photo
 	(cd $$(ls -dt TestSuite_*/test023 | head -1);for f in $$(find . -name "*.py"|sort); do diff $$f $(TDIR)/test023/$$f;done) | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 

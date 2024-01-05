@@ -50,27 +50,33 @@ Generation report:
 Selected case report:
 	Exception group generation report:
 		CWE129 generation report:
-			6 safe samples
-			5 unsafe samples
-		11 total
+			7 safe samples
+			6 unsafe samples
+		13 total
 		CWE369 generation report:
-			2 safe samples
-			9 unsafe samples
-		11 total
+			8 safe samples
+			6 unsafe samples
+		14 total
 		KK generation report:
 			8 safe samples
-			16 unsafe samples
-		24 total
-	46 total
+			20 unsafe samples
+		28 total
+	55 total
+	OWASP_a4 group generation report:
+		CWE22 generation report:
+			0 safe samples
+			1 unsafe samples
+		1 total
+	1 total
 	Other group generation report:
 		CWE15 generation report:
 			2 safe samples
-			5 unsafe samples
-		7 total
+			6 unsafe samples
+		8 total
 		CWE23 generation report:
-			5 safe samples
+			6 safe samples
 			2 unsafe samples
-		7 total
-	14 total
-60 total
+		8 total
+	16 total
+72 total
 Finish
