@@ -34,8 +34,8 @@ def main():
 
     tainted_5 = tainted_0
 
-    var_1 = Class_1(tainted_0);
-    tainted_5 = var_1.get_var_1();
+    var_1 = Class_1(tainted_0)
+    tainted_5 = var_1.get_var_1()
 
     if tainted_5 is not None:
         #flaw # no validation - concatenated value allows arbitrary execution
