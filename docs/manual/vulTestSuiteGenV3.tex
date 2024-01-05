@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Thu Jan  4 14:20:24 2024" *by "Paul E. Black"
+% *modified "Fri Jan  5 10:35:53 2024" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -372,8 +372,8 @@ thousands of example programs in many languages exhibiting various flaws, which
 are expressed in different ways and wrapped in an assortment of programming
 constructs.
 
-All example programs, or test cases, have a similar structure. In pseudocode,
-the high-level structure of test cases that VTSG generates is
+All example programs, or test cases, that VTSG generates have a similar structure.
+In pseudocode, the high-level structure of test cases is
 \begin{verbatim}
         imports, definitions, and declarations
 
@@ -400,6 +400,10 @@ the \emph{sink}.  Information flows from the input source to the sink. The sink 
 a sensitive operation, such as an array access, is executed with potentially unsafe
 input and where a vulnerability is triggered.
 
+Finally, additional code may be needed to trigger the vulnerability, for example
+executing the query constructed in the sink code.  VTSG refers to this as
+\emph{ExecQuery}.
+
 You can see this high-level program
 structure within the center gray rectangle of Fig.~\ref{fig:VTS operation overview}.
 
@@ -424,10 +428,6 @@ abilities.  VTSG refers to these data flow and control constructs as
 filter code is wrapped within two control flow complexities.  Various
 \emph{conditions} are inserted into complexities to further examine tools'
 capabilities.  See Sec.~\ref{sec:code complexities} for an example.
-
-Finally, additional code may be needed to trigger the vulnerability, for example
-executing the query constructing in the sink code.  VTSG refers to this as
-\emph{ExecQuery}.
 
 The information in this manual is divided into several sections.  The next section,
 Sect.~\ref{sec:user manual}, is a user manual.  It explains how to invoke various
@@ -459,7 +459,7 @@ VTSG?
   \item VTSG matches data types of inputs, filters, and sinks, for example avoiding
     passing a string input to a numeric sink.
   \item VTSG can produce a manageable fraction of all possible combinations, choosing
-    1 of every N cases or enough cases to try every pair or triple of code.
+    1 of every N cases or selected cases to try every pair or triple of code.
 \end{itemize}
 
 VTSG is not nearly as powerful as we could wish for.  Here are some limitations and
@@ -469,7 +469,8 @@ possible future enhancements.
     ``generic'' case is elaborated with each data type.  This would yield test cases
     that are structurally identical but handle, say, ints, floats, doubles, etc.
   \item Enhance support for multi-file cases.  In particular, be able to handle
-    Python classes.  Also create cases with more than two files, like Juliet cases.
+    Python classes.  Also create cases with more than two files, like
+    Juliet~\cite{Black2018Juliet1.3changes} cases.
   \item Support more general structure of generated test cases.  For example, put both
     safe and unsafe code in the same test case, like Juliet cases have, or have
     module types instead of or in addition to input, filter, sink, and execQuery.
@@ -500,6 +501,8 @@ programs~\cite{StivaletFongVTSPHP2016} in addition.  Version 2 was more
 customizable to generate other programming languages.
 VTSG version 3 systematically maintains indentation, so can also generate Python
 programs.
+Version 3 also can select subsets of potential test cases.  One can now specify a
+broad variety of examples, but get a managable number of cases.
 
 The PHP and \CSharp\ test suites are
 available in our Software Assurance Reference Dataset
@@ -623,7 +626,7 @@ If no flaws are specified, all flaws (in specified flaw groups) are used.
 
 VTSG generates both the unsafe (vulnerable)
 test cases and the safe (not vulnerable) test cases unless the user selects
-either only safe (-s) or only unsafe (-u) cases.  The options are
+either only safe (-s) or only unsafe (-u) cases.  These two options are
 mutually exclusive.
 
 \subsection{Example Invocations}
@@ -1142,7 +1145,7 @@ Here are the steps to add another language.
 \begin{enumerate}[nosep]
 \item decide the short name of the language, e.g., py for Python or php for
   PHP.  Using the extension of those programs is a good idea.
-\item create a directory by that name under src/template
+\item create a directory by that name under \verb|src/templates|
 \item copy the six files of an existing language
 \item change the name attribute in file\_template.xml to the language name.
 \end{enumerate}
