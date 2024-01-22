@@ -1,8 +1,46 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Sep 19 11:45:39 2023" *by "Paul E. Black"
+ *modified "Fri Jan 12 13:03:46 2024" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
+
+
+9 January 2024
+
+Improve variable assignment.  Often there are redundant assignments.  For example,
+Python/Exception/CWE369/safe/CWE369__I_readline__F_nonzero__S_div_zero__1-1.1.py
+
+    tainted_2 = int(input())
+
+    tainted_3 = tainted_2
+
+    if 1==1:
+        if tainted_2 == 0:
+            sys.exit("Zero input not allowed")
+        tainted_3 = tainted_2
+
+    user_input = tainted_3
+
+    print(f'The reciprocal of {user_input} is {1/user_input}')
+
+Notice that  tainted_3 = tainted_2  occurs twice.
+
+A human would write this more like
+
+    tainted_2 = int(input())
+
+    if 1==1:
+        if tainted_2 == 0:
+            sys.exit("Zero input not allowed")
+
+    user_input = tainted_2
+
+    print(f'The reciprocal of {user_input} is {1/user_input}')
+
+or even use "user_input" instad of tainted_2.
+
+At a minimum, carefully document when/where assignments are synthesized.  Warn about
+*unsafe* variants or function bodies in which tainted_3 is *not* initialized.
 
 
 31 July 2023
