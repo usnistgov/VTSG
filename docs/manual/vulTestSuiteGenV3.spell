@@ -6,7 +6,6 @@ CWE
 CWEs
 Combinatorial
 Conf
-Cryptographic
 Csharp
 Cupif
 DEDENT
@@ -15,7 +14,6 @@ DTDs
 Dataset
 Delaitre
 Dereference
-DoC
 EQ
 EXECQUERY
 Eisenbarth
@@ -41,7 +39,6 @@ MIMD
 MISD
 MPP
 MSSQL
-Mentzer
 NIST
 NIST's
 NMBCPLX
@@ -66,17 +63,14 @@ Stivalet
 TELECOM
 TestSuite
 VTS
-VTSG
 VTSG's
 XPATH
 XPath
-YYYY
 Yu
 arabic
 combinatorial
 compilationTester
 concatenationsimplequotesqlserver
-cryptographic
 customizable
 cwe
 dataset
@@ -85,7 +79,6 @@ dir
 dirs
 doi
 dtd
-eps
 execQuery
 execqueriescontent
 exectype
@@ -99,7 +92,6 @@ func
 funcpregmatch
 github
 goto
-hardcoded
 homebrew
 importcode
 init
@@ -119,14 +111,11 @@ needcomplexity
 needcondition
 needid
 nofilter
-nonvulnerable
 nosep
 notcondition
 onlynumbers
 outputtype
-pdf
 php
-png
 preg
 pseudocode
 pubidNIST
@@ -144,9 +133,8 @@ stdlibimports
 subdirectories
 subdirectory
 techpubs
-testsuite
+testAll
 tmp
-tocsectionReferences
 traceback
 txt
 urlstyle
