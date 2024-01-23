@@ -1,8 +1,20 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Fri Jan 12 13:03:46 2024" *by "Paul E. Black"
+ *modified "Tue Jan 23 10:09:10 2024" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
+
+
+23 January 2024
+
+sample.py looks for and save _need_id.  That means inputs, filters, and sinks can
+have a "need_id".  Code in test_case.py increments the var_id if an input, filter, or
+sink needs an id.
+
+But need_id is NOT documented in the manual (except for complexities), nor is it ever
+used in PHP, C#, or Python language files (again, except for complexities).
+
+Remove this capability or else document and test it.
 
 
 9 January 2024
@@ -37,7 +49,7 @@ A human would write this more like
 
     print(f'The reciprocal of {user_input} is {1/user_input}')
 
-or even use "user_input" instad of tainted_2.
+or even use "user_input" instead of tainted_2.
 
 At a minimum, carefully document when/where assignments are synthesized.  Warn about
 *unsafe* variants or function bodies in which tainted_3 is *not* initialized.
