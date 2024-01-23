@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Fri Jan  5 10:35:53 2024" *by "Paul E. Black"
+% *modified "Wed Jan 10 10:23:33 2024" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -35,14 +35,14 @@
 \setlist{nosep} % no space between list items or around lists
 
 % put a light gray ``DRAFT'' diagonally across each page
-%%%%\usepackage{draftwatermark}
+\usepackage{draftwatermark}
 % datetime2 replaces datetime.
 % DTMenglishshortmonthname replaces shortmonthname, but it doesn't work.
 \usepackage{datetime} % for short month name, e.g. Jan, Feb, Mar, etc.
-%%%%\SetWatermarkText{DRAFT \number\day\ \shortmonthname\ \the\year}
+\SetWatermarkText{DRAFT \number\day\ \shortmonthname\ \the\year}
 % bigger percentage is closer to white
-%%%%\SetWatermarkColor[gray]{0.9}
-%%%%\SetWatermarkFontSize{3cm}
+\SetWatermarkColor[gray]{0.9}
+\SetWatermarkFontSize{3cm}
 %%%%\SetWatermarkAngle{55}
 %%%%\SetWatermarkHorCenter{11cm}
 
@@ -502,7 +502,7 @@ customizable to generate other programming languages.
 VTSG version 3 systematically maintains indentation, so can also generate Python
 programs.
 Version 3 also can select subsets of potential test cases.  One can now specify a
-broad variety of examples, but get a managable number of cases.
+broad variety of examples, but get a manageable number of cases.
 
 The PHP and \CSharp\ test suites are
 available in our Software Assurance Reference Dataset
@@ -1118,7 +1118,7 @@ exception.  We thought this is always unsafe.
 \end{verbatim}
 We discovered the mistake when we executed the cases and the ``unsafe'' cases did
 \emph{not} produce any evidence of a successful exploit.  We realized that, if the
-``input'' was a safe hardcoded
+``input'' was a safe hard coded
 value, as below, the code was safe!
 \begin{verbatim}
     index = 0
@@ -2213,7 +2213,9 @@ When VTSG finishes generating all possible test cases, it then selects the cases
 to compose or selects all of them, as directed by the user; see
 Sec.~\ref{sec:selecting cases}.  Then VTSG goes through the selected test cases
 one by one.  For each one it composes the code of their modules to generate the
-source code for a test case.  The process of composing modules to generate
+source code for a test case.
+
+The process of composing modules to generate
 source code is based on XML metadata tags.  After the imports and class
 definition declaration for the specific program language, VTSG adds the ``Input''
 \verb|<code>| to the test case.  Then it adds the ``Filter'' \verb|<code>|, plus its
@@ -2372,6 +2374,17 @@ A dir string is required; it is used in the name of the generated file.
 In case of an error due to a bug in VTSG itself, it may crash.  In theory, VTSG
 developers will find and fix all bugs before the user runs it.
 
+VTSG has extensive automated tests.  Executing \verb|make testAll| runs these tests
+and checks.  In most instances this is commanding VTSG to generate test cases using a
+special test language.  Expected results are in the \verb|tests| directory.  The
+test languages are in \verb|tests/templates|.
+
+Any new feature should be accompanied with new tests.  This usually includes adding
+new features to a test language.  Because VTSG generates \emph{all} compatible
+combination of cases, adding a new input or filter might generate dozens or hundreds
+of new test cases.  To focus on a few results that test the new feature, it may be
+best to create an entirely new, small test language.  Sometimes one may be able to
+use or change an existing language.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2413,7 +2426,7 @@ currently in the
 It also gives instructions how to compile and run the test cases.
 
 The following flaws are currently defined for \CSharp.
-The flaw group is in parentheses.
+The flaw and the flaw group are in parentheses.
 \begin{itemize}[nosep]
     \item SQL Injection (CWE-89)
         (OWASP\_a1)
@@ -2566,7 +2579,8 @@ The script \verb|compilationTester.sh| uses mcs to compile all the
 This documents the flaw, flaw group, conditions, and complexities currently in the
 PHP language files.
 
-The following flaw is currently defined for this language.  The flaw group is in
+The following flaw is currently defined for this language.
+The flaw and the flaw group are in
 parentheses.
 \begin{itemize}
     \item SQL Injection (CWE-89) (OWASP\_injection)
@@ -2665,7 +2679,8 @@ See the \verb|complexity.xml| file for the specific code.
 This documents the flaws, flaw groups, conditions, and complexities currently in the
 Python language files.
 
-The following flaws are currently defined for Python.  The flaw group is in
+The following flaws are currently defined for Python.
+The flaw and the flaw group are in
 parentheses.  Flaws in the ``Exception'' flaw group are caught by the Python runtime.
 These are unlikely to be vulnerabilities (except denial of service).
 ``KK'' flaws are adapted from Kendra Kratkiewicz's work~\cite{Kratkiewicz2005}.
