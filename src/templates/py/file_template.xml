@@ -1,6 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
-<!-- *modified "Tue Aug  1 11:48:37 2023" *by "Paul E. Black" -->
+<!-- *modified "Wed Jan 24 10:37:02 2024" *by "Paul E. Black" -->
 
 <template name="Python">
     <file_extension>py</file_extension>
@@ -18,10 +18,6 @@
     </syntax>
     <variables prefix="">
     </variables>
-    <imports>
-        <import>sys</import>
-        <import>math</import>
-    </imports>
     <code>
 '''
 {{ comments }}

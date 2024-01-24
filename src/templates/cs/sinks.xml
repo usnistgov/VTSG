@@ -244,7 +244,9 @@
            </path>
            <flaw_type flaw_group="OWASP_a9">CWE_476</flaw_type>
            <comment>sink : NULL Pointer Dereference</comment>
-           <imports></imports>
+           <imports>
+             <import>System</import>
+	   </imports>
            <code>
                int num, sum = 0, r;
                System.Console.WriteLine("Hello, World!");
@@ -321,6 +323,7 @@
             <flaw_type flaw_group="OWASP_a5">CWE_209</flaw_type>
             <comment>sink : print exception</comment>
             <imports>
+              <import>System</import>
             </imports>
             <code>
                 int num, sum = 0, r;

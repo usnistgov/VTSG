@@ -18,6 +18,7 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
+import sys
 
 
 class Class_1:

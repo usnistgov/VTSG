@@ -29,21 +29,33 @@
         </condition>
 
         <condition id="5">
+	    <imports>
+	      <import>Math</import>
+	    </imports>
             <code>(Math.Pow(4, 2)&lt;=42)</code>
             <value>True</value>
         </condition>
 
         <condition id="6">
+	    <imports>
+	      <import>Math</import>
+	    </imports>
             <code>(Math.Pow(4, 2)>=42)</code>
             <value>False</value>
         </condition>
 
         <condition id="7">
+	    <imports>
+	      <import>Math</import>
+	    </imports>
             <code>(Math.Sqrt(42)&lt;=42)</code>
             <value>True</value>
         </condition>
 
         <condition id="8">
+	    <imports>
+	      <import>Math</import>
+	    </imports>
             <code>(Math.Sqrt(42)>=42)</code>
             <value>False</value>
         </condition>

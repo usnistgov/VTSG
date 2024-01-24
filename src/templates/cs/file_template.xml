@@ -16,9 +16,6 @@
         <variable type="int" code="int" init="0"/>
         <variable type="string" code="string" init="null"/>
     </variables>
-    <imports>
-        <import>System</import>
-    </imports>
     <code>
 /*
 {{comments}}

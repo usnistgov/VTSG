@@ -1,6 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
-<!-- *modified "Fri Apr  7 15:31:24 2023" *by "Paul E. Black" -->
+<!-- *modified "Wed Jan 24 10:45:52 2024" *by "Paul E. Black" -->
     <filtering>
         <!--
         <sample>
@@ -223,6 +223,9 @@ INPUT</comment>
             <flaws>
                 <flaw flaw_type="KK" safe="" unsafe=""/>
             </flaws>
+            <imports>
+              <import>sys</import>
+            </imports>
             <code>
 	      if {{in_var_name}} &lt; 0 or {{in_var_name}} &gt; 10:
 	      INDENT

@@ -20,7 +20,6 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import math
 import sys
 
 

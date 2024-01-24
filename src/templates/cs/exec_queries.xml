@@ -27,7 +27,9 @@
             <dir>os_command</dir>
         </path>
         <comment></comment>
-        <imports></imports>
+        <imports>
+          <import>System</import>
+	</imports>
         <code>
             try{
                 // create the ProcessStartInfo using "cmd" as the program to be run,

@@ -18,7 +18,6 @@ William Mentzer willmentzer20@gmail.com
 
 */
 using MySql.Data.MySqlClient;
-using System;
 using System.IO;
 using System.Text.RegularExpressions;
 

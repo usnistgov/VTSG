@@ -159,6 +159,7 @@
                 <flaw flaw_type="default" safe="0" unsafe="0"/>
             </flaws>
             <imports>
+	      <import>sys</import>
             </imports>
             <code>{{out_var_name}} = sys.argv[1]</code>
             <input_type>input : Command line args</input_type>
@@ -174,6 +175,7 @@
                 <flaw flaw_type="default" safe="0" unsafe="0"/>
             </flaws>
             <imports>
+	      <import>sys</import>
             </imports>
             <code>
 	    try:
