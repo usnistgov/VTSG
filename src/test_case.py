@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Tue Jul 18 16:18:59 2023" *by "Paul E. Black"
+ *modified "Tue Jan 23 11:03:59 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -201,7 +201,7 @@ class TestCase(object):
             # set the name of input/output tainted variable and put it in filter_code
             filter_code = Template(filter_code, undefined=DebugUndefined).render(in_var_name=in_name, out_var_name=out_name, id=var_id)
 
-        # add comment into code at the position of the flaw if unsafe
+        # create a code comment that will be added at position of the flaw
         flaw_str = ""
         if not self.is_safe_selection():
             # this string marks the location of the flaw in the final file
@@ -243,6 +243,12 @@ class TestCase(object):
         if self.sink.input_type != "none":
             imports_content = imports_content.union(set(self.input.imports)
                                                     .union(set(self.filter.imports)))
+
+        # add any imports from complexities or conditions
+        for complex_samp in self.complexity_list:
+            imports_content = imports_content.union(set(complex_samp.cond_imports)
+                                                    .union(set(complex_samp.imports)))
+
         # add imports from exec query if it's used
         if self.exec_query:
             imports_content = imports_content.union(set(self.exec_query.imports))

@@ -1,0 +1,52 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE template SYSTEM "../dtd/file_template.dtd">
+<!-- *created  "Fri Jan 19 16:03:47 2024" *by "Paul E. Black" -->
+<!-- *modified "Fri Jan 19 16:11:21 2024" *by "Paul E. Black" -->
+
+<!-- test for imports from complexities and conditions -->
+
+<template name="test027">
+    <file_extension>py</file_extension>
+    <comment>
+        <open>'''</open>
+        <close>'''</close>
+        <inline>#</inline>
+    </comment>
+    <syntax>
+      <!-- If language doesn't have a terminator, leave empty-->
+      <statement_terminator></statement_terminator>
+      <!-- Insert desired indentation level using spaces-->
+      <indent>    </indent>
+      <import_code>import {{import_file}}</import_code>
+    </syntax>
+    <variables prefix="">
+    </variables>
+    <code>
+'''
+VTSG test027
+Test imports from complexities and conditions
+{{ comments }}
+'''
+
+'''
+{{ license }}
+'''
+{{ stdlib_imports }}
+
+{{ static_methods }}
+
+
+def main():
+INDENT
+    {{input_content}}
+    {{filtering_content}}
+    {{sink_content}}
+    {{exec_queries_content}}
+DEDENT
+
+if __name__ == '__main__':
+        main()
+    </code>
+</template>
+
+<!-- end of file_template.xml -->

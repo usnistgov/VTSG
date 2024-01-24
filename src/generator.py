@@ -3,7 +3,7 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Jul 11 15:58:48 2023" *by "Paul E. Black"
+ *modified "Tue Jan 23 16:23:11 2024" *by "Paul E. Black"
 """
 
 import time
@@ -416,6 +416,7 @@ class Generator(object):
             svg_cmpl = ('\n'+'\t'*(self.current_max_rec - level)).join(svg_cmpl.splitlines())
             for cond in self.tab_condition:
                 curr_complexity.set_cond_id(cond.id)
+                curr_complexity.set_cond_imports(cond.imports)
                 curr_complexity.set_condition(cond.value)
                 t = Template(svg_cmpl, undefined=DebugUndefined)
                 # replace condition placeholder on the complexity code

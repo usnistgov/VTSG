@@ -2,8 +2,26 @@
  One module used to build the case. This is specialized for input, filter, sink, and
  exec query modules.
 
- *modified "Fri May 26 09:26:09 2023" *by "Paul E. Black"
+ *modified "Tue Jan 23 10:10:35 2024" *by "Paul E. Black"
 """
+
+def get_imports(xml_element, file_name):
+    '''Return an array of names to be imported from <import></imports> specified.
+    Return an empty list if there is no <imports>.
+
+    **xml_element** (xml.etree.ElementTree.Element): The XML element specifying this
+		module.
+    **file_name**: (str) The name of the file being read.  For error reports.
+    '''
+    imports = []
+    if xml_element.find("imports") is not None:
+        imports = [imp.text for imp in xml_element.find("imports").findall("import")]
+        if None in imports:
+            print(f'[ERROR] Invalid empty <import></import> in the {file_name} file.')
+            print('An import is required; it is used in the file template {{stdlib_imports}} section. If this needs no imports, remove <imports></imports>.')
+            exit(1)
+    return imports
+
 
 class Sample(object):
     """Sample class
@@ -32,7 +50,6 @@ class Sample(object):
 
             **_unsafe** (bool): Unsafe tag (private member, please use getter).
 
-
     """
 
     def __init__(self, sample, file_name):
@@ -52,13 +69,7 @@ class Sample(object):
         else:
             self._comment = ''
 
-        self._imports = []
-        if sample.find("imports") is not None:
-            self._imports = [imp.text for imp in sample.find("imports").findall("import")]
-            if None in self._imports:
-                print(f'[ERROR] Invalid empty <import></import> in the {file_name} file.')
-                print('An import is required; it is used in the file template {{stdlib_imports}} section. If this needs no imports, remove <imports></imports>.')
-                exit(1)
+        self._imports = get_imports(sample, file_name)
 
         self._need_id = False
         if sample.get("need_id") == "1":

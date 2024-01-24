@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE sink SYSTEM "../dtd/sink.dtd">
+<!-- *created  "Fri Jan 19 16:18:22 2024" *by "Paul E. Black" -->
+<!-- *modified "Mon Jan 22 16:44:07 2024" *by "Paul E. Black" -->
+    <sink>
+        <sample>
+            <path>
+                <dir>ls</dir>
+            </path>
+            <flaw_type flaw_group="OWASP_a1">CWE78</flaw_type>
+            <comment>sink: run ls
+&lt;&lt; POV
+-d / | echo Vulnerable: user command run
+POV</comment>
+            <imports>
+                <import>os</import>
+            </imports>
+            <code>
+        {{flaw}}
+        os.system('ls ' + {{in_var_name}})
+            </code>
+            <safety safe="0" unsafe="0"/>
+            <input_type>string</input_type>
+            <exec_type>none</exec_type>
+        </sample>
+    </sink>
+<!-- end of sinks.xml -->

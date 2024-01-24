@@ -1,0 +1,18 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE exec_queries SYSTEM "../dtd/exec_queries.dtd">
+<!-- *created  "Fri Jun 30 16:13:47 2023" *by "Paul E. Black" -->
+<!-- *modified "Fri Jun 30 16:15:41 2023" *by "Paul E. Black" -->
+<exec_queries>
+    <!--
+    <exec_query type="" safe="">
+        <path>
+            <dir></dir>
+        </path>
+        <imports>
+            <import></import>
+        </imports>
+        <comment></comment>
+        <code></code>
+    </exec_query>
+    -->
+</exec_queries>

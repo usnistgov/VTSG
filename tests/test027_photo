@@ -1,0 +1,64 @@
+Generation report:
+	OWASP_a1 group generation report:
+		CWE78 generation report:
+			13 safe samples
+			9 unsafe samples
+		22 total
+	22 total
+22 total
+Generation time 00:00:00
+Finish
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__0.py
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: echo: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+/
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__1-1.5.py
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: echo: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+/
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__1-70bia.py
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__1-70cia.py
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-1.5.py
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: echo: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+/
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-70bia.py
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-70cia.py
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-1.5a.py
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bia.py
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70cia.py
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-1.5a.py
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70bia.py
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70cia.py
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__1-1.2.py
+Vulnerable: user command run
+ls: stdout: Broken pipe
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-1.2.py
+Vulnerable: user command run
+ls: stdout: Broken pipe
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-1.5.py
+Vulnerable: user command run
+ls: stdout: Broken pipe
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-70bia.py
+Vulnerable: user command run
+ls: stdout: Broken pipe
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-70cia.py
+Vulnerable: user command run
+ls: stdout: Broken pipe
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-1.2.py
+Vulnerable: user command run
+ls: stdout: Broken pipe
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-1.2a.py
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-1.2a.py
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_none__S_ls__0.py
+Vulnerable: user command run
+ls: stdout: Broken pipe

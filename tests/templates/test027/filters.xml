@@ -1,0 +1,44 @@
+<?xml version = "1.0" standalone="no"?>
+<!DOCTYPE filtering SYSTEM "../dtd/filtering.dtd">
+<!-- *created  "Fri Jan 19 16:32:52 2024" *by "Paul E. Black" -->
+<!-- *modified "Mon Jan 22 16:39:07 2024" *by "Paul E. Black" -->
+    <filtering>
+        <sample>
+            <path>
+                <dir>none</dir>
+            </path>
+            <comment>no filtering</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports></imports>
+            <code>
+        # No filtering (sanitization)
+        {{out_var_name}} = {{in_var_name}}
+            </code>
+            <input_type>nofilter</input_type>
+            <output_type>nofilter</output_type>
+	    <options need_complexity="0" />
+        </sample>
+
+        <sample>
+            <path>
+                <dir>no_bad_chars</dir>
+            </path>
+            <comment>filter: remove all shell list or pipe operators</comment>
+            <flaws>
+                <flaw flaw_type="CWE78" safe="1" unsafe="0"/>
+            </flaws>
+            <imports>
+                <import>re</import>
+            </imports>
+            <code>
+	        # remove ||, &amp;&amp;, ;, &amp;, and |
+	        pattern = '\|\||&amp;&amp;|[;&amp;|]'
+                {{out_var_name}} = re.sub(pattern, '', {{in_var_name}})
+            </code>
+            <input_type>string</input_type>
+            <output_type>string</output_type>
+        </sample>
+    </filtering>
+<!-- end of filters.xml -->

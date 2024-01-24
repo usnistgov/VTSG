@@ -1,12 +1,13 @@
 """
 file_template module
 
- *modified "Mon Aug  7 14:39:08 2023" *by "Paul E. Black"
+ *modified "Fri Jan 12 12:56:01 2024" *by "Paul E. Black"
 """
 
 import re
 from jinja2 import Template, DebugUndefined
 import src.generator
+from src.sample import get_imports
 
 
 class FileTemplate(object):
@@ -41,7 +42,7 @@ class FileTemplate(object):
         if template_code[0] == '\n':
             template_code = template_code[1:] # remove a leading new line
         self._code = src.generator.Generator.remove_indent(template_code)
-        self._imports = [imp.text for imp in file_template.find("imports").findall("import")]
+        self._imports = get_imports(file_template, 'file_template.xml')
         self._comment = {}
         self._comment['open'] = file_template.find("comment").find("open").text
         self._comment['close'] = file_template.find("comment").find("close").text

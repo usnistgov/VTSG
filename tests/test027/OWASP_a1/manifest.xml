@@ -1,0 +1,298 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_none__S_ls__0.py" language="test027">
+			<flaw line="39" name ="CWE78"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__0.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__1-1.2.py" language="test027">
+			<flaw line="47" name ="CWE78"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__1-1.5.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__1-70bia.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__1-70bib.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__1-70cia.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__1-70cib.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-1.2.py" language="test027">
+			<flaw line="51" name ="CWE78"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-1.5.py" language="test027">
+			<flaw line="52" name ="CWE78"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-70bia.py" language="test027">
+			<flaw line="45" name ="CWE78"/>
+		</file>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-70bib.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-70cia.py" language="test027">
+			<flaw line="49" name ="CWE78"/>
+		</file>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-70cib.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-1.2.py" language="test027">
+			<flaw line="52" name ="CWE78"/>
+		</file>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-1.5.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-70bia.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-70bib.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-70cia.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-70cib.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-1.2a.py" language="test027">
+			<flaw line="41" name ="CWE78"/>
+		</file>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-1.2b.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-1.5a.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-1.5b.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bia.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bib.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bic.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70cia.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70cib.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70cic.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-1.2a.py" language="test027">
+			<flaw line="45" name ="CWE78"/>
+		</file>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-1.2b.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-1.5a.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-1.5b.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70bia.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70bib.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70bic.py" language="test027"/>
+
+	</testcase>
+
+	<testcase>
+		<meta-data>
+			<author>Paul E. Black</author>
+			<date>2024-01-23</date>
+			<input>input: Command line args</input>
+		</meta-data>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70cia.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70cib.py" language="test027"/>
+
+		<file path="TestSuite_01-23-2024_11h20m07/test027/OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70cic.py" language="test027"/>
+
+	</testcase>
+
+</container>

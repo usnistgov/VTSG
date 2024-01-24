@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Fri Jan  5 16:00:17 2024" *by "Paul E. Black"
+# *modified "Wed Jan 24 07:47:36 2024" *by "Paul E. Black"
 
 default: genPython
 
@@ -8,7 +8,7 @@ all: testAll generate
 generate: genPython genCsharp genPHP
 
 testAll: testVarious testCLI testSTerm testIndent testDeclVars \
-	testSelect testSafeUnsafe
+	testSelect testSafeUnsafe testImportClass
 	@echo All built-in self-tests succeeded
 
 VTSG_FILES=src/complexities_generator.py src/complexity.py src/condition.py \
@@ -261,6 +261,17 @@ test025u: $(VTSG_FILES)
 # this is NOT run during normal testing
 test025: $(VTSG_FILES)
 	python3 vtsg.py -l $(@) -t tests/templates
+
+testImportClass: test027
+	@echo test generate import class succeeded
+
+test027: $(VTSG_FILES)
+	python3 vtsg.py -l $(@) -r 2 -t tests/templates | tee $(@)_photo #| head -2
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*.py"|sort); do diff $$f $(TDIR)/$(@)/$$f;done) | tee -a $(@)_photo
+	# SKIMP check manifest, too
+	# execute these cases
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*[0-9a].py"|sort); do echo $$f; python3 $$f "-d / | echo Vulnerable: user command run"; done) 2>&1 | tee -a $(@)_photo
+	diff $(@)_photo tests/$(@)_photo
 
 testNNN: $(VTSG_FILES) src/sarif_writer.py
 	python3 vtsg.py -l $@ -t tests/templates

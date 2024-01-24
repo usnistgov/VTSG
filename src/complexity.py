@@ -1,64 +1,81 @@
 """
 Complexity module.
 
- *modified "Fri May 19 10:26:47 2023" *by "Paul E. Black"
+ *modified "Tue Jan 23 10:38:19 2024" *by "Paul E. Black"
 """
 
 import copy
 import src.generator
+from src.sample import get_imports
 
 
 class ComplexitySample(object):
     """ComplexitySample class
 
         Attributes :
-            **_id** (str): ID of complexity (private member, please use getter and setter).
-
-            **_cond_id** (int): ID of condition (private member, please use getter and setter).
+            **_id** (str): ID of complexity (private member, please use getter).
 
             **_code** (str): Code of complexity (private member, please use getter and setter).
 
+            **_imports** (list of str): names to be imported.
+
             **_type** (str): Type of complexity (if, switch, for, function, class, ...) \
-                             (private member, please use getter and setter).
+                             (private member, please use getter).
 
             **_group** (str): Group of complexity (conditionals, loops, functions, classes, ...) \
-                              (private member, please use getter and setter).
+                              (private member, please use getter).
 
             **_executed** (str): The situation when the placeholder code is executed:
               one of "condition" (executed if the condition evaluates to True),
               "not_condition" (executed if the condition is False), "1" (always
               executed), or "0" (never executed).  (private member, please use getter).
 
-            **_need_condition** (bool): If True the complexity need a condition (set _cond_id) \
-                                        (private member, please use getter and setter).
+            **_needs_condition** (bool): If True the complexity need a condition (set _cond_id) \
+                                        (private member, please use getter).
 
-            **_need_id** (bool): If True the complexity needs unique id (private member, please use getter and setter).
+            **_needs_id** (bool): If True the complexity needs unique id
+					(private member, please use getter).
 
             **_in_out_var** (bool): Specifies where the placeholder is in the complexity for variables name setting \
                                     (in, transversal, out)
 
             **_indirection** (bool): If True, the complexity need to have a body \
-                                    (private member, please use getter and setter).
+                                    (private member, please use getter).
 
             **_body** (str): If specified, it's the second part of complexity \
-                             (private member, please use getter and setter).
+                             (private member, please use getter).
+
+            # the following attributes pertain to the condition used during generation
+
+            **_cond_id** (str): ID of condition
+					(private member, please use getter and setter).
+
+            **_condition** (bool): The value that this condition evaluates to.
+			For example, 1==1 is always True and (4+2>=42) is always False.
+					(private member, please use getter and setter).
+
+            **_cond_imports** (list of str): names this condition needs to be imported.
+					(private member, please use getter and setter).
+
     """
 
     def __init__(self, xml_compl):
         self._id = xml_compl.get("id")
         self._cond_id = None
+        self._cond_imports = []
         self._code = xml_compl.find("code").text
         self._code = src.generator.Generator.remove_indent(self._code)
+        self._imports = get_imports(xml_compl, "complexities.xml")
         self._type = xml_compl.get("type")
         self._group = xml_compl.get("group")
         self._executed = xml_compl.get("executed")
         assert self._executed in {'condition', 'not_condition', '1', '0'}, '[ERROR] executed must be "condition", "not_condition", "1", or "0"'
-        self._need_condition = False
+        self._needs_condition = False
         if "condition" in self._executed or xml_compl.get("need_condition") == "1":
-            self._need_condition = True
-        self._need_id = False
-        if xml_compl.get("need_id") == "1":
-            self._need_id = True
+            self._needs_condition = True
+        self._needs_id = False
+        if xml_compl.get("needs_id") == "1":
+            self._needs_id = True
         self._in_out_var = False
         if xml_compl.get("in_out_var"):
             self._in_out_var = xml_compl.get("in_out_var")
@@ -100,6 +117,8 @@ class ComplexitySample(object):
         else:
             return self._id
 
+    # these handle data about the condition used in this complexity during generation
+
     @property
     def cond_id(self):
         return self._cond_id
@@ -109,9 +128,51 @@ class ComplexitySample(object):
         Sets the ID of the condition.
 
         Args:
-            **nb** (int): The new value.
+            **nb** (str): The new value.
         """
         self._cond_id = nb
+
+    @property
+    def condition(self):
+        """
+        The value of what the condition used for this complexity evaluates to.
+
+        :getter: Returns the condition.
+        :type: bool
+        """
+        return self._condition
+
+    def set_condition(self, condition):
+        """
+        Set the value of what the condition used for this complexity evaluates to.
+        For example, 1==1 is always True and (4+2>=42) is always False.
+
+        :setter: Sets the evaluated value of the condition used for this complexity.
+        :type: bool
+        """
+        assert type(condition) is bool
+        self._condition = condition
+
+    @property
+    def cond_imports(self):
+        """
+        Names that the condition used for this complexity needs to be imported.
+
+        :getter: Returns the condition.
+        :type: list of str
+        """
+        return self._cond_imports
+
+    def set_cond_imports(self, imports):
+        """
+        Set the names of imports that the condition used during generation for this
+        complexity needs.
+
+        :setter: Sets the list of imports.
+        :type: list of str
+        """
+        assert type(imports) is list
+        self._cond_imports = imports
 
     @property
     def body(self):
@@ -119,7 +180,6 @@ class ComplexitySample(object):
         Second part of complexity.
 
         :getter: Returns this second part.
-        :setter: Sets this second part.
         :type: str
         """
         return self._body
@@ -134,10 +194,6 @@ class ComplexitySample(object):
         """
         return self._indirection
 
-    @body.setter
-    def body(self, value):
-        self._body = value
-
     @property
     def in_out_var(self):
         return self._in_out_var
@@ -150,7 +206,7 @@ class ComplexitySample(object):
         :getter: Returns this boolean.
         :type: bool
         """
-        return self._need_id
+        return self._needs_id
 
     def need_condition(self):
         """
@@ -160,18 +216,7 @@ class ComplexitySample(object):
         :getter: Returns this boolean.
         :type: bool
         """
-        return self._need_condition
-
-    def set_condition(self, condition):
-        """
-        Set the value of what the condition used for this complexity evaluates to.
-        For example, 1==1 is always True and (4+2>=42) is always False.
-
-        :setter: Sets this value.
-        :type: bool
-        """
-        assert type(condition) is bool
-        self.condition = condition
+        return self._needs_condition
 
     @property
     def type(self):
@@ -207,6 +252,16 @@ class ComplexitySample(object):
     @code.setter
     def code(self, value):
         self._code = value
+
+    @property
+    def imports(self):
+        """
+        List of imports that this complexity needs.
+
+        :getter: Returns this list.
+        :type: list of str
+        """
+        return self._imports
 
     def is_executed(self):
         """ True if the placeholder code is executed"""

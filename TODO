@@ -1,6 +1,6 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Jan 23 10:09:10 2024" *by "Paul E. Black"
+ *modified "Wed Jan 24 09:01:02 2024" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -192,12 +192,6 @@ so flaws that need a particular "input" to be "hooked" to modules that produce t
 particular output.
 
 9 Nov 2022
-Any module should be able to add imports or global declarations.  Specifically,
-conditions or complexities may exercise certain libraries or packages or may need a
-global variable declared.
-    This allows file_template to be smaller.  The final code only includes say, math,
-when it is needed.
-
 Allow modules, other than complexities, to have <body></body> code to be placed in
 another file.
 

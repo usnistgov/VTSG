@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE input SYSTEM "../dtd/input.dtd">
+<!-- *modified "Tue Jan 23 11:19:57 2024" *by "Paul E. Black" -->
+<!-- *modified "Fri Jan 19 16:05:08 2024" *by "Paul E. Black" -->
+    <input>
+        <!--
+        <sample>
+            <path>
+                <dir></dir>
+            </path>
+            <comment></comment>
+            <flaws>
+                <flaw flaw_type="" safe=""/>
+            </flaws>
+            <imports>
+                <import></import>
+            </imports>
+            <code></code>
+            <input_type></input_type>
+            <output_type></output_type>
+        </sample>
+        -->
+        <sample>
+            <path>
+                <dir>args</dir>
+            </path>
+            <comment>Command line args</comment>
+            <flaws>
+                <flaw flaw_type="default" safe="0" unsafe="0"/>
+            </flaws>
+            <imports>
+	      <import>sys</import>
+            </imports>
+            <code>{{out_var_name}} = sys.argv[1]</code>
+            <input_type>input: Command line args</input_type>
+            <output_type>string</output_type>
+        </sample>
+
+    </input>
+
+<!-- end of inputs.xml -->
