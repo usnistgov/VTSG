@@ -14838,13 +14838,2269 @@ Traceback (most recent call last):
     buf[tainted_3] = 'A'
     ~~~^^^^^^^^^^^
 IndexError: list assignment index out of range
-./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_none__S_ls__0.py
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__0.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-12.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-13.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-22.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-23.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-50.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-51.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-52.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-70a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-71a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-72a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__0.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-12.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-13.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-22.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-23.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-50.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-51.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-52.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-70a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-71a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-72a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__0.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-12.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-13.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-22.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-23.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-50.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-51.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-52.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-70a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-71a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-72a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__0.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-12.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-13.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-22.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-23.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-50.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-51.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-52.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.1.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.2u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.3.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.3u.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.5.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.7.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.2.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.2v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.3v.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.4.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.6.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.8.py
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-70a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-71a.py
+Class case - do not execute
+./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-72a.py
+Class case - do not execute
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-11.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-14.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-2.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-20n.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-3.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-4.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-5.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-6.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-7.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-8.8.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_none__S_ls__0.py
 /
 Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-1.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-11.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-14.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-2.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-20n.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-3.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-4.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-5.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-6.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-7.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-8.8.py
+/
+Vulnerable: user command run
 ./OWASP_a1/CWE78/unsafe/CWE78__I_env__F_none__S_ls__0.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-1.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-11.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-14.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-2.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-20n.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-3.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-4.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-5.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-6.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-7.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-8.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_hardcoded_string__F_none__S_ls__0.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-1.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-11.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-14.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-2.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-20n.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-3.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-4.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-5.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-6.8.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-7.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.1.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.2.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.2u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.2v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.3.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.3u.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.3v.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.4.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.5.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.6.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.7.py
+/
+Vulnerable: user command run
+./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-8.8.py
 /
 Vulnerable: user command run
 ./OWASP_a1/CWE78/unsafe/CWE78__I_readline__F_none__S_ls__0.py

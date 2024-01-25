@@ -1,6 +1,6 @@
 '''
-Hardcoded string as input
-no filtering
+input: direct user input in string
+filter: remove all shell list or pipe operators
 sink: run ls in a dir
 '''
 '''
@@ -18,18 +18,23 @@ William Mentzer willmentzer20@gmail.com
 
 '''
 import os
+import re
 
 
 def main():
-    tainted_0 = "-d /;echo Vulnerable: user command run"
-    tainted_1 = tainted_0
+    tainted_2 = input()
+    tainted_3 = tainted_2
 
-    # No filtering (sanitization)
-    tainted_1 = tainted_0
+    while 1==0:
+        break
+
+        # remove ||, &&, ;, &, and |
+        pattern = '\|\||&&|[;&|]'
+        tainted_3 = re.sub(pattern, '', tainted_2)
 
 
-
-    os.system('ls ' + tainted_1)
+    #flaw
+    os.system('ls ' + tainted_3)
 
 
 if __name__ == '__main__':

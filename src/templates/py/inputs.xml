@@ -125,6 +125,7 @@
             </path>
             <comment>Hardcoded string as input</comment>
             <flaws>
+                <flaw flaw_type="CWE78" safe="0" unsafe="0"/>
                 <flaw flaw_type="default" safe="1" unsafe="0"/>
             </flaws>
             <imports>
