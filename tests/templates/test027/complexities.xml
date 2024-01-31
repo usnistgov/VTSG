@@ -1,7 +1,7 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
 <!-- *created  "Fri Jan 19 16:44:33 2024" *by "Paul E. Black" -->
-<!-- *modified "Tue Jan 23 11:01:03 2024" *by "Paul E. Black" -->
+<!-- *modified "Wed Jan 31 14:11:39 2024" *by "Paul E. Black" -->
 <root>
     <conditions>
         <!--
@@ -50,10 +50,29 @@
             </code>
         </complexity>
 
-	<!-- body import, that is, import in <body> -->
-        <complexity id="70bi" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
+	<!-- a complexity that does NOT import anything -->
+        <complexity id="13" type="switch" group="conditionals" executed="1">
             <code>
-        var_{{id}} = {{call_name}}({{in_var_name}})
+	match 7:
+	INDENT
+            case 6:
+	    INDENT
+                pass
+	    DEDENT
+            case _:
+	    INDENT
+                {{ placeholder }}
+	    DEDENT
+	DEDENT
+            </code>
+        </complexity>
+
+	<!-- body import, that is, library import in <body> -->
+        <complexity id="70bi" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
+	    <imports>
+	    </imports>
+            <code>
+        var_{{id}} = {{body_file}}.{{call_name}}({{in_var_name}})
         {{out_var_name}} = var_{{id}}.get_var_{{id}}()
             </code>
             <body>
@@ -89,7 +108,7 @@ INDENT
 DEDENT
             </body>
         </complexity>
-	<!-- code import, that is, import wherever <code> is placed -->
+	<!-- code import, that is, library import wherever <code> is placed -->
         <complexity id="70ci" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
 	    <imports>
 	      <import>collections</import>
@@ -97,7 +116,7 @@ DEDENT
             <code>
 	      # use Python collections to test imports
 	      de_queue = collections.deque()
-              de_queue.append({{call_name}}({{in_var_name}}))
+              de_queue.append({{body_file}}.{{call_name}}({{in_var_name}}))
               var_{{id}} = de_queue.pop()
               {{out_var_name}} = var_{{id}}.get_var_{{id}}()
             </code>
@@ -110,7 +129,6 @@ DEDENT
 '''
 
 {{ imports }}
-import collections
 
 {{static_methods}}
 
