@@ -1,7 +1,7 @@
 """
 file_manager module
 
- *modified "Tue Apr 18 10:37:11 2023" *by "Paul E. Black"
+ *modified "Thu Feb  1 12:12:59 2024" *by "Paul E. Black"
 """
 
 import os
@@ -75,6 +75,16 @@ class FileManager(object):
         createdFile.write(self.content)
         createdFile.close()
 
+    def getPath(self):
+        """
+        Returns the path.
+        """
+        return self.path
+
+def get_XML_file(modules, template_directory, language):
+    """
+    Return the path to xml file for the named modules for the specified language.
+    """
     _xml = {
         "inputs": "inputs.xml",
         "filters": "filters.xml",
@@ -84,18 +94,6 @@ class FileManager(object):
         "complexities": "complexities.xml",
     }
 
-    @classmethod
-    def getXML(cls, xmlfile, template_directory, language):
-        """
-        Class Method.
-        Returns the path to selected xml file for the specified language.
-        """
-        return os.path.join(template_directory, language, cls._xml[xmlfile])
-
-    def getPath(self):
-        """
-        Returns the path.
-        """
-        return self.path
+    return os.path.join(template_directory, language, _xml[modules])
 
 # end of file_manager.py

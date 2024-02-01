@@ -3,13 +3,13 @@ Generator Module.
 
 This is the main module.  It generates test cases.
 
- *modified "Tue Jan 23 16:23:11 2024" *by "Paul E. Black"
+ *modified "Thu Feb  1 12:12:56 2024" *by "Paul E. Black"
 """
 
 import time
 from jinja2 import Template, DebugUndefined, Environment, exceptions
 from src.manifest import Manifest
-from src.file_manager import FileManager
+from src.file_manager import get_XML_file
 from src.input_sample import InputSample
 from src.filter_sample import FilterSample
 from src.sink_sample import SinkSample
@@ -170,19 +170,19 @@ class Generator(object):
         self.test_cases = []
 
         # parse XML files
-        tree_input = ET.parse(FileManager.getXML("inputs", template_directory, language)).getroot()
+        tree_input = ET.parse(get_XML_file("inputs", template_directory, language)).getroot()
         self.tab_input = [InputSample(inp) for inp in tree_input]
-        tree_filter = ET.parse(FileManager.getXML("filters", template_directory, language)).getroot()
+        tree_filter = ET.parse(get_XML_file("filters", template_directory, language)).getroot()
         self.tab_filter = [FilterSample(filter) for filter in tree_filter]
-        tree_sink = ET.parse(FileManager.getXML("sinks", template_directory, language)).getroot()
+        tree_sink = ET.parse(get_XML_file("sinks", template_directory, language)).getroot()
         self.tab_sink = [SinkSample(sink) for sink in tree_sink]
-        tree_exec_query = ET.parse(FileManager.getXML("exec_queries", template_directory, language)).getroot()
+        tree_exec_query = ET.parse(get_XML_file("exec_queries", template_directory, language)).getroot()
         self.tab_exec_queries = [ExecQuerySample(exec_query) for exec_query in tree_exec_query]
-        tree_complexities = ET.parse(FileManager.getXML("complexities", template_directory, language)).getroot()
+        tree_complexities = ET.parse(get_XML_file("complexities", template_directory, language)).getroot()
         self.tab_complexity = [ComplexitySample(complexity) for complexity in tree_complexities.find("complexities")]
         self.tab_condition = [ConditionSample(condition) for condition in tree_complexities.find("conditions")]
 
-        self.file_template = FileTemplate(ET.parse(FileManager.getXML("file_template", template_directory, language)).getroot())
+        self.file_template = FileTemplate(ET.parse(get_XML_file("file_template", template_directory, language)).getroot())
 
         self.license = open("src/templates/file_rights.txt", "r").read()
 
