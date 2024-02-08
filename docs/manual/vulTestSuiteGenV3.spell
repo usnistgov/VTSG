@@ -129,6 +129,7 @@ sql
 src
 statementterminator
 staticmethods
+stdlib
 stdlibimports
 subdirectories
 subdirectory

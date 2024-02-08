@@ -1,6 +1,6 @@
 
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Jan 23 17:17:24 2024" *by "Paul E. Black"
+% *modified "Thu Feb  8 11:20:59 2024" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -1460,6 +1460,7 @@ We chose ``DEDENT'' because Python's grammar description uses it.
 
     \item code: the template code. It should contain the 
     following placeholders:
+    \label{sec:file template code}
     \begin{itemize}
         \item comments: This is replaced by comments in the selected input,
         filter, sink, and exec query modules.  This is intended to
@@ -1551,6 +1552,7 @@ indicated with names in \verb|<import></import>| directives within
 
 Code statements are synthesized from the \verb|import_code| in the file template and
 the name or names given here.
+The resulting import statements replace the \verb|{{stdlib_imports}}| placeholder.
 
 
 \subsubsection{Marking Modules as Safe and Unsafe}
@@ -1938,7 +1940,7 @@ complexity modules are inside \verb|<complexities>|.
 
     \item code: the source code of the conditional test.
 
-    \item imports: see Sec.~\ref{sec:shared attributes}. (optional)
+    \item imports: any required libraries; see Sec.~\ref{sec:module import}. (optional)
 
     \item value: either \verb|<value>True</value>| or
         \verb|<value>False</value>| depending on \\
@@ -2016,17 +2018,22 @@ complexity modules are inside \verb|<complexities>|.
     a label, a parameter, or a function name in a nested
     context.
 
-    \item code: the source code of the Complexity.  Code or
+    \item imports: libraries required by code, below; see Sec.~\ref{sec:module import}.
+      (optional)
+
+    \item code: the source code of the Complexity.  Either code or
     body should contain \\ \verb|{{placeholder}}|
     where the Filter is inserted.  It may also contain
     \verb|{{condition}}| where the Condition
     is inserted.
 
-    \item imports: see Sec.~\ref{sec:shared attributes}. (optional)
-
     \item body: additional source code not in the main execution flow,
     e.g., functions or classes.  This code is placed in a separate file
-    if the type is \verb|class|. (optional)
+    if the type is \verb|class|.  If this code goes in a separate file, it probably
+    should have many of the placeholders that file template code has, such as
+    comments, license, stdlib\_imports, and static\_methods.
+    See Sec.~\ref{sec:file template code} for descriptions of these placeholders.
+    (optional)
 \end{itemize}
 
 VTSG can put several complexities in one test case.
