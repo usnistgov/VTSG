@@ -1,13 +1,21 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Wed Jan 24 09:01:02 2024" *by "Paul E. Black"
+ *modified "Thu Feb  8 14:19:01 2024" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
+
+8 February 2024
+
+Report unknown jinja variables.  That is, if an xml file has, say, <impOT> (instead
+of <import>), VTSG silently nulls it out.  It can be quite hard to determine *why*
+your change isn't working.  In the above case, VTSG should say
+Unknown variable: {{impot}} in sinks.xml, line 85
+or something.
 
 
 23 January 2024
 
-sample.py looks for and save _need_id.  That means inputs, filters, and sinks can
+sample.py looks for and saves _need_id.  That means inputs, filters, and sinks can
 have a "need_id".  Code in test_case.py increments the var_id if an input, filter, or
 sink needs an id.
 
