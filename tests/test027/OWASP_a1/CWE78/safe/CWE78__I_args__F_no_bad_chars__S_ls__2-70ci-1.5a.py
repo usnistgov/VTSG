@@ -29,6 +29,15 @@ import random
 import re
 import string
 import sys
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-1.5b.py' as module_1
+import importlib.machinery
+import importlib.util
+import pathlib
+path_to_parent = str(pathlib.Path(__file__).parent) + '/' # SKIMP use os.path.join()
+loader = importlib.machinery.SourceFileLoader('SFL', path_to_parent+'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-1.5b.py')
+spec = importlib.util.spec_from_loader('SFL', loader)
+module_1 = importlib.util.module_from_spec(spec)
+loader.exec_module(module_1)
 
 
 def main():
@@ -37,7 +46,7 @@ def main():
 
     # use Python collections to test imports
     de_queue = collections.deque()
-    de_queue.append(Class_2(tainted_2))
+    de_queue.append(module_1.Class_2(tainted_2))
     var_2 = de_queue.pop()
     tainted_7 = var_2.get_var_2()
 

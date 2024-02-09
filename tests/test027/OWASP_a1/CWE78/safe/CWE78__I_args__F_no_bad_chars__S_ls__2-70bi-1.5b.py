@@ -21,9 +21,12 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import re
-
 import collections
+import math
+import random
+import re
+import string
+
 
 class Class_2:
     def __init__(self, tainted_4_2):

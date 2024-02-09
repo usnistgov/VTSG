@@ -5,13 +5,14 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Tue Jan 23 11:03:59 2024" *by "Paul E. Black"
+ *modified "Fri Feb  9 16:01:19 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
 from src.file_manager import FileManager
 from src.complexities_generator import ComplexitiesGenerator
 from src.synthesize_code import make_assign, get_indent, fix_indents
+from src.macro_expand import macro_expand
 import src.generator # for resetUID()
 
 class TestCase(object):
@@ -98,10 +99,10 @@ class TestCase(object):
 
     def generate_file_name(self, suffix):
         """
-        Generate the name of the file(s) to be used for this case.  The formatisD :
+        Generate the name of the file(s) to be used for this case.  The format is:
             flawtype__input__filter__sink__execquery__X-Y1-Y2*suffix*.ext
             with X the number of complexity level, Y1 and Y2 the id of complexities,
-            and *suffix* the letter (a for main file).  No suffix if this case only
+            and *suffix* the letter (a for main file).  Empty suffix if this case only
             consists of one file.
 
         Args:
@@ -132,6 +133,7 @@ class TestCase(object):
 
         # suffix - for cases consisting of multiple files
         name += suffix
+
         # extension
         name += "."+self.generator.file_template.file_extension
 
@@ -156,14 +158,15 @@ class TestCase(object):
 			    template=self.generator.file_template,
 		            input_type=self.input.output_type,
 			    output_type=self.sink.input_type,
-			    filtering=self.filter,
-			    language=self.generator.language
+			    filtering=self.filter
                         )
             # Compose the complexities.  Return code for any additional class files.
             self.classes_code = compl_gen.compose()
 
             # import the new template that contains complexities
-            self.template_code = compl_gen.get_template()
+            # expand any {{body_file}} macro
+            # SKIMP - figure out the module number from other stuff
+            self.template_code = macro_expand(compl_gen.get_template, body_file='module_1')
         else:
             self.template_code = self.generator.file_template.code
 
@@ -244,16 +247,47 @@ class TestCase(object):
             imports_content = imports_content.union(set(self.input.imports)
                                                     .union(set(self.filter.imports)))
 
+        body_file = self.generate_file_name('b') # SKIMP get the suffix of the
+						        # SUBORDINATE file
+
         # add any imports from complexities or conditions
         for complex_samp in self.complexity_list:
+            # macro expand any import of {{body_file}}
+            complexity_imports = [macro_expand(an_import,
+						body_file="{{body_file}}=" + body_file)
+						for an_import in complex_samp.imports]
             imports_content = imports_content.union(set(complex_samp.cond_imports)
-                                                    .union(set(complex_samp.imports)))
+                                                    .union(set(complexity_imports)))
 
         # add imports from exec query if it's used
         if self.exec_query:
             imports_content = imports_content.union(set(self.exec_query.imports))
+
         # create source code with imports
         imports_code = file_template.generate_imports(imports_content)
+
+        ####################### Specific Code for Python #######################
+        # Change any {{body_file}}=file_name "import" into Python code that
+        # imports files with any name.
+        import re
+        edited_imports_code = ""
+        for line in imports_code.splitlines(True):
+            line_mo = re.search("{{body_file}}=(\S+)", line)
+            if line_mo:
+                body_file_name = line_mo.group(1) # the file name
+                edited_imports_code += f"""# like import '{body_file_name}' as module_1
+import importlib.machinery
+import importlib.util
+import pathlib
+path_to_parent = str(pathlib.Path(__file__).parent) + '/' # SKIMP use os.path.join()
+loader = importlib.machinery.SourceFileLoader('SFL', path_to_parent+'{body_file_name}')
+spec = importlib.util.spec_from_loader('SFL', loader)
+module_1 = importlib.util.module_from_spec(spec)
+loader.exec_module(module_1)
+"""
+            else:
+                edited_imports_code += line
+        imports_code = edited_imports_code
 
         # comments at the beginning of the code that document which modules were used
         comments_code = ''
@@ -344,7 +378,7 @@ class TestCase(object):
             line = self.find_flaw(full_path, file_template.comment['inline'])
         files_path.append({'path': full_path, 'line': line})
 
-        # Create any additional class files
+        # Create any additional auxiliary (e.g. class) files
         for i, cl in enumerate(self.classes_code):
             file_name_suffix = chr(ord("a") + 1 + i)
             filename = self.generate_file_name(file_name_suffix)

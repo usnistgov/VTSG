@@ -27,13 +27,22 @@ import random
 import re
 import string
 import sys
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-1.2b.py' as module_1
+import importlib.machinery
+import importlib.util
+import pathlib
+path_to_parent = str(pathlib.Path(__file__).parent) + '/' # SKIMP use os.path.join()
+loader = importlib.machinery.SourceFileLoader('SFL', path_to_parent+'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-1.2b.py')
+spec = importlib.util.spec_from_loader('SFL', loader)
+module_1 = importlib.util.module_from_spec(spec)
+loader.exec_module(module_1)
 
 
 def main():
     tainted_2 = sys.argv[1]
     tainted_7 = tainted_2
 
-    var_2 = Class_2(tainted_2)
+    var_2 = module_1.Class_2(tainted_2)
     tainted_7 = var_2.get_var_2()
 
     #flaw

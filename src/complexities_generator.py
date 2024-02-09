@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Mon Feb  5 16:31:38 2024" *by "Paul E. Black"
+ *modified "Fri Feb  9 15:48:45 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -30,19 +30,24 @@ class ComplexityInstance(object):
             **_name** (str): The code name of the function or class,
                 e.g. 'function_3' or 'Class_1'.
 
-            **_type** (str): Complexity type; from ComplexitySample _type,
+            **_type** (str): Complexity type; either from ComplexitySample _type,
                 'class_traversal', or 'function_traversal'.  None if not initialized.
 
             **_local_declarations** (dict of {str (type), set of str (var)}):
                 Programming language data types, e.g. 'int' or 'string', and a set of
                 variables to be declared of that type, e.g. 'tainted_11' or '$tainted_2'.
+
+            **_imports** (set of str): things that need to be imported, e.g. "re",
+                "math", or "random".  This may include things needed for complexities
+                or conditions nested within this one.
     """
 
-    def __init__(self, code, name="", complexity_type=None):
+    def __init__(self, code, name='', complexity_type=None):
         self._code = code
         self._name = name
         self._type = complexity_type
         self._local_declarations = {}
+        self._imports = set()
 
     @property
     def code(self):
@@ -128,6 +133,35 @@ class ComplexityInstance(object):
             local_decl_dict[data_type] = set()
         local_decl_dict[data_type].add(var_name)
 
+    @property
+    def imports(self):
+        """
+        Return the imports needed (so far) for this complexity.
+
+        :getter: Return the imports.
+        :type: str
+        """
+        return self._imports
+
+    def add_imports(self, imports):
+        """
+        Add more imports for this complexity.
+
+        :setter: Adds imports.
+        :type: str
+        """
+        self._imports = self._imports.union(imports)
+
+    def __str__(self):
+        return (
+            self.code + '\n' +
+            f'{self.name=}\n' +
+            f'{self.complexity_type=}\n' +
+            f'{self.local_decls=}' +
+            f'{self.imports=}'
+        )
+
+
 class ComplexitiesGenerator(object):
     """
         Complexities Generator class
@@ -175,16 +209,15 @@ class ComplexitiesGenerator(object):
     """
 
     def __init__(self, complexities_array, template, input_type, output_type,
-                 filtering, language):
+                 filtering):
         self.complexities_array = complexities_array
         self.template = template
         self.input_type = input_type
         self.output_type = output_type
         self.filtering = filtering
-        self.language = language
 
         self.complexities = []
-        self.complexities.append(ComplexityInstance("{{filtering_content}}"))
+        self.complexities.append(ComplexityInstance('{{filtering_content}}'))
 
         self.id_var_in = len(complexities_array)*2
         self.id_var_out = self.id_var_in+1
@@ -193,6 +226,22 @@ class ComplexitiesGenerator(object):
         self._in_int_name = self.new_variable(self.input_type, self.id_var_in)
         self._out_ext_name = None
         self._out_int_name = self.new_variable(self.output_type, self.id_var_out)
+
+    def __str__(self):
+        return (
+            f'{self.complexities_array}\n' +
+            f'{self.template}\n' +
+            f'in type: {self.input_type}\n' +
+            f'out type: {self.output_type}\n' +
+            f'{self.filtering}\n' +
+            f'{self.complexities}\n' +
+            f'{self.id_var_in}\n' +
+            f'{self.id_var_out}\n' +
+            f'{self._in_ext_name}\n' +
+            f'{self._in_int_name}\n' +
+            f'{self._out_ext_name}\n' +
+            f'{self._out_int_name}\n'
+        )
 
     @property
     def in_ext_name(self):
@@ -255,8 +304,18 @@ class ComplexitiesGenerator(object):
         This method composes all complexities.  Return complexities attribute, a
         (possibly empty) list of dict with complexities
         """
+
+        # nothing nested, so no set of imports saved, yet
+        saved_imports = set()
+
+        # handle complexities from innermost one first
         for c in reversed(self.complexities_array):
-            # check if complexities is in 2 parts (code and body)
+
+            # save imports for nesting in outer body
+            complexity_imports = c.imports # SKIMP - expand {{body_file}}?
+            imports_content = set(c.cond_imports).union(set(complexity_imports))
+
+            # if the complexity has 2 parts (code and body), use body, else use code
             if c.indirection and c.in_out_var == "traversal":
                 t = Template(c.body, undefined=DebugUndefined)
             else:
@@ -295,13 +354,16 @@ class ComplexitiesGenerator(object):
                 self.complexities[0].set_complexity_type(c.type)
                 if c.type == "class":
                     self.complexities[0].set_complexity_type("class_traversal")
+                    # this code will be in another file; declare the imports here
+                    self.complexities[0].add_imports(saved_imports)
+                    saved_imports = set() # any containing complexity is in another file
                 elif c.type == "function":
                     self.complexities[0].set_complexity_type("function_traversal")
                 self.complexities[0].set_name(call_name)
                 # ###################################
                 # start a new stack of complexities #
                 #####################################
-                # insert new dict for the next complexity
+                # code goes in another file, so start new dict for the next complexity
                 self.complexities.insert(0, ComplexityInstance(c.code))
                 t = Template(c.code, undefined=DebugUndefined)
                 self.complexities[0].set_code(
@@ -316,24 +378,31 @@ class ComplexitiesGenerator(object):
                     body = Template(c.body).render(id=uid, in_var_type=self.input_type, out_var_type=self.output_type, call_name=call_name)
                     self.complexities.insert(1, ComplexityInstance(body, complexity_type="function", name=call_name))
 
+            # pass needed imports up to next outer complexity
+            saved_imports = saved_imports.union(imports_content)
+
         return self.fill_template()
 
     def fill_template(self):
         """
-        Fill template with previous composed complexities with local var and instructions.
+        Fill template_code with previous composed complexities with local var and
+        instructions.  Return a list of any code to go in separate files, like
+        classes.
         """
-        # name of external variable to join with input and sink
+        # names of external variables to connect with input and sink
         self._in_ext_name = self.new_variable(self.input_type, self.id_var_in)
         self._out_ext_name = self.new_variable(self.output_type, self.id_var_out)
 
         functions_code = ""
         classes_code = []
-        # compose complexity i inti i-1
+
+        # compose complexity i into i-1
         for c in reversed(self.complexities[1:]):
             if c.complexity_type == "class_traversal":
                 # add a new class code when we have a traversal class
-                imports_content = self.template.generate_imports(set(self.filtering.imports))
-                classes_code.append({'code': Template(c.code, undefined=DebugUndefined).render(static_methods=functions_code, imports=imports_content), 'name': c.name})
+                imports_content = self.template.generate_imports(
+                                                c.imports.union(self.filtering.imports))
+                classes_code.append({'code': Template(c.code, undefined=DebugUndefined).render(static_methods=functions_code, stdlib_imports=imports_content), 'name': c.name})
                 functions_code = ""
             elif c.complexity_type == "class":
                 classes_code.append({'code': c.code, 'name': c.name})
@@ -345,6 +414,7 @@ class ComplexitiesGenerator(object):
         # generate local vars
         local_var_code = self.generate_local_var_code(self.complexities[0].local_decls)
         filtering_code = self.complexities[0].code
+
         t = Template(self.template.code, undefined=DebugUndefined)
         # fill template with local vars, complexities and static methods
         self.template_code = t.render(filtering_content=filtering_code, local_var=local_var_code, static_methods=functions_code)

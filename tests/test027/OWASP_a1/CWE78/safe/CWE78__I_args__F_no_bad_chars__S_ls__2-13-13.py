@@ -25,23 +25,26 @@ William Mentzer willmentzer20@gmail.com
 import os
 import re
 import sys
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__1-70bib.py' as module_1
-import importlib.machinery
-import importlib.util
-import pathlib
-path_to_parent = str(pathlib.Path(__file__).parent) + '/' # SKIMP use os.path.join()
-loader = importlib.machinery.SourceFileLoader('SFL', path_to_parent+'CWE78__I_args__F_no_bad_chars__S_ls__1-70bib.py')
-spec = importlib.util.spec_from_loader('SFL', loader)
-module_1 = importlib.util.module_from_spec(spec)
-loader.exec_module(module_1)
 
 
 def main():
-    tainted_0 = sys.argv[1]
-    tainted_5 = tainted_0
+    tainted_4 = sys.argv[1]
+    tainted_5 = tainted_4
 
-    var_1 = module_1.Class_1(tainted_0)
-    tainted_5 = var_1.get_var_1()
+    match 7:
+        case 6:
+            pass
+        case _:
+
+            match 7:
+                case 6:
+                    pass
+                case _:
+
+                    # remove ||, &&, ;, &, and |
+                    pattern = '\|\||&&|[;&|]'
+                    tainted_5 = re.sub(pattern, '', tainted_4)
+
 
 
     os.system('ls ' + tainted_5)

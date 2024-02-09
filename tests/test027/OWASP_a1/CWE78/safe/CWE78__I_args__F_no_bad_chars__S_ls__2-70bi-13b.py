@@ -21,18 +21,27 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
+import collections
 import re
 
 
-class Class_1:
-    def __init__(self, tainted_4_1):
-        self.var_1 = tainted_4_1
-    def  get_var_1(self):
+class Class_2:
+    def __init__(self, tainted_4_2):
+        self.var_2 = tainted_4_2
+    def  get_var_2(self):
 
-        tainted_4 = self.var_1
+        # use Python collections to test imports
+        de_queue = collections.deque()
+        de_queue.append(self.var_2)
+        tainted_4 = de_queue.pop()
 
-        # remove ||, &&, ;, &, and |
-        pattern = '\|\||&&|[;&|]'
-        tainted_5 = re.sub(pattern, '', tainted_4)
+        match 7:
+            case 6:
+                pass
+            case _:
+
+                # remove ||, &&, ;, &, and |
+                pattern = '\|\||&&|[;&|]'
+                tainted_5 = re.sub(pattern, '', tainted_4)
 
         return tainted_5

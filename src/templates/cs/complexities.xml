@@ -294,7 +294,7 @@
                 /*
                 {{license}}
                 */
-                {{ imports }}
+                {{ stdlib_imports }}
                 namespace default_namespace{
                     class {{call_name}}{
 

@@ -23,7 +23,6 @@ William Mentzer willmentzer20@gmail.com
 '''
 import re
 
-import collections
 
 class Class_1:
     def __init__(self, tainted_4_1):

@@ -242,7 +242,7 @@
                 /*
                 {{license}}
                 */
-                {{ imports }}
+                {{ stdlib_imports }}
                 class {{call_name}}{
 
                     var $var_{{id}};
