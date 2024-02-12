@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Fri Feb  9 15:48:45 2024" *by "Paul E. Black"
+ *modified "Mon Feb 12 11:09:56 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -313,7 +313,7 @@ class ComplexitiesGenerator(object):
 
             # save imports for nesting in outer body
             complexity_imports = c.imports # SKIMP - expand {{body_file}}?
-            imports_content = set(c.cond_imports).union(set(complexity_imports))
+            imports_content = set(c.cond_imports).union(complexity_imports)
 
             # if the complexity has 2 parts (code and body), use body, else use code
             if c.indirection and c.in_out_var == "traversal":
