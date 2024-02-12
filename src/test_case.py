@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Fri Feb  9 16:01:19 2024" *by "Paul E. Black"
+ *modified "Mon Feb 12 10:53:11 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -242,10 +242,10 @@ class TestCase(object):
 
         # IMPORTS
         # compose any imports used in input, filter, and sink
-        imports_content = set(self.sink.imports).union(set(file_template.imports))
+        imports_content = set(self.sink.imports).union(file_template.imports)
         if self.sink.input_type != "none":
-            imports_content = imports_content.union(set(self.input.imports)
-                                                    .union(set(self.filter.imports)))
+            imports_content = imports_content.union(self.input.imports,
+                                                    self.filter.imports)
 
         body_file = self.generate_file_name('b') # SKIMP get the suffix of the
 						        # SUBORDINATE file
@@ -256,12 +256,12 @@ class TestCase(object):
             complexity_imports = [macro_expand(an_import,
 						body_file="{{body_file}}=" + body_file)
 						for an_import in complex_samp.imports]
-            imports_content = imports_content.union(set(complex_samp.cond_imports)
-                                                    .union(set(complexity_imports)))
+            imports_content = imports_content.union(complex_samp.cond_imports,
+                                                    complexity_imports)
 
         # add imports from exec query if it's used
         if self.exec_query:
-            imports_content = imports_content.union(set(self.exec_query.imports))
+            imports_content = imports_content.union(self.exec_query.imports)
 
         # create source code with imports
         imports_code = file_template.generate_imports(imports_content)
