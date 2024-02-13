@@ -21,9 +21,10 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
+import random
 import re
+import string
 
-import collections
 
 class Class_2:
     def __init__(self, tainted_4_2):
@@ -31,6 +32,7 @@ class Class_2:
     def  get_var_2(self):
 
         tainted_4 = self.var_2
+        tainted_5 = tainted_4
 
         # use Python random and string to test imports.  Both tests are False
         # so they are evaluated, but don't affect the value of the condition.

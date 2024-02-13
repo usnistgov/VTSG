@@ -21,9 +21,19 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import re
-
 import collections
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70cib.py' as module_1
+import importlib.machinery
+import importlib.util
+import os
+import pathlib
+path_to_parent = str(pathlib.Path(__file__).parent)
+loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
+                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70cib.py'))
+spec = importlib.util.spec_from_loader('SFL', loader)
+module_1 = importlib.util.module_from_spec(spec)
+loader.exec_module(module_1)
+
 
 class Class_2:
     def __init__(self, tainted_2_2):
@@ -34,7 +44,7 @@ class Class_2:
 
         # use Python collections to test imports
         de_queue = collections.deque()
-        de_queue.append(Class_1(tainted_2))
+        de_queue.append(module_1.Class_1(tainted_2))
         var_1 = de_queue.pop()
         tainted_7 = var_1.get_var_1()
         return tainted_7

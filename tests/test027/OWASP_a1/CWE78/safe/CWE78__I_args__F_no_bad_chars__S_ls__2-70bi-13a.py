@@ -28,9 +28,11 @@ import sys
 # like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-13b.py' as module_1
 import importlib.machinery
 import importlib.util
+import os
 import pathlib
-path_to_parent = str(pathlib.Path(__file__).parent) + '/' # SKIMP use os.path.join()
-loader = importlib.machinery.SourceFileLoader('SFL', path_to_parent+'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-13b.py')
+path_to_parent = str(pathlib.Path(__file__).parent)
+loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
+                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-13b.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
 module_1 = importlib.util.module_from_spec(spec)
 loader.exec_module(module_1)

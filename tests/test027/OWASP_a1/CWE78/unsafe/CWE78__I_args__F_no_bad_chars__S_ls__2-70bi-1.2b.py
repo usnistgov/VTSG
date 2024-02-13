@@ -21,9 +21,11 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import re
-
 import collections
+import random
+import re
+import string
+
 
 class Class_2:
     def __init__(self, tainted_4_2):
@@ -34,6 +36,7 @@ class Class_2:
         de_queue = collections.deque()
         de_queue.append(self.var_2)
         tainted_4 = de_queue.pop()
+        tainted_5 = tainted_4
 
         # use Python random and string to test imports.  Both tests are False
         # so they are evaluated, but don't affect the value of the condition.

@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Mon Feb 12 10:53:11 2024" *by "Paul E. Black"
+ *modified "Mon Feb 12 17:22:27 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -52,6 +52,8 @@ class TestCase(object):
                 complexities to wrap the filter in.
 
             **_executed** (bool): True if the final placeholder code will be executed
+
+            **_main_file_name** (str): The name to be used for the main (or only) file
        """
 
     def __init__(self, generator, input, complexity_list, filter, sink, exec_query):
@@ -240,6 +242,18 @@ class TestCase(object):
         # LICENCE
         license_content = self.generator.license
 
+        ### generate the name(s) of the file(s) where the final code goes
+        # create main file name
+        file_name_suffix = ''
+        if len(self.classes_code) > 0:
+            file_name_suffix = 'a'
+        self._main_file_name = self.generate_file_name(file_name_suffix)
+        #print(self._main_file_name) # DEBUG
+        # create names for any auxiliary (e.g. class) files
+        for i, cl in enumerate(self.classes_code):
+            file_name_suffix = chr(ord('a') + 1 + i)
+            self.classes_code[i]['file_name'] = self.generate_file_name(file_name_suffix)
+
         # IMPORTS
         # compose any imports used in input, filter, and sink
         imports_content = set(self.sink.imports).union(file_template.imports)
@@ -247,12 +261,10 @@ class TestCase(object):
             imports_content = imports_content.union(self.input.imports,
                                                     self.filter.imports)
 
-        body_file = self.generate_file_name('b') # SKIMP get the suffix of the
-						        # SUBORDINATE file
-
         # add any imports from complexities or conditions
         for complex_samp in self.complexity_list:
             # macro expand any import of {{body_file}}
+            body_file = self.generate_file_name('b') # SKIMP get the file name from classes_code
             complexity_imports = [macro_expand(an_import,
 						body_file="{{body_file}}=" + body_file)
 						for an_import in complex_samp.imports]
@@ -270,20 +282,23 @@ class TestCase(object):
         # Change any {{body_file}}=file_name "import" into Python code that
         # imports files with any name.
         import re
+        call_name = 'module_1' # SKIMP get the call name from classes_code
         edited_imports_code = ""
         for line in imports_code.splitlines(True):
             line_mo = re.search("{{body_file}}=(\S+)", line)
             if line_mo:
                 body_file_name = line_mo.group(1) # the file name
-                edited_imports_code += f"""# like import '{body_file_name}' as module_1
+                edited_imports_code += f"""# like import '{body_file_name}' as {call_name}
 import importlib.machinery
 import importlib.util
+import os
 import pathlib
-path_to_parent = str(pathlib.Path(__file__).parent) + '/' # SKIMP use os.path.join()
-loader = importlib.machinery.SourceFileLoader('SFL', path_to_parent+'{body_file_name}')
+path_to_parent = str(pathlib.Path(__file__).parent)
+loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
+                                '{body_file_name}'))
 spec = importlib.util.spec_from_loader('SFL', loader)
-module_1 = importlib.util.module_from_spec(spec)
-loader.exec_module(module_1)
+{call_name} = importlib.util.module_from_spec(spec)
+loader.exec_module({call_name})
 """
             else:
                 edited_imports_code += line
@@ -358,10 +373,7 @@ loader.exec_module(module_1)
         flaw = self.sink.flaw_type
         files_path = []
         # Create main file
-        file_name_suffix = ""
-        if len(self.classes_code) > 0:
-            file_name_suffix = "a"
-        main_filename = self.generate_file_name(file_name_suffix)
+        main_filename = self._main_file_name
         filemanager = FileManager(main_filename, self.generator.dir_name,
                                   flaw_group,
                                   flaw,
@@ -380,8 +392,7 @@ loader.exec_module(module_1)
 
         # Create any additional auxiliary (e.g. class) files
         for i, cl in enumerate(self.classes_code):
-            file_name_suffix = chr(ord("a") + 1 + i)
-            filename = self.generate_file_name(file_name_suffix)
+            filename = cl['file_name']
             filemanager = FileManager(filename, self.generator.dir_name,
                                       flaw_group,
                                       flaw,
