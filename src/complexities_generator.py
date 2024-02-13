@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Mon Feb 12 11:09:56 2024" *by "Paul E. Black"
+ *modified "Tue Feb 13 13:44:43 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -190,8 +190,8 @@ class ComplexitiesGenerator(object):
 
                 **filtering** (:class:`.FilterSample`): filter.
 
-                **complexities** (list of dict): list of dict with complexities, \
-                                  type (function or class) and local var for composition.
+                **complexities** (List of :class:`.ComplexityInstance`): list of
+                                  complexity instances.
 
                 **id_var_in** (int): ID for intern variables used in composition of complexities (in).
 
