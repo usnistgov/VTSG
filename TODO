@@ -1,8 +1,15 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu Feb  8 14:19:01 2024" *by "Paul E. Black"
+ *modified "Tue Feb 13 09:27:51 2024" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
+
+13 February 2024
+
+Allow a function body to be in another file.  Currently only class (definitions) are
+in other files.
+    Make sure VTSG can generate code where a class definition is in the SAME file.
+
 
 8 February 2024
 
