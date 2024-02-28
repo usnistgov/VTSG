@@ -1,8 +1,17 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Feb 13 09:27:51 2024" *by "Paul E. Black"
+ *modified "Mon Feb 26 15:29:22 2024" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
+
+26 February 2024
+
+In complexities_generator.py (and test_case.py that uses it) keep ALL code and stuff
+in the list of class codes, instead of treating the main code special and putting any
+auxiliary stuff in class codes.  I mean, the "main code" is generated as index 0 of
+classes_code around line 435:
+        filtering_code = self.complexities[0].code
+
 
 13 February 2024
 
