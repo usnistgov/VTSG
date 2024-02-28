@@ -26,15 +26,17 @@ import collections
 import os
 import re
 import sys
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70cic.py' as module_1
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70cic.py' as module70ci
 import importlib.machinery
 import importlib.util
+import os
 import pathlib
-path_to_parent = str(pathlib.Path(__file__).parent) + '/' # SKIMP use os.path.join()
-loader = importlib.machinery.SourceFileLoader('SFL', path_to_parent+'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70cic.py')
+path_to_parent = str(pathlib.Path(__file__).parent)
+loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
+                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70cic.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
-module_1 = importlib.util.module_from_spec(spec)
-loader.exec_module(module_1)
+module70ci = importlib.util.module_from_spec(spec)
+loader.exec_module(module70ci)
 
 
 def main():
@@ -43,7 +45,7 @@ def main():
 
     # use Python collections to test imports
     de_queue = collections.deque()
-    de_queue.append(module_1.Class_2(tainted_0))
+    de_queue.append(module70ci.Class_2(tainted_0))
     var_2 = de_queue.pop()
     tainted_9 = var_2.get_var_2()
 

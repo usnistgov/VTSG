@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Tue Feb 13 13:44:43 2024" *by "Paul E. Black"
+ *modified "Wed Feb 28 09:06:41 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -14,14 +14,13 @@ class ComplexityInstance(object):
     """
     Complexity Instance class
         Args:
-            **_code** (str): The code for this instance.  This is refined during
-                compliation.
+            **_code** (str): The initial code for this instance.
 
             **_name** (str): The code name of the function or class,
                 e.g. 'function_3' or 'Class_1'.
 
             **complexity_type** (str): Complexity type; from ComplexitySample _type,
-                'class_traversal', or 'function_traversal'.  None if not initialized.
+                or 'class_traversal' or 'function_traversal'.  None if not initialized.
 
         Attributes:
             **_code** (str): The code for this instance.  This is refined during
@@ -31,11 +30,12 @@ class ComplexityInstance(object):
                 e.g. 'function_3' or 'Class_1'.
 
             **_type** (str): Complexity type; either from ComplexitySample _type,
-                'class_traversal', or 'function_traversal'.  None if not initialized.
+                or 'class_traversal' or 'function_traversal'.  None if not initialized.
 
-            **_local_declarations** (dict of {str (type), set of str (var)}):
-                Programming language data types, e.g. 'int' or 'string', and a set of
-                variables to be declared of that type, e.g. 'tainted_11' or '$tainted_2'.
+            **_local_declarations** (dict of {str (type), set of str (var)}): local
+                variables to be declared.  Specifically, programming language data
+                types, e.g. 'int' or 'string', and a set of variables of that type to
+                be declared, e.g. 'tainted_11' or '$tainted_2'.
 
             **_imports** (set of str): things that need to be imported, e.g. "re",
                 "math", or "random".  This may include things needed for complexities
@@ -90,7 +90,7 @@ class ComplexityInstance(object):
     @property
     def complexity_type(self):
         """
-        The complexity type; from ComplexitySample _type, 'class_traversal', or
+        The complexity type; from ComplexitySample _type, or 'class_traversal' or
        'function_traversal'.  None if not initialized.
 
         :getter: Return the complexity type.
@@ -112,8 +112,8 @@ class ComplexityInstance(object):
     def local_decls(self):
         """
         Variables to be declared.  Specifically, the programming language types used,
-        e.g. 'int' or 'string', are keys that have a set of variables of that type,
-        e.g. 'tainted_11' or '$tainted_2'.
+        e.g. 'int' or 'string', are keys that have a set of variables of that type to
+        be declared, e.g. 'tainted_11' or '$tainted_2'.
 
         :getter: Return the local declarations
         :type: dict of {str (data type), set of str (var)}
@@ -310,7 +310,6 @@ class ComplexitiesGenerator(object):
 
         # handle complexities from innermost one first
         for c in reversed(self.complexities_array):
-
             # save imports for nesting in outer body
             complexity_imports = c.imports # SKIMP - expand {{body_file}}?
             imports_content = set(c.cond_imports).union(complexity_imports)
@@ -350,7 +349,7 @@ class ComplexitiesGenerator(object):
                 # add out_var
                 self.id_var_out += 1
                 out_var = self.new_variable(self.output_type, self.id_var_out)
-                # change type of current complexities
+                # change type of current complexities, if necessary
                 self.complexities[0].set_complexity_type(c.type)
                 if c.type == "class":
                     self.complexities[0].set_complexity_type("class_traversal")
@@ -360,10 +359,11 @@ class ComplexitiesGenerator(object):
                 elif c.type == "function":
                     self.complexities[0].set_complexity_type("function_traversal")
                 self.complexities[0].set_name(call_name)
-                # ###################################
-                # start a new stack of complexities #
-                #####################################
-                # code goes in another file, so start new dict for the next complexity
+
+                #########################################################################
+                # The above code-and-stuff ultimately goes in an auxiliary file, so
+                # start a new entry for the "main" code that goes in the "main" file.
+                # Note: a subsequent loop may put *this* in an auxiliary file.
                 self.complexities.insert(0, ComplexityInstance(c.code))
                 t = Template(c.code, undefined=DebugUndefined)
                 self.complexities[0].set_code(
@@ -402,10 +402,12 @@ class ComplexitiesGenerator(object):
                 # add a new class code when we have a traversal class
                 imports_content = self.template.generate_imports(
                                                 c.imports.union(self.filtering.imports))
-                classes_code.append({'code': Template(c.code, undefined=DebugUndefined).render(static_methods=functions_code, stdlib_imports=imports_content), 'name': c.name})
+                classes_code.append({'code': Template(c.code, undefined=DebugUndefined).render(static_methods=functions_code, stdlib_imports=imports_content),
+                                     'name': c.name})
                 functions_code = ""
             elif c.complexity_type == "class":
-                classes_code.append({'code': c.code, 'name': c.name})
+                classes_code.append({'code': c.code,
+                                     'name': c.name})
             elif c.complexity_type == "function_traversal":
                 functions_code += Template(c.code, undefined=DebugUndefined).render(static_methods=functions_code)
             elif c.complexity_type == "function":

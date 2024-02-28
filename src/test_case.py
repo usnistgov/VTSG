@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Mon Feb 12 17:22:27 2024" *by "Paul E. Black"
+ *modified "Wed Feb 28 09:14:26 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -153,7 +153,7 @@ class TestCase(object):
 
         self.classes_code = []
         if self.sink.input_type != "none":
-            # Create a ComplexitiesGenerator to compose complexities.  This also has
+            # Create a ComplexitiesGenerator to compose complexities.  This also creates
             # input and output variable names.
             compl_gen = ComplexitiesGenerator(
 			    complexities_array=self.complexity_list,
@@ -166,9 +166,7 @@ class TestCase(object):
             self.classes_code = compl_gen.compose()
 
             # import the new template that contains complexities
-            # expand any {{body_file}} macro
-            # SKIMP - figure out the module number from other stuff
-            self.template_code = macro_expand(compl_gen.get_template, body_file='module_1')
+            self.template_code = compl_gen.get_template
         else:
             self.template_code = self.generator.file_template.code
 
@@ -248,7 +246,6 @@ class TestCase(object):
         if len(self.classes_code) > 0:
             file_name_suffix = 'a'
         self._main_file_name = self.generate_file_name(file_name_suffix)
-        #print(self._main_file_name) # DEBUG
         # create names for any auxiliary (e.g. class) files
         for i, cl in enumerate(self.classes_code):
             file_name_suffix = chr(ord('a') + 1 + i)
@@ -262,12 +259,17 @@ class TestCase(object):
                                                     self.filter.imports)
 
         # add any imports from complexities or conditions
+        # USING COMPLEXITY_LIST IS PROBABLY THE WRONG WAY TO DO THIS
         for complex_samp in self.complexity_list:
-            # macro expand any import of {{body_file}}
-            body_file = self.generate_file_name('b') # SKIMP get the file name from classes_code
-            complexity_imports = [macro_expand(an_import,
+            if len(self.classes_code) > 0:
+                # add the name of the file to be imported to any 'import {{body_file}}'
+                # Specifically, replace "{{body_file}}" with "{{body_file}}=file name"
+                body_file = self.classes_code[-1]['file_name'] # import the last file
+                complexity_imports = [macro_expand(an_import,
 						body_file="{{body_file}}=" + body_file)
 						for an_import in complex_samp.imports]
+            else:
+                complexity_imports = complex_samp.imports
             imports_content = imports_content.union(complex_samp.cond_imports,
                                                     complexity_imports)
 
@@ -278,31 +280,8 @@ class TestCase(object):
         # create source code with imports
         imports_code = file_template.generate_imports(imports_content)
 
-        ####################### Specific Code for Python #######################
-        # Change any {{body_file}}=file_name "import" into Python code that
-        # imports files with any name.
-        import re
-        call_name = 'module_1' # SKIMP get the call name from classes_code
-        edited_imports_code = ""
-        for line in imports_code.splitlines(True):
-            line_mo = re.search("{{body_file}}=(\S+)", line)
-            if line_mo:
-                body_file_name = line_mo.group(1) # the file name
-                edited_imports_code += f"""# like import '{body_file_name}' as {call_name}
-import importlib.machinery
-import importlib.util
-import os
-import pathlib
-path_to_parent = str(pathlib.Path(__file__).parent)
-loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
-                                '{body_file_name}'))
-spec = importlib.util.spec_from_loader('SFL', loader)
-{call_name} = importlib.util.module_from_spec(spec)
-loader.exec_module({call_name})
-"""
-            else:
-                edited_imports_code += line
-        imports_code = edited_imports_code
+        # replace any {{body_file}}=... code with code that works in Python
+        imports_code = self.splice_python_import(imports_code)
 
         # comments at the beginning of the code that document which modules were used
         comments_code = ''
@@ -333,10 +312,49 @@ loader.exec_module({call_name})
         # include filter into good code chunk on complexities
         # TODO improve this with preselected class
         for i, cl in enumerate(self.classes_code):
-            aux_file_content = Template(cl['code']).render(license=license_content,
+            body_file = self.classes_code[i-1]['file_name']
+            code = macro_expand(cl['code'],
+				body_file="{{body_file}}=" + body_file)
+            template = Template(self.splice_python_import(code))
+            aux_file_content = template.render(license=license_content,
                                                            comments=comments_code,
                                                            filtering_content=filter_code)
             self.classes_code[i]['code'] = fix_indents(aux_file_content, file_template.indent)
+
+
+    @staticmethod
+    def splice_python_import(code):
+        """
+        Change any {{body_file}}=file_name "import" into Python code that imports
+        files with any name.  VTSG creates file names that cannot be imported with
+        the built-in "import" statement.  This splices in code that works for any
+        file name.
+        """
+
+        import re
+        edited_code = ""
+
+        for line in code.splitlines(True):
+            line_mo = re.search("{{body_file}}=(\S+)\s+as\s+(\S+)", line) #
+            if line_mo:
+                body_file_name = line_mo.group(1) # the file name
+                imported_name  = line_mo.group(2) # the namespace
+                edited_code += f"""# like import '{body_file_name}' as {imported_name}
+import importlib.machinery
+import importlib.util
+import os
+import pathlib
+path_to_parent = str(pathlib.Path(__file__).parent)
+loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
+                                '{body_file_name}'))
+spec = importlib.util.spec_from_loader('SFL', loader)
+{imported_name} = importlib.util.module_from_spec(spec)
+loader.exec_module({imported_name})
+"""
+            else:
+                edited_code += line
+
+        return edited_code
 
 
     @staticmethod
@@ -368,39 +386,37 @@ loader.exec_module({call_name})
         Write the source code file(s) for this test case.  Add appropriate entries to
         the manifest.
         """
+        import os # for os.path.join()
 
         flaw_group = self.sink.flaw_group
         flaw = self.sink.flaw_type
+
         files_path = []
-        # Create main file
-        main_filename = self._main_file_name
-        filemanager = FileManager(main_filename, self.generator.dir_name,
+
+        file_template = self.generator.file_template
+
+        def write_one_file(filename, code):
+            """
+            Write the source code for one file.  Save entry for manifest.
+            """
+            filemanager = FileManager(filename, self.generator.dir_name,
                                   flaw_group,
                                   flaw,
                                   self.is_safe_selection(),
-                                  self.code)
-        filemanager.createFile()
+                                  code)
+            filemanager.createFile()
+            full_path = os.path.join(filemanager.getPath(), filename)
+            line = 0
+            if not self.is_safe_selection():
+                line = self.find_flaw(full_path, file_template.comment['inline'])
+            files_path.append({'path': full_path, 'line': line})
 
-        # start entry for manifest
-        file_template = self.generator.file_template
-
-        full_path = filemanager.getPath() + main_filename
-        line = 0
-        if not self.is_safe_selection():
-            line = self.find_flaw(full_path, file_template.comment['inline'])
-        files_path.append({'path': full_path, 'line': line})
+        # Create main file
+        write_one_file(self._main_file_name, self.code)
 
         # Create any additional auxiliary (e.g. class) files
-        for i, cl in enumerate(self.classes_code):
-            filename = cl['file_name']
-            filemanager = FileManager(filename, self.generator.dir_name,
-                                      flaw_group,
-                                      flaw,
-                                      self.is_safe_selection(),
-                                      cl['code'])
-            filemanager.createFile()
-            full_path = filemanager.getPath() + filename
-            files_path.append({'path': full_path, 'line': 0})
+        for cl in self.classes_code:
+            write_one_file(cl['file_name'], cl['code'])
 
         # update manifest
         input_type = "None : None"

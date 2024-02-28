@@ -25,7 +25,7 @@ William Mentzer willmentzer20@gmail.com
 import os
 import re
 import sys
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bic.py' as module_1
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bic.py' as module70bi
 import importlib.machinery
 import importlib.util
 import os
@@ -34,15 +34,15 @@ path_to_parent = str(pathlib.Path(__file__).parent)
 loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
                                 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bic.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
-module_1 = importlib.util.module_from_spec(spec)
-loader.exec_module(module_1)
+module70bi = importlib.util.module_from_spec(spec)
+loader.exec_module(module70bi)
 
 
 def main():
     tainted_0 = sys.argv[1]
     tainted_9 = tainted_0
 
-    var_2 = module_1.Class_2(tainted_0)
+    var_2 = module70bi.Class_2(tainted_0)
     tainted_9 = var_2.get_var_2()
 
 

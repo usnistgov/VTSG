@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Wed Jan 24 07:47:36 2024" *by "Paul E. Black"
+# *modified "Tue Feb 13 16:12:16 2024" *by "Paul E. Black"
 
 default: genPython
 
@@ -266,11 +266,11 @@ testImportClass: test027
 	@echo test generate import class succeeded
 
 test027: $(VTSG_FILES)
-	python3 vtsg.py -l $(@) -r 2 -t tests/templates | tee $(@)_photo #| head -2
-	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*.py"|sort); do diff $$f $(TDIR)/$(@)/$$f;done) | tee -a $(@)_photo
+	python3 vtsg.py -l $(@) -r 2 -t tests/templates 2>&1 | tee $(@)_photo #| head -2
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*.py"|sort); do echo $$f;diff $$f $(TDIR)/$(@)/$$f;done) 2>&1 | tee -a $(@)_photo
 	# SKIMP check manifest, too
 	# execute these cases
-	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*[0-9a].py"|sort); do echo $$f; python3 $$f "-d / | echo Vulnerable: user command run"; done) 2>&1 | tee -a $(@)_photo
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*[0-9ai].py"|sort); do echo $$f; python3 $$f "-d / | echo Vulnerable: user command run"; done) 2>&1 | perl -pwe 's|TestSuite_[^/]+|TestSuite_...|' | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
 testNNN: $(VTSG_FILES) src/sarif_writer.py

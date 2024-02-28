@@ -23,7 +23,7 @@ William Mentzer willmentzer20@gmail.com
 '''
 import collections
 import re
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bib.py' as module_1
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bib.py' as module70bi
 import importlib.machinery
 import importlib.util
 import os
@@ -32,8 +32,8 @@ path_to_parent = str(pathlib.Path(__file__).parent)
 loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
                                 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bib.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
-module_1 = importlib.util.module_from_spec(spec)
-loader.exec_module(module_1)
+module70bi = importlib.util.module_from_spec(spec)
+loader.exec_module(module70bi)
 
 
 class Class_2:
@@ -46,6 +46,6 @@ class Class_2:
         de_queue.append(self.var_2)
         tainted_2 = de_queue.pop()
 
-        var_1 = module_1.Class_1(tainted_2)
+        var_1 = module70bi.Class_1(tainted_2)
         tainted_7 = var_1.get_var_1()
         return tainted_7

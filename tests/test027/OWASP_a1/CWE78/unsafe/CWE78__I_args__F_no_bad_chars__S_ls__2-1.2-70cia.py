@@ -28,7 +28,7 @@ import random
 import re
 import string
 import sys
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-70cib.py' as module_1
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-70cib.py' as module70ci
 import importlib.machinery
 import importlib.util
 import os
@@ -37,8 +37,8 @@ path_to_parent = str(pathlib.Path(__file__).parent)
 loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
                                 'CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-70cib.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
-module_1 = importlib.util.module_from_spec(spec)
-loader.exec_module(module_1)
+module70ci = importlib.util.module_from_spec(spec)
+loader.exec_module(module70ci)
 
 
 def main():
@@ -51,7 +51,7 @@ def main():
 
         # use Python collections to test imports
         de_queue = collections.deque()
-        de_queue.append(module_1.Class_1(tainted_2))
+        de_queue.append(module70ci.Class_1(tainted_2))
         var_1 = de_queue.pop()
         tainted_7 = var_1.get_var_1()
 
