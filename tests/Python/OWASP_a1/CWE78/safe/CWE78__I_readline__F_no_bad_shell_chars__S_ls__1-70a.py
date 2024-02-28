@@ -19,13 +19,24 @@ William Mentzer willmentzer20@gmail.com
 '''
 import os
 import re
+# like import 'CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-70b.py' as module70
+import importlib.machinery
+import importlib.util
+import os
+import pathlib
+path_to_parent = str(pathlib.Path(__file__).parent)
+loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
+                                'CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-70b.py'))
+spec = importlib.util.spec_from_loader('SFL', loader)
+module70 = importlib.util.module_from_spec(spec)
+loader.exec_module(module70)
 
 
 def main():
     tainted_0 = input()
     tainted_5 = tainted_0
 
-    var_1 = Class_1(tainted_0)
+    var_1 = module70.Class_1(tainted_0)
     tainted_5 = var_1.get_var_1()
 
 

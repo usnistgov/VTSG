@@ -19,13 +19,24 @@ William Mentzer willmentzer20@gmail.com
 '''
 import os
 import re
+# like import 'CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-71b.py' as module71
+import importlib.machinery
+import importlib.util
+import os
+import pathlib
+path_to_parent = str(pathlib.Path(__file__).parent)
+loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
+                                'CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-71b.py'))
+spec = importlib.util.spec_from_loader('SFL', loader)
+module71 = importlib.util.module_from_spec(spec)
+loader.exec_module(module71)
 
 
 def main():
     tainted_1 = "-d /;echo Vulnerable: user command run"
     tainted_3 = tainted_1
 
-    var_1 = Class_1(tainted_1)
+    var_1 = module71.Class_1(tainted_1)
     tainted_2 = var_1.get_var_1()
 
     # remove ||, &&, ;, &, and |

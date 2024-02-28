@@ -111,11 +111,11 @@ Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_arg__F_nonneg__S_index__1-7.8.py
 Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_arg__F_nonneg__S_index__1-70a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_arg__F_nonneg__S_index__1-71a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_arg__F_nonneg__S_index__1-72a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_env__F_nonneg__S_index__0.py
 Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_env__F_nonneg__S_index__1-1.1.py
@@ -229,11 +229,11 @@ Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_env__F_nonneg__S_index__1-7.8.py
 Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_env__F_nonneg__S_index__1-70a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_env__F_nonneg__S_index__1-71a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_env__F_nonneg__S_index__1-72a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_file__F_nonneg__S_index__0.py
 Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_file__F_nonneg__S_index__1-1.1.py
@@ -347,11 +347,11 @@ Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_file__F_nonneg__S_index__1-7.8.py
 Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_file__F_nonneg__S_index__1-70a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_file__F_nonneg__S_index__1-71a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_file__F_nonneg__S_index__1-72a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_hardcoded_integer__F_none__S_index__0.py
 0
 Done
@@ -710,11 +710,14 @@ Done
 0
 Done
 ./Exception/CWE129/safe/CWE129__I_hardcoded_integer__F_nonneg__S_index__1-70a.py
-Class case - do not execute
+0
+Done
 ./Exception/CWE129/safe/CWE129__I_hardcoded_integer__F_nonneg__S_index__1-71a.py
-Class case - do not execute
+0
+Done
 ./Exception/CWE129/safe/CWE129__I_hardcoded_integer__F_nonneg__S_index__1-72a.py
-Class case - do not execute
+0
+Done
 ./Exception/CWE129/safe/CWE129__I_hardcoded_integer__F_nonneg__S_index__1-8.1.py
 0
 Done
@@ -864,11 +867,11 @@ Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_readline__F_nonneg__S_index__1-7.8.py
 Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_readline__F_nonneg__S_index__1-70a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_readline__F_nonneg__S_index__1-71a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/safe/CWE129__I_readline__F_nonneg__S_index__1-72a.py
-Class case - do not execute
+Negative input not allowed
 ./Exception/CWE129/unsafe/CWE129__I_arg__F_none__S_index__0.py
 Traceback (most recent call last):
   ...TestSuite_.../Python/./Exception/CWE129/unsafe/CWE129__I_arg__F_none__S_index__0.py", line 51, in <module>
@@ -3382,11 +3385,11 @@ Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_arg__F_nonzero__S_div_zero__1-7.8.py
 Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_arg__F_nonzero__S_div_zero__1-70a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_arg__F_nonzero__S_div_zero__1-71a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_arg__F_nonzero__S_div_zero__1-72a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_env__F_nonzero__S_div_zero__0.py
 Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_env__F_nonzero__S_div_zero__1-1.1.py
@@ -3500,11 +3503,11 @@ Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_env__F_nonzero__S_div_zero__1-7.8.py
 Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_env__F_nonzero__S_div_zero__1-70a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_env__F_nonzero__S_div_zero__1-71a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_env__F_nonzero__S_div_zero__1-72a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_file__F_nonzero__S_div_zero__0.py
 Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_file__F_nonzero__S_div_zero__1-1.1.py
@@ -3618,11 +3621,11 @@ Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_file__F_nonzero__S_div_zero__1-7.8.py
 Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_file__F_nonzero__S_div_zero__1-70a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_file__F_nonzero__S_div_zero__1-71a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_file__F_nonzero__S_div_zero__1-72a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_hardcoded_integer__F_nonzero__S_div_zero__0.py
 Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_hardcoded_integer__F_nonzero__S_div_zero__1-1.1.py
@@ -3736,11 +3739,11 @@ Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_hardcoded_integer__F_nonzero__S_div_zero__1-7.8.py
 Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_hardcoded_integer__F_nonzero__S_div_zero__1-70a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_hardcoded_integer__F_nonzero__S_div_zero__1-71a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_hardcoded_integer__F_nonzero__S_div_zero__1-72a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_readline__F_nonzero__S_div_zero__0.py
 Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_readline__F_nonzero__S_div_zero__1-1.1.py
@@ -3854,11 +3857,11 @@ Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_readline__F_nonzero__S_div_zero__1-7.8.py
 Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_readline__F_nonzero__S_div_zero__1-70a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_readline__F_nonzero__S_div_zero__1-71a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/safe/CWE369__I_readline__F_nonzero__S_div_zero__1-72a.py
-Class case - do not execute
+Zero input not allowed
 ./Exception/CWE369/unsafe/CWE369__I_arg__F_none__S_div_zero__0.py
 Traceback (most recent call last):
   ...TestSuite_.../Python/./Exception/CWE369/unsafe/CWE369__I_arg__F_none__S_div_zero__0.py", line 42, in <module>
@@ -6972,11 +6975,11 @@ Bad value
 ./Exception/KK/safe/KK__I_arg__F_ok__S_Kinputs__1-7.8.py
 Bad value
 ./Exception/KK/safe/KK__I_arg__F_ok__S_Kinputs__1-70a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_arg__F_ok__S_Kinputs__1-71a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_arg__F_ok__S_Kinputs__1-72a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_env__F_ok__S_Kinputs__0.py
 Bad value
 ./Exception/KK/safe/KK__I_env__F_ok__S_Kinputs__1-1.1.py
@@ -7090,11 +7093,11 @@ Bad value
 ./Exception/KK/safe/KK__I_env__F_ok__S_Kinputs__1-7.8.py
 Bad value
 ./Exception/KK/safe/KK__I_env__F_ok__S_Kinputs__1-70a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_env__F_ok__S_Kinputs__1-71a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_env__F_ok__S_Kinputs__1-72a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_file__F_ok__S_Kinputs__0.py
 Bad value
 ./Exception/KK/safe/KK__I_file__F_ok__S_Kinputs__1-1.1.py
@@ -7208,11 +7211,11 @@ Bad value
 ./Exception/KK/safe/KK__I_file__F_ok__S_Kinputs__1-7.8.py
 Bad value
 ./Exception/KK/safe/KK__I_file__F_ok__S_Kinputs__1-70a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_file__F_ok__S_Kinputs__1-71a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_file__F_ok__S_Kinputs__1-72a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_min__S_Kinputs__0.py
 ['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_min__S_Kinputs__1-1.1.py
@@ -7450,11 +7453,11 @@ Class case - do not execute
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_min__S_Kinputs__1-7.8.py
 ['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_min__S_Kinputs__1-70a.py
-Class case - do not execute
+['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_min__S_Kinputs__1-71a.py
-Class case - do not execute
+['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_min__S_Kinputs__1-72a.py
-Class case - do not execute
+['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_min__S_Kinputs__1-8.1.py
 ['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_min__S_Kinputs__1-8.2.py
@@ -7718,11 +7721,11 @@ Class case - do not execute
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_ok__S_Kinputs__1-7.8.py
 ['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_ok__S_Kinputs__1-70a.py
-Class case - do not execute
+['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_ok__S_Kinputs__1-71a.py
-Class case - do not execute
+['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_ok__S_Kinputs__1-72a.py
-Class case - do not execute
+['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_ok__S_Kinputs__1-8.1.py
 ['A', 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ./Exception/KK/safe/KK__I_hardcoded_integer__F_ok__S_Kinputs__1-8.2.py
@@ -7934,11 +7937,11 @@ Bad value
 ./Exception/KK/safe/KK__I_readline__F_ok__S_Kinputs__1-7.8.py
 Bad value
 ./Exception/KK/safe/KK__I_readline__F_ok__S_Kinputs__1-70a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_readline__F_ok__S_Kinputs__1-71a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/safe/KK__I_readline__F_ok__S_Kinputs__1-72a.py
-Class case - do not execute
+Bad value
 ./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__0.py
 Traceback (most recent call last):
   ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__0.py", line 46, in <module>
@@ -8884,11 +8887,29 @@ Traceback (most recent call last):
     ~~~^^^^^^^^^^^
 IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-70a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-70a.py", line 54, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-70a.py", line 49, in main
+    buf[tainted_5] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-71a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-71a.py", line 60, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-71a.py", line 55, in main
+    buf[tainted_3] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-72a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-72a.py", line 60, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-72a.py", line 55, in main
+    buf[tainted_4] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-8.1.py
 Traceback (most recent call last):
   ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_arg__F_min__S_Kinputs__1-8.1.py", line 52, in <module>
@@ -10530,11 +10551,29 @@ Traceback (most recent call last):
     ~~~^^^^^^^^^^^
 IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-70a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-70a.py", line 55, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-70a.py", line 50, in main
+    buf[tainted_5] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-71a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-71a.py", line 61, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-71a.py", line 56, in main
+    buf[tainted_3] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-72a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-72a.py", line 61, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-72a.py", line 56, in main
+    buf[tainted_4] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-8.1.py
 Traceback (most recent call last):
   ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-8.1.py", line 53, in <module>
@@ -12176,11 +12215,29 @@ Traceback (most recent call last):
     ~~~^^^^^^^^^^^
 IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-70a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-70a.py", line 55, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-70a.py", line 50, in main
+    buf[tainted_5] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-71a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-71a.py", line 61, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-71a.py", line 56, in main
+    buf[tainted_3] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-72a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-72a.py", line 61, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-72a.py", line 56, in main
+    buf[tainted_4] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-8.1.py
 Traceback (most recent call last):
   ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-8.1.py", line 53, in <module>
@@ -14137,11 +14194,29 @@ Traceback (most recent call last):
     ~~~^^^^^^^^^^^
 IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-70a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-70a.py", line 54, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-70a.py", line 49, in main
+    buf[tainted_5] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-71a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-71a.py", line 60, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-71a.py", line 55, in main
+    buf[tainted_3] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-72a.py
-Class case - do not execute
+Traceback (most recent call last):
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-72a.py", line 60, in <module>
+    main()
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-72a.py", line 55, in main
+    buf[tainted_4] = 'A'
+    ~~~^^^^^^^^^^^
+IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-8.1.py
 Traceback (most recent call last):
   ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-8.1.py", line 52, in <module>
@@ -15175,11 +15250,23 @@ ls: command: No such file or directory
 ls: run: No such file or directory
 ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-70a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-71a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-72a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__0.py
 ls: /echo: No such file or directory
 ls: Vulnerable:: No such file or directory
@@ -15517,11 +15604,23 @@ ls: command: No such file or directory
 ls: run: No such file or directory
 ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-70a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-71a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_env__F_no_bad_shell_chars__S_ls__1-72a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__0.py
 ls: /echo: No such file or directory
 ls: Vulnerable:: No such file or directory
@@ -15859,11 +15958,23 @@ ls: command: No such file or directory
 ls: run: No such file or directory
 ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-70a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-71a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_hardcoded_string__F_no_bad_shell_chars__S_ls__1-72a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__0.py
 ls: /echo: No such file or directory
 ls: Vulnerable:: No such file or directory
@@ -16201,11 +16312,23 @@ ls: command: No such file or directory
 ls: run: No such file or directory
 ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-70a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-71a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/safe/CWE78__I_readline__F_no_bad_shell_chars__S_ls__1-72a.py
-Class case - do not execute
+ls: /echo: No such file or directory
+ls: Vulnerable:: No such file or directory
+ls: command: No such file or directory
+ls: run: No such file or directory
+ls: user: No such file or directory
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_shell_chars__S_ls__1-1.2.py
 /
 Vulnerable: user command run
@@ -17740,11 +17863,14 @@ Finished
 added . to Python module search path
 Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_console_input__S_ext_sys_ctl__1-70a.py
-Class case - do not execute
+added . to Python module search path
+Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_console_input__S_ext_sys_ctl__1-71a.py
-Class case - do not execute
+added . to Python module search path
+Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_console_input__S_ext_sys_ctl__1-72a.py
-Class case - do not execute
+added . to Python module search path
+Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_env__S_ext_sys_ctl__0.py
 added . to Python module search path
 Finished
@@ -17918,11 +18044,14 @@ Finished
 added . to Python module search path
 Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_env__S_ext_sys_ctl__1-70a.py
-Class case - do not execute
+added . to Python module search path
+Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_env__S_ext_sys_ctl__1-71a.py
-Class case - do not execute
+added . to Python module search path
+Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_env__S_ext_sys_ctl__1-72a.py
-Class case - do not execute
+added . to Python module search path
+Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_file__S_ext_sys_ctl__0.py
 added . to Python module search path
 Finished
@@ -18096,11 +18225,14 @@ Finished
 added . to Python module search path
 Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_file__S_ext_sys_ctl__1-70a.py
-Class case - do not execute
+added . to Python module search path
+Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_file__S_ext_sys_ctl__1-71a.py
-Class case - do not execute
+added . to Python module search path
+Finished
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_file__S_ext_sys_ctl__1-72a.py
-Class case - do not execute
+added . to Python module search path
+Finished
 ./Other/CWE23/safe/CWE23__I_InitNone__F_console_input__S_rel_path_trav__1-1.2.py
 Done
 ./Other/CWE23/safe/CWE23__I_InitNone__F_console_input__S_rel_path_trav__1-1.2v.py
@@ -18718,11 +18850,14 @@ Done
 ##
 Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_console_input__S_rel_path_trav__1-70a.py
-Class case - do not execute
+##
+Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_console_input__S_rel_path_trav__1-71a.py
-Class case - do not execute
+##
+Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_console_input__S_rel_path_trav__1-72a.py
-Class case - do not execute
+##
+Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_env__S_rel_path_trav__0.py
 ##
 Done
@@ -18896,11 +19031,14 @@ Done
 ##
 Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_env__S_rel_path_trav__1-70a.py
-Class case - do not execute
+##
+Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_env__S_rel_path_trav__1-71a.py
-Class case - do not execute
+##
+Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_env__S_rel_path_trav__1-72a.py
-Class case - do not execute
+##
+Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_file__S_rel_path_trav__0.py
 ##
 Done
@@ -19074,11 +19212,14 @@ Done
 ##
 Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_file__S_rel_path_trav__1-70a.py
-Class case - do not execute
+##
+Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_file__S_rel_path_trav__1-71a.py
-Class case - do not execute
+##
+Done
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_file__S_rel_path_trav__1-72a.py
-Class case - do not execute
+##
+Done
 ./Other/CWE606/safe/CWE606__I_args__F_none__S_unchecked_loopG__0.py
 ./Other/CWE606/safe/CWE606__I_env__F_none__S_unchecked_loopG__0.py
 ./Other/CWE606/safe/CWE606__I_hardcoded_string__F_none__S_unchecked_loopB__0.py

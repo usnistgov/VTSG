@@ -21,6 +21,17 @@ William Mentzer willmentzer20@gmail.com
 
 '''
 import sys
+# like import 'CWE15__I_InitNone__F_file__S_ext_sys_ctl__1-72b.py' as module72
+import importlib.machinery
+import importlib.util
+import os
+import pathlib
+path_to_parent = str(pathlib.Path(__file__).parent)
+loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
+                                'CWE15__I_InitNone__F_file__S_ext_sys_ctl__1-72b.py'))
+spec = importlib.util.spec_from_loader('SFL', loader)
+module72 = importlib.util.module_from_spec(spec)
+loader.exec_module(module72)
 
 
 def main():
@@ -34,7 +45,7 @@ def main():
     with open('data.txt', 'r') as f:
         tainted_3 = f.readline().rstrip() # read one line, remove newline
 
-    var_1 = Class_1(tainted_3)
+    var_1 = module72.Class_1(tainted_3)
     tainted_4 = var_1.get_var_1()
 
     if tainted_4 is not None:

@@ -18,6 +18,17 @@ William Mentzer willmentzer20@gmail.com
 
 '''
 import sys
+# like import 'CWE369__I_readline__F_nonzero__S_div_zero__1-72b.py' as module72
+import importlib.machinery
+import importlib.util
+import os
+import pathlib
+path_to_parent = str(pathlib.Path(__file__).parent)
+loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
+                                'CWE369__I_readline__F_nonzero__S_div_zero__1-72b.py'))
+spec = importlib.util.spec_from_loader('SFL', loader)
+module72 = importlib.util.module_from_spec(spec)
+loader.exec_module(module72)
 
 
 def main():
@@ -34,7 +45,7 @@ def main():
         sys.exit("Zero input not allowed")
     tainted_3 = tainted_2
 
-    var_1 = Class_1(tainted_3)
+    var_1 = module72.Class_1(tainted_3)
     tainted_4 = var_1.get_var_1()
 
     user_input = tainted_4

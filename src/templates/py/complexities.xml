@@ -1,6 +1,6 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
-<!-- *modified "Thu Feb  8 10:50:08 2024" *by "Paul E. Black" -->
+<!-- *modified "Wed Feb 28 12:44:00 2024" *by "Paul E. Black" -->
 <root>
     <conditions>
         <!--
@@ -445,8 +445,11 @@ DEDENT
 
         <!-- Classes -->
         <complexity id="70" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
+	    <imports>
+	      <import>{{body_file}} as module70</import>
+	    </imports>
             <code>
-        var_{{id}} = {{call_name}}({{in_var_name}})
+        var_{{id}} = module70.{{call_name}}({{in_var_name}})
         {{out_var_name}} = var_{{id}}.get_var_{{id}}()
             </code>
             <body>
@@ -480,8 +483,11 @@ DEDENT
         </complexity>
 
         <complexity id="71" type="class" group="classes" executed="1" in_out_var="in" need_id="1" indirection="1">
+	    <imports>
+	      <import>{{body_file}} as module71</import>
+	    </imports>
             <code>
-        var_{{id}} = {{call_name}}({{in_var_name}})
+        var_{{id}} = module71.{{call_name}}({{in_var_name}})
         {{out_var_name}} = var_{{id}}.get_var_{{id}}()
         {{placeholder}}
             </code>
@@ -510,9 +516,12 @@ DEDENT
         </complexity>
 
         <complexity id="72" type="class" group="classes" executed="1" in_out_var="out" need_id="1" indirection="1">
+	    <imports>
+	      <import>{{body_file}} as module72</import>
+	    </imports>
             <code>
         {{placeholder}}
-        var_{{id}} = {{call_name}}({{in_var_name}})
+        var_{{id}} = module72.{{call_name}}({{in_var_name}})
         {{out_var_name}} = var_{{id}}.get_var_{{id}}()
             </code>
             <body>
