@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Wed Feb 28 09:06:41 2024" *by "Paul E. Black"
+ *modified "Thu Feb 29 15:46:31 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -12,7 +12,7 @@ from src.synthesize_code import make_assign, get_indent
 
 class ComplexityInstance(object):
     """
-    Complexity Instance class
+    This is an instance of a complexity.
         Args:
             **_code** (str): The initial code for this instance.
 
@@ -52,7 +52,7 @@ class ComplexityInstance(object):
     @property
     def code(self):
         """
-        The code for this complexity instance.  This is refined during compliation.
+        The source code for this complexity instance.  This is refined during compliation.
 
         :getter: Return the code.
         :type: str
@@ -90,7 +90,7 @@ class ComplexityInstance(object):
     @property
     def complexity_type(self):
         """
-        The complexity type; from ComplexitySample _type, or 'class_traversal' or
+        The type of complexity; from ComplexitySample _type, or 'class_traversal' or
        'function_traversal'.  None if not initialized.
 
         :getter: Return the complexity type.
@@ -157,7 +157,7 @@ class ComplexityInstance(object):
             self.code + '\n' +
             f'{self.name=}\n' +
             f'{self.complexity_type=}\n' +
-            f'{self.local_decls=}' +
+            f'{self.local_decls=}\n' +
             f'{self.imports=}'
         )
 
@@ -233,14 +233,15 @@ class ComplexitiesGenerator(object):
             f'{self.template}\n' +
             f'in type: {self.input_type}\n' +
             f'out type: {self.output_type}\n' +
-            f'{self.filtering}\n' +
-            f'{self.complexities}\n' +
-            f'{self.id_var_in}\n' +
-            f'{self.id_var_out}\n' +
-            f'{self._in_ext_name}\n' +
-            f'{self._in_int_name}\n' +
-            f'{self._out_ext_name}\n' +
-            f'{self._out_int_name}\n'
+            f'{self.filtering}' +
+            f'{len(self.complexities)=} ' +
+            f'{[f">>>> {c}" for c in self.complexities]}\n' +
+            f'{self.id_var_in=}\n' +
+            f'{self.id_var_out=}\n' +
+            f'{self._in_ext_name=}\n' +
+            f'{self._in_int_name=}\n' +
+            f'{self._out_ext_name=}\n' +
+            f'{self._out_int_name=}\n'
         )
 
     @property
@@ -310,9 +311,8 @@ class ComplexitiesGenerator(object):
 
         # handle complexities from innermost one first
         for c in reversed(self.complexities_array):
-            # save imports for nesting in outer body
-            complexity_imports = c.imports # SKIMP - expand {{body_file}}?
-            imports_content = set(c.cond_imports).union(complexity_imports)
+            # get any imports needed for this complexity or its condition
+            imports_content = set(c.cond_imports).union(c.imports)
 
             # if the complexity has 2 parts (code and body), use body, else use code
             if c.indirection and c.in_out_var == "traversal":
@@ -322,7 +322,7 @@ class ComplexitiesGenerator(object):
 
             # if function/class generate a name
             call_name = None
-            uid = src.generator.Generator.getUID()
+            uid = src.generator.Generator.getUID() # Note: takes a UID even if not used.
             if c.type == "function":
                 call_name = f'function_{uid}'
             elif c.type == "class":
@@ -371,12 +371,9 @@ class ComplexitiesGenerator(object):
                         in_var_name=in_var, out_var_name=out_var, call_name=call_name))
             # if the placeholder is before or after the call to class/function
             elif c.indirection and (c.in_out_var == "in" or c.in_out_var == "out"):
-                if c.type == "class":
+                if c.type == "class" or c.type == "function":
                     body = Template(c.body, undefined=DebugUndefined).render(id=uid, in_var_type=self.input_type, out_var_type=self.output_type, call_name=call_name)
-                    self.complexities.insert(1, ComplexityInstance(body, complexity_type="class", name=call_name))
-                elif c.type == "function":
-                    body = Template(c.body).render(id=uid, in_var_type=self.input_type, out_var_type=self.output_type, call_name=call_name)
-                    self.complexities.insert(1, ComplexityInstance(body, complexity_type="function", name=call_name))
+                    self.complexities.insert(1, ComplexityInstance(body, complexity_type=c.type, name=call_name))
 
             # pass needed imports up to next outer complexity
             saved_imports = saved_imports.union(imports_content)
