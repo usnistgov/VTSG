@@ -25,7 +25,6 @@ William Mentzer willmentzer20@gmail.com
 import math
 import os
 import random
-import re
 import string
 import sys
 # like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-70bib.py' as module70bi

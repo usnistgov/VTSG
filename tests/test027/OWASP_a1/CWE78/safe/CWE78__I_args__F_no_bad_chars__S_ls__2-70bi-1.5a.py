@@ -22,11 +22,7 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import math
 import os
-import random
-import re
-import string
 import sys
 # like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-1.5b.py' as module70bi
 import importlib.machinery

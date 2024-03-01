@@ -22,7 +22,6 @@ William Mentzer willmentzer20@gmail.com
 
 '''
 import collections
-import re
 # like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70bib.py' as module70bi
 import importlib.machinery
 import importlib.util

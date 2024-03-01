@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Wed Feb 28 09:14:26 2024" *by "Paul E. Black"
+ *modified "Fri Mar  1 16:47:46 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -160,7 +160,7 @@ class TestCase(object):
 			    template=self.generator.file_template,
 		            input_type=self.input.output_type,
 			    output_type=self.sink.input_type,
-			    filtering=self.filter
+			    filter_module=self.filter
                         )
             # Compose the complexities.  Return code for any additional class files.
             self.classes_code = compl_gen.compose()
@@ -253,32 +253,28 @@ class TestCase(object):
 
         # IMPORTS
         # compose any imports used in input, filter, and sink
-        imports_content = set(self.sink.imports).union(file_template.imports)
+        imports_set = set(self.sink.imports).union(file_template.imports)
         if self.sink.input_type != "none":
-            imports_content = imports_content.union(self.input.imports,
-                                                    self.filter.imports)
+            imports_set = imports_set.union(self.input.imports)
 
-        # add any imports from complexities or conditions
-        # USING COMPLEXITY_LIST IS PROBABLY THE WRONG WAY TO DO THIS
-        for complex_samp in self.complexity_list:
-            if len(self.classes_code) > 0:
-                # add the name of the file to be imported to any 'import {{body_file}}'
-                # Specifically, replace "{{body_file}}" with "{{body_file}}=file name"
-                body_file = self.classes_code[-1]['file_name'] # import the last file
-                complexity_imports = [macro_expand(an_import,
+        # add any imports from complexities, conditions, etc.
+        if len(self.classes_code) > 0:
+            # add the name of the file to be imported to any 'import {{body_file}}'
+            # Specifically, replace "{{body_file}}" with "{{body_file}}=file name"
+            body_file = self.classes_code[-1]['file_name'] # import the last file
+            toplevel_imports = [macro_expand(an_import,
 						body_file="{{body_file}}=" + body_file)
-						for an_import in complex_samp.imports]
-            else:
-                complexity_imports = complex_samp.imports
-            imports_content = imports_content.union(complex_samp.cond_imports,
-                                                    complexity_imports)
+						for an_import in compl_gen.imports]
+        else:
+            toplevel_imports = compl_gen.imports
+        imports_set = imports_set.union(toplevel_imports)
 
         # add imports from exec query if it's used
         if self.exec_query:
-            imports_content = imports_content.union(self.exec_query.imports)
+            imports_set = imports_set.union(self.exec_query.imports)
 
         # create source code with imports
-        imports_code = file_template.generate_imports(imports_content)
+        imports_code = file_template.generate_imports(imports_set)
 
         # replace any {{body_file}}=... code with code that works in Python
         imports_code = self.splice_python_import(imports_code)
