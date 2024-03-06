@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Fri Mar  1 16:47:46 2024" *by "Paul E. Black"
+ *modified "Wed Mar  6 15:35:19 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -266,7 +266,10 @@ class TestCase(object):
 						body_file="{{body_file}}=" + body_file)
 						for an_import in compl_gen.imports]
         else:
-            toplevel_imports = compl_gen.imports
+            try:
+                toplevel_imports = compl_gen.imports
+            except NameError: # no compl_gen created
+                toplevel_imports = set()
         imports_set = imports_set.union(toplevel_imports)
 
         # add imports from exec query if it's used
