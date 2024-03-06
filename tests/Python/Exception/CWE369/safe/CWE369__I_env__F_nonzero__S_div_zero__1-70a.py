@@ -18,7 +18,6 @@ William Mentzer willmentzer20@gmail.com
 
 '''
 import os
-import sys
 # like import 'CWE369__I_env__F_nonzero__S_div_zero__1-70b.py' as module70
 import importlib.machinery
 import importlib.util

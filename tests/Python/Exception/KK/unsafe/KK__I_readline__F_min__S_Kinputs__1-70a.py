@@ -17,7 +17,6 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import sys
 # like import 'KK__I_readline__F_min__S_Kinputs__1-70b.py' as module70
 import importlib.machinery
 import importlib.util

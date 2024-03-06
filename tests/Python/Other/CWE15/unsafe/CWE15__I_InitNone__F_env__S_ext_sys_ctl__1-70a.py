@@ -22,7 +22,6 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import os
 import sys
 # like import 'CWE15__I_InitNone__F_env__S_ext_sys_ctl__1-70b.py' as module70
 import importlib.machinery

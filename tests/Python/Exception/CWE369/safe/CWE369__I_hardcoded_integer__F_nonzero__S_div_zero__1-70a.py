@@ -17,7 +17,6 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import sys
 # like import 'CWE369__I_hardcoded_integer__F_nonzero__S_div_zero__1-70b.py' as module70
 import importlib.machinery
 import importlib.util

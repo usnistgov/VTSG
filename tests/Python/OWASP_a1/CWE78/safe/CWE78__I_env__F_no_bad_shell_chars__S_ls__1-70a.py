@@ -18,7 +18,6 @@ William Mentzer willmentzer20@gmail.com
 
 '''
 import os
-import re
 # like import 'CWE78__I_env__F_no_bad_shell_chars__S_ls__1-70b.py' as module70
 import importlib.machinery
 import importlib.util

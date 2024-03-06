@@ -20,7 +20,6 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import sys
 # like import 'CWE129__I_hardcoded_integer__F_nonneg__S_index__1-70b.py' as module70
 import importlib.machinery
 import importlib.util
