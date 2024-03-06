@@ -10552,9 +10552,9 @@ Traceback (most recent call last):
 IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-70a.py
 Traceback (most recent call last):
-  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-70a.py", line 55, in <module>
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-70a.py", line 54, in <module>
     main()
-  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-70a.py", line 50, in main
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_env__F_min__S_Kinputs__1-70a.py", line 49, in main
     buf[tainted_5] = 'A'
     ~~~^^^^^^^^^^^
 IndexError: list assignment index out of range
@@ -12216,9 +12216,9 @@ Traceback (most recent call last):
 IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-70a.py
 Traceback (most recent call last):
-  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-70a.py", line 55, in <module>
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-70a.py", line 54, in <module>
     main()
-  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-70a.py", line 50, in main
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_file__F_min__S_Kinputs__1-70a.py", line 49, in main
     buf[tainted_5] = 'A'
     ~~~^^^^^^^^^^^
 IndexError: list assignment index out of range
@@ -14195,9 +14195,9 @@ Traceback (most recent call last):
 IndexError: list assignment index out of range
 ./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-70a.py
 Traceback (most recent call last):
-  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-70a.py", line 54, in <module>
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-70a.py", line 53, in <module>
     main()
-  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-70a.py", line 49, in main
+  ...TestSuite_.../Python/./Exception/KK/unsafe/KK__I_readline__F_min__S_Kinputs__1-70a.py", line 48, in main
     buf[tainted_5] = 'A'
     ~~~^^^^^^^^^^^
 IndexError: list assignment index out of range
@@ -17762,6 +17762,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE15/unsafe/CWE15__I_InitNone__F_console_input__S_ext_sys_ctl__1-23.py", line 41, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_console_input__S_ext_sys_ctl__1-3.2.py
 added . to Python module search path
@@ -17943,6 +17944,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE15/unsafe/CWE15__I_InitNone__F_env__S_ext_sys_ctl__1-23.py", line 42, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_env__S_ext_sys_ctl__1-3.2.py
 added . to Python module search path
@@ -18124,6 +18126,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE15/unsafe/CWE15__I_InitNone__F_file__S_ext_sys_ctl__1-23.py", line 39, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE15/unsafe/CWE15__I_InitNone__F_file__S_ext_sys_ctl__1-3.2.py
 added . to Python module search path
@@ -18749,6 +18752,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE23/unsafe/CWE23__I_InitNone__F_console_input__S_rel_path_trav__1-23.py", line 42, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_console_input__S_rel_path_trav__1-3.2.py
 ##
@@ -18930,6 +18934,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE23/unsafe/CWE23__I_InitNone__F_env__S_rel_path_trav__1-23.py", line 42, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_env__S_rel_path_trav__1-3.2.py
 ##
@@ -19111,6 +19116,7 @@ Traceback (most recent call last):
     main()
   ...TestSuite_.../Python/./Other/CWE23/unsafe/CWE23__I_InitNone__F_file__S_rel_path_trav__1-23.py", line 40, in main
     assert tainted_1 is not None, 'code only executed when tainted_1 != None'
+           ^^^^^^^^^^^^^^^^^^^^^
 AssertionError: code only executed when tainted_1 != None
 ./Other/CWE23/unsafe/CWE23__I_InitNone__F_file__S_rel_path_trav__1-3.2.py
 ##
