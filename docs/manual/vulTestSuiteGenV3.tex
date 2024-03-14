@@ -1,6 +1,6 @@
 
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Tue Mar  5 11:50:44 2024" *by "Paul E. Black"
+% *modified "Thu Mar 14 15:49:10 2024" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -911,7 +911,7 @@ See App.~\ref{sec:run csharp} for packages needed to run \CSharp\ programs.
 \label{sec:adding a new flaw}
 
 This subsection is a brief tutorial giving suggestions on how to add a new
-flaw to an existing language in VTSG.  Section~\ref{sec:add a langaguge} has
+flaw to an existing language in VTSG.  Section~\ref{sec:add a language} has
 suggestions
 on how to add a new language.  Some guidance on adding new capabilities or
 features to VTSG itself is in Sec.~\ref{sec:extending VTSG}.
@@ -1544,6 +1544,10 @@ Any case using that module will have
 sink: check if a file exists
 \end{verbatim}
 in the comments area.
+
+Comments cannot be specified for complexities or conditions.  Any complexities and
+conditions used in a test case can be determined from the name of the test case, see
+Sec.~\ref{sec:case file name}.
 
 
 \subsubsection{Needed Imports}
