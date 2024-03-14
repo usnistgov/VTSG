@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Wed Mar 13 16:38:38 2024" *by "Paul E. Black"
+ *modified "Thu Mar 14 12:20:07 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -424,7 +424,6 @@ class ComplexitiesGenerator(object):
             elif c.indirection and (c.in_out_var == "in" or c.in_out_var == "out"):
                 if c.type == "class" or c.type == "function":
                     body = Template(c.body, undefined=DebugUndefined).render(id=uid, in_var_type=self.input_type, out_var_type=self.output_type, call_name=call_name)
-                    # BUG?? INSTEAD INSERT AT END, E.G., -1???
                     self.complexities.insert(1, ComplexityInstance(body, complexity_type=c.type, name=call_name))
                     placeholder_is_executed = c.is_executed
 
@@ -466,7 +465,6 @@ class ComplexitiesGenerator(object):
                                      'name': c.name})
             elif c.complexity_type == "function_traversal":
                 functions_code += Template(c.code, undefined=DebugUndefined).render(static_methods=functions_code)
-                # Bug? set functions_code to "" here, so it isn't used again??
             elif c.complexity_type == "function":
                 functions_code += c.code + "\n\n"
 
