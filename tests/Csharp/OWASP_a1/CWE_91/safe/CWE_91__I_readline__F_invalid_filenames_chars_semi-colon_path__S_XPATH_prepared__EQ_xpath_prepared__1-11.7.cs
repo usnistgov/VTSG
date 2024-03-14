@@ -35,7 +35,6 @@ namespace default_namespace{
             
                 tainted_2 = Console.ReadLine();
             
-            tainted_3 = tainted_2;
             
                 while((Math.Sqrt(42)<=42)){
                     

@@ -32,7 +32,6 @@ namespace default_namespace{
             
                 tainted_2 = Console.ReadLine();
             
-            tainted_4 = tainted_2;
             
                 
                 string pattern = @"/^[0-9]*$/";

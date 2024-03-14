@@ -30,7 +30,6 @@ def main():
     except ValueError:
         tainted_2 = 1776
 
-    tainted_3 = tainted_2
 
     match 6:
         case 6:

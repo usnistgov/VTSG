@@ -28,7 +28,6 @@ import sys
 
 def main():
     tainted_2 = 0
-    tainted_3 = tainted_2
 
     match 7:
         case 6:

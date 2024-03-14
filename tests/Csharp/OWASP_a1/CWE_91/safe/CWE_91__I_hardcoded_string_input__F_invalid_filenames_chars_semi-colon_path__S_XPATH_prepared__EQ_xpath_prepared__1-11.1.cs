@@ -33,7 +33,6 @@ namespace default_namespace{
             
                 tainted_2 = "hardcoded";
             
-            tainted_3 = tainted_2;
             
                 while((1==1)){
                     

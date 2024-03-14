@@ -29,7 +29,6 @@ namespace default_namespace{
             
                 tainted_0 = args[1];
             
-            tainted_1 = tainted_0;
             
                 string pattern = "^\\.\\.\\/";
                 Regex r = new Regex(pattern);

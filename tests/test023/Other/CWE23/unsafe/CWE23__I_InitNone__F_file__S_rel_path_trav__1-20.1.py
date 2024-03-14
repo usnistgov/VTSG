@@ -32,7 +32,6 @@ def main():
     # no input
     tainted_2 = None
 
-    tainted_3 = tainted_2
 
     while 1==1:
 

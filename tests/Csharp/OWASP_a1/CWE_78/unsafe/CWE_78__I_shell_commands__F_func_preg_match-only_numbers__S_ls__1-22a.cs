@@ -43,7 +43,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_4 = tainted_2;
             
                 
                 string pattern = @"/^[0-9]*$/";

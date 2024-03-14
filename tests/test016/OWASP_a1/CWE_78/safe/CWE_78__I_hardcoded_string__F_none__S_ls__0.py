@@ -1,4 +1,7 @@
 '''
+test fatal misuse of INDENT ... DEDENT in code: missing DEDENT
+'''
+'''
 Hardcoded string input
 no filtering
 sink: run ls in a dir
@@ -25,7 +28,6 @@ def main():
     tainted_1 = None
 
     tainted_0 = "-d /;echo Vulnerability: user command run"
-    tainted_1 = tainted_0
 
     # No filtering (sanitization)
     tainted_1 = tainted_0

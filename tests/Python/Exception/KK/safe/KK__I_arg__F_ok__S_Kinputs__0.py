@@ -27,7 +27,6 @@ def main():
     except ValueError:
         tainted_0 = 1776
 
-    tainted_1 = tainted_0
 
     if tainted_0 < 0 or tainted_0 > 9:
         print('Bad value')

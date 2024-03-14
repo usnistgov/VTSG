@@ -39,7 +39,6 @@ loader.exec_module(module70bi)
 
 def main():
     tainted_2 = sys.argv[1]
-    tainted_7 = tainted_2
 
     match 7:
         case 6:

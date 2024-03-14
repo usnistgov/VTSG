@@ -34,7 +34,6 @@ namespace default_namespace{
             
                 tainted_2 = Console.ReadLine();
             
-            tainted_4 = tainted_2;
             
                 
                 StringBuilder escape = new StringBuilder();

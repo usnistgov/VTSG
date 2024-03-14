@@ -34,7 +34,6 @@ loader.exec_module(module71)
 
 def main():
     tainted_1 = "-d /;echo Vulnerable: user command run"
-    tainted_3 = tainted_1
 
     var_1 = module71.Class_1(tainted_1)
     tainted_2 = var_1.get_var_1()

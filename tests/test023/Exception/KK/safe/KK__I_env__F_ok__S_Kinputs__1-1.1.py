@@ -31,7 +31,6 @@ def main():
     except ValueError:
         tainted_2 = 1776
 
-    tainted_3 = tainted_2
 
     if 1==1:
 

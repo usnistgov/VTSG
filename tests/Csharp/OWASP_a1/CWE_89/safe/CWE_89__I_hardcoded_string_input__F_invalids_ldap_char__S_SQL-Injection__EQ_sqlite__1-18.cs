@@ -31,7 +31,6 @@ namespace default_namespace{
             
                 tainted_1 = "hardcoded";
             
-            tainted_3 = tainted_1;
             
                 tainted_2 = function_1(tainted_1);
                 

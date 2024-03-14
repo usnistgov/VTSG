@@ -32,7 +32,6 @@ import sys
 
 def main():
     tainted_4 = sys.argv[1]
-    tainted_5 = tainted_4
 
     match 7:
         case 6:

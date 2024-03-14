@@ -23,7 +23,6 @@ import re
 
 def main():
     tainted_2 = input()
-    tainted_3 = tainted_2
 
     match 6:
         case 6:

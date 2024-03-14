@@ -45,7 +45,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_3 = tainted_2;
             
                 if((1==0)){
                     {}

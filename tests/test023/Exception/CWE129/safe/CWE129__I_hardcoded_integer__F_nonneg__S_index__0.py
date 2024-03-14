@@ -28,7 +28,6 @@ import sys
 
 def main():
     tainted_0 = 0
-    tainted_1 = tainted_0
 
     if tainted_0 < 0:
         sys.exit("Negative input not allowed")

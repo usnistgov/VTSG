@@ -43,7 +43,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_3 = tainted_2;
             
                 switch(6){
                     case(6):

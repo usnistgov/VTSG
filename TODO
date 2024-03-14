@@ -1,27 +1,34 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Mon Feb 26 15:29:22 2024" *by "Paul E. Black"
+ *modified "Wed Mar 13 16:35:46 2024" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
-26 February 2024
+7 March 2024
+Factor out file "header" (and trailer) stuff from file_template and the complexities
+with <body> code that will go in other files.  This includes comments, license,
+location for imports and local declarations.  This way all generated files are sure
+to have the same, common header and can be rendered with the same, common code.
 
+
+7 March 2024
+Document what "in", "out", and "traversal" do.  Document when variable assignments
+are created (other then for declaration & initialization).
+
+
+26 February 2024
 In complexities_generator.py (and test_case.py that uses it) keep ALL code and stuff
-in the list of class codes, instead of treating the main code special and putting any
-auxiliary stuff in class codes.  I mean, the "main code" is generated as index 0 of
-classes_code around line 435:
-        filtering_code = self.complexities[0].code
+in the list of class codes, instead of treating the main code special and putting
+auxiliary stuff in class codes.
 
 
 13 February 2024
-
 Allow a function body to be in another file.  Currently only class (definitions) are
 in other files.
     Make sure VTSG can generate code where a class definition is in the SAME file.
 
 
 8 February 2024
-
 Report unknown jinja variables.  That is, if an xml file has, say, <impOT> (instead
 of <import>), VTSG silently nulls it out.  It can be quite hard to determine *why*
 your change isn't working.  In the above case, VTSG should say
@@ -30,7 +37,6 @@ or something.
 
 
 23 January 2024
-
 sample.py looks for and saves _need_id.  That means inputs, filters, and sinks can
 have a "need_id".  Code in test_case.py increments the var_id if an input, filter, or
 sink needs an id.
@@ -42,7 +48,6 @@ Remove this capability or else document and test it.
 
 
 9 January 2024
-
 Improve variable assignment.  Often there are redundant assignments.  For example,
 Python/Exception/CWE369/safe/CWE369__I_readline__F_nonzero__S_div_zero__1-1.1.py
 
@@ -80,12 +85,10 @@ At a minimum, carefully document when/where assignments are synthesized.  Warn a
 
 
 31 July 2023
-
 Change <sample></sample> to <module></module>.
 
 
 30 March 2023
-
 Add some kind of --label or --source option so that every line of code in the final
 generated case has some comment indicating where it comes from.  Something like
     try:                                     # input
@@ -101,24 +104,28 @@ generated case has some comment indicating where it comes from.  Something like
     array = [0, 1, 2, 3, 4]                  # sink
 (The file name tells us *which* input, filter, or sink was used.)
 
+This should be fairly easy to do.
+Step 1. Add a --label or --source switch to the command line and structure
+Step 2. In complexities-generator.py and test_case.py, add the comments to the line
+  when synthesizing make_assign and edit the code replacing \n with \n # source.
+It might be really hard to get comments to line up as above.
+
 
 21 March 2023
-
 Have some method of variants. They are vaguely like complexities, but apply broadly.
 Juliet has the same code instantiated with different types.  Kratkiewcz has array
 access at the end, just beyond, some beyond, and far beyond.  These variants have to
 potentially be incorporated in all modules.  Kratkiewcz also has a few basic loop
 templates, but then does variants on them where the initial value, the terminating
 test value, or the increment value (and combinations of all of them!) are passed
-through variables instead of being hardcoded.
+through variables instead of being hard coded.
 
 Sinks should be able to supply code to other modules.  In particular, certain sinks
-need a hardcoded "input" to be a certain value in order to be safe or to exploit the
+need a hard coded "input" to be a certain value in order to be safe or to exploit the
 weakness.
 
 
 21 March 2023
-
 Warn if the chosen sink doesn't generate any test cases.  It's relatively easy to
 warn if there are no matching filters.  It gets progressively harder to count that
 there are no filter/input or filter/input/exec_query combinations.
@@ -127,7 +134,6 @@ zero, produce a warning.
 
 
 4 Jan 2023
-
 Change <dir> in modules to <des> (for description) or something.  This is only used
 in test case names.  Maybe files were originally placed in separate directories
 depending on their input or sink.  Thus <path> ... <dir> made sense.  (This may be
@@ -140,13 +146,11 @@ Remember to update DTDs.
 
 
 3 Mar 2023
-
 Allow the user to specify the variable name root, that is, something other than
 "tainted".
 
 
 4 Jan 2023
-
 Maybe there should be a new value "maybe" or "random" or "indeterminate" for test
 conditions code when the analyzer cannot determine.  For example, Juliet,
     if (random()) {
@@ -171,12 +175,6 @@ string can be placed in type or group, but some strings trigger special function
 VTSG.
 
 Add examples of how to code things or how to use options, like need_id.
-
-
-6 Sep 2022
-Fix Python "Classes" complexity:
-The main file must import the class-defining file, e.g.
-from CWE_78__I_hardcoded_string_input__F_none__S_ls__1_22b import Class_884
 
 
 7 Nov 2022
@@ -291,15 +289,6 @@ C#
   - add C# print debug to test if safe/unsafe or if it's executed
 
 
-Isolate code related to complexities.  Complexities relating to classes are
-functional, however, the code needs to be isolated so it does not interfere with
-other languages.  Python includes classes from other files using the “from {file}
-import {class}” syntax, whereas other languages might not. This poses an issue when
-generating other languages.  Example:
-    cwe_78__I_hardcoded_string_input__F_no_filtering__S_ls__1x20b import Class_880
-    This import for the file containing the class may not look anything like this in
-    another language
-
 Maybe add language-specific code in VTSG itself instead of trying to specify the
 syntax (and composition rules) in, say, file_template.xml.  For example, C++ and C#
 are far more similar in syntax than C# and Python.  This will help lessen the amount
@@ -312,8 +301,6 @@ GENERATE MORE KINDS OF CASES
 Extend VTSG & Python to handle (all?) Juliet-type cases
     (1) Now VTSG is structured to create injection cases. I don't know how well it
        could produce integer overflow, divide by zero, etc. type cases.
-    (2) Juliet cases have lots of *type* variation: do the same thing, but with
-       char, int, float, array, etc. Can we get VTSG to do that? Easily?
     This is probably a LOT of work since there are so many different kinds of test
     cases and complexities in Juliet.
 

@@ -1,6 +1,6 @@
 
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Thu Feb  8 11:20:59 2024" *by "Paul E. Black"
+% *modified "Tue Mar  5 11:50:44 2024" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -353,13 +353,13 @@ input data, different ways of conveying data, and varying sinks.
 Figure~\ref{fig:cartesian product} suggests that just three sources of input,
 two ways of filtering the input, four sinks, and two ways to execute the query
 already yields 3 × 2 × 4 x 2 = 48
-combinations.  Multiply that by distinct flow control
+combinations.  Multiply that by all manner of distinct flow control
 complexities with various conditions, then include ``scaffolding'' such as
-initializing variables, importing libraries, and declaring functions and the
-need to produce programs without weaknesses to test false positives to get an
+initializing variables, importing libraries, and declaring functions, and remember
+to produce programs without weaknesses to test false positives to get an
 idea of the work needed to provide a comprehensive static analyzer test suite.
 It would be tedious and error prone to construct these test cases
-manually.
+manually or with ad hoc scripts.
 
 \begin{figure}[tbp]
   \includegraphics[width=1\linewidth]{fig_cartesian_product.png}
@@ -455,7 +455,7 @@ VTSG?
   \item VTSG wraps filter code in arbitrary layers of data and control flow
     complexity.
   \item VTSG determines if a test case is unsafe (vulnerable) or safe (not
-    vulnerable) depending on whether the filter is executed and saves them in
+    vulnerable) depending on whether the filter is executed and saves cases in
     corresponding collections.
   \item VTSG matches data types of inputs, filters, and sinks, for example avoiding
     passing a string input to a numeric sink.
@@ -468,9 +468,9 @@ possible future enhancements.
 \begin{itemize}
   \item Have a method of variants.  For example, data types are given once, then a
     ``generic'' case is elaborated with each data type.  This would yield test cases
-    that are structurally identical but handle, say, ints, floats, doubles, etc.
-  \item Enhance support for multi-file cases.  In particular, be able to handle
-    Python classes.  Also create cases with more than two files, like
+    that are structurally identical but deal with, say, ints, floats, doubles, etc.
+  \item Enhance support for multi-file cases.  In particular, create function calls
+    that span files, like
     Juliet~\cite{Black2018Juliet1.3changes} cases.
   \item Support more general structure of generated test cases.  For example, put both
     safe and unsafe code in the same test case, like Juliet cases have, or have
@@ -491,6 +491,8 @@ possible future enhancements.
         code
     }
     \end{verbatim}
+  \item Accommodate ``fixed'' support files, that is, a file needed for execution.
+    This may be additional code, like for input/output, or test data in a file.
 \end{itemize}
 
 
@@ -909,7 +911,8 @@ See App.~\ref{sec:run csharp} for packages needed to run \CSharp\ programs.
 \label{sec:adding a new flaw}
 
 This subsection is a brief tutorial giving suggestions on how to add a new
-flaw to an existing language in VTSG.  The subsection after this has suggestions
+flaw to an existing language in VTSG.  Section~\ref{sec:add a langaguge} has
+suggestions
 on how to add a new language.  Some guidance on adding new capabilities or
 features to VTSG itself is in Sec.~\ref{sec:extending VTSG}.
 
@@ -938,8 +941,8 @@ instance, one variant of this flaw is for the filter to provide a safe value ins
 of aborting, like this:
 \begin{verbatim}
     if data == 0:
-        print('Invalid input')
         data = 1
+        print(f'Invalid input; assuming {data}')
 
     print(f'The reciprocal of {data} is {1/data}')
 \end{verbatim}
@@ -983,14 +986,14 @@ filters (which will be wrapped in complexities), and what parts are sinks.
 
 If you want to generate cases where some piece of code may or may not be executed,
 put that code in Filter modules.  The second example above might generate a case
-like this.  (Comments show the origin of each piece of source code.)
+as follows.  (Comments show the origin of each piece of source code.)
 \begin{verbatim}
     # Complexity
     if True:
         # Filter
         if data == 0:
-            print('Invalid input')
             data = 1
+            print(f'Invalid input; assuming {data}')
 
     # Sink
     print(f'The reciprocal of {data} is {1/data}')
@@ -1015,7 +1018,7 @@ Now that you have an idea of how to split up the code, the third step is to
 write new modules for VTSG for the flaw.  You probably need to write new sinks
 and filters, but you should be able to use existing input and exec query
 modules.  Edit the sinks.xml (or filters.xml or other) file to add them,
-then run VTSG.  It's likely that nothing is generated the very first time you
+then run VTSG.  It's likely that nothing extra is generated the very first time you
 try because VTSG cannot find an input and filter compatible with your new sink.
 
 \label{sec:connecting inputs, filters, and sinks}
@@ -1032,7 +1035,7 @@ Fig.~\ref{fig:input, filter, and sink}.
   \label{fig:input, filter, and sink}
 \end{figure}
 Compatible inputs, filters, sinks, and exec queries are ``connected'' in various
-ways.  Remember that
+ways.
 VTSG first chooses a sink module then chooses compatible filter, input, and exec
 query modules to
 use with it.
@@ -1101,8 +1104,8 @@ complexities, like the following:
         sys.path += [tainted_1]
         print(f'added { tainted_1 } to Python module search path')
 \end{verbatim}
-Variables aren't declared in Python, but we had to initialize the variable to
-\verb|None| in case the input is not executed.  We declared the variable in the input
+Variables aren't declared in Python, but we initialize the variable to \verb|None| in
+case the input code is not executed.  We declared the variable in the input
 module and put the input code in the filter module, so that the input code would be
 wrapped in complexities.  We used custom types \verb|string,filter_input| to connect
 the sink to the ``filter'' (i.e., input) and \verb|InitToNone| to connect the
@@ -1142,7 +1145,7 @@ subdirectory for each language.  Each language subdirectory has six files:
 \verb|filters.| \verb|xml|, \verb|sinks.xml|, and \verb|exec_queries.xml|.  The files
 are described in Sec.~\ref{sec:source files}.
 
-Here are the steps to add another language.
+Here are the first steps to add another language.
 \begin{enumerate}[nosep]
 \item decide the short name of the language, e.g., py for Python or php for
   PHP.  Using the extension of those programs is a good idea.
@@ -1553,6 +1556,29 @@ indicated with names in \verb|<import></import>| directives within
 Code statements are synthesized from the \verb|import_code| in the file template and
 the name or names given here.
 The resulting import statements replace the \verb|{{stdlib_imports}}| placeholder.
+
+Python specifies other files to get code through import statements.  VTSG creates
+file names during generation.  The file name where VTSG places the \verb|<body>| is
+available as \verb|{{body_file}}|.  The following is in the \verb|complexity.py| file:
+\begin{verbatim}
+        <imports>
+            <import>{{body_file}} as module70</import>
+        </imports>
+        <code>
+            var_{{id}} = module70.{{call_name}}({{in_var_name}})
+            {{out_var_name}} = var_{{id}}.get_var_{{id}}()
+        </code>
+\end{verbatim}
+The imported module name, in this case \verb|module70|, can be any valid Python
+name.
+Since the Python import statement cannot handle file names with minus signs (-) and
+VTSG produces file names with minus signs, VTSG is hardcoded to expand any
+\begin{verbatim}
+import {{body_file}} as module70
+\end{verbatim}
+into Python code that handles any file name.
+The function \verb|splice_python_import()| in \verb|test_case.py| makes this
+expansion.
 
 
 \subsubsection{Marking Modules as Safe and Unsafe}
@@ -2014,7 +2040,7 @@ complexity modules are inside \verb|<complexities>|.
     calling a function.
 
     \item need\_id: ``1'' if the code has a placeholder, \verb|{{id}}|,
-    to generate a unique identifier (ID) for the Complexity.  This ID to generate
+    generate a unique identifier (ID) for the Complexity.  Use this ID to generate
     a label, a parameter, or a function name in a nested
     context.
 
@@ -2405,6 +2431,15 @@ combination of cases, adding a new input or filter might generate dozens or hund
 of new test cases.  To focus on a few results that test the new feature, it may be
 best to create an entirely new, small test language.  Sometimes one may be able to
 use or change an existing language.
+
+Debugging hint: use the -n option, see Sec.~\ref{sec:command line interface}, to
+generate a particular test case.  That is, you want debugging information for a
+particular case, but VTSG generates thousands of test cases.  First, add code to
+print the main file name of test cases in test\_case.py about line 250, generate all
+test cases, and capture those names.  Then supposing the test case of interest is the
+384th case, add debug code and run VTSG with \verb|-n 384|.  It will compose the
+first case then the 384th case (and every 384th case after that), resulting in
+\emph{far} less debugging information.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

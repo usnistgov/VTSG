@@ -32,7 +32,6 @@ namespace default_namespace{
             
                 tainted_1 = args[1];
             
-            tainted_3 = tainted_1;
             
                 tainted_2 = function_1(tainted_1);
                 

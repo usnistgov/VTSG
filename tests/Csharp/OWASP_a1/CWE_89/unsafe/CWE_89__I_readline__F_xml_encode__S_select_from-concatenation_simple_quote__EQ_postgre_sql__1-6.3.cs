@@ -32,7 +32,6 @@ namespace default_namespace{
             
                 tainted_2 = Console.ReadLine();
             
-            tainted_3 = tainted_2;
             
                 if((4+2<=42)){
                     

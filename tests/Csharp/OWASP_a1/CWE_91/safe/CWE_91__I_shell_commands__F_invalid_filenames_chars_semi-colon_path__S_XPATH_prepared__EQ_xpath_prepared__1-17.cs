@@ -46,7 +46,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_5 = tainted_0;
             tainted_5 = function_1(tainted_0);
             
                 

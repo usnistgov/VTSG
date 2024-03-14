@@ -33,7 +33,6 @@ loader.exec_module(module72)
 
 def main():
     tainted_2 = 0
-    tainted_4 = tainted_2
 
 
     if tainted_2 == 0:

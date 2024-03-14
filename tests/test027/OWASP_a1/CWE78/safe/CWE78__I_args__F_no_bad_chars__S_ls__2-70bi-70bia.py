@@ -39,7 +39,6 @@ loader.exec_module(module70bi)
 
 def main():
     tainted_0 = sys.argv[1]
-    tainted_9 = tainted_0
 
     var_2 = module70bi.Class_2(tainted_0)
     tainted_9 = var_2.get_var_2()

@@ -33,7 +33,6 @@ namespace default_namespace{
             
                 tainted_2 = "hardcoded";
             
-            tainted_3 = tainted_2;
             
                 for(int i_1 = 0; i_1 <= 1; i_1++){
                     

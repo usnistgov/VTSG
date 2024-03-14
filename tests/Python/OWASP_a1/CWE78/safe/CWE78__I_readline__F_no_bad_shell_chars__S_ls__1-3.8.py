@@ -24,7 +24,6 @@ import re
 
 def main():
     tainted_2 = input()
-    tainted_3 = tainted_2
 
     if (math.sqrt(42)>=42):
         pass

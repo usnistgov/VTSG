@@ -3,7 +3,7 @@ Complexities Generator Module.
 
 Compose and generate the complexities that will be used by the Generator module.
 
- *modified "Fri Mar  1 17:13:01 2024" *by "Paul E. Black"
+ *modified "Wed Mar 13 16:38:38 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -209,6 +209,9 @@ class ComplexitiesGenerator(object):
 
                 **_imports** (str): list of things that need to be imported in the
                        top-level file.
+
+                **_is_executed** (bool): True if the inner code is always executed.
+                       False if inner code is never executed.
     """
 
     def __init__(self, complexities_array, template, input_type, output_type,
@@ -229,6 +232,8 @@ class ComplexitiesGenerator(object):
         self._in_int_name = self.new_variable(self.input_type, self.id_var_in)
         self._out_ext_name = None
         self._out_int_name = self.new_variable(self.output_type, self.id_var_out)
+
+        self._inner_is_executed = True # assume placeholder code is executed
 
     def __str__(self):
         return (
@@ -307,6 +312,17 @@ class ComplexitiesGenerator(object):
         """
         return self._imports
 
+    @property
+    def inner_is_executed(self):
+        """
+        True if the inner code is always executed.  False if the inner code is never
+        executed.
+
+        :getter: Return the value.
+        :type: bool
+        """
+        return self._inner_is_executed
+
     def var_name(self, id):
         '''
         Generate variable name from ID, including any prefix needed for the language
@@ -316,12 +332,15 @@ class ComplexitiesGenerator(object):
     def compose(self):
         """
         This method composes all complexities.  Return chunks of code that will need
-        to go in auxiliary files, like class definitions.  This is a
+        to go in auxiliary files, like class definitions.  The chunks returned is a
         (possibly empty) list of dict with 'code' and 'name'.
         """
 
-        # start with anything that the filter needs imported
+        # import anything that the filter needs
         saved_imports = set(self.filter_module.imports)
+
+        # for now, any inner {{placeholder}} code will be executed
+        placeholder_is_executed = True
 
         # handle complexities from innermost one first
         for c in reversed(self.complexities_array):
@@ -345,17 +364,33 @@ class ComplexitiesGenerator(object):
             # create in/out vars
             in_var, out_var = self.get_in_out_var(c)
 
+            complexity_code = self.complexities[0].code
+            if not placeholder_is_executed:
+                # The inner placeholder might not be excuted and set the out variable,
+                # so add an assignment to make sure out_var is always initialized.
+                if in_var and out_var: # ... unless there is no nested variable
+                    initializing_assignment = ('\n' +
+                                           make_assign(out_var, in_var, self.template)
+                                           #+ f' {self.template.comment["inline"]}'
+                                           #+ ' SYNTH Always Init out_var'
+                                           + '\n')
+                    complexity_code = (initializing_assignment + self.template.indent +
+                                       complexity_code)
+
             # render on code
-            self.complexities[0].set_code(t.render(placeholder=self.complexities[0].code,
+            self.complexities[0].set_code(t.render(placeholder=complexity_code,
                                         id=uid, in_var_name=in_var, out_var_name=out_var,
                                         call_name=call_name, in_var_type=self.input_type,
                                         out_var_type=self.output_type))
+
+            # save for next outer complexity whether this complexity executes inner code
+            placeholder_is_executed = placeholder_is_executed and c.is_executed()
 
             # traversal for class/function where the placeholder is in the body of function/class
             if c.indirection and c.in_out_var == "traversal":
                 # LOCAL VARS
                 local_var_code = self.generate_local_var_code(self.complexities[0].local_decls)
-                # put local var on body
+                # put local vars in body
                 self.complexities[0].set_code(Template(self.complexities[0].code, undefined=DebugUndefined).render(local_var=local_var_code))
                 # add in_var
                 self.id_var_in -= 1
@@ -363,11 +398,12 @@ class ComplexitiesGenerator(object):
                 # add out_var
                 self.id_var_out += 1
                 out_var = self.new_variable(self.output_type, self.id_var_out)
-                # change type of current complexities, if necessary
+
+                # remember type (or, elaborated type) of current complexity
                 self.complexities[0].set_complexity_type(c.type)
                 if c.type == "class":
                     self.complexities[0].set_complexity_type("class_traversal")
-                    # this code will be in another file; import these there
+                    # this code will be in another file; import any saved there
                     self.complexities[0].add_imports(saved_imports)
                     saved_imports = set() # any containing complexity is in another file
                 elif c.type == "function":
@@ -379,6 +415,7 @@ class ComplexitiesGenerator(object):
                 # start a new entry for the "main" code that goes in the "main" file.
                 # Note: a subsequent loop may put *this* in an auxiliary file.
                 self.complexities.insert(0, ComplexityInstance(c.code))
+                placeholder_is_executed = c.is_executed
                 t = Template(c.code, undefined=DebugUndefined)
                 self.complexities[0].set_code(
                     t.render(placeholder=self.complexities[0].code, id=uid,
@@ -387,13 +424,19 @@ class ComplexitiesGenerator(object):
             elif c.indirection and (c.in_out_var == "in" or c.in_out_var == "out"):
                 if c.type == "class" or c.type == "function":
                     body = Template(c.body, undefined=DebugUndefined).render(id=uid, in_var_type=self.input_type, out_var_type=self.output_type, call_name=call_name)
+                    # BUG?? INSTEAD INSERT AT END, E.G., -1???
                     self.complexities.insert(1, ComplexityInstance(body, complexity_type=c.type, name=call_name))
+                    placeholder_is_executed = c.is_executed
 
             # pass needed imports up to next outer complexity
             saved_imports = saved_imports.union(imports_content)
 
         # any remaining imports must be imported at the top level
         self._imports = saved_imports
+
+        # Remember if the inner code might not be executed, to synthesize an
+        # assignment to initialize the out variable in case it isn't.
+        self._inner_is_executed = placeholder_is_executed
 
         return self.fill_template()
 
@@ -423,6 +466,7 @@ class ComplexitiesGenerator(object):
                                      'name': c.name})
             elif c.complexity_type == "function_traversal":
                 functions_code += Template(c.code, undefined=DebugUndefined).render(static_methods=functions_code)
+                # Bug? set functions_code to "" here, so it isn't used again??
             elif c.complexity_type == "function":
                 functions_code += c.code + "\n\n"
 
@@ -475,7 +519,7 @@ class ComplexitiesGenerator(object):
         return new_var_name
 
     def get_in_out_var(self, c):
-        """Generated name for variable in different cases (in/traversal/out)."""
+        """Generated names for variables in different cases (in/traversal/out)."""
         in_var = None
         out_var = None
         if c.in_out_var == "in":

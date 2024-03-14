@@ -25,7 +25,6 @@ import sys
 
 def main():
     tainted_2 = sys.argv[1]
-    tainted_4 = tainted_2
 
 
     # remove any other characters

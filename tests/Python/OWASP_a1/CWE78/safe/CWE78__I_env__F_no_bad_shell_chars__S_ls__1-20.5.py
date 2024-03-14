@@ -24,7 +24,6 @@ import re
 
 def main():
     tainted_2 = os.environ['ADD']
-    tainted_3 = tainted_2
 
     while (math.pow(4, 2)<=42):
 

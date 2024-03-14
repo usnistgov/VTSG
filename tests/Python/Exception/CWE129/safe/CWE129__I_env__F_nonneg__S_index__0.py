@@ -31,7 +31,6 @@ def main():
     except ValueError:
         tainted_0 = 1776
 
-    tainted_1 = tainted_0
 
     if tainted_0 < 0:
         sys.exit("Negative input not allowed")

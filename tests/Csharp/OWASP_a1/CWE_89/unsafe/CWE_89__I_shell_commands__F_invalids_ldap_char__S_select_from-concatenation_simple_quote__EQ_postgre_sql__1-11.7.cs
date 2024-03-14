@@ -46,7 +46,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_3 = tainted_2;
             
                 while((Math.Sqrt(42)<=42)){
                     

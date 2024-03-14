@@ -92,6 +92,8 @@ func
 funcpregmatch
 github
 goto
+hardcoded
+hoc
 homebrew
 importcode
 init
@@ -135,6 +137,8 @@ subdirectories
 subdirectory
 techpubs
 testAll
+testcase
+th
 tmp
 traceback
 txt

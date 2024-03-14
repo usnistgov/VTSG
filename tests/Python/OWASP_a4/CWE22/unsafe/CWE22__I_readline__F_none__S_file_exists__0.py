@@ -22,7 +22,6 @@ import os
 
 def main():
     tainted_0 = input()
-    tainted_1 = tainted_0
 
     # No filtering (sanitization)
     tainted_1 = tainted_0

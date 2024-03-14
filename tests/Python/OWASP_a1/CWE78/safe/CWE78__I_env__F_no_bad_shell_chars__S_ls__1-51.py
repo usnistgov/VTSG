@@ -27,7 +27,6 @@ def function_1( param_1 ):
 
 def main():
     tainted_1 = os.environ['ADD']
-    tainted_3 = tainted_1
 
     tainted_2 = function_1(tainted_1)
 

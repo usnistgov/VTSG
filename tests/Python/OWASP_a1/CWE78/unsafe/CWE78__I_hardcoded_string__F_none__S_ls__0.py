@@ -22,7 +22,6 @@ import os
 
 def main():
     tainted_0 = "-d /;echo Vulnerable: user command run"
-    tainted_1 = tainted_0
 
     # No filtering (sanitization)
     tainted_1 = tainted_0

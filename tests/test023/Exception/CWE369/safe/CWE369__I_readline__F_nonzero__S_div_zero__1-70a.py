@@ -30,7 +30,6 @@ def main():
     except ValueError:
         tainted_0 = 1776
 
-    tainted_5 = tainted_0
 
     var_1 = Class_1(tainted_0);
     tainted_5 = var_1.get_var_1();

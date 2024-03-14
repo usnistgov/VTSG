@@ -40,7 +40,6 @@ loader.exec_module(module70ci)
 
 def main():
     tainted_2 = sys.argv[1]
-    tainted_7 = tainted_2
 
     # use Python collections to test imports
     de_queue = collections.deque()

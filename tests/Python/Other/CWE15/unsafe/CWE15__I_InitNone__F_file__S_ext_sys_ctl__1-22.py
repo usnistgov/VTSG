@@ -28,7 +28,6 @@ def main():
     # no input
     tainted_2 = None
 
-    tainted_3 = tainted_2
 
     i_1 = 1
     for x in range(0, i_1):

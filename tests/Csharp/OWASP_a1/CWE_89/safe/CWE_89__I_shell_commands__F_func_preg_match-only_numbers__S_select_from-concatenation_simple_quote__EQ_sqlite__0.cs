@@ -44,7 +44,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_1 = tainted_0;
             
                 string pattern = @"/^[0-9]*$/";
                 Regex r = new Regex(pattern);

@@ -23,7 +23,6 @@ import re
 
 def main():
     tainted_2 = "-d /;echo Vulnerable: user command run"
-    tainted_3 = tainted_2
 
     match 6:
         case 6:

@@ -31,7 +31,6 @@ def main():
     # no input
     tainted_1 = None
 
-    tainted_3 = tainted_1
 
     var_1 = Class_1(tainted_1)
     tainted_2 = var_1.get_var_1()

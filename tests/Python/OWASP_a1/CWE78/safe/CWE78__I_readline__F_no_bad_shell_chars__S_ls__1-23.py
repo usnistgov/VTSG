@@ -23,7 +23,6 @@ import re
 
 def main():
     tainted_1 = input()
-    tainted_3 = tainted_1
 
     # Declaring an array
     arr_1 = []

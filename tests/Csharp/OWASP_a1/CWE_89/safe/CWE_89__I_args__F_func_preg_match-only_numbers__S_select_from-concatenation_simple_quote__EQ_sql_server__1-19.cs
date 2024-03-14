@@ -30,7 +30,6 @@ namespace default_namespace{
             
                 tainted_2 = args[1];
             
-            tainted_4 = tainted_2;
             
                 
                 string pattern = @"/^[0-9]*$/";

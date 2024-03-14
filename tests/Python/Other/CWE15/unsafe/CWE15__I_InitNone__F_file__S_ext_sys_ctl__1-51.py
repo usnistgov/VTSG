@@ -32,7 +32,6 @@ def main():
     # no input
     tainted_1 = None
 
-    tainted_3 = tainted_1
 
     tainted_2 = function_1(tainted_1)
 

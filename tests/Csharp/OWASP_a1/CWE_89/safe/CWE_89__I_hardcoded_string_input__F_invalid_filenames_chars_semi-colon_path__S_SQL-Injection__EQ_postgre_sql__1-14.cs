@@ -33,7 +33,6 @@ namespace default_namespace{
             
                 tainted_1 = "hardcoded";
             
-            tainted_3 = tainted_1;
             
                 string[] arr_1 = new string[4]; // declaring array
                 //Storing value in array element

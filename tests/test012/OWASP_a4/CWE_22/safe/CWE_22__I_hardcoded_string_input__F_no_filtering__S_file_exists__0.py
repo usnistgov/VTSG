@@ -32,7 +32,6 @@ def main():
 
     tainted_0 = "." # local directory
 
-    tainted_1 = tainted_0
 
 
     # No filtering (sanitization)

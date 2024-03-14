@@ -28,7 +28,6 @@ import sys
 
 def main():
     tainted_0 = 0
-    tainted_5 = tainted_0
 
     var_1 = Class_1(tainted_0);
     tainted_5 = var_1.get_var_1();

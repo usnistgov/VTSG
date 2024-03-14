@@ -32,7 +32,6 @@ namespace default_namespace{
             
                 tainted_2 = args[1];
             
-            tainted_3 = tainted_2;
             
                 switch(6){
                     case(6):

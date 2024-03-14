@@ -43,7 +43,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_1 = tainted_0;
             
                 //No filtering (sanitization)
                 tainted_1 = tainted_0;

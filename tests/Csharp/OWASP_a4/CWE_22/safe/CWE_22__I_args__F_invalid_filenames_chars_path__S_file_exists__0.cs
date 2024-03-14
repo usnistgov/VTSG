@@ -29,7 +29,6 @@ namespace default_namespace{
             
                 tainted_0 = args[1];
             
-            tainted_1 = tainted_0;
             
                 string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
                 Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));

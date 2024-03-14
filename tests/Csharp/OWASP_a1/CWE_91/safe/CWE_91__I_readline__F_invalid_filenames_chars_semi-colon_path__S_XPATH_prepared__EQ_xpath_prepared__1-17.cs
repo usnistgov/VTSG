@@ -34,7 +34,6 @@ namespace default_namespace{
             
                 tainted_0 = Console.ReadLine();
             
-            tainted_5 = tainted_0;
             tainted_5 = function_1(tainted_0);
             
                 

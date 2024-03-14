@@ -31,7 +31,6 @@ def main():
     # no input
     tainted_0 = None
 
-    tainted_1 = tainted_0
 
     tainted_1 = os.environ['ADD']
 

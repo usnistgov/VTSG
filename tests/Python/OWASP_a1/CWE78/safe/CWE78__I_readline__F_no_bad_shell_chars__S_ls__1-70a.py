@@ -33,7 +33,6 @@ loader.exec_module(module70)
 
 def main():
     tainted_0 = input()
-    tainted_5 = tainted_0
 
     var_1 = module70.Class_1(tainted_0)
     tainted_5 = var_1.get_var_1()

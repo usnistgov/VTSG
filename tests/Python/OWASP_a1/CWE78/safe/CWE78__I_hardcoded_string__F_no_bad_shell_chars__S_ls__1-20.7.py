@@ -24,7 +24,6 @@ import re
 
 def main():
     tainted_2 = "-d /;echo Vulnerable: user command run"
-    tainted_3 = tainted_2
 
     while (math.sqrt(42)<=42):
 

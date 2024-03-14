@@ -31,7 +31,6 @@ namespace default_namespace{
             
                 tainted_2 = args[1];
             
-            tainted_3 = tainted_2;
             
                 goto Skip_1;
                 Skip_1:

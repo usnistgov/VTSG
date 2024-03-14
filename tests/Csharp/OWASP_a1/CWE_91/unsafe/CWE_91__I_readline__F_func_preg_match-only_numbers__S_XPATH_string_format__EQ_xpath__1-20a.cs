@@ -19,7 +19,6 @@ William Mentzer willmentzer20@gmail.com
 
 */
 using System;
-using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.XPath;
 
@@ -32,7 +31,6 @@ namespace default_namespace{
             
                 tainted_0 = Console.ReadLine();
             
-            tainted_5 = tainted_0;
             
                 Class_1 var_1 = new Class_1(tainted_0);
                 tainted_5 = var_1.get_var_1();

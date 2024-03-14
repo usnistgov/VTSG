@@ -22,7 +22,6 @@ import sys
 
 def main():
     tainted_1 = 0
-    tainted_3 = tainted_1
 
     # Declaring an array
     arr_1 = []

@@ -47,7 +47,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_3 = tainted_2;
             
                 while((Math.Pow(4, 2)<=42)){
                     

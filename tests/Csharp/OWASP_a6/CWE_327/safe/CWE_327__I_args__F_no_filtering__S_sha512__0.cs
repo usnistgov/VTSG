@@ -30,7 +30,6 @@ namespace default_namespace{
             
                 tainted_0 = args[1];
             
-            tainted_1 = tainted_0;
             
                 //No filtering (sanitization)
                 tainted_1 = tainted_0;

@@ -31,7 +31,6 @@ def main():
     # no input
     tainted_0 = None
 
-    tainted_1 = tainted_0
 
     with open('data.txt', 'r') as f:
         tainted_1 = f.readline().rstrip() # read one line, remove newline

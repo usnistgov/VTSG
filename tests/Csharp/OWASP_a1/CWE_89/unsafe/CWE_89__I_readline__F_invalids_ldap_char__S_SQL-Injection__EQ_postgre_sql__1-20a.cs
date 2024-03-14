@@ -21,7 +21,6 @@ using Npgsql;
 using System;
 using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace default_namespace{
     class MainClass2{
@@ -32,7 +31,6 @@ namespace default_namespace{
             
                 tainted_0 = Console.ReadLine();
             
-            tainted_5 = tainted_0;
             
                 Class_1 var_1 = new Class_1(tainted_0);
                 tainted_5 = var_1.get_var_1();

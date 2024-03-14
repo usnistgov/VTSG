@@ -46,7 +46,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_1 = tainted_0;
             
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_0.Length; ++i){

@@ -33,7 +33,6 @@ namespace default_namespace{
             
                 tainted_2 = args[1];
             
-            tainted_3 = tainted_2;
             
                 if((Math.Sqrt(42)>=42)){
                     {}

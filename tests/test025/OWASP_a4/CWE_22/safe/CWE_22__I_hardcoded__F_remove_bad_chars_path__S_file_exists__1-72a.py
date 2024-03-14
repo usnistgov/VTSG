@@ -23,7 +23,6 @@ import re
 
 def main():
     tainted_2 = 'hardcoded'
-    tainted_4 = tainted_2
 
 
     # remove any other characters

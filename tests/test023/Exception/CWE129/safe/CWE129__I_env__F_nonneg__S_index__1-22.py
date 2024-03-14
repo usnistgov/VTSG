@@ -34,7 +34,6 @@ def main():
     except ValueError:
         tainted_2 = 1776
 
-    tainted_3 = tainted_2
 
     i_1 = 1
     for x in range(0, i_1):

@@ -43,7 +43,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_1 = tainted_0;
             
                 StringBuilder text = new StringBuilder(tainted_0);
                 text.Replace("&", "&amp;");

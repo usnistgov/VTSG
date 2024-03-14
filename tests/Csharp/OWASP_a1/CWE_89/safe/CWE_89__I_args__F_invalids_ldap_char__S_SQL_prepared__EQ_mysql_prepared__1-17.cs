@@ -29,7 +29,6 @@ namespace default_namespace{
             
                 tainted_0 = args[1];
             
-            tainted_5 = tainted_0;
             tainted_5 = function_1(tainted_0);
             
                 string query = "SELECT * FROM Articles WHERE id=@placeholder";

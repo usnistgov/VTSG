@@ -23,7 +23,6 @@ import re
 
 def main():
     tainted_0 = 'hardcoded'
-    tainted_1 = tainted_0
 
     # remove any other characters
     pattern = r'[^a-zA-Z0-9_ ,/]'

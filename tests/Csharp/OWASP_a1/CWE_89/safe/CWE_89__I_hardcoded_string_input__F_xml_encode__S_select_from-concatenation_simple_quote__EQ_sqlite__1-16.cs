@@ -30,7 +30,6 @@ namespace default_namespace{
             
                 tainted_2 = "hardcoded";
             
-            tainted_3 = tainted_2;
             
                 goto Skip_1;
                 Skip_1:

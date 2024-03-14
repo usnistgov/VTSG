@@ -32,6 +32,7 @@ class Class_2:
     def  get_var_2(self):
 
         tainted_4 = self.var_2
+
         tainted_5 = tainted_4
 
         # use Python random and string to test imports.  Both tests are False

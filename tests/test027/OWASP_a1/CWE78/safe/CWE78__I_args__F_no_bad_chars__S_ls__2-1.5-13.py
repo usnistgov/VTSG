@@ -32,7 +32,6 @@ import sys
 
 def main():
     tainted_4 = sys.argv[1]
-    tainted_5 = tainted_4
 
     # use Python random and string to test imports.  Both tests are False
     # so they are evaluated, but don't affect the value of the condition.

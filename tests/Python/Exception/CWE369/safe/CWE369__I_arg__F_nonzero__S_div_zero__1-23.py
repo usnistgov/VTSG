@@ -27,7 +27,6 @@ def main():
     except ValueError:
         tainted_1 = 1776
 
-    tainted_3 = tainted_1
 
     # Declaring an array
     arr_1 = []

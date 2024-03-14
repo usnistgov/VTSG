@@ -27,7 +27,6 @@ def function_1( param_1 ):
 
 def main():
     tainted_2 = input()
-    tainted_4 = tainted_2
 
 
     # remove ||, &&, ;, &, and |

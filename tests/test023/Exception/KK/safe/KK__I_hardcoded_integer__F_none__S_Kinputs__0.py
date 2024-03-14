@@ -25,7 +25,6 @@ import sys
 
 def main():
     tainted_0 = 0
-    tainted_1 = tainted_0
 
     # No filtering (sanitization)
     tainted_1 = tainted_0

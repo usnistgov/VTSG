@@ -23,7 +23,6 @@ import re
 
 def main():
     tainted_2 = os.environ['ADD']
-    tainted_3 = tainted_2
 
     i_1 = 1
     for x in range(0, i_1):

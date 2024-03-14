@@ -23,7 +23,6 @@ import re
 
 def main():
     tainted_2 = "-d /;echo Vulnerable: user command run"
-    tainted_3 = tainted_2
 
     if 5 != 5:
         pass

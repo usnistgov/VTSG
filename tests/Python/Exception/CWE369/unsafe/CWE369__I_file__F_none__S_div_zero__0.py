@@ -27,7 +27,6 @@ def main():
     except ValueError:
         tainted_0 = 1776
 
-    tainted_1 = tainted_0
 
     # No filtering (sanitization)
     tainted_1 = tainted_0

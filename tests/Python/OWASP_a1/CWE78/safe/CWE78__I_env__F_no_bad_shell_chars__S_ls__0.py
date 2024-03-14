@@ -23,7 +23,6 @@ import re
 
 def main():
     tainted_0 = os.environ['ADD']
-    tainted_1 = tainted_0
 
     # remove ||, &&, ;, &, and |
     pattern = '\|\||&&|[;&|]'

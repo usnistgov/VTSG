@@ -40,7 +40,6 @@ def main():
     except ValueError:
         tainted_0 = 1776
 
-    tainted_5 = tainted_0
     tainted_5 = function_1(tainted_0)
 
     array = [0, 1, 2, 3, 4]

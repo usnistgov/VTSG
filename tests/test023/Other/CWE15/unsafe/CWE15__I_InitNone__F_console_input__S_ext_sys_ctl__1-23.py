@@ -33,7 +33,6 @@ def main():
     # no input
     tainted_1 = None
 
-    tainted_3 = tainted_1
 
     # Declaring an array
     arr_1 = []

@@ -30,7 +30,6 @@ namespace default_namespace{
             
                 tainted_0 = "hardcoded";
             
-            tainted_1 = tainted_0;
             
                 StringBuilder escape = new StringBuilder();
                 for (int i = 0; i < tainted_0.Length; ++i){

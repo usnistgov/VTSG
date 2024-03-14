@@ -24,7 +24,6 @@ import sys
 
 def main():
     tainted_0 = sys.argv[1]
-    tainted_1 = tainted_0
 
     # remove ||, &&, ;, &, and |
     pattern = '\|\||&&|[;&|]'

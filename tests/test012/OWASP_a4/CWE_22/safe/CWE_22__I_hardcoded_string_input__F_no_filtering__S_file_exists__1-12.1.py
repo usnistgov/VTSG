@@ -32,7 +32,6 @@ def main():
 
     tainted_2 = "." # local directory
 
-    tainted_3 = tainted_2
 
     while True:
 

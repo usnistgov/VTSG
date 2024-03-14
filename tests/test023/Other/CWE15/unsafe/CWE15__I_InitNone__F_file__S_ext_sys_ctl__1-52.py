@@ -35,7 +35,6 @@ def main():
     # no input
     tainted_2 = None
 
-    tainted_4 = tainted_2
 
 
     with open('data.txt', 'r') as f:

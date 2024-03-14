@@ -33,7 +33,6 @@ namespace default_namespace{
             
                 tainted_2 = "hardcoded";
             
-            tainted_4 = tainted_2;
             
                 
                 StringBuilder text = new StringBuilder(tainted_2);

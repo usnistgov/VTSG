@@ -34,7 +34,6 @@ def function_1( param_1 ):
     return tainted_3
 def main():
     tainted_0 = 0
-    tainted_5 = tainted_0
     tainted_5 = function_1(tainted_0)
 
     user_input = tainted_5

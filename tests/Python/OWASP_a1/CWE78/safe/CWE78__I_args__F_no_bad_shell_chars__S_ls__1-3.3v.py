@@ -24,7 +24,6 @@ import sys
 
 def main():
     tainted_2 = sys.argv[1]
-    tainted_3 = tainted_2
 
     if 5 != 5:
         pass

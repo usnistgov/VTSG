@@ -34,7 +34,6 @@ loader.exec_module(module72)
 
 def main():
     tainted_2 = input()
-    tainted_4 = tainted_2
 
 
     # remove ||, &&, ;, &, and |

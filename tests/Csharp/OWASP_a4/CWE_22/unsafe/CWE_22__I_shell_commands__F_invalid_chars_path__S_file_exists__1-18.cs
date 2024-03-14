@@ -43,7 +43,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_3 = tainted_1;
             
                 tainted_2 = function_1(tainted_1);
                 

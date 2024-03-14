@@ -47,7 +47,6 @@ namespace default_namespace{
                     process.Close();
                 }
             
-            tainted_4 = tainted_2;
             
                 
                 string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + ";";

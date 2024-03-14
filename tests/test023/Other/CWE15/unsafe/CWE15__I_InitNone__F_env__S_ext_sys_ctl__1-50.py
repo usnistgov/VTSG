@@ -41,7 +41,6 @@ def main():
     # no input
     tainted_0 = None
 
-    tainted_5 = tainted_0
     tainted_5 = function_1(tainted_0)
 
     if tainted_5 is not None:

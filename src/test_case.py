@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Wed Mar  6 15:35:19 2024" *by "Paul E. Black"
+ *modified "Wed Mar 13 11:19:38 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -180,14 +180,18 @@ class TestCase(object):
             # INPUT
             input_code = self.input.code
             # set the name of output tainted variable and put the result in input_code
-            input_code = Template(input_code).render(out_var_name=compl_gen.in_ext_name, id=var_id) + '\n'
+            input_code = Template(input_code).render(out_var_name=compl_gen.in_ext_name, id=var_id)
             if self.input.need_id:
                 var_id += 1
 
-            # init filter var with input var
-            input_code += (get_indent('input_content', self.template_code)
+            # if the inner code is not always executed, init filter var with input var
+            if not compl_gen.inner_is_executed:
+                input_code += ('\n' + get_indent('input_content', self.template_code)
                            + make_assign(compl_gen.out_ext_name, compl_gen.in_ext_name,
-									file_template))
+									file_template)
+                           #    + f' {file_template.comment["inline"]}'
+                           #    + ' SYNTH Always Init filter var'
+                           )
 
             # FILTER
             filter_code = self.filter.code
@@ -257,7 +261,7 @@ class TestCase(object):
         if self.sink.input_type != "none":
             imports_set = imports_set.union(self.input.imports)
 
-        # add any imports from complexities, conditions, etc.
+        # add any imports from toplevel complexities, conditions, etc.
         if len(self.classes_code) > 0:
             # add the name of the file to be imported to any 'import {{body_file}}'
             # Specifically, replace "{{body_file}}" with "{{body_file}}=file name"
@@ -334,7 +338,7 @@ class TestCase(object):
         edited_code = ""
 
         for line in code.splitlines(True):
-            line_mo = re.search("{{body_file}}=(\S+)\s+as\s+(\S+)", line) #
+            line_mo = re.search("{{body_file}}=(\S+)\s+as\s+(\S+)", line)
             if line_mo:
                 body_file_name = line_mo.group(1) # the file name
                 imported_name  = line_mo.group(2) # the namespace

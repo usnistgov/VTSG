@@ -30,7 +30,6 @@ def main():
 	 	tainted_1 = None
 
 	 	tainted_0 = 'hardcoded string'
-	 	tainted_1 = tainted_0
 
         # No filtering (sanitization)
         tainted_1 = tainted_0
