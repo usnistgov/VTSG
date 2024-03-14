@@ -21,26 +21,22 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70bib.py' as module70bi
-import importlib.machinery
-import importlib.util
-import os
-import pathlib
-path_to_parent = str(pathlib.Path(__file__).parent)
-loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
-                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70bib.py'))
-spec = importlib.util.spec_from_loader('SFL', loader)
-module70bi = importlib.util.module_from_spec(spec)
-loader.exec_module(module70bi)
+import collections
+import re
 
 
-class Class_2:
-    def __init__(self, tainted_2_2):
-        self.var_2 = tainted_2_2
-    def  get_var_2(self):
+class Class_1:
+    def __init__(self, tainted_4_1):
+        self.var_1 = tainted_4_1
+    def  get_var_1(self):
 
-        tainted_2 = self.var_2
+        # use Python collections to test imports
+        de_queue = collections.deque()
+        de_queue.append(self.var_1)
+        tainted_4 = de_queue.pop()
 
-        var_1 = module70bi.Class_1(tainted_2)
-        tainted_7 = var_1.get_var_1()
-        return tainted_7
+        # remove ||, &&, ;, &, and |
+        pattern = '\|\||&&|[;&|]'
+        tainted_5 = re.sub(pattern, '', tainted_4)
+
+        return tainted_5

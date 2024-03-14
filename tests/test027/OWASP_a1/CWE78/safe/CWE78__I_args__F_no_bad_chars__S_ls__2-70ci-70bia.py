@@ -25,14 +25,14 @@ William Mentzer willmentzer20@gmail.com
 import collections
 import os
 import sys
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70bic.py' as module70ci
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70bib.py' as module70ci
 import importlib.machinery
 import importlib.util
 import os
 import pathlib
 path_to_parent = str(pathlib.Path(__file__).parent)
 loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
-                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70bic.py'))
+                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-70bib.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
 module70ci = importlib.util.module_from_spec(spec)
 loader.exec_module(module70ci)

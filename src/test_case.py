@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Wed Mar 13 11:19:38 2024" *by "Paul E. Black"
+ *modified "Thu Mar 14 10:24:05 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -252,7 +252,7 @@ class TestCase(object):
         self._main_file_name = self.generate_file_name(file_name_suffix)
         # create names for any auxiliary (e.g. class) files
         for i, cl in enumerate(self.classes_code):
-            file_name_suffix = chr(ord('a') + 1 + i)
+            file_name_suffix = chr(ord('a') + (len(self.classes_code) - i))
             self.classes_code[i]['file_name'] = self.generate_file_name(file_name_suffix)
 
         # IMPORTS
