@@ -1,6 +1,6 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Wed Mar 13 16:35:46 2024" *by "Paul E. Black"
+ *modified "Thu Mar 14 10:31:50 2024" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -52,8 +52,6 @@ Improve variable assignment.  Often there are redundant assignments.  For exampl
 Python/Exception/CWE369/safe/CWE369__I_readline__F_nonzero__S_div_zero__1-1.1.py
 
     tainted_2 = int(input())
-
-    tainted_3 = tainted_2
 
     if 1==1:
         if tainted_2 == 0:
