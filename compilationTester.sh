@@ -1,8 +1,8 @@
 #!/bin/bash
-# *modified "Sun Mar 17 16:19:51 2024" *by "Paul E. Black"
+# *modified "Mon Mar 18 11:49:21 2024" *by "Paul E. Black"
 
 if [ $# -ne 1 ]; then
-    echo "Check if generated C# files compile and run properly"
+    echo "Check if generated C# cases compile and run properly"
     echo "Usage: ./compilationTester.sh <Path_to_latest_generation>"
     exit
 fi
@@ -21,8 +21,8 @@ rm -f /tmp/tainted.txt
 echo /etc/passwd > /tmp/tainted.txt
 
 echo "Finding all cases. This may take a moment . . ."
-# find all cases generated - without "second" files, e.g., b.cs
-for file in $(find $path -name "[cC][wW][eE]_*[^b].cs" | sort -V); do
+# find all cases generated - without auxiliary files, e.g., b.cs, c.cs, etc.
+for file in $(find $path -name "[cC][wW][eE]_*[^bcde].cs" | sort -V); do
     # remove suffixes to get a case name
     file=${file/a.cs/.cs}
     case=${file/.cs/}
