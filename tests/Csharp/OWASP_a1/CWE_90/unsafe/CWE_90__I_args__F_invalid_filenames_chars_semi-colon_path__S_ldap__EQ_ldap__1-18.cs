@@ -18,6 +18,7 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 */
+using System;
 using System.DirectoryServices;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -30,7 +31,7 @@ namespace default_namespace{
             string tainted_3 = null;
 
             
-                tainted_1 = args[1];
+                tainted_1 = args[0];
             
             
                 tainted_2 = function_1(tainted_1);

@@ -18,6 +18,7 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 */
+using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -31,7 +32,7 @@ namespace default_namespace{
             string tainted_3 = null;
 
             
-                tainted_1 = args[1];
+                tainted_1 = args[0];
             
             
                 string[] arr_1 = new string[4]; // declaring array

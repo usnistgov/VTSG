@@ -18,6 +18,7 @@ William Mentzer willmentzer20@gmail.com
 
 */
 using MySql.Data.MySqlClient;
+using System;
 using System.Text;
 
 namespace default_namespace{
@@ -27,7 +28,7 @@ namespace default_namespace{
             string tainted_5 = null;
 
             
-                tainted_0 = args[1];
+                tainted_0 = args[0];
             
             tainted_5 = function_1(tainted_0);
             

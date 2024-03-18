@@ -18,6 +18,7 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 */
+using System;
 using System.DirectoryServices;
 using System.IO;
 using System.Text.RegularExpressions;

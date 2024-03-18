@@ -17,8 +17,8 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 */
-using Math;
 using MySql.Data.MySqlClient;
+using System;
 using System.Text;
 
 namespace default_namespace{
@@ -28,7 +28,7 @@ namespace default_namespace{
             string tainted_3 = null;
 
             
-                tainted_2 = args[1];
+                tainted_2 = args[0];
             
             
                 if((Math.Sqrt(42)<=42)){

@@ -112,7 +112,7 @@
             <imports>
             </imports>
             <code>
-                {{out_var_name}} = args[1];
+                {{out_var_name}} = args[0];
             </code>
             <input_type>input : Command line args</input_type>
             <output_type>string</output_type>

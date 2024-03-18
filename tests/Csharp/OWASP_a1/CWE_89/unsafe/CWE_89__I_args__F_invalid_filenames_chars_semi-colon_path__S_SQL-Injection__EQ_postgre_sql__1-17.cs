@@ -18,6 +18,7 @@ William Mentzer willmentzer20@gmail.com
 
 */
 using Npgsql;
+using System;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace default_namespace{
             string tainted_5 = null;
 
             
-                tainted_0 = args[1];
+                tainted_0 = args[0];
             
             tainted_5 = function_1(tainted_0);
             

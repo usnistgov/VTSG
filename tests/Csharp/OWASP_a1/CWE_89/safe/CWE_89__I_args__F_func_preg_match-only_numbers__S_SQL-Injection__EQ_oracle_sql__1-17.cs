@@ -17,6 +17,7 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 */
+using System;
 using System.Data.OracleClient;
 using System.Text.RegularExpressions;
 
@@ -27,7 +28,7 @@ namespace default_namespace{
             string tainted_5 = null;
 
             
-                tainted_0 = args[1];
+                tainted_0 = args[0];
             
             tainted_5 = function_1(tainted_0);
             

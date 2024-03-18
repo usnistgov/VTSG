@@ -18,6 +18,7 @@ William Mentzer willmentzer20@gmail.com
 
 */
 using MySql.Data.MySqlClient;
+using System;
 using System.Text.RegularExpressions;
 
 namespace default_namespace{
@@ -27,7 +28,7 @@ namespace default_namespace{
             string tainted_3 = null;
 
             
-                tainted_2 = args[1];
+                tainted_2 = args[0];
             
             
                 for(int i_1 = 0; i_1 <= 1; i_1++){

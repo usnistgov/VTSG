@@ -17,6 +17,7 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 */
+using System;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 

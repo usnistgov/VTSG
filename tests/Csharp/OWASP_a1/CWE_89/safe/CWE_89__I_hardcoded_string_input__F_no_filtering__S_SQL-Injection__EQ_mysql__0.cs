@@ -18,6 +18,7 @@ William Mentzer willmentzer20@gmail.com
 
 */
 using MySql.Data.MySqlClient;
+using System;
 
 namespace default_namespace{
     class MainClass1{

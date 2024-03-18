@@ -18,6 +18,7 @@ William Mentzer willmentzer20@gmail.com
 
 */
 using Npgsql;
+using System;
 using System.Data;
 using System.Linq;
 
@@ -28,7 +29,7 @@ namespace default_namespace{
             string tainted_1 = null;
 
             
-                tainted_0 = args[1];
+                tainted_0 = args[0];
             
             
                 //No filtering (sanitization)

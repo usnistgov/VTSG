@@ -18,6 +18,7 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 */
+using System;
 using System.DirectoryServices;
 
 namespace default_namespace{
@@ -27,7 +28,7 @@ namespace default_namespace{
             string tainted_1 = null;
 
             
-                tainted_0 = args[1];
+                tainted_0 = args[0];
             
             
                 //No filtering (sanitization)

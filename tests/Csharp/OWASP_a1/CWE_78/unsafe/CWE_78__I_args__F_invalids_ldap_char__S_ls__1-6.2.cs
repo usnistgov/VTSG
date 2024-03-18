@@ -27,7 +27,7 @@ namespace default_namespace{
             string tainted_3 = null;
 
             
-                tainted_2 = args[1];
+                tainted_2 = args[0];
             
             tainted_3 = tainted_2;
             

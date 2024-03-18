@@ -18,6 +18,7 @@ William Mentzer willmentzer20@gmail.com
 
 */
 using MySql.Data.MySqlClient;
+using System;
 
 namespace default_namespace{
     class MainClass2{
@@ -26,7 +27,7 @@ namespace default_namespace{
             string tainted_5 = null;
 
             
-                tainted_0 = args[1];
+                tainted_0 = args[0];
             
             
                 Class_1 var_1 = new Class_1(tainted_0);

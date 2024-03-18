@@ -18,6 +18,7 @@ William Mentzer willmentzer20@gmail.com
 
 */
 using Npgsql;
+using System;
 using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -29,7 +30,7 @@ namespace default_namespace{
             string tainted_3 = null;
 
             
-                tainted_2 = args[1];
+                tainted_2 = args[0];
             
             
                 if((4+2>=42)){

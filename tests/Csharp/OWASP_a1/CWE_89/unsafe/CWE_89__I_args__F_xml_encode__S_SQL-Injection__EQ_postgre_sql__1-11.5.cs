@@ -17,8 +17,8 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 */
-using Math;
 using Npgsql;
+using System;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -30,7 +30,7 @@ namespace default_namespace{
             string tainted_3 = null;
 
             
-                tainted_2 = args[1];
+                tainted_2 = args[0];
             
             
                 while((Math.Pow(4, 2)<=42)){

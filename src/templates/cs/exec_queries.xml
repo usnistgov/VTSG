@@ -61,6 +61,7 @@
         <comment>LDAP Query</comment>
         <imports>
             <import>System.DirectoryServices</import>
+	    <import>System</import>
         </imports>
         <code>
             string strConnect = "LDAP://my.site.com/o=site,c=com";
@@ -89,6 +90,7 @@
         <comment></comment>
         <imports>
             <import>MySql.Data.MySqlClient</import>
+	    <import>System</import>
         </imports>
         <code>
             string connectionString = @"server=localhost;uid=mysql_user;password=mysql_password;database=dbname";
@@ -116,6 +118,7 @@
         <comment></comment>
         <imports>
             <import>System.Data.SqlClient</import>
+	    <import>System</import>
         </imports>
         <code>
             string connectionString =  @"server=localhost;uid=sql_user;password=sql_password;database=dbname";
@@ -144,6 +147,7 @@
             <import>Npgsql</import>
             <import>System.Data</import>
             <import>System.Linq</import>
+	    <import>System</import>
         </imports>
         <code>
             string connectionString = "Server=localhost;port=1337;User Id=postgre_user;Password=postgre_password;Database=dbname";
@@ -170,6 +174,7 @@
         <imports>
             <import>System.Data.SQLite</import>
             <import>System.Data</import>
+	    <import>System</import>
         </imports>
         <code>
             SQLiteConnection dbConnection = null;
@@ -193,6 +198,7 @@
         <comment></comment>
         <imports>
             <import>System.Data.OracleClient</import>
+	    <import>System</import>
         </imports>
         <code>
             string connectionString = "Data Source=localhost;User ID=oracle_user;Password=oracle_password";
@@ -220,6 +226,7 @@
         <comment></comment>
         <imports>
             <import>MySql.Data.MySqlClient</import>
+	    <import>System</import>
         </imports>
         <code>
             string connectionString = @"server=localhost;uid=mysql_user;password=mysql_password;database=dbname";
@@ -248,6 +255,7 @@
         </path>
         <comment>exec_query : xpath</comment>
         <imports>
+	    <import>System</import>
             <import>System.Xml</import>
             <import>System.Xml.XPath</import>
         </imports>
@@ -272,9 +280,7 @@
         <comment>exec_query : xpath prepared statement</comment>
         <imports>
             <import>System.Xml</import>
-        <!--
-            <import>System.Xml.XPath</import>
-        -->
+            <import>System</import>
             <import>System.Linq</import>
             <import>System.Xml.Linq</import>
         </imports>
