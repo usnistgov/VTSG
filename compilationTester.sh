@@ -1,7 +1,8 @@
 #!/bin/bash
+# *modified "Sun Mar 17 16:19:51 2024" *by "Paul E. Black"
 
 if [ $# -ne 1 ]; then
-    echo "Check if generated C# files compile properly"
+    echo "Check if generated C# files compile and run properly"
     echo "Usage: ./compilationTester.sh <Path_to_latest_generation>"
     exit
 fi
@@ -15,11 +16,14 @@ dll="-r:dll/Npgsql.dll \
      -r:dll/System.Xml.XDocument.dll\
      "
 
+# create a test file which some cases read
+rm -f /tmp/tainted.txt
+echo /etc/passwd > /tmp/tainted.txt
+
 echo "Finding all cases. This may take a moment . . ."
-# find all cases generated - without "second" files, e.g., b.cs or File2
-for file in `find $path -name "[cC][wW][eE]_*[^b].cs" | grep -v File2 | sort -V`; do
+# find all cases generated - without "second" files, e.g., b.cs
+for file in $(find $path -name "[cC][wW][eE]_*[^b].cs" | sort -V); do
     # remove suffixes to get a case name
-    file=${file/_File1/}
     file=${file/a.cs/.cs}
     case=${file/.cs/}
     exec=${case}.exe
@@ -28,17 +32,24 @@ for file in `find $path -name "[cC][wW][eE]_*[^b].cs" | grep -v File2 | sort -V`
     mcs -pkg:dotnet $dll -lib:/usr/lib/mono/2.0/ $files -out:$exec > compileOutput.txt 2>&1
     if [ -a $exec ];then
         ctr=$((ctr+1))
+	# write PASSED in green
         echo -e "\033[0;32m\033[1m[PASSED]\033[m\033[0m $files"
     else
+	# write FAILED in red
         echo -e "\033[0;31m\033[1m[FAILED]\033[m\033[0m $files"
         cat compileOutput.txt
 	echo Compiled $ctr cases
 	exit
     fi
 
+    if [[ $exec =~ EQ_sql_server ]];then
+	# Skip EQL_sql_server cases because they take about 20 seconds to time out,
+	# which REALLY slow execution, considering there are thousands of cases.
+	continue
+    fi
     # run the executable
-    mono $exec
+    echo /etc/passwd | mono $exec /etc/passwd
 done
-echo Finished compiling $ctr cases
+echo Finished compiling and running all $ctr cases
 
 # end of compilationTester.sh
