@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Thu Mar 14 10:24:05 2024" *by "Paul E. Black"
+ *modified "Tue Mar 19 16:27:44 2024" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -264,10 +264,10 @@ class TestCase(object):
         # add any imports from toplevel complexities, conditions, etc.
         if len(self.classes_code) > 0:
             # add the name of the file to be imported to any 'import {{body_file}}'
-            # Specifically, replace "{{body_file}}" with "{{body_file}}=file name"
+            # Specifically, replace "{{body_file}}" with "file name"
             body_file = self.classes_code[-1]['file_name'] # import the last file
             toplevel_imports = [macro_expand(an_import,
-						body_file="{{body_file}}=" + body_file)
+						body_file=body_file)
 						for an_import in compl_gen.imports]
         else:
             try:
@@ -317,7 +317,7 @@ class TestCase(object):
         for i, cl in enumerate(self.classes_code):
             body_file = self.classes_code[i-1]['file_name']
             code = macro_expand(cl['code'],
-				body_file="{{body_file}}=" + body_file)
+				body_file=body_file)
             template = Template(self.splice_python_import(code))
             aux_file_content = template.render(license=license_content,
                                                            comments=comments_code,
@@ -328,7 +328,7 @@ class TestCase(object):
     @staticmethod
     def splice_python_import(code):
         """
-        Change any {{body_file}}=file_name "import" into Python code that imports
+        Change any "import file_name as name_space" into Python code that imports
         files with any name.  VTSG creates file names that cannot be imported with
         the built-in "import" statement.  This splices in code that works for any
         file name.
@@ -338,7 +338,7 @@ class TestCase(object):
         edited_code = ""
 
         for line in code.splitlines(True):
-            line_mo = re.search("{{body_file}}=(\S+)\s+as\s+(\S+)", line)
+            line_mo = re.search("import\s+(\S+)\s+as\s+(\S+)", line)
             if line_mo:
                 body_file_name = line_mo.group(1) # the file name
                 imported_name  = line_mo.group(2) # the namespace

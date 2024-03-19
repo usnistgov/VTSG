@@ -17,8 +17,6 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import os
-import sys
 # like import 'CWE78__I_args__F_no_bad_shell_chars__S_ls__1-70b.py' as module70
 import importlib.machinery
 import importlib.util
@@ -30,6 +28,8 @@ loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent
 spec = importlib.util.spec_from_loader('SFL', loader)
 module70 = importlib.util.module_from_spec(spec)
 loader.exec_module(module70)
+import os
+import sys
 
 
 def main():

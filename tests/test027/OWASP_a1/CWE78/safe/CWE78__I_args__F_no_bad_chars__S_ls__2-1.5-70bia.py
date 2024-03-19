@@ -22,11 +22,6 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import math
-import os
-import random
-import string
-import sys
 # like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-70bib.py' as module70bi
 import importlib.machinery
 import importlib.util
@@ -38,6 +33,11 @@ loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent
 spec = importlib.util.spec_from_loader('SFL', loader)
 module70bi = importlib.util.module_from_spec(spec)
 loader.exec_module(module70bi)
+import math
+import os
+import random
+import string
+import sys
 
 
 def main():

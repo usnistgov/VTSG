@@ -17,8 +17,6 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import os
-import sys
 # like import 'CWE369__I_env__F_nonzero__S_div_zero__1-71b.py' as module71
 import importlib.machinery
 import importlib.util
@@ -30,6 +28,8 @@ loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent
 spec = importlib.util.spec_from_loader('SFL', loader)
 module71 = importlib.util.module_from_spec(spec)
 loader.exec_module(module71)
+import os
+import sys
 
 
 def main():

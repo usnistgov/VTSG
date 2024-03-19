@@ -17,7 +17,6 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import sys
 # like import 'KK__I_arg__F_ok__S_Kinputs__1-72b.py' as module72
 import importlib.machinery
 import importlib.util
@@ -29,6 +28,7 @@ loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent
 spec = importlib.util.spec_from_loader('SFL', loader)
 module72 = importlib.util.module_from_spec(spec)
 loader.exec_module(module72)
+import sys
 
 
 def main():
