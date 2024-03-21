@@ -1,6 +1,5 @@
+
 '''
-VTSG test027
-Test imports from complexities and conditions
 Command line args
 filter: remove all shell list or pipe operators
 sink: run ls
@@ -22,30 +21,26 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70cib.py' as module70bi
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-71-70bic.py' as module70bi
 import importlib.machinery
 import importlib.util
 import os
 import pathlib
 path_to_parent = str(pathlib.Path(__file__).parent)
 loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
-                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70cib.py'))
+                                'CWE78__I_args__F_no_bad_chars__S_ls__2-71-70bic.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
 module70bi = importlib.util.module_from_spec(spec)
 loader.exec_module(module70bi)
-import os
-import sys
 
 
-def main():
-    tainted_0 = sys.argv[1]
+class Class_2:
+    def __init__(self, param):
+        self.var_2 = param
+    def get_var_2(self):
 
-    var_2 = module70bi.Class_2(tainted_0)
-    tainted_9 = var_2.get_var_2()
+        tainted_2 = self.var_2
 
-
-    os.system('ls ' + tainted_9)
-
-
-if __name__ == '__main__':
-        main()
+        var_1 = module70bi.Class_1(tainted_2)
+        tainted_7 = var_1.get_var_1()
+        return tainted_7

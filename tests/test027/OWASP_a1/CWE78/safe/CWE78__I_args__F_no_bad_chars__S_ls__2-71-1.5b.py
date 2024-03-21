@@ -21,18 +21,25 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
+import math
+import random
 import re
+import string
 
 
-class Class_1:
-    def __init__(self, tainted_4_1):
-        self.var_1 = tainted_4_1
-    def  get_var_1(self):
+class Class_2:
+    def __init__(self, param):
+        self.var_2 = param
+    def get_var_2(self):
 
-        tainted_4 = self.var_1
+        tainted_4 = self.var_2
 
-        # remove ||, &&, ;, &, and |
-        pattern = '\|\||&&|[;&|]'
-        tainted_5 = re.sub(pattern, '', tainted_4)
+        # use Python random and string to test imports.  Both tests are False
+        # so they are evaluated, but don't affect the value of the condition.
+        if random.randint(0, 100) > 200 or 'A' in string.digits or (math.pow(4, 2)<=42):
+
+            # remove ||, &&, ;, &, and |
+            pattern = '\|\||&&|[;&|]'
+            tainted_5 = re.sub(pattern, '', tainted_4)
 
         return tainted_5

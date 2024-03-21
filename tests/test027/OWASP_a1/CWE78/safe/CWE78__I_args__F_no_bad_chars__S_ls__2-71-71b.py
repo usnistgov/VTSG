@@ -22,33 +22,29 @@ William Mentzer willmentzer20@gmail.com
 
 '''
 import collections
-import collections
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70cic.py' as module70ci
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-71-71c.py' as module71
 import importlib.machinery
 import importlib.util
 import os
 import pathlib
 path_to_parent = str(pathlib.Path(__file__).parent)
 loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
-                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-70cic.py'))
+                                'CWE78__I_args__F_no_bad_chars__S_ls__2-71-71c.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
-module70ci = importlib.util.module_from_spec(spec)
-loader.exec_module(module70ci)
+module71 = importlib.util.module_from_spec(spec)
+loader.exec_module(module71)
 
 
 class Class_2:
-    def __init__(self, tainted_2_2):
-        self.var_2 = tainted_2_2
-    def  get_var_2(self):
+    def __init__(self, param):
+        self.var_2 = param
+    def get_var_2(self):
+
+        tainted_2 = self.var_2
 
         # use Python collections to test imports
         de_queue = collections.deque()
-        de_queue.append(self.var_2)
-        tainted_2 = de_queue.pop()
-
-        # use Python collections to test imports
-        de_queue = collections.deque()
-        de_queue.append(module70ci.Class_1(tainted_2))
+        de_queue.append(module71.Class_1(tainted_2))
         var_1 = de_queue.pop()
         tainted_7 = var_1.get_var_1()
         return tainted_7

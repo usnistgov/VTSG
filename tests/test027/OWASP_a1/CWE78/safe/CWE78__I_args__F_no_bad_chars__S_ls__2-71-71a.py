@@ -22,33 +22,33 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-1.2b.py' as module70ci
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-71-71b.py' as module71
 import importlib.machinery
 import importlib.util
 import os
 import pathlib
 path_to_parent = str(pathlib.Path(__file__).parent)
 loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
-                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70ci-1.2b.py'))
+                                'CWE78__I_args__F_no_bad_chars__S_ls__2-71-71b.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
-module70ci = importlib.util.module_from_spec(spec)
-loader.exec_module(module70ci)
+module71 = importlib.util.module_from_spec(spec)
+loader.exec_module(module71)
 import collections
 import os
 import sys
 
 
 def main():
-    tainted_2 = sys.argv[1]
+    tainted_0 = sys.argv[1]
 
-    # use Python collections to test imports
+    # use Python collections to test imports - complexity 71
     de_queue = collections.deque()
-    de_queue.append(module70ci.Class_2(tainted_2))
+    de_queue.append(module71.Class_2(tainted_0))
     var_2 = de_queue.pop()
-    tainted_7 = var_2.get_var_2()
+    tainted_9 = var_2.get_var_2()
 
-    #flaw
-    os.system('ls ' + tainted_7)
+
+    os.system('ls ' + tainted_9)
 
 
 if __name__ == '__main__':

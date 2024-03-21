@@ -1,7 +1,7 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
 <!-- *created  "Fri Jan 19 16:44:33 2024" *by "Paul E. Black" -->
-<!-- *modified "Wed Feb 28 09:19:04 2024" *by "Paul E. Black" -->
+<!-- *modified "Thu Mar 21 14:39:45 2024" *by "Paul E. Black" -->
 <root>
     <conditions>
         <!--
@@ -113,19 +113,20 @@ DEDENT
             </body>
         </complexity>
 
-	<!-- test purpose: code import, that is, library import where <code> is
-	     placed.  Also, both library import and class or module import -->
-        <complexity id="70ci" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
+	<!-- test purpose: code import, that is, library import where <code> is placed.
+	     Also, both library import and class or module import; in_out_var="in" -->
+        <complexity id="71" type="class" group="classes" executed="1" in_out_var="in" need_id="1" indirection="1">
 	    <imports>
 	      <import>collections</import>
-	      <import>{{body_file}} as module70ci</import>
+	      <import>{{body_file}} as module71</import>
 	    </imports>
             <code>
-	      # use Python collections to test imports
+	      # use Python collections to test imports - complexity 71
 	      de_queue = collections.deque()
-              de_queue.append(module70ci.{{call_name}}({{in_var_name}}))
+              de_queue.append(module71.{{call_name}}({{in_var_name}}))
               var_{{id}} = de_queue.pop()
               {{out_var_name}} = var_{{id}}.get_var_{{id}}()
+              {{placeholder}}
             </code>
             <body>
 '''
@@ -135,24 +136,18 @@ DEDENT
 {{ license }}
 '''
 
-{{ stdlib_imports }}
-
-{{static_methods}}
-
 class {{call_name}}:
 INDENT
-        def __init__(self, {{in_var_name}}_{{id}}):
+        def __init__(self, param):
 	INDENT
-                self.var_{{id}} = {{in_var_name}}_{{id}}
+                self.var_{{id}} = param
 	DEDENT
 
-        def  get_var_{{id}}(self):
+        def get_var_{{id}}(self):
 	INDENT
-            {{local_var}}
-            {{in_var_name}} = self.var_{{id}}
-            {{ placeholder}}
-            return {{out_var_name}}
+                return self.var_{{id}}
 	DEDENT
+
 DEDENT
             </body>
         </complexity>
