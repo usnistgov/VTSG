@@ -1,6 +1,5 @@
+
 '''
-VTSG test027
-Test imports from complexities and conditions
 Command line args
 filter: remove all shell list or pipe operators
 sink: run ls
@@ -22,30 +21,36 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-71b.py' as module70bi
+import collections
+import re
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-72c.py' as module72
 import importlib.machinery
 import importlib.util
 import os
 import pathlib
 path_to_parent = str(pathlib.Path(__file__).parent)
 loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
-                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-71b.py'))
+                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-72c.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
-module70bi = importlib.util.module_from_spec(spec)
-loader.exec_module(module70bi)
-import os
-import sys
+module72 = importlib.util.module_from_spec(spec)
+loader.exec_module(module72)
 
 
-def main():
-    tainted_1 = sys.argv[1]
+class Class_2:
+    def __init__(self, tainted_4_2):
+        self.var_2 = tainted_4_2
+    def  get_var_2(self):
 
-    var_2 = module70bi.Class_2(tainted_1)
-    tainted_7 = var_2.get_var_2()
+        # use Python collections to test imports
+        de_queue = collections.deque()
+        de_queue.append(self.var_2)
+        tainted_4 = de_queue.pop()
 
 
-    os.system('ls ' + tainted_7)
+        # remove ||, &&, ;, &, and |
+        pattern = '\|\||&&|[;&|]'
+        tainted_5 = re.sub(pattern, '', tainted_4)
 
-
-if __name__ == '__main__':
-        main()
+        var_1 = module72.Class_1(tainted_5)
+        tainted_6 = var_1.get_var_1()
+        return tainted_6

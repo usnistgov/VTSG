@@ -23,6 +23,7 @@ William Mentzer willmentzer20@gmail.com
 '''
 import collections
 import collections
+import re
 # like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-71c.py' as module71
 import importlib.machinery
 import importlib.util
@@ -37,18 +38,23 @@ loader.exec_module(module71)
 
 
 class Class_2:
-    def __init__(self, tainted_2_2):
-        self.var_2 = tainted_2_2
+    def __init__(self, tainted_3_2):
+        self.var_2 = tainted_3_2
     def  get_var_2(self):
 
         # use Python collections to test imports
         de_queue = collections.deque()
         de_queue.append(self.var_2)
-        tainted_2 = de_queue.pop()
+        tainted_3 = de_queue.pop()
 
-        # use Python collections to test imports
+        # use Python collections to test imports - complexity 71
         de_queue = collections.deque()
-        de_queue.append(module71.Class_1(tainted_2))
+        de_queue.append(module71.Class_1(tainted_3))
         var_1 = de_queue.pop()
-        tainted_7 = var_1.get_var_1()
-        return tainted_7
+        tainted_4 = var_1.get_var_1()
+
+        # remove ||, &&, ;, &, and |
+        pattern = '\|\||&&|[;&|]'
+        tainted_5 = re.sub(pattern, '', tainted_4)
+
+        return tainted_5

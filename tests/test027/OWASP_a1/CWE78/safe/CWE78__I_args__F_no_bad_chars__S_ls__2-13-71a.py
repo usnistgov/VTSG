@@ -35,11 +35,12 @@ module71 = importlib.util.module_from_spec(spec)
 loader.exec_module(module71)
 import collections
 import os
+import re
 import sys
 
 
 def main():
-    tainted_2 = sys.argv[1]
+    tainted_3 = sys.argv[1]
 
     match 7:
         case 6:
@@ -48,12 +49,17 @@ def main():
 
             # use Python collections to test imports - complexity 71
             de_queue = collections.deque()
-            de_queue.append(module71.Class_1(tainted_2))
+            de_queue.append(module71.Class_1(tainted_3))
             var_1 = de_queue.pop()
-            tainted_7 = var_1.get_var_1()
+            tainted_4 = var_1.get_var_1()
+
+            # remove ||, &&, ;, &, and |
+            pattern = '\|\||&&|[;&|]'
+            tainted_5 = re.sub(pattern, '', tainted_4)
 
 
-    os.system('ls ' + tainted_7)
+
+    os.system('ls ' + tainted_5)
 
 
 if __name__ == '__main__':

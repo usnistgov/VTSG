@@ -21,23 +21,8 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-import re
-
-
 class Class_2:
     def __init__(self, param):
         self.var_2 = param
     def get_var_2(self):
-
-        tainted_4 = self.var_2
-
-        match 7:
-            case 6:
-                pass
-            case _:
-
-                # remove ||, &&, ;, &, and |
-                pattern = '\|\||&&|[;&|]'
-                tainted_5 = re.sub(pattern, '', tainted_4)
-
-        return tainted_5
+        return self.var_2

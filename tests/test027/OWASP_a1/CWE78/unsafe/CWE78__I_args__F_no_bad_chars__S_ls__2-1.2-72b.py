@@ -21,8 +21,9 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-class Class_2:
+# This is complexity 72
+class Class_1:
     def __init__(self, param):
-        self.var_2 = param
-    def get_var_2(self):
-        return self.var_2
+        self.var_1 = param
+    def get_var_1(self):
+        return self.var_1

@@ -34,21 +34,34 @@ spec = importlib.util.spec_from_loader('SFL', loader)
 module71 = importlib.util.module_from_spec(spec)
 loader.exec_module(module71)
 import collections
+import math
 import os
+import random
+import re
+import string
 import sys
 
 
 def main():
-    tainted_2 = sys.argv[1]
+    tainted_3 = sys.argv[1]
 
     # use Python collections to test imports - complexity 71
     de_queue = collections.deque()
-    de_queue.append(module71.Class_2(tainted_2))
+    de_queue.append(module71.Class_2(tainted_3))
     var_2 = de_queue.pop()
-    tainted_7 = var_2.get_var_2()
+    tainted_4 = var_2.get_var_2()
+
+    # use Python random and string to test imports.  Both tests are False
+    # so they are evaluated, but don't affect the value of the condition.
+    if random.randint(0, 100) > 200 or 'A' in string.digits or (math.pow(4, 2)<=42):
+
+        # remove ||, &&, ;, &, and |
+        pattern = '\|\||&&|[;&|]'
+        tainted_5 = re.sub(pattern, '', tainted_4)
 
 
-    os.system('ls ' + tainted_7)
+
+    os.system('ls ' + tainted_5)
 
 
 if __name__ == '__main__':

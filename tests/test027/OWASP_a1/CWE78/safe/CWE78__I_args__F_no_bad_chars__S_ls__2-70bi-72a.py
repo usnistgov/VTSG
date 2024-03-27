@@ -22,14 +22,14 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-71b.py' as module70bi
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-72b.py' as module70bi
 import importlib.machinery
 import importlib.util
 import os
 import pathlib
 path_to_parent = str(pathlib.Path(__file__).parent)
 loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
-                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-71b.py'))
+                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-72b.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
 module70bi = importlib.util.module_from_spec(spec)
 loader.exec_module(module70bi)
@@ -38,13 +38,13 @@ import sys
 
 
 def main():
-    tainted_1 = sys.argv[1]
+    tainted_2 = sys.argv[1]
 
-    var_2 = module70bi.Class_2(tainted_1)
-    tainted_7 = var_2.get_var_2()
+    var_2 = module70bi.Class_2(tainted_2)
+    tainted_8 = var_2.get_var_2()
 
 
-    os.system('ls ' + tainted_7)
+    os.system('ls ' + tainted_8)
 
 
 if __name__ == '__main__':

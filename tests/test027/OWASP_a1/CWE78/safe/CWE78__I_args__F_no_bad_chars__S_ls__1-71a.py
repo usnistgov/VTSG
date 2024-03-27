@@ -35,20 +35,26 @@ module71 = importlib.util.module_from_spec(spec)
 loader.exec_module(module71)
 import collections
 import os
+import re
 import sys
 
 
 def main():
-    tainted_0 = sys.argv[1]
+    tainted_1 = sys.argv[1]
 
     # use Python collections to test imports - complexity 71
     de_queue = collections.deque()
-    de_queue.append(module71.Class_1(tainted_0))
+    de_queue.append(module71.Class_1(tainted_1))
     var_1 = de_queue.pop()
-    tainted_5 = var_1.get_var_1()
+    tainted_2 = var_1.get_var_1()
+
+    # remove ||, &&, ;, &, and |
+    pattern = '\|\||&&|[;&|]'
+    tainted_3 = re.sub(pattern, '', tainted_2)
 
 
-    os.system('ls ' + tainted_5)
+
+    os.system('ls ' + tainted_3)
 
 
 if __name__ == '__main__':

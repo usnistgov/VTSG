@@ -22,29 +22,40 @@ Paul E. Black  paul.black@nist.gov
 William Mentzer willmentzer20@gmail.com
 
 '''
-# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-71b.py' as module70bi
+# like import 'CWE78__I_args__F_no_bad_chars__S_ls__2-13-72b.py' as module72
 import importlib.machinery
 import importlib.util
 import os
 import pathlib
 path_to_parent = str(pathlib.Path(__file__).parent)
 loader = importlib.machinery.SourceFileLoader('SFL', os.path.join(path_to_parent,
-                                'CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-71b.py'))
+                                'CWE78__I_args__F_no_bad_chars__S_ls__2-13-72b.py'))
 spec = importlib.util.spec_from_loader('SFL', loader)
-module70bi = importlib.util.module_from_spec(spec)
-loader.exec_module(module70bi)
+module72 = importlib.util.module_from_spec(spec)
+loader.exec_module(module72)
 import os
+import re
 import sys
 
 
 def main():
-    tainted_1 = sys.argv[1]
+    tainted_4 = sys.argv[1]
 
-    var_2 = module70bi.Class_2(tainted_1)
-    tainted_7 = var_2.get_var_2()
+    match 7:
+        case 6:
+            pass
+        case _:
 
 
-    os.system('ls ' + tainted_7)
+            # remove ||, &&, ;, &, and |
+            pattern = '\|\||&&|[;&|]'
+            tainted_5 = re.sub(pattern, '', tainted_4)
+
+            var_1 = module72.Class_1(tainted_5)
+            tainted_6 = var_1.get_var_1()
+
+
+    os.system('ls ' + tainted_6)
 
 
 if __name__ == '__main__':
