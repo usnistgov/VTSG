@@ -164,7 +164,7 @@
                 $arr_{{ id }}[] = null;
                 $arr_{{ id }}[] = {{ in_var_name }};
 
-                foreach($val_{{ id }} as $arr_{{ id }}){
+                foreach($arr_{{ id }} as $val_{{ id }}){
                     if($val_{{ id }}!=null){
                         {{ out_var_name }} = $val_{{ id }};
                         {{ placeholder }}
@@ -248,12 +248,12 @@
                     var $var_{{id}};
 
                     function __construct({{in_var_name}}_{{id}}){
-                        $var_{{id}} = {{in_var_name}}_{{id}};
+                        $this->var_{{id}} = {{in_var_name}}_{{id}};
                     }
 
                     function get_var_{{id}}(){
                         {{local_var}}
-                        {{in_var_name}} = $var_{{id}};
+                        {{in_var_name}} = $this->var_{{id}};
                         {{ placeholder}}
                         return {{out_var_name}};
                     }
@@ -284,11 +284,11 @@
                     var $var_{{id}};
 
                     function __construct($param){
-                        $var_{{id}} = $param;
+                        $this->var_{{id}} = $param;
                     }
 
                     function get_var_{{id}}(){
-                        return $var_{{id}};
+                        return $this->var_{{id}};
                     }
                 }
                 ?>
@@ -314,11 +314,11 @@
                     var $var_{{id}};
 
                     function __construct($param){
-                        $var_{{id}} = $param;
+                        $this->var_{{id}} = $param;
                     }
 
                     function get_var_{{id}}(){
-                        return $var_{{id}};
+                        return $this->var_{{id}};
                     }
                 }
                 ?>

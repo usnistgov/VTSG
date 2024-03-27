@@ -137,7 +137,7 @@
         <flaw flaw_type="CWE_89" safe="0" unsafe="0"/>
     </flaws>
     <imports></imports>
-          <code>$sanitized = filter_var({{in_var_name}}, FILTER_SANITIZE_MAGIC_QUOTES);
+          <code>$sanitized = filter_var({{in_var_name}}, FILTER_SANITIZE_ADD_SLASHES);
           {{out_var_name}} = $sanitized ;
       </code>
       <input_type>string</input_type>
