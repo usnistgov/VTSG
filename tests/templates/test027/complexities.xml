@@ -1,7 +1,7 @@
 <?xml version = "1.0" standalone="no"?>
 <!DOCTYPE root SYSTEM "../dtd/complexities.dtd">
 <!-- *created  "Fri Jan 19 16:44:33 2024" *by "Paul E. Black" -->
-<!-- *modified "Thu Mar 21 14:39:45 2024" *by "Paul E. Black" -->
+<!-- *modified "Wed Mar 27 16:31:33 2024" *by "Paul E. Black" -->
 <root>
     <conditions>
         <!--
@@ -148,6 +148,39 @@ INDENT
                 return self.var_{{id}}
 	DEDENT
 
+DEDENT
+            </body>
+        </complexity>
+        <complexity id="72" type="class" group="classes" executed="1" in_out_var="out" need_id="1" indirection="1">
+	    <imports>
+	      <import>{{body_file}} as module72</import>
+	    </imports>
+            <code>
+        {{placeholder}}
+        var_{{id}} = module72.{{call_name}}({{in_var_name}})
+        {{out_var_name}} = var_{{id}}.get_var_{{id}}()
+            </code>
+            <body>
+'''
+{{comments}}
+'''
+'''
+{{ license }}
+'''
+
+# This is complexity 72
+
+class {{call_name}}:
+INDENT
+        def __init__(self, param):
+	INDENT
+                self.var_{{id}} = param
+	DEDENT
+
+        def get_var_{{id}}(self):
+	INDENT
+                return self.var_{{id}}
+	DEDENT
 DEDENT
             </body>
         </complexity>
