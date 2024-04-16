@@ -1,6 +1,6 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Thu Mar 14 10:31:50 2024" *by "Paul E. Black"
+ *modified "Tue Apr 16 15:10:09 2024" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
 
@@ -118,9 +118,9 @@ templates, but then does variants on them where the initial value, the terminati
 test value, or the increment value (and combinations of all of them!) are passed
 through variables instead of being hard coded.
 
-Sinks should be able to supply code to other modules.  In particular, certain sinks
-need a hard coded "input" to be a certain value in order to be safe or to exploit the
-weakness.
+Sinks should be able to supply code to other modules (kinda' like <body> puts code in
+other files).  In particular, certain sinks need a hard coded "input" to be a certain
+value in order to be safe or to exploit the weakness.
 
 
 21 March 2023
@@ -146,6 +146,14 @@ Remember to update DTDs.
 3 Mar 2023
 Allow the user to specify the variable name root, that is, something other than
 "tainted".
+
+Of course, a programmer could customize var_name (in complexities_generator.py) to
+build a distinct module to generate names.  For instance, it could pick from some
+large list (e.g. row, column, flaw, counts, tree, elapsed, etc.), assign random
+labels (e.g. rT6huz), use an alphabetic counter (e.g. vara, varb, varc, vard), or
+something.
+  Caution: many of the variable "matching" routines (input out_var to filter in_var)
+are based on counters being incremented or decremented by one.
 
 
 4 Jan 2023
@@ -269,9 +277,6 @@ functions are often referred to as "filtering".
    Change language entries from {{ filtering_content }} to {{ filter_content }}?
 
 
-Make sure the PHP code runs, that is, that the generated programs are valid.
-Fix any problems . . .
-
 C#
   - check all str functions
   - Complexities :
@@ -296,20 +301,12 @@ each language.
 
 GENERATE MORE KINDS OF CASES
 
-Extend VTSG & Python to handle (all?) Juliet-type cases
-    (1) Now VTSG is structured to create injection cases. I don't know how well it
-       could produce integer overflow, divide by zero, etc. type cases.
-    This is probably a LOT of work since there are so many different kinds of test
-    cases and complexities in Juliet.
-
 Add swapped argument errors, see Vineeth Kashyap https://arxiv.org/abs/2009.09117
 
 Generalize the structure of VTSG.  Now it looks for inputs, filters, and queries in
 rigid combinations.  Maybe VTSG should read the template, then go hunting for each
 kind of module mentioned.  Connections between them, via variables or call/return,
 could be generalized.
-    I don't know if this is even needed.  We first must work on handling Juliet and
-other cases to discover any limitations VTSG has.
 
 
 GENERATE CASES SMARTER
