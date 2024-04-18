@@ -310,40 +310,40 @@ ls: user: No such file or directory
 /
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__1-1.2.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-1.2.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-1.5.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-13.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-70bia.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-71a.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.2-72a.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-1.5-1.2.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-13-1.2.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-70bi-1.2a.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-71-1.2a.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_no_bad_chars__S_ls__2-72-1.2a.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
 ./OWASP_a1/CWE78/unsafe/CWE78__I_args__F_none__S_ls__0.py
 Vulnerable: user command run
-ls: stdout: Broken pipe
+ls: Broken pipe
