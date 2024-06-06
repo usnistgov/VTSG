@@ -1,5 +1,5 @@
 # *created  "Tue Jul 28 09:17:42 2020" *by "Paul E. Black"
-# *modified "Tue Mar 19 16:43:47 2024" *by "Paul E. Black"
+# *modified "Thu Jun  6 07:45:16 2024" *by "Paul E. Black"
 
 default: genPython
 
@@ -270,7 +270,7 @@ test027: $(VTSG_FILES)
 	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*.py"|sort); do echo $$f;diff $$f $(TDIR)/$(@)/$$f;done) 2>&1 | tee -a $(@)_photo
 	# SKIMP check manifest, too
 	# execute these cases
-	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*[0-9a].py"|sort); do echo $$f; python3 $$f "-d / | echo Vulnerable: user command run"; done) 2>&1 | tee -a $(@)_photo
+	(cd $$(ls -dt TestSuite_*/$(@) | head -1);for f in $$(find . -name "*[0-9a].py"|sort); do echo $$f; python3 $$f "-d / | echo Vulnerable: user command run"|sort; done) 2>&1 | perl -pwe "s/(write error|stdout): //;s/cannot access '//;s/':/:/" | tee -a $(@)_photo
 	diff $(@)_photo tests/$(@)_photo
 
 testNNN: $(VTSG_FILES) src/sarif_writer.py
