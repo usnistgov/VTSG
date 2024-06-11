@@ -1,9 +1,9 @@
 #!/bin/bash
-# *modified "Mon Mar 18 11:49:21 2024" *by "Paul E. Black"
+# *modified "Tue Jun 11 15:07:15 2024" *by "Paul E. Black"
 
 if [ $# -ne 1 ]; then
     echo "Check if generated C# cases compile and run properly"
-    echo "Usage: ./compilationTester.sh <Path_to_latest_generation>"
+    echo "Usage: ./run_Csharp.sh <Path_to_latest_generation>"
     exit
 fi
 
@@ -52,4 +52,4 @@ for file in $(find $path -name "[cC][wW][eE]_*[^bcde].cs" | sort -V); do
 done
 echo Finished compiling and running all $ctr cases
 
-# end of compilationTester.sh
+# end of run_Csharp.sh
