@@ -1,5 +1,5 @@
 #!/bin/bash
-# *modified "Tue Jun 11 15:07:15 2024" *by "Paul E. Black"
+# *modified "Wed Jun 12 08:15:24 2024" *by "Paul E. Black"
 
 if [ $# -ne 1 ]; then
     echo "Check if generated C# cases compile and run properly"
@@ -24,8 +24,8 @@ echo "Finding all cases. This may take a moment . . ."
 # find all cases generated - without auxiliary files, e.g., b.cs, c.cs, etc.
 for file in $(find $path -name "[cC][wW][eE]_*[^bcde].cs" | sort -V); do
     # remove suffixes to get a case name
-    file=${file/a.cs/.cs}
-    case=${file/.cs/}
+    case=${file/a.cs/.cs}
+    case=${case/.cs/}
     exec=${case}.exe
     files="${case}*.cs"
     rm -f $exec # don't use executable left over from a previous compile
