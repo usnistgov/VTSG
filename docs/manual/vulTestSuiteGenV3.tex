@@ -1,6 +1,5 @@
-
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Thu Mar 14 15:49:10 2024" *by "Paul E. Black"
+% *modified "Thu Jun 13 17:06:10 2024" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -161,7 +160,7 @@
 \DOI\\
 \vfill
 \normalsize \pubmonth~\pubyear\\
-%\textsc{Includes Updates as of \erratadate; See \appendixname~\ref{app:log}} %include if errata update
+\textsc{Includes Updates as of \erratadate; See \appendixname~\ref{app:change log}} %include if errata update
 \vfill
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Department of Commerce LOGO - leave as-is
@@ -444,6 +443,7 @@ of VTSG
 and offers suggestions about how to enhance or extend VTSG's capabilities.
 
 \subsection{Strengths and Limitations of VTSG}
+\label{sec:VTSG limitations}
 
 VTSG generates test cases starting with the File Template.  It selects Input,
 Filter, Complexity, Sink, and ExecQuery modules and inserts them into the Template.
@@ -497,6 +497,7 @@ possible future enhancements.
 
 
 \subsection{History}
+\label{sec:history}
 
 Originally named Vulnerability Test Suite (VTS) generator, version 1 only
 generated \CSharp\ programs. VTS version 2 generated PHP
@@ -1563,7 +1564,7 @@ The resulting import statements replace the \verb|{{stdlib_imports}}| placeholde
 
 Python specifies other files to get code through import statements.  VTSG creates
 file names during generation.  The file name where VTSG places the \verb|<body>| is
-available as \verb|{{body_file}}|.  The following is in the \verb|complexity.py| file:
+available as \verb|{{body_file}}|.  The following is in the \verb|complexity.xml| file:
 \begin{verbatim}
         <imports>
             <import>{{body_file}} as module70</import>
@@ -1917,6 +1918,7 @@ vulnerable.
 
 
 \subsection{Code Complexity and Test Condition Modules}
+\label{sec:complexities and conditions}
 
 All test condition and code complexity modules are in the 
 language's \verb|complexities.xml| file.  This file has
@@ -2628,7 +2630,7 @@ the \href{https://brew.sh/}{Homebrew home page}.
 Then use homebrew to install mono.  See directions to
 \href{https://formulae.brew.sh/formula/mono}{install mono using Homebrew}.
 
-The script \verb|compilationTester.sh| uses mcs to compile all the
+The script \verb|run_Csharp.sh| uses mcs to compile and mono to run all the
 \CSharp\ cases that are generated.
 
 
@@ -2729,6 +2731,10 @@ See the \verb|complexity.xml| file for the specific code.
 \end{tabular}
 \label{tab:complexity IDs for PHP}
 \end{table}
+
+\label{sec:run php}
+The script \verb|run_PHP.sh| uses php-cgi to run
+PHP cases that are generated.
 
 \newpage
 
@@ -2916,8 +2922,10 @@ See the \verb|complexity.xml| file for the specific code.
 %\label{app:index}
 %OPTIONAL. Alphabetical listing of all major topics discussed in a report. An index cites the page or location where the topic can be found. The arrangement and level of detail of the index are determined by the structure of the report, its target audience, and use.
 
-%\section{Change Log}
-%\label{app:change log}
+\newpage
+
+\section{Change Log}
+\label{app:change log}
 %REQUIRED IF UPDATE OR REVISION. If this report is an update, revision, or new edition
 %of a previously published report, briefly state changes made and the date of
 %changes. Some examples of how to list changes made are:
@@ -2945,6 +2953,28 @@ See the \verb|complexity.xml| file for the specific code.
 %  string, destroy, key-establishment pair, key-wrapping key, trusted association;
 %  removed definitions on assurance of identifier, initiator, and responder.
 %\end{itemize}
+Since the first publication in October 2023, we made the following changes:
+% See the differences with
+% $ git diff d55f52c20a vulTestSuiteGenV3.tex
+\begin{itemize}
+  \item Note that the body file name is now available as the new meta variable
+    \verb|{{body_file}}|.  Explain how VTSG handles importing files in Python.
+    (Sec.~\ref{sec:module import})
+  \item Complexities and conditions can now \verb|<import>| required libraries.
+    (Sec.~\ref{sec:complexities and conditions})
+  \item Document existing self-tests.  Advise why and how to add more tests when
+    adding features.  Suggest how to use \verb|-n| to debug new features.
+    (Sec.~\ref{sec:extending VTSG})
+  \item Cite a publication when mentioning Juliet cases.
+    (Sec.~\ref{sec:VTSG limitations})
+  \item Note that VTSG Version 3 can select subsets of potential test cases.
+    (Sec.~\ref{sec:history})
+  \item Update the name of \verb|compilationTester.sh|, which is now
+    \verb|run_Csharp.sh|, and mention the new script \verb|run_PHP.sh|.
+    (Apps.~\ref{sec:run csharp} and \ref{sec:run php})
+  \item Various wording improvements and fixes to typos.
+\end{itemize}
+
 
 \end{appendices}
 \end{document}
