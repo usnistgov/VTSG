@@ -230,6 +230,9 @@
 
         <!-- Classes -->
         <complexity id="20" type="class" group="classes" executed="1" in_out_var="traversal" need_id="1" indirection="1">
+	    <imports>
+	      <import>{{body_file}}</import>
+	    </imports>
             <code>
                 $var_{{id}} = new {{call_name}}({{in_var_name}});
                 {{out_var_name}} = $var_{{id}}->get_var_{{id}}();
@@ -266,6 +269,9 @@
 
 
         <complexity id="21" type="class" group="classes" executed="1" in_out_var="in" need_id="1" indirection="1">
+	    <imports>
+	      <import>{{body_file}}</import>
+	    </imports>
             <code>
                 $var_{{id}} = new {{call_name}}({{in_var_name}});
                 {{out_var_name}} = $var_{{id}}->get_var_{{id}}();
@@ -296,6 +302,9 @@
         </complexity>
 
         <complexity id="22" type="class" group="classes" executed="1" in_out_var="out" need_id="1" indirection="1">
+	    <imports>
+	      <import>{{body_file}}</import>
+	    </imports>
             <code>
                 {{placeholder}}
                 $var_{{id}} = new {{call_name}}({{in_var_name}});

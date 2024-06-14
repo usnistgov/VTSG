@@ -1,6 +1,6 @@
 #!/bin/bash
 #  *created "Mon Mar 18 13:42:11 2024" *by "Paul E. Black"
-# *modified "Mon Apr  1 15:42:45 2024" *by "Paul E. Black"
+# *modified "Fri Jun 14 11:02:29 2024" *by "Paul E. Black"
 
 if [ $# -ne 1 ]; then
     echo "Run generated PHP cases"
@@ -26,12 +26,16 @@ echo $attack_data
 END_OF_SCRIPT
 chmod a+x /tmp/tainted.sh
 
-echo "Finding all cases. This may take a moment . . ."
+# For info on colored text output, see https://en.wikipedia.org/wiki/ANSI_escape_code
+# or https://wiki.archlinux.org/title/Bash/Prompt_customization
+
+echo "Finding all cases. This may take a while . . ."
 # find all cases generated - without auxiliary files, e.g., b.php, c.php, etc.
 for file in $(find $path -name "[cC][wW][eE]_*[^bcde].php" | sort -V); do
-    if [[ $exec =~ EQ_sql_server ]];then
-	# Skip EQL_sql_server cases because they take about 20 seconds to time out,
-	# which REALLY slows execution, considering there are thousands of cases.
+    if [[ $file =~ I_POST__ || $file =~ I_SESSION__ ]];then
+	# I don't know how to supply POST or SESSION data to the execution
+	# write SKIPPED in yellow
+        echo -e "\033[0;33m[SKIPPED]\033[0m $file"
 	continue
     fi
 
@@ -45,14 +49,14 @@ for file in $(find $path -name "[cC][wW][eE]_*[^bcde].php" | sort -V); do
     rm -f /tmp/unrecognizedOutput
     # ignore things we don't care about
     # SKIMP: this doesn't filter out stuff from 'ls' input, so that is judged to fail
-    grep -Ev '^(  thrown in |Stack trace:|\#0 \{main\}|\s+$)|        <br />|:  Uncaught Error: Call to undefined function mysql_(connect|real_escape)' $OUTPUT_PHOTO > /tmp/unrecognizedOutput
+    grep -Ev '^(  thrown in |Stack trace:|\#0 \{main\}|\s+$)|        <br />|:  Uncaught Error: Call to undefined function mysql_connect' $OUTPUT_PHOTO > /tmp/unrecognizedOutput
 
     if [ ! -s /tmp/unrecognizedOutput ];then
-	# write PASSED in green
-        echo -e "\033[0;32m\033[1m[PASSED]\033[m\033[0m $file"
+	# write PASSED in bold green
+        echo -e "\033[0;1;32m[PASSED]\033[0m $file"
     else
-	# write FAILED in red
-        echo -e "\033[0;31m\033[1m[FAILED]\033[m\033[0m $file"
+	# write FAILED in bold red
+        echo -e "\033[0;1;31m[FAILED]\033[0m $file"
         cat $OUTPUT_PHOTO
 	echo Ran $ctr cases
 	exit

@@ -1,10 +1,10 @@
 Generation report:
 	OWASP_injection group generation report:
 		CWE_89 generation report:
-			160248 safe samples
-			109824 unsafe samples
-		270072 total
-	270072 total
-270072 total
-Generation time 00:26:58
+			157344 safe samples
+			104016 unsafe samples
+		261360 total
+	261360 total
+261360 total
+Generation time 00:22:41
 Finish

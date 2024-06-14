@@ -21,17 +21,17 @@
     <path>
       <dir>exec</dir>
     </path>
-    <comment>input : use exec to execute the script /tmp/tainted.php and store the output in $tainted</comment>
+    <comment>input : use exec to execute the script /tmp/tainted.sh and store the output in $tainted</comment>
   <flaws>
       <flaw flaw_type="default" safe="0" unsafe="0"/>
   </flaws>
   <imports>
   </imports>
     <code>
-        $script = "/tmp/tainted.php";
+        $script = "/tmp/tainted.sh";
         exec($script, $result, $return);
         {{out_var_name}} = $result[0];</code>
-    <input_type>script : /tmp/tainted.php</input_type>
+    <input_type>script: /tmp/tainted.sh</input_type>
   <output_type>string</output_type>
   </sample>
 
