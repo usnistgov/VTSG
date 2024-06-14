@@ -1,5 +1,5 @@
 #!/bin/bash
-# *modified "Wed Jun 12 08:15:24 2024" *by "Paul E. Black"
+# *modified "Fri Jun 14 10:41:32 2024" *by "Paul E. Black"
 
 if [ $# -ne 1 ]; then
     echo "Check if generated C# cases compile and run properly"
@@ -33,18 +33,20 @@ for file in $(find $path -name "[cC][wW][eE]_*[^bcde].cs" | sort -V); do
     if [ -a $exec ];then
         ctr=$((ctr+1))
 	# write PASSED in green
-        echo -e "\033[0;32m\033[1m[PASSED]\033[m\033[0m $files"
+        echo -e "\033[0;1;32m[PASSED]\033[0m $files"
     else
 	# write FAILED in red
-        echo -e "\033[0;31m\033[1m[FAILED]\033[m\033[0m $files"
+        echo -e "\033[0;1;31m[FAILED]\033[0m $files"
         cat compileOutput.txt
 	echo Compiled $ctr cases
 	exit
     fi
 
     if [[ $exec =~ EQ_sql_server ]];then
-	# Skip EQL_sql_server cases because they take about 20 seconds to time out,
-	# which REALLY slow execution, considering there are thousands of cases.
+	# Do not run EQL_sql_server cases because they take 20 seconds to time out,
+	# which REALLY slows execution, considering there are thousands of cases.
+	# write SKIPPED in yellow
+        echo -e "\033[0;1;33m[SKIPPED]\033[0m $files"
 	continue
     fi
     # run the executable
