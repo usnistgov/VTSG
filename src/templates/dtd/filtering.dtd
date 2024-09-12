@@ -1,5 +1,7 @@
+<!-- filtering.dtd for VTSG -->
+<!-- *modified "Thu Sep 12 11:56:54 2024" *by "Paul E. Black" -->
 <!ELEMENT filtering (sample+)>
-<!ELEMENT sample (path, comment, flaws, imports, code, input_type, output_type)>
+<!ELEMENT sample (path, comment, flaws, imports, code, input_type, output_type, options?)>
 <!ELEMENT path (dir+)>
 <!ELEMENT dir (#PCDATA)>
 <!ELEMENT comment (#PCDATA)>
@@ -13,3 +15,6 @@
 <!ELEMENT code (#PCDATA)>
 <!ELEMENT input_type (#PCDATA)>
 <!ELEMENT output_type (#PCDATA)>
+<!ELEMENT options EMPTY>
+<!ATTLIST options need_complexity CDATA #IMPLIED>
+<!-- end of filtering.dtd -->

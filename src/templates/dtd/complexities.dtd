@@ -1,11 +1,13 @@
+<!-- complexities.dtd for VTSG -->
+<!-- *modified "Thu Sep 12 10:47:30 2024" *by "Paul E. Black" -->
 <!ELEMENT root (conditions+, complexities+)>
 <!ELEMENT conditions (condition+)>
-<!ELEMENT condition (code, value)>
+<!ELEMENT condition (imports?, code, value)>
 <!ATTLIST condition id CDATA #REQUIRED>
 <!ELEMENT value (#PCDATA)>
 <!ELEMENT code (#PCDATA)>
 <!ELEMENT complexities (complexity+)>
-<!ELEMENT complexity (code, body*)>
+<!ELEMENT complexity (imports?, code, body*)>
 <!ELEMENT body (#PCDATA)>
 <!ATTLIST complexity id CDATA #REQUIRED>
 <!ATTLIST complexity type CDATA #REQUIRED>
@@ -15,3 +17,6 @@
 <!ATTLIST complexity need_id CDATA #IMPLIED>
 <!ATTLIST complexity in_out_var CDATA #IMPLIED>
 <!ATTLIST complexity indirection CDATA #IMPLIED>
+<!ELEMENT imports (import*)>
+<!ELEMENT import (#PCDATA)>
+<!-- end of complexities.dtd -->

@@ -1,5 +1,5 @@
 % *created  "Fri Jun  5 12:11:18 2020" *by "Paul E. Black"
-% *modified "Thu Jun 13 17:06:10 2024" *by "Paul E. Black"
+% *modified "Thu Sep 12 10:55:27 2024" *by "Paul E. Black"
 
 % ERB Control# N2023-1500
 
@@ -1175,7 +1175,10 @@ line option, see Table~\ref{tab:command line options}.
 \section{File Template, Input, Filter, Sink, Exec\_Query, and Complexity Files}
 \label{sec:source files}
 
-These XML files are required for each language.
+Characteristics of modules and their information are stored in XML files.  This
+section of the document describes the structure of each type of module and the
+meaning of each element and its tags.
+
 There
 are a few XML-specific caveats that must be paid attention to when
 creating these files.
@@ -1211,12 +1214,6 @@ Jinja recognizes
 double-curly-brackets (\{\{ and \}\}) as introducing Jinja-specific variables and
 controls.  Do not use pairs of curly brackets in your files, except for VTSG-related
 variables.
-
-Characteristics of modules and their information are stored in 
-XML files.  
-This section of the document describes the structure of each type of module and
-the meaning
-of each element and its tags.
 
 Most of the file types have an example followed by
 an explanation of what it does and what it generates.

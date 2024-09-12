@@ -1,5 +1,7 @@
+<!-- sink.dtd for VTSG -->
+<!-- *modified "Thu Sep 12 11:53:26 2024" *by "Paul E. Black" -->
 <!ELEMENT sink (sample+)>
-<!ELEMENT sample (path, flaw_type, comment, imports, code, safety, input_type, exec_type, options?)>
+<!ELEMENT sample (path, flaw_type, comment, imports?, code, safety, input_type, exec_type)>
 <!ELEMENT path (dir+)>
 <!ELEMENT dir (#PCDATA)>
 <!ELEMENT flaw_type (#PCDATA)>
@@ -13,5 +15,4 @@
 <!ATTLIST safety unsafe CDATA #REQUIRED>
 <!ELEMENT input_type (#PCDATA)>
 <!ELEMENT exec_type (#PCDATA)>
-<!ELEMENT options EMPTY>
-<!ATTLIST options need_complexity CDATA #IMPLIED>
+<!-- end of sink.dtd -->

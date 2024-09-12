@@ -1,13 +1,18 @@
-<!ELEMENT template (file_extension, comment, variables, imports, code)>
+<!-- file_template.dtd for VTSG -->
+<!-- *modified "Thu Sep 12 11:10:54 2024" *by "Paul E. Black" -->
+<!ELEMENT template (file_extension, comment, syntax, variables, imports?, code)>
 <!ATTLIST template name CDATA #REQUIRED>
 <!ELEMENT file_extension (#PCDATA)>
 <!ELEMENT comment (open, close, inline)>
 <!ELEMENT open (#PCDATA)>
 <!ELEMENT close (#PCDATA)>
 <!ELEMENT inline (#PCDATA)>
-<!ELEMENT variables (variable+)>
+<!ELEMENT syntax (statement_terminator, indent?, import_code)>
+<!ELEMENT statement_terminator (#PCDATA)>
+<!ELEMENT indent (#PCDATA)>
+<!ELEMENT import_code (#PCDATA)>
+<!ELEMENT variables (variable*)>
 <!ATTLIST variables prefix CDATA #REQUIRED>
-<!ATTLIST variables import_code CDATA #REQUIRED>
 <!ELEMENT variable EMPTY>
 <!ATTLIST variable type CDATA #REQUIRED>
 <!ATTLIST variable code CDATA #REQUIRED>
@@ -15,3 +20,4 @@
 <!ELEMENT imports (import*)>
 <!ELEMENT import (#PCDATA)>
 <!ELEMENT code (#PCDATA)>
+<!-- end of file_template.dtd -->
