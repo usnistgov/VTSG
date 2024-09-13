@@ -1,8 +1,32 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Tue Apr 16 15:10:09 2024" *by "Paul E. Black"
+ *modified "Fri Sep 13 08:22:18 2024" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
+
+
+13 September 2024
+
+Change DTD file names to be consistently plural, like the XML files, for example
+filtering.dtd -> filters.dtd and input.dtd to inputs.dtd.
+
+
+12 September 2024
+
+Validate all the tests "languages" (like, test010 and test023) files (like, filters.xml
+and inputs.xml) against the DTDs.
+
+Find some easy (automated) way to validate language .xml files against DTDs, say copy
+a simple checker into our tests area.  That way we can run "make check_xmls" often.
+I have been using https://www.xmlvalidation.com  It works fine, but I have to click a
+dozen things to select the file to validate, select the dtd file, and to validate.
+
+
+12 June 2024
+
+PHP multi-file (i.e. class) cases do not work.  Vide
+tests/PHP/OWASP_injection/CWE_89/safe/CWE_89__I_GET__F_CAST-cast_float_sort_of__S_join-concatenation_simple_quote__EQ_SQL__1-20*.php
+
 
 7 March 2024
 Factor out file "header" (and trailer) stuff from file_template and the complexities
