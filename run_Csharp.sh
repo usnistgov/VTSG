@@ -1,5 +1,5 @@
 #!/bin/bash
-# *modified "Fri Jun 14 10:41:32 2024" *by "Paul E. Black"
+# *modified "Fri Sep 13 07:53:00 2024" *by "Paul E. Black"
 
 if [ $# -ne 1 ]; then
     echo "Check if generated C# cases compile and run properly"
@@ -16,7 +16,7 @@ dll="-r:dll/Npgsql.dll \
      -r:dll/System.Xml.XDocument.dll\
      "
 
-# create a test file which some cases read
+# create a test file that some cases read
 rm -f /tmp/tainted.txt
 echo /etc/passwd > /tmp/tainted.txt
 
@@ -52,6 +52,9 @@ for file in $(find $path -name "[cC][wW][eE]_*[^bcde].cs" | sort -V); do
     # run the executable
     echo /etc/passwd | mono $exec /etc/passwd
 done
-echo Finished compiling and running all $ctr cases
+
+rm compileOutput.txt # remove the last compile output to leave a clean(er) directory
+
+echo Finished compiling and running $ctr cases
 
 # end of run_Csharp.sh
