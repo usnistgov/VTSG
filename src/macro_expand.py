@@ -4,7 +4,7 @@ Macro Expansion.
 Utilities for macro expansion.
 
   *created "Fri Jan 26 13:45:44 2024" *by "Paul E. Black"
- *modified "Thu Feb  1 14:46:10 2024" *by "Paul E. Black"
+ *modified "Fri Sep 13 10:08:25 2024" *by "Paul E. Black"
 """
 
 import sys
@@ -14,10 +14,10 @@ def macro_expand(source, **kwargs):
     """
     Apply macros in parameters passed to the text passed.  Return the processed text.
     For example,
-        text = "Source text {{ a_macro}} {{not_replaced}} {{a_macro}} the end."
+        text = "Source not {a_macro} {{ a_macro}} {{not_replaced}} {{a_macro}} the end."
         print(macro_expand(text, a_macro='see?'))
     prints
-        Source text {not a macro} see? {{not_replaced}} see? the end.
+        Source not {a_macro} see? {{not_replaced}} see? the end.
     Any macros not given as parameters are ignored.
 
     Specifications
@@ -39,6 +39,8 @@ def macro_expand(source, **kwargs):
 
     return t
 
+# built-in self-test. Run it with something like
+# $ python src/macro_expand.py
 if __name__ == "__main__":
     def test_macro_expand(source, expected, **kwargs):
         result = macro_expand(source, **kwargs)
@@ -52,7 +54,7 @@ if __name__ == "__main__":
             print(f'      not "{expected}"')
             sys.exit(1)
 
-    test_macro_expand('', '')
+    test_macro_expand('', '') # no arguments
     test_macro_expand('', '', a_macro = 'see?', _='', p='p=')
     test_macro_expand('macro \superset param {{long_macro_name}} er',
                       'macro \superset param {{long_macro_name}} er',
@@ -91,6 +93,6 @@ if __name__ == "__main__":
                       'mutally recursive -={{m}}=-',
                       m='-{{n}}-', n='={{m}}=')
 
-    print('macro_expand.py self-test completed')
+    print('macro_expand.py self-test completed successfully')
 
 # end of macro_expand.py
