@@ -1,8 +1,18 @@
 
 *created "Wed Feb 16 08:52:17 2022" *by "Paul E. Black"
- *modified "Fri Sep 13 08:22:18 2024" *by "Paul E. Black"
+ *modified "Mon Feb  3 16:50:14 2025" *by "Paul E. Black"
  
 Ideas for Enhancement of and Things To Do for VTSG
+
+
+3 February 2025
+
+VTSG does not import correctly in multi-file instances.  This is shown in the
+mismatches of CWE78__I_args__F_no_bad_chars__S_ls__2-71-70bi and
+CWE78__I_args__F_no_bad_chars__S_ls__2-71-71 in test027.  The code in tests is
+correct, that is, that's what we want to see.  However, VTSG doesn't produce them.
+VTSG puts both imports in the first file instead of putting one in the second file to
+import the third file.
 
 
 13 September 2024
