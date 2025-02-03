@@ -5,7 +5,7 @@ The components or modules for one test case.  A test case is created by the
 generator.  It becomes a source code file by being composed.
 
   *created "Thu Apr 13 16:25:48 2023" *by "Paul E. Black"
- *modified "Tue Mar 19 16:27:44 2024" *by "Paul E. Black"
+ *modified "Mon Feb  3 16:15:45 2025" *by "Paul E. Black"
 """
 
 from jinja2 import Template, DebugUndefined
@@ -338,7 +338,7 @@ class TestCase(object):
         edited_code = ""
 
         for line in code.splitlines(True):
-            line_mo = re.search("import\s+(\S+)\s+as\s+(\S+)", line)
+            line_mo = re.search(r"import\s+(\S+)\s+as\s+(\S+)", line)
             if line_mo:
                 body_file_name = line_mo.group(1) # the file name
                 imported_name  = line_mo.group(2) # the namespace

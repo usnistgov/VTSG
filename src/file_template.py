@@ -1,7 +1,7 @@
 """
 file_template module
 
- *modified "Fri Jan 12 12:56:01 2024" *by "Paul E. Black"
+ *modified "Mon Feb  3 16:15:28 2025" *by "Paul E. Black"
 """
 
 import re
@@ -65,7 +65,7 @@ class FileTemplate(object):
         for v in file_template.find("variables"):
             self._variables[v.get("type")] = {"code": v.get("code"), "init": v.get("init")}
         # consistency check: must have both {{local_var}} and type/code/init or neither
-        has_local_vars = re.search("{{\s*local_var\s*}}", self.code) is not None
+        has_local_vars = re.search(r"{{\s*local_var\s*}}", self.code) is not None
         has_var_decls  = self._variables != {}
         if has_local_vars != has_var_decls:
             # inconsistent!

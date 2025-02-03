@@ -1,5 +1,5 @@
 # *created  "Mon Aug  3 16:47:40 2020" *by "Paul E. Black"
-# *modified "Mon Feb 13 17:05:21 2023" *by "Paul E. Black"
+# *modified "Mon Feb  3 16:17:21 2025" *by "Paul E. Black"
 """
 Functions to synthesize pieces of code.
 """
@@ -26,7 +26,7 @@ def get_indent(var_name, template_code):
        the four spaces).  Indentation may be empty string.
     '''
     # find indentation before {{ var_name }}
-    indentMO = re.search('\n([^{\n]*){{-?\s*'+var_name+'\s*-?}}', template_code)
+    indentMO = re.search(r'\n([^{\n]*){{-?\s*' + var_name + r'\s*-?}}', template_code)
 
     if indentMO is None:
         return None
@@ -86,9 +86,9 @@ INDENT            text after INDENT is ignored
     indent_depth = 0
     final_content = ''
     for line in code.splitlines():
-        if re.match('\s*INDENT', line):
+        if re.match(r'\s*INDENT', line):
             indent_depth += 1
-        elif re.match('\s*DEDENT', line):
+        elif re.match(r'\s*DEDENT', line):
             if indent_depth < 1:
                 print(f'[ERROR] DEDENT without matching INDENT in this code:')
                 print(f'{code}')

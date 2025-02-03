@@ -4,14 +4,14 @@ Macro Expansion.
 Utilities for macro expansion.
 
   *created "Fri Jan 26 13:45:44 2024" *by "Paul E. Black"
- *modified "Fri Sep 13 10:08:25 2024" *by "Paul E. Black"
+ *modified "Mon Feb  3 16:14:16 2025" *by "Paul E. Black"
 """
 
 import sys
 import re
 
 def macro_expand(source, **kwargs):
-    """
+    r"""
     Apply macros in parameters passed to the text passed.  Return the processed text.
     For example,
         text = "Source not {a_macro} {{ a_macro}} {{not_replaced}} {{a_macro}} the end."
@@ -21,11 +21,13 @@ def macro_expand(source, **kwargs):
     Any macros not given as parameters are ignored.
 
     Specifications
-    Macros in text match {{\s*[a-zA-Z_][a-zA-Z_0-9]*\s*}}.  In words, macros begin
+    Macros in text match {{\s*[a-zA-Z_][a-zA-Z_0-9]*\s*}}.  That is, macros begin
     and end with pairs of curly brackets.  The macro name begins with a letter or
     underscore followed by alphanumeric characters or underscores.  (This is the same
-    as Python variable names.)  The name may have arbitrary white space, including
-    newlines, before or after.
+    as Python variable names.)  Before or after the name there may be arbitrary
+    white space, including newlines.
+
+    Since macros are replaced one by one, recursive references do not matter.
     """
 
     assert type(source) == str, f'type of source is {type(source)}, not str'
@@ -33,7 +35,7 @@ def macro_expand(source, **kwargs):
     t = source # so we don't modify the passed parameter
 
     for k, v in kwargs.items():
-        pat = re.compile('{{\s*' + k + '\s*}}')
+        pat = re.compile(r'{{\s*' + k + r'\s*}}')
         #print(f'{pat=}')
         t = pat.sub(v, t)
 
@@ -56,11 +58,11 @@ if __name__ == "__main__":
 
     test_macro_expand('', '') # no arguments
     test_macro_expand('', '', a_macro = 'see?', _='', p='p=')
-    test_macro_expand('macro \superset param {{long_macro_name}} er',
-                      'macro \superset param {{long_macro_name}} er',
+    test_macro_expand(r'macro \superset param {{long_macro_name}} er',
+                      r'macro \superset param {{long_macro_name}} er',
                       macro_name='oops')
-    test_macro_expand('macro \subset param {{macro_name}} er',
-                      'macro \subset param {{macro_name}} er',
+    test_macro_expand(r'macro \subset param {{macro_name}} er',
+                      r'macro \subset param {{macro_name}} er',
                       long_macro_name='oops')
     test_macro_expand('unterminated macro {{ 	macro_name\t\n ',
                       'unterminated macro {{ 	macro_name\t\n ',
