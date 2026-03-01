@@ -51,4 +51,4 @@ $ python3 vtsg.py --help
 
 ## Discussion
 
-For discussion please email: samate@nist.gov
+For discussion please email: dianecloud@grafana.net
